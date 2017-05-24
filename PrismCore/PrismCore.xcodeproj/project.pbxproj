@@ -62,8 +62,8 @@
 		80564CBF1ED528D500BDA006 /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C741ED528D500BDA006 /* OAuth.swift */; };
 		80564CC01ED528D500BDA006 /* Visitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C751ED528D500BDA006 /* Visitor.swift */; };
 		80564CC11ED528D500BDA006 /* Visitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C751ED528D500BDA006 /* Visitor.swift */; };
-		80564CC21ED528D500BDA006 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C771ED528D500BDA006 /* Networking.swift */; };
-		80564CC31ED528D500BDA006 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C771ED528D500BDA006 /* Networking.swift */; };
+		80564CC21ED528D500BDA006 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C771ED528D500BDA006 /* Network.swift */; };
+		80564CC31ED528D500BDA006 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C771ED528D500BDA006 /* Network.swift */; };
 		80564CC41ED528D500BDA006 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C791ED528D500BDA006 /* EndPoint.swift */; };
 		80564CC51ED528D500BDA006 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C791ED528D500BDA006 /* EndPoint.swift */; };
 		80564CC61ED528D500BDA006 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C7A1ED528D500BDA006 /* Mappable.swift */; };
@@ -104,6 +104,7 @@
 		80564CE91ED528D500BDA006 /* MQTTSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8E1ED528D500BDA006 /* MQTTSession.swift */; };
 		80564CEA1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8F1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift */; };
 		80564CEB1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8F1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift */; };
+		E53BA95F1ED573CD00A4B18C /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53BA95E1ED573CD00A4B18C /* NetworkProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,7 +150,7 @@
 		80564C731ED528D500BDA006 /* MQTT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTT.swift; sourceTree = "<group>"; };
 		80564C741ED528D500BDA006 /* OAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
 		80564C751ED528D500BDA006 /* Visitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Visitor.swift; sourceTree = "<group>"; };
-		80564C771ED528D500BDA006 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		80564C771ED528D500BDA006 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		80564C791ED528D500BDA006 /* EndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		80564C7A1ED528D500BDA006 /* Mappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
 		80564C7B1ED528D500BDA006 /* PrismCoreDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrismCoreDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +171,7 @@
 		80564C8D1ED528D500BDA006 /* MQTTExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTExtensions.swift; sourceTree = "<group>"; };
 		80564C8E1ED528D500BDA006 /* MQTTSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTSession.swift; sourceTree = "<group>"; };
 		80564C8F1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTSessionStreamDelegate.swift; sourceTree = "<group>"; };
+		E53BA95E1ED573CD00A4B18C /* NetworkProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,7 +317,7 @@
 		80564C761ED528D500BDA006 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				80564C771ED528D500BDA006 /* Networking.swift */,
+				80564C771ED528D500BDA006 /* Network.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -326,6 +328,7 @@
 				80564C791ED528D500BDA006 /* EndPoint.swift */,
 				80564C7A1ED528D500BDA006 /* Mappable.swift */,
 				80564C7B1ED528D500BDA006 /* PrismCoreDelegate.swift */,
+				E53BA95E1ED573CD00A4B18C /* NetworkProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -484,7 +487,7 @@
 				80564CEA1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift in Sources */,
 				80564CAE1ED528D500BDA006 /* ConversationHistory.swift in Sources */,
 				80564CA61ED528D500BDA006 /* Sticker.swift in Sources */,
-				80564CC21ED528D500BDA006 /* Networking.swift in Sources */,
+				80564CC21ED528D500BDA006 /* Network.swift in Sources */,
 				80564C9A1ED528D500BDA006 /* GetStickersEndPoint.swift in Sources */,
 				80564CAC1ED528D500BDA006 /* Conversation.swift in Sources */,
 				80564C9C1ED528D500BDA006 /* VisitorConnectEndPoint.swift in Sources */,
@@ -524,6 +527,7 @@
 				80564CCE1ED528D500BDA006 /* MQTTDisconnectPacket.swift in Sources */,
 				80564CD81ED528D500BDA006 /* MQTTPubAck.swift in Sources */,
 				80564CCC1ED528D500BDA006 /* MQTTConnectPacket.swift in Sources */,
+				E53BA95F1ED573CD00A4B18C /* NetworkProtocol.swift in Sources */,
 				80564C981ED528D500BDA006 /* GetSettingsEndPoint.swift in Sources */,
 				80564CD41ED528D500BDA006 /* MQTTPingPacket.swift in Sources */,
 				80564CDC1ED528D500BDA006 /* MQTTPubMsg.swift in Sources */,
@@ -538,7 +542,7 @@
 				80564C9B1ED528D500BDA006 /* GetStickersEndPoint.swift in Sources */,
 				80564CA11ED528D500BDA006 /* String.swift in Sources */,
 				80564CD91ED528D500BDA006 /* MQTTPubAck.swift in Sources */,
-				80564CC31ED528D500BDA006 /* Networking.swift in Sources */,
+				80564CC31ED528D500BDA006 /* Network.swift in Sources */,
 				80564CA31ED528D500BDA006 /* URL.swift in Sources */,
 				80564CC71ED528D500BDA006 /* Mappable.swift in Sources */,
 				80564CDD1ED528D500BDA006 /* MQTTPubMsg.swift in Sources */,

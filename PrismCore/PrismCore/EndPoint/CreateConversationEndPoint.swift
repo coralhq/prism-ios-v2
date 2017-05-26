@@ -17,6 +17,8 @@ class CreateConversationEndPoint : EndPoint {
     var httpBody: [String : Any] {
         get {
             return [
+                
+                //TODO: change channel name after ready
                 "channel": "SHAMU",
                 "visitor": [
                     "name": visitorName,

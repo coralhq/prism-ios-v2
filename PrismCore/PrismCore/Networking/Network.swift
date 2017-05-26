@@ -1,5 +1,5 @@
 //
-//  Networking.swift
+//  Network.swift
 //  PrismCoreSDK
 //
 //  Created by fanni suyuti on 5/18/17.
@@ -14,9 +14,9 @@ enum HTTPMethod: String {
     case GET
 }
 
-class Networking {
+class Network: NetworkProtocol {
     
-    static let shared = Networking()
+    static let shared = Network()
     private let mqttSession = MQTTSession(host: "", port: 1882, clientID: "iOSDK", cleanSession: true, keepAlive: 60, useSSL: true)
     private init() {}
     

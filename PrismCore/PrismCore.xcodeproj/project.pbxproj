@@ -1,0 +1,793 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		800FD4241ED5293F00BE13CD /* PrismCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800FD4231ED5293F00BE13CD /* PrismCore.swift */; };
+		800FD4251ED5293F00BE13CD /* PrismCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800FD4231ED5293F00BE13CD /* PrismCore.swift */; };
+		80564C461ED5289D00BDA006 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80564C3C1ED5289D00BDA006 /* PrismCore.framework */; };
+		80564C4B1ED5289D00BDA006 /* PrismCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C4A1ED5289D00BDA006 /* PrismCoreTests.swift */; };
+		80564C4D1ED5289D00BDA006 /* PrismCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 80564C3F1ED5289D00BDA006 /* PrismCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80564C901ED528D500BDA006 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C571ED528D500BDA006 /* Config.swift */; };
+		80564C911ED528D500BDA006 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C571ED528D500BDA006 /* Config.swift */; };
+		80564C921ED528D500BDA006 /* CreateConversationEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C591ED528D500BDA006 /* CreateConversationEndPoint.swift */; };
+		80564C931ED528D500BDA006 /* CreateConversationEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C591ED528D500BDA006 /* CreateConversationEndPoint.swift */; };
+		80564C941ED528D500BDA006 /* GetAttachmentURLEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C5A1ED528D500BDA006 /* GetAttachmentURLEndPoint.swift */; };
+		80564C951ED528D500BDA006 /* GetAttachmentURLEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C5A1ED528D500BDA006 /* GetAttachmentURLEndPoint.swift */; };
+		80564C961ED528D500BDA006 /* GetConversationHistoryEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C5B1ED528D500BDA006 /* GetConversationHistoryEndPoint.swift */; };
+		80564C971ED528D500BDA006 /* GetConversationHistoryEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C5B1ED528D500BDA006 /* GetConversationHistoryEndPoint.swift */; };
+		80564C981ED528D500BDA006 /* GetSettingsEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C5C1ED528D500BDA006 /* GetSettingsEndPoint.swift */; };
+		80564C991ED528D500BDA006 /* GetSettingsEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C5C1ED528D500BDA006 /* GetSettingsEndPoint.swift */; };
+		80564C9A1ED528D500BDA006 /* GetStickersEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C5D1ED528D500BDA006 /* GetStickersEndPoint.swift */; };
+		80564C9B1ED528D500BDA006 /* GetStickersEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C5D1ED528D500BDA006 /* GetStickersEndPoint.swift */; };
+		80564C9C1ED528D500BDA006 /* VisitorConnectEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C5E1ED528D500BDA006 /* VisitorConnectEndPoint.swift */; };
+		80564C9D1ED528D500BDA006 /* VisitorConnectEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C5E1ED528D500BDA006 /* VisitorConnectEndPoint.swift */; };
+		80564C9E1ED528D500BDA006 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C601ED528D500BDA006 /* Date.swift */; };
+		80564C9F1ED528D500BDA006 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C601ED528D500BDA006 /* Date.swift */; };
+		80564CA01ED528D500BDA006 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C611ED528D500BDA006 /* String.swift */; };
+		80564CA11ED528D500BDA006 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C611ED528D500BDA006 /* String.swift */; };
+		80564CA21ED528D500BDA006 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C621ED528D500BDA006 /* URL.swift */; };
+		80564CA31ED528D500BDA006 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C621ED528D500BDA006 /* URL.swift */; };
+		80564CA41ED528D500BDA006 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C651ED528D500BDA006 /* Message.swift */; };
+		80564CA51ED528D500BDA006 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C651ED528D500BDA006 /* Message.swift */; };
+		80564CA61ED528D500BDA006 /* Sticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C661ED528D500BDA006 /* Sticker.swift */; };
+		80564CA71ED528D500BDA006 /* Sticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C661ED528D500BDA006 /* Sticker.swift */; };
+		80564CA81ED528D500BDA006 /* StickerPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C671ED528D500BDA006 /* StickerPack.swift */; };
+		80564CA91ED528D500BDA006 /* StickerPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C671ED528D500BDA006 /* StickerPack.swift */; };
+		80564CAA1ED528D500BDA006 /* StickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C681ED528D500BDA006 /* StickerResponse.swift */; };
+		80564CAB1ED528D500BDA006 /* StickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C681ED528D500BDA006 /* StickerResponse.swift */; };
+		80564CAC1ED528D500BDA006 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C6A1ED528D500BDA006 /* Conversation.swift */; };
+		80564CAD1ED528D500BDA006 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C6A1ED528D500BDA006 /* Conversation.swift */; };
+		80564CAE1ED528D500BDA006 /* ConversationHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C6B1ED528D500BDA006 /* ConversationHistory.swift */; };
+		80564CAF1ED528D500BDA006 /* ConversationHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C6B1ED528D500BDA006 /* ConversationHistory.swift */; };
+		80564CB01ED528D500BDA006 /* ConversationParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C6C1ED528D500BDA006 /* ConversationParticipant.swift */; };
+		80564CB11ED528D500BDA006 /* ConversationParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C6C1ED528D500BDA006 /* ConversationParticipant.swift */; };
+		80564CB21ED528D500BDA006 /* ConversationVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C6D1ED528D500BDA006 /* ConversationVisitor.swift */; };
+		80564CB31ED528D500BDA006 /* ConversationVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C6D1ED528D500BDA006 /* ConversationVisitor.swift */; };
+		80564CB41ED528D500BDA006 /* CreateConversationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C6E1ED528D500BDA006 /* CreateConversationResponse.swift */; };
+		80564CB51ED528D500BDA006 /* CreateConversationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C6E1ED528D500BDA006 /* CreateConversationResponse.swift */; };
+		80564CB61ED528D500BDA006 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C6F1ED528D500BDA006 /* Settings.swift */; };
+		80564CB71ED528D500BDA006 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C6F1ED528D500BDA006 /* Settings.swift */; };
+		80564CB81ED528D500BDA006 /* UploadURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C701ED528D500BDA006 /* UploadURL.swift */; };
+		80564CB91ED528D500BDA006 /* UploadURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C701ED528D500BDA006 /* UploadURL.swift */; };
+		80564CBA1ED528D500BDA006 /* ConnectResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C721ED528D500BDA006 /* ConnectResponse.swift */; };
+		80564CBB1ED528D500BDA006 /* ConnectResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C721ED528D500BDA006 /* ConnectResponse.swift */; };
+		80564CBC1ED528D500BDA006 /* MQTT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C731ED528D500BDA006 /* MQTT.swift */; };
+		80564CBD1ED528D500BDA006 /* MQTT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C731ED528D500BDA006 /* MQTT.swift */; };
+		80564CBE1ED528D500BDA006 /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C741ED528D500BDA006 /* OAuth.swift */; };
+		80564CBF1ED528D500BDA006 /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C741ED528D500BDA006 /* OAuth.swift */; };
+		80564CC01ED528D500BDA006 /* Visitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C751ED528D500BDA006 /* Visitor.swift */; };
+		80564CC11ED528D500BDA006 /* Visitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C751ED528D500BDA006 /* Visitor.swift */; };
+		80564CC21ED528D500BDA006 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C771ED528D500BDA006 /* Networking.swift */; };
+		80564CC31ED528D500BDA006 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C771ED528D500BDA006 /* Networking.swift */; };
+		80564CC41ED528D500BDA006 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C791ED528D500BDA006 /* EndPoint.swift */; };
+		80564CC51ED528D500BDA006 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C791ED528D500BDA006 /* EndPoint.swift */; };
+		80564CC61ED528D500BDA006 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C7A1ED528D500BDA006 /* Mappable.swift */; };
+		80564CC71ED528D500BDA006 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C7A1ED528D500BDA006 /* Mappable.swift */; };
+		80564CC81ED528D500BDA006 /* PrismCoreDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C7B1ED528D500BDA006 /* PrismCoreDelegate.swift */; };
+		80564CC91ED528D500BDA006 /* PrismCoreDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C7B1ED528D500BDA006 /* PrismCoreDelegate.swift */; };
+		80564CCA1ED528D500BDA006 /* MQTTConnAckPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C7F1ED528D500BDA006 /* MQTTConnAckPacket.swift */; };
+		80564CCB1ED528D500BDA006 /* MQTTConnAckPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C7F1ED528D500BDA006 /* MQTTConnAckPacket.swift */; };
+		80564CCC1ED528D500BDA006 /* MQTTConnectPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C801ED528D500BDA006 /* MQTTConnectPacket.swift */; };
+		80564CCD1ED528D500BDA006 /* MQTTConnectPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C801ED528D500BDA006 /* MQTTConnectPacket.swift */; };
+		80564CCE1ED528D500BDA006 /* MQTTDisconnectPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C811ED528D500BDA006 /* MQTTDisconnectPacket.swift */; };
+		80564CCF1ED528D500BDA006 /* MQTTDisconnectPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C811ED528D500BDA006 /* MQTTDisconnectPacket.swift */; };
+		80564CD01ED528D500BDA006 /* MQTTPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C821ED528D500BDA006 /* MQTTPacket.swift */; };
+		80564CD11ED528D500BDA006 /* MQTTPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C821ED528D500BDA006 /* MQTTPacket.swift */; };
+		80564CD21ED528D500BDA006 /* MQTTPacketFixedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C831ED528D500BDA006 /* MQTTPacketFixedHeader.swift */; };
+		80564CD31ED528D500BDA006 /* MQTTPacketFixedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C831ED528D500BDA006 /* MQTTPacketFixedHeader.swift */; };
+		80564CD41ED528D500BDA006 /* MQTTPingPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C841ED528D500BDA006 /* MQTTPingPacket.swift */; };
+		80564CD51ED528D500BDA006 /* MQTTPingPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C841ED528D500BDA006 /* MQTTPingPacket.swift */; };
+		80564CD61ED528D500BDA006 /* MQTTPingResp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C851ED528D500BDA006 /* MQTTPingResp.swift */; };
+		80564CD71ED528D500BDA006 /* MQTTPingResp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C851ED528D500BDA006 /* MQTTPingResp.swift */; };
+		80564CD81ED528D500BDA006 /* MQTTPubAck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C861ED528D500BDA006 /* MQTTPubAck.swift */; };
+		80564CD91ED528D500BDA006 /* MQTTPubAck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C861ED528D500BDA006 /* MQTTPubAck.swift */; };
+		80564CDA1ED528D500BDA006 /* MQTTPublishPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C871ED528D500BDA006 /* MQTTPublishPacket.swift */; };
+		80564CDB1ED528D500BDA006 /* MQTTPublishPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C871ED528D500BDA006 /* MQTTPublishPacket.swift */; };
+		80564CDC1ED528D500BDA006 /* MQTTPubMsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C881ED528D500BDA006 /* MQTTPubMsg.swift */; };
+		80564CDD1ED528D500BDA006 /* MQTTPubMsg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C881ED528D500BDA006 /* MQTTPubMsg.swift */; };
+		80564CDE1ED528D500BDA006 /* MQTTSubAckPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C891ED528D500BDA006 /* MQTTSubAckPacket.swift */; };
+		80564CDF1ED528D500BDA006 /* MQTTSubAckPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C891ED528D500BDA006 /* MQTTSubAckPacket.swift */; };
+		80564CE01ED528D500BDA006 /* MQTTSubPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8A1ED528D500BDA006 /* MQTTSubPacket.swift */; };
+		80564CE11ED528D500BDA006 /* MQTTSubPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8A1ED528D500BDA006 /* MQTTSubPacket.swift */; };
+		80564CE21ED528D500BDA006 /* MQTTUnSubAckPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8B1ED528D500BDA006 /* MQTTUnSubAckPacket.swift */; };
+		80564CE31ED528D500BDA006 /* MQTTUnSubAckPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8B1ED528D500BDA006 /* MQTTUnSubAckPacket.swift */; };
+		80564CE41ED528D500BDA006 /* MQTTUnsubPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8C1ED528D500BDA006 /* MQTTUnsubPacket.swift */; };
+		80564CE51ED528D500BDA006 /* MQTTUnsubPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8C1ED528D500BDA006 /* MQTTUnsubPacket.swift */; };
+		80564CE61ED528D500BDA006 /* MQTTExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8D1ED528D500BDA006 /* MQTTExtensions.swift */; };
+		80564CE71ED528D500BDA006 /* MQTTExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8D1ED528D500BDA006 /* MQTTExtensions.swift */; };
+		80564CE81ED528D500BDA006 /* MQTTSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8E1ED528D500BDA006 /* MQTTSession.swift */; };
+		80564CE91ED528D500BDA006 /* MQTTSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8E1ED528D500BDA006 /* MQTTSession.swift */; };
+		80564CEA1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8F1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift */; };
+		80564CEB1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8F1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		80564C471ED5289D00BDA006 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80564C331ED5289D00BDA006 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80564C3B1ED5289D00BDA006;
+			remoteInfo = PrismCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		800FD4231ED5293F00BE13CD /* PrismCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrismCore.swift; sourceTree = "<group>"; };
+		80564C3C1ED5289D00BDA006 /* PrismCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrismCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		80564C3F1ED5289D00BDA006 /* PrismCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrismCore.h; sourceTree = "<group>"; };
+		80564C401ED5289D00BDA006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80564C451ED5289D00BDA006 /* PrismCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrismCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		80564C4A1ED5289D00BDA006 /* PrismCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismCoreTests.swift; sourceTree = "<group>"; };
+		80564C4C1ED5289D00BDA006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80564C571ED528D500BDA006 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		80564C591ED528D500BDA006 /* CreateConversationEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateConversationEndPoint.swift; sourceTree = "<group>"; };
+		80564C5A1ED528D500BDA006 /* GetAttachmentURLEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetAttachmentURLEndPoint.swift; sourceTree = "<group>"; };
+		80564C5B1ED528D500BDA006 /* GetConversationHistoryEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetConversationHistoryEndPoint.swift; sourceTree = "<group>"; };
+		80564C5C1ED528D500BDA006 /* GetSettingsEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetSettingsEndPoint.swift; sourceTree = "<group>"; };
+		80564C5D1ED528D500BDA006 /* GetStickersEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStickersEndPoint.swift; sourceTree = "<group>"; };
+		80564C5E1ED528D500BDA006 /* VisitorConnectEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitorConnectEndPoint.swift; sourceTree = "<group>"; };
+		80564C601ED528D500BDA006 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		80564C611ED528D500BDA006 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		80564C621ED528D500BDA006 /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		80564C651ED528D500BDA006 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		80564C661ED528D500BDA006 /* Sticker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sticker.swift; sourceTree = "<group>"; };
+		80564C671ED528D500BDA006 /* StickerPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerPack.swift; sourceTree = "<group>"; };
+		80564C681ED528D500BDA006 /* StickerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerResponse.swift; sourceTree = "<group>"; };
+		80564C6A1ED528D500BDA006 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		80564C6B1ED528D500BDA006 /* ConversationHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationHistory.swift; sourceTree = "<group>"; };
+		80564C6C1ED528D500BDA006 /* ConversationParticipant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationParticipant.swift; sourceTree = "<group>"; };
+		80564C6D1ED528D500BDA006 /* ConversationVisitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationVisitor.swift; sourceTree = "<group>"; };
+		80564C6E1ED528D500BDA006 /* CreateConversationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateConversationResponse.swift; sourceTree = "<group>"; };
+		80564C6F1ED528D500BDA006 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		80564C701ED528D500BDA006 /* UploadURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadURL.swift; sourceTree = "<group>"; };
+		80564C721ED528D500BDA006 /* ConnectResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectResponse.swift; sourceTree = "<group>"; };
+		80564C731ED528D500BDA006 /* MQTT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTT.swift; sourceTree = "<group>"; };
+		80564C741ED528D500BDA006 /* OAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
+		80564C751ED528D500BDA006 /* Visitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Visitor.swift; sourceTree = "<group>"; };
+		80564C771ED528D500BDA006 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		80564C791ED528D500BDA006 /* EndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		80564C7A1ED528D500BDA006 /* Mappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
+		80564C7B1ED528D500BDA006 /* PrismCoreDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrismCoreDelegate.swift; sourceTree = "<group>"; };
+		80564C7F1ED528D500BDA006 /* MQTTConnAckPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTConnAckPacket.swift; sourceTree = "<group>"; };
+		80564C801ED528D500BDA006 /* MQTTConnectPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTConnectPacket.swift; sourceTree = "<group>"; };
+		80564C811ED528D500BDA006 /* MQTTDisconnectPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTDisconnectPacket.swift; sourceTree = "<group>"; };
+		80564C821ED528D500BDA006 /* MQTTPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTPacket.swift; sourceTree = "<group>"; };
+		80564C831ED528D500BDA006 /* MQTTPacketFixedHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTPacketFixedHeader.swift; sourceTree = "<group>"; };
+		80564C841ED528D500BDA006 /* MQTTPingPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTPingPacket.swift; sourceTree = "<group>"; };
+		80564C851ED528D500BDA006 /* MQTTPingResp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTPingResp.swift; sourceTree = "<group>"; };
+		80564C861ED528D500BDA006 /* MQTTPubAck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTPubAck.swift; sourceTree = "<group>"; };
+		80564C871ED528D500BDA006 /* MQTTPublishPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTPublishPacket.swift; sourceTree = "<group>"; };
+		80564C881ED528D500BDA006 /* MQTTPubMsg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTPubMsg.swift; sourceTree = "<group>"; };
+		80564C891ED528D500BDA006 /* MQTTSubAckPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTSubAckPacket.swift; sourceTree = "<group>"; };
+		80564C8A1ED528D500BDA006 /* MQTTSubPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTSubPacket.swift; sourceTree = "<group>"; };
+		80564C8B1ED528D500BDA006 /* MQTTUnSubAckPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTUnSubAckPacket.swift; sourceTree = "<group>"; };
+		80564C8C1ED528D500BDA006 /* MQTTUnsubPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTUnsubPacket.swift; sourceTree = "<group>"; };
+		80564C8D1ED528D500BDA006 /* MQTTExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTExtensions.swift; sourceTree = "<group>"; };
+		80564C8E1ED528D500BDA006 /* MQTTSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTSession.swift; sourceTree = "<group>"; };
+		80564C8F1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTSessionStreamDelegate.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		80564C381ED5289D00BDA006 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80564C421ED5289D00BDA006 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80564C461ED5289D00BDA006 /* PrismCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		80564C321ED5289D00BDA006 = {
+			isa = PBXGroup;
+			children = (
+				80564C3E1ED5289D00BDA006 /* PrismCore */,
+				80564C491ED5289D00BDA006 /* PrismCoreTests */,
+				80564C3D1ED5289D00BDA006 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		80564C3D1ED5289D00BDA006 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				80564C3C1ED5289D00BDA006 /* PrismCore.framework */,
+				80564C451ED5289D00BDA006 /* PrismCoreTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		80564C3E1ED5289D00BDA006 /* PrismCore */ = {
+			isa = PBXGroup;
+			children = (
+				800FD4231ED5293F00BE13CD /* PrismCore.swift */,
+				80564C561ED528D500BDA006 /* Configuration */,
+				80564C581ED528D500BDA006 /* EndPoint */,
+				80564C5F1ED528D500BDA006 /* Extension */,
+				80564C631ED528D500BDA006 /* Model */,
+				80564C761ED528D500BDA006 /* Networking */,
+				80564C781ED528D500BDA006 /* Protocol */,
+				80564C7C1ED528D500BDA006 /* Vendor */,
+				80564C3F1ED5289D00BDA006 /* PrismCore.h */,
+				80564C401ED5289D00BDA006 /* Info.plist */,
+			);
+			path = PrismCore;
+			sourceTree = "<group>";
+		};
+		80564C491ED5289D00BDA006 /* PrismCoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				80564C4A1ED5289D00BDA006 /* PrismCoreTests.swift */,
+				80564C4C1ED5289D00BDA006 /* Info.plist */,
+			);
+			path = PrismCoreTests;
+			sourceTree = "<group>";
+		};
+		80564C561ED528D500BDA006 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				80564C571ED528D500BDA006 /* Config.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		80564C581ED528D500BDA006 /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				80564C591ED528D500BDA006 /* CreateConversationEndPoint.swift */,
+				80564C5A1ED528D500BDA006 /* GetAttachmentURLEndPoint.swift */,
+				80564C5B1ED528D500BDA006 /* GetConversationHistoryEndPoint.swift */,
+				80564C5C1ED528D500BDA006 /* GetSettingsEndPoint.swift */,
+				80564C5D1ED528D500BDA006 /* GetStickersEndPoint.swift */,
+				80564C5E1ED528D500BDA006 /* VisitorConnectEndPoint.swift */,
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		80564C5F1ED528D500BDA006 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				80564C601ED528D500BDA006 /* Date.swift */,
+				80564C611ED528D500BDA006 /* String.swift */,
+				80564C621ED528D500BDA006 /* URL.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		80564C631ED528D500BDA006 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				80564C641ED528D500BDA006 /* Conversation */,
+				80564C691ED528D500BDA006 /* CreateConversation */,
+				80564C6F1ED528D500BDA006 /* Settings.swift */,
+				80564C701ED528D500BDA006 /* UploadURL.swift */,
+				80564C711ED528D500BDA006 /* VisitorConnect */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		80564C641ED528D500BDA006 /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				80564C651ED528D500BDA006 /* Message.swift */,
+				80564C661ED528D500BDA006 /* Sticker.swift */,
+				80564C671ED528D500BDA006 /* StickerPack.swift */,
+				80564C681ED528D500BDA006 /* StickerResponse.swift */,
+			);
+			path = Conversation;
+			sourceTree = "<group>";
+		};
+		80564C691ED528D500BDA006 /* CreateConversation */ = {
+			isa = PBXGroup;
+			children = (
+				80564C6A1ED528D500BDA006 /* Conversation.swift */,
+				80564C6B1ED528D500BDA006 /* ConversationHistory.swift */,
+				80564C6C1ED528D500BDA006 /* ConversationParticipant.swift */,
+				80564C6D1ED528D500BDA006 /* ConversationVisitor.swift */,
+				80564C6E1ED528D500BDA006 /* CreateConversationResponse.swift */,
+			);
+			path = CreateConversation;
+			sourceTree = "<group>";
+		};
+		80564C711ED528D500BDA006 /* VisitorConnect */ = {
+			isa = PBXGroup;
+			children = (
+				80564C721ED528D500BDA006 /* ConnectResponse.swift */,
+				80564C731ED528D500BDA006 /* MQTT.swift */,
+				80564C741ED528D500BDA006 /* OAuth.swift */,
+				80564C751ED528D500BDA006 /* Visitor.swift */,
+			);
+			path = VisitorConnect;
+			sourceTree = "<group>";
+		};
+		80564C761ED528D500BDA006 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				80564C771ED528D500BDA006 /* Networking.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		80564C781ED528D500BDA006 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				80564C791ED528D500BDA006 /* EndPoint.swift */,
+				80564C7A1ED528D500BDA006 /* Mappable.swift */,
+				80564C7B1ED528D500BDA006 /* PrismCoreDelegate.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		80564C7C1ED528D500BDA006 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				80564C7D1ED528D500BDA006 /* SwiftMQTT */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		80564C7D1ED528D500BDA006 /* SwiftMQTT */ = {
+			isa = PBXGroup;
+			children = (
+				80564C7E1ED528D500BDA006 /* Models */,
+				80564C8D1ED528D500BDA006 /* MQTTExtensions.swift */,
+				80564C8E1ED528D500BDA006 /* MQTTSession.swift */,
+				80564C8F1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift */,
+			);
+			path = SwiftMQTT;
+			sourceTree = "<group>";
+		};
+		80564C7E1ED528D500BDA006 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				80564C7F1ED528D500BDA006 /* MQTTConnAckPacket.swift */,
+				80564C801ED528D500BDA006 /* MQTTConnectPacket.swift */,
+				80564C811ED528D500BDA006 /* MQTTDisconnectPacket.swift */,
+				80564C821ED528D500BDA006 /* MQTTPacket.swift */,
+				80564C831ED528D500BDA006 /* MQTTPacketFixedHeader.swift */,
+				80564C841ED528D500BDA006 /* MQTTPingPacket.swift */,
+				80564C851ED528D500BDA006 /* MQTTPingResp.swift */,
+				80564C861ED528D500BDA006 /* MQTTPubAck.swift */,
+				80564C871ED528D500BDA006 /* MQTTPublishPacket.swift */,
+				80564C881ED528D500BDA006 /* MQTTPubMsg.swift */,
+				80564C891ED528D500BDA006 /* MQTTSubAckPacket.swift */,
+				80564C8A1ED528D500BDA006 /* MQTTSubPacket.swift */,
+				80564C8B1ED528D500BDA006 /* MQTTUnSubAckPacket.swift */,
+				80564C8C1ED528D500BDA006 /* MQTTUnsubPacket.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		80564C391ED5289D00BDA006 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80564C4D1ED5289D00BDA006 /* PrismCore.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		80564C3B1ED5289D00BDA006 /* PrismCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80564C501ED5289D00BDA006 /* Build configuration list for PBXNativeTarget "PrismCore" */;
+			buildPhases = (
+				80564C371ED5289D00BDA006 /* Sources */,
+				80564C381ED5289D00BDA006 /* Frameworks */,
+				80564C391ED5289D00BDA006 /* Headers */,
+				80564C3A1ED5289D00BDA006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PrismCore;
+			productName = PrismCore;
+			productReference = 80564C3C1ED5289D00BDA006 /* PrismCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		80564C441ED5289D00BDA006 /* PrismCoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80564C531ED5289D00BDA006 /* Build configuration list for PBXNativeTarget "PrismCoreTests" */;
+			buildPhases = (
+				80564C411ED5289D00BDA006 /* Sources */,
+				80564C421ED5289D00BDA006 /* Frameworks */,
+				80564C431ED5289D00BDA006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				80564C481ED5289D00BDA006 /* PBXTargetDependency */,
+			);
+			name = PrismCoreTests;
+			productName = PrismCoreTests;
+			productReference = 80564C451ED5289D00BDA006 /* PrismCoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		80564C331ED5289D00BDA006 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = PrismApp;
+				TargetAttributes = {
+					80564C3B1ED5289D00BDA006 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+					80564C441ED5289D00BDA006 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 80564C361ED5289D00BDA006 /* Build configuration list for PBXProject "PrismCore" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 80564C321ED5289D00BDA006;
+			productRefGroup = 80564C3D1ED5289D00BDA006 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				80564C3B1ED5289D00BDA006 /* PrismCore */,
+				80564C441ED5289D00BDA006 /* PrismCoreTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		80564C3A1ED5289D00BDA006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80564C431ED5289D00BDA006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		80564C371ED5289D00BDA006 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80564C941ED528D500BDA006 /* GetAttachmentURLEndPoint.swift in Sources */,
+				80564CEA1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift in Sources */,
+				80564CAE1ED528D500BDA006 /* ConversationHistory.swift in Sources */,
+				80564CA61ED528D500BDA006 /* Sticker.swift in Sources */,
+				80564CC21ED528D500BDA006 /* Networking.swift in Sources */,
+				80564C9A1ED528D500BDA006 /* GetStickersEndPoint.swift in Sources */,
+				80564CAC1ED528D500BDA006 /* Conversation.swift in Sources */,
+				80564C9C1ED528D500BDA006 /* VisitorConnectEndPoint.swift in Sources */,
+				80564CE81ED528D500BDA006 /* MQTTSession.swift in Sources */,
+				80564CBC1ED528D500BDA006 /* MQTT.swift in Sources */,
+				80564CA01ED528D500BDA006 /* String.swift in Sources */,
+				80564CB81ED528D500BDA006 /* UploadURL.swift in Sources */,
+				80564C9E1ED528D500BDA006 /* Date.swift in Sources */,
+				80564CD21ED528D500BDA006 /* MQTTPacketFixedHeader.swift in Sources */,
+				80564CCA1ED528D500BDA006 /* MQTTConnAckPacket.swift in Sources */,
+				80564CBA1ED528D500BDA006 /* ConnectResponse.swift in Sources */,
+				80564CC41ED528D500BDA006 /* EndPoint.swift in Sources */,
+				80564CDA1ED528D500BDA006 /* MQTTPublishPacket.swift in Sources */,
+				80564CDE1ED528D500BDA006 /* MQTTSubAckPacket.swift in Sources */,
+				80564CA21ED528D500BDA006 /* URL.swift in Sources */,
+				80564CA41ED528D500BDA006 /* Message.swift in Sources */,
+				80564CC61ED528D500BDA006 /* Mappable.swift in Sources */,
+				80564CAA1ED528D500BDA006 /* StickerResponse.swift in Sources */,
+				80564CE61ED528D500BDA006 /* MQTTExtensions.swift in Sources */,
+				80564CE41ED528D500BDA006 /* MQTTUnsubPacket.swift in Sources */,
+				80564CA81ED528D500BDA006 /* StickerPack.swift in Sources */,
+				80564CBE1ED528D500BDA006 /* OAuth.swift in Sources */,
+				80564C961ED528D500BDA006 /* GetConversationHistoryEndPoint.swift in Sources */,
+				80564CB41ED528D500BDA006 /* CreateConversationResponse.swift in Sources */,
+				80564CD61ED528D500BDA006 /* MQTTPingResp.swift in Sources */,
+				80564CB61ED528D500BDA006 /* Settings.swift in Sources */,
+				80564C921ED528D500BDA006 /* CreateConversationEndPoint.swift in Sources */,
+				80564CE01ED528D500BDA006 /* MQTTSubPacket.swift in Sources */,
+				80564CC81ED528D500BDA006 /* PrismCoreDelegate.swift in Sources */,
+				80564C901ED528D500BDA006 /* Config.swift in Sources */,
+				80564CD01ED528D500BDA006 /* MQTTPacket.swift in Sources */,
+				80564CB21ED528D500BDA006 /* ConversationVisitor.swift in Sources */,
+				80564CE21ED528D500BDA006 /* MQTTUnSubAckPacket.swift in Sources */,
+				800FD4241ED5293F00BE13CD /* PrismCore.swift in Sources */,
+				80564CB01ED528D500BDA006 /* ConversationParticipant.swift in Sources */,
+				80564CC01ED528D500BDA006 /* Visitor.swift in Sources */,
+				80564CCE1ED528D500BDA006 /* MQTTDisconnectPacket.swift in Sources */,
+				80564CD81ED528D500BDA006 /* MQTTPubAck.swift in Sources */,
+				80564CCC1ED528D500BDA006 /* MQTTConnectPacket.swift in Sources */,
+				80564C981ED528D500BDA006 /* GetSettingsEndPoint.swift in Sources */,
+				80564CD41ED528D500BDA006 /* MQTTPingPacket.swift in Sources */,
+				80564CDC1ED528D500BDA006 /* MQTTPubMsg.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80564C411ED5289D00BDA006 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80564C991ED528D500BDA006 /* GetSettingsEndPoint.swift in Sources */,
+				80564C9B1ED528D500BDA006 /* GetStickersEndPoint.swift in Sources */,
+				80564CA11ED528D500BDA006 /* String.swift in Sources */,
+				80564CD91ED528D500BDA006 /* MQTTPubAck.swift in Sources */,
+				80564CC31ED528D500BDA006 /* Networking.swift in Sources */,
+				80564CA31ED528D500BDA006 /* URL.swift in Sources */,
+				80564CC71ED528D500BDA006 /* Mappable.swift in Sources */,
+				80564CDD1ED528D500BDA006 /* MQTTPubMsg.swift in Sources */,
+				80564CCB1ED528D500BDA006 /* MQTTConnAckPacket.swift in Sources */,
+				80564CB91ED528D500BDA006 /* UploadURL.swift in Sources */,
+				80564C9D1ED528D500BDA006 /* VisitorConnectEndPoint.swift in Sources */,
+				80564CA71ED528D500BDA006 /* Sticker.swift in Sources */,
+				80564C931ED528D500BDA006 /* CreateConversationEndPoint.swift in Sources */,
+				80564C4B1ED5289D00BDA006 /* PrismCoreTests.swift in Sources */,
+				80564CB11ED528D500BDA006 /* ConversationParticipant.swift in Sources */,
+				80564CE51ED528D500BDA006 /* MQTTUnsubPacket.swift in Sources */,
+				80564CE71ED528D500BDA006 /* MQTTExtensions.swift in Sources */,
+				80564CAD1ED528D500BDA006 /* Conversation.swift in Sources */,
+				80564CBD1ED528D500BDA006 /* MQTT.swift in Sources */,
+				80564CD31ED528D500BDA006 /* MQTTPacketFixedHeader.swift in Sources */,
+				80564CAB1ED528D500BDA006 /* StickerResponse.swift in Sources */,
+				80564C951ED528D500BDA006 /* GetAttachmentURLEndPoint.swift in Sources */,
+				80564CD11ED528D500BDA006 /* MQTTPacket.swift in Sources */,
+				80564CAF1ED528D500BDA006 /* ConversationHistory.swift in Sources */,
+				80564CE91ED528D500BDA006 /* MQTTSession.swift in Sources */,
+				80564CC91ED528D500BDA006 /* PrismCoreDelegate.swift in Sources */,
+				80564C911ED528D500BDA006 /* Config.swift in Sources */,
+				80564CE11ED528D500BDA006 /* MQTTSubPacket.swift in Sources */,
+				80564CA91ED528D500BDA006 /* StickerPack.swift in Sources */,
+				80564CA51ED528D500BDA006 /* Message.swift in Sources */,
+				80564CC11ED528D500BDA006 /* Visitor.swift in Sources */,
+				80564C9F1ED528D500BDA006 /* Date.swift in Sources */,
+				80564CBF1ED528D500BDA006 /* OAuth.swift in Sources */,
+				80564C971ED528D500BDA006 /* GetConversationHistoryEndPoint.swift in Sources */,
+				80564CCD1ED528D500BDA006 /* MQTTConnectPacket.swift in Sources */,
+				80564CB71ED528D500BDA006 /* Settings.swift in Sources */,
+				80564CE31ED528D500BDA006 /* MQTTUnSubAckPacket.swift in Sources */,
+				80564CCF1ED528D500BDA006 /* MQTTDisconnectPacket.swift in Sources */,
+				80564CD51ED528D500BDA006 /* MQTTPingPacket.swift in Sources */,
+				80564CD71ED528D500BDA006 /* MQTTPingResp.swift in Sources */,
+				80564CB51ED528D500BDA006 /* CreateConversationResponse.swift in Sources */,
+				80564CDB1ED528D500BDA006 /* MQTTPublishPacket.swift in Sources */,
+				80564CDF1ED528D500BDA006 /* MQTTSubAckPacket.swift in Sources */,
+				80564CEB1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift in Sources */,
+				80564CB31ED528D500BDA006 /* ConversationVisitor.swift in Sources */,
+				80564CC51ED528D500BDA006 /* EndPoint.swift in Sources */,
+				800FD4251ED5293F00BE13CD /* PrismCore.swift in Sources */,
+				80564CBB1ED528D500BDA006 /* ConnectResponse.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		80564C481ED5289D00BDA006 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80564C3B1ED5289D00BDA006 /* PrismCore */;
+			targetProxy = 80564C471ED5289D00BDA006 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		80564C4E1ED5289D00BDA006 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		80564C4F1ED5289D00BDA006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		80564C511ED5289D00BDA006 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = PrismCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.prismapp.PrismCore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		80564C521ED5289D00BDA006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = PrismCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.prismapp.PrismCore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		80564C541ED5289D00BDA006 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = PrismCoreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.prismapp.PrismCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		80564C551ED5289D00BDA006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = PrismCoreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.prismapp.PrismCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		80564C361ED5289D00BDA006 /* Build configuration list for PBXProject "PrismCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80564C4E1ED5289D00BDA006 /* Debug */,
+				80564C4F1ED5289D00BDA006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80564C501ED5289D00BDA006 /* Build configuration list for PBXNativeTarget "PrismCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80564C511ED5289D00BDA006 /* Debug */,
+				80564C521ED5289D00BDA006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80564C531ED5289D00BDA006 /* Build configuration list for PBXNativeTarget "PrismCoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80564C541ED5289D00BDA006 /* Debug */,
+				80564C551ED5289D00BDA006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 80564C331ED5289D00BDA006 /* Project object */;
+}

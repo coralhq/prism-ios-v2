@@ -249,11 +249,11 @@
 			isa = PBXGroup;
 			children = (
 				80564C591ED528D500BDA006 /* CreateConversationEndPoint.swift */,
-				80564C5A1ED528D500BDA006 /* GetAttachmentURLEndPoint.swift */,
 				80564C5B1ED528D500BDA006 /* GetConversationHistoryEndPoint.swift */,
 				80564C5C1ED528D500BDA006 /* GetSettingsEndPoint.swift */,
 				80564C5D1ED528D500BDA006 /* GetStickersEndPoint.swift */,
 				80564C5E1ED528D500BDA006 /* VisitorConnectEndPoint.swift */,
+				80564C5A1ED528D500BDA006 /* GetAttachmentURLEndPoint.swift */,
 			);
 			path = EndPoint;
 			sourceTree = "<group>";

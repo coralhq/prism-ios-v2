@@ -8,13 +8,13 @@
 
 import Foundation
 
-class MessageSender : Mappable {
+public class MessageSender : Mappable {
     var id: String
     var name: String
     var role: String
     var userAgent: String
     
-    required init?(json: [String : Any]?) {
+    required public init?(json: [String : Any]?) {
         guard let id = json?["id"] as? String,
             let name = json?["name"] as? String,
             let role = json?["role"] as? String,

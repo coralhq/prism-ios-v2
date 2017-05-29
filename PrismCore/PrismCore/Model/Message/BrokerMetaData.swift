@@ -8,11 +8,11 @@
 
 import Foundation
 
-class BrokerMetaData : Mappable {
+public class BrokerMetaData : Mappable {
     
     let timestamp: Date
     
-    required init?(json: [String : Any]?) {
+    required public init?(json: [String : Any]?) {
         guard let timestamp = Date.getDateFromISO8601(string: json?["timestamp"] as? String) else {
             return nil
         }

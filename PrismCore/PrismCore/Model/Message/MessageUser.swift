@@ -8,11 +8,11 @@
 
 import Foundation
 
-class MessageUser: Mappable {
+public class MessageUser: Mappable {
     let id: String
     let name: String
     
-    required init?(json: [String : Any]?) {
+    required public init?(json: [String : Any]?) {
         guard let id = json?["id"] as? String,
             let name = json?["name"] as? String else {
                 return nil

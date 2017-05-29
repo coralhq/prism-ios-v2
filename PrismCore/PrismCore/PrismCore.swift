@@ -12,9 +12,14 @@ public typealias HTTPRequestResult = (Mappable?, Error?) -> ()
 
 open class PrismCore {
     
-    var delegate: PrismCoreDelegate?
+    fileprivate var delegate: PrismCoreDelegate?
     
-    public init(environment: EnvironmentType, merchantID: String) {
+    static open var shared = PrismCore()
+    
+    private init() {}
+    
+    open func configure(environment: EnvironmentType, merchantID: String, delegate: PrismCoreDelegate) {
+        self.delegate = delegate
         Config.shared.configure(environment: environment, merchantID: merchantID)
         Network.shared.setMQTTDelegate(delegate: self)
     }

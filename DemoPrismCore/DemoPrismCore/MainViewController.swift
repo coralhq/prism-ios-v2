@@ -10,16 +10,15 @@ import UIKit
 import PrismCore
 
 class MainViewController: UIViewController {
-    
+
     @IBOutlet var nameTextField:UITextField!
     @IBOutlet var idTextField:UITextField!
     @IBOutlet var conenctButton:UIButton!
     
-    let prismCore = PrismCore(environment: EnvironmentType.Sandbox, merchantID: "62ccf49f-0386-49a3-858c-70c98a9dc4fc")
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        PrismCore.shared.configure(environment: EnvironmentType.Sandbox, merchantID: "62ccf49f-0386-49a3-858c-70c98a9dc4fc", delegate: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -32,7 +31,7 @@ class MainViewController: UIViewController {
         view.isUserInteractionEnabled = false
         
         guard let name = nameTextField.text, let identifier = idTextField.text else { return }
-        prismCore.visitorConnect(visitorName: name, userID: identifier) { [weak self] (connectResponse, error) in
+        PrismCore.shared.visitorConnect(visitorName: name, userID: identifier) { [weak self] (connectResponse, error) in
             //            DispatchQueue.main.async(){
             sender.setTitle("Connect", for: .normal)
             self?.view.isUserInteractionEnabled = true
@@ -40,7 +39,7 @@ class MainViewController: UIViewController {
             if let error = error {
                 print(error.localizedDescription)
             } else if let response = connectResponse {
-                self?.prismCore.createConversation(visitorName: response.visitor.name, token: "Bearer \(response.oAuth.accessToken)") { (createConversationResponse, error) in
+                PrismCore.shared.createConversation(visitorName: response.visitor.name, token: "Bearer \(response.oAuth.accessToken)") { (createConversationResponse, error) in
                     if let error = error {
                         print(error)
                     } else if let response = createConversationResponse {
@@ -50,5 +49,12 @@ class MainViewController: UIViewController {
             }
             //            }
         }
+    }
+}
+
+extension MainViewController: PrismCoreDelegate {
+    
+    func didReceive(message data: Data, in topic: String) {
+        
     }
 }

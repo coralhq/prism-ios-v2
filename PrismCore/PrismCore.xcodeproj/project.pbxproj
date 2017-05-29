@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		800FD4241ED5293F00BE13CD /* PrismCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800FD4231ED5293F00BE13CD /* PrismCore.swift */; };
 		800FD4251ED5293F00BE13CD /* PrismCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800FD4231ED5293F00BE13CD /* PrismCore.swift */; };
-		8036C33B1ED7CD55007F44BC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036C33A1ED7CD55007F44BC /* Message.swift */; };
-		8036C33C1ED7CD55007F44BC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036C33A1ED7CD55007F44BC /* Message.swift */; };
 		80564C461ED5289D00BDA006 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80564C3C1ED5289D00BDA006 /* PrismCore.framework */; };
 		80564C4B1ED5289D00BDA006 /* PrismCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C4A1ED5289D00BDA006 /* PrismCoreTests.swift */; };
 		80564C4D1ED5289D00BDA006 /* PrismCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 80564C3F1ED5289D00BDA006 /* PrismCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -62,8 +60,8 @@
 		80564CBF1ED528D500BDA006 /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C741ED528D500BDA006 /* OAuth.swift */; };
 		80564CC01ED528D500BDA006 /* Visitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C751ED528D500BDA006 /* Visitor.swift */; };
 		80564CC11ED528D500BDA006 /* Visitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C751ED528D500BDA006 /* Visitor.swift */; };
-		80564CC21ED528D500BDA006 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C771ED528D500BDA006 /* Networking.swift */; };
-		80564CC31ED528D500BDA006 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C771ED528D500BDA006 /* Networking.swift */; };
+		80564CC21ED528D500BDA006 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C771ED528D500BDA006 /* Network.swift */; };
+		80564CC31ED528D500BDA006 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C771ED528D500BDA006 /* Network.swift */; };
 		80564CC41ED528D500BDA006 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C791ED528D500BDA006 /* EndPoint.swift */; };
 		80564CC51ED528D500BDA006 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C791ED528D500BDA006 /* EndPoint.swift */; };
 		80564CC61ED528D500BDA006 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C7A1ED528D500BDA006 /* Mappable.swift */; };
@@ -104,36 +102,23 @@
 		80564CE91ED528D500BDA006 /* MQTTSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8E1ED528D500BDA006 /* MQTTSession.swift */; };
 		80564CEA1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8F1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift */; };
 		80564CEB1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C8F1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift */; };
-		80D597971ED812BC009449D2 /* MessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597961ED812BC009449D2 /* MessageSender.swift */; };
-		80D597981ED812BC009449D2 /* MessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597961ED812BC009449D2 /* MessageSender.swift */; };
-		80D5979A1ED812DF009449D2 /* MessageUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597991ED812DF009449D2 /* MessageUser.swift */; };
-		80D5979B1ED812DF009449D2 /* MessageUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597991ED812DF009449D2 /* MessageUser.swift */; };
-		80D5979D1ED812F7009449D2 /* BrokerMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D5979C1ED812F7009449D2 /* BrokerMetaData.swift */; };
-		80D5979E1ED812F7009449D2 /* BrokerMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D5979C1ED812F7009449D2 /* BrokerMetaData.swift */; };
-		80D597AD1ED81347009449D2 /* ContentAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A11ED81347009449D2 /* ContentAssignment.swift */; };
-		80D597AE1ED81347009449D2 /* ContentAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A11ED81347009449D2 /* ContentAssignment.swift */; };
-		80D597AF1ED81347009449D2 /* ContentAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A21ED81347009449D2 /* ContentAttachment.swift */; };
-		80D597B01ED81347009449D2 /* ContentAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A21ED81347009449D2 /* ContentAttachment.swift */; };
-		80D597B11ED81347009449D2 /* ContentAutoResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A31ED81347009449D2 /* ContentAutoResponder.swift */; };
-		80D597B21ED81347009449D2 /* ContentAutoResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A31ED81347009449D2 /* ContentAutoResponder.swift */; };
-		80D597B31ED81347009449D2 /* ContentCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A41ED81347009449D2 /* ContentCart.swift */; };
-		80D597B41ED81347009449D2 /* ContentCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A41ED81347009449D2 /* ContentCart.swift */; };
-		80D597B51ED81347009449D2 /* ContentCloseChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A51ED81347009449D2 /* ContentCloseChat.swift */; };
-		80D597B61ED81347009449D2 /* ContentCloseChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A51ED81347009449D2 /* ContentCloseChat.swift */; };
-		80D597B71ED81347009449D2 /* ContentInvoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A61ED81347009449D2 /* ContentInvoice.swift */; };
-		80D597B81ED81347009449D2 /* ContentInvoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A61ED81347009449D2 /* ContentInvoice.swift */; };
-		80D597B91ED81347009449D2 /* ContentOfflineMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A71ED81347009449D2 /* ContentOfflineMessage.swift */; };
-		80D597BA1ED81347009449D2 /* ContentOfflineMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A71ED81347009449D2 /* ContentOfflineMessage.swift */; };
-		80D597BB1ED81347009449D2 /* ContentPlainText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A81ED81347009449D2 /* ContentPlainText.swift */; };
-		80D597BC1ED81347009449D2 /* ContentPlainText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A81ED81347009449D2 /* ContentPlainText.swift */; };
-		80D597BD1ED81347009449D2 /* ContentProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A91ED81347009449D2 /* ContentProduct.swift */; };
-		80D597BE1ED81347009449D2 /* ContentProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597A91ED81347009449D2 /* ContentProduct.swift */; };
-		80D597BF1ED81347009449D2 /* ContentStatusUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597AA1ED81347009449D2 /* ContentStatusUpdate.swift */; };
-		80D597C01ED81347009449D2 /* ContentStatusUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597AA1ED81347009449D2 /* ContentStatusUpdate.swift */; };
-		80D597C11ED81347009449D2 /* ContentSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597AB1ED81347009449D2 /* ContentSticker.swift */; };
-		80D597C21ED81347009449D2 /* ContentSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597AB1ED81347009449D2 /* ContentSticker.swift */; };
-		80D597C31ED81347009449D2 /* ContentTyping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597AC1ED81347009449D2 /* ContentTyping.swift */; };
-		80D597C41ED81347009449D2 /* ContentTyping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D597AC1ED81347009449D2 /* ContentTyping.swift */; };
+		E53BA95F1ED573CD00A4B18C /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53BA95E1ED573CD00A4B18C /* NetworkProtocol.swift */; };
+		E5B86DFC1EDBF1A90035A933 /* BrokerMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86DF71EDBF1A90035A933 /* BrokerMetaData.swift */; };
+		E5B86DFE1EDBF1A90035A933 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86DF91EDBF1A90035A933 /* Message.swift */; };
+		E5B86DFF1EDBF1A90035A933 /* MessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86DFA1EDBF1A90035A933 /* MessageSender.swift */; };
+		E5B86E001EDBF1A90035A933 /* MessageUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86DFB1EDBF1A90035A933 /* MessageUser.swift */; };
+		E5B86E0F1EDBF2170035A933 /* ContentAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86E031EDBF2170035A933 /* ContentAssignment.swift */; };
+		E5B86E101EDBF2170035A933 /* ContentAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86E041EDBF2170035A933 /* ContentAttachment.swift */; };
+		E5B86E111EDBF2170035A933 /* ContentAutoResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86E051EDBF2170035A933 /* ContentAutoResponder.swift */; };
+		E5B86E121EDBF2170035A933 /* ContentCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86E061EDBF2170035A933 /* ContentCart.swift */; };
+		E5B86E131EDBF2170035A933 /* ContentCloseChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86E071EDBF2170035A933 /* ContentCloseChat.swift */; };
+		E5B86E141EDBF2170035A933 /* ContentInvoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86E081EDBF2170035A933 /* ContentInvoice.swift */; };
+		E5B86E151EDBF2170035A933 /* ContentOfflineMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86E091EDBF2170035A933 /* ContentOfflineMessage.swift */; };
+		E5B86E161EDBF2170035A933 /* ContentPlainText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86E0A1EDBF2170035A933 /* ContentPlainText.swift */; };
+		E5B86E171EDBF2170035A933 /* ContentProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86E0B1EDBF2170035A933 /* ContentProduct.swift */; };
+		E5B86E181EDBF2170035A933 /* ContentStatusUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86E0C1EDBF2170035A933 /* ContentStatusUpdate.swift */; };
+		E5B86E191EDBF2170035A933 /* ContentSticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86E0D1EDBF2170035A933 /* ContentSticker.swift */; };
+		E5B86E1A1EDBF2170035A933 /* ContentTyping.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B86E0E1EDBF2170035A933 /* ContentTyping.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,7 +133,6 @@
 
 /* Begin PBXFileReference section */
 		800FD4231ED5293F00BE13CD /* PrismCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrismCore.swift; sourceTree = "<group>"; };
-		8036C33A1ED7CD55007F44BC /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		80564C3C1ED5289D00BDA006 /* PrismCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrismCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80564C3F1ED5289D00BDA006 /* PrismCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrismCore.h; sourceTree = "<group>"; };
 		80564C401ED5289D00BDA006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -179,7 +163,7 @@
 		80564C731ED528D500BDA006 /* MQTT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTT.swift; sourceTree = "<group>"; };
 		80564C741ED528D500BDA006 /* OAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
 		80564C751ED528D500BDA006 /* Visitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Visitor.swift; sourceTree = "<group>"; };
-		80564C771ED528D500BDA006 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		80564C771ED528D500BDA006 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		80564C791ED528D500BDA006 /* EndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		80564C7A1ED528D500BDA006 /* Mappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
 		80564C7B1ED528D500BDA006 /* PrismCoreDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrismCoreDelegate.swift; sourceTree = "<group>"; };
@@ -200,21 +184,23 @@
 		80564C8D1ED528D500BDA006 /* MQTTExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTExtensions.swift; sourceTree = "<group>"; };
 		80564C8E1ED528D500BDA006 /* MQTTSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTSession.swift; sourceTree = "<group>"; };
 		80564C8F1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQTTSessionStreamDelegate.swift; sourceTree = "<group>"; };
-		80D597961ED812BC009449D2 /* MessageSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSender.swift; sourceTree = "<group>"; };
-		80D597991ED812DF009449D2 /* MessageUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageUser.swift; sourceTree = "<group>"; };
-		80D5979C1ED812F7009449D2 /* BrokerMetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrokerMetaData.swift; sourceTree = "<group>"; };
-		80D597A11ED81347009449D2 /* ContentAssignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentAssignment.swift; sourceTree = "<group>"; };
-		80D597A21ED81347009449D2 /* ContentAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentAttachment.swift; sourceTree = "<group>"; };
-		80D597A31ED81347009449D2 /* ContentAutoResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentAutoResponder.swift; sourceTree = "<group>"; };
-		80D597A41ED81347009449D2 /* ContentCart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCart.swift; sourceTree = "<group>"; };
-		80D597A51ED81347009449D2 /* ContentCloseChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCloseChat.swift; sourceTree = "<group>"; };
-		80D597A61ED81347009449D2 /* ContentInvoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentInvoice.swift; sourceTree = "<group>"; };
-		80D597A71ED81347009449D2 /* ContentOfflineMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentOfflineMessage.swift; sourceTree = "<group>"; };
-		80D597A81ED81347009449D2 /* ContentPlainText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentPlainText.swift; sourceTree = "<group>"; };
-		80D597A91ED81347009449D2 /* ContentProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentProduct.swift; sourceTree = "<group>"; };
-		80D597AA1ED81347009449D2 /* ContentStatusUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentStatusUpdate.swift; sourceTree = "<group>"; };
-		80D597AB1ED81347009449D2 /* ContentSticker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentSticker.swift; sourceTree = "<group>"; };
-		80D597AC1ED81347009449D2 /* ContentTyping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentTyping.swift; sourceTree = "<group>"; };
+		E53BA95E1ED573CD00A4B18C /* NetworkProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
+		E5B86DF71EDBF1A90035A933 /* BrokerMetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BrokerMetaData.swift; path = PrismCore/Model/Message/BrokerMetaData.swift; sourceTree = SOURCE_ROOT; };
+		E5B86DF91EDBF1A90035A933 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = PrismCore/Model/Message/Message.swift; sourceTree = SOURCE_ROOT; };
+		E5B86DFA1EDBF1A90035A933 /* MessageSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageSender.swift; path = PrismCore/Model/Message/MessageSender.swift; sourceTree = SOURCE_ROOT; };
+		E5B86DFB1EDBF1A90035A933 /* MessageUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageUser.swift; path = PrismCore/Model/Message/MessageUser.swift; sourceTree = SOURCE_ROOT; };
+		E5B86E031EDBF2170035A933 /* ContentAssignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentAssignment.swift; path = Message/ContentType/ContentAssignment.swift; sourceTree = "<group>"; };
+		E5B86E041EDBF2170035A933 /* ContentAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentAttachment.swift; path = Message/ContentType/ContentAttachment.swift; sourceTree = "<group>"; };
+		E5B86E051EDBF2170035A933 /* ContentAutoResponder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentAutoResponder.swift; path = Message/ContentType/ContentAutoResponder.swift; sourceTree = "<group>"; };
+		E5B86E061EDBF2170035A933 /* ContentCart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentCart.swift; path = Message/ContentType/ContentCart.swift; sourceTree = "<group>"; };
+		E5B86E071EDBF2170035A933 /* ContentCloseChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentCloseChat.swift; path = Message/ContentType/ContentCloseChat.swift; sourceTree = "<group>"; };
+		E5B86E081EDBF2170035A933 /* ContentInvoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentInvoice.swift; path = Message/ContentType/ContentInvoice.swift; sourceTree = "<group>"; };
+		E5B86E091EDBF2170035A933 /* ContentOfflineMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentOfflineMessage.swift; path = Message/ContentType/ContentOfflineMessage.swift; sourceTree = "<group>"; };
+		E5B86E0A1EDBF2170035A933 /* ContentPlainText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentPlainText.swift; path = Message/ContentType/ContentPlainText.swift; sourceTree = "<group>"; };
+		E5B86E0B1EDBF2170035A933 /* ContentProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentProduct.swift; path = Message/ContentType/ContentProduct.swift; sourceTree = "<group>"; };
+		E5B86E0C1EDBF2170035A933 /* ContentStatusUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentStatusUpdate.swift; path = Message/ContentType/ContentStatusUpdate.swift; sourceTree = "<group>"; };
+		E5B86E0D1EDBF2170035A933 /* ContentSticker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentSticker.swift; path = Message/ContentType/ContentSticker.swift; sourceTree = "<group>"; };
+		E5B86E0E1EDBF2170035A933 /* ContentTyping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentTyping.swift; path = Message/ContentType/ContentTyping.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,18 +222,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8036C3361ED7C6E0007F44BC /* Message */ = {
-			isa = PBXGroup;
-			children = (
-				80D597A01ED81347009449D2 /* ContentType */,
-				8036C33A1ED7CD55007F44BC /* Message.swift */,
-				80D597961ED812BC009449D2 /* MessageSender.swift */,
-				80D597991ED812DF009449D2 /* MessageUser.swift */,
-				80D5979C1ED812F7009449D2 /* BrokerMetaData.swift */,
-			);
-			path = Message;
-			sourceTree = "<group>";
-		};
 		80564C321ED5289D00BDA006 = {
 			isa = PBXGroup;
 			children = (
@@ -326,7 +300,7 @@
 		80564C631ED528D500BDA006 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8036C3361ED7C6E0007F44BC /* Message */,
+				E5B86E011EDBF1F30035A933 /* Message */,
 				80564C641ED528D500BDA006 /* Conversation */,
 				80564C691ED528D500BDA006 /* CreateConversation */,
 				80564C6F1ED528D500BDA006 /* Settings.swift */,
@@ -372,7 +346,7 @@
 		80564C761ED528D500BDA006 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				80564C771ED528D500BDA006 /* Networking.swift */,
+				80564C771ED528D500BDA006 /* Network.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -383,6 +357,7 @@
 				80564C791ED528D500BDA006 /* EndPoint.swift */,
 				80564C7A1ED528D500BDA006 /* Mappable.swift */,
 				80564C7B1ED528D500BDA006 /* PrismCoreDelegate.swift */,
+				E53BA95E1ED573CD00A4B18C /* NetworkProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -427,23 +402,35 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		80D597A01ED81347009449D2 /* ContentType */ = {
+		E5B86E011EDBF1F30035A933 /* Message */ = {
 			isa = PBXGroup;
 			children = (
-				80D597A11ED81347009449D2 /* ContentAssignment.swift */,
-				80D597A21ED81347009449D2 /* ContentAttachment.swift */,
-				80D597A31ED81347009449D2 /* ContentAutoResponder.swift */,
-				80D597A41ED81347009449D2 /* ContentCart.swift */,
-				80D597A51ED81347009449D2 /* ContentCloseChat.swift */,
-				80D597A61ED81347009449D2 /* ContentInvoice.swift */,
-				80D597A71ED81347009449D2 /* ContentOfflineMessage.swift */,
-				80D597A81ED81347009449D2 /* ContentPlainText.swift */,
-				80D597A91ED81347009449D2 /* ContentProduct.swift */,
-				80D597AA1ED81347009449D2 /* ContentStatusUpdate.swift */,
-				80D597AB1ED81347009449D2 /* ContentSticker.swift */,
-				80D597AC1ED81347009449D2 /* ContentTyping.swift */,
+				E5B86E021EDBF1FE0035A933 /* ConentType */,
+				E5B86DF71EDBF1A90035A933 /* BrokerMetaData.swift */,
+				E5B86DF91EDBF1A90035A933 /* Message.swift */,
+				E5B86DFA1EDBF1A90035A933 /* MessageSender.swift */,
+				E5B86DFB1EDBF1A90035A933 /* MessageUser.swift */,
 			);
-			path = ContentType;
+			name = Message;
+			sourceTree = "<group>";
+		};
+		E5B86E021EDBF1FE0035A933 /* ConentType */ = {
+			isa = PBXGroup;
+			children = (
+				E5B86E031EDBF2170035A933 /* ContentAssignment.swift */,
+				E5B86E041EDBF2170035A933 /* ContentAttachment.swift */,
+				E5B86E051EDBF2170035A933 /* ContentAutoResponder.swift */,
+				E5B86E061EDBF2170035A933 /* ContentCart.swift */,
+				E5B86E071EDBF2170035A933 /* ContentCloseChat.swift */,
+				E5B86E081EDBF2170035A933 /* ContentInvoice.swift */,
+				E5B86E091EDBF2170035A933 /* ContentOfflineMessage.swift */,
+				E5B86E0A1EDBF2170035A933 /* ContentPlainText.swift */,
+				E5B86E0B1EDBF2170035A933 /* ContentProduct.swift */,
+				E5B86E0C1EDBF2170035A933 /* ContentStatusUpdate.swift */,
+				E5B86E0D1EDBF2170035A933 /* ContentSticker.swift */,
+				E5B86E0E1EDBF2170035A933 /* ContentTyping.swift */,
+			);
+			name = ConentType;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -558,64 +545,65 @@
 			files = (
 				80564C941ED528D500BDA006 /* GetAttachmentURLEndPoint.swift in Sources */,
 				80564CEA1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift in Sources */,
-				80D597C31ED81347009449D2 /* ContentTyping.swift in Sources */,
-				80D5979A1ED812DF009449D2 /* MessageUser.swift in Sources */,
 				80564CAE1ED528D500BDA006 /* ConversationHistory.swift in Sources */,
 				80564CA61ED528D500BDA006 /* Sticker.swift in Sources */,
-				80564CC21ED528D500BDA006 /* Networking.swift in Sources */,
+				80564CC21ED528D500BDA006 /* Network.swift in Sources */,
 				80564C9A1ED528D500BDA006 /* GetStickersEndPoint.swift in Sources */,
 				80564CAC1ED528D500BDA006 /* Conversation.swift in Sources */,
+				E5B86DFE1EDBF1A90035A933 /* Message.swift in Sources */,
+				E5B86E121EDBF2170035A933 /* ContentCart.swift in Sources */,
+				E5B86E001EDBF1A90035A933 /* MessageUser.swift in Sources */,
 				80564C9C1ED528D500BDA006 /* VisitorConnectEndPoint.swift in Sources */,
 				80564CE81ED528D500BDA006 /* MQTTSession.swift in Sources */,
-				80D597BF1ED81347009449D2 /* ContentStatusUpdate.swift in Sources */,
 				80564CBC1ED528D500BDA006 /* MQTT.swift in Sources */,
-				80D597B31ED81347009449D2 /* ContentCart.swift in Sources */,
 				80564CA01ED528D500BDA006 /* String.swift in Sources */,
-				80D597B51ED81347009449D2 /* ContentCloseChat.swift in Sources */,
 				80564CB81ED528D500BDA006 /* UploadURL.swift in Sources */,
-				80D597AD1ED81347009449D2 /* ContentAssignment.swift in Sources */,
+				E5B86E0F1EDBF2170035A933 /* ContentAssignment.swift in Sources */,
+				E5B86E1A1EDBF2170035A933 /* ContentTyping.swift in Sources */,
 				80564C9E1ED528D500BDA006 /* Date.swift in Sources */,
 				80564CD21ED528D500BDA006 /* MQTTPacketFixedHeader.swift in Sources */,
+				E5B86E111EDBF2170035A933 /* ContentAutoResponder.swift in Sources */,
 				80564CCA1ED528D500BDA006 /* MQTTConnAckPacket.swift in Sources */,
 				80564CBA1ED528D500BDA006 /* ConnectResponse.swift in Sources */,
 				80564CC41ED528D500BDA006 /* EndPoint.swift in Sources */,
 				80564CDA1ED528D500BDA006 /* MQTTPublishPacket.swift in Sources */,
 				80564CDE1ED528D500BDA006 /* MQTTSubAckPacket.swift in Sources */,
 				80564CA21ED528D500BDA006 /* URL.swift in Sources */,
-				80D597C11ED81347009449D2 /* ContentSticker.swift in Sources */,
 				80564CC61ED528D500BDA006 /* Mappable.swift in Sources */,
 				80564CAA1ED528D500BDA006 /* StickerResponse.swift in Sources */,
+				E5B86E171EDBF2170035A933 /* ContentProduct.swift in Sources */,
 				80564CE61ED528D500BDA006 /* MQTTExtensions.swift in Sources */,
+				E5B86E191EDBF2170035A933 /* ContentSticker.swift in Sources */,
+				E5B86DFF1EDBF1A90035A933 /* MessageSender.swift in Sources */,
+				E5B86E161EDBF2170035A933 /* ContentPlainText.swift in Sources */,
 				80564CE41ED528D500BDA006 /* MQTTUnsubPacket.swift in Sources */,
 				80564CA81ED528D500BDA006 /* StickerPack.swift in Sources */,
+				E5B86E151EDBF2170035A933 /* ContentOfflineMessage.swift in Sources */,
 				80564CBE1ED528D500BDA006 /* OAuth.swift in Sources */,
-				8036C33B1ED7CD55007F44BC /* Message.swift in Sources */,
+				E5B86E141EDBF2170035A933 /* ContentInvoice.swift in Sources */,
 				80564C961ED528D500BDA006 /* GetConversationHistoryEndPoint.swift in Sources */,
 				80564CB41ED528D500BDA006 /* CreateConversationResponse.swift in Sources */,
 				80564CD61ED528D500BDA006 /* MQTTPingResp.swift in Sources */,
 				80564CB61ED528D500BDA006 /* Settings.swift in Sources */,
 				80564C921ED528D500BDA006 /* CreateConversationEndPoint.swift in Sources */,
 				80564CE01ED528D500BDA006 /* MQTTSubPacket.swift in Sources */,
-				80D597BB1ED81347009449D2 /* ContentPlainText.swift in Sources */,
 				80564CC81ED528D500BDA006 /* PrismCoreDelegate.swift in Sources */,
 				80564C901ED528D500BDA006 /* Config.swift in Sources */,
-				80D597B91ED81347009449D2 /* ContentOfflineMessage.swift in Sources */,
-				80D597B71ED81347009449D2 /* ContentInvoice.swift in Sources */,
+				E5B86DFC1EDBF1A90035A933 /* BrokerMetaData.swift in Sources */,
 				80564CD01ED528D500BDA006 /* MQTTPacket.swift in Sources */,
 				80564CB21ED528D500BDA006 /* ConversationVisitor.swift in Sources */,
 				80564CE21ED528D500BDA006 /* MQTTUnSubAckPacket.swift in Sources */,
 				800FD4241ED5293F00BE13CD /* PrismCore.swift in Sources */,
-				80D597B11ED81347009449D2 /* ContentAutoResponder.swift in Sources */,
-				80D597BD1ED81347009449D2 /* ContentProduct.swift in Sources */,
 				80564CB01ED528D500BDA006 /* ConversationParticipant.swift in Sources */,
-				80D597AF1ED81347009449D2 /* ContentAttachment.swift in Sources */,
 				80564CC01ED528D500BDA006 /* Visitor.swift in Sources */,
-				80D5979D1ED812F7009449D2 /* BrokerMetaData.swift in Sources */,
-				80D597971ED812BC009449D2 /* MessageSender.swift in Sources */,
+				E5B86E181EDBF2170035A933 /* ContentStatusUpdate.swift in Sources */,
 				80564CCE1ED528D500BDA006 /* MQTTDisconnectPacket.swift in Sources */,
 				80564CD81ED528D500BDA006 /* MQTTPubAck.swift in Sources */,
 				80564CCC1ED528D500BDA006 /* MQTTConnectPacket.swift in Sources */,
+				E5B86E131EDBF2170035A933 /* ContentCloseChat.swift in Sources */,
+				E53BA95F1ED573CD00A4B18C /* NetworkProtocol.swift in Sources */,
 				80564C981ED528D500BDA006 /* GetSettingsEndPoint.swift in Sources */,
+				E5B86E101EDBF2170035A933 /* ContentAttachment.swift in Sources */,
 				80564CD41ED528D500BDA006 /* MQTTPingPacket.swift in Sources */,
 				80564CDC1ED528D500BDA006 /* MQTTPubMsg.swift in Sources */,
 			);
@@ -629,40 +617,27 @@
 				80564C9B1ED528D500BDA006 /* GetStickersEndPoint.swift in Sources */,
 				80564CA11ED528D500BDA006 /* String.swift in Sources */,
 				80564CD91ED528D500BDA006 /* MQTTPubAck.swift in Sources */,
-				80564CC31ED528D500BDA006 /* Networking.swift in Sources */,
+				80564CC31ED528D500BDA006 /* Network.swift in Sources */,
 				80564CA31ED528D500BDA006 /* URL.swift in Sources */,
-				8036C33C1ED7CD55007F44BC /* Message.swift in Sources */,
 				80564CC71ED528D500BDA006 /* Mappable.swift in Sources */,
-				80D597B41ED81347009449D2 /* ContentCart.swift in Sources */,
 				80564CDD1ED528D500BDA006 /* MQTTPubMsg.swift in Sources */,
 				80564CCB1ED528D500BDA006 /* MQTTConnAckPacket.swift in Sources */,
 				80564CB91ED528D500BDA006 /* UploadURL.swift in Sources */,
 				80564C9D1ED528D500BDA006 /* VisitorConnectEndPoint.swift in Sources */,
 				80564CA71ED528D500BDA006 /* Sticker.swift in Sources */,
 				80564C931ED528D500BDA006 /* CreateConversationEndPoint.swift in Sources */,
-				80D597AE1ED81347009449D2 /* ContentAssignment.swift in Sources */,
-				80D597C41ED81347009449D2 /* ContentTyping.swift in Sources */,
 				80564C4B1ED5289D00BDA006 /* PrismCoreTests.swift in Sources */,
 				80564CB11ED528D500BDA006 /* ConversationParticipant.swift in Sources */,
-				80D597B21ED81347009449D2 /* ContentAutoResponder.swift in Sources */,
 				80564CE51ED528D500BDA006 /* MQTTUnsubPacket.swift in Sources */,
 				80564CE71ED528D500BDA006 /* MQTTExtensions.swift in Sources */,
 				80564CAD1ED528D500BDA006 /* Conversation.swift in Sources */,
 				80564CBD1ED528D500BDA006 /* MQTT.swift in Sources */,
 				80564CD31ED528D500BDA006 /* MQTTPacketFixedHeader.swift in Sources */,
-				80D5979E1ED812F7009449D2 /* BrokerMetaData.swift in Sources */,
-				80D597981ED812BC009449D2 /* MessageSender.swift in Sources */,
 				80564CAB1ED528D500BDA006 /* StickerResponse.swift in Sources */,
-				80D597BE1ED81347009449D2 /* ContentProduct.swift in Sources */,
 				80564C951ED528D500BDA006 /* GetAttachmentURLEndPoint.swift in Sources */,
-				80D597C21ED81347009449D2 /* ContentSticker.swift in Sources */,
 				80564CD11ED528D500BDA006 /* MQTTPacket.swift in Sources */,
-				80D597BC1ED81347009449D2 /* ContentPlainText.swift in Sources */,
 				80564CAF1ED528D500BDA006 /* ConversationHistory.swift in Sources */,
 				80564CE91ED528D500BDA006 /* MQTTSession.swift in Sources */,
-				80D597BA1ED81347009449D2 /* ContentOfflineMessage.swift in Sources */,
-				80D5979B1ED812DF009449D2 /* MessageUser.swift in Sources */,
-				80D597B81ED81347009449D2 /* ContentInvoice.swift in Sources */,
 				80564CC91ED528D500BDA006 /* PrismCoreDelegate.swift in Sources */,
 				80564C911ED528D500BDA006 /* Config.swift in Sources */,
 				80564CE11ED528D500BDA006 /* MQTTSubPacket.swift in Sources */,
@@ -678,14 +653,11 @@
 				80564CD51ED528D500BDA006 /* MQTTPingPacket.swift in Sources */,
 				80564CD71ED528D500BDA006 /* MQTTPingResp.swift in Sources */,
 				80564CB51ED528D500BDA006 /* CreateConversationResponse.swift in Sources */,
-				80D597C01ED81347009449D2 /* ContentStatusUpdate.swift in Sources */,
 				80564CDB1ED528D500BDA006 /* MQTTPublishPacket.swift in Sources */,
 				80564CDF1ED528D500BDA006 /* MQTTSubAckPacket.swift in Sources */,
 				80564CEB1ED528D500BDA006 /* MQTTSessionStreamDelegate.swift in Sources */,
-				80D597B61ED81347009449D2 /* ContentCloseChat.swift in Sources */,
 				80564CB31ED528D500BDA006 /* ConversationVisitor.swift in Sources */,
 				80564CC51ED528D500BDA006 /* EndPoint.swift in Sources */,
-				80D597B01ED81347009449D2 /* ContentAttachment.swift in Sources */,
 				800FD4251ED5293F00BE13CD /* PrismCore.swift in Sources */,
 				80564CBB1ED528D500BDA006 /* ConnectResponse.swift in Sources */,
 			);

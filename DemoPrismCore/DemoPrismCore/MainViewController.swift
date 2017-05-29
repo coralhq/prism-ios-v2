@@ -1,15 +1,15 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  DemoPrismCore
 //
-//  Created by Nanang Rafsanjani on 5/24/17.
+//  Created by fanni suyuti on 5/29/17.
 //  Copyright © 2017 Prism. All rights reserved.
 //
 
 import UIKit
 import PrismCore
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
     @IBOutlet var nameTextField:UITextField!
     @IBOutlet var idTextField:UITextField!
@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func visitorConnect(sender:UIButton) -> Void {
+    @IBAction func visitorConnect(_ sender: UIButton) {
         sender.setTitle("Loading..", for: .normal)
         view.isUserInteractionEnabled = false
         
@@ -52,4 +52,3 @@ class ViewController: UIViewController {
         }
     }
 }
-

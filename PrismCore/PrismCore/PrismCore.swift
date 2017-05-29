@@ -23,7 +23,9 @@ open class PrismCore {
         
         let endPoint = VisitorConnectEndPoint(visitorName: visitorName, userID: userID)
         Network.shared.request(endPoint: endPoint, mapToObject: ConnectResponse.self) { (mappable, error) in
-            completionHandler(mappable as? ConnectResponse, error)
+            DispatchQueue.main.async(){
+                completionHandler(mappable as? ConnectResponse, error)
+            }
         }
     }
     

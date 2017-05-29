@@ -20,10 +20,10 @@ public class Conversation : Mappable {
     public let hasContent: Bool
     public let channel: String
     public let channelInfo: String?
-    public let visitor: ConversationVisitor
+    public let visitor: ConversationVisitor?
     public let participants: [ConversationParticipant]
     public let assignee: String?
-    public let assigmentHistories: [ConversationHistory]
+    public let assigmentHistories: [ConversationHistory]?
     public let tags: [String]?
     public let latestMessagePayload: String?
     
@@ -36,9 +36,7 @@ public class Conversation : Mappable {
             let status = json?["status"] as? String,
             let merchantID = json?["merchant_id"] as? String,
             let hasContent = json?["has_content"] as? Bool,
-            let channel = json?["channel"] as? String,
-            let visitor = ConversationVisitor(json: json?["visitor"] as? [String: Any]),
-            let jsonParticipants = json?["participants"] as? [[String: Any]]
+            let channel = json?["channel"] as? String
             else {
                 return nil
         }
@@ -48,15 +46,18 @@ public class Conversation : Mappable {
         latestMessagePayload = json?["latest_msg_payload"] as? String
         assigmentHistories = []
         tags = json?["tags"] as? [String]
+        visitor = ConversationVisitor(json: json?["visitor"] as? [String: Any])
         
         var participants: [ConversationParticipant] = []
         
-        for json in jsonParticipants {
-            guard let participant = ConversationParticipant(json: json) else {
-                return nil
+        if let jsonParticipants = json?["participants"] as? [[String: Any]] {
+            for json in jsonParticipants {
+                guard let participant = ConversationParticipant(json: json) else {
+                    return nil
+                }
+                
+                participants.append(participant)
             }
-            
-            participants.append(participant)
         }
         
         self.createdAt = createdAt
@@ -67,7 +68,6 @@ public class Conversation : Mappable {
         self.merchantID = merchantID
         self.hasContent = hasContent
         self.channel = channel
-        self.visitor = visitor
         self.participants = participants
     }
 }

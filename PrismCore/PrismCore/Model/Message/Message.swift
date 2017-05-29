@@ -260,22 +260,6 @@ open class Message: Mappable {
     }
     
     public func getJSON() -> [String: Any] {
-        return [
-            "id": id,
-            "conversation_id": conversationID,
-            "merchant_id": merchantID,
-            "channel": channel,
-            "channel_info": channelInfo,
-            "visitor": visitor,
-            "sender": sender,
-            "type": type,
-            "content": getContentJSON(),
-            "version": 2,
-            "_broker_metadata": brokerMetaData
-        ]
-    }
-    
-    private func getContentJSON() -> [String: Any] {
         guard let json = json else {
             return [:]
         }

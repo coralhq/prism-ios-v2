@@ -9,15 +9,21 @@
 import Foundation
 
 open class UploadURL: Mappable {
-    let uploadURL: URL
+    public let uploadURL: URL
     
     required public init?(json: [String : Any]?) {
+        if let data = json?["data"] as? [String : Any] {
+            print("data \(data)")
+            if let url = data["upload_url"] {
+                print("url \(url)")
+            }
+        }
         guard let data = json?["data"] as? [String: Any],
-            let uploadURL = data["upload_url"] as? URL
+            let stringURL = data["upload_url"] as? String
             else {
                 return nil
         }
         
-        self.uploadURL = uploadURL
+        self.uploadURL = URL(string: stringURL)!
     }
 }

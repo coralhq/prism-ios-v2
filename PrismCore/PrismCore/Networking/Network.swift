@@ -31,12 +31,12 @@ class Network: NetworkProtocol {
             completionHandler(response.data, nil)
         }
     }
-
+    
     func request<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping HTTPRequestResult) {
         var request = URLRequest(url: endPoint.url)
         
         if let token = endPoint.token {
-            request.addValue(token, forHTTPHeaderField: "Authorization")
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
         
         if let contentType = endPoint.contentType {
@@ -59,8 +59,14 @@ class Network: NetworkProtocol {
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             
+            if let _response = response {
+                print("response \(_response)")
+            }
+            
             guard error == nil, let data = data else {
-                completionHandler(nil, error)
+                DispatchQueue.main.async(){
+                    completionHandler(nil, error)
+                }
                 return
             }
             
@@ -68,11 +74,16 @@ class Network: NetworkProtocol {
                 
                 if let data = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     print(data)
-                    completionHandler(mapToObject.init(json: data), nil)
+                    
+                    DispatchQueue.main.async(){
+                        completionHandler(mapToObject.init(json: data), nil)
+                    }
                 }
                 
             } catch let error {
-                completionHandler(nil, error)
+                DispatchQueue.main.async(){
+                    completionHandler(nil, error)
+                }
             }
         })
         task.resume()
@@ -87,13 +98,17 @@ class Network: NetworkProtocol {
         mqttSession.password = password
         
         mqttSession.connect { (connected, error) in
-            completionHandler(connected, error)
+            DispatchQueue.main.async(){
+                completionHandler(connected, error)
+            }
         }
     }
     
     func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error) -> ())) {
         mqttSession.subscribe(to: topic, delivering: MQTTQoS.atLeastOnce) { (success, error) in
-            completionHandler(success, error)
+            DispatchQueue.main.async(){
+                completionHandler(success, error)
+            }
         }
     }
     
@@ -102,10 +117,12 @@ class Network: NetworkProtocol {
         let jsonData = try! JSONSerialization.data(withJSONObject: message.getJSON(), options: .prettyPrinted)
         
         mqttSession.publish(jsonData, in: topic, delivering: .atLeastOnce, retain: false) { (success, error) in
-            if success {
-                completionHandler(message, nil)
-            } else {
-                completionHandler(nil, error)
+            DispatchQueue.main.async(){
+                if success {
+                    completionHandler(message, nil)
+                } else {
+                    completionHandler(nil, error)
+                }
             }
         }
     }

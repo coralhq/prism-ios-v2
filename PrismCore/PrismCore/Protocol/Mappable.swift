@@ -11,3 +11,5 @@ import Foundation
 public protocol Mappable {
     init?(json: [String: Any]?)
 }
+
+public protocol MessageContentMappable : Mappable {}

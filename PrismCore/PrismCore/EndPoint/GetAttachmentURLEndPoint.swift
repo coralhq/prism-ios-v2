@@ -22,7 +22,10 @@ class GetAttachmentURLEndPoint: EndPoint {
     var httpBody: [String : Any] {
         get {
             return [
-                "filename": filename
+                "filename": filename,
+                "headers" : [
+                    "Content-Type" : "application/octet-stream"
+                ]
             ]
         }
     }

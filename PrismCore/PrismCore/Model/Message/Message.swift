@@ -8,7 +8,27 @@
 
 import Foundation
 
-enum MessageType {
+
+public typealias MessageChannelInfo = MessageUser
+public typealias MessageVisitorInfo = MessageUser
+
+public enum TypingStatus : String {
+    case StartTyping = "start_typing"
+    case EndTyping = "end_typing"
+    
+    public init?(rawValue: String) {
+        switch rawValue {
+        case "start_typing":
+            self = .StartTyping
+        case "end_typing":
+            self = .EndTyping
+        default:
+            return nil
+        }
+    }
+}
+
+public enum MessageType {
     case Assignment
     case AutoResponder
     case Attachment
@@ -22,7 +42,7 @@ enum MessageType {
     case Sticker
     case Typing
     
-    init?(rawValue: String) {
+    public init?(rawValue: String) {
         switch rawValue {
         case "auto_responder": self = .AutoResponder
         case "assignment": self = .Assignment
@@ -46,21 +66,24 @@ open class Message: Mappable {
     var conversationID: String
     var merchantID: String
     var channel: String
-    var channelInfo: MessageUser
-    var visitor: MessageUser
+    var channelInfo: MessageChannelInfo
+    var visitor: MessageVisitorInfo
     var sender: MessageSender
     var type: MessageType
     var content: MessageContentMappable
     var version: Int
     var brokerMetaData: BrokerMetaData
+    private var json: [String: Any]?
     
     public required init?(json: [String : Any]?) {
+        self.json = json
+        
         guard let id = json?["id"] as? String,
             let conversationID = json?["conversation_id"] as? String,
             let merchantID = json?["merchant_id"] as? String,
             let channel = json?["channel"] as? String,
-            let channelInfo = MessageUser(json: json?["channel_info"] as? [String: Any]),
-            let visitor = MessageUser(json: json?["visitor"] as? [String: Any]),
+            let channelInfo = MessageChannelInfo(json: json?["channel_info"] as? [String: Any]),
+            let visitor = MessageVisitorInfo(json: json?["visitor"] as? [String: Any]),
             let sender = MessageSender(json: json?["sender"] as? [String: Any]),
             let typeString = json?["type"] as? String,
             let type = MessageType(rawValue: typeString),
@@ -107,5 +130,210 @@ open class Message: Mappable {
         self.sender = sender
         self.brokerMetaData = brokerMetaData
         self.version = version
+    }
+    
+    convenience private init?(
+        id: String,
+        conversationID: String,
+        merchantID: String,
+        channel: String,
+        channelInfo: MessageChannelInfo,
+        visitor: MessageVisitorInfo,
+        sender: MessageSender,
+        type: MessageType,
+        content: [String: Any],
+        brokerMetaData: BrokerMetaData) {
+        
+        self.init(json: [
+            "id": id,
+            "conversation_id": conversationID,
+            "merchant_id": merchantID,
+            "channel": channel,
+            "channel_info": channelInfo,
+            "visitor": visitor,
+            "sender": sender,
+            "type": type,
+            "content": content,
+            "version": 2,
+            "_broker_metadata": brokerMetaData
+        ])
+    }
+    
+    convenience public init?(id: String,
+                            conversationID: String,
+                            merchantID: String,
+                            channel: String,
+                            channelInfo: MessageChannelInfo,
+                            visitor: MessageVisitorInfo,
+                            sender: MessageSender,
+                            type: MessageType,
+                            content: MessagePlaintextJSON,
+                            brokerMetaData: BrokerMetaData) {
+        
+        self.init(
+            id: id,
+            conversationID: conversationID,
+            merchantID: merchantID,
+            channel: channel,
+            channelInfo: channelInfo,
+            visitor: visitor,
+            sender: sender,
+            type: type,
+            content: content.data,
+            brokerMetaData: brokerMetaData
+        )
+    }
+    
+    convenience public init?(id: String,
+                            conversationID: String,
+                            merchantID: String,
+                            channel: String,
+                            channelInfo: MessageChannelInfo,
+                            visitor: MessageVisitorInfo,
+                            sender: MessageSender,
+                            type: MessageType,
+                            content: MessageAttachmentJSON,
+                            brokerMetaData: BrokerMetaData) {
+        
+        self.init(
+            id: id,
+            conversationID: conversationID,
+            merchantID: merchantID,
+            channel: channel,
+            channelInfo: channelInfo,
+            visitor: visitor,
+            sender: sender,
+            type: type,
+            content: content.data,
+            brokerMetaData: brokerMetaData
+        )
+    }
+    
+    convenience public init?(id: String,
+                            conversationID: String,
+                            merchantID: String,
+                            channel: String,
+                            channelInfo: MessageChannelInfo,
+                            visitor: MessageVisitorInfo,
+                            sender: MessageSender,
+                            type: MessageType,
+                            content: MessageStickerJSON,
+                            brokerMetaData: BrokerMetaData) {
+        
+        self.init(
+            id: id,
+            conversationID: conversationID,
+            merchantID: merchantID,
+            channel: channel,
+            channelInfo: channelInfo,
+            visitor: visitor,
+            sender: sender,
+            type: type,
+            content: content.data,
+            brokerMetaData: brokerMetaData
+        )
+    }
+    
+    convenience public init?(id: String,
+                            conversationID: String,
+                            merchantID: String,
+                            channel: String,
+                            channelInfo: MessageChannelInfo,
+                            visitor: MessageVisitorInfo,
+                            sender: MessageSender,
+                            type: MessageType,
+                            content: MessageTypingStatusJSON,
+                            brokerMetaData: BrokerMetaData) {
+        
+        self.init(
+            id: id,
+            conversationID: conversationID,
+            merchantID: merchantID,
+            channel: channel,
+            channelInfo: channelInfo,
+            visitor: visitor,
+            sender: sender,
+            type: type,
+            content: content.data,
+            brokerMetaData: brokerMetaData
+        )
+    }
+    
+    public func getJSON() -> [String: Any] {
+        return [
+            "id": id,
+            "conversation_id": conversationID,
+            "merchant_id": merchantID,
+            "channel": channel,
+            "channel_info": channelInfo,
+            "visitor": visitor,
+            "sender": sender,
+            "type": type,
+            "content": getContentJSON(),
+            "version": 2,
+            "_broker_metadata": brokerMetaData
+        ]
+    }
+    
+    private func getContentJSON() -> [String: Any] {
+        guard let json = json else {
+            return [:]
+        }
+        
+        return json
+    }
+}
+
+
+public class MessagePlaintextJSON {
+    let data: [String: Any]
+    
+    init(text: String) {
+        data = ["text": text]
+    }
+}
+
+public class MessageAttachmentJSON {
+    let data: [String: Any]
+    
+    init(name: String, mimeType: String, url: String, previewURL: String) {
+        
+        data = [
+            "attachment": [
+                "name": name,
+                "mimetype": mimeType,
+                "url": url,
+                "preview_url": previewURL
+            ]
+        ]
+    }
+}
+
+public class MessageStickerJSON {
+    let data: [String: Any]
+    
+    init(name: String, imageURL: String, id: String, packID: String) {
+        
+        data = [
+            "sticker": [
+                "name": name,
+                "image_url": imageURL,
+                "id": id,
+                "pack_id": packID
+            ]
+        ]
+    }
+}
+
+public class MessageTypingStatusJSON {
+    let data: [String: Any]
+    
+    init(status: TypingStatus) {
+        
+        data = [
+            "typing": [
+                "status": status.rawValue
+            ]
+        ]
     }
 }

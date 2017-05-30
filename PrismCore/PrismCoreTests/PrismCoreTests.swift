@@ -23,8 +23,14 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testVisitorConnect() {
-        let endPoint = VisitorConnectEndPoint(visitorName: "asd", userID: "asd")
-        NetworkMock.shared.request(endPoint: endPoint, mapToObject: ConnectResponse.self) { (response, error) in
+        PrismCore.shared.visitorConnect(visitorName: "asdasdasd", userID: "asdasd") { (response, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(response)
+        }
+    }
+    
+    func testAnnonymousVisitorConnect() {
+        PrismCore.shared.annonymousVisitorConnect { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
         }

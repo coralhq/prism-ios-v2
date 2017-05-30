@@ -18,16 +18,7 @@ open class PrismCore {
     
     private init() {}
     
-    var network: NetworkProtocol {
-        get {
-            let env = ProcessInfo.processInfo.environment
-            if env["XCTestConfigurationFilePath"] == nil {
-                return Network.shared
-            } else {
-                return NetworkMock.shared
-            }
-        }
-    }
+    internal var network: NetworkProtocol = Network.shared
     
     open func configure(environment: EnvironmentType, merchantID: String, delegate: PrismCoreDelegate) {
         self.delegate = delegate

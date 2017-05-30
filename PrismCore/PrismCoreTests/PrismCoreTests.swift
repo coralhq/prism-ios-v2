@@ -15,6 +15,7 @@ class PrismCoreTests: XCTestCase {
         super.setUp()
         
         Config.shared.configure(environment: .Sandbox, merchantID: "")
+        PrismCore.shared.network = NetworkMock.shared
     }
     
     override func tearDown() {

@@ -23,8 +23,7 @@ public class Visitor : Mappable {
             let merchantID = json?["merchant_id"] as? String,
             let appName = json?["app_name"] as? String,
             let channelName = json?["channel_name"] as? String,
-            let channelUserID = json?["channel_user_id"] as? String
-            else {
+            let channelUserID = json?["channel_user_id"] as? String else {
                 return nil
         }
         

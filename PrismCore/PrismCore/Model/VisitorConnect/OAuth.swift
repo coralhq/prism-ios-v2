@@ -14,14 +14,14 @@ public class OAuth : Mappable {
     public let tokenType: String
     public let accessToken: String
     public let clientID: String
-    public let expireIn: UInt64
+    public let expireIn: Int
     
     required public init?(json: [String: Any]?) {
         guard let refreshToken = json?["refresh_token"] as? String,
             let tokenType = json?["token_type"] as? String,
             let accessToken = json?["access_token"] as? String,
             let clientID = json?["client_id"] as? String,
-            let expireIn = json?["expires_in"] as? UInt64
+            let expireIn = json?["expires_in"] as? Int
             else {
                 return nil
         }

@@ -35,7 +35,7 @@ class JSONResponseMock {
                         "channel_user_id": "fanni@prismapp.io",
                         "available": true
                     ],
-                    "server_timestamp": 1496118271.6394939
+                    "server_timestamp": 1496118271639
                 ]
             ]
         }

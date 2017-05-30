@@ -24,8 +24,7 @@ public class ConnectResponse : Mappable {
             let oAuth = OAuth(json: data["oauth"] as? [String: Any]),
             let mqtt = MQTT(json: data["mqtt"] as? [String: Any]),
             let visitor = Visitor(json: data["visitor"] as? [String: Any]),
-            let serverTimeStamp = data["server_timestamp"] as? Double
-            else {
+            let serverTimeStamp = data["server_timestamp"] as? NSNumber else {
                 return nil
         }
         
@@ -34,6 +33,6 @@ public class ConnectResponse : Mappable {
         self.mqtt = mqtt
         self.oAuth = oAuth
         self.visitor = visitor
-        self.serverTimeStamp = serverTimeStamp
+        self.serverTimeStamp = serverTimeStamp.doubleValue / 1000.0
     }
 }

@@ -64,6 +64,12 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(response)
         }
     }
+    
+    func testUnsubscribeFromTopic() {
+        PrismCore.shared.unsubscribeFromTopic(topic: "") { (success, error) in
+            XCTAssertTrue(success)
+        }
+    }
 }
 
 class TestDelegate: PrismCoreDelegate {

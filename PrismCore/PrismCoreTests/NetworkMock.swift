@@ -78,4 +78,8 @@ class NetworkMock: NetworkProtocol {
             }
         }
     }
+    
+    func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+        completionHandler(true, nil)
+    }
 }

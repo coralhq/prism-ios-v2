@@ -43,14 +43,21 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(response)
         }
     }
-    
+  
     func testGetStickers() {
         PrismCore.shared.getStickers(token: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
         }
     }
-
+  
+    func testGetSettings() {
+        PrismCore.shared.getSettings() { (response, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(response)
+        }
+    }
+  
     func testGetAttachmentURL() {
         PrismCore.shared.getAttachmentURL(filename: "", conversationID: "", token: "") { (response, error) in
             XCTAssertNil(error)

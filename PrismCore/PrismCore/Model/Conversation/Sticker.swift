@@ -17,14 +17,15 @@ class Sticker: Mappable {
     let imageURL: URL
     let packID: String
     
-    required init?(json: [String : Any]?) {
-        guard let createdAt = Date.getDateFromISO8601(string: json?["created_at"] as? String),
-            let updatedAt = Date.getDateFromISO8601(string: json?["updated_at"] as? String),
-            let id = json?["id"] as? String,
-            let name = json?["name"] as? String,
-            let imageURLString = json?["image_url"] as? String,
+    required init?(dictionary: [String : Any]?) {
+        guard let createdAt = Date.getDateFromISO8601(string: dictionary?["created_at"] as? String),
+            let updatedAt = Date.getDateFromISO8601(string: dictionary?["updated_at"] as? String),
+            let id = dictionary?["id"] as? String,
+            let name = dictionary?["name"] as? String,
+            let imageURLString = dictionary?["image_url"] as? String,
             let imageURL = URL(string: imageURLString),
-            let packID = json?["pack_id"] as? String else {
+            let packID = dictionary?["pack_id"] as? String
+            else {
                 return nil
         }
         

@@ -12,8 +12,8 @@ class ContentAutoResponder: MessageContentMappable {
     let text: String
     let workingHour: Bool
     
-    required init?(json: [String : Any]?) {
-        guard let autoResponder = json?["auto_responder"] as? [String: Any],
+    required init?(dictionary: [String : Any]?) {
+        guard let autoResponder = dictionary?["auto_responder"] as? [String: Any],
         let text = autoResponder["text"] as? String,
         let workingHour = autoResponder["working_hour"] as? Bool else {
             return nil

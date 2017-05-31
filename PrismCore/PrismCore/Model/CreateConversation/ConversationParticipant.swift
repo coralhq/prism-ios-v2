@@ -18,14 +18,14 @@ public class ConversationParticipant {
     let conversationID: String
     let isRead: Bool
     
-    required public init?(json: [String: Any]?) {
-        guard let createdAt = Date.getDateFromISO8601(string: json?["created_at"] as? String),
-            let updatedAt = Date.getDateFromISO8601(string: json?["updated_at"] as? String),
-            let id = json?["id"] as? String,
-            let userID = json?["user_id"] as? String,
-            let role = json?["role"] as? String,
-            let conversationID = json?["conversation_id"] as? String,
-            let isRead = json?["is_read"] as? Bool
+    required public init?(dictionary: [String: Any]?) {
+        guard let createdAt = Date.getDateFromISO8601(string: dictionary?["created_at"] as? String),
+            let updatedAt = Date.getDateFromISO8601(string: dictionary?["updated_at"] as? String),
+            let id = dictionary?["id"] as? String,
+            let userID = dictionary?["user_id"] as? String,
+            let role = dictionary?["role"] as? String,
+            let conversationID = dictionary?["conversation_id"] as? String,
+            let isRead = dictionary?["is_read"] as? Bool
             else {
                 return nil
         }

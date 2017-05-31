@@ -11,14 +11,14 @@ import Foundation
 open class ConversationHistory: Mappable {
     let messages: [Message]
     
-    required public init?(json: [String : Any]?) {
-        guard let data = json?["data"] as? [String: Any],
-            let jsonMessages = data["messages"] as? [[String: Any]]
+    required public init?(dictionary: [String : Any]?) {
+        guard let data = dictionary?["data"] as? [String: Any],
+            let messageDictionaries = data["messages"] as? [[String: Any]]
             else { return nil }
         
         var messages: [Message] = []
-        for json in jsonMessages {
-            guard let message = Message(json: json) else {
+        for dictionary in messageDictionaries {
+            guard let message = Message(dictionary: dictionary) else {
                 return nil
             }
             

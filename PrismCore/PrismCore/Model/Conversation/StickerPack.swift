@@ -18,22 +18,23 @@ class StickerPack: Mappable {
     let isPublic: Bool
     let stickers: [Sticker]
     
-    required init?(json: [String : Any]?) {
-        guard let createdAt = Date.getDateFromISO8601(string: json?["created_at"] as? String),
-            let updatedAt = Date.getDateFromISO8601(string: json?["updated_at"] as? String),
-            let id = json?["id"] as? String,
-            let name = json?["name"] as? String,
-            let logoURLString = json?["logo_url"] as? String,
+    required init?(dictionary: [String : Any]?) {
+        guard let createdAt = Date.getDateFromISO8601(string: dictionary?["created_at"] as? String),
+            let updatedAt = Date.getDateFromISO8601(string: dictionary?["updated_at"] as? String),
+            let id = dictionary?["id"] as? String,
+            let name = dictionary?["name"] as? String,
+            let logoURLString = dictionary?["logo_url"] as? String,
             let logoURL = URL(string: logoURLString),
-            let isPublic = json?["is_public"] as? Bool,
-            let stickersJson = json?["stickers"] as? [[String: Any]],
-            let createdBy = json?["created_by"] as? String else {
+            let isPublic = dictionary?["is_public"] as? Bool,
+            let stickerDictionaries = dictionary?["stickers"] as? [[String: Any]],
+            let createdBy = dictionary?["created_by"] as? String
+            else {
                 return nil
         }
         
         var stickers: [Sticker] = []
-        for json in stickersJson {
-            guard let sticker = Sticker(json: json) else {
+        for dictionary in stickerDictionaries {
+            guard let sticker = Sticker(dictionary: dictionary) else {
                 return nil
             }
             

@@ -42,6 +42,8 @@ class NetworkMock: NetworkProtocol {
             return JSONResponseMock.getAttachmentURLResponse
         } else if object == CreateConversationResponse.self {
             return JSONResponseMock.createConverationResponse
+        } else if object == RefreshTokenResponse.self {
+            return JSONResponseMock.refreshTokenResponse
         }
         
         return [:]

@@ -50,6 +50,13 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(response)
         }
     }
+    
+    func testSubscribeToTopic() {
+        PrismCore.shared.subscribeToTopic(JSONResponseMock.mqttTopic) { (success, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(success)
+        }
+    }
 }
 
 class TestDelegate: PrismCoreDelegate {

@@ -9,6 +9,8 @@
 import Foundation
 
 class JSONResponseMock {
+    static var mqttTopic = "prism_topic"
+    
     static var connectResponse: [String: Any] {
         get {
             return [

@@ -38,7 +38,14 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testAnnonymousVisitorConnect() {
-        PrismCore.shared.annonymousVisitorConnect { (response, error) in
+        PrismCore.shared.annonymousVisitorConnect() { (response, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(response)
+        }
+    }
+    
+    func testGetStickers() {
+        PrismCore.shared.getStickers(token: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
         }

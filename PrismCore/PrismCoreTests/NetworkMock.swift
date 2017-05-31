@@ -38,6 +38,8 @@ class NetworkMock: NetworkProtocol {
             return JSONResponseMock.connectResponse
         } else if object == CreateConversationResponse.self {
             return JSONResponseMock.createConverationResponse
+        } else if object == StickerResponse.self {
+            return JSONResponseMock.getStickersResponse
         }
         
         return [:]

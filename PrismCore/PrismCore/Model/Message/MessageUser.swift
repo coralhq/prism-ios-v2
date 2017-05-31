@@ -21,4 +21,9 @@ public class MessageUser: Mappable {
         self.id = id
         self.name = name
     }
+    
+    convenience public init?(id: String, name: String) {
+        let data = ["id": id, "name": name ]
+        self.init(json: data)
+    }
 }

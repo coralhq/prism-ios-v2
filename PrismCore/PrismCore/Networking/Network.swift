@@ -76,7 +76,7 @@ class Network: NetworkProtocol {
                     print(data)
                     
                     DispatchQueue.main.async(){
-                        completionHandler(mapToObject.init(json: data), nil)
+                        completionHandler(mapToObject.init(dictionary: data), nil)
                     }
                 }
                 

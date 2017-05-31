@@ -13,9 +13,9 @@ public class MQTT : Mappable {
     public let username: String
     public let password: String
     
-    required public init?(json: [String: Any]?) {
-        guard let username = json?["username"] as? String,
-            let password = json?["password"] as? String
+    required public init?(dictionary: [String: Any]?) {
+        guard let username = dictionary?["username"] as? String,
+            let password = dictionary?["password"] as? String
             else {
                 return nil
         }

@@ -14,11 +14,11 @@ public class MessageSender : Mappable {
     var role: String
     var userAgent: String
     
-    required public init?(json: [String : Any]?) {
-        guard let id = json?["id"] as? String,
-            let name = json?["name"] as? String,
-            let role = json?["role"] as? String,
-            let userAgent = json?["user_agent"] as? String else {
+    required public init?(dictionary: [String : Any]?) {
+        guard let id = dictionary?["id"] as? String,
+            let name = dictionary?["name"] as? String,
+            let role = dictionary?["role"] as? String,
+            let userAgent = dictionary?["user_agent"] as? String else {
                 return nil
         }
         
@@ -31,6 +31,6 @@ public class MessageSender : Mappable {
     
     convenience public init?(id: String, name: String, role: String, userAgent: String) {
         let data = ["id": id, "name": name, "role": role, "user_agent": userAgent ]
-        self.init(json: data)
+        self.init(dictionary: data)
     }
 }

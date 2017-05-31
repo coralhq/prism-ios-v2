@@ -12,8 +12,8 @@ public class BrokerMetaData : Mappable {
     
     let timestamp: Date
     
-    required public init?(json: [String : Any]?) {
-        guard let timestamp = Date.getDateFromISO8601(string: json?["timestamp"] as? String) else {
+    required public init?(dictionary: [String : Any]?) {
+        guard let timestamp = Date.getDateFromISO8601(string: dictionary?["timestamp"] as? String) else {
             return nil
         }
         
@@ -23,6 +23,6 @@ public class BrokerMetaData : Mappable {
     convenience public init?(timestamp: String) {
         let data = ["timestamp": timestamp]
         
-        self.init(json: data)
+        self.init(dictionary: data)
     }
 }

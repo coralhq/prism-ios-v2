@@ -51,8 +51,16 @@ class PrismCoreTests: XCTestCase {
         }
     }
     
+
     func testCreateConversation() {
         PrismCore.shared.createConversation(visitorName: "", token: "") { (response, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(response)
+        }
+    }
+    
+    func testGetConversationHistory() {
+        PrismCore.shared.getConversationHistory(conversationID: "", token: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
         }

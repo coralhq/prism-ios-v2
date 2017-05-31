@@ -41,7 +41,6 @@ class JSONResponseMock {
         }
     }
     
-
     static var createConverationResponse: [String: Any] {
         get {
             return [
@@ -81,7 +80,18 @@ class JSONResponseMock {
             ]
         }
     }
-
+    
+    static var getConversationHistoryResponse: [String: Any] {
+        get {
+            return [
+                "status": "success",
+                "data": [
+                    "messages": []
+                ]
+            ]
+        }
+    }
+    
     static var getStickersResponse: [String: Any] {
         get {
             return [

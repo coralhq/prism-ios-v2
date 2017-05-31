@@ -40,6 +40,8 @@ class NetworkMock: NetworkProtocol {
             return JSONResponseMock.createConverationResponse
         } else if object == StickerResponse.self {
             return JSONResponseMock.getStickersResponse
+        } else if object == ConversationHistory.self {
+            return JSONResponseMock.getConversationHistoryResponse
         }
         
         return [:]

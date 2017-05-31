@@ -40,4 +40,44 @@ class JSONResponseMock {
             ]
         }
     }
+    
+    static var createConverationResponse: [String: Any] {
+        get {
+            return [
+                "status": "success",
+                "data": [
+                    "conversation": [
+                        "created_at": "2017-05-19T03:39:31.812Z",
+                        "updated_at": "2017-05-19T03:39:31.812Z",
+                        "id": "781e9d79-b831-4c6f-b344-8c0f51102fea",
+                        "topic": "/chats/8c31f365-05d2-49fe-8c8d-59c84624c870/SHAMU/b09d7f44-3ed9-45cc-855b-281ec7898713",
+                        "status": "open",
+                        "merchant_id": "8c31f365-05d2-49fe-8c8d-59c84624c870",
+                        "has_content": false,
+                        "channel": "SHAMU",
+                        "visitor": [
+                            "created_at": "2017-05-19T03:39:31.808Z",
+                            "updated_at": "2017-05-19T03:39:31.808Z",
+                            "id": "b09d7f44-3ed9-45cc-855b-281ec7898713",
+                            "name": "Visitor Name",
+                            "avatar": "",
+                            "merchant_id": "8c31f365-05d2-49fe-8c8d-59c84624c870"
+                        ],
+                        "participants": [
+                            [
+                                "created_at": "2017-05-19T03:39:31.814Z",
+                                "updated_at": "2017-05-19T03:39:31.814Z",
+                                "id": "f4a19a4d-04ee-4fe6-89b4-72ed4133ae80",
+                                "user_id": "b09d7f44-3ed9-45cc-855b-281ec7898713",
+                                "role": "visitor",
+                                "conversation_id": "781e9d79-b831-4c6f-b344-8c0f51102fea",
+                                "is_read": false
+                            ]
+                        ],
+                        "assignment_histories": [],
+                    ]
+                ]
+            ]
+        }
+    }
 }

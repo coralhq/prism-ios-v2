@@ -52,7 +52,7 @@ open class PrismCore {
         }
     }
     
-    open func connectToBroker(username: String, password: String, completionHandler: ((Bool?, Error?) -> ())?) {
+    open func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
         network.connectToBroker(username: username, password: password, completionHandler: completionHandler)
     }
     

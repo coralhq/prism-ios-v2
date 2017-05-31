@@ -51,10 +51,10 @@ class NetworkMock: NetworkProtocol {
         mqttSession.delegate = delegate
     }
     
-    func connectToBroker(username: String, password: String, completionHandler: ((Bool?, Error?) -> ())?) {
+    func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
         let connected = (JSONResponseMock.mqttPassword == password) &&
             (JSONResponseMock.mqttUsername == username)
-        completionHandler?(connected, nil)
+        completionHandler(connected, nil)
     }
     
     func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error) -> ())) {

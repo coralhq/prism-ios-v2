@@ -13,6 +13,8 @@ protocol NetworkProtocol {
     
     func request<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping HTTPRequestResult)
     
+    func upload(attachment:Data, url:URL, completionHandler: @escaping ((Bool, Error?) -> ())) -> Void
+    
     func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error?) -> ()))
     
     func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error) -> ()))

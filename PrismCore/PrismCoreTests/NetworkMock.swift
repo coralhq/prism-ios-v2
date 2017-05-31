@@ -63,6 +63,12 @@ class NetworkMock: NetworkProtocol {
         }
     }
     
+    func upload(attachment: Data, url: URL, completionHandler: @escaping ((Bool, Error?) -> ())) {
+        let data = UIImagePNGRepresentation(JSONResponseMock.attachmentImage)
+        let success = attachment == data
+        completionHandler(success, nil)
+    }
+    
     func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, Error?) -> ()) {
         
         let jsonData = try! JSONSerialization.data(withJSONObject: message.dictionaryValue, options: .prettyPrinted)

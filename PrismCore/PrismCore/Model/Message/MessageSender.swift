@@ -27,4 +27,10 @@ public class MessageSender : Mappable {
         self.role = role
         self.userAgent = userAgent
     }
+    
+    
+    convenience public init?(id: String, name: String, role: String, userAgent: String) {
+        let data = ["id": id, "name": name, "role": role, "user_agent": userAgent ]
+        self.init(json: data)
+    }
 }

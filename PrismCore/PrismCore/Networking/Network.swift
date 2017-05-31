@@ -114,7 +114,7 @@ class Network: NetworkProtocol {
     
     func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, Error?) -> ()) {
         
-        let jsonData = try! JSONSerialization.data(withJSONObject: message.getJSON(), options: .prettyPrinted)
+        let jsonData = try! JSONSerialization.data(withJSONObject: message.dictionaryValue, options: .prettyPrinted)
         
         mqttSession.publish(jsonData, in: topic, delivering: .atLeastOnce, retain: false) { (success, error) in
             DispatchQueue.main.async(){

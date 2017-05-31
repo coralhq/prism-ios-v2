@@ -19,4 +19,10 @@ public class BrokerMetaData : Mappable {
         
         self.timestamp = timestamp
     }
+    
+    convenience public init?(timestamp: String) {
+        let data = ["timestamp": timestamp]
+        
+        self.init(json: data)
+    }
 }

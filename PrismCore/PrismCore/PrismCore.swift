@@ -52,7 +52,7 @@ open class PrismCore {
         }
     }
     
-    open func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error) -> ())) {
+    open func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
         network.connectToBroker(username: username, password: password, completionHandler: completionHandler)
     }
     
@@ -104,7 +104,7 @@ open class PrismCore {
         }
         task.resume()
     }
-
+    
     open func getConversationHistory(conversationID: String, token: String, completionHandler: @escaping ((ConversationHistory?, Error?) -> ())) {
         let endPoint = GetConversationHistoryEndPoint(conversationID: conversationID, token: token)
         

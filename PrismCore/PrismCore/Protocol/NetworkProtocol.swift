@@ -20,4 +20,6 @@ protocol NetworkProtocol {
     func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, Error?) -> ())
     
     func setMQTTDelegate(delegate: MQTTSessionDelegate)
+    
+    func disconnectFromBroker(completionHandler: ((Bool)->())?)
 }

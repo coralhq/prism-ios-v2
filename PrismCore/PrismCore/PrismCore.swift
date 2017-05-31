@@ -86,6 +86,12 @@ open class PrismCore {
         }
     }
     
+    func disconnectFromBroker(completionHandler: ((Bool) -> ())?) {
+        network.disconnectFromBroker { response in
+            completionHandler?(true)
+        }
+    }
+    
     open func uploadAttachment(with file:Data, url:URL, completionHandler: ((URLResponse?, Error?) -> ())?) -> Void {
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"

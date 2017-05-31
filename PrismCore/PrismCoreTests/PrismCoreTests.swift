@@ -65,6 +65,12 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(response)
         }
     }
+    
+    func testDisconnectFromBroker() {
+        PrismCore.shared.disconnectFromBroker { response in
+            XCTAssertTrue(response)
+        }
+    }
 }
 
 class TestDelegate: PrismCoreDelegate {

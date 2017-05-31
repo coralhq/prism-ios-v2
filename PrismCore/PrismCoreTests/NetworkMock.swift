@@ -78,4 +78,8 @@ class NetworkMock: NetworkProtocol {
             }
         }
     }
+    
+    func disconnectFromBroker(completionHandler: ((Bool) -> ())?) {
+        completionHandler?(true)
+    }
 }

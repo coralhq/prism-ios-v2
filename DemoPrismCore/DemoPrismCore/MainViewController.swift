@@ -63,10 +63,8 @@ class MainViewController: UIViewController {
             PrismCore.shared.getAttachmentURL(filename: "test-persebaya.jpg", conversationID: conversation.conversation.id, token: connect.oAuth.accessToken, completionHandler: { (url, error) in
                 guard let image = self.simpleImageView.image else { return }
                 guard let imageData = UIImagePNGRepresentation(image), let imageURL = url?.uploadURL else { return }
-                PrismCore.shared.uploadAttachment(with: imageData, url: imageURL, completionHandler: { (response, error) in
-                    if let res = response {
-                        print("response \(res)")
-                    }
+                PrismCore.shared.uploadAttachment(with: imageData, url: imageURL, completionHandler: { (success, error) in
+                    
                 })
             })
         }

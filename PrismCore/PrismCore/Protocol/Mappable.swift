@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol Mappable {
-    init?(json: [String: Any]?)
+    init?(dictionary: [String: Any]?)
 }
 
 public protocol MessageContentMappable : Mappable {}

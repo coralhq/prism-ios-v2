@@ -17,13 +17,13 @@ public class ConnectResponse : Mappable {
     public let visitor: Visitor
     let serverTimeStamp: Double
     
-    required public init?(json: [String: Any]?) {
-        guard let status = json?["status"] as? String,
-            let message = json?["message"] as? String,
-            let data = json?["data"] as? [String: Any],
-            let oAuth = OAuth(json: data["oauth"] as? [String: Any]),
-            let mqtt = MQTT(json: data["mqtt"] as? [String: Any]),
-            let visitor = Visitor(json: data["visitor"] as? [String: Any]),
+    required public init?(dictionary: [String: Any]?) {
+        guard let status = dictionary?["status"] as? String,
+            let message = dictionary?["message"] as? String,
+            let data = dictionary?["data"] as? [String: Any],
+            let oAuth = OAuth(dictionary: data["oauth"] as? [String: Any]),
+            let mqtt = MQTT(dictionary: data["mqtt"] as? [String: Any]),
+            let visitor = Visitor(dictionary: data["visitor"] as? [String: Any]),
             let serverTimeStamp = data["server_timestamp"] as? NSNumber else {
                 return nil
         }

@@ -17,19 +17,19 @@ class ContentInvoice: MessageContentMappable {
     let shipment: Shipment
     let payment: Payment
     
-    required init?(json: [String : Any]?) {
-        guard let id = json?["id"] as? String,
-            let lineItemsJson = json?["line_items"] as? [[String: Any]],
-            let grandTotal = Currency(json: json?["grand_total"] as? [String: Any]),
-            let buyer = Buyer(json: json?["buyer"] as? [String: Any]),
-            let shipment = Shipment(json: json?["shipment"] as? [String: Any]),
-            let payment = Payment(json: json?["paument"] as? [String: Any]) else {
+    required init?(dictionary: [String : Any]?) {
+        guard let id = dictionary?["id"] as? String,
+            let lineItemDictionaries = dictionary?["line_items"] as? [[String: Any]],
+            let grandTotal = Currency(dictionary: dictionary?["grand_total"] as? [String: Any]),
+            let buyer = Buyer(dictionary: dictionary?["buyer"] as? [String: Any]),
+            let shipment = Shipment(dictionary: dictionary?["shipment"] as? [String: Any]),
+            let payment = Payment(dictionary: dictionary?["paument"] as? [String: Any]) else {
                 return nil
         }
         
         var lineItems = [LineItem]()
-        for json in lineItemsJson {
-            guard let lineItem = LineItem(json: json) else {
+        for dictionary in lineItemDictionaries {
+            guard let lineItem = LineItem(dictionary: dictionary) else {
                 return nil
             }
             
@@ -48,8 +48,8 @@ class ContentInvoice: MessageContentMappable {
 class Payment: Mappable {
     let type: String
     
-    required init?(json: [String : Any]?) {
-        guard let provider = json?["provider"] as? [String: Any],
+    required init?(dictionary: [String : Any]?) {
+        guard let provider = dictionary?["provider"] as? [String: Any],
             let type = provider["type"] as? String else {
                 return nil
         }
@@ -62,9 +62,9 @@ class Shipment: Mappable {
     let info: ShipmentInfo
     let cost: Currency
     
-    required init?(json: [String : Any]?) {
-        guard let info = ShipmentInfo(json: json?["info"] as? [String: Any]),
-            let cost = Currency(json: json?["cost"] as? [String: Any]) else {
+    required init?(dictionary: [String : Any]?) {
+        guard let info = ShipmentInfo(dictionary: dictionary?["info"] as? [String: Any]),
+            let cost = Currency(dictionary: dictionary?["cost"] as? [String: Any]) else {
                 return nil
         }
         
@@ -79,11 +79,11 @@ class ShipmentInfo: Mappable {
     let address: String
     let phone: String
     
-    required init?(json: [String : Any]?) {
-        guard let name = json?["customer_name"] as? String,
-            let email = json?["customer_email"] as? String,
-            let address = json?["customer_address"] as? String,
-            let phone = json?["customer_phone"] as? String else {
+    required init?(dictionary: [String : Any]?) {
+        guard let name = dictionary?["customer_name"] as? String,
+            let email = dictionary?["customer_email"] as? String,
+            let address = dictionary?["customer_address"] as? String,
+            let phone = dictionary?["customer_phone"] as? String else {
                 return nil
         }
         
@@ -99,10 +99,10 @@ class Buyer: Mappable {
     let email: String
     let phoneNumber: String
     
-    required init?(json: [String : Any]?) {
-        guard let name = json?["name"] as? String,
-            let email = json?["email"] as? String,
-            let phoneNumber = json?["phone_number"] as? String else {
+    required init?(dictionary: [String : Any]?) {
+        guard let name = dictionary?["name"] as? String,
+            let email = dictionary?["email"] as? String,
+            let phoneNumber = dictionary?["phone_number"] as? String else {
                 return nil
         }
         
@@ -115,9 +115,9 @@ class Currency: Mappable {
     let currencyCode: String
     let amount: String
     
-    required init?(json: [String : Any]?) {
-        guard let currencyCode = json?["currency_code"] as? String,
-            let amount = json?["amount"] as? String else {
+    required init?(dictionary: [String : Any]?) {
+        guard let currencyCode = dictionary?["currency_code"] as? String,
+            let amount = dictionary?["amount"] as? String else {
                 return nil
         }
         

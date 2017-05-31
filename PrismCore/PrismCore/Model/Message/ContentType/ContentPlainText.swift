@@ -17,8 +17,8 @@ public class ContentPlainText : MessageContentMappable {
         }
     }
 
-    required public init?(json: [String : Any]?) {
-        guard let text = json?["text"] as? String else {
+    required public init?(dictionary: [String : Any]?) {
+        guard let text = dictionary?["text"] as? String else {
             return nil
         }
         
@@ -26,6 +26,6 @@ public class ContentPlainText : MessageContentMappable {
     }
     
     convenience public init?(text: String) {
-        self.init(json: ["text": text])
+        self.init(dictionary: ["text": text])
     }
 }

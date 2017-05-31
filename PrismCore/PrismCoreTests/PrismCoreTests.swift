@@ -36,4 +36,11 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(response)
         }
     }
+    
+    func testConnectToBroker() -> Void {
+        PrismCore.shared.connectToBroker(username: JSONResponseMock.mqttUsername, password: JSONResponseMock.mqttPassword, completionHandler: {(connected, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(connected)
+        })
+    }
 }

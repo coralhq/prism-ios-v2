@@ -8,14 +8,24 @@
 
 import Foundation
 
-class ContentPlainText : MessageContentMappable {
+public class ContentPlainText : MessageContentMappable {
     let text: String
     
-    required init?(json: [String : Any]?) {
+    public var dictionaryValue: [String: Any] {
+        get {
+            return ["text": text]
+        }
+    }
+
+    required public init?(json: [String : Any]?) {
         guard let text = json?["text"] as? String else {
             return nil
         }
         
         self.text = text
+    }
+    
+    convenience public init?(text: String) {
+        self.init(json: ["text": text])
     }
 }

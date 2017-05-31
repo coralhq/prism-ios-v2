@@ -73,10 +73,10 @@ open class Message: Mappable {
     var content: MessageContentMappable
     var version: Int
     var brokerMetaData: BrokerMetaData
-    private var json: [String: Any]?
+    public let dictionaryValue: [String: Any]?
     
     public required init?(json: [String : Any]?) {
-        self.json = json
+        self.dictionaryValue = json
         
         guard let id = json?["id"] as? String,
             let conversationID = json?["conversation_id"] as? String,
@@ -167,7 +167,7 @@ open class Message: Mappable {
                             visitor: MessageVisitorInfo,
                             sender: MessageSender,
                             type: MessageType,
-                            content: MessagePlaintextJSON,
+                            content: ContentPlainText,
                             brokerMetaData: BrokerMetaData) {
         
         self.init(
@@ -179,7 +179,7 @@ open class Message: Mappable {
             visitor: visitor,
             sender: sender,
             type: type,
-            content: content.data,
+            content: content.dictionaryValue,
             brokerMetaData: brokerMetaData
         )
     }
@@ -192,7 +192,7 @@ open class Message: Mappable {
                             visitor: MessageVisitorInfo,
                             sender: MessageSender,
                             type: MessageType,
-                            content: MessageAttachmentJSON,
+                            content: ContentAttachment,
                             brokerMetaData: BrokerMetaData) {
         
         self.init(
@@ -204,7 +204,7 @@ open class Message: Mappable {
             visitor: visitor,
             sender: sender,
             type: type,
-            content: content.data,
+            content: content.dictionaryValue,
             brokerMetaData: brokerMetaData
         )
     }
@@ -217,7 +217,7 @@ open class Message: Mappable {
                             visitor: MessageVisitorInfo,
                             sender: MessageSender,
                             type: MessageType,
-                            content: MessageStickerJSON,
+                            content: ContentSticker,
                             brokerMetaData: BrokerMetaData) {
         
         self.init(
@@ -229,7 +229,7 @@ open class Message: Mappable {
             visitor: visitor,
             sender: sender,
             type: type,
-            content: content.data,
+            content: content.dictionaryValue,
             brokerMetaData: brokerMetaData
         )
     }
@@ -242,7 +242,7 @@ open class Message: Mappable {
                             visitor: MessageVisitorInfo,
                             sender: MessageSender,
                             type: MessageType,
-                            content: MessageTypingStatusJSON,
+                            content: ContentTyping,
                             brokerMetaData: BrokerMetaData) {
         
         self.init(
@@ -254,70 +254,8 @@ open class Message: Mappable {
             visitor: visitor,
             sender: sender,
             type: type,
-            content: content.data,
+            content: content.dictionaryValue,
             brokerMetaData: brokerMetaData
         )
-    }
-    
-    public func getJSON() -> [String: Any] {
-        guard let json = json else {
-            return [:]
-        }
-        
-        return json
-    }
-}
-
-
-public class MessagePlaintextJSON {
-    let data: [String: Any]
-    
-    init(text: String) {
-        data = ["text": text]
-    }
-}
-
-public class MessageAttachmentJSON {
-    let data: [String: Any]
-    
-    init(name: String, mimeType: String, url: String, previewURL: String) {
-        
-        data = [
-            "attachment": [
-                "name": name,
-                "mimetype": mimeType,
-                "url": url,
-                "preview_url": previewURL
-            ]
-        ]
-    }
-}
-
-public class MessageStickerJSON {
-    let data: [String: Any]
-    
-    init(name: String, imageURL: String, id: String, packID: String) {
-        
-        data = [
-            "sticker": [
-                "name": name,
-                "image_url": imageURL,
-                "id": id,
-                "pack_id": packID
-            ]
-        ]
-    }
-}
-
-public class MessageTypingStatusJSON {
-    let data: [String: Any]
-    
-    init(status: TypingStatus) {
-        
-        data = [
-            "typing": [
-                "status": status.rawValue
-            ]
-        ]
     }
 }

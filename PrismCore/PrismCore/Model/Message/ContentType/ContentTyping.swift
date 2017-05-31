@@ -8,16 +8,34 @@
 
 import Foundation
 
-class ContentTyping: MessageContentMappable {
+public class ContentTyping: MessageContentMappable {
     
-    let status: String
+    public let status: String
+    public var dictionaryValue: [String: Any] {
+        get {
+            return [
+                "typing": [
+                    "status": status
+                ]
+            ]
+        }
+    }
     
-    required init?(json: [String : Any]?) {
+    required public init?(json: [String : Any]?) {
         guard let typing = json?["typing"] as? [String: Any],
             let status = typing["status"] as? String else {
                 return nil
         }
         
         self.status = status
+    }
+    
+    convenience public init?(status: TypingStatus) {
+        self.init(json: [
+            "typing": [
+                "status": status.rawValue
+                ]
+            ]
+        )
     }
 }

@@ -8,14 +8,27 @@
 
 import Foundation
 
-class ContentAttachment: MessageContentMappable {
+public class ContentAttachment: MessageContentMappable {
     
     let name: String
     let mimeType: String
     let url: URL
     let previewURL: URL
     
-    required init?(json: [String: Any]?) {
+    public var dictionaryValue: [String: Any] {
+        get {
+            return [
+                "attachment": [
+                    "name": name,
+                    "mimetype": mimeType,
+                    "url": url,
+                    "preview_url": previewURL
+                ]
+            ]
+        }
+    }
+    
+    required public init?(json: [String: Any]?) {
         guard let attachment = json?["attachment"] as? [String: Any],
         let name = attachment["name"] as? String,
         let mimeType = attachment["mimetype"] as? String,
@@ -30,5 +43,17 @@ class ContentAttachment: MessageContentMappable {
         self.mimeType = mimeType
         self.url = url
         self.previewURL = previewURL
+    }
+    
+    convenience public init?(name: String, mimeType: String, url: String, previewURL: String) {
+        self.init(json: [
+            "attachment": [
+                "name": name,
+                "mimetype": mimeType,
+                "url": url,
+                "preview_url": previewURL
+                ]
+            ]
+        )
     }
 }

@@ -8,15 +8,41 @@
 
 import Foundation
 
-class ContentSticker: MessageContentMappable {
+public class ContentSticker: MessageContentMappable {
+    
     let sticker: MessageSticker
     
-    required init?(json: [String : Any]?) {
+    public var dictionaryValue: [String: Any] {
+        get {
+            return [
+                "sticker": [
+                    "name": sticker.name,
+                    "image_url": sticker.imageURL.absoluteString,
+                    "id": sticker.id,
+                    "pack_id": sticker.packID
+                ]
+            ]
+        }
+    }
+    
+    required public init?(json: [String : Any]?) {
         guard let sticker = MessageSticker(json: json?["sticker"] as? [String: Any]) else {
             return nil
         }
         
         self.sticker = sticker
+    }
+    
+    convenience public init?(name: String, imageURL: String, id: String, packID: String) {
+        self.init(json: [
+            "sticker": [
+                "name": name,
+                "image_url": imageURL,
+                "id": id,
+                "pack_id": packID
+            ]
+            ]
+        )
     }
 }
 

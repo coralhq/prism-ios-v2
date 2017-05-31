@@ -22,11 +22,30 @@ class PrismCoreTests: XCTestCase {
         super.tearDown()
     }
     
+    func testConfigure() {
+        let delegate = TestDelegate()
+        PrismCore.shared.configure(environment: .Sandbox, merchantID: "", delegate: delegate)
+        XCTAssertNotNil(Config.shared.getEnvironment())
+        XCTAssertNotNil(Config.shared.getMerchantID())
+    }
+    
     func testVisitorConnect() {
         let endPoint = VisitorConnectEndPoint(visitorName: "asd", userID: "asd")
         NetworkMock.shared.request(endPoint: endPoint, mapToObject: ConnectResponse.self) { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
         }
+    }
+    
+    func testCreateConversation() {
+        PrismCore.shared.createConversation(visitorName: "", token: "") { (response, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(response)
+        }
+    }
+}
+
+class TestDelegate: PrismCoreDelegate {
+    func didReceive(message data: Data, in topic: String) {
     }
 }

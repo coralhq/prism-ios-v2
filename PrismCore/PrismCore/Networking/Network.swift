@@ -104,10 +104,10 @@ class Network: NetworkProtocol {
         }
     }
     
-    func subscribeToTopic(topic: String, completionHandler: ((Bool?, Error?) -> ())?) {
+    func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool?, Error?) -> ())) {
         mqttSession.subscribe(to: topic, delivering: MQTTQoS.atLeastOnce) { (success, error) in
             DispatchQueue.main.async(){
-                completionHandler?(success, error)
+                completionHandler(success, error)
             }
         }
     }

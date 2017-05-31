@@ -38,6 +38,8 @@ class NetworkMock: NetworkProtocol {
             return JSONResponseMock.connectResponse
         } else if object == UploadURL.self {
             return JSONResponseMock.getAttachmentURLResponse
+        } else if object == CreateConversationResponse.self {
+            return JSONResponseMock.createConverationResponse
         }
         
         return [:]

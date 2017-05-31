@@ -106,6 +106,12 @@ open class PrismCore {
             completionHandler(mappable as? ConversationHistory, error)
         }
     }
+    
+    open func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+        network.unsubscribeFromTopic(topic: topic) { (success, error) in
+            completionHandler(success, error)
+        }
+    }
 }
 
 extension PrismCore: MQTTSessionDelegate {

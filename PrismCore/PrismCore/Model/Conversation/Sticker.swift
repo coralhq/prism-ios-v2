@@ -22,9 +22,9 @@ class Sticker: Mappable {
             let updatedAt = Date.getDateFromISO8601(string: json?["updated_at"] as? String),
             let id = json?["id"] as? String,
             let name = json?["name"] as? String,
-            let imageURL = json?["image_url"] as? URL,
-            let packID = json?["pack_id"] as? String
-            else {
+            let imageURLString = json?["image_url"] as? String,
+            let imageURL = URL(string: imageURLString),
+            let packID = json?["pack_id"] as? String else {
                 return nil
         }
         

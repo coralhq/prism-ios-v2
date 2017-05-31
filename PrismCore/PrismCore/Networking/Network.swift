@@ -93,13 +93,13 @@ class Network: NetworkProtocol {
         mqttSession.delegate = delegate
     }
     
-    func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error) -> ())) {
+    func connectToBroker(username: String, password: String, completionHandler: ((Bool?, Error?) -> ())?) {
         mqttSession.username = username
         mqttSession.password = password
         
         mqttSession.connect { (connected, error) in
             DispatchQueue.main.async(){
-                completionHandler(connected, error)
+                completionHandler?(connected, error)
             }
         }
     }

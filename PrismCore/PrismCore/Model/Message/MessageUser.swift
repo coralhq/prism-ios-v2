@@ -12,9 +12,9 @@ public class MessageUser: Mappable {
     let id: String
     let name: String
     
-    required public init?(json: [String : Any]?) {
-        guard let id = json?["id"] as? String,
-            let name = json?["name"] as? String else {
+    required public init?(dictionary: [String : Any]?) {
+        guard let id = dictionary?["id"] as? String,
+            let name = dictionary?["name"] as? String else {
                 return nil
         }
         
@@ -24,6 +24,6 @@ public class MessageUser: Mappable {
     
     convenience public init?(id: String, name: String) {
         let data = ["id": id, "name": name ]
-        self.init(json: data)
+        self.init(dictionary: data)
     }
 }

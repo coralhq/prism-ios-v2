@@ -18,13 +18,13 @@ public class ConversationVisitor {
     public let avatar: String
     public let merchantID: String
     
-    required public init?(json: [String: Any]?) {
-        guard let createdAt = Date.getDateFromISO8601(string: json?["created_at"] as? String),
-            let updatedAt = Date.getDateFromISO8601(string: json?["updated_at"] as? String),
-            let id = json?["id"] as? String,
-            let merchantID = json?["merchant_id"] as? String,
-            let avatar = json?["avatar"] as? String,
-            let name = json?["name"] as? String
+    required public init?(dictionary: [String: Any]?) {
+        guard let createdAt = Date.getDateFromISO8601(string: dictionary?["created_at"] as? String),
+            let updatedAt = Date.getDateFromISO8601(string: dictionary?["updated_at"] as? String),
+            let id = dictionary?["id"] as? String,
+            let merchantID = dictionary?["merchant_id"] as? String,
+            let avatar = dictionary?["avatar"] as? String,
+            let name = dictionary?["name"] as? String
             
             else {
                 return nil

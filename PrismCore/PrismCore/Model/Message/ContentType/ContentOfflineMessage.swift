@@ -14,8 +14,8 @@ class ContentOfflineMessage: MessageContentMappable {
     let phone: String
     let text: String
     
-    required init?(json: [String : Any]?) {
-        guard let offlineMessage = json?["offline_message"] as? [String: Any],
+    required init?(dictionary: [String : Any]?) {
+        guard let offlineMessage = dictionary?["offline_message"] as? [String: Any],
             let name = offlineMessage["name"] as? String,
             let email = offlineMessage["email"] as? String,
             let text = offlineMessage["text"] as? String,

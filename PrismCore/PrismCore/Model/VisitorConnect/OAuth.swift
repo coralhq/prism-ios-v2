@@ -16,12 +16,12 @@ public class OAuth : Mappable {
     public let clientID: String
     public let expireIn: Int
     
-    required public init?(json: [String: Any]?) {
-        guard let refreshToken = json?["refresh_token"] as? String,
-            let tokenType = json?["token_type"] as? String,
-            let accessToken = json?["access_token"] as? String,
-            let clientID = json?["client_id"] as? String,
-            let expireIn = json?["expires_in"] as? Int
+    required public init?(dictionary: [String: Any]?) {
+        guard let refreshToken = dictionary?["refresh_token"] as? String,
+            let tokenType = dictionary?["token_type"] as? String,
+            let accessToken = dictionary?["access_token"] as? String,
+            let clientID = dictionary?["client_id"] as? String,
+            let expireIn = dictionary?["expires_in"] as? Int
             else {
                 return nil
         }

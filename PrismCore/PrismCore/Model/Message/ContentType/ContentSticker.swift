@@ -25,8 +25,8 @@ public class ContentSticker: MessageContentMappable {
         }
     }
     
-    required public init?(json: [String : Any]?) {
-        guard let sticker = MessageSticker(json: json?["sticker"] as? [String: Any]) else {
+    required public init?(dictionary: [String : Any]?) {
+        guard let sticker = MessageSticker(dictionary: dictionary?["sticker"] as? [String: Any]) else {
             return nil
         }
         
@@ -34,7 +34,7 @@ public class ContentSticker: MessageContentMappable {
     }
     
     convenience public init?(name: String, imageURL: String, id: String, packID: String) {
-        self.init(json: [
+        self.init(dictionary: [
             "sticker": [
                 "name": name,
                 "image_url": imageURL,
@@ -53,12 +53,12 @@ class MessageSticker: Mappable {
     let id: String
     let packID: String
     
-    required init?(json: [String : Any]?) {
-        guard let name = json?["name"] as? String,
-        let url = json?["image_url"] as? String,
+    required init?(dictionary: [String : Any]?) {
+        guard let name = dictionary?["name"] as? String,
+        let url = dictionary?["image_url"] as? String,
         let imageURL = URL(string: url),
-        let id = json?["id"] as? String,
-        let packID = json?["pack_id"] as? String else {
+        let id = dictionary?["id"] as? String,
+        let packID = dictionary?["pack_id"] as? String else {
             return nil
         }
         

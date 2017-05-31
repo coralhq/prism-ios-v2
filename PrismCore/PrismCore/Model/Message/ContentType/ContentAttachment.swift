@@ -28,8 +28,8 @@ public class ContentAttachment: MessageContentMappable {
         }
     }
     
-    required public init?(json: [String: Any]?) {
-        guard let attachment = json?["attachment"] as? [String: Any],
+    required public init?(dictionary: [String: Any]?) {
+        guard let attachment = dictionary?["attachment"] as? [String: Any],
         let name = attachment["name"] as? String,
         let mimeType = attachment["mimetype"] as? String,
             let urlString = attachment["url"] as? String,
@@ -46,7 +46,7 @@ public class ContentAttachment: MessageContentMappable {
     }
     
     convenience public init?(name: String, mimeType: String, url: String, previewURL: String) {
-        self.init(json: [
+        self.init(dictionary: [
             "attachment": [
                 "name": name,
                 "mimetype": mimeType,

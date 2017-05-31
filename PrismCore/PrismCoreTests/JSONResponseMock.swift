@@ -9,6 +9,9 @@
 import Foundation
 
 class JSONResponseMock {
+    static var mqttUsername = "mqtt_username"
+    static var mqttPassword = "password"
+    
     static var connectResponse: [String: Any] {
         get {
             return [

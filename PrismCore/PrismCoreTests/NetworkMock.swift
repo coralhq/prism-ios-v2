@@ -36,6 +36,8 @@ class NetworkMock: NetworkProtocol {
     fileprivate func getMockData<T: Mappable>(object: T.Type) -> [String: Any] {
         if object == ConnectResponse.self {
             return JSONResponseMock.connectResponse
+        } else if object == Settings.self {
+            return JSONResponseMock.getSettingsResponse
         } else if object == UploadURL.self {
             return JSONResponseMock.getAttachmentURLResponse
         } else if object == CreateConversationResponse.self {

@@ -56,7 +56,7 @@ class NetworkMock: NetworkProtocol {
         }
     }
     
-    func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool?, Error?) -> ())) {
+    func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
         let success = topic == JSONResponseMock.mqttTopic
         completionHandler(success, nil)
     }

@@ -15,7 +15,7 @@ protocol NetworkProtocol {
     
     func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error) -> ()))
     
-    func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool?, Error?) -> ()))
+    func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ()))
     
     func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, Error?) -> ())
     

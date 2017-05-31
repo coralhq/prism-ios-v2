@@ -13,7 +13,7 @@ protocol NetworkProtocol {
     
     func request<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping HTTPRequestResult)
     
-    func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error) -> ()))
+    func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error?) -> ()))
     
     func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ()))
     

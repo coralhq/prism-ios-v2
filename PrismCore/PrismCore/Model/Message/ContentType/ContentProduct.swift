@@ -11,8 +11,8 @@ import Foundation
 class ContentProduct: MessageContentMappable {
     let product: Product
     
-    required init?(json: [String : Any]?) {
-        guard let product = Product(json: json?["product"] as? [String: Any]) else {
+    required init?(dictionary: [String : Any]?) {
+        guard let product = Product(dictionary: dictionary?["product"] as? [String: Any]) else {
             return nil
         }
         
@@ -29,20 +29,20 @@ class Product: Mappable {
     let discount: Discount
     let currencyCode: String
     
-    required init?(json: [String : Any]?) {
-        guard let id = json?["id"] as? String,
-            let name = json?["name"] as? String,
-            let price = json?["price"] as? String,
-            let description = json?["description"] as? String,
-            let imageURLJsons = json?["image_urls"] as? [String],
-            let discount = Discount(json: json?["discount"] as? [String: Any]),
-            let currencyCode = json?["currency_code"] as? String else {
+    required init?(dictionary: [String : Any]?) {
+        guard let id = dictionary?["id"] as? String,
+            let name = dictionary?["name"] as? String,
+            let price = dictionary?["price"] as? String,
+            let description = dictionary?["description"] as? String,
+            let imageURLDictionaries = dictionary?["image_urls"] as? [String],
+            let discount = Discount(dictionary: dictionary?["discount"] as? [String: Any]),
+            let currencyCode = dictionary?["currency_code"] as? String else {
                 return nil
         }
         
         var imageURLs: [URL] = []
-        for json in imageURLJsons {
-            guard let url = URL(string: json) else {
+        for dictionary in imageURLDictionaries {
+            guard let url = URL(string: dictionary) else {
                 return nil
             }
             

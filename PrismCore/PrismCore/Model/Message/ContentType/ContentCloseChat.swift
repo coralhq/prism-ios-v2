@@ -13,10 +13,10 @@ class ContentCloseChat: MessageContentMappable {
     let closedBy: MessageUser
     let message: ContentPlainText
     
-    required init?(json: [String : Any]?) {
-        guard let closeChat = json?["close_chat"] as? [String: Any],
-            let closedBy = MessageUser(json: closeChat["closed_by"] as? [String : Any]),
-            let message = ContentPlainText(json: closeChat["message"] as? [String : Any]) else {
+    required init?(dictionary: [String : Any]?) {
+        guard let closeChat = dictionary?["close_chat"] as? [String: Any],
+            let closedBy = MessageUser(dictionary: closeChat["closed_by"] as? [String : Any]),
+            let message = ContentPlainText(dictionary: closeChat["message"] as? [String : Any]) else {
             return nil
         }
         

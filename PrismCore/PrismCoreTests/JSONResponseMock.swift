@@ -10,6 +10,8 @@ import Foundation
 
 class JSONResponseMock {
     static var mqttTopic = "prism_topic"
+    static var mqttUsername = "mqtt_username"
+    static var mqttPassword = "password"
     
     static var connectResponse: [String: Any] {
         get {
@@ -43,6 +45,118 @@ class JSONResponseMock {
         }
     }
     
+    static var getSettingsResponse: [String: Any] {
+        get {
+            return [
+                "status": "success",
+                "message": "OK",
+                "data": [
+                    "public": [
+                        "widget": [
+                            "enabled": true,
+                            "persona_enabled": true,
+                            "persona_image_url": "https://s3-ap-southeast-1.amazonaws.com/prismapp-staging/images/01BBRCNEWPNWPW0TW5THRP1QT5/logo.png",
+                            "persona_name": "PRISM",
+                            "title_expanded": "Let's shop with us!",
+                            "subtitle": "Chat to buy",
+                            "title_minimized": "Mau pesan? Klik disini",
+                            "welcome_message": "Hello, we’re here to make your shopping smoother. Let’s chat!",
+                            "offline_form_message": "Hello, We are on offline service now.",
+                            "connect_form_message": "hello please fill this form",
+                            "style": "CORAL",
+                            "attention_grabber": [
+                                "option": "TEXT_AND_IMAGE",
+                                "desktop_text": "PRISM IS AWESOME",
+                                "desktop_image_url": "https://s3-ap-southeast-1.amazonaws.com/prismapp-staging/images/01BBT91DXERBDS1NQM22JJ04GA/Group @2x.png",
+                                "mobile_text": "PRISM IS AWESOME",
+                                "mobile_image_url": "https://s3-ap-southeast-1.amazonaws.com/prismapp-staging/images/01BBRH08W35SGA1HQQK1SB10KX/ag-test-2.png"
+                            ],
+                            "offline_message": "Informasi data dan pesan yang Anda kirim sudah kami terima. Kami akan menghubungi Anda segera.",
+                            "working_hours": [
+                                "monday": [
+                                [
+                                "from": "00:00",
+                                "to": "23:59"
+                                ]
+                                ],
+                                "tuesday": [
+                                [
+                                "from": "00:00",
+                                "to": "23:59"
+                                ]
+                                ],
+                                "wednesday": [
+                                [
+                                "from": "00:00",
+                                "to": "23:59"
+                                ]
+                                ],
+                                "thursday": [
+                                [
+                                "from": "00:00",
+                                "to": "23:59"
+                                ]
+                                ],
+                                "friday": [
+                                [
+                                "from": "00:00",
+                                "to": "23:59"
+                                ]
+                                ],
+                                "saturday": [
+                                [
+                                "from": "00:00",
+                                "to": "23:59"
+                                ]
+                                ],
+                                "sunday": [
+                                [
+                                "from": "00:00",
+                                "to": "23:59"
+                                ]
+                                ]
+                            ],
+                            "position": "bottom-right",
+                            "input_form": "ENABLED",
+                            "input_form_field": [
+                                "name": [
+                                    "show": true,
+                                    "required": true
+                                ],
+                                "phone": [
+                                    "show": true,
+                                    "required": true
+                                ],
+                                "email": [
+                                    "show": true,
+                                    "required": true
+                                ]
+                            ],
+                            "timezone": "Asia/Jakarta",
+                            "triggers": [
+                            [
+                            "url": "https://waldo.staging.coral-inc.com/prism",
+                            "wait_time": "20"
+                            ]
+                            ]
+                        ]
+                    ]
+                 ]
+            ]
+        }
+    }
+
+    static var getAttachmentURLResponse: [String: Any] {
+        get {
+            return [
+                "filename": "test.png",
+                    "headers": [
+                        "Content-Type": "application/octet-stream"
+                ]
+            ]
+        }
+    }
+
     static var createConverationResponse: [String: Any] {
         get {
             return [

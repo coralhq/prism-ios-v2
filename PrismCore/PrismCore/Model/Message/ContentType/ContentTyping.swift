@@ -21,8 +21,8 @@ public class ContentTyping: MessageContentMappable {
         }
     }
     
-    required public init?(json: [String : Any]?) {
-        guard let typing = json?["typing"] as? [String: Any],
+    required public init?(dictionary: [String : Any]?) {
+        guard let typing = dictionary?["typing"] as? [String: Any],
             let status = typing["status"] as? String else {
                 return nil
         }
@@ -31,7 +31,7 @@ public class ContentTyping: MessageContentMappable {
     }
     
     convenience public init?(status: TypingStatus) {
-        self.init(json: [
+        self.init(dictionary: [
             "typing": [
                 "status": status.rawValue
                 ]

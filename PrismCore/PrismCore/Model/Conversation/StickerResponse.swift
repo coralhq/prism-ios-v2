@@ -13,17 +13,17 @@ open class StickerResponse: Mappable {
     let status: String
     let packs: [StickerPack]
     
-    required public init?(json: [String : Any]?) {
-        guard let data = json?["data"] as? [String: Any],
-            let status = json?["status"] as? String,
-            let packsJson = data["packs"] as? [[String: Any]]
+    required public init?(dictionary: [String : Any]?) {
+        guard let data = dictionary?["data"] as? [String: Any],
+            let status = dictionary?["status"] as? String,
+            let packDictionaries = data["packs"] as? [[String: Any]]
             else {
                 return nil
         }
         
         var packs: [StickerPack] = []
-        for json in packsJson {
-            guard let pack = StickerPack(json: json) else {
+        for dictionary in packDictionaries {
+            guard let pack = StickerPack(dictionary: dictionary) else {
                 return nil
             }
             

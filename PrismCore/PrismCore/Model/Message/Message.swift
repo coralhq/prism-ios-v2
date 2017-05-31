@@ -73,48 +73,47 @@ open class Message: Mappable {
     var content: MessageContentMappable
     var version: Int
     var brokerMetaData: BrokerMetaData
-    public let dictionaryValue: [String: Any]?
+    public let dictionaryValue: [String: Any]
     
-    public required init?(json: [String : Any]?) {
-        self.dictionaryValue = json
-        
-        guard let id = json?["id"] as? String,
-            let conversationID = json?["conversation_id"] as? String,
-            let merchantID = json?["merchant_id"] as? String,
-            let channel = json?["channel"] as? String,
-            let channelInfo = MessageChannelInfo(json: json?["channel_info"] as? [String: Any]),
-            let visitor = MessageVisitorInfo(json: json?["visitor"] as? [String: Any]),
-            let sender = MessageSender(json: json?["sender"] as? [String: Any]),
-            let typeString = json?["type"] as? String,
+    public required init?(dictionary: [String : Any]?) {
+        guard let dictionary = dictionary,
+            let id = dictionary["id"] as? String,
+            let conversationID = dictionary["conversation_id"] as? String,
+            let merchantID = dictionary["merchant_id"] as? String,
+            let channel = dictionary["channel"] as? String,
+            let channelInfo = MessageChannelInfo(dictionary: dictionary["channel_info"] as? [String: Any]),
+            let visitor = MessageVisitorInfo(dictionary: dictionary["visitor"] as? [String: Any]),
+            let sender = MessageSender(dictionary: dictionary["sender"] as? [String: Any]),
+            let typeString = dictionary["type"] as? String,
             let type = MessageType(rawValue: typeString),
-            let version = json?["version"] as? Int,
-            let brokerMetaData = BrokerMetaData(json: json?["_broker_metadata"] as? [String: Any]) else {
+            let version = dictionary["version"] as? Int,
+            let brokerMetaData = BrokerMetaData(dictionary: dictionary["_broker_metadata"] as? [String: Any]) else {
                 return nil
         }
         
-        if case .Assignment = type, let content = ContentAssignment(json: json?["content"] as? [String: Any]) {
+        if case .Assignment = type, let content = ContentAssignment(dictionary: dictionary["content"] as? [String: Any]) {
             self.content = content
-        } else if case .AutoResponder = type, let content = ContentAutoResponder(json: json?["content"] as? [String: Any]) {
+        } else if case .AutoResponder = type, let content = ContentAutoResponder(dictionary: dictionary["content"] as? [String: Any]) {
             self.content = content
-        } else if case .Attachment = type, let content = ContentAttachment(json: json?["content"] as? [String: Any]) {
+        } else if case .Attachment = type, let content = ContentAttachment(dictionary: dictionary["content"] as? [String: Any]) {
             self.content = content
-        } else if case .Cart = type, let content = ContentCart(json: json?["content"] as? [String: Any]) {
+        } else if case .Cart = type, let content = ContentCart(dictionary: dictionary["content"] as? [String: Any]) {
             self.content = content
-        } else if case .CloseChat = type, let content = ContentCloseChat(json: json?["content"] as? [String: Any]) {
+        } else if case .CloseChat = type, let content = ContentCloseChat(dictionary: dictionary["content"] as? [String: Any]) {
             self.content = content
-        } else if case .Invoice = type, let content = ContentInvoice(json: json?["content"] as? [String: Any]) {
+        } else if case .Invoice = type, let content = ContentInvoice(dictionary: dictionary["content"] as? [String: Any]) {
             self.content = content
-        } else if case .OfflineMessage = type, let content = ContentOfflineMessage(json: json?["content"] as? [String: Any]) {
+        } else if case .OfflineMessage = type, let content = ContentOfflineMessage(dictionary: dictionary["content"] as? [String: Any]) {
             self.content = content
-        } else if case .PlainText = type, let content = ContentPlainText(json: json?["content"] as? [String: Any]) {
+        } else if case .PlainText = type, let content = ContentPlainText(dictionary: dictionary["content"] as? [String: Any]) {
             self.content = content
-        } else if case .Product = type, let content = ContentProduct(json: json?["content"] as? [String: Any]) {
+        } else if case .Product = type, let content = ContentProduct(dictionary: dictionary["content"] as? [String: Any]) {
             self.content = content
-        } else if case .StatusUpdate = type, let content = ContentStatusUpdate(json: json?["content"] as? [String: Any]) {
+        } else if case .StatusUpdate = type, let content = ContentStatusUpdate(dictionary: dictionary["content"] as? [String: Any]) {
             self.content = content
-        } else if case .Sticker = type, let content = ContentSticker(json: json?["content"] as? [String: Any]) {
+        } else if case .Sticker = type, let content = ContentSticker(dictionary: dictionary["content"] as? [String: Any]) {
             self.content = content
-        } else if case .Typing = type, let content = ContentTyping(json: json?["content"] as? [String: Any]) {
+        } else if case .Typing = type, let content = ContentTyping(dictionary: dictionary["content"] as? [String: Any]) {
             self.content = content
         } else {
             return nil
@@ -130,6 +129,7 @@ open class Message: Mappable {
         self.sender = sender
         self.brokerMetaData = brokerMetaData
         self.version = version
+        self.dictionaryValue = dictionary
     }
     
     convenience private init?(
@@ -144,7 +144,7 @@ open class Message: Mappable {
         content: [String: Any],
         brokerMetaData: BrokerMetaData) {
         
-        self.init(json: [
+        self.init(dictionary: [
             "id": id,
             "conversation_id": conversationID,
             "merchant_id": merchantID,

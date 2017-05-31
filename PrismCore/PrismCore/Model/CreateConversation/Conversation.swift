@@ -27,32 +27,32 @@ public class Conversation : Mappable {
     public let tags: [String]?
     public let latestMessagePayload: String?
     
-    required public init?(json: [String: Any]?) {
+    required public init?(dictionary: [String: Any]?) {
         
-        guard let createdAt = Date.getDateFromISO8601(string: json?["created_at"] as? String),
-            let updatedAt = Date.getDateFromISO8601(string: json?["updated_at"] as? String),
-            let id = json?["id"] as? String,
-            let topic = json?["topic"] as? String,
-            let status = json?["status"] as? String,
-            let merchantID = json?["merchant_id"] as? String,
-            let hasContent = json?["has_content"] as? Bool,
-            let channel = json?["channel"] as? String
+        guard let createdAt = Date.getDateFromISO8601(string: dictionary?["created_at"] as? String),
+            let updatedAt = Date.getDateFromISO8601(string: dictionary?["updated_at"] as? String),
+            let id = dictionary?["id"] as? String,
+            let topic = dictionary?["topic"] as? String,
+            let status = dictionary?["status"] as? String,
+            let merchantID = dictionary?["merchant_id"] as? String,
+            let hasContent = dictionary?["has_content"] as? Bool,
+            let channel = dictionary?["channel"] as? String
             else {
                 return nil
         }
         
-        channelInfo = json?["channel_info"] as? String
-        assignee = json?["assignee"] as? String
-        latestMessagePayload = json?["latest_msg_payload"] as? String
+        channelInfo = dictionary?["channel_info"] as? String
+        assignee = dictionary?["assignee"] as? String
+        latestMessagePayload = dictionary?["latest_msg_payload"] as? String
         assigmentHistories = []
-        tags = json?["tags"] as? [String]
-        visitor = ConversationVisitor(json: json?["visitor"] as? [String: Any])
+        tags = dictionary?["tags"] as? [String]
+        visitor = ConversationVisitor(dictionary: dictionary?["visitor"] as? [String: Any])
         
         var participants: [ConversationParticipant] = []
         
-        if let jsonParticipants = json?["participants"] as? [[String: Any]] {
-            for json in jsonParticipants {
-                guard let participant = ConversationParticipant(json: json) else {
+        if let participantDictionaries = dictionary?["participants"] as? [[String: Any]] {
+            for dictionary in participantDictionaries {
+                guard let participant = ConversationParticipant(dictionary: dictionary) else {
                     return nil
                 }
                 

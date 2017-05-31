@@ -14,10 +14,10 @@ open class CreateConversationResponse : Mappable {
     let status: String
     public let conversation: Conversation
     
-    required public init?(json: [String: Any]?) {
-        guard let status = json?["status"] as? String,
-            let data = json?["data"] as? [String: Any],
-            let conversation = Conversation(json: data["conversation"] as? [String: Any])
+    required public init?(dictionary: [String: Any]?) {
+        guard let status = dictionary?["status"] as? String,
+            let data = dictionary?["data"] as? [String: Any],
+            let conversation = Conversation(dictionary: data["conversation"] as? [String: Any])
             else {
                 return nil
         }

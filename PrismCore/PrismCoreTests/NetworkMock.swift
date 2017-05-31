@@ -30,12 +30,16 @@ class NetworkMock: NetworkProtocol {
     func request<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping HTTPRequestResult) {
         let data = getMockData(object: mapToObject)
         
-        completionHandler(mapToObject.init(json: data), nil)
+        completionHandler(mapToObject.init(dictionary: data), nil)
     }
     
     fileprivate func getMockData<T: Mappable>(object: T.Type) -> [String: Any] {
         if object == ConnectResponse.self {
             return JSONResponseMock.connectResponse
+        } else if object == Settings.self {
+            return JSONResponseMock.getSettingsResponse
+        } else if object == UploadURL.self {
+            return JSONResponseMock.getAttachmentURLResponse
         } else if object == CreateConversationResponse.self {
             return JSONResponseMock.createConverationResponse
         }
@@ -47,13 +51,10 @@ class NetworkMock: NetworkProtocol {
         mqttSession.delegate = delegate
     }
     
-    func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error) -> ())) {
-        mqttSession.username = username
-        mqttSession.password = password
-        
-        mqttSession.connect { (connected, error) in
-            completionHandler(connected, error)
-        }
+    func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+        let connected = (JSONResponseMock.mqttPassword == password) &&
+            (JSONResponseMock.mqttUsername == username)
+        completionHandler(connected, nil)
     }
     
     func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {

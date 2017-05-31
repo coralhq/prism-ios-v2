@@ -7,8 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 class JSONResponseMock {
+    static var attachmentImage:UIImage {
+        get {
+            return UIImage(named: "tshirt.jpg",
+                           in: Bundle.init(for: NetworkMock.self),
+                           compatibleWith: nil)!
+        }
+    }
+    static var attachmentURL = URL(string: "http://prismapp.io/shirt.png")!
     static var mqttUsername = "mqtt_username"
     static var mqttPassword = "password"
     

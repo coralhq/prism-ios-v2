@@ -6,8 +6,8 @@
 //  Copyright © 2017 PrismApp. All rights reserved.
 //
 
-//import XCTest
 import Foundation
+import UIKit
 
 class NetworkMock: NetworkProtocol {
     

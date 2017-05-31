@@ -18,16 +18,18 @@ open class PrismCore {
     
     private init() {}
     
+    internal var network: NetworkProtocol = Network.shared
+    
     open func configure(environment: EnvironmentType, merchantID: String, delegate: PrismCoreDelegate) {
         self.delegate = delegate
         Config.shared.configure(environment: environment, merchantID: merchantID)
-        Network.shared.setMQTTDelegate(delegate: self)
+        network.setMQTTDelegate(delegate: self)
     }
     
     open func visitorConnect(visitorName: String, userID: String, completionHandler: @escaping (ConnectResponse?, Error?) -> ()) {
         
         let endPoint = VisitorConnectEndPoint(visitorName: visitorName, userID: userID)
-        Network.shared.request(endPoint: endPoint, mapToObject: ConnectResponse.self) { (mappable, error) in
+        network.request(endPoint: endPoint, mapToObject: ConnectResponse.self) { (mappable, error) in
             DispatchQueue.main.async(){
                 completionHandler(mappable as? ConnectResponse, error)
             }
@@ -45,33 +47,33 @@ open class PrismCore {
     open func createConversation(visitorName: String, token: String, completionHandler: @escaping ((CreateConversationResponse? ,Error?) -> ())) {
         let endPoint = CreateConversationEndPoint(visitorName: visitorName, token: token)
         
-        Network.shared.request(endPoint: endPoint, mapToObject: CreateConversationResponse.self) { (mappable, error) in
+        network.request(endPoint: endPoint, mapToObject: CreateConversationResponse.self) { (mappable, error) in
             completionHandler(mappable as? CreateConversationResponse, error)
         }
     }
     
     open func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error) -> ())) {
-        Network.shared.connectToBroker(username: username, password: password, completionHandler: completionHandler)
+        network.connectToBroker(username: username, password: password, completionHandler: completionHandler)
     }
     
     open func subscribeToTopic(_ topic: String, completionHandler: @escaping ((Bool, Error) -> ())) {
-        Network.shared.subscribeToTopic(topic: topic, completionHandler: completionHandler)
+        network.subscribeToTopic(topic: topic, completionHandler: completionHandler)
     }
     
     open func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, Error?) -> ()) {
-        Network.shared.publishMessage(topic: topic, message: message, completionHandler: completionHandler)
+        network.publishMessage(topic: topic, message: message, completionHandler: completionHandler)
     }
     
     open func getSettings(completionHandler: @escaping ([String: Any]?, Error?) -> ()) {
         let endPoint = GetSettingsEndPoint()
         
-        Network.shared.requestRawResult(endPoint: endPoint, mapToObject: Settings.self, completionHandler: completionHandler)
+        network.requestRawResult(endPoint: endPoint, mapToObject: Settings.self, completionHandler: completionHandler)
     }
     
     open func getStickers(token: String, completionHandler: @escaping ((StickerResponse?, Error?) -> ())) {
         let endPoint = GetStickersEndPoint(token: token)
         
-        Network.shared.request(endPoint: endPoint, mapToObject: StickerResponse.self) { (mappable, error) in
+        network.request(endPoint: endPoint, mapToObject: StickerResponse.self) { (mappable, error) in
             completionHandler(mappable as? StickerResponse, error)
         }
     }
@@ -79,7 +81,7 @@ open class PrismCore {
     open func getAttachmentURL(filename: String, conversationID: String, token: String, completionHandler: @escaping ((UploadURL?, Error?) -> ())) {
         let endPoint = GetAttachmentURLEndPoint(filename: filename, conversationID: conversationID, token: token)
         
-        Network.shared.request(endPoint: endPoint, mapToObject: UploadURL.self) { (mappable, error) in
+        network.request(endPoint: endPoint, mapToObject: UploadURL.self) { (mappable, error) in
             completionHandler(mappable as? UploadURL, error)
         }
     }
@@ -100,7 +102,7 @@ open class PrismCore {
     open func getConversationHistory(conversationID: String, token: String, completionHandler: @escaping ((ConversationHistory?, Error?) -> ())) {
         let endPoint = GetConversationHistoryEndPoint(conversationID: conversationID, token: token)
         
-        Network.shared.request(endPoint: endPoint, mapToObject: ConversationHistory.self) { (mappable, error) in
+        network.request(endPoint: endPoint, mapToObject: ConversationHistory.self) { (mappable, error) in
             completionHandler(mappable as? ConversationHistory, error)
         }
     }

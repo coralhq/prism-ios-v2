@@ -18,4 +18,6 @@ protocol NetworkProtocol {
     func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error) -> ()))
     
     func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, Error?) -> ())
+    
+    func setMQTTDelegate(delegate: MQTTSessionDelegate)
 }

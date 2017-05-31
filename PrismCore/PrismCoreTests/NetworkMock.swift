@@ -9,7 +9,7 @@
 //import XCTest
 import Foundation
 
-class NetworkMock {
+class NetworkMock: NetworkProtocol {
     
     static let shared = NetworkMock()
     private let mqttSession = MQTTSession(host: "", port: 1882, clientID: "iOSDK", cleanSession: true, keepAlive: 60, useSSL: true)

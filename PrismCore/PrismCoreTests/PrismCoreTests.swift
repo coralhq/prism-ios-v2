@@ -82,7 +82,13 @@ class PrismCoreTests: XCTestCase {
     func testGetConversationHistory() {
         PrismCore.shared.getConversationHistory(conversationID: "", token: "") { (response, error) in
             XCTAssertNil(error)
-            XCTAssertNotNil(response)                
+            XCTAssertNotNil(response)
+        }
+    }
+
+    func testUnsubscribeFromTopic() {
+        PrismCore.shared.unsubscribeFromTopic(topic: "") { (success, error) in
+            XCTAssertTrue(success)
         }
     }
   

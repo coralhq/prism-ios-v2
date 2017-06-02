@@ -85,4 +85,8 @@ class NetworkMock: NetworkProtocol {
     func disconnectFromBroker(completionHandler: ((Bool) -> ())) {
         completionHandler(true)
     }
+  
+    func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+        completionHandler(true, nil)
+    }
 }

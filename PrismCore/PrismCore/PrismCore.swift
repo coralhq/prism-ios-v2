@@ -113,6 +113,12 @@ open class PrismCore {
         }
     }
     
+    open func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+        network.unsubscribeFromTopic(topic: topic) { (success, error) in
+            completionHandler(success, error)
+        }
+    }
+
     open func refreshToken(clientID: String, refreshToken: String, completionHandler: @escaping ((RefreshTokenResponse?, Error?) -> ())) {
         let endPoint = RefreshTokenEndPoint(clientID: clientID, refreshToken: refreshToken)
         

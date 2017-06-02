@@ -56,7 +56,7 @@ open class PrismCore {
         network.connectToBroker(username: username, password: password, completionHandler: completionHandler)
     }
     
-    open func subscribeToTopic(_ topic: String, completionHandler: @escaping ((Bool, Error) -> ())) {
+    open func subscribeToTopic(_ topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
         network.subscribeToTopic(topic: topic, completionHandler: completionHandler)
     }
     
@@ -83,6 +83,12 @@ open class PrismCore {
         
         network.request(endPoint: endPoint, mapToObject: UploadURL.self) { (mappable, error) in
             completionHandler(mappable as? UploadURL, error)
+        }
+    }
+    
+    func disconnectFromBroker(completionHandler: ((Bool) -> ())) {
+        network.disconnectFromBroker { response in
+            completionHandler(true)
         }
     }
     

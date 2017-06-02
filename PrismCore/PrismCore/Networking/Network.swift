@@ -104,7 +104,7 @@ class Network: NetworkProtocol {
         }
     }
     
-    func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error) -> ())) {
+    func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
         mqttSession.subscribe(to: topic, delivering: MQTTQoS.atLeastOnce) { (success, error) in
             DispatchQueue.main.async(){
                 completionHandler(success, error)
@@ -112,6 +112,11 @@ class Network: NetworkProtocol {
         }
     }
     
+    func disconnectFromBroker(completionHandler: ((Bool) -> ())) {
+        mqttSession.disconnect()
+        completionHandler(true)
+    }
+
     func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
         mqttSession.unSubscribe(from: topic) { (success, error) in
             DispatchQueue.main.async(){

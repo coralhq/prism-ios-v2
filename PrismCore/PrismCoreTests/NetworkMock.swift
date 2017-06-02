@@ -42,6 +42,10 @@ class NetworkMock: NetworkProtocol {
             return JSONResponseMock.getAttachmentURLResponse
         } else if object == CreateConversationResponse.self {
             return JSONResponseMock.createConverationResponse
+        } else if object == StickerResponse.self {
+            return JSONResponseMock.getStickersResponse
+        } else if object == ConversationHistory.self {
+            return JSONResponseMock.getConversationHistoryResponse
         } else if object == RefreshTokenResponse.self {
             return JSONResponseMock.refreshTokenResponse
         }
@@ -59,16 +63,19 @@ class NetworkMock: NetworkProtocol {
         completionHandler(connected, nil)
     }
     
-    func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error) -> ())) {
-        mqttSession.subscribe(to: topic, delivering: MQTTQoS.atLeastOnce) { (success, error) in
-            completionHandler(success, error)
-        }
+    func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+        let success = topic == JSONResponseMock.mqttTopic
+        completionHandler(success, nil)
     }
     
     func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, Error?) -> ()) {
         completionHandler(message, nil)
     }
     
+    func disconnectFromBroker(completionHandler: ((Bool) -> ())) {
+        completionHandler(true)
+    }
+  
     func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
         completionHandler(true, nil)
     }

@@ -140,6 +140,10 @@
 		80564C461ED5289D00BDA006 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80564C3C1ED5289D00BDA006 /* PrismCore.framework */; };
 		80564C4B1ED5289D00BDA006 /* PrismCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C4A1ED5289D00BDA006 /* PrismCoreTests.swift */; };
 		80564C4D1ED5289D00BDA006 /* PrismCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 80564C3F1ED5289D00BDA006 /* PrismCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8091EA871EDEACBE007E43B0 /* RefreshTokenEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */; };
+		8091EA881EDEACBE007E43B0 /* RefreshTokenEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */; };
+		8091EA8A1EDEAFB0007E43B0 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */; };
+		8091EA8B1EDEAFB0007E43B0 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +228,8 @@
 		80564C451ED5289D00BDA006 /* PrismCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrismCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80564C4A1ED5289D00BDA006 /* PrismCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismCoreTests.swift; sourceTree = "<group>"; };
 		80564C4C1ED5289D00BDA006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenEndPoint.swift; sourceTree = "<group>"; };
+		8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +268,7 @@
 				8000D8CD1EDD368F00D9E8FB /* GetSettingsEndPoint.swift */,
 				8000D8CE1EDD368F00D9E8FB /* GetStickersEndPoint.swift */,
 				8000D8CF1EDD368F00D9E8FB /* VisitorConnectEndPoint.swift */,
+				8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */,
 			);
 			path = EndPoint;
 			sourceTree = "<group>";
@@ -285,6 +292,7 @@
 				8000D8F11EDD368F00D9E8FB /* Settings.swift */,
 				8000D8F21EDD368F00D9E8FB /* UploadURL.swift */,
 				8000D8F31EDD368F00D9E8FB /* VisitorConnect */,
+				8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -586,6 +594,7 @@
 				8000D92D1EDD368F00D9E8FB /* Conversation.swift in Sources */,
 				8000D9551EDD369000D9E8FB /* MessageUser.swift in Sources */,
 				8000D9231EDD368F00D9E8FB /* String.swift in Sources */,
+				8091EA871EDEACBE007E43B0 /* RefreshTokenEndPoint.swift in Sources */,
 				8000D95D1EDD369000D9E8FB /* MQTT.swift in Sources */,
 				8000D93D1EDD369000D9E8FB /* ContentAutoResponder.swift in Sources */,
 				8000D9851EDD369000D9E8FB /* MQTTUnSubAckPacket.swift in Sources */,
@@ -601,6 +610,7 @@
 				8000D9151EDD368F00D9E8FB /* CreateConversationEndPoint.swift in Sources */,
 				8000D9611EDD369000D9E8FB /* Visitor.swift in Sources */,
 				800FD4241ED5293F00BE13CD /* PrismCore.swift in Sources */,
+				8091EA8A1EDEAFB0007E43B0 /* RefreshTokenResponse.swift in Sources */,
 				8000D93B1EDD368F00D9E8FB /* ContentAttachment.swift in Sources */,
 				8000D92B1EDD368F00D9E8FB /* StickerResponse.swift in Sources */,
 				8000D9811EDD369000D9E8FB /* MQTTSubAckPacket.swift in Sources */,
@@ -677,8 +687,10 @@
 				8000D92C1EDD368F00D9E8FB /* StickerResponse.swift in Sources */,
 				8000D9541EDD369000D9E8FB /* MessageSender.swift in Sources */,
 				8000D93A1EDD368F00D9E8FB /* ContentAssignment.swift in Sources */,
+				8091EA881EDEACBE007E43B0 /* RefreshTokenEndPoint.swift in Sources */,
 				8000D9181EDD368F00D9E8FB /* GetAttachmentURLEndPoint.swift in Sources */,
 				8000D9421EDD369000D9E8FB /* ContentCloseChat.swift in Sources */,
+				8091EA8B1EDEAFB0007E43B0 /* RefreshTokenResponse.swift in Sources */,
 				8000D9661EDD369000D9E8FB /* EndPoint.swift in Sources */,
 				8000D9721EDD369000D9E8FB /* MQTTDisconnectPacket.swift in Sources */,
 				8000D9461EDD369000D9E8FB /* ContentOfflineMessage.swift in Sources */,

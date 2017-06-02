@@ -8,13 +8,26 @@
 
 import Foundation
 
-class ContentOfflineMessage: MessageContentMappable {
-    let name: String
-    let email: String
-    let phone: String
-    let text: String
+public class ContentOfflineMessage: MessageContentMappable {
+    public let name: String
+    public let email: String
+    public let phone: String
+    public let text: String
     
-    required init?(dictionary: [String : Any]?) {
+    public var dictionaryValue: [String: Any] {
+        get {
+            return [
+                "offline_message": [
+                    "name": name,
+                    "email": email,
+                    "phone": phone,
+                    "text": text
+                ]
+            ]
+        }
+    }
+    
+    required public init?(dictionary: [String : Any]?) {
         guard let offlineMessage = dictionary?["offline_message"] as? [String: Any],
             let name = offlineMessage["name"] as? String,
             let email = offlineMessage["email"] as? String,
@@ -27,5 +40,17 @@ class ContentOfflineMessage: MessageContentMappable {
         self.email = email
         self.text = text
         self.phone = phone
+    }
+    
+    convenience public init?(name: String, email: String, phone: String, text: String) {
+        self.init(dictionary: [
+            "offline_message": [
+                "name": name,
+                "email": email,
+                "phone": phone,
+                "text": text
+                ]
+            ]
+        )
     }
 }

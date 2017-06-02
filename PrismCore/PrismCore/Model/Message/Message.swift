@@ -278,4 +278,29 @@ open class Message: Mappable {
             brokerMetaData: brokerMetaData
         )
     }
+    
+    convenience public init?(id: String,
+                             conversationID: String,
+                             merchantID: String,
+                             channel: String,
+                             channelInfo: MessageChannelInfo,
+                             visitor: MessageVisitorInfo,
+                             sender: MessageSender,
+                             type: MessageType,
+                             content: ContentOfflineMessage,
+                             brokerMetaData: BrokerMetaData) {
+        
+        self.init(
+            id: id,
+            conversationID: conversationID,
+            merchantID: merchantID,
+            channel: channel,
+            channelInfo: channelInfo,
+            visitor: visitor,
+            sender: sender,
+            type: type,
+            content: content.dictionaryValue,
+            brokerMetaData: brokerMetaData
+        )
+    }
 }

@@ -59,6 +59,26 @@ public enum MessageType {
         default: return nil
         }
     }
+    
+    public var rawValue: String {
+        get {
+            switch self {
+            case .AutoResponder: return "auto_responder"
+            case .Assignment: return "assignment"
+            case .Attachment: return "attachment"
+            case .Cart: return "cart"
+            case .CloseChat: return "close_chat"
+            case .Invoice: return "invoice"
+            case .OfflineMessage: return "offline_message"
+            case .PlainText: return "text"
+            case .Product: return "product"
+            case .StatusUpdate: return "message_status_update"
+            case .Sticker: return "sticker"
+            case .Typing: return "typing"
+            }
+        }
+        
+    }
 }
 
 open class Message: Mappable {
@@ -149,13 +169,13 @@ open class Message: Mappable {
             "conversation_id": conversationID,
             "merchant_id": merchantID,
             "channel": channel,
-            "channel_info": channelInfo,
-            "visitor": visitor,
-            "sender": sender,
-            "type": type,
+            "channel_info": channelInfo.dictionaryValue,
+            "visitor": visitor.dictionaryValue,
+            "sender": sender.dictionaryValue,
+            "type": type.rawValue,
             "content": content,
             "version": 2,
-            "_broker_metadata": brokerMetaData
+            "_broker_metadata": brokerMetaData.dictionaryValue
         ])
     }
     

@@ -12,8 +12,17 @@ public class BrokerMetaData : Mappable {
     
     let timestamp: Date
     
+    public var dictionaryValue: [String: Any] {
+        get {
+            return [
+                "timestamp": timestamp.ISO8601String
+            ]
+        }
+    }
+    
     required public init?(dictionary: [String : Any]?) {
-        guard let timestamp = Date.getDateFromISO8601(string: dictionary?["timestamp"] as? String) else {
+        guard let timestampString = dictionary?["timestamp"] as? String,
+            let timestamp = timestampString.ISO8601Date else {
             return nil
         }
         

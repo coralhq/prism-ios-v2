@@ -112,6 +112,14 @@ class Network: NetworkProtocol {
         }
     }
     
+    func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+        mqttSession.unSubscribe(from: topic) { (success, error) in
+            DispatchQueue.main.async(){
+                completionHandler(success, error)
+            }
+        }
+    }
+    
     func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, Error?) -> ()) {
         
         let jsonData = try! JSONSerialization.data(withJSONObject: message.dictionaryValue, options: .prettyPrinted)

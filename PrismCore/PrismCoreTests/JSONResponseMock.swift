@@ -9,6 +9,9 @@
 import Foundation
 
 class JSONResponseMock {
+    static var mqttUsername = "mqtt_username"
+    static var mqttPassword = "password"
+    
     static var connectResponse: [String: Any] {
         get {
             return [
@@ -187,6 +190,22 @@ class JSONResponseMock {
                             ]
                         ],
                         "assignment_histories": [],
+                    ]
+                ]
+            ]
+        }
+    }
+    
+    static var refreshTokenResponse: [String: Any] {
+        get {
+            return [
+                "data" : [
+                    "oauth" : [
+                        "refresh_token": "cd06593d7deb4613be3797b70e351b08",
+                        "token_type": "bearer",
+                        "access_token": "4f74701be41344af997ccdf7aa7b4071",
+                        "client_id": "67ccc85d1d18432b86ac78c342abe1d4",
+                        "expires_in": 604800
                     ]
                 ]
             ]

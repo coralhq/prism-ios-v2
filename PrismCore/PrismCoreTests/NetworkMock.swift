@@ -42,6 +42,8 @@ class NetworkMock: NetworkProtocol {
             return JSONResponseMock.getAttachmentURLResponse
         } else if object == CreateConversationResponse.self {
             return JSONResponseMock.createConverationResponse
+        } else if object == RefreshTokenResponse.self {
+            return JSONResponseMock.refreshTokenResponse
         }
         
         return [:]
@@ -51,13 +53,10 @@ class NetworkMock: NetworkProtocol {
         mqttSession.delegate = delegate
     }
     
-    func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error) -> ())) {
-        mqttSession.username = username
-        mqttSession.password = password
-        
-        mqttSession.connect { (connected, error) in
-            completionHandler(connected, error)
-        }
+    func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+        let connected = (JSONResponseMock.mqttPassword == password) &&
+            (JSONResponseMock.mqttUsername == username)
+        completionHandler(connected, nil)
     }
     
     func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error) -> ())) {

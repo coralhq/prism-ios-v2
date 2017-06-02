@@ -16,8 +16,7 @@ open class StickerResponse: Mappable {
     required public init?(dictionary: [String : Any]?) {
         guard let data = dictionary?["data"] as? [String: Any],
             let status = dictionary?["status"] as? String,
-            let packDictionaries = data["packs"] as? [[String: Any]]
-            else {
+            let packDictionaries = data["packs"] as? [[String: Any]] else {
                 return nil
         }
         

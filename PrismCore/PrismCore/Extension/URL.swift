@@ -29,6 +29,12 @@ internal extension URL {
         }
     }
     
+    static var refreshToken: URL {
+        get {
+            return URL(string: "\(PrismAPIBaseURL)/v2/token/refresh")!
+        }
+    }
+    
     static var createConversation: URL {
         get {
             return URL(string: "\(PrismAPIBaseURL)/v2/conversations")!

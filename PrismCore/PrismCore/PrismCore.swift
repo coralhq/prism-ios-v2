@@ -56,7 +56,7 @@ open class PrismCore {
         network.connectToBroker(username: username, password: password, completionHandler: completionHandler)
     }
     
-    open func subscribeToTopic(_ topic: String, completionHandler: @escaping ((Bool, Error) -> ())) {
+    open func subscribeToTopic(_ topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
         network.subscribeToTopic(topic: topic, completionHandler: completionHandler)
     }
     
@@ -86,6 +86,12 @@ open class PrismCore {
         }
     }
     
+    func disconnectFromBroker(completionHandler: ((Bool) -> ())) {
+        network.disconnectFromBroker { response in
+            completionHandler(true)
+        }
+    }
+    
     open func uploadAttachment(with file:Data, url:URL, completionHandler: ((URLResponse?, Error?) -> ())?) -> Void {
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -104,6 +110,20 @@ open class PrismCore {
         
         network.request(endPoint: endPoint, mapToObject: ConversationHistory.self) { (mappable, error) in
             completionHandler(mappable as? ConversationHistory, error)
+        }
+    }
+    
+    open func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+        network.unsubscribeFromTopic(topic: topic) { (success, error) in
+            completionHandler(success, error)
+        }
+    }
+
+    open func refreshToken(clientID: String, refreshToken: String, completionHandler: @escaping ((RefreshTokenResponse?, Error?) -> ())) {
+        let endPoint = RefreshTokenEndPoint(clientID: clientID, refreshToken: refreshToken)
+        
+        network.request(endPoint: endPoint, mapToObject: RefreshTokenResponse.self) { (response, error) in
+            completionHandler(response as? RefreshTokenResponse, error)
         }
     }
 }

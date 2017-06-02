@@ -24,7 +24,8 @@ class Sticker: Mappable {
             let updatedAt = updatedAtString.ISO8601Date,
             let id = dictionary?["id"] as? String,
             let name = dictionary?["name"] as? String,
-            let imageURL = dictionary?["image_url"] as? URL,
+            let imageURLString = dictionary?["image_url"] as? String,
+            let imageURL = URL(string: imageURLString),
             let packID = dictionary?["pack_id"] as? String
             else {
                 return nil

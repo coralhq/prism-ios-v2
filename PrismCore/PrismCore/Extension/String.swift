@@ -21,6 +21,11 @@ extension String {
         }
     }
     
+    var ISO8601Date: Date? {
+        let formatter = Date.ISO8601Formatter()
+        return formatter.date(from: self)
+    }
+    
     static private func randomString(length: Int) -> String {
         
         let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

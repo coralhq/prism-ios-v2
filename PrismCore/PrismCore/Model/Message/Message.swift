@@ -26,6 +26,15 @@ public enum TypingStatus : String {
             return nil
         }
     }
+    
+    public var rawValue: String {
+        switch self {
+        case .StartTyping:
+            return "start_typing"
+        case .EndTyping:
+            return "end_typing"
+        }
+    }
 }
 
 public enum MessageType {
@@ -58,6 +67,26 @@ public enum MessageType {
         case "typing": self = .Typing
         default: return nil
         }
+    }
+    
+    public var rawValue: String {
+        get {
+            switch self {
+            case .AutoResponder: return "auto_responder"
+            case .Assignment: return "assignment"
+            case .Attachment: return "attachment"
+            case .Cart: return "cart"
+            case .CloseChat: return "close_chat"
+            case .Invoice: return "invoice"
+            case .OfflineMessage: return "offline_message"
+            case .PlainText: return "text"
+            case .Product: return "product"
+            case .StatusUpdate: return "message_status_update"
+            case .Sticker: return "sticker"
+            case .Typing: return "typing"
+            }
+        }
+        
     }
 }
 
@@ -149,13 +178,13 @@ open class Message: Mappable {
             "conversation_id": conversationID,
             "merchant_id": merchantID,
             "channel": channel,
-            "channel_info": channelInfo,
-            "visitor": visitor,
-            "sender": sender,
-            "type": type,
+            "channel_info": channelInfo.dictionaryValue,
+            "visitor": visitor.dictionaryValue,
+            "sender": sender.dictionaryValue,
+            "type": type.rawValue,
             "content": content,
             "version": 2,
-            "_broker_metadata": brokerMetaData
+            "_broker_metadata": brokerMetaData.dictionaryValue
         ])
     }
     
@@ -244,6 +273,31 @@ open class Message: Mappable {
                             type: MessageType,
                             content: ContentTyping,
                             brokerMetaData: BrokerMetaData) {
+        
+        self.init(
+            id: id,
+            conversationID: conversationID,
+            merchantID: merchantID,
+            channel: channel,
+            channelInfo: channelInfo,
+            visitor: visitor,
+            sender: sender,
+            type: type,
+            content: content.dictionaryValue,
+            brokerMetaData: brokerMetaData
+        )
+    }
+    
+    convenience public init?(id: String,
+                             conversationID: String,
+                             merchantID: String,
+                             channel: String,
+                             channelInfo: MessageChannelInfo,
+                             visitor: MessageVisitorInfo,
+                             sender: MessageSender,
+                             type: MessageType,
+                             content: ContentOfflineMessage,
+                             brokerMetaData: BrokerMetaData) {
         
         self.init(
             id: id,

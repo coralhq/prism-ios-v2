@@ -18,8 +18,10 @@ class Sticker: Mappable {
     let packID: String
     
     required init?(dictionary: [String : Any]?) {
-        guard let createdAt = Date.getDateFromISO8601(string: dictionary?["created_at"] as? String),
-            let updatedAt = Date.getDateFromISO8601(string: dictionary?["updated_at"] as? String),
+        guard let createdAtString = dictionary?["created_at"] as? String,
+            let createdAt = createdAtString.ISO8601Date,
+            let updatedAtString = dictionary?["updated_at"] as? String,
+            let updatedAt = updatedAtString.ISO8601Date,
             let id = dictionary?["id"] as? String,
             let name = dictionary?["name"] as? String,
             let imageURLString = dictionary?["image_url"] as? String,

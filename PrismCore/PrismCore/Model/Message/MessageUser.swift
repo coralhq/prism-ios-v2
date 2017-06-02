@@ -12,6 +12,15 @@ public class MessageUser: Mappable {
     let id: String
     let name: String
     
+    public var dictionaryValue: [String: Any] {
+        get {
+            return [
+                "id": id,
+                "name": name
+            ]
+        }
+    }
+    
     required public init?(dictionary: [String : Any]?) {
         guard let id = dictionary?["id"] as? String,
             let name = dictionary?["name"] as? String else {

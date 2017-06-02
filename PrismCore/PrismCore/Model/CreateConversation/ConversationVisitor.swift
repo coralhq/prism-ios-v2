@@ -19,8 +19,10 @@ public class ConversationVisitor {
     public let merchantID: String
     
     required public init?(dictionary: [String: Any]?) {
-        guard let createdAt = Date.getDateFromISO8601(string: dictionary?["created_at"] as? String),
-            let updatedAt = Date.getDateFromISO8601(string: dictionary?["updated_at"] as? String),
+        guard let createdAtString = dictionary?["created_at"] as? String,
+            let createdAt = createdAtString.ISO8601Date,
+            let updatedAtString = dictionary?["updated_at"] as? String,
+            let updatedAt = updatedAtString.ISO8601Date,
             let id = dictionary?["id"] as? String,
             let merchantID = dictionary?["merchant_id"] as? String,
             let avatar = dictionary?["avatar"] as? String,

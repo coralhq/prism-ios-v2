@@ -21,8 +21,8 @@ public class ContentAttachment: MessageContentMappable {
                 "attachment": [
                     "name": name,
                     "mimetype": mimeType,
-                    "url": url,
-                    "preview_url": previewURL
+                    "url": url.absoluteString,
+                    "preview_url": previewURL.absoluteString
                 ]
             ]
         }

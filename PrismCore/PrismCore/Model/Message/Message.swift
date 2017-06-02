@@ -26,6 +26,15 @@ public enum TypingStatus : String {
             return nil
         }
     }
+    
+    public var rawValue: String {
+        switch self {
+        case .StartTyping:
+            return "start_typing"
+        case .EndTyping:
+            return "end_typing"
+        }
+    }
 }
 
 public enum MessageType {

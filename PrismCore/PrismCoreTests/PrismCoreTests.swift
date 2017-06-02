@@ -38,7 +38,14 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testAnnonymousVisitorConnect() {
-        PrismCore.shared.annonymousVisitorConnect { (response, error) in
+        PrismCore.shared.annonymousVisitorConnect() { (response, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(response)
+        }
+    }
+  
+    func testGetStickers() {
+        PrismCore.shared.getStickers(token: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
         }
@@ -57,7 +64,7 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(response)
         }
     }
-    
+
     func testGetAttachmentURL() {
         PrismCore.shared.getAttachmentURL(filename: "", conversationID: "", token: "") { (response, error) in
             XCTAssertNil(error)
@@ -79,6 +86,13 @@ class PrismCoreTests: XCTestCase {
         }
     }
     
+    func testGetConversationHistory() {
+        PrismCore.shared.getConversationHistory(conversationID: "", token: "") { (response, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(response)
+        }
+    }
+
     func testUnsubscribeFromTopic() {
         PrismCore.shared.unsubscribeFromTopic(topic: "") { (success, error) in
             XCTAssertTrue(success)
@@ -89,6 +103,12 @@ class PrismCoreTests: XCTestCase {
         PrismCore.shared.refreshToken(clientID: "", refreshToken: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
+        }
+    }
+    
+    func testDisconnectFromBroker() {
+        PrismCore.shared.disconnectFromBroker { response in
+            XCTAssertTrue(response)
         }
     }
 }

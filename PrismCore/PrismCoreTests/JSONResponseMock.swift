@@ -148,9 +148,9 @@ class JSONResponseMock {
     static var getAttachmentURLResponse: [String: Any] {
         get {
             return [
-                "filename": "test.png",
-                    "headers": [
-                        "Content-Type": "application/octet-stream"
+                "status": "success",
+                "data": [
+                    "upload_url": "https://prismapp-staging.s3-ap-southeast-1.com"
                 ]
             ]
         }

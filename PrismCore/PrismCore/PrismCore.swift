@@ -56,7 +56,7 @@ open class PrismCore {
         network.connectToBroker(username: username, password: password, completionHandler: completionHandler)
     }
     
-    open func subscribeToTopic(_ topic: String, completionHandler: @escaping ((Bool, Error) -> ())) {
+    open func subscribeToTopic(_ topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
         network.subscribeToTopic(topic: topic, completionHandler: completionHandler)
     }
     

@@ -9,6 +9,7 @@
 import Foundation
 
 class JSONResponseMock {
+    static var mqttTopic = "prism_topic"
     static var mqttUsername = "mqtt_username"
     static var mqttPassword = "password"
     

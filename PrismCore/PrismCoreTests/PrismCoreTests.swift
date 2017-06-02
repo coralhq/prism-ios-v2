@@ -57,25 +57,32 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(connected)
         }
     }
-
+    
     func testGetSettings() {
         PrismCore.shared.getSettings() { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
         }
     }
-  
+
     func testGetAttachmentURL() {
         PrismCore.shared.getAttachmentURL(filename: "", conversationID: "", token: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
         }
     }
-
+    
     func testCreateConversation() {
         PrismCore.shared.createConversation(visitorName: "", token: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
+        }
+    }
+    
+    func testSubscribeToTopic() {
+        PrismCore.shared.subscribeToTopic(JSONResponseMock.mqttTopic) { (success, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(success)
         }
     }
     
@@ -91,7 +98,7 @@ class PrismCoreTests: XCTestCase {
             XCTAssertTrue(success)
         }
     }
-  
+    
     func testRefreshToken() {
         PrismCore.shared.refreshToken(clientID: "", refreshToken: "") { (response, error) in
             XCTAssertNil(error)
@@ -108,6 +115,6 @@ class PrismCoreTests: XCTestCase {
 
 class TestDelegate: PrismCoreDelegate {
     func didReceive(message data: Data, in topic: String) {
-
+        
     }
 }

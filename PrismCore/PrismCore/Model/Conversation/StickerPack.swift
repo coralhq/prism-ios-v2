@@ -23,7 +23,8 @@ class StickerPack: Mappable {
             let updatedAt = Date.getDateFromISO8601(string: dictionary?["updated_at"] as? String),
             let id = dictionary?["id"] as? String,
             let name = dictionary?["name"] as? String,
-            let logoURL = dictionary?["logo_url"] as? URL,
+            let logoURLString = dictionary?["logo_url"] as? String,
+            let logoURL = URL(string: logoURLString),
             let isPublic = dictionary?["is_public"] as? Bool,
             let stickerDictionaries = dictionary?["stickers"] as? [[String: Any]],
             let createdBy = dictionary?["created_by"] as? String

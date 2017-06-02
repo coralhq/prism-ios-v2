@@ -56,7 +56,7 @@ open class PrismCore {
         network.connectToBroker(username: username, password: password, completionHandler: completionHandler)
     }
     
-    open func subscribeToTopic(_ topic: String, completionHandler: @escaping ((Bool, Error) -> ())) {
+    open func subscribeToTopic(_ topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
         network.subscribeToTopic(topic: topic, completionHandler: completionHandler)
     }
     
@@ -90,11 +90,44 @@ open class PrismCore {
         network.upload(attachment: file, url: url, completionHandler: completionHandler)        
     }
     
+    open func disconnectFromBroker(completionHandler: ((Bool) -> ())) {
+        network.disconnectFromBroker { response in
+            completionHandler(true)
+        }
+    }
+    
+    open func uploadAttachment(with file:Data, url:URL, completionHandler: ((URLResponse?, Error?) -> ())?) -> Void {
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
+        let session = URLSession.shared
+        let task = session.uploadTask(with: request, from: file) { (data, response, error) in
+            DispatchQueue.main.async(){
+                completionHandler?(response, error)
+            }
+        }
+        task.resume()
+    }
+    
     open func getConversationHistory(conversationID: String, token: String, completionHandler: @escaping ((ConversationHistory?, Error?) -> ())) {
         let endPoint = GetConversationHistoryEndPoint(conversationID: conversationID, token: token)
         
         network.request(endPoint: endPoint, mapToObject: ConversationHistory.self) { (mappable, error) in
             completionHandler(mappable as? ConversationHistory, error)
+        }
+    }
+    
+    open func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+        network.unsubscribeFromTopic(topic: topic) { (success, error) in
+            completionHandler(success, error)
+        }
+    }
+
+    open func refreshToken(clientID: String, refreshToken: String, completionHandler: @escaping ((RefreshTokenResponse?, Error?) -> ())) {
+        let endPoint = RefreshTokenEndPoint(clientID: clientID, refreshToken: refreshToken)
+        
+        network.request(endPoint: endPoint, mapToObject: RefreshTokenResponse.self) { (response, error) in
+            completionHandler(response as? RefreshTokenResponse, error)
         }
     }
 }

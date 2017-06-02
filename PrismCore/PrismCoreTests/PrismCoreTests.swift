@@ -38,19 +38,26 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testAnnonymousVisitorConnect() {
-        PrismCore.shared.annonymousVisitorConnect { (response, error) in
+        PrismCore.shared.annonymousVisitorConnect() { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
         }
     }
     
-    func testConnectToBroker() -> Void {
-        PrismCore.shared.connectToBroker(username: JSONResponseMock.mqttUsername, password: JSONResponseMock.mqttPassword, completionHandler: {(connected, error) in
+    func testGetStickers() {
+        PrismCore.shared.getStickers(token: "") { (response, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(response)
+        }
+    }
+    
+    func testConnectToBroker() {
+        PrismCore.shared.connectToBroker(username: JSONResponseMock.mqttUsername, password: JSONResponseMock.mqttPassword) { (connected, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(connected)
-        })
+        }
     }
-
+    
     func testGetSettings() {
         PrismCore.shared.getSettings() { (response, error) in
             XCTAssertNil(error)
@@ -64,7 +71,7 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(response)
         }
     }
-
+    
     func testCreateConversation() {
         PrismCore.shared.createConversation(visitorName: "", token: "") { (response, error) in
             XCTAssertNil(error)
@@ -78,10 +85,43 @@ class PrismCoreTests: XCTestCase {
             XCTAssert(success)
         }
     }
+    
+    func testSubscribeToTopic() {
+        PrismCore.shared.subscribeToTopic(JSONResponseMock.mqttTopic) { (success, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(success)
+        }
+    }
+    
+    func testGetConversationHistory() {
+        PrismCore.shared.getConversationHistory(conversationID: "", token: "") { (response, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(response)
+        }
+    }
+    
+    func testUnsubscribeFromTopic() {
+        PrismCore.shared.unsubscribeFromTopic(topic: "") { (success, error) in
+            XCTAssertTrue(success)
+        }
+    }
+    
+    func testRefreshToken() {
+        PrismCore.shared.refreshToken(clientID: "", refreshToken: "") { (response, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(response)
+        }
+    }
+    
+    func testDisconnectFromBroker() {
+        PrismCore.shared.disconnectFromBroker { response in
+            XCTAssertTrue(response)
+        }
+    }
 }
 
 class TestDelegate: PrismCoreDelegate {
     func didReceive(message data: Data, in topic: String) {
-
+        
     }
 }

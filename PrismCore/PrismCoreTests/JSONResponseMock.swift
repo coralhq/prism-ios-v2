@@ -18,6 +18,7 @@ class JSONResponseMock {
         }
     }
     static var attachmentURL = URL(string: "http://prismapp.io/shirt.png")!
+    static var mqttTopic = "prism_topic"
     static var mqttUsername = "mqtt_username"
     static var mqttPassword = "password"
     
@@ -157,9 +158,9 @@ class JSONResponseMock {
     static var getAttachmentURLResponse: [String: Any] {
         get {
             return [
-                "filename": "test.png",
-                    "headers": [
-                        "Content-Type": "application/octet-stream"
+                "status": "success",
+                "data": [
+                    "upload_url": "https://prismapp-staging.s3-ap-southeast-1.com"
                 ]
             ]
         }
@@ -199,6 +200,195 @@ class JSONResponseMock {
                             ]
                         ],
                         "assignment_histories": [],
+                    ]
+                ]
+            ]
+        }
+    }
+    
+    static var getConversationHistoryResponse: [String: Any] {
+        get {
+            return [
+                "status": "success",
+                "data": [
+                    "messages": []
+                ]
+            ]
+        }
+    }
+    
+    static var getStickersResponse: [String: Any] {
+        get {
+            return [
+                "status": "success",
+                "data": [
+                    "packs": [
+                        [
+                            "created_at": "2017-03-21T11:15:49.165Z",
+                            "updated_at": "2017-03-21T11:15:49.165Z",
+                            "id": "4b1aec21-dee8-4c4a-be1c-8819e9264c25",
+                            "name": "Didu",
+                            "logo_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/didu/hello.png",
+                            "created_by": "PRISM",
+                            "is_public": true,
+                            "stickers": [
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "10e411c0-9db5-436b-87c3-1811052bac2e",
+                                    "name": "Didu 0",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/didu/hello.png",
+                                    "pack_id": "4b1aec21-dee8-4c4a-be1c-8819e9264c25"
+                                ],
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "10d754b2-b57a-4ab9-ac11-20802414eb10",
+                                    "name": "Didu 1",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/didu/thinking.png",
+                                    "pack_id": "4b1aec21-dee8-4c4a-be1c-8819e9264c25"
+                                ],
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "374208d5-f547-4f90-85ca-ecff0fa7c1a5",
+                                    "name": "Didu 2",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/didu/kiss.png",
+                                    "pack_id": "4b1aec21-dee8-4c4a-be1c-8819e9264c25"
+                                ],
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "bda07dbb-4003-4c89-9a72-c939a7c3f0fb",
+                                    "name": "Didu 3",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/didu/invoice_1.png",
+                                    "pack_id": "4b1aec21-dee8-4c4a-be1c-8819e9264c25"
+                                ],
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "70ad35fe-240c-43b7-97b7-407db9e320e2",
+                                    "name": "Didu 4",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/didu/shocked_1.png",
+                                    "pack_id": "4b1aec21-dee8-4c4a-be1c-8819e9264c25"
+                                ],
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "fd760599-247f-4da7-b889-e026d3ab5b20",
+                                    "name": "Didu 5",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/didu/thumbs_up.png",
+                                    "pack_id": "4b1aec21-dee8-4c4a-be1c-8819e9264c25"
+                                ],
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "ba003d38-2cf6-439a-9bb1-bde0900db9ef",
+                                    "name": "Didu 6",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/didu/packing_1.png",
+                                    "pack_id": "4b1aec21-dee8-4c4a-be1c-8819e9264c25"
+                                ],
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "d701c395-0fdb-449d-8a40-94a42728eacd",
+                                    "name": "Didu 7",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/didu/disappointed.png",
+                                    "pack_id": "4b1aec21-dee8-4c4a-be1c-8819e9264c25"
+                                ]
+                            ]
+                        ],
+                        [
+                            "created_at": "2017-03-21T11:15:49.165Z",
+                            "updated_at": "2017-03-21T11:15:49.165Z",
+                            "id": "943ad07e-2681-4f14-a125-6088266e9617",
+                            "name": "Dea",
+                            "logo_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/dea/thumbs%20up.png",
+                            "created_by": "PRISM",
+                            "is_public": true,
+                            "stickers": [
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "2cce9280-59bc-4141-aa09-8404eefe60e6",
+                                    "name": "Dea 0",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/dea/sorry.png",
+                                    "pack_id": "943ad07e-2681-4f14-a125-6088266e9617"
+                                ],
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "9b49129d-d458-4456-a694-7674440a4019",
+                                    "name": "Dea 1",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/dea/thumbs%20up.png",
+                                    "pack_id": "943ad07e-2681-4f14-a125-6088266e9617"
+                                ],
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "50ec5d9c-6157-4fd6-8861-25d6035dca21",
+                                    "name": "Dea 2",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/dea/packing.png",
+                                    "pack_id": "943ad07e-2681-4f14-a125-6088266e9617"
+                                ],
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "25987b88-b394-4804-ae6b-9602e9a1179d",
+                                    "name": "Dea 3",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/dea/payment_received.png",
+                                    "pack_id": "943ad07e-2681-4f14-a125-6088266e9617"
+                                ],
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "f6cabba6-9e0b-499f-92b3-6dcfbdeaf224",
+                                    "name": "Dea 4",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/dea/search.png",
+                                    "pack_id": "943ad07e-2681-4f14-a125-6088266e9617"
+                                ],
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "8195bf17-3c8e-4479-bb06-9c9186876015",
+                                    "name": "Dea 5",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/dea/love.png",
+                                    "pack_id": "943ad07e-2681-4f14-a125-6088266e9617"
+                                ],
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "786ac147-ae9b-4da8-ac44-bc75a30de782",
+                                    "name": "Dea 6",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/dea/shocked.png",
+                                    "pack_id": "943ad07e-2681-4f14-a125-6088266e9617"
+                                ],
+                                [
+                                    "created_at": "2017-03-21T11:15:49.165Z",
+                                    "updated_at": "2017-03-21T11:15:49.165Z",
+                                    "id": "3903e8e4-9c88-4a84-a8dc-7ceafbf41ecc",
+                                    "name": "Dea 7",
+                                    "image_url": "https://s3-ap-southeast-1.amazonaws.com/prism-assets-prod/sticker/dea/invoice.png",
+                                    "pack_id": "943ad07e-2681-4f14-a125-6088266e9617"
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        }
+    }
+
+    static var refreshTokenResponse: [String: Any] {
+        get {
+            return [
+                "data" : [
+                    "oauth" : [
+                        "refresh_token": "cd06593d7deb4613be3797b70e351b08",
+                        "token_type": "bearer",
+                        "access_token": "4f74701be41344af997ccdf7aa7b4071",
+                        "client_id": "67ccc85d1d18432b86ac78c342abe1d4",
+                        "expires_in": 604800
                     ]
                 ]
             ]

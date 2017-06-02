@@ -22,4 +22,6 @@ protocol NetworkProtocol {
     func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ()))
     
     func setMQTTDelegate(delegate: MQTTSessionDelegate)
+    
+    func disconnectFromBroker(completionHandler: ((Bool)->()))
 }

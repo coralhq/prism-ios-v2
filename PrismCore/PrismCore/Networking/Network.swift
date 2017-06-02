@@ -112,6 +112,11 @@ class Network: NetworkProtocol {
         }
     }
     
+    func disconnectFromBroker(completionHandler: ((Bool) -> ())) {
+        mqttSession.disconnect()
+        completionHandler(true)
+    }
+
     func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
         mqttSession.unSubscribe(from: topic) { (success, error) in
             DispatchQueue.main.async(){

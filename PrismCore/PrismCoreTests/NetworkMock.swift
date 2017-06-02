@@ -42,6 +42,10 @@ class NetworkMock: NetworkProtocol {
             return JSONResponseMock.getAttachmentURLResponse
         } else if object == CreateConversationResponse.self {
             return JSONResponseMock.createConverationResponse
+        } else if object == StickerResponse.self {
+            return JSONResponseMock.getStickersResponse
+        } else if object == ConversationHistory.self {
+            return JSONResponseMock.getConversationHistoryResponse
         } else if object == RefreshTokenResponse.self {
             return JSONResponseMock.refreshTokenResponse
         }
@@ -78,6 +82,10 @@ class NetworkMock: NetworkProtocol {
         }
     }
     
+    func disconnectFromBroker(completionHandler: ((Bool) -> ())) {
+        completionHandler(true)
+    }
+  
     func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
         completionHandler(true, nil)
     }

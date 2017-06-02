@@ -86,7 +86,11 @@ open class PrismCore {
         }
     }
     
-    func disconnectFromBroker(completionHandler: ((Bool) -> ())) {
+    open func uploadAttachment(with file:Data, url:URL, completionHandler: @escaping ((Bool, Error?) -> ())) {
+        network.upload(attachment: file, url: url, completionHandler: completionHandler)        
+    }
+    
+    open func disconnectFromBroker(completionHandler: ((Bool) -> ())) {
         network.disconnectFromBroker { response in
             completionHandler(true)
         }

@@ -6,8 +6,8 @@
 //  Copyright © 2017 PrismApp. All rights reserved.
 //
 
-//import XCTest
 import Foundation
+import UIKit
 
 class NetworkMock: NetworkProtocol {
     
@@ -65,6 +65,12 @@ class NetworkMock: NetworkProtocol {
     
     func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
         let success = topic == JSONResponseMock.mqttTopic
+        completionHandler(success, nil)
+    }
+    
+    func upload(attachment: Data, url: URL, completionHandler: @escaping ((Bool, Error?) -> ())) {
+        let data = UIImagePNGRepresentation(JSONResponseMock.attachmentImage)
+        let success = attachment == data
         completionHandler(success, nil)
     }
     

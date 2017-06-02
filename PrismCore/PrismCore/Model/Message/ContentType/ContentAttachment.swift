@@ -13,7 +13,7 @@ public class ContentAttachment: MessageContentMappable {
     let name: String
     let mimeType: String
     let url: URL
-    let previewURL: URL? = nil
+    var previewURL: URL? = nil
     
     public var dictionaryValue: [String: Any] {
         get {

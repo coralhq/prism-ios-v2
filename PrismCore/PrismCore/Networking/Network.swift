@@ -55,6 +55,20 @@ class Network: NetworkProtocol {
         requestDataTask(request: request, mapToObject: mapToObject, completionHandler: completionHandler)
     }
     
+    func upload(attachment: Data, url: URL, completionHandler: @escaping ((Bool, Error?) -> ())) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
+        let session = URLSession.shared
+        let task = session.uploadTask(with: request, from: attachment) { (data, response, error) in
+            DispatchQueue.main.async(){
+                guard let httpResponse = response as? HTTPURLResponse else { return }
+                completionHandler(httpResponse.statusCode == 200, error)
+            }
+        }
+        task.resume()
+    }
+    
     fileprivate func requestDataTask<T: Mappable>(request: URLRequest, mapToObject: T.Type, completionHandler: @escaping HTTPRequestResult) {
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in

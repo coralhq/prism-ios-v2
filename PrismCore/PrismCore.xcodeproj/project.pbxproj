@@ -140,6 +140,7 @@
 		80564C461ED5289D00BDA006 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80564C3C1ED5289D00BDA006 /* PrismCore.framework */; };
 		80564C4B1ED5289D00BDA006 /* PrismCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C4A1ED5289D00BDA006 /* PrismCoreTests.swift */; };
 		80564C4D1ED5289D00BDA006 /* PrismCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 80564C3F1ED5289D00BDA006 /* PrismCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E5C07FD41EDEBB0700CA486B /* tshirt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5C07FD31EDEBB0700CA486B /* tshirt.jpg */; };
 		8091EA871EDEACBE007E43B0 /* RefreshTokenEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */; };
 		8091EA881EDEACBE007E43B0 /* RefreshTokenEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */; };
 		8091EA8A1EDEAFB0007E43B0 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */; };
@@ -228,8 +229,10 @@
 		80564C451ED5289D00BDA006 /* PrismCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrismCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80564C4A1ED5289D00BDA006 /* PrismCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismCoreTests.swift; sourceTree = "<group>"; };
 		80564C4C1ED5289D00BDA006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5C07FD31EDEBB0700CA486B /* tshirt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tshirt.jpg; sourceTree = "<group>"; };
 		8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenEndPoint.swift; sourceTree = "<group>"; };
 		8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenResponse.swift; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -461,6 +464,7 @@
 				8000D9901EDD36B400D9E8FB /* JSONResponseMock.swift */,
 				8000D9911EDD36B400D9E8FB /* NetworkMock.swift */,
 				80564C4A1ED5289D00BDA006 /* PrismCoreTests.swift */,
+				E5C07FD31EDEBB0700CA486B /* tshirt.jpg */,
 				80564C4C1ED5289D00BDA006 /* Info.plist */,
 			);
 			path = PrismCoreTests;
@@ -566,6 +570,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5C07FD41EDEBB0700CA486B /* tshirt.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -43,7 +43,7 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(response)
         }
     }
-  
+    
     func testGetStickers() {
         PrismCore.shared.getStickers(token: "") { (response, error) in
             XCTAssertNil(error)
@@ -64,7 +64,7 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(response)
         }
     }
-
+    
     func testGetAttachmentURL() {
         PrismCore.shared.getAttachmentURL(filename: "", conversationID: "", token: "") { (response, error) in
             XCTAssertNil(error)
@@ -198,6 +198,13 @@ class PrismCoreTests: XCTestCase {
         }
     }
   
+    func testUploadAttachment() {
+        guard let data = UIImagePNGRepresentation(JSONResponseMock.attachmentImage) else { return }
+        PrismCore.shared.uploadAttachment(with: data, url: JSONResponseMock.attachmentURL) { (success, error) in
+            XCTAssert(success)
+        }
+    }
+    
     func testSubscribeToTopic() {
         PrismCore.shared.subscribeToTopic(JSONResponseMock.mqttTopic) { (success, error) in
             XCTAssertNil(error)
@@ -211,7 +218,7 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(response)
         }
     }
-
+    
     func testUnsubscribeFromTopic() {
         PrismCore.shared.unsubscribeFromTopic(topic: "") { (success, error) in
             XCTAssertTrue(success)

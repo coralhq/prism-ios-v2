@@ -106,6 +106,14 @@ open class PrismCore {
             completionHandler(mappable as? ConversationHistory, error)
         }
     }
+    
+    open func refreshToken(clientID: String, refreshToken: String, completionHandler: @escaping ((RefreshTokenResponse?, Error?) -> ())) {
+        let endPoint = RefreshTokenEndPoint(clientID: clientID, refreshToken: refreshToken)
+        
+        network.request(endPoint: endPoint, mapToObject: RefreshTokenResponse.self) { (response, error) in
+            completionHandler(response as? RefreshTokenResponse, error)
+        }
+    }
 }
 
 extension PrismCore: MQTTSessionDelegate {

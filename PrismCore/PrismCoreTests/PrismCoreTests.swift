@@ -44,11 +44,11 @@ class PrismCoreTests: XCTestCase {
         }
     }
     
-    func testConnectToBroker() -> Void {
-        PrismCore.shared.connectToBroker(username: JSONResponseMock.mqttUsername, password: JSONResponseMock.mqttPassword, completionHandler: {(connected, error) in
+    func testConnectToBroker() {
+        PrismCore.shared.connectToBroker(username: JSONResponseMock.mqttUsername, password: JSONResponseMock.mqttPassword) { (connected, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(connected)
-        })
+        }
     }
 
     func testGetSettings() {
@@ -57,7 +57,7 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(response)
         }
     }
-    
+
     func testGetAttachmentURL() {
         PrismCore.shared.getAttachmentURL(filename: "", conversationID: "", token: "") { (response, error) in
             XCTAssertNil(error)
@@ -92,6 +92,13 @@ class PrismCoreTests: XCTestCase {
             }
         } else {
             XCTAssertNotNil(message)
+        }
+    }
+  
+    func testRefreshToken() {
+        PrismCore.shared.refreshToken(clientID: "", refreshToken: "") { (response, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(response)
         }
     }
 }

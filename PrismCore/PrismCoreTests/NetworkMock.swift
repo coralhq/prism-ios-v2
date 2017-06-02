@@ -42,6 +42,8 @@ class NetworkMock: NetworkProtocol {
             return JSONResponseMock.getAttachmentURLResponse
         } else if object == CreateConversationResponse.self {
             return JSONResponseMock.createConverationResponse
+        } else if object == RefreshTokenResponse.self {
+            return JSONResponseMock.refreshTokenResponse
         }
         
         return [:]
@@ -73,5 +75,9 @@ class NetworkMock: NetworkProtocol {
                 completionHandler(nil, error)
             }
         }
+    }
+    
+    func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+        completionHandler(true, nil)
     }
 }

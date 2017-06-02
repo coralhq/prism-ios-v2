@@ -44,13 +44,13 @@ class PrismCoreTests: XCTestCase {
         }
     }
     
-    func testConnectToBroker() -> Void {
-        PrismCore.shared.connectToBroker(username: JSONResponseMock.mqttUsername, password: JSONResponseMock.mqttPassword, completionHandler: {(connected, error) in
+    func testConnectToBroker() {
+        PrismCore.shared.connectToBroker(username: JSONResponseMock.mqttUsername, password: JSONResponseMock.mqttPassword) { (connected, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(connected)
-        })
+        }
     }
-
+    
     func testGetSettings() {
         PrismCore.shared.getSettings() { (response, error) in
             XCTAssertNil(error)
@@ -64,7 +64,7 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(response)
         }
     }
-
+    
     func testCreateConversation() {
         PrismCore.shared.createConversation(visitorName: "", token: "") { (response, error) in
             XCTAssertNil(error)
@@ -78,10 +78,23 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(success)
         }
     }
+    
+    func testUnsubscribeFromTopic() {
+        PrismCore.shared.unsubscribeFromTopic(topic: "") { (success, error) in
+            XCTAssertTrue(success)
+        }
+    }
+    
+    func testRefreshToken() {
+        PrismCore.shared.refreshToken(clientID: "", refreshToken: "") { (response, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(response)
+        }
+    }
 }
 
 class TestDelegate: PrismCoreDelegate {
     func didReceive(message data: Data, in topic: String) {
-
+        
     }
 }

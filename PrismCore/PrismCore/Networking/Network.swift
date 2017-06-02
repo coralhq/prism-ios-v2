@@ -112,9 +112,9 @@ class Network: NetworkProtocol {
         }
     }
     
-    func disconnectFromBroker(completionHandler: ((Bool) -> ())?) {
+    func disconnectFromBroker(completionHandler: ((Bool) -> ())) {
         mqttSession.disconnect()
-        completionHandler?(true)
+        completionHandler(true)
     }
     
     func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, Error?) -> ()) {

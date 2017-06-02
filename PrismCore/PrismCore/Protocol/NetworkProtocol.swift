@@ -21,5 +21,5 @@ protocol NetworkProtocol {
     
     func setMQTTDelegate(delegate: MQTTSessionDelegate)
     
-    func disconnectFromBroker(completionHandler: ((Bool)->())?)
+    func disconnectFromBroker(completionHandler: ((Bool)->()))
 }

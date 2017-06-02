@@ -86,9 +86,9 @@ open class PrismCore {
         }
     }
     
-    func disconnectFromBroker(completionHandler: ((Bool) -> ())?) {
+    func disconnectFromBroker(completionHandler: ((Bool) -> ())) {
         network.disconnectFromBroker { response in
-            completionHandler?(true)
+            completionHandler(true)
         }
     }
     

@@ -73,14 +73,23 @@ class Network: NetworkProtocol {
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             
-            guard error == nil, let data = data else {
+            guard error == nil else {
                 DispatchQueue.main.async() {
                     completionHandler(nil, error)
                 }
                 return
             }
             
-            guard let response = response as? HTTPURLResponse else { return }
+            guard let response = response as? HTTPURLResponse,
+                let data = data else {
+                    let error = NSError(
+                        domain: NSURLErrorDomain,
+                        code: NSURLErrorUnknown,
+                        userInfo: nil
+                    )
+                    completionHandler(nil, error)
+                    return
+            }
             
             do {
                 if let data = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {

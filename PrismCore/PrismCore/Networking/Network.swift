@@ -73,27 +73,33 @@ class Network: NetworkProtocol {
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             
-            if let _response = response {
-                print("response \(_response)")
-            }
-            
             guard error == nil, let data = data else {
-                DispatchQueue.main.async(){
+                DispatchQueue.main.async() {
                     completionHandler(nil, error)
                 }
                 return
             }
             
+            guard let response = response as? HTTPURLResponse else { return }
+            
             do {
-                
                 if let data = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                    print(data)
                     
                     DispatchQueue.main.async(){
-                        completionHandler(mapToObject.init(dictionary: data), nil)
+                        if (response.statusCode % 200) < 100 {
+                            //handle 2xx success
+                            completionHandler(mapToObject.init(dictionary: data), nil)
+                        } else {
+                            //handle server error
+                            let error = NSError(
+                                domain: "error.prismapp.io",
+                                code: response.statusCode,
+                                userInfo: [NSLocalizedDescriptionKey: data["message"] as Any]
+                            )
+                            completionHandler(nil, error)
+                        }
                     }
                 }
-                
             } catch let error {
                 DispatchQueue.main.async(){
                     completionHandler(nil, error)
@@ -130,7 +136,7 @@ class Network: NetworkProtocol {
         mqttSession.disconnect()
         completionHandler(true)
     }
-
+    
     func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
         mqttSession.unSubscribe(from: topic) { (success, error) in
             DispatchQueue.main.async(){

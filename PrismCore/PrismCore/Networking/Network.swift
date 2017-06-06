@@ -20,7 +20,7 @@ class Network: NetworkProtocol {
     private let mqttSession = MQTTSession(host: "", port: 1882, clientID: "iOSDK", cleanSession: true, keepAlive: 60, useSSL: true)
     private init() {}
     
-    func requestRawResult<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping (([String: Any]?, Error?) -> ())) {
+    func requestRawResult<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping (([String: Any]?, NSError?) -> ())) {
         
         request(endPoint: endPoint, mapToObject: mapToObject) { (mappable, error) in
             guard error == nil, let response = mappable as? Settings else {
@@ -55,7 +55,7 @@ class Network: NetworkProtocol {
         requestDataTask(request: request, mapToObject: mapToObject, completionHandler: completionHandler)
     }
     
-    func upload(attachment: Data, url: URL, completionHandler: @escaping ((Bool, Error?) -> ())) {
+    func upload(attachment: Data, url: URL, completionHandler: @escaping ((Bool, NSError?) -> ())) {
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
@@ -63,7 +63,7 @@ class Network: NetworkProtocol {
         let task = session.uploadTask(with: request, from: attachment) { (data, response, error) in
             DispatchQueue.main.async(){
                 guard let httpResponse = response as? HTTPURLResponse else { return }
-                completionHandler(httpResponse.statusCode == 200, error)
+                completionHandler(httpResponse.statusCode == 200, error as NSError?)
             }
         }
         task.resume()
@@ -75,7 +75,7 @@ class Network: NetworkProtocol {
             
             guard error == nil else {
                 DispatchQueue.main.async() {
-                    completionHandler(nil, error)
+                    completionHandler(nil, error as NSError?)
                 }
                 return
             }
@@ -92,26 +92,27 @@ class Network: NetworkProtocol {
             }
             
             do {
-                if let data = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                    
-                    DispatchQueue.main.async(){
-                        if (response.statusCode % 200) < 100 {
-                            //handle 2xx success
+                if let data = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {                    
+                    if response.statusCode >= 200 &&
+                        response.statusCode <= 299 {
+                        DispatchQueue.main.async(){
                             completionHandler(mapToObject.init(dictionary: data), nil)
-                        } else {
-                            //handle server error
-                            let error = NSError(
-                                domain: "error.prismapp.io",
-                                code: response.statusCode,
-                                userInfo: [NSLocalizedDescriptionKey: data["message"] as Any]
-                            )
+                        }
+                    } else {
+                        let error = PrismError(
+                            domain: "error.prismapp.io",
+                            code: response.statusCode,
+                            userInfo: [NSLocalizedDescriptionKey: data["message"] as Any,
+                                       NSLocalizedFailureReasonErrorKey: data["data"] as Any]
+                        )
+                        DispatchQueue.main.async(){
                             completionHandler(nil, error)
                         }
                     }
                 }
             } catch let error {
                 DispatchQueue.main.async(){
-                    completionHandler(nil, error)
+                    completionHandler(nil, error as NSError?)
                 }
             }
         })
@@ -122,21 +123,21 @@ class Network: NetworkProtocol {
         mqttSession.delegate = delegate
     }
     
-    func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+    func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, NSError?) -> ())) {
         mqttSession.username = username
         mqttSession.password = password
         
         mqttSession.connect { (connected, error) in
             DispatchQueue.main.async(){
-                completionHandler(connected, error)
+                completionHandler(connected, error as NSError?)
             }
         }
     }
     
-    func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+    func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, NSError?) -> ())) {
         mqttSession.subscribe(to: topic, delivering: MQTTQoS.atLeastOnce) { (success, error) in
             DispatchQueue.main.async(){
-                completionHandler(success, error)
+                completionHandler(success, error as NSError?)
             }
         }
     }
@@ -146,15 +147,15 @@ class Network: NetworkProtocol {
         completionHandler(true)
     }
     
-    func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+    func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, NSError?) -> ())) {
         mqttSession.unSubscribe(from: topic) { (success, error) in
             DispatchQueue.main.async(){
-                completionHandler(success, error)
+                completionHandler(success, error as NSError?)
             }
         }
     }
     
-    func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, Error?) -> ()) {
+    func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, NSError?) -> ()) {
         
         let jsonData = try! JSONSerialization.data(withJSONObject: message.dictionaryValue, options: .prettyPrinted)
         
@@ -163,7 +164,7 @@ class Network: NetworkProtocol {
                 if success {
                     completionHandler(message, nil)
                 } else {
-                    completionHandler(nil, error)
+                    completionHandler(nil, error as NSError?)
                 }
             }
         }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias HTTPRequestResult = (Mappable?, Error?) -> ()
+public typealias HTTPRequestResult = (Mappable?, NSError?) -> ()
 
 open class PrismCore {
     
@@ -26,7 +26,7 @@ open class PrismCore {
         network.setMQTTDelegate(delegate: self)
     }
     
-    open func visitorConnect(visitorName: String, userID: String, completionHandler: @escaping (ConnectResponse?, Error?) -> ()) {
+    open func visitorConnect(visitorName: String, userID: String, completionHandler: @escaping (ConnectResponse?, NSError?) -> ()) {
         
         let endPoint = VisitorConnectEndPoint(visitorName: visitorName, userID: userID)
         network.request(endPoint: endPoint, mapToObject: ConnectResponse.self) { (mappable, error) in

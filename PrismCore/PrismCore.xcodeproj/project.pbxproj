@@ -140,11 +140,13 @@
 		80564C461ED5289D00BDA006 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80564C3C1ED5289D00BDA006 /* PrismCore.framework */; };
 		80564C4B1ED5289D00BDA006 /* PrismCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C4A1ED5289D00BDA006 /* PrismCoreTests.swift */; };
 		80564C4D1ED5289D00BDA006 /* PrismCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 80564C3F1ED5289D00BDA006 /* PrismCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E5C07FD41EDEBB0700CA486B /* tshirt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5C07FD31EDEBB0700CA486B /* tshirt.jpg */; };
 		8091EA871EDEACBE007E43B0 /* RefreshTokenEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */; };
 		8091EA881EDEACBE007E43B0 /* RefreshTokenEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */; };
 		8091EA8A1EDEAFB0007E43B0 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */; };
 		8091EA8B1EDEAFB0007E43B0 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */; };
+		E5B676141EE65773005FF847 /* PrismError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B676131EE65773005FF847 /* PrismError.swift */; };
+		E5B676151EE66A0D005FF847 /* PrismError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B676131EE65773005FF847 /* PrismError.swift */; };
+		E5C07FD41EDEBB0700CA486B /* tshirt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5C07FD31EDEBB0700CA486B /* tshirt.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,10 +231,10 @@
 		80564C451ED5289D00BDA006 /* PrismCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrismCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80564C4A1ED5289D00BDA006 /* PrismCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismCoreTests.swift; sourceTree = "<group>"; };
 		80564C4C1ED5289D00BDA006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E5C07FD31EDEBB0700CA486B /* tshirt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tshirt.jpg; sourceTree = "<group>"; };
 		8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenEndPoint.swift; sourceTree = "<group>"; };
 		8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenResponse.swift; sourceTree = "<group>"; };
-
+		E5B676131EE65773005FF847 /* PrismError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrismError.swift; path = Error/PrismError.swift; sourceTree = "<group>"; };
+		E5C07FD31EDEBB0700CA486B /* tshirt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tshirt.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +291,7 @@
 		8000D8D41EDD368F00D9E8FB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E5B676121EE65758005FF847 /* Error */,
 				8000D8D51EDD368F00D9E8FB /* Conversation */,
 				8000D8D91EDD368F00D9E8FB /* CreateConversation */,
 				8000D8DF1EDD368F00D9E8FB /* Message */,
@@ -325,8 +328,8 @@
 		8000D8DF1EDD368F00D9E8FB /* Message */ = {
 			isa = PBXGroup;
 			children = (
-				8000D8E01EDD368F00D9E8FB /* BrokerMetaData.swift */,
 				8000D8E11EDD368F00D9E8FB /* ContentType */,
+				8000D8E01EDD368F00D9E8FB /* BrokerMetaData.swift */,
 				8000D8EE1EDD368F00D9E8FB /* Message.swift */,
 				8000D8EF1EDD368F00D9E8FB /* MessageSender.swift */,
 				8000D8F01EDD368F00D9E8FB /* MessageUser.swift */,
@@ -470,6 +473,14 @@
 			path = PrismCoreTests;
 			sourceTree = "<group>";
 		};
+		E5B676121EE65758005FF847 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				E5B676131EE65773005FF847 /* PrismError.swift */,
+			);
+			name = Error;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -597,6 +608,7 @@
 				8000D91D1EDD368F00D9E8FB /* GetStickersEndPoint.swift in Sources */,
 				8000D9941EDD36B400D9E8FB /* NetworkMock.swift in Sources */,
 				8000D92D1EDD368F00D9E8FB /* Conversation.swift in Sources */,
+				E5B676141EE65773005FF847 /* PrismError.swift in Sources */,
 				8000D9551EDD369000D9E8FB /* MessageUser.swift in Sources */,
 				8000D9231EDD368F00D9E8FB /* String.swift in Sources */,
 				8091EA871EDEACBE007E43B0 /* RefreshTokenEndPoint.swift in Sources */,
@@ -710,6 +722,7 @@
 				8000D97C1EDD369000D9E8FB /* MQTTPubAck.swift in Sources */,
 				8000D9301EDD368F00D9E8FB /* ConversationHistory.swift in Sources */,
 				8000D91E1EDD368F00D9E8FB /* GetStickersEndPoint.swift in Sources */,
+				E5B676151EE66A0D005FF847 /* PrismError.swift in Sources */,
 				8000D9881EDD369000D9E8FB /* MQTTUnsubPacket.swift in Sources */,
 				8000D9641EDD369000D9E8FB /* Network.swift in Sources */,
 				8000D92A1EDD368F00D9E8FB /* StickerPack.swift in Sources */,

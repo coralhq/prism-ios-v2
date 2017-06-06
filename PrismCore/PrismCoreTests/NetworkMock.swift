@@ -15,7 +15,7 @@ class NetworkMock: NetworkProtocol {
     private let mqttSession = MQTTSession(host: "", port: 1882, clientID: "iOSDK", cleanSession: true, keepAlive: 60, useSSL: true)
     private init() {}
     
-    func requestRawResult<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping (([String: Any]?, Error?) -> ())) {
+    func requestRawResult<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping (([String: Any]?, NSError?) -> ())) {
         
         request(endPoint: endPoint, mapToObject: mapToObject) { (mappable, error) in
             guard error == nil, let response = mappable as? Settings else {
@@ -57,24 +57,24 @@ class NetworkMock: NetworkProtocol {
         mqttSession.delegate = delegate
     }
     
-    func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+    func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, NSError?) -> ())) {
         let connected = (JSONResponseMock.mqttPassword == password) &&
             (JSONResponseMock.mqttUsername == username)
         completionHandler(connected, nil)
     }
     
-    func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+    func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, NSError?) -> ())) {
         let success = topic == JSONResponseMock.mqttTopic
         completionHandler(success, nil)
     }
     
-    func upload(attachment: Data, url: URL, completionHandler: @escaping ((Bool, Error?) -> ())) {
+    func upload(attachment: Data, url: URL, completionHandler: @escaping ((Bool, NSError?) -> ())) {
         let data = UIImagePNGRepresentation(JSONResponseMock.attachmentImage)
         let success = attachment == data
         completionHandler(success, nil)
     }
     
-    func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, Error?) -> ()) {
+    func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, NSError?) -> ()) {
         completionHandler(message, nil)
     }
     
@@ -82,7 +82,7 @@ class NetworkMock: NetworkProtocol {
         completionHandler(true)
     }
   
-    func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
+    func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, NSError?) -> ())) {
         completionHandler(true, nil)
     }
 }

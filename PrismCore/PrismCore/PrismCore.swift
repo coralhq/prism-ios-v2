@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias HTTPRequestResult = (Mappable?, Error?) -> ()
+public typealias HTTPRequestResult = (Mappable?, NSError?) -> ()
 
 open class PrismCore {
     
@@ -26,7 +26,7 @@ open class PrismCore {
         network.setMQTTDelegate(delegate: self)
     }
     
-    open func visitorConnect(visitorName: String, userID: String, completionHandler: @escaping (ConnectResponse?, Error?) -> ()) {
+    open func visitorConnect(visitorName: String, userID: String, completionHandler: @escaping (ConnectResponse?, NSError?) -> ()) {
         
         let endPoint = VisitorConnectEndPoint(visitorName: visitorName, userID: userID)
         network.request(endPoint: endPoint, mapToObject: ConnectResponse.self) { (mappable, error) in
@@ -95,20 +95,7 @@ open class PrismCore {
             completionHandler(true)
         }
     }
-    
-    open func uploadAttachment(with file:Data, url:URL, completionHandler: ((URLResponse?, Error?) -> ())?) -> Void {
-        var request = URLRequest(url: url)
-        request.httpMethod = "PUT"
-        request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
-        let session = URLSession.shared
-        let task = session.uploadTask(with: request, from: file) { (data, response, error) in
-            DispatchQueue.main.async(){
-                completionHandler?(response, error)
-            }
-        }
-        task.resume()
-    }
-    
+
     open func getConversationHistory(conversationID: String, token: String, completionHandler: @escaping ((ConversationHistory?, Error?) -> ())) {
         let endPoint = GetConversationHistoryEndPoint(conversationID: conversationID, token: token)
         

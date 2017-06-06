@@ -35,25 +35,29 @@ class MainViewController: UIViewController {
         guard let name = nameTextField.text, let identifier = idTextField.text else { return }
         
         PrismCore.shared.visitorConnect(visitorName: name, userID: identifier) { [weak self] (connectResponse, error) in
+            
+            sender.setTitle("Connect", for: .normal)
+            self?.view.isUserInteractionEnabled = true
+            
             self?.connectResponse = connectResponse
             
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let response = connectResponse {
+            if let response = connectResponse {
                 PrismCore.shared.createConversation(visitorName: response.visitor.name, token: response.oAuth.accessToken) { (createConversationResponse, error) in
                     self?.createConversationResponse = createConversationResponse
                     
-                    sender.setTitle("Connect", for: .normal)
-                    self?.view.isUserInteractionEnabled = true
                     self?.uploadButton.isEnabled = true
                     
-                    if let error = error {
-                        print(error)
+                    if let error = error as NSError? {
+                        print("error: \(error)")
                     } else if let response = createConversationResponse {
                         self?.createConversationResponse = response
                         print("success \(response.conversation)")
                     }
                 }
+            } else if let error = error as? PrismError {
+                print("prism error: \(error)")
+            } else if let error = error {
+                print("error: \(error)")
             }
         }
     }

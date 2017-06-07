@@ -31,6 +31,15 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testVisitorConnect() {
+        let visitorName = "visitor_name"
+        let userID = "user_id"
+        let endPoint = VisitorConnectEndPoint(visitorName: visitorName, userID: userID)
+        
+        XCTAssertEqual(endPoint.httpBody["name"] as? String, visitorName)
+        XCTAssertEqual(endPoint.httpBody["channel_user_id"] as? String, userID)
+        XCTAssertNotNil(endPoint.contentType)
+        XCTAssertNotNil(endPoint.httpBody)
+        
         PrismCore.shared.visitorConnect(visitorName: "asdasdasd", userID: "asdasd") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
@@ -45,6 +54,11 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testGetStickers() {
+        let endPoint = GetStickersEndPoint(token: "token")
+        XCTAssertNotNil(endPoint.token)
+        XCTAssertNotNil(endPoint.contentType)
+        XCTAssertNotNil(endPoint.httpBody)
+        
         PrismCore.shared.getStickers(token: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
@@ -59,6 +73,10 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testGetSettings() {
+        let endPoint = GetSettingsEndPoint()
+        XCTAssertNotNil(endPoint.contentType)
+        XCTAssertNotNil(endPoint.httpBody)
+        
         PrismCore.shared.getSettings() { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
@@ -66,6 +84,17 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testGetAttachmentURL() {
+        let filename = "filename"
+        let conversationID = "conversation_id"
+        let token = "token"
+        
+        let endPoint = GetAttachmentURLEndPoint(filename: filename, conversationID: conversationID, token: token)
+        XCTAssertNotNil(endPoint.token)
+        XCTAssertEqual(endPoint.httpBody["filename"] as! String, filename)
+        XCTAssertNotNil(endPoint.contentType)
+        XCTAssertNotNil(endPoint.httpBody)
+        XCTAssert(endPoint.url == URL.getAttachmentURL(conversationID: conversationID))
+        
         PrismCore.shared.getAttachmentURL(filename: "", conversationID: "", token: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
@@ -73,6 +102,15 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testCreateConversation() {
+        let visitorName = "visitor name"
+        let token = "token"
+        
+        let endPoint = CreateConversationEndPoint(visitorName: visitorName, token: token)
+        XCTAssertEqual(endPoint.visitorName, visitorName)
+        XCTAssertNotNil(token)
+        XCTAssertNotNil(endPoint.contentType)
+        XCTAssertNotNil(endPoint.httpBody)
+        
         PrismCore.shared.createConversation(visitorName: "", token: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
@@ -213,6 +251,15 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testGetConversationHistory() {
+        let conversationID = "conversation_id"
+        let token = "token"
+        
+        let endPoint = GetConversationHistoryEndPoint(conversationID: conversationID, token: token)
+        XCTAssertNotNil(endPoint.token)
+        XCTAssertNotNil(endPoint.contentType)
+        XCTAssertNotNil(endPoint.httpBody)
+        XCTAssert(endPoint.url == URL.getConversationHistory(conversationID: conversationID))
+        
         PrismCore.shared.getConversationHistory(conversationID: "", token: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
@@ -226,6 +273,15 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testRefreshToken() {
+        let clientID = "client id"
+        let refreshToken = "refresh token"
+        let endPoint = RefreshTokenEndPoint(clientID: clientID, refreshToken: refreshToken)
+        
+        XCTAssertEqual(endPoint.httpBody["client_id"] as! String, clientID)
+        XCTAssertEqual(endPoint.httpBody["refresh_token"] as! String, refreshToken)
+        XCTAssertNotNil(endPoint.contentType)
+        XCTAssertNotNil(endPoint.httpBody)
+        
         PrismCore.shared.refreshToken(clientID: "", refreshToken: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)

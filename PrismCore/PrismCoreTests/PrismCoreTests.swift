@@ -315,7 +315,8 @@ class PrismCoreTests: XCTestCase {
   
     func testInvalidCreateConversation() {
         
-            TestConfig.shared.isValidResponse = false
+        TestConfig.shared.isValidResponse = false
+        
         PrismCore.shared.createConversation(visitorName: "", token: "") { (response, error) in
             XCTAssertNil(response)
             XCTAssertNotNil(error)

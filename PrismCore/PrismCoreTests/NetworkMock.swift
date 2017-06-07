@@ -48,11 +48,12 @@ class NetworkMock: NetworkProtocol {
         }
         
         if mapToObject == CreateConversationResponse.self {
-            if let _ = mapToObject.init(dictionary: JSONResponseMock.createConverationResponseInvalidVisitor) {
-                data = JSONResponseMock.createConverationResponseInvalidVisitor
-            }
             
             data = JSONResponseMock.createConverationResponseInvalidParticipant
+            
+            if let _ = mapToObject.init(dictionary: JSONResponseMock.createConverationResponseInvalidVisitor) {
+                data.updateValue( JSONResponseMock.createConverationResponseInvalidVisitor, forKey: "mock")
+            }
         }
         
         if mapToObject == StickerResponse.self {

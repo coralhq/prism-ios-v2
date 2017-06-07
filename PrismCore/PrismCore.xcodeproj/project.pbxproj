@@ -131,9 +131,7 @@
 		8000D98C1EDD369000D9E8FB /* MQTTSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8000D9111EDD368F00D9E8FB /* MQTTSession.swift */; };
 		8000D98D1EDD369000D9E8FB /* MQTTSessionStreamDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8000D9121EDD368F00D9E8FB /* MQTTSessionStreamDelegate.swift */; };
 		8000D98E1EDD369000D9E8FB /* MQTTSessionStreamDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8000D9121EDD368F00D9E8FB /* MQTTSessionStreamDelegate.swift */; };
-		8000D9921EDD36B400D9E8FB /* JSONResponseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8000D9901EDD36B400D9E8FB /* JSONResponseMock.swift */; };
 		8000D9931EDD36B400D9E8FB /* JSONResponseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8000D9901EDD36B400D9E8FB /* JSONResponseMock.swift */; };
-		8000D9941EDD36B400D9E8FB /* NetworkMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8000D9911EDD36B400D9E8FB /* NetworkMock.swift */; };
 		8000D9951EDD36B400D9E8FB /* NetworkMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8000D9911EDD36B400D9E8FB /* NetworkMock.swift */; };
 		800FD4241ED5293F00BE13CD /* PrismCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800FD4231ED5293F00BE13CD /* PrismCore.swift */; };
 		800FD4251ED5293F00BE13CD /* PrismCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800FD4231ED5293F00BE13CD /* PrismCore.swift */; };
@@ -144,6 +142,15 @@
 		8091EA881EDEACBE007E43B0 /* RefreshTokenEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */; };
 		8091EA8A1EDEAFB0007E43B0 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */; };
 		8091EA8B1EDEAFB0007E43B0 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */; };
+		E53DA6B51EE7B471004306F8 /* autoResponder.json in Resources */ = {isa = PBXBuildFile; fileRef = E53DA6AF1EE7B471004306F8 /* autoResponder.json */; };
+		E53DA6B61EE7B471004306F8 /* cart.json in Resources */ = {isa = PBXBuildFile; fileRef = E53DA6B01EE7B471004306F8 /* cart.json */; };
+		E53DA6B71EE7B471004306F8 /* closeChat.json in Resources */ = {isa = PBXBuildFile; fileRef = E53DA6B11EE7B471004306F8 /* closeChat.json */; };
+		E53DA6B81EE7B471004306F8 /* invoice.json in Resources */ = {isa = PBXBuildFile; fileRef = E53DA6B21EE7B471004306F8 /* invoice.json */; };
+		E53DA6B91EE7B471004306F8 /* product.json in Resources */ = {isa = PBXBuildFile; fileRef = E53DA6B31EE7B471004306F8 /* product.json */; };
+		E53DA6BA1EE7B471004306F8 /* statusUpdate.json in Resources */ = {isa = PBXBuildFile; fileRef = E53DA6B41EE7B471004306F8 /* statusUpdate.json */; };
+		E53DA6BC1EE7B9A9004306F8 /* conversationHistory.json in Resources */ = {isa = PBXBuildFile; fileRef = E53DA6BB1EE7B9A9004306F8 /* conversationHistory.json */; };
+		E53DA6BF1EE7BBBB004306F8 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DA6BE1EE7BBBB004306F8 /* Utils.swift */; };
+		E551100A1EE7AD13004007F3 /* assignment.json in Resources */ = {isa = PBXBuildFile; fileRef = E55110091EE7AD13004007F3 /* assignment.json */; };
 		E5B676141EE65773005FF847 /* PrismError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B676131EE65773005FF847 /* PrismError.swift */; };
 		E5B676151EE66A0D005FF847 /* PrismError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B676131EE65773005FF847 /* PrismError.swift */; };
 		E5C07FD41EDEBB0700CA486B /* tshirt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5C07FD31EDEBB0700CA486B /* tshirt.jpg */; };
@@ -233,6 +240,15 @@
 		80564C4C1ED5289D00BDA006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenEndPoint.swift; sourceTree = "<group>"; };
 		8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenResponse.swift; sourceTree = "<group>"; };
+		E53DA6AF1EE7B471004306F8 /* autoResponder.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = autoResponder.json; sourceTree = "<group>"; };
+		E53DA6B01EE7B471004306F8 /* cart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cart.json; sourceTree = "<group>"; };
+		E53DA6B11EE7B471004306F8 /* closeChat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = closeChat.json; sourceTree = "<group>"; };
+		E53DA6B21EE7B471004306F8 /* invoice.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invoice.json; sourceTree = "<group>"; };
+		E53DA6B31EE7B471004306F8 /* product.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = product.json; sourceTree = "<group>"; };
+		E53DA6B41EE7B471004306F8 /* statusUpdate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = statusUpdate.json; sourceTree = "<group>"; };
+		E53DA6BB1EE7B9A9004306F8 /* conversationHistory.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conversationHistory.json; sourceTree = "<group>"; };
+		E53DA6BE1EE7BBBB004306F8 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		E55110091EE7AD13004007F3 /* assignment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = assignment.json; sourceTree = "<group>"; };
 		E5B676131EE65773005FF847 /* PrismError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrismError.swift; path = Error/PrismError.swift; sourceTree = "<group>"; };
 		E5C07FD31EDEBB0700CA486B /* tshirt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tshirt.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -464,13 +480,38 @@
 		80564C491ED5289D00BDA006 /* PrismCoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				E53DA6BD1EE7BBAE004306F8 /* Utils */,
+				E55110081EE7ACDF004007F3 /* Resources */,
 				8000D9901EDD36B400D9E8FB /* JSONResponseMock.swift */,
 				8000D9911EDD36B400D9E8FB /* NetworkMock.swift */,
 				80564C4A1ED5289D00BDA006 /* PrismCoreTests.swift */,
-				E5C07FD31EDEBB0700CA486B /* tshirt.jpg */,
 				80564C4C1ED5289D00BDA006 /* Info.plist */,
 			);
 			path = PrismCoreTests;
+			sourceTree = "<group>";
+		};
+		E53DA6BD1EE7BBAE004306F8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E53DA6BE1EE7BBBB004306F8 /* Utils.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		E55110081EE7ACDF004007F3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E53DA6AF1EE7B471004306F8 /* autoResponder.json */,
+				E53DA6B01EE7B471004306F8 /* cart.json */,
+				E53DA6B11EE7B471004306F8 /* closeChat.json */,
+				E53DA6B21EE7B471004306F8 /* invoice.json */,
+				E53DA6B31EE7B471004306F8 /* product.json */,
+				E53DA6B41EE7B471004306F8 /* statusUpdate.json */,
+				E55110091EE7AD13004007F3 /* assignment.json */,
+				E53DA6BB1EE7B9A9004306F8 /* conversationHistory.json */,
+				E5C07FD31EDEBB0700CA486B /* tshirt.jpg */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		E5B676121EE65758005FF847 /* Error */ = {
@@ -581,7 +622,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E53DA6BA1EE7B471004306F8 /* statusUpdate.json in Resources */,
+				E551100A1EE7AD13004007F3 /* assignment.json in Resources */,
+				E53DA6B71EE7B471004306F8 /* closeChat.json in Resources */,
 				E5C07FD41EDEBB0700CA486B /* tshirt.jpg in Resources */,
+				E53DA6BC1EE7B9A9004306F8 /* conversationHistory.json in Resources */,
+				E53DA6B81EE7B471004306F8 /* invoice.json in Resources */,
+				E53DA6B51EE7B471004306F8 /* autoResponder.json in Resources */,
+				E53DA6B91EE7B471004306F8 /* product.json in Resources */,
+				E53DA6B61EE7B471004306F8 /* cart.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,11 +651,9 @@
 				8000D97F1EDD369000D9E8FB /* MQTTPubMsg.swift in Sources */,
 				8000D9511EDD369000D9E8FB /* Message.swift in Sources */,
 				8000D9791EDD369000D9E8FB /* MQTTPingResp.swift in Sources */,
-				8000D9921EDD36B400D9E8FB /* JSONResponseMock.swift in Sources */,
 				8000D9411EDD369000D9E8FB /* ContentCloseChat.swift in Sources */,
 				8000D9531EDD369000D9E8FB /* MessageSender.swift in Sources */,
 				8000D91D1EDD368F00D9E8FB /* GetStickersEndPoint.swift in Sources */,
-				8000D9941EDD36B400D9E8FB /* NetworkMock.swift in Sources */,
 				8000D92D1EDD368F00D9E8FB /* Conversation.swift in Sources */,
 				E5B676141EE65773005FF847 /* PrismError.swift in Sources */,
 				8000D9551EDD369000D9E8FB /* MessageUser.swift in Sources */,
@@ -712,6 +759,7 @@
 				8000D9721EDD369000D9E8FB /* MQTTDisconnectPacket.swift in Sources */,
 				8000D9461EDD369000D9E8FB /* ContentOfflineMessage.swift in Sources */,
 				8000D96E1EDD369000D9E8FB /* MQTTConnAckPacket.swift in Sources */,
+				E53DA6BF1EE7BBBB004306F8 /* Utils.swift in Sources */,
 				8000D9441EDD369000D9E8FB /* ContentInvoice.swift in Sources */,
 				8000D96A1EDD369000D9E8FB /* NetworkProtocol.swift in Sources */,
 				8000D98E1EDD369000D9E8FB /* MQTTSessionStreamDelegate.swift in Sources */,

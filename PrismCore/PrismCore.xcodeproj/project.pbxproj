@@ -508,8 +508,8 @@
 				E53DA6B31EE7B471004306F8 /* product.json */,
 				E53DA6B41EE7B471004306F8 /* statusUpdate.json */,
 				E55110091EE7AD13004007F3 /* assignment.json */,
-				E5C07FD31EDEBB0700CA486B /* tshirt.jpg */,
 				E53DA6BB1EE7B9A9004306F8 /* conversationHistory.json */,
+				E5C07FD31EDEBB0700CA486B /* tshirt.jpg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

@@ -5,9 +5,9 @@
         "price": "10000",
         "description": "Bebek laut serbaguna.",
         "image_urls": [
-                       "https://blabla.com/gambar1.png",
-                       "https://blabla.com/gambar2.png"
-                       ],
+            "https://blabla.com/gambar1.png",
+            "https://blabla.com/gambar2.png"
+        ],
         "discount": {
             "discount_type": "NOMINAL",
             "amount": "1000"

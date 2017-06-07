@@ -1,24 +1,26 @@
 {
     "invoice": {
         "id": "e2asdfdaa-c547-4586-b0ec-d404569c325a",
-        "line_items": [{
-                       "product": {
-                       "id": "e22200aa-c547-4586-b0ec-d404569c325a",
-                       "name": "Bebek Laut",
-                       "price": "10000",
-                       "description": "Bebek laut serbaguna.",
-                       "image_urls": [
-                                      "https://blabla.com/gambar1.png",
-                                      "https://blabla.com/gambar2.png"
-                                      ],
-                       "discount": {
-                       "discount_type": "NOMINAL",
-                       "amount": "1000"
-                       },
-                       "currency_code": "IDR"
-                       },
-                       "quantity": 4
-                       }],
+        "line_items": [
+            {
+                "product": {
+                    "id": "e22200aa-c547-4586-b0ec-d404569c325a",
+                    "name": "Bebek Laut",
+                    "price": "10000",
+                    "description": "Bebek laut serbaguna.",
+                    "image_urls": [
+                        "https://blabla.com/gambar1.png",
+                        "https://blabla.com/gambar2.png"
+                    ],
+                    "discount": {
+                        "discount_type": "NOMINAL",
+                        "amount": "1000"
+                    },
+                    "currency_code": "IDR"
+                },
+                "quantity": 4
+            }
+        ],
         "grand_total": {
             "currency_code": "IDR",
             "amount": "36000"

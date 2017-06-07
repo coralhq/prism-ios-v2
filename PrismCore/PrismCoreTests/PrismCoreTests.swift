@@ -31,6 +31,7 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testVisitorConnect() {
+
         let visitorName = "visitor_name"
         let userID = "user_id"
         let endPoint = VisitorConnectEndPoint(visitorName: visitorName, userID: userID)
@@ -40,16 +41,38 @@ class PrismCoreTests: XCTestCase {
         XCTAssertNotNil(endPoint.contentType)
         XCTAssertNotNil(endPoint.httpBody)
         
+        TestConfig.shared.isValidResponse = true
+
         PrismCore.shared.visitorConnect(visitorName: "asdasdasd", userID: "asdasd") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
         }
     }
     
+    func testInvalidVisitorConnect() {
+        
+        TestConfig.shared.isValidResponse = false
+        PrismCore.shared.visitorConnect(visitorName: "asdasdasd", userID: "asdasd") { (response, error) in
+            XCTAssertNil(response)
+            XCTAssertNotNil(error)
+        }
+    }
+    
     func testAnnonymousVisitorConnect() {
+        
+        TestConfig.shared.isValidResponse = true
         PrismCore.shared.annonymousVisitorConnect() { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
+        }
+    }
+    
+    func testInvalidAnnonymousVisitorConnect() {
+        
+        TestConfig.shared.isValidResponse = false
+        PrismCore.shared.annonymousVisitorConnect() { (response, error) in
+            XCTAssertNil(response)
+            XCTAssertNotNil(error)
         }
     }
     
@@ -59,9 +82,22 @@ class PrismCoreTests: XCTestCase {
         XCTAssertNotNil(endPoint.contentType)
         XCTAssertNotNil(endPoint.httpBody)
         
+        TestConfig.shared.isValidResponse = true
         PrismCore.shared.getStickers(token: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
+        }
+    }
+    
+    func testInvalidGetStickers() {
+        
+        let invalidSticker = StickerResponse(dictionary: [:])
+        XCTAssertNil(invalidSticker)
+        
+        TestConfig.shared.isValidResponse = false
+        PrismCore.shared.getStickers(token: "") { (response, error) in
+            XCTAssertNil(response)
+            XCTAssertNotNil(error)
         }
     }
     
@@ -77,9 +113,22 @@ class PrismCoreTests: XCTestCase {
         XCTAssertNotNil(endPoint.contentType)
         XCTAssertNotNil(endPoint.httpBody)
         
+
+        
+        TestConfig.shared.isValidResponse = true
+
         PrismCore.shared.getSettings() { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
+        }
+    }
+    
+    func testInvalidGetSettings() {
+        
+        TestConfig.shared.isValidResponse = false
+        PrismCore.shared.getSettings() { (response, error) in
+            XCTAssertNil(response)
+            XCTAssertNotNil(error)
         }
     }
     
@@ -95,9 +144,19 @@ class PrismCoreTests: XCTestCase {
         XCTAssertNotNil(endPoint.httpBody)
         XCTAssert(endPoint.url == URL.getAttachmentURL(conversationID: conversationID))
         
+        TestConfig.shared.isValidResponse = true
         PrismCore.shared.getAttachmentURL(filename: "", conversationID: "", token: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
+        }
+    }
+    
+    func testInvalidGetAttachmentURL() {
+        
+        TestConfig.shared.isValidResponse = false
+        PrismCore.shared.getAttachmentURL(filename: "", conversationID: "", token: "") { (response, error) in
+            XCTAssertNil(response)
+            XCTAssertNotNil(error)
         }
     }
     
@@ -111,6 +170,8 @@ class PrismCoreTests: XCTestCase {
         XCTAssertNotNil(endPoint.contentType)
         XCTAssertNotNil(endPoint.httpBody)
         
+        TestConfig.shared.isValidResponse = true
+
         PrismCore.shared.createConversation(visitorName: "", token: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
@@ -118,26 +179,42 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testPublishPlainTextMessage() {
+
+        var messageObject: Message?
+        let invalidDictionary: [String: Any] = [
+            "wrong": 0
+        ]
         
-        var message: Message?
+        let invalidVisitorInfo = MessageVisitorInfo(dictionary: invalidDictionary)
+        let invalidSender = MessageSender(dictionary: invalidDictionary)
+        let invalidBroker = BrokerMetaData(timestamp: "")
+        
         guard let channelInfo = MessageChannelInfo(id: "", name: ""),
             let visitor = MessageVisitorInfo(id: "", name: ""),
             let sender = MessageSender(id: "", name: "", role: "", userAgent: ""),
             let content = ContentPlainText(text: ""),
             let broker = BrokerMetaData(timestamp: "2017-05-19T03:39:31.814Z") else {
-                XCTAssertNotNil(message)
+                XCTAssertNotNil(messageObject)
                 return
         }
         
-        message = Message(id: "", conversationID: "", merchantID: "", channel: "", channelInfo: channelInfo, visitor: visitor, sender: sender, type: MessageType.PlainText, content: content, brokerMetaData: broker)
         
-        if let message = message {
-            PrismCore.shared.publishMessage(topic: "", message: message) { (response, error) in
+        if let visitor = invalidVisitorInfo,
+            let sender = invalidSender,
+            let broker = invalidBroker,
+            let message = Message(id: "", conversationID: "", merchantID: "", channel: "", channelInfo: channelInfo, visitor: visitor, sender: sender, type: MessageType.PlainText, content: content, brokerMetaData: broker) {
+            messageObject = message
+            
+            XCTFail("\(String(describing: messageObject)) should be nil")
+        } else if let message = Message(id: "", conversationID: "", merchantID: "", channel: "", channelInfo: channelInfo, visitor: visitor, sender: sender, type: MessageType.PlainText, content: content, brokerMetaData: broker) {
+            
+            messageObject = message
+            PrismCore.shared.publishMessage(topic: "", message: messageObject!) { (response, error) in
                 XCTAssertNil(error)
                 XCTAssertNotNil(response)
             }
         } else {
-            XCTAssertNotNil(message)
+            XCTAssertNotNil(messageObject)
         }
     }
     
@@ -235,6 +312,15 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(message)
         }
     }
+  
+    func testInvalidCreateConversation() {
+        
+            TestConfig.shared.isValidResponse = false
+        PrismCore.shared.createConversation(visitorName: "", token: "") { (response, error) in
+            XCTAssertNil(response)
+            XCTAssertNotNil(error)
+        }
+    }
     
     func testUploadAttachment() {
         guard let data = UIImagePNGRepresentation(JSONResponseMock.attachmentImage) else { return }
@@ -251,6 +337,7 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testGetConversationHistory() {
+
         let conversationID = "conversation_id"
         let token = "token"
         
@@ -260,9 +347,26 @@ class PrismCoreTests: XCTestCase {
         XCTAssertNotNil(endPoint.httpBody)
         XCTAssert(endPoint.url == URL.getConversationHistory(conversationID: conversationID))
         
+            TestConfig.shared.isValidResponse = true
+
         PrismCore.shared.getConversationHistory(conversationID: "", token: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
+        }
+    }
+    
+    func testInvalidGetConversationHistory() {
+        
+        let invalidConversation = Conversation(dictionary: [ : ])
+        XCTAssertNil(invalidConversation)
+        
+        let invalidConversationMassage = ConversationHistory(dictionary: JSONResponseMock.getConversationHistoryResponseInvalidMessage)
+        XCTAssertNil(invalidConversationMassage)
+        
+        TestConfig.shared.isValidResponse = false
+        PrismCore.shared.getConversationHistory(conversationID: "", token: "") { (response, error) in
+            XCTAssertNil(response)
+            XCTAssertNotNil(error)
         }
     }
     
@@ -273,6 +377,7 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testRefreshToken() {
+
         let clientID = "client id"
         let refreshToken = "refresh token"
         let endPoint = RefreshTokenEndPoint(clientID: clientID, refreshToken: refreshToken)
@@ -282,9 +387,20 @@ class PrismCoreTests: XCTestCase {
         XCTAssertNotNil(endPoint.contentType)
         XCTAssertNotNil(endPoint.httpBody)
         
+        TestConfig.shared.isValidResponse = true
+
         PrismCore.shared.refreshToken(clientID: "", refreshToken: "") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
+        }
+    }
+    
+    func testInvalidRefreshToken() {
+        
+        TestConfig.shared.isValidResponse = false
+        PrismCore.shared.refreshToken(clientID: "", refreshToken: "") { (response, error) in
+            XCTAssertNil(response)
+            XCTAssertNotNil(error)
         }
     }
     

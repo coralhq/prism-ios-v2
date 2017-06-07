@@ -9,6 +9,13 @@
 import Foundation
 import UIKit
 
+class TestConfig {
+    static let shared = TestConfig()
+    var isValidResponse = true
+    
+    private init() {}
+}
+
 class NetworkMock: NetworkProtocol {
     
     static let shared = NetworkMock()
@@ -28,14 +35,44 @@ class NetworkMock: NetworkProtocol {
     }
     
     func request<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping HTTPRequestResult) {
-        let data = getMockData(object: mapToObject)
-        let _ = endPoint.contentType
-        let _ = endPoint.httpBody
-        let _ = endPoint.url
-        completionHandler(mapToObject.init(dictionary: data), nil)
+        
+        var data: [String: Any] = [:]
+        if mapToObject == ConnectResponse.self {
+            if let _ = mapToObject.init(dictionary: JSONResponseMock.connectResponseInvalidOAuth) {
+                data = JSONResponseMock.connectResponseInvalidOAuth
+            } else if let _ = mapToObject.init(dictionary: JSONResponseMock.connectResponseInvalidMQTT) {
+                data = JSONResponseMock.connectResponseInvalidMQTT
+            } else {
+                data = JSONResponseMock.connectResponseInvalidVisitor
+            }
+        }
+        
+        if mapToObject == CreateConversationResponse.self {
+            if let _ = mapToObject.init(dictionary: JSONResponseMock.createConverationResponseInvalidVisitor) {
+                data = JSONResponseMock.createConverationResponseInvalidVisitor
+            }
+            
+            data = JSONResponseMock.createConverationResponseInvalidParticipant
+        }
+        
+        if mapToObject == StickerResponse.self {
+            if let _ = mapToObject.init(dictionary: JSONResponseMock.getStickersResponseInvalidPack) {
+                data = JSONResponseMock.getStickersResponseInvalidPack
+            } else {
+                data = JSONResponseMock.getStickersResponseInvalidStickers
+            }
+        }
+        
+        var error: NSError? = NSError(domain: "", code: 0, userInfo: nil)
+        if TestConfig.shared.isValidResponse {
+            data = getValidResponse(object: mapToObject)
+            error = nil
+        }
+        
+        completionHandler(mapToObject.init(dictionary: data), error)
     }
     
-    fileprivate func getMockData<T: Mappable>(object: T.Type) -> [String: Any] {
+    fileprivate func getValidResponse<T: Mappable>(object: T.Type) -> [String: Any] {
         if object == ConnectResponse.self {
             return JSONResponseMock.connectResponse
         } else if object == Settings.self {

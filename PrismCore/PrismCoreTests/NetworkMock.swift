@@ -29,7 +29,9 @@ class NetworkMock: NetworkProtocol {
     
     func request<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping HTTPRequestResult) {
         let data = getMockData(object: mapToObject)
-        
+        let _ = endPoint.contentType
+        let _ = endPoint.httpBody
+        let _ = endPoint.url
         completionHandler(mapToObject.init(dictionary: data), nil)
     }
     

@@ -1,0 +1,11 @@
+{
+    "close_chat": {
+        "closed_by": {
+            "id": "3cee7874-343c-4be1-a12e-ad058d74665e",
+            "name": "James Bond"
+        },
+        "message": {
+            "text": "Thank you for buying from us."
+        }
+    }
+}

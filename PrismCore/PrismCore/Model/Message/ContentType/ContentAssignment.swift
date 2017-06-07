@@ -14,12 +14,13 @@ class ContentAssignment: MessageContentMappable {
     
     required init?(dictionary: [String: Any]?) {
         guard let assignment = dictionary?["assignment"] as? [String: Any],
-            let assignee = assignment["assignee"] as? MessageUser,
-            let assignor = assignment["assignor"] as? MessageUser else {
+            let assignee = assignment["assignee"] as? [String: Any],
+            let assignor = assignment["assignor"] as? [String: Any],
+            let userAssignee = MessageUser(dictionary: assignee),
+            let userAssignor = MessageUser(dictionary: assignor) else {
                 return nil
         }
-        
-        self.assignee = assignee
-        self.assignor = assignor
+        self.assignee = userAssignee
+        self.assignor = userAssignor
     }
 }

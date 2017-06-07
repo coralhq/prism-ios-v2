@@ -83,46 +83,46 @@ class JSONResponseMock {
                             "offline_message": "Informasi data dan pesan yang Anda kirim sudah kami terima. Kami akan menghubungi Anda segera.",
                             "working_hours": [
                                 "monday": [
-                                [
-                                "from": "00:00",
-                                "to": "23:59"
-                                ]
+                                    [
+                                        "from": "00:00",
+                                        "to": "23:59"
+                                    ]
                                 ],
                                 "tuesday": [
-                                [
-                                "from": "00:00",
-                                "to": "23:59"
-                                ]
+                                    [
+                                        "from": "00:00",
+                                        "to": "23:59"
+                                    ]
                                 ],
                                 "wednesday": [
-                                [
-                                "from": "00:00",
-                                "to": "23:59"
-                                ]
+                                    [
+                                        "from": "00:00",
+                                        "to": "23:59"
+                                    ]
                                 ],
                                 "thursday": [
-                                [
-                                "from": "00:00",
-                                "to": "23:59"
-                                ]
+                                    [
+                                        "from": "00:00",
+                                        "to": "23:59"
+                                    ]
                                 ],
                                 "friday": [
-                                [
-                                "from": "00:00",
-                                "to": "23:59"
-                                ]
+                                    [
+                                        "from": "00:00",
+                                        "to": "23:59"
+                                    ]
                                 ],
                                 "saturday": [
-                                [
-                                "from": "00:00",
-                                "to": "23:59"
-                                ]
+                                    [
+                                        "from": "00:00",
+                                        "to": "23:59"
+                                    ]
                                 ],
                                 "sunday": [
-                                [
-                                "from": "00:00",
-                                "to": "23:59"
-                                ]
+                                    [
+                                        "from": "00:00",
+                                        "to": "23:59"
+                                    ]
                                 ]
                             ],
                             "position": "bottom-right",
@@ -143,18 +143,18 @@ class JSONResponseMock {
                             ],
                             "timezone": "Asia/Jakarta",
                             "triggers": [
-                            [
-                            "url": "https://waldo.staging.coral-inc.com/prism",
-                            "wait_time": "20"
-                            ]
+                                [
+                                    "url": "https://waldo.staging.coral-inc.com/prism",
+                                    "wait_time": "20"
+                                ]
                             ]
                         ]
                     ]
-                 ]
+                ]
             ]
         }
     }
-
+    
     static var getAttachmentURLResponse: [String: Any] {
         get {
             return [
@@ -165,7 +165,7 @@ class JSONResponseMock {
             ]
         }
     }
-
+    
     static var createConverationResponse: [String: Any] {
         get {
             return [
@@ -208,12 +208,7 @@ class JSONResponseMock {
     
     static var getConversationHistoryResponse: [String: Any] {
         get {
-            return [
-                "status": "success",
-                "data": [
-                    "messages": []
-                ]
-            ]
+            return Utils.jsonObject(from: "conversationHistory") as! [String : Any]
         }
     }
     
@@ -378,7 +373,7 @@ class JSONResponseMock {
             ]
         }
     }
-
+    
     static var refreshTokenResponse: [String: Any] {
         get {
             return [
@@ -394,4 +389,5 @@ class JSONResponseMock {
             ]
         }
     }
+    
 }

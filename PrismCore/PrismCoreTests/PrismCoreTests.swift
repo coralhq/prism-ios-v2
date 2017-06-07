@@ -80,7 +80,7 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testPublishPlainTextMessage() {
-
+        
         var message: Message?
         guard let channelInfo = MessageChannelInfo(id: "", name: ""),
             let visitor = MessageVisitorInfo(id: "", name: ""),
@@ -197,7 +197,7 @@ class PrismCoreTests: XCTestCase {
             XCTAssertNotNil(message)
         }
     }
-  
+    
     func testUploadAttachment() {
         guard let data = UIImagePNGRepresentation(JSONResponseMock.attachmentImage) else { return }
         PrismCore.shared.uploadAttachment(with: data, url: JSONResponseMock.attachmentURL) { (success, error) in
@@ -236,6 +236,26 @@ class PrismCoreTests: XCTestCase {
         PrismCore.shared.disconnectFromBroker { response in
             XCTAssertTrue(response)
         }
+    }
+    
+    func testMessageContentCreation() {
+        guard let assignmentObject = Utils.jsonObject(from: "assignment") as? [String: Any],
+            let autoresponderObject = Utils.jsonObject(from: "autoResponder") as? [String: Any],
+            let cartObject = Utils.jsonObject(from: "cart") as? [String: Any],
+            let closeChatObject = Utils.jsonObject(from: "closeChat") as? [String: Any],
+            let invoiceObject = Utils.jsonObject(from: "invoice") as? [String: Any],
+            let productObject = Utils.jsonObject(from: "product") as? [String: Any],
+            let statusUpdateObject = Utils.jsonObject(from: "statusUpdate") as? [String: Any] else {
+                XCTFail()
+                return
+        }
+        let _ = ContentAssignment(dictionary: assignmentObject)
+        let _ = ContentAutoResponder(dictionary: autoresponderObject)
+        let _ = ContentCart(dictionary: cartObject)
+        let _ = ContentCloseChat(dictionary: closeChatObject)
+        let _ = ContentInvoice(dictionary: invoiceObject)
+        let _ = ContentProduct(dictionary: productObject)
+        let _ = ContentStatusUpdate(dictionary: statusUpdateObject)
     }
 }
 

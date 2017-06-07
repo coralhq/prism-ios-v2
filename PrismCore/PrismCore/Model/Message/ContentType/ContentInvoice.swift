@@ -18,12 +18,13 @@ class ContentInvoice: MessageContentMappable {
     let payment: Payment
     
     required init?(dictionary: [String : Any]?) {
-        guard let id = dictionary?["id"] as? String,
-            let lineItemDictionaries = dictionary?["line_items"] as? [[String: Any]],
-            let grandTotal = Currency(dictionary: dictionary?["grand_total"] as? [String: Any]),
-            let buyer = Buyer(dictionary: dictionary?["buyer"] as? [String: Any]),
-            let shipment = Shipment(dictionary: dictionary?["shipment"] as? [String: Any]),
-            let payment = Payment(dictionary: dictionary?["paument"] as? [String: Any]) else {
+        guard let invoice = dictionary?["invoice"] as? [String: Any],
+            let id = invoice["id"] as? String,
+            let lineItemDictionaries = invoice["line_items"] as? [[String: Any]],
+            let grandTotal = Currency(dictionary: invoice["grand_total"] as? [String: Any]),
+            let buyer = Buyer(dictionary: invoice["buyer"] as? [String: Any]),
+            let shipment = Shipment(dictionary: invoice["shipment"] as? [String: Any]),
+            let payment = Payment(dictionary: invoice["payment"] as? [String: Any]) else {
                 return nil
         }
         

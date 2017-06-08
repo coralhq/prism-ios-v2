@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8022EF621EDBB2D3003DB2FC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8022EF601EDBB2D3003DB2FC /* MainViewController.swift */; };
 		8022EF631EDBB2D3003DB2FC /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8022EF611EDBB2D3003DB2FC /* MainViewController.xib */; };
+		E52665A11EE9310800612E19 /* PrismUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E52665941EE91AA300612E19 /* PrismUI.framework */; };
+		E52665A21EE9310800612E19 /* PrismUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E52665941EE91AA300612E19 /* PrismUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E54D95F91ED55E35009FF016 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54D95F81ED55E35009FF016 /* AppDelegate.swift */; };
 		E54D96001ED55E35009FF016 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E54D95FF1ED55E35009FF016 /* Assets.xcassets */; };
 		E54D96031ED55E35009FF016 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E54D96011ED55E35009FF016 /* LaunchScreen.storyboard */; };
@@ -17,6 +19,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E52665931EE91AA300612E19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E526658D1EE91AA200612E19 /* PrismUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E52665731EE91A9600612E19;
+			remoteInfo = PrismUI;
+		};
+		E52665951EE91AA300612E19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E526658D1EE91AA200612E19 /* PrismUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E526657C1EE91A9600612E19;
+			remoteInfo = PrismUITests;
+		};
+		E52665A31EE9310800612E19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E526658D1EE91AA200612E19 /* PrismUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E52665721EE91A9600612E19;
+			remoteInfo = PrismUI;
+		};
 		E54D960F1ED55E5A009FF016 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E54D960A1ED55E5A009FF016 /* PrismCore.xcodeproj */;
@@ -47,6 +70,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E52665A21EE9310800612E19 /* PrismUI.framework in Embed Frameworks */,
 				E54D96151ED55E74009FF016 /* PrismCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -57,6 +81,7 @@
 /* Begin PBXFileReference section */
 		8022EF601EDBB2D3003DB2FC /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8022EF611EDBB2D3003DB2FC /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		E526658D1EE91AA200612E19 /* PrismUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PrismUI.xcodeproj; path = ../PrismUI/PrismUI.xcodeproj; sourceTree = "<group>"; };
 		E54D95F51ED55E34009FF016 /* DemoPrismCore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoPrismCore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E54D95F81ED55E35009FF016 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E54D95FF1ED55E35009FF016 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -70,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E52665A11EE9310800612E19 /* PrismUI.framework in Frameworks */,
 				E54D96141ED55E74009FF016 /* PrismCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,9 +103,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E526658E1EE91AA200612E19 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E52665941EE91AA300612E19 /* PrismUI.framework */,
+				E52665961EE91AA300612E19 /* PrismUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E54D95EC1ED55E34009FF016 = {
 			isa = PBXGroup;
 			children = (
+				E526658D1EE91AA200612E19 /* PrismUI.xcodeproj */,
 				E54D960A1ED55E5A009FF016 /* PrismCore.xcodeproj */,
 				E54D95F71ED55E35009FF016 /* DemoPrismCore */,
 				E54D95F61ED55E35009FF016 /* Products */,
@@ -132,6 +168,7 @@
 			);
 			dependencies = (
 				E54D96171ED55E74009FF016 /* PBXTargetDependency */,
+				E52665A41EE9310800612E19 /* PBXTargetDependency */,
 			);
 			name = DemoPrismCore;
 			productName = DemoPrismCore;
@@ -171,6 +208,10 @@
 					ProductGroup = E54D960B1ED55E5A009FF016 /* Products */;
 					ProjectRef = E54D960A1ED55E5A009FF016 /* PrismCore.xcodeproj */;
 				},
+				{
+					ProductGroup = E526658E1EE91AA200612E19 /* Products */;
+					ProjectRef = E526658D1EE91AA200612E19 /* PrismUI.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -180,6 +221,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		E52665941EE91AA300612E19 /* PrismUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PrismUI.framework;
+			remoteRef = E52665931EE91AA300612E19 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E52665961EE91AA300612E19 /* PrismUITests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PrismUITests.xctest;
+			remoteRef = E52665951EE91AA300612E19 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E54D96101ED55E5A009FF016 /* PrismCore.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -222,6 +277,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E52665A41EE9310800612E19 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PrismUI;
+			targetProxy = E52665A31EE9310800612E19 /* PBXContainerItemProxy */;
+		};
 		E54D96171ED55E74009FF016 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PrismCore;

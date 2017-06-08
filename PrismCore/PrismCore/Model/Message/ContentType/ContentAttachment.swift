@@ -17,16 +17,7 @@ public class ContentAttachment: MessageContentMappable {
     
     public var dictionaryValue: [String: Any] {
         get {
-            if let previewURL = previewURL {
-                return [
-                    "attachment": [
-                        "name": name,
-                        "mimetype": mimeType,
-                        "url": url.absoluteString,
-                        "preview_url": previewURL.absoluteString
-                    ]
-                ]
-            } else {
+            guard let previewURL = previewURL else {
                 return [
                     "attachment": [
                         "name": name,
@@ -35,6 +26,15 @@ public class ContentAttachment: MessageContentMappable {
                     ]
                 ]
             }
+            
+            return [
+                "attachment": [
+                    "name": name,
+                    "mimetype": mimeType,
+                    "url": url.absoluteString,
+                    "preview_url": previewURL.absoluteString
+                ]
+            ]
         }
     }
     
@@ -56,7 +56,7 @@ public class ContentAttachment: MessageContentMappable {
         self.url = url
     }
     
-    convenience public init?(name: String, mimeType: String, url: String, previewURL: String) {
+    convenience public init?(name: String, mimeType: String, url: String, previewURL: String? = nil) {
         self.init(dictionary: [
             "attachment": [
                 "name": name,

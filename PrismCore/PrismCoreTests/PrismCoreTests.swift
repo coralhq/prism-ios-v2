@@ -25,9 +25,20 @@ class PrismCoreTests: XCTestCase {
     
     func testConfigure() {
         let delegate = TestDelegate()
+        
+        PrismCore.shared.configure(environment: .Production, merchantID: "", delegate: delegate)
+        XCTAssertTrue(URL.getSettings.absoluteString.contains("api.prismapp.io"))
+        
         PrismCore.shared.configure(environment: .Sandbox, merchantID: "", delegate: delegate)
+        XCTAssertTrue(URL.getSettings.absoluteString.contains("kong.staging.coral-inc.com"))
+        
         XCTAssertNotNil(Config.shared.getEnvironment())
         XCTAssertNotNil(Config.shared.getMerchantID())
+        
+        let session = MQTTSession(host: "", port: 12, clientID: "", cleanSession: true, keepAlive: 20)
+        PrismCore.shared.mqttDidDisconnect(session: session)
+        PrismCore.shared.mqttDidReceive(message: Data(), in: "", from: session)
+        PrismCore.shared.mqttSocketErrorOccurred(session: session)
     }
     
     func testVisitorConnect() {
@@ -231,6 +242,10 @@ class PrismCoreTests: XCTestCase {
         
         message = Message(id: "", conversationID: "", merchantID: "", channel: "", channelInfo: channelInfo, visitor: visitor, sender: sender, type: MessageType.Attachment, content: content, brokerMetaData: broker)
         
+        let contentWithoutPreviewURL = ContentAttachment(name: "", mimeType: "", url: "https://www.google.com")
+        
+        let _ = Message(id: "", conversationID: "", merchantID: "", channel: "", channelInfo: channelInfo, visitor: visitor, sender: sender, type: MessageType.Attachment, content: contentWithoutPreviewURL!, brokerMetaData: broker)
+        
         if let message = message {
             PrismCore.shared.publishMessage(topic: "", message: message) { (response, error) in
                 XCTAssertNil(error)
@@ -422,6 +437,7 @@ class PrismCoreTests: XCTestCase {
                 XCTFail()
                 return
         }
+        
         let _ = ContentAssignment(dictionary: assignmentObject)
         let _ = ContentAutoResponder(dictionary: autoresponderObject)
         let _ = ContentCart(dictionary: cartObject)
@@ -429,6 +445,55 @@ class PrismCoreTests: XCTestCase {
         let _ = ContentInvoice(dictionary: invoiceObject)
         let _ = ContentProduct(dictionary: productObject)
         let _ = ContentStatusUpdate(dictionary: statusUpdateObject)
+    }
+    
+    func testInvalidMessageContentCreation() {
+        XCTAssertNil(ContentAssignment(dictionary: ["":0]))
+        XCTAssertNil(ContentAutoResponder(dictionary: ["":0]))
+        XCTAssertNil(ContentCart(dictionary: ["":0]))
+        XCTAssertNil(ContentCloseChat(dictionary: ["":0]))
+        XCTAssertNil(ContentInvoice(dictionary: ["":0]))
+        XCTAssertNil(ContentProduct(dictionary: ["":0]))
+        XCTAssertNil(ContentStatusUpdate(dictionary: ["":0]))
+        XCTAssertNil(ContentAttachment(dictionary: ["":0]))
+        XCTAssertNil(LineItem(dictionary: ["":0]))
+        XCTAssertNil(Discount(dictionary: ["":0]))
+        XCTAssertNil(Payment(dictionary: ["":0]))
+        XCTAssertNil(Shipment(dictionary: ["":0]))
+        XCTAssertNil(ShipmentInfo(dictionary: ["":0]))
+        XCTAssertNil(Buyer(dictionary: ["":0]))
+        XCTAssertNil(Currency(dictionary: ["":0]))
+        XCTAssertNil(ContentOfflineMessage(dictionary: ["":0]))
+        XCTAssertNil(ContentPlainText(dictionary: ["":0]))
+        XCTAssertNil(ContentSticker(dictionary: ["":0]))
+        XCTAssertNil(MessageSticker(dictionary: ["":0]))
+        XCTAssertNil(ContentTyping(dictionary: ["":0]))
+        XCTAssertNil(TypingStatus(rawValue:""))
+        XCTAssertNil(MessageType(rawValue:""))
+        
+        XCTAssertNil(ContentCart(dictionary: Utils.jsonObject(from: "invalidCart") as? [String: Any]))
+        XCTAssertNil(ContentInvoice(dictionary: Utils.jsonObject(from: "invalidInvoice") as? [String: Any]))
+        XCTAssertNil(Product(dictionary: Utils.jsonObject(from: "invalidProduct") as? [String: Any]))
+        
+        XCTAssert(MessageType(rawValue: "auto_responder") == MessageType.AutoResponder)
+        XCTAssert(MessageType(rawValue: "assignment") == MessageType.Assignment)
+        XCTAssert(MessageType(rawValue: "cart") == MessageType.Cart)
+        XCTAssert(MessageType(rawValue: "close_chat") == MessageType.CloseChat)
+        XCTAssert(MessageType(rawValue: "invoice") == MessageType.Invoice)
+        XCTAssert(MessageType(rawValue: "product") == MessageType.Product)
+        XCTAssert(MessageType(rawValue: "message_status_update") == MessageType.StatusUpdate)
+        
+        XCTAssert("auto_responder" == MessageType.AutoResponder.rawValue)
+        XCTAssert("assignment" == MessageType.Assignment.rawValue)
+        XCTAssert("cart" == MessageType.Cart.rawValue)
+        XCTAssert("close_chat" == MessageType.CloseChat.rawValue)
+        XCTAssert("invoice" == MessageType.Invoice.rawValue)
+        XCTAssert("product" == MessageType.Product.rawValue)
+        XCTAssert("message_status_update" == MessageType.StatusUpdate.rawValue)
+        
+        XCTAssert(TypingStatus(rawValue: "start_typing") == TypingStatus.StartTyping)
+        XCTAssert(TypingStatus(rawValue: "end_typing") == TypingStatus.EndTyping)
+        XCTAssert(TypingStatus.EndTyping.rawValue == "end_typing")
     }
 }
 

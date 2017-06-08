@@ -88,7 +88,6 @@ import UIKit
     
     override var attributedPlaceholder: NSAttributedString? {
         didSet {
-            floatingLabel.text = attributedPlaceholder?.string
             setNeedsLayout()
         }
     }

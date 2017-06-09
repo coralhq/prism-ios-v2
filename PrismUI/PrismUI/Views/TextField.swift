@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class TextField: UITextField {
+@IBDesignable public class TextField: UITextField {
     let floatingLabelHeight: CGFloat = 15
     let bottomLineHeight: CGFloat = 1
     let warningLabelHeight: CGFloat = 15
@@ -45,17 +45,18 @@ import UIKit
         commonInit()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         commonInit()
     }
     
-    override func prepareForInterfaceBuilder() {
+    override public
+    func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         commonInit()
     }
@@ -74,25 +75,25 @@ import UIKit
         addSubview(floatingLabel)
     }
     
-    override var textAlignment: NSTextAlignment {
+    override public var textAlignment: NSTextAlignment {
         didSet {
             setNeedsLayout()
         }
     }
     
-    override var placeholder: String? {
+    override public var placeholder: String? {
         didSet {
             setNeedsLayout()
         }
     }
     
-    override var attributedPlaceholder: NSAttributedString? {
+    override public var attributedPlaceholder: NSAttributedString? {
         didSet {
             setNeedsLayout()
         }
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         
         if let text = text,
@@ -123,12 +124,12 @@ import UIKit
         bottomLineView.frame = bottomLineRect()
     }
     
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+    override public func editingRect(forBounds bounds: CGRect) -> CGRect {
         let rect = super.editingRect(forBounds: bounds)
         return insetRect(forBounds: rect).integral
     }
     
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
+    override public func textRect(forBounds bounds: CGRect) -> CGRect {
         let rect = super.textRect(forBounds: bounds)
         return insetRect(forBounds: rect).integral
     }

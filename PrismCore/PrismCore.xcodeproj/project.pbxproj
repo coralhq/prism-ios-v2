@@ -138,6 +138,9 @@
 		80564C461ED5289D00BDA006 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80564C3C1ED5289D00BDA006 /* PrismCore.framework */; };
 		80564C4B1ED5289D00BDA006 /* PrismCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80564C4A1ED5289D00BDA006 /* PrismCoreTests.swift */; };
 		80564C4D1ED5289D00BDA006 /* PrismCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 80564C3F1ED5289D00BDA006 /* PrismCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		805F47411EE8DB870052BB74 /* invalidCart.json in Resources */ = {isa = PBXBuildFile; fileRef = 805F47401EE8DB870052BB74 /* invalidCart.json */; };
+		805F47431EE8DD630052BB74 /* invalidInvoice.json in Resources */ = {isa = PBXBuildFile; fileRef = 805F47421EE8DD630052BB74 /* invalidInvoice.json */; };
+		805F47451EE8DDCE0052BB74 /* invalidProduct.json in Resources */ = {isa = PBXBuildFile; fileRef = 805F47441EE8DDCE0052BB74 /* invalidProduct.json */; };
 		8091EA871EDEACBE007E43B0 /* RefreshTokenEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */; };
 		8091EA881EDEACBE007E43B0 /* RefreshTokenEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */; };
 		8091EA8A1EDEAFB0007E43B0 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */; };
@@ -238,6 +241,9 @@
 		80564C451ED5289D00BDA006 /* PrismCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrismCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80564C4A1ED5289D00BDA006 /* PrismCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismCoreTests.swift; sourceTree = "<group>"; };
 		80564C4C1ED5289D00BDA006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		805F47401EE8DB870052BB74 /* invalidCart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalidCart.json; sourceTree = "<group>"; };
+		805F47421EE8DD630052BB74 /* invalidInvoice.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalidInvoice.json; sourceTree = "<group>"; };
+		805F47441EE8DDCE0052BB74 /* invalidProduct.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalidProduct.json; sourceTree = "<group>"; };
 		8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenEndPoint.swift; sourceTree = "<group>"; };
 		8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenResponse.swift; sourceTree = "<group>"; };
 		E53DA6AF1EE7B471004306F8 /* autoResponder.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = autoResponder.json; sourceTree = "<group>"; };
@@ -510,6 +516,9 @@
 				E55110091EE7AD13004007F3 /* assignment.json */,
 				E53DA6BB1EE7B9A9004306F8 /* conversationHistory.json */,
 				E5C07FD31EDEBB0700CA486B /* tshirt.jpg */,
+				805F47401EE8DB870052BB74 /* invalidCart.json */,
+				805F47421EE8DD630052BB74 /* invalidInvoice.json */,
+				805F47441EE8DDCE0052BB74 /* invalidProduct.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -625,12 +634,15 @@
 				E53DA6BA1EE7B471004306F8 /* statusUpdate.json in Resources */,
 				E551100A1EE7AD13004007F3 /* assignment.json in Resources */,
 				E53DA6B71EE7B471004306F8 /* closeChat.json in Resources */,
+				805F47431EE8DD630052BB74 /* invalidInvoice.json in Resources */,
 				E5C07FD41EDEBB0700CA486B /* tshirt.jpg in Resources */,
 				E53DA6BC1EE7B9A9004306F8 /* conversationHistory.json in Resources */,
 				E53DA6B81EE7B471004306F8 /* invoice.json in Resources */,
 				E53DA6B51EE7B471004306F8 /* autoResponder.json in Resources */,
 				E53DA6B91EE7B471004306F8 /* product.json in Resources */,
 				E53DA6B61EE7B471004306F8 /* cart.json in Resources */,
+				805F47411EE8DB870052BB74 /* invalidCart.json in Resources */,
+				805F47451EE8DDCE0052BB74 /* invalidProduct.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

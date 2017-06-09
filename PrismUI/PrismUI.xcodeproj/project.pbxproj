@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80389A3E1EEA3132007B9458 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389A3C1EEA3132007B9458 /* ConnectViewController.swift */; };
+		80389A3F1EEA3132007B9458 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389A3C1EEA3132007B9458 /* ConnectViewController.swift */; };
+		80389A401EEA3132007B9458 /* ConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80389A3D1EEA3132007B9458 /* ConnectViewController.xib */; };
+		80389A411EEA3132007B9458 /* ConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80389A3D1EEA3132007B9458 /* ConnectViewController.xib */; };
+		80389A431EEA3140007B9458 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389A421EEA3140007B9458 /* TextField.swift */; };
+		80389A441EEA3140007B9458 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389A421EEA3140007B9458 /* TextField.swift */; };
 		E526657D1EE91A9600612E19 /* PrismUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E52665731EE91A9600612E19 /* PrismUI.framework */; };
 		E52665821EE91A9600612E19 /* PrismUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52665811EE91A9600612E19 /* PrismUITests.swift */; };
 		E52665841EE91A9600612E19 /* PrismUI.h in Headers */ = {isa = PBXBuildFile; fileRef = E52665761EE91A9600612E19 /* PrismUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E526659B1EE91F3400612E19 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52665991EE91F3400612E19 /* ConnectViewController.swift */; };
-		E526659C1EE91F3400612E19 /* ConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E526659A1EE91F3400612E19 /* ConnectViewController.xib */; };
-		E526659E1EE91F5D00612E19 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E526659D1EE91F5D00612E19 /* TextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,15 +29,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		80389A3C1EEA3132007B9458 /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
+		80389A3D1EEA3132007B9458 /* ConnectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectViewController.xib; sourceTree = "<group>"; };
+		80389A421EEA3140007B9458 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		E52665731EE91A9600612E19 /* PrismUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrismUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E52665761EE91A9600612E19 /* PrismUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrismUI.h; sourceTree = "<group>"; };
 		E52665771EE91A9600612E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E526657C1EE91A9600612E19 /* PrismUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrismUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E52665811EE91A9600612E19 /* PrismUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismUITests.swift; sourceTree = "<group>"; };
 		E52665831EE91A9600612E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E52665991EE91F3400612E19 /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
-		E526659A1EE91F3400612E19 /* ConnectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectViewController.xib; sourceTree = "<group>"; };
-		E526659D1EE91F5D00612E19 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +59,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		80389A381EEA3035007B9458 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		80389A391EEA3045007B9458 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				80389A3C1EEA3132007B9458 /* ConnectViewController.swift */,
+				80389A3D1EEA3132007B9458 /* ConnectViewController.xib */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		80389A3A1EEA3053007B9458 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				80389A421EEA3140007B9458 /* TextField.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		80389A3B1EEA3087007B9458 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		E52665691EE91A9600612E19 = {
 			isa = PBXGroup;
 			children = (
@@ -77,11 +111,12 @@
 		E52665751EE91A9600612E19 /* PrismUI */ = {
 			isa = PBXGroup;
 			children = (
+				80389A3B1EEA3087007B9458 /* Cells */,
+				80389A3A1EEA3053007B9458 /* Views */,
+				80389A391EEA3045007B9458 /* ViewControllers */,
+				80389A381EEA3035007B9458 /* ViewModels */,
 				E52665761EE91A9600612E19 /* PrismUI.h */,
 				E52665771EE91A9600612E19 /* Info.plist */,
-				E52665991EE91F3400612E19 /* ConnectViewController.swift */,
-				E526659A1EE91F3400612E19 /* ConnectViewController.xib */,
-				E526659D1EE91F5D00612E19 /* TextField.swift */,
 			);
 			path = PrismUI;
 			sourceTree = "<group>";
@@ -191,7 +226,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E526659C1EE91F3400612E19 /* ConnectViewController.xib in Resources */,
+				80389A401EEA3132007B9458 /* ConnectViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80389A411EEA3132007B9458 /* ConnectViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,8 +245,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E526659B1EE91F3400612E19 /* ConnectViewController.swift in Sources */,
-				E526659E1EE91F5D00612E19 /* TextField.swift in Sources */,
+				80389A3E1EEA3132007B9458 /* ConnectViewController.swift in Sources */,
+				80389A431EEA3140007B9458 /* TextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +254,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80389A441EEA3140007B9458 /* TextField.swift in Sources */,
 				E52665821EE91A9600612E19 /* PrismUITests.swift in Sources */,
+				80389A3F1EEA3132007B9458 /* ConnectViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

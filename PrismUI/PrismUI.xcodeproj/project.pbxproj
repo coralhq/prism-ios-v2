@@ -16,6 +16,13 @@
 		E526657D1EE91A9600612E19 /* PrismUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E52665731EE91A9600612E19 /* PrismUI.framework */; };
 		E52665821EE91A9600612E19 /* PrismUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52665811EE91A9600612E19 /* PrismUITests.swift */; };
 		E52665841EE91A9600612E19 /* PrismUI.h in Headers */ = {isa = PBXBuildFile; fileRef = E52665761EE91A9600612E19 /* PrismUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E54969B81EEA82B7008209D9 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54969B71EEA82B7008209D9 /* PrismCore.framework */; };
+		E54969BB1EEA8496008209D9 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54969BA1EEA8496008209D9 /* Utils.swift */; };
+		E5ADFB9F1EEA808400436064 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5ADFB9E1EEA808400436064 /* Assets.xcassets */; };
+		E5ADFBA01EEA808800436064 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5ADFB9E1EEA808400436064 /* Assets.xcassets */; };
+		E5ADFBA11EEA809700436064 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5CD9F6E1EEA7F890066C1CC /* ChatViewController.xib */; };
+		E5CD9F6F1EEA7F890066C1CC /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CD9F6D1EEA7F890066C1CC /* ChatViewController.swift */; };
+		E5CD9F701EEA7F890066C1CC /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5CD9F6E1EEA7F890066C1CC /* ChatViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +45,11 @@
 		E526657C1EE91A9600612E19 /* PrismUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrismUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E52665811EE91A9600612E19 /* PrismUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrismUITests.swift; sourceTree = "<group>"; };
 		E52665831EE91A9600612E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E54969B71EEA82B7008209D9 /* PrismCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrismCore.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/DemoPrismCore-friqtlupaxddjygruiinatqqklhk/Build/Products/Debug-iphonesimulator/PrismCore.framework"; sourceTree = "<group>"; };
+		E54969BA1EEA8496008209D9 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
+		E5ADFB9E1EEA808400436064 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
+		E5CD9F6D1EEA7F890066C1CC /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		E5CD9F6E1EEA7F890066C1CC /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E54969B81EEA82B7008209D9 /* PrismCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +82,8 @@
 		80389A391EEA3045007B9458 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E5CD9F6D1EEA7F890066C1CC /* ChatViewController.swift */,
+				E5CD9F6E1EEA7F890066C1CC /* ChatViewController.xib */,
 				80389A3C1EEA3132007B9458 /* ConnectViewController.swift */,
 				80389A3D1EEA3132007B9458 /* ConnectViewController.xib */,
 			);
@@ -96,6 +111,7 @@
 				E52665751EE91A9600612E19 /* PrismUI */,
 				E52665801EE91A9600612E19 /* PrismUITests */,
 				E52665741EE91A9600612E19 /* Products */,
+				E54969B61EEA82B7008209D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +127,8 @@
 		E52665751EE91A9600612E19 /* PrismUI */ = {
 			isa = PBXGroup;
 			children = (
+				E54969B91EEA847C008209D9 /* Utils */,
+				E5CD9F6C1EEA7F650066C1CC /* Resources */,
 				80389A3B1EEA3087007B9458 /* Cells */,
 				80389A3A1EEA3053007B9458 /* Views */,
 				80389A391EEA3045007B9458 /* ViewControllers */,
@@ -128,6 +146,30 @@
 				E52665831EE91A9600612E19 /* Info.plist */,
 			);
 			path = PrismUITests;
+			sourceTree = "<group>";
+		};
+		E54969B61EEA82B7008209D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E54969B71EEA82B7008209D9 /* PrismCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E54969B91EEA847C008209D9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E54969BA1EEA8496008209D9 /* Utils.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		E5CD9F6C1EEA7F650066C1CC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E5ADFB9E1EEA808400436064 /* Assets.xcassets */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +268,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5CD9F701EEA7F890066C1CC /* ChatViewController.xib in Resources */,
+				E5ADFB9F1EEA808400436064 /* Assets.xcassets in Resources */,
 				80389A401EEA3132007B9458 /* ConnectViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,7 +278,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5ADFBA01EEA808800436064 /* Assets.xcassets in Resources */,
 				80389A411EEA3132007B9458 /* ConnectViewController.xib in Resources */,
+				E5ADFBA11EEA809700436064 /* ChatViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,7 +292,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				80389A3E1EEA3132007B9458 /* ConnectViewController.swift in Sources */,
+				E5CD9F6F1EEA7F890066C1CC /* ChatViewController.swift in Sources */,
 				80389A431EEA3140007B9458 /* TextField.swift in Sources */,
+				E54969BB1EEA8496008209D9 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,9 @@
 
 import UIKit
 
-@IBDesignable public class TextField: UITextField {
+public class TextField: UITextField {
+    var isRequired: Bool = false
+    
     let floatingLabelHeight: CGFloat = 15
     let bottomLineHeight: CGFloat = 1
     let warningLabelHeight: CGFloat = 15
@@ -106,6 +108,7 @@ import UIKit
         if let warning = warning,
             warning.characters.count > 0 {
             bottomLineView.backgroundColor = warningLabel.textColor
+            floatingLabel.textColor = isFirstResponder ? selectedColor : placeholderColor
         } else {
             if isFirstResponder {
                 bottomLineView.backgroundColor = selectedColor

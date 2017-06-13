@@ -14,38 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "80564C3B1ED5289D00BDA006"
-               BuildableName = "PrismCore.framework"
-               BlueprintName = "PrismCore"
-               ReferencedContainer = "container:../PrismCore/PrismCore.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "E52665721EE91A9600612E19"
                BuildableName = "PrismUI.framework"
                BlueprintName = "PrismUI"
-               ReferencedContainer = "container:../PrismUI/PrismUI.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E54D95F41ED55E34009FF016"
-               BuildableName = "DemoPrismCore.app"
-               BlueprintName = "DemoPrismCore"
-               ReferencedContainer = "container:DemoPrismCore.xcodeproj">
+               ReferencedContainer = "container:PrismUI.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -56,14 +28,24 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E526657B1EE91A9600612E19"
+               BuildableName = "PrismUITests.xctest"
+               BlueprintName = "PrismUITests"
+               ReferencedContainer = "container:PrismUI.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E54D95F41ED55E34009FF016"
-            BuildableName = "DemoPrismCore.app"
-            BlueprintName = "DemoPrismCore"
-            ReferencedContainer = "container:DemoPrismCore.xcodeproj">
+            BlueprintIdentifier = "E52665721EE91A9600612E19"
+            BuildableName = "PrismUI.framework"
+            BlueprintName = "PrismUI"
+            ReferencedContainer = "container:PrismUI.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -79,16 +61,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E54D95F41ED55E34009FF016"
-            BuildableName = "DemoPrismCore.app"
-            BlueprintName = "DemoPrismCore"
-            ReferencedContainer = "container:DemoPrismCore.xcodeproj">
+            BlueprintIdentifier = "E52665721EE91A9600612E19"
+            BuildableName = "PrismUI.framework"
+            BlueprintName = "PrismUI"
+            ReferencedContainer = "container:PrismUI.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -98,16 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E54D95F41ED55E34009FF016"
-            BuildableName = "DemoPrismCore.app"
-            BlueprintName = "DemoPrismCore"
-            ReferencedContainer = "container:DemoPrismCore.xcodeproj">
+            BlueprintIdentifier = "E52665721EE91A9600612E19"
+            BuildableName = "PrismUI.framework"
+            BlueprintName = "PrismUI"
+            ReferencedContainer = "container:PrismUI.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

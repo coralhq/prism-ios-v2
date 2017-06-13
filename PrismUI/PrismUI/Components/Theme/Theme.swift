@@ -17,6 +17,20 @@ public enum ThemeOptions {
     case OceanBlue
     case CoralReef
     case BananaTokyo
+    
+    public init?(rawValue: String) {
+        switch rawValue {
+        case "PINK": self = .PinkScarlet
+        case "BLUE": self = .OceanBlue
+        case "BLACK": self = .JetBlack
+        case "WHITE": self = .AzureWhite
+        case "GREEN": self = .CitrusLime
+        case "RED": self = .CoralReef
+        case "YELLOW": self = .BananaTokyo
+        default:
+            return nil
+        }
+    }
 }
 
 open class Theme {

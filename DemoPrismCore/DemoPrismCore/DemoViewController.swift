@@ -53,6 +53,7 @@ class DemoViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let publicData = setting["public"] as! [String: Any]
         let widget = publicData["widget"] as! [String: Any]
         let avatar = URL(string: widget["persona_image_url"] as! String) ?? URL(string: "https://lorempixel.com/100/100")!
+        let themeOption = ThemeOptions(rawValue: widget["style"] as! String)!
         let title = widget["title_expanded"] as! String
         let subtitle = widget["subtitle"] as! String
         let welcome = widget["welcome_message"] as! String
@@ -62,7 +63,7 @@ class DemoViewController: UIViewController, UICollectionViewDelegate, UICollecti
             avatar: avatar,
             title: title,
             subtitle: subtitle,
-            theme: Theme(option: .PinkScarlet),
+            theme: Theme(option: themeOption),
             wellcomeMessage: welcome
         )
         

@@ -43,8 +43,6 @@ open class ChatViewController: UIViewController {
         
         configureNavigationBar(theme: theme, title: navTitle, subtitle: subtitle, avatar: avatar!)
         
-//        navigationController?.navigationBar.backgroundColor = theme.navigationBarColor
-        
         welcomeMessageLabel.text = welcomeMessage
         mainView.backgroundColor = theme.mainViewBackgroundColor
         

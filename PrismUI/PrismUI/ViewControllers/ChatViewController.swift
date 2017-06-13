@@ -52,6 +52,7 @@ open class ChatViewController: UIViewController {
 
 extension ChatViewController {
     override func navigationItemDidTapLeftBarButtonItem() {
+        navigationController?.setNavigationBarHidden(false, animated: false)
         navigationController?.popViewController(animated: true)
     }
     

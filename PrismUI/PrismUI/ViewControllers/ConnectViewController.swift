@@ -72,14 +72,18 @@ public class ConnectViewController: UIViewController {
             emailTF.isValidEmail(),
             phoneTF.isValidPhoneNumber() else { return }
         
-        PrismCore.shared.visitorConnect(visitorName: nameTF.text!, userID: emailTF.text!) { (response, error) in
+        PrismCore.shared.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (response, error) in
+            
             if let error = error {
                 print("Error: \(error)")
             } else {
+                if let visitor = response?.visitor {
+                    Utils.archive(object: visitor, key: "visitor")
+                }
+                
                 let chatVC = ChatViewController(nibName: ChatViewController.name, bundle: nil)
                 self.navigationController?.pushViewController(chatVC, animated: true)
             }
         }
     }
-    
 }

@@ -26,7 +26,36 @@ open class PrismCore {
         network.setMQTTDelegate(delegate: self)
     }
     
-    open func visitorConnect(visitorName: String, userID: String, completionHandler: @escaping (ConnectResponse?, NSError?) -> ()) {
+    open func visitorConnect(name: String?, email: String?, phoneNumber: String?, completionHandler: @escaping (ConnectResponse?, NSError?) -> ()) {
+        
+        var userID: String {
+            get {
+                if let email = email,
+                    let phone = phoneNumber,
+                    email.characters.count > 0,
+                    phone.characters.count > 0 {
+                    return "\(email);\(phone)"
+                } else if let email = email,
+                    email.characters.count > 0 {
+                    return email
+                } else if let phone = phoneNumber,
+                    phone.characters.count > 0 {
+                    return phone
+                } else {
+                    return ""
+                }
+            }
+        }
+        
+        var visitorName: String {
+            get {
+                if let name = name {
+                    return name
+                } else {
+                    return ""
+                }
+            }
+        }
         
         let endPoint = VisitorConnectEndPoint(visitorName: visitorName, userID: userID)
         network.request(endPoint: endPoint, mapToObject: ConnectResponse.self) { (mappable, error) in
@@ -36,12 +65,16 @@ open class PrismCore {
         }
     }
     
-    open func annonymousVisitorConnect(completionHandler: @escaping (ConnectResponse?, Error?) -> ()) {
-        
+    open func annonymousVisitorConnect(completionHandler: @escaping (ConnectResponse?, Error?) -> ()) {        
         let visitorName = String.randomVisitorName
         let userID = String.randomUserID
         
-        visitorConnect(visitorName: visitorName, userID: userID, completionHandler: completionHandler)
+        let endPoint = VisitorConnectEndPoint(visitorName: visitorName, userID: userID)
+        network.request(endPoint: endPoint, mapToObject: ConnectResponse.self) { (mappable, error) in
+            DispatchQueue.main.async(){
+                completionHandler(mappable as? ConnectResponse, error)
+            }
+        }
     }
     
     open func createConversation(visitorName: String, token: String, completionHandler: @escaping ((CreateConversationResponse? ,Error?) -> ())) {
@@ -87,7 +120,7 @@ open class PrismCore {
     }
     
     open func uploadAttachment(with file:Data, url:URL, completionHandler: @escaping ((Bool, Error?) -> ())) {
-        network.upload(attachment: file, url: url, completionHandler: completionHandler)        
+        network.upload(attachment: file, url: url, completionHandler: completionHandler)
     }
     
     open func disconnectFromBroker(completionHandler: ((Bool) -> ())) {
@@ -95,7 +128,7 @@ open class PrismCore {
             completionHandler(true)
         }
     }
-
+    
     open func getConversationHistory(conversationID: String, token: String, completionHandler: @escaping ((ConversationHistory?, Error?) -> ())) {
         let endPoint = GetConversationHistoryEndPoint(conversationID: conversationID, token: token)
         
@@ -109,7 +142,7 @@ open class PrismCore {
             completionHandler(success, error)
         }
     }
-
+    
     open func refreshToken(clientID: String, refreshToken: String, completionHandler: @escaping ((RefreshTokenResponse?, Error?) -> ())) {
         let endPoint = RefreshTokenEndPoint(clientID: clientID, refreshToken: refreshToken)
         

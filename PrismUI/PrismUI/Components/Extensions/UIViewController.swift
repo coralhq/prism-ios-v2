@@ -15,13 +15,13 @@ import Foundation
 
 extension NavigationBarStyle where Self: UIViewController {
     
-    func configureNavigationBar(theme: Theme, title: String, subtitle: String, avatar: URL) {
+    func configureNavigationBar(title: String, subtitle: String, avatar: URL) {
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         let newNavBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64))
         
         let backgroundView = UIView(frame: newNavBar.frame)
-        backgroundView.backgroundColor = theme.navigationBarColor
+        backgroundView.backgroundColor = Theme.shared.navigationBarColor
         newNavBar.addSubview(backgroundView)
         
         let item = UINavigationItem()
@@ -38,14 +38,14 @@ extension NavigationBarStyle where Self: UIViewController {
         titleLabel.font = UIFont.navigationTitleFont()
         titleLabel.textAlignment = .left
         titleLabel.sizeToFit()
-        titleLabel.textColor = theme.navigationBarTitleColor
+        titleLabel.textColor = Theme.shared.navigationBarTitleColor
         
         let subTitleLabel = UILabel()
         subTitleLabel.text = subtitle
         subTitleLabel.font = UIFont.navigationSubTitleFont()
         subTitleLabel.textAlignment = .left
         subTitleLabel.sizeToFit()
-        subTitleLabel.textColor = theme.navigationBarTitleColor
+        subTitleLabel.textColor = Theme.shared.navigationBarTitleColor
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 2, width: 32, height: 32))
         imageView.downloadedFrom(url: avatar)

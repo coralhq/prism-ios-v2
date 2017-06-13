@@ -49,7 +49,25 @@ open class Theme {
     open var emojiButtonImage: UIImage
     open var attachmentButtonImage: UIImage
     
-    required public init(option: ThemeOptions) {
+    static public var shared = Theme()
+    private init() {
+        navigationBarColor = UIColor.white
+        navigationBarTitleColor = UIColor.steelBlue
+        mainViewBackgroundColor = UIColor.steelBlueMainViewFill
+        chatSentBubbleBackgroundColor = UIColor.steelBlueFill
+        chatSentBubleBorderColor = UIColor.steelBlueBorder
+        chatReceivedBubbleBackgroundColor = UIColor.white
+        chatReceivedBubleBorderColor = UIColor.steelBlueBorder
+        chatTextColor = UIColor.jetBlack
+        chatSenderTextColor = UIColor.jetBlack
+        navigationBarBackButtonImage = UIImage()
+        chatSendButtonImage = UIImage()
+        stickerButtonImage = UIImage()
+        emojiButtonImage = UIImage()
+        attachmentButtonImage = UIImage()
+    }
+    
+    open func configure(option: ThemeOptions) {
         switch option {
         case .AzureWhite:
             navigationBarColor = UIColor.white

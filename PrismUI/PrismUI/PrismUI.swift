@@ -34,6 +34,11 @@ open class PrismUI {
                 return
             }
             
+            let publicData = response!["public"] as! [String: Any]
+            let widget = publicData["widget"] as! [String: Any]
+            let themeOption = ThemeOptions(rawValue: widget["style"] as! String)!
+            Theme.shared.configure(option: themeOption)
+            
             UserDefaults.standard.set(response, forKey: "merchant_setting")
             completionHandler(response!)
         }

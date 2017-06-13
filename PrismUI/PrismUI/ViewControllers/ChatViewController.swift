@@ -16,19 +16,17 @@ open class ChatViewController: UIViewController {
     var welcomeMessage: String = ""
     var navTitle: String = ""
     var subtitle: String = ""
-    var theme: Theme = Theme(option: .PinkScarlet)
     var avatar: URL?
     
     private override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    convenience public init(avatar: URL, title: String, subtitle: String, theme: Theme, wellcomeMessage: String) {
+    convenience public init(avatar: URL, title: String, subtitle: String, wellcomeMessage: String) {
         
         self.init(nibName: "ChatViewController", bundle: Bundle.init(identifier: "io.prismapp.PrismUI"))
         
         self.welcomeMessage = wellcomeMessage
-        self.theme = theme
         self.navTitle = title
         self.subtitle = subtitle
         self.avatar = avatar
@@ -41,10 +39,10 @@ open class ChatViewController: UIViewController {
     override open func viewDidLoad() {
         super.viewDidLoad()
         
-        configureNavigationBar(theme: theme, title: navTitle, subtitle: subtitle, avatar: avatar!)
+        configureNavigationBar(title: navTitle, subtitle: subtitle, avatar: avatar!)
         
         welcomeMessageLabel.text = welcomeMessage
-        mainView.backgroundColor = theme.mainViewBackgroundColor
+        mainView.backgroundColor = Theme.shared.mainViewBackgroundColor
         
         welcomeMessageLabel.font = UIFont.welcomeMessageFont()
     }

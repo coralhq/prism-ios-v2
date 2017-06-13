@@ -9,7 +9,7 @@
 import Foundation
 
 open class Settings: Mappable {
-    let data: [String: Any]
+    public let data: [String: Any]
     
     public required init?(dictionary: [String: Any]?) {
         guard let data = dictionary?["data"] as? [String: Any] else {

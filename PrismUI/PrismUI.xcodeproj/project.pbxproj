@@ -7,12 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		800E2EB01EEE35D6003AB37B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E2EAF1EEE35D6003AB37B /* UIColor.swift */; };
+		800E2EB11EEE35D6003AB37B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E2EAF1EEE35D6003AB37B /* UIColor.swift */; };
 		80389A3E1EEA3132007B9458 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389A3C1EEA3132007B9458 /* ConnectViewController.swift */; };
 		80389A3F1EEA3132007B9458 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389A3C1EEA3132007B9458 /* ConnectViewController.swift */; };
 		80389A401EEA3132007B9458 /* ConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80389A3D1EEA3132007B9458 /* ConnectViewController.xib */; };
 		80389A411EEA3132007B9458 /* ConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80389A3D1EEA3132007B9458 /* ConnectViewController.xib */; };
 		80389A431EEA3140007B9458 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389A421EEA3140007B9458 /* TextField.swift */; };
 		80389A441EEA3140007B9458 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389A421EEA3140007B9458 /* TextField.swift */; };
+		80389A531EEA7A13007B9458 /* PrismUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389A521EEA7A13007B9458 /* PrismUI.swift */; };
+		80389A541EEA7A13007B9458 /* PrismUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389A521EEA7A13007B9458 /* PrismUI.swift */; };
+		807C898A1EEE389200DADEBF /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C89891EEE389200DADEBF /* Theme.swift */; };
+		807C898B1EEE389200DADEBF /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C89891EEE389200DADEBF /* Theme.swift */; };
+		807C898D1EEE437200DADEBF /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 807C898C1EEE437200DADEBF /* Media.xcassets */; };
+		807C898E1EEE437200DADEBF /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 807C898C1EEE437200DADEBF /* Media.xcassets */; };
+		807C89911EEE4AF100DADEBF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C898F1EEE4AF100DADEBF /* ChatViewController.swift */; };
+		807C89921EEE4AF100DADEBF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C898F1EEE4AF100DADEBF /* ChatViewController.swift */; };
+		807C89931EEE4AF100DADEBF /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 807C89901EEE4AF100DADEBF /* ChatViewController.xib */; };
+		807C89941EEE4AF100DADEBF /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 807C89901EEE4AF100DADEBF /* ChatViewController.xib */; };
+		807C89991EEE4C3400DADEBF /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C89981EEE4C3400DADEBF /* UIFont.swift */; };
+		807C899A1EEE4C3400DADEBF /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C89981EEE4C3400DADEBF /* UIFont.swift */; };
+		807C899C1EEE63B400DADEBF /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C899B1EEE63B400DADEBF /* UIViewController.swift */; };
+		807C899D1EEE63B400DADEBF /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C899B1EEE63B400DADEBF /* UIViewController.swift */; };
+		807C899F1EEE7BEC00DADEBF /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C899E1EEE7BEC00DADEBF /* UIImageView.swift */; };
+		807C89A01EEE7BEC00DADEBF /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C899E1EEE7BEC00DADEBF /* UIImageView.swift */; };
 		E526657D1EE91A9600612E19 /* PrismUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E52665731EE91A9600612E19 /* PrismUI.framework */; };
 		E52665821EE91A9600612E19 /* PrismUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52665811EE91A9600612E19 /* PrismUITests.swift */; };
 		E52665841EE91A9600612E19 /* PrismUI.h in Headers */ = {isa = PBXBuildFile; fileRef = E52665761EE91A9600612E19 /* PrismUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,9 +47,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		800E2EAF1EEE35D6003AB37B /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		80389A3C1EEA3132007B9458 /* ConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
 		80389A3D1EEA3132007B9458 /* ConnectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectViewController.xib; sourceTree = "<group>"; };
 		80389A421EEA3140007B9458 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		80389A521EEA7A13007B9458 /* PrismUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrismUI.swift; sourceTree = "<group>"; };
+		807C89891EEE389200DADEBF /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Theme.swift; path = PrismUI/Components/Theme/Theme.swift; sourceTree = SOURCE_ROOT; };
+		807C898C1EEE437200DADEBF /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		807C898F1EEE4AF100DADEBF /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		807C89901EEE4AF100DADEBF /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		807C89981EEE4C3400DADEBF /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		807C899B1EEE63B400DADEBF /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		807C899E1EEE7BEC00DADEBF /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		E52665731EE91A9600612E19 /* PrismUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrismUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E52665761EE91A9600612E19 /* PrismUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrismUI.h; sourceTree = "<group>"; };
 		E52665771EE91A9600612E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +86,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		800E2EA91EEE2520003AB37B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				800E2EAE1EEE35BA003AB37B /* Extensions */,
+				800E2EAA1EEE2536003AB37B /* Theme */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		800E2EAA1EEE2536003AB37B /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				807C89891EEE389200DADEBF /* Theme.swift */,
+			);
+			name = Theme;
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		800E2EAE1EEE35BA003AB37B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				800E2EAF1EEE35D6003AB37B /* UIColor.swift */,
+				807C89981EEE4C3400DADEBF /* UIFont.swift */,
+				807C899B1EEE63B400DADEBF /* UIViewController.swift */,
+				807C899E1EEE7BEC00DADEBF /* UIImageView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		80389A381EEA3035007B9458 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +127,8 @@
 			children = (
 				80389A3C1EEA3132007B9458 /* ConnectViewController.swift */,
 				80389A3D1EEA3132007B9458 /* ConnectViewController.xib */,
+				807C898F1EEE4AF100DADEBF /* ChatViewController.swift */,
+				807C89901EEE4AF100DADEBF /* ChatViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -111,12 +169,15 @@
 		E52665751EE91A9600612E19 /* PrismUI */ = {
 			isa = PBXGroup;
 			children = (
+				800E2EA91EEE2520003AB37B /* Components */,
 				80389A3B1EEA3087007B9458 /* Cells */,
 				80389A3A1EEA3053007B9458 /* Views */,
 				80389A391EEA3045007B9458 /* ViewControllers */,
 				80389A381EEA3035007B9458 /* ViewModels */,
 				E52665761EE91A9600612E19 /* PrismUI.h */,
 				E52665771EE91A9600612E19 /* Info.plist */,
+				80389A521EEA7A13007B9458 /* PrismUI.swift */,
+				807C898C1EEE437200DADEBF /* Media.xcassets */,
 			);
 			path = PrismUI;
 			sourceTree = "<group>";
@@ -226,7 +287,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				807C898D1EEE437200DADEBF /* Media.xcassets in Resources */,
 				80389A401EEA3132007B9458 /* ConnectViewController.xib in Resources */,
+				807C89931EEE4AF100DADEBF /* ChatViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +297,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				807C898E1EEE437200DADEBF /* Media.xcassets in Resources */,
 				80389A411EEA3132007B9458 /* ConnectViewController.xib in Resources */,
+				807C89941EEE4AF100DADEBF /* ChatViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,8 +310,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80389A531EEA7A13007B9458 /* PrismUI.swift in Sources */,
+				807C899F1EEE7BEC00DADEBF /* UIImageView.swift in Sources */,
 				80389A3E1EEA3132007B9458 /* ConnectViewController.swift in Sources */,
+				807C899C1EEE63B400DADEBF /* UIViewController.swift in Sources */,
+				807C898A1EEE389200DADEBF /* Theme.swift in Sources */,
+				807C89991EEE4C3400DADEBF /* UIFont.swift in Sources */,
 				80389A431EEA3140007B9458 /* TextField.swift in Sources */,
+				807C89911EEE4AF100DADEBF /* ChatViewController.swift in Sources */,
+				800E2EB01EEE35D6003AB37B /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,8 +327,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				80389A441EEA3140007B9458 /* TextField.swift in Sources */,
+				800E2EB11EEE35D6003AB37B /* UIColor.swift in Sources */,
+				80389A541EEA7A13007B9458 /* PrismUI.swift in Sources */,
+				807C89921EEE4AF100DADEBF /* ChatViewController.swift in Sources */,
+				807C899D1EEE63B400DADEBF /* UIViewController.swift in Sources */,
+				807C898B1EEE389200DADEBF /* Theme.swift in Sources */,
+				807C89A01EEE7BEC00DADEBF /* UIImageView.swift in Sources */,
 				E52665821EE91A9600612E19 /* PrismUITests.swift in Sources */,
 				80389A3F1EEA3132007B9458 /* ConnectViewController.swift in Sources */,
+				807C899A1EEE4C3400DADEBF /* UIFont.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -46,10 +46,12 @@ class Network: NetworkProtocol {
         request.addValue("ApiVersion", forHTTPHeaderField: "ApiVersion")
         request.httpMethod = endPoint.method.rawValue
         
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: endPoint.httpBody, options: .prettyPrinted)
-        } catch let error {
-            print(error.localizedDescription)
+        if !endPoint.httpBody.isEmpty {
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: endPoint.httpBody, options: .prettyPrinted)
+            } catch let error {
+                print(error.localizedDescription)
+            }
         }
         
         requestDataTask(request: request, mapToObject: mapToObject, completionHandler: completionHandler)

@@ -43,7 +43,7 @@ internal extension URL {
     
     static var getSettings: URL {
         get {
-            return URL(string: "\(PrismAPIBaseURL)/v2/settings/merchant_id=\(Config.shared.getMerchantID()!)")!
+            return URL(string: "\(PrismAPIBaseURL)/v2/settings?merchant_id=\(Config.shared.getMerchantID()!)")!
         }
     }
     

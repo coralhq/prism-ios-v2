@@ -7,55 +7,39 @@
 //
 
 import UIKit
-import PrismCore
-
-extension UITableViewCell {
-    static var NIB: UINib {
-        return UINib.init(nibName: self.name, bundle: Bundle.prism)
-    }
-}
 
 public class ConnectViewController: UIViewController {
     
-    @IBOutlet var nameTF: TextField!
-    @IBOutlet var emailTF: TextField!
-    @IBOutlet var phoneTF: TextField!
+    @IBOutlet var nameTF: LinedTextField!
+    @IBOutlet var emailTF: LinedTextField!
+    @IBOutlet var phoneTF: LinedTextField!
     
     let fieldHeight: CGFloat = 55
-    var formFields: [String: Any]
-    
-    public init(formFields: [String: Any]) {
-        self.formFields = formFields
-        super.init(nibName: ConnectViewController.name, bundle: Bundle.prism)
-    }
+    let settings: InputFormSettings?
+    let viewModel = PrismViewModel()
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public init(settings: InputFormSettings?) {
+        self.settings = settings
+        super.init(nibName: ConnectViewController.name, bundle: Bundle.prism)
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        for (key, value) in formFields {
-            guard let value = value as? [String: Any],
-                let show = value["show"] as? Bool,
-                let required = value["required"] as? Bool else {
-                    continue
-            }
-            
-            if key == "name"{
-                update(textField: nameTF, show: show, required: required)
-            } else if key == "email" && show {
-                update(textField: emailTF, show: show, required: required)
-            } else {
-                update(textField: phoneTF, show: show, required: required)
-            }
+        if let settings = settings {
+            update(textField: nameTF, form: settings.username)
+            update(textField: emailTF, form: settings.email)
+            update(textField: phoneTF, form: settings.phoneNumber)
         }
     }
     
-    func update(textField: TextField, show: Bool, required: Bool) {
-        textField.isRequired = required
-        if show {
+    func update(textField: LinedTextField, form: InputForm) {
+        textField.isRequired = form.required
+        if form.show {
             textField.constraint(with: .height)?.constant = fieldHeight
             textField.isHidden = false
         } else {
@@ -72,17 +56,11 @@ public class ConnectViewController: UIViewController {
             emailTF.isValidEmail(),
             phoneTF.isValidPhoneNumber() else { return }
         
-        PrismCore.shared.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (response, error) in
-            
+        viewModel.connect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (credential, error) in
             if let error = error {
                 print("Error: \(error)")
             } else {
-                if let visitor = response?.visitor {
-                    Utils.archive(object: visitor, key: "visitor")
-                }
-                
-                let chatVC = ChatViewController(nibName: ChatViewController.name, bundle: nil)
-                self.navigationController?.pushViewController(chatVC, animated: true)
+                NotificationCenter.default.post(name: ConnectNotification, object: credential)                
             }
         }
     }

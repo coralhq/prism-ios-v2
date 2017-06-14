@@ -24,40 +24,10 @@ open class PrismCore {
         self.delegate = delegate
         Config.shared.configure(environment: environment, merchantID: merchantID)
         network.setMQTTDelegate(delegate: self)
-    }
+    }    
     
-    open func visitorConnect(name: String?, email: String?, phoneNumber: String?, completionHandler: @escaping (ConnectResponse?, NSError?) -> ()) {
-        
-        var userID: String {
-            get {
-                if let email = email,
-                    let phone = phoneNumber,
-                    email.characters.count > 0,
-                    phone.characters.count > 0 {
-                    return "\(email);\(phone)"
-                } else if let email = email,
-                    email.characters.count > 0 {
-                    return email
-                } else if let phone = phoneNumber,
-                    phone.characters.count > 0 {
-                    return phone
-                } else {
-                    return ""
-                }
-            }
-        }
-        
-        var visitorName: String {
-            get {
-                if let name = name {
-                    return name
-                } else {
-                    return ""
-                }
-            }
-        }
-        
-        let endPoint = VisitorConnectEndPoint(visitorName: visitorName, userID: userID)
+    open func visitorConnect(userName: String, userID: String, completionHandler: @escaping (ConnectResponse?, NSError?) -> ()) {
+        let endPoint = VisitorConnectEndPoint(visitorName: userName, userID: userID)
         network.request(endPoint: endPoint, mapToObject: ConnectResponse.self) { (mappable, error) in
             DispatchQueue.main.async(){
                 completionHandler(mappable as? ConnectResponse, error)

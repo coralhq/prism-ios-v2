@@ -1,5 +1,5 @@
 //
-//  TextField.swift
+//  LinedTextField.swift
 //  PrismUI
 //
 //  Created by Nanang Rafsanjani on 6/8/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class TextField: UITextField {
+public class LinedTextField: UITextField {
     var isRequired: Bool = false
     
     let floatingLabelHeight: CGFloat = 15

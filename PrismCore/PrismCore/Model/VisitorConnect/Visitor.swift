@@ -56,11 +56,11 @@ public class Visitor : Mappable, NSCoding {
     public required convenience init?(coder aDecoder: NSCoder) {
         self.init(coder: aDecoder)
         guard let id = aDecoder.decodeObject(forKey: VisitorKeys.id) as? String,
-        let name = aDecoder.decodeObject(forKey: VisitorKeys.name) as? String,
-        let merchantID = aDecoder.decodeObject(forKey: VisitorKeys.merchantID) as? String,
-        let appName = aDecoder.decodeObject(forKey: VisitorKeys.appName) as? String,
-        let channelName = aDecoder.decodeObject(forKey: VisitorKeys.channelName) as? String,
-        let channelUserID = aDecoder.decodeObject(forKey: VisitorKeys.channelUserID) as? String else { return }
+            let name = aDecoder.decodeObject(forKey: VisitorKeys.name) as? String,
+            let merchantID = aDecoder.decodeObject(forKey: VisitorKeys.merchantID) as? String,
+            let appName = aDecoder.decodeObject(forKey: VisitorKeys.appName) as? String,
+            let channelName = aDecoder.decodeObject(forKey: VisitorKeys.channelName) as? String,
+            let channelUserID = aDecoder.decodeObject(forKey: VisitorKeys.channelUserID) as? String else { return }
         
         self.id = id
         self.merchantID = merchantID

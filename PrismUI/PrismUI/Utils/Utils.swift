@@ -10,7 +10,7 @@ import Foundation
 
 class Utils {
     static func archive(object: Any, key: String) {
-        let data = NSKeyedArchiver.archivedData(withRootObject: self)
+        let data = NSKeyedArchiver.archivedData(withRootObject: object)
         UserDefaults.standard.set(data, forKey: key)
         UserDefaults.standard.synchronize()
     }

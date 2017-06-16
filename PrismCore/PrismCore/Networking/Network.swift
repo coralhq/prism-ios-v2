@@ -17,8 +17,16 @@ enum HTTPMethod: String {
 class Network: NetworkProtocol {
     
     static let shared = Network()
-    private let mqttSession = MQTTSession(host: "", port: 1882, clientID: "iOSDK", cleanSession: true, keepAlive: 60, useSSL: true)
-    private init() {}
+    private let mqttSession: MQTTSession
+    
+    init() {
+        mqttSession = MQTTSession(host: URL.PrismMQTTURL,
+                                  port: URL.PrismMQTTPort,
+                                  clientID: "iOS-SDK",
+                                  cleanSession: true,
+                                  keepAlive: 60,
+                                  useSSL: false)
+    }
     
     func requestRawResult<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping (([String: Any]?, NSError?) -> ())) {
         
@@ -94,7 +102,7 @@ class Network: NetworkProtocol {
             }
             
             do {
-                if let data = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {                    
+                if let data = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
                     if response.statusCode >= 200 &&
                         response.statusCode <= 299 {
                         DispatchQueue.main.async(){
@@ -128,7 +136,6 @@ class Network: NetworkProtocol {
     func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, NSError?) -> ())) {
         mqttSession.username = username
         mqttSession.password = password
-        
         mqttSession.connect { (connected, error) in
             DispatchQueue.main.async(){
                 completionHandler(connected, error as NSError?)

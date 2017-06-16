@@ -20,7 +20,6 @@
 		E5053A861EF10930006677A4 /* LinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389A421EEA3140007B9458 /* LinedTextField.swift */; };
 		E5053A891EF10D24006677A4 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5053A871EF10D24006677A4 /* RootViewController.swift */; };
 		E5053A8A1EF10D24006677A4 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5053A881EF10D24006677A4 /* RootViewController.xib */; };
-		E5053A8C1EF1258F006677A4 /* PrismViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5053A8B1EF1258F006677A4 /* PrismViewModel.swift */; };
 		E5053A8F1EF13123006677A4 /* InputFormSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5053A8E1EF13123006677A4 /* InputFormSettings.swift */; };
 		E5053A911EF13728006677A4 /* PrismCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5053A901EF13728006677A4 /* PrismCredential.swift */; };
 		E5053A931EF1F30A006677A4 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5053A921EF1F30A006677A4 /* ViewUtils.swift */; };
@@ -30,6 +29,10 @@
 		E547D2281EF1FA6200B66136 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E547D2271EF1FA6200B66136 /* Media.xcassets */; };
 		E54969B81EEA82B7008209D9 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54969B71EEA82B7008209D9 /* PrismCore.framework */; };
 		E54969BB1EEA8496008209D9 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54969BA1EEA8496008209D9 /* Utils.swift */; };
+		E559E1F11EF2658C004E3F03 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559E1F01EF2658C004E3F03 /* Settings.swift */; };
+		E559E1F31EF26FBA004E3F03 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559E1F21EF26FBA004E3F03 /* BaseViewController.swift */; };
+		E58FAE5D1EF36874002F1A2A /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FAE5C1EF36874002F1A2A /* AuthViewModel.swift */; };
+		E58FAE5F1EF3687D002F1A2A /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FAE5E1EF3687D002F1A2A /* ChatViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +59,6 @@
 		807C899E1EEE7BEC00DADEBF /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		E5053A871EF10D24006677A4 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		E5053A881EF10D24006677A4 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
-		E5053A8B1EF1258F006677A4 /* PrismViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrismViewModel.swift; sourceTree = "<group>"; };
 		E5053A8E1EF13123006677A4 /* InputFormSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputFormSettings.swift; path = Models/InputFormSettings.swift; sourceTree = "<group>"; };
 		E5053A901EF13728006677A4 /* PrismCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrismCredential.swift; path = Models/PrismCredential.swift; sourceTree = "<group>"; };
 		E5053A921EF1F30A006677A4 /* ViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewUtils.swift; path = Utils/ViewUtils.swift; sourceTree = "<group>"; };
@@ -69,6 +71,10 @@
 		E547D2271EF1FA6200B66136 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Resources/Media.xcassets; sourceTree = "<group>"; };
 		E54969B71EEA82B7008209D9 /* PrismCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrismCore.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/DemoPrismCore-friqtlupaxddjygruiinatqqklhk/Build/Products/Debug-iphonesimulator/PrismCore.framework"; sourceTree = "<group>"; };
 		E54969BA1EEA8496008209D9 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
+		E559E1F01EF2658C004E3F03 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = Models/Settings.swift; sourceTree = "<group>"; };
+		E559E1F21EF26FBA004E3F03 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		E58FAE5C1EF36874002F1A2A /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		E58FAE5E1EF3687D002F1A2A /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +129,8 @@
 		80389A381EEA3035007B9458 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				E5053A8B1EF1258F006677A4 /* PrismViewModel.swift */,
+				E58FAE5C1EF36874002F1A2A /* AuthViewModel.swift */,
+				E58FAE5E1EF3687D002F1A2A /* ChatViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -131,6 +138,7 @@
 		80389A391EEA3045007B9458 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E559E1F21EF26FBA004E3F03 /* BaseViewController.swift */,
 				80389A3C1EEA3132007B9458 /* ConnectViewController.swift */,
 				80389A3D1EEA3132007B9458 /* ConnectViewController.xib */,
 				807C898F1EEE4AF100DADEBF /* ChatViewController.swift */,
@@ -161,6 +169,7 @@
 			children = (
 				E5053A8E1EF13123006677A4 /* InputFormSettings.swift */,
 				E5053A901EF13728006677A4 /* PrismCredential.swift */,
+				E559E1F01EF2658C004E3F03 /* Settings.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -363,14 +372,17 @@
 			files = (
 				E5053A8F1EF13123006677A4 /* InputFormSettings.swift in Sources */,
 				E5053A861EF10930006677A4 /* LinedTextField.swift in Sources */,
-				E5053A8C1EF1258F006677A4 /* PrismViewModel.swift in Sources */,
 				80389A531EEA7A13007B9458 /* PrismUI.swift in Sources */,
 				807C899F1EEE7BEC00DADEBF /* UIImageView.swift in Sources */,
 				E5053A891EF10D24006677A4 /* RootViewController.swift in Sources */,
 				80389A3E1EEA3132007B9458 /* ConnectViewController.swift in Sources */,
+				E559E1F31EF26FBA004E3F03 /* BaseViewController.swift in Sources */,
+				E58FAE5D1EF36874002F1A2A /* AuthViewModel.swift in Sources */,
 				E54969BB1EEA8496008209D9 /* Utils.swift in Sources */,
 				807C899C1EEE63B400DADEBF /* UIViewController.swift in Sources */,
+				E58FAE5F1EF3687D002F1A2A /* ChatViewModel.swift in Sources */,
 				807C898A1EEE389200DADEBF /* Theme.swift in Sources */,
+				E559E1F11EF2658C004E3F03 /* Settings.swift in Sources */,
 				807C89991EEE4C3400DADEBF /* UIFont.swift in Sources */,
 				E5053A931EF1F30A006677A4 /* ViewUtils.swift in Sources */,
 				807C89911EEE4AF100DADEBF /* ChatViewController.swift in Sources */,

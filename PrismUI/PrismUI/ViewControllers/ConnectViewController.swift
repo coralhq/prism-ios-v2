@@ -8,33 +8,33 @@
 
 import UIKit
 
-public class ConnectViewController: UIViewController {
+public class ConnectViewController: BaseViewController {
     
     @IBOutlet var nameTF: LinedTextField!
     @IBOutlet var emailTF: LinedTextField!
     @IBOutlet var phoneTF: LinedTextField!
     
     let fieldHeight: CGFloat = 55
-    let settings: InputFormSettings?
-    let viewModel = PrismViewModel()
+    
+    var viewModel: AuthViewModel
+
+    public init(viewModel: AuthViewModel) {
+        self.viewModel = viewModel
+        
+        super.init(nibName: nil, bundle: Bundle.prism)
+    }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public init(settings: InputFormSettings?) {
-        self.settings = settings
-        super.init(nibName: ConnectViewController.name, bundle: Bundle.prism)
-    }
-    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let settings = settings {
-            update(textField: nameTF, form: settings.username)
-            update(textField: emailTF, form: settings.email)
-            update(textField: phoneTF, form: settings.phoneNumber)
-        }
+        let formField = Settings.shared.inputForm        
+        update(textField: nameTF, form: formField.username)
+        update(textField: emailTF, form: formField.email)
+        update(textField: phoneTF, form: formField.phoneNumber)
     }
     
     func update(textField: LinedTextField, form: InputForm) {
@@ -56,11 +56,11 @@ public class ConnectViewController: UIViewController {
             emailTF.isValidEmail(),
             phoneTF.isValidPhoneNumber() else { return }
         
-        viewModel.connect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (credential, error) in
+        viewModel.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (credential, error) in
             if let error = error {
                 print("Error: \(error)")
             } else {
-                NotificationCenter.default.post(name: ConnectNotification, object: credential)                
+                NotificationCenter.default.post(name: ConnectNotification, object: nil)
             }
         }
     }

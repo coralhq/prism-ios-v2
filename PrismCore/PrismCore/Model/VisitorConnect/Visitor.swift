@@ -10,12 +10,12 @@ import Foundation
 
 //TODO: some properties might unused, re-check later
 public class Visitor : Mappable {
-    public var id: String
-    public var name: String
-    public var merchantID: String
-    public var appName: String
-    public var channelName: String
-    public var channelUserID: String
+    public let id: String
+    public let name: String
+    public let merchantID: String
+    public let appName: String
+    public let channelName: String
+    public let channelUserID: String
     
     required public init?(dictionary: [String: Any]?) {
         guard let id = dictionary?["id"] as? String,

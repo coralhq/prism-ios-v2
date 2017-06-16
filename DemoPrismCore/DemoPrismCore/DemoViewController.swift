@@ -12,7 +12,7 @@ import PrismUI
 private let reuseIdentifier = "Cell"
 
 class DemoViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var chatButton: UIButton!
     
@@ -30,41 +30,15 @@ class DemoViewController: UIViewController, UICollectionViewDelegate, UICollecti
         collectionView?.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView?.backgroundColor = UIColor.lightGray
         
-        chatButton.isEnabled = false
         chatButton.layer.cornerRadius = 15
         chatButton.backgroundColor = .white
         
         let image = UIImage(named: "icChatwidget", in: Bundle.init(identifier: "io.prismapp.PrismUI"), compatibleWith: nil)
         chatButton.setImage(image, for: .normal)
-        viewModel.getSetting(handler: { [weak self] (enabled) in
-            self?.chatButton.isEnabled = enabled
-        })
     }
     
     @IBAction func chatAction(_ sender: Any) {
-        guard let setting = viewModel.setting else {
-            chatButton.isEnabled = false
-            viewModel.getSetting(handler: { [weak self] (enabled) in
-                self?.chatButton.isEnabled = enabled
-            })
-            return
-        }
-        
-        let publicData = setting["public"] as! [String: Any]
-        let widget = publicData["widget"] as! [String: Any]
-        let avatar = URL(string: widget["persona_image_url"] as! String) ?? URL(string: "https://lorempixel.com/100/100")!
-        let title = widget["title_expanded"] as! String
-        let subtitle = widget["subtitle"] as! String
-        let welcome = widget["welcome_message"] as! String
-        
-        let vc = ChatViewController(
-            avatar: avatar,
-            title: title,
-            subtitle: subtitle,
-            wellcomeMessage: welcome
-        )
-        
-        navigationController?.pushViewController(vc, animated: true)
+        viewModel.presentChatWidget(on: self)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -125,11 +99,8 @@ class DemoViewModel {
         PrismUI.shared.configure(environment: .Sandbox, merchantID: "62ccf49f-0386-49a3-858c-70c98a9dc4fc", delegate: self)
     }
     
-    func getSetting(handler: @escaping (Bool) -> ()) {
-        PrismUI.shared.getSetting { [weak self] (response) in
-            self?.setting = response
-            handler(self?.setting != nil)
-        }
+    func presentChatWidget(on vc: UIViewController) {
+        PrismUI.shared.present(on: vc)
     }
 }
 

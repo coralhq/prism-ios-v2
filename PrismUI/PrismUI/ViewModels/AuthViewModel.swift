@@ -19,8 +19,21 @@ let DisconnectNotification = NSNotification.Name(rawValue: "DisconnectNotificati
 
 public class AuthViewModel {
     
+    var _credential: PrismCredential?
     var credential: PrismCredential? {
-        return Utils.unarchive(key: SerialisationKeys.credential) as? PrismCredential
+        set {
+            guard let credential = newValue else {
+                Utils.removeArchive(key: SerialisationKeys.credential); return
+            }
+            Utils.archive(object: credential, key: SerialisationKeys.credential)
+            _credential = credential
+        }
+        get {
+            if _credential == nil {
+                _credential = Utils.unarchive(key: SerialisationKeys.credential) as? PrismCredential
+            }
+            return _credential
+        }
     }
     
     func visitorConnectAnonymous(completion: @escaping (PrismCredential?, NSError?) -> Void) {

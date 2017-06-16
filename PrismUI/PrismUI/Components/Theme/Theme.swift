@@ -49,8 +49,7 @@ open class Theme {
     open var emojiButtonImage: UIImage
     open var attachmentButtonImage: UIImage
     
-    static public var shared = Theme()
-    private init() {
+    init() {
         navigationBarColor = UIColor.white
         navigationBarTitleColor = UIColor.steelBlue
         mainViewBackgroundColor = UIColor.steelBlueMainViewFill
@@ -67,7 +66,7 @@ open class Theme {
         attachmentButtonImage = UIImage()
     }
     
-    open func configure(option: ThemeOptions) {
+    func configure(option: ThemeOptions) {
         switch option {
         case .AzureWhite:
             navigationBarColor = UIColor.white

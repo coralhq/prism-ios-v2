@@ -12,6 +12,11 @@ internal extension URL {
     
     private static let PrismAPIBaseURLProduction = "https://api.prismapp.io"
     private static let PrismAPIBaseURLSandbox = "https://kong.staging.coral-inc.com"
+    private static let PrismMQTTURLProduction = "chat.prismapp.io"
+    private static let PrismMQTTURLSandbox = "chat.prismapp.io"
+    private static let PrismMQTTPortSandbox: UInt16 = 1883
+    private static let PrismMQTTPortProduction: UInt16 = 1883
+    
     private static var PrismAPIBaseURL: String {
         get {
             switch Config.shared.getEnvironment()! {
@@ -19,6 +24,28 @@ internal extension URL {
                 return PrismAPIBaseURLProduction
             case .Sandbox:
                 return PrismAPIBaseURLSandbox
+            }
+        }
+    }
+    
+    static var PrismMQTTPort: UInt16 {
+        get {
+            switch Config.shared.getEnvironment()! {
+            case .Production:
+                return PrismMQTTPortProduction
+            case .Sandbox:
+                return PrismMQTTPortSandbox
+            }
+        }
+    }
+    
+    static var PrismMQTTURL: String {
+        get {
+            switch Config.shared.getEnvironment()! {
+            case .Production:
+                return PrismMQTTURLProduction
+            case .Sandbox:
+                return PrismMQTTURLSandbox
             }
         }
     }

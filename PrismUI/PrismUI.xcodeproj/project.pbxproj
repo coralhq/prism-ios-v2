@@ -218,7 +218,6 @@
 		80389A391EEA3045007B9458 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E58FAE701EF38D00002F1A2A /* ChatCells */,
 				E559E1F21EF26FBA004E3F03 /* BaseViewController.swift */,
 				80389A3C1EEA3132007B9458 /* ConnectViewController.swift */,
 				80389A3D1EEA3132007B9458 /* ConnectViewController.xib */,
@@ -248,6 +247,7 @@
 		80389A3B1EEA3087007B9458 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				E58FAE701EF38D00002F1A2A /* ChatCell */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -384,7 +384,7 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		E58FAE701EF38D00002F1A2A /* ChatCells */ = {
+		E58FAE701EF38D00002F1A2A /* ChatCell */ = {
 			isa = PBXGroup;
 			children = (
 				E57440AE1EF7CF7E003CA9E7 /* View */,
@@ -393,7 +393,8 @@
 				E57440A91EF7CA21003CA9E7 /* Container */,
 				E58FAE831EF495E4002F1A2A /* ChatCell.swift */,
 			);
-			name = ChatCells;
+			name = ChatCell;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		E5CD9F6C1EEA7F650066C1CC /* Resources */ = {

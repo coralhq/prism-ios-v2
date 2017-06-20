@@ -9,7 +9,7 @@
 import UIKit
 
 public class LinedTextField: UITextField {
-    var isRequired: Bool = false
+    var isRequired: Bool = true
     
     let floatingLabelHeight: CGFloat = 15
     let bottomLineHeight: CGFloat = 1

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="hoG-d3-Tzo" customClass="ChatOutContainerView" customModule="PrismUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="359" height="193"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Yy-wc-ZY0">
+                    <rect key="frame" x="16" y="10" width="327" height="17"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                    <color key="textColor" red="0.82745098039999998" green="0.21960784310000001" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k9e-9g-2zL" customClass="ChatBubleView" customModule="PrismUI" customModuleProvider="target">
+                    <rect key="frame" x="143" y="27" width="200" height="166"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n37-bD-oWi">
+                            <rect key="frame" x="8" y="8" width="121" height="150"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qXz-pM-Rbn">
+                            <rect key="frame" x="137" y="148" width="55" height="10"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icStatusRead" translatesAutoresizingMaskIntoConstraints="NO" id="xRk-9x-Nr9">
+                                    <rect key="frame" x="42" y="0.0" width="13" height="10"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:40 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xE-Cx-ZSm">
+                                    <rect key="frame" x="0.0" y="0.0" width="39" height="10"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                    <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="xRk-9x-Nr9" secondAttribute="bottom" id="6wL-Ga-Wr8"/>
+                                <constraint firstItem="9xE-Cx-ZSm" firstAttribute="leading" secondItem="qXz-pM-Rbn" secondAttribute="leading" id="84d-Us-4KD"/>
+                                <constraint firstAttribute="bottom" secondItem="9xE-Cx-ZSm" secondAttribute="bottom" id="Cw9-Ei-0by"/>
+                                <constraint firstItem="xRk-9x-Nr9" firstAttribute="leading" secondItem="9xE-Cx-ZSm" secondAttribute="trailing" constant="3" id="EOu-Jn-5P8"/>
+                                <constraint firstItem="xRk-9x-Nr9" firstAttribute="top" secondItem="qXz-pM-Rbn" secondAttribute="top" id="Ht9-x7-9X5"/>
+                                <constraint firstItem="9xE-Cx-ZSm" firstAttribute="top" secondItem="qXz-pM-Rbn" secondAttribute="top" id="ndc-7i-GYU"/>
+                                <constraint firstAttribute="trailing" secondItem="xRk-9x-Nr9" secondAttribute="trailing" id="w0f-0d-iHZ"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="qXz-pM-Rbn" secondAttribute="trailing" constant="8" id="3d6-1u-1dG"/>
+                        <constraint firstItem="n37-bD-oWi" firstAttribute="top" secondItem="k9e-9g-2zL" secondAttribute="top" constant="8" id="3ns-8k-VSX"/>
+                        <constraint firstAttribute="bottom" secondItem="qXz-pM-Rbn" secondAttribute="bottom" constant="8" id="6TJ-Fa-hXl"/>
+                        <constraint firstAttribute="width" constant="200" placeholder="YES" id="A6y-Pd-Sxb"/>
+                        <constraint firstItem="n37-bD-oWi" firstAttribute="leading" secondItem="k9e-9g-2zL" secondAttribute="leading" constant="8" id="S0M-dE-PgX"/>
+                        <constraint firstItem="qXz-pM-Rbn" firstAttribute="leading" secondItem="n37-bD-oWi" secondAttribute="trailing" constant="8" id="TkS-jm-kkA"/>
+                        <constraint firstItem="qXz-pM-Rbn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="k9e-9g-2zL" secondAttribute="leading" constant="8" id="dJL-rK-DKS"/>
+                        <constraint firstItem="n37-bD-oWi" firstAttribute="bottom" secondItem="qXz-pM-Rbn" secondAttribute="bottom" id="lYZ-5G-4cC"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                            <color key="value" red="0.82745098039999998" green="0.1960784314" blue="0.1960784314" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                            <color key="value" red="0.82745098039999998" green="0.1960784314" blue="0.1960784314" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="bubleTypeAdapter">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="7Yy-wc-ZY0" firstAttribute="top" secondItem="hoG-d3-Tzo" secondAttribute="top" constant="10" id="3XT-Ck-Rd9"/>
+                <constraint firstAttribute="bottom" secondItem="k9e-9g-2zL" secondAttribute="bottom" id="BPY-kz-0tg"/>
+                <constraint firstItem="k9e-9g-2zL" firstAttribute="trailing" secondItem="7Yy-wc-ZY0" secondAttribute="trailing" id="BWf-pA-Nrm"/>
+                <constraint firstItem="k9e-9g-2zL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hoG-d3-Tzo" secondAttribute="leading" constant="16" id="OHy-r7-F7v"/>
+                <constraint firstAttribute="trailing" secondItem="7Yy-wc-ZY0" secondAttribute="trailing" constant="16" id="Xx4-TZ-TG8"/>
+                <constraint firstItem="k9e-9g-2zL" firstAttribute="top" secondItem="7Yy-wc-ZY0" secondAttribute="bottom" id="eqe-UJ-xBM"/>
+                <constraint firstItem="7Yy-wc-ZY0" firstAttribute="leading" secondItem="hoG-d3-Tzo" secondAttribute="leading" constant="16" id="m1W-cS-F9Q"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="containerView" destination="n37-bD-oWi" id="1GE-Mk-hBP"/>
+                <outlet property="infoView" destination="qXz-pM-Rbn" id="RrL-pJ-aey"/>
+                <outlet property="infoWithContentHSpace" destination="TkS-jm-kkA" id="CJ2-HV-VMH"/>
+                <outlet property="infoWithContentVSpace" destination="lYZ-5G-4cC" id="ObP-lP-QQy"/>
+            </connections>
+            <point key="canvasLocation" x="68" y="2"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icStatusRead" width="13" height="9"/>
+    </resources>
+</document>

@@ -21,8 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
 
         let vc = DemoViewController(nibName: "DemoViewController", bundle: nil)
-        let navBar = UINavigationController(rootViewController: vc)
-        window!.rootViewController = navBar
+        window!.rootViewController = vc
         window!.makeKeyAndVisible()
         
         return true

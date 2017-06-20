@@ -28,13 +28,6 @@
 			remoteGlobalIDString = E52665731EE91A9600612E19;
 			remoteInfo = PrismUI;
 		};
-		E52665951EE91AA300612E19 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E526658D1EE91AA200612E19 /* PrismUI.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E526657C1EE91A9600612E19;
-			remoteInfo = PrismUITests;
-		};
 		E52665A31EE9310800612E19 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E526658D1EE91AA200612E19 /* PrismUI.xcodeproj */;
@@ -62,6 +55,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 80564C3B1ED5289D00BDA006;
 			remoteInfo = PrismCore;
+		};
+		E57440A71EF7B37C003CA9E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E526658D1EE91AA200612E19 /* PrismUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E5053A981EF1F6B3006677A4;
+			remoteInfo = PrismUnitTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -111,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				E52665941EE91AA300612E19 /* PrismUI.framework */,
-				E52665961EE91AA300612E19 /* PrismUITests.xctest */,
+				E57440A81EF7B37C003CA9E7 /* PrismUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,7 +193,7 @@
 				TargetAttributes = {
 					E54D95F41ED55E34009FF016 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = G92YEQF267;
+						DevelopmentTeam = 36T5DNWZL4;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -234,13 +234,6 @@
 			remoteRef = E52665931EE91AA300612E19 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E52665961EE91AA300612E19 /* PrismUITests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = PrismUITests.xctest;
-			remoteRef = E52665951EE91AA300612E19 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		E54D96101ED55E5A009FF016 /* PrismCore.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -253,6 +246,13 @@
 			fileType = wrapper.cfbundle;
 			path = PrismCoreTests.xctest;
 			remoteRef = E54D96111ED55E5A009FF016 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E57440A81EF7B37C003CA9E7 /* PrismUnitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PrismUnitTests.xctest;
+			remoteRef = E57440A71EF7B37C003CA9E7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -407,7 +407,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = G92YEQF267;
+				DEVELOPMENT_TEAM = 36T5DNWZL4;
 				INFOPLIST_FILE = DemoPrismCore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.prismapp.ios.demo.DemoPrismCore;
@@ -421,7 +421,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = G92YEQF267;
+				DEVELOPMENT_TEAM = 36T5DNWZL4;
 				INFOPLIST_FILE = DemoPrismCore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.prismapp.ios.demo.DemoPrismCore;

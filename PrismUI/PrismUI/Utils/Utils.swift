@@ -26,3 +26,23 @@ class Utils {
         return NSKeyedUnarchiver.unarchiveObject(with: data)
     }
 }
+
+extension NSObject {
+    static var name: String {
+        get {
+            return String(describing: self)
+        }
+    }
+}
+
+extension Bundle {
+    static var prism: Bundle {
+        return Bundle(for: ConnectViewController.classForCoder())
+    }
+}
+
+extension UITableViewCell {
+    static var NIB: UINib {
+        return UINib.init(nibName: self.name, bundle: Bundle.prism)
+    }
+}

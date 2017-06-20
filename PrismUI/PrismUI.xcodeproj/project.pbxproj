@@ -27,6 +27,7 @@
 		E508C1B71EF8B469004DCB6A /* ChatImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508C1B61EF8B469004DCB6A /* ChatImageView.swift */; };
 		E508C1B91EF8B479004DCB6A /* ChatImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E508C1B81EF8B479004DCB6A /* ChatImageView.xib */; };
 		E508C1BB1EF8BD22004DCB6A /* NumberExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508C1BA1EF8BD22004DCB6A /* NumberExt.swift */; };
+		E508C1C31EF8D6F9004DCB6A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E508C1C21EF8D6F9004DCB6A /* Localizable.strings */; };
 		E52665841EE91A9600612E19 /* PrismUI.h in Headers */ = {isa = PBXBuildFile; fileRef = E52665761EE91A9600612E19 /* PrismUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E547D2281EF1FA6200B66136 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E547D2271EF1FA6200B66136 /* Media.xcassets */; };
 		E54969B81EEA82B7008209D9 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54969B71EEA82B7008209D9 /* PrismCore.framework */; };
@@ -107,6 +108,7 @@
 		E508C1B61EF8B469004DCB6A /* ChatImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatImageView.swift; path = PrismUI/Views/ChatImageView.swift; sourceTree = SOURCE_ROOT; };
 		E508C1B81EF8B479004DCB6A /* ChatImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatImageView.xib; path = PrismUI/Views/ChatImageView.xib; sourceTree = SOURCE_ROOT; };
 		E508C1BA1EF8BD22004DCB6A /* NumberExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumberExt.swift; path = Utils/NumberExt.swift; sourceTree = "<group>"; };
+		E508C1C21EF8D6F9004DCB6A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Resources/Localizable.strings; sourceTree = "<group>"; };
 		E52665731EE91A9600612E19 /* PrismUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrismUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E52665761EE91A9600612E19 /* PrismUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrismUI.h; sourceTree = "<group>"; };
 		E52665771EE91A9600612E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 			children = (
 				E58FAE6E1EF385F3002F1A2A /* EmojisList.plist */,
 				E547D2271EF1FA6200B66136 /* Media.xcassets */,
+				E508C1C21EF8D6F9004DCB6A /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				E57440951EF76BEC003CA9E7 /* ChatProductView.xib in Resources */,
 				E508C1B91EF8B479004DCB6A /* ChatImageView.xib in Resources */,
 				E57440881EF76140003CA9E7 /* StickerInContainer.xib in Resources */,
+				E508C1C31EF8D6F9004DCB6A /* Localizable.strings in Resources */,
 				E57440AD1EF7CE58003CA9E7 /* ChatCartView.xib in Resources */,
 				E57440B21EF7CFB3003CA9E7 /* ProductCartView.xib in Resources */,
 				E5053A8A1EF10D24006677A4 /* RootViewController.xib in Resources */,

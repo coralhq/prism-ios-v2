@@ -27,6 +27,12 @@ class Utils {
     }
 }
 
+extension String {
+    func localized() -> String {
+        return NSLocalizedString(self, tableName: nil, bundle: Bundle.prism, value: "", comment: "")
+    }
+}
+
 extension NSObject {
     static var name: String {
         get {

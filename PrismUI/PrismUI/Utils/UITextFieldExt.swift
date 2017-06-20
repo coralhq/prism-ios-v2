@@ -17,7 +17,7 @@ extension LinedTextField {
             return true
         } else {
             if isRequired {
-                warning = "name is required"
+                warning = "name is required".localized()
                 return false
             } else {
                 return true
@@ -35,12 +35,12 @@ extension LinedTextField {
             if emailTest.evaluate(with: self) {
                 return true
             } else {
-                warning = "email is invalid"
+                warning = "email is invalid".localized()
                 return false
             }
         } else {
             if isRequired {
-                warning = "email is required"
+                warning = "email is required".localized()
                 return false
             } else {
                 return true
@@ -58,12 +58,12 @@ extension LinedTextField {
             if tester.evaluate(with:self) {
                 return true
             } else {
-                warning = "phone number is invalid"
+                warning = "phone number is invalid".localized()
                 return false
             }
         } else {
             if isRequired {
-                warning = "phone number is required"
+                warning = "phone number is required".localized()
                 return false
             } else {
                 return true

@@ -15,8 +15,8 @@ enum ChatBubleType: Int {
 
 class ChatBubleView: UIView {
     
-    @IBInspectable var strokeColor: UIColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-    @IBInspectable var fillColor: UIColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+    @IBInspectable var strokeColor: UIColor = UIColor.red
+    @IBInspectable var fillColor: UIColor = UIColor.orange
     @IBInspectable var cornerRadius: CGFloat = 5
     @IBInspectable var bubleTypeAdapter: Int {
         get {

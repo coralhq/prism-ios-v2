@@ -34,5 +34,4 @@ public class Visitor : Mappable {
         self.channelName = channelName
         self.channelUserID = channelUserID
     }
-    
 }

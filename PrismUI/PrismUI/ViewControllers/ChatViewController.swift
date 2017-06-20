@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class ChatViewController: UIViewController {
+public class ChatViewController: BaseViewController {
 
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var welcomeMessageLabel: UILabel!
@@ -18,18 +18,12 @@ open class ChatViewController: UIViewController {
     var subtitle: String = ""
     var avatar: URL?
     
-    private override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
+    private var viewModel: ChatViewModel
     
-    convenience public init(avatar: URL, title: String, subtitle: String, wellcomeMessage: String) {
+    init(credential: PrismCredential) {
+        self.viewModel = ChatViewModel(credential: credential)
         
-        self.init(nibName: "ChatViewController", bundle: Bundle.init(identifier: "io.prismapp.PrismUI"))
-        
-        self.welcomeMessage = wellcomeMessage
-        self.navTitle = title
-        self.subtitle = subtitle
-        self.avatar = avatar
+        super.init(nibName: nil, bundle: Bundle.prism)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -39,12 +33,23 @@ open class ChatViewController: UIViewController {
     override open func viewDidLoad() {
         super.viewDidLoad()
         
-        configureNavigationBar(title: navTitle, subtitle: subtitle, avatar: avatar!)
+        viewModel.connect { (success, error) in
+            if success {
+                print("connect chat success")
+            } else {
+                guard let error = error as NSError? else { return }
+                print("error: \(error)")
+            }
+        }
         
-        welcomeMessageLabel.text = welcomeMessage
-        mainView.backgroundColor = Theme.shared.mainViewBackgroundColor
-        
-        welcomeMessageLabel.font = UIFont.welcomeMessageFont()
+        viewModel.subscribe { (success, error) in
+            if success {
+                print("subscribe chat success")
+            } else {
+                guard let error = error as NSError? else { return }
+                print("error: \(error)")
+            }
+        }
     }
 }
 

@@ -22,26 +22,12 @@ open class PrismUI {
     
     open func configure(environment: EnvironmentType, merchantID: String, delegate: PrismUIDelegate) {
         self.delegate = delegate
-        
         PrismCore.shared.configure(environment: environment, merchantID: merchantID, delegate: self)
     }
     
-    open func getSetting(completionHandler: @escaping ([String: Any]) -> ()) {
-        
-        PrismCore.shared.getSettings { (response, error) in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            
-            let publicData = response!["public"] as! [String: Any]
-            let widget = publicData["widget"] as! [String: Any]
-            let themeOption = ThemeOptions(rawValue: widget["style"] as! String)!
-            Theme.shared.configure(option: themeOption)
-            
-            UserDefaults.standard.set(response, forKey: "merchant_setting")
-            completionHandler(response!)
-        }
+    open func present(on viewController: UIViewController) {
+        let rootVC = RootViewController()
+        viewController.present(rootVC, animated: true, completion: nil)
     }
 }
 

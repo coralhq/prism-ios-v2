@@ -21,7 +21,7 @@ extension NavigationBarStyle where Self: UIViewController {
         let newNavBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64))
         
         let backgroundView = UIView(frame: newNavBar.frame)
-        backgroundView.backgroundColor = Theme.shared.navigationBarColor
+        backgroundView.backgroundColor = Settings.shared.theme.navigationBarColor
         newNavBar.addSubview(backgroundView)
         
         let item = UINavigationItem()
@@ -38,14 +38,14 @@ extension NavigationBarStyle where Self: UIViewController {
         titleLabel.font = UIFont.navigationTitleFont()
         titleLabel.textAlignment = .left
         titleLabel.sizeToFit()
-        titleLabel.textColor = Theme.shared.navigationBarTitleColor
+        titleLabel.textColor = Settings.shared.theme.navigationBarTitleColor
         
         let subTitleLabel = UILabel()
         subTitleLabel.text = subtitle
         subTitleLabel.font = UIFont.navigationSubTitleFont()
         subTitleLabel.textAlignment = .left
         subTitleLabel.sizeToFit()
-        subTitleLabel.textColor = Theme.shared.navigationBarTitleColor
+        subTitleLabel.textColor = Settings.shared.theme.navigationBarTitleColor
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 2, width: 32, height: 32))
         imageView.downloadedFrom(url: avatar)

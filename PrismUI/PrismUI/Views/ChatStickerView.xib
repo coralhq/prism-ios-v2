@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatStickerView" customModule="PrismUI" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="g3v-Qj-Y8f" customClass="ChatStickerView" customModule="PrismUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stickers" translatesAutoresizingMaskIntoConstraints="NO" id="yZk-gg-U5P">
+                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="128" id="3t5-fg-c1N"/>
+                        <constraint firstAttribute="height" constant="128" id="x36-Nl-GcQ"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="yZk-gg-U5P" firstAttribute="leading" secondItem="g3v-Qj-Y8f" secondAttribute="leading" id="T3o-aB-KGp"/>
+                <constraint firstAttribute="trailing" secondItem="yZk-gg-U5P" secondAttribute="trailing" id="Yey-Vz-c3p"/>
+                <constraint firstItem="yZk-gg-U5P" firstAttribute="top" secondItem="g3v-Qj-Y8f" secondAttribute="top" id="l4k-8J-f4B"/>
+                <constraint firstAttribute="bottom" secondItem="yZk-gg-U5P" secondAttribute="bottom" id="uce-fB-fdn"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="19.5" y="-167"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="stickers" width="235" height="240"/>
+    </resources>
+</document>

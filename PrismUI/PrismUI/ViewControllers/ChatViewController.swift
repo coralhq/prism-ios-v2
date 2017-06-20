@@ -2,62 +2,101 @@
 //  ChatViewController.swift
 //  PrismUI
 //
-//  Created by fanni suyuti on 6/12/17.
+//  Created by Nanang Rafsanjani on 6/8/17.
 //  Copyright © 2017 Prism. All rights reserved.
 //
 
 import UIKit
 
-public class ChatViewController: BaseViewController {
-
-    @IBOutlet weak var mainView: UIView!
-    @IBOutlet weak var welcomeMessageLabel: UILabel!
+class ChatViewController: BaseViewController {
     
-    var welcomeMessage: String = ""
-    var navTitle: String = ""
-    var subtitle: String = ""
-    var avatar: URL?
+    @IBOutlet var barView: UIView!
+    @IBOutlet var tableView: UITableView!
     
-    private var viewModel: ChatViewModel
+    var viewModel: ChatViewModel
     
     init(credential: PrismCredential) {
-        self.viewModel = ChatViewModel(credential: credential)
+        viewModel = ChatViewModel(credential: credential)
         
         super.init(nibName: nil, bundle: Bundle.prism)
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override open func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.connect { (success, error) in
-            if success {
-                print("connect chat success")
-            } else {
-                guard let error = error as NSError? else { return }
-                print("error: \(error)")
-            }
-        }
+        guard let composer = ChatComposer.viewFromNib() else { return }
+        composer.translatesAutoresizingMaskIntoConstraints = false
+        barView.addSubview(composer)
+        barView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[composer]-0-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: nil, views: ["composer": composer]))
+        barView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[composer]-0-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: nil, views: ["composer": composer]))
         
-        viewModel.subscribe { (success, error) in
-            if success {
-                print("subscribe chat success")
-            } else {
-                guard let error = error as NSError? else { return }
-                print("error: \(error)")
-            }
-        }
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 }
 
-extension ChatViewController {
-    override func navigationItemDidTapLeftBarButtonItem() {
-        navigationController?.setNavigationBarHidden(false, animated: false)
-        navigationController?.popViewController(animated: true)
+extension UITableView {
+    func reusableCell(withConfig config: ChatCellConfig) -> ChatCell? {
+        return self.dequeueReusableCell(withIdentifier: ChatCell.reuseIdentifier(config: config)) as? ChatCell
+    }
+}
+
+extension ChatViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 12
     }
     
-    override func navigationItemDidTapRightBarButtonItem() {}
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var config: ChatCellConfig!
+        
+        if indexPath.row == 0 {
+            config = ChatCellConfig(cellType: .In, contentType: .Text)
+        } else if indexPath.row == 1 {
+            config = ChatCellConfig(cellType: .Out, contentType: .Text)
+        } else if indexPath.row == 2 {
+            config = ChatCellConfig(cellType: .In, contentType: .Product)
+        } else if indexPath.row == 3 {
+            config = ChatCellConfig(cellType: .Out, contentType: .Product)
+        } else if indexPath.row == 4 {
+            config = ChatCellConfig(cellType: .In, contentType: .Sticker)
+        } else if indexPath.row == 5 {
+            config = ChatCellConfig(cellType: .Out, contentType: .Sticker)
+        } else if indexPath.row == 6 {
+            config = ChatCellConfig(cellType: .In, contentType: .Cart)
+        } else if indexPath.row == 7 {
+            config = ChatCellConfig(cellType: .Out, contentType: .Cart)
+        } else if indexPath.row == 8 {
+            config = ChatCellConfig(cellType: .In, contentType: .Invoice)
+        } else if indexPath.row == 9 {
+            config = ChatCellConfig(cellType: .Out, contentType: .Invoice)
+        } else if indexPath.row == 10 {
+            config = ChatCellConfig(cellType: .In, contentType: .Image)
+        } else {
+            config = ChatCellConfig(cellType: .Out, contentType: .Image)
+        }
+        
+        var cell = tableView.reusableCell(withConfig: config)
+        if cell == nil {
+            cell = ChatCell(config: config)
+        }
+        return cell!
+    }
+}
+
+extension ChatViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+}
+
+class EmptyChatView: UIView {
+    @IBOutlet var titleLabel: UILabel!
 }

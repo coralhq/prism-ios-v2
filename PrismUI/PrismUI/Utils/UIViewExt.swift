@@ -20,7 +20,7 @@ extension UIView {
         return Bundle.prism.loadNibNamed(String(describing: self), owner: self, options: nil)?.first as? UIView
     }
     
-    func add(to view: UIView?, margin: Double) {
+    func addTo(view: UIView?, margin: Double) {
         translatesAutoresizingMaskIntoConstraints = false
         view?.addSubview(self)
         view?.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-margin-[view]-margin-|", options: .init(rawValue: 0), metrics: ["margin": margin], views: ["view": self]))

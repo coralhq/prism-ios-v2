@@ -1,0 +1,97 @@
+//
+//  OptionView.swift
+//  PrismUI
+//
+//  Created by Nanang Rafsanjani on 6/13/17.
+//  Copyright © 2017 Prism. All rights reserved.
+//
+
+import UIKit
+
+class OptionButton: SmallButton {
+    @IBInspectable var optColor: UIColor?
+    @IBInspectable var optSelectedColor: UIColor?
+    
+    override var isSelected: Bool {
+        didSet {
+            tintColor = isSelected ? optSelectedColor : optColor
+        }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    convenience init(image: UIImage?, color: UIColor?, selectedColor: UIColor?) {
+        self.init(frame: .zero)
+
+        self.optColor = color
+        self.optSelectedColor = selectedColor
+        
+        setImage(image, for: .normal)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class OptionView: UIControl {
+
+    @IBOutlet var buttons: [OptionButton]? {
+        didSet {
+            guard let buttons = buttons else { return }
+            
+            for view in containerView.arrangedSubviews {
+                view.removeFromSuperview()
+            }
+            
+            for button in buttons {
+                containerView.addArrangedSubview(button)
+            }
+        }
+    }
+    var selectedButton: OptionButton?
+    var containerView: UIStackView = UIStackView()
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        containerView.axis = .horizontal
+        containerView.spacing = 4
+        containerView.distribution = .fillEqually
+    
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(containerView)
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[container]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["container": containerView]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[container]-0-|", options: .init(rawValue: 0), metrics: nil, views: ["container": containerView]))
+        
+        guard let buttons = buttons else { return }
+        
+        for button in buttons {
+            button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
+        }
+        
+        if buttons.count > 0 {
+            selectOption(atIndex: 0)
+        }
+    }
+    
+    func selectOption(atIndex index: Int) {
+        guard let button = buttons?[index] else { return }
+        buttonPressed(sender: button)
+    }
+    
+    func buttonPressed(sender: OptionButton) {
+        guard let buttons = buttons else { return }
+        
+        for button in buttons {
+            button.isSelected = false
+        }
+        sender.isSelected = true
+        
+        selectedButton = sender
+        
+        sendActions(for: .valueChanged)
+    }
+}

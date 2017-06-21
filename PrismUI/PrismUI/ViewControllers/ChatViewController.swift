@@ -28,7 +28,8 @@ class ChatViewController: BaseViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let composer = ChatComposer.viewFromNib() else { return }
+        guard let composer = ChatComposer.viewFromNib() as? ChatComposer else { return }
+        composer.delegate = self
         composer.translatesAutoresizingMaskIntoConstraints = false
         barView.addSubview(composer)
         barView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[composer]-0-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: nil, views: ["composer": composer]))
@@ -84,6 +85,12 @@ extension ChatViewController: UITableViewDataSource {
             cell = ChatCell(config: config)
         }
         return cell!
+    }
+}
+
+extension ChatViewController: ChatComposerDelegate {
+    func chatComposer(composer: ChatComposer, didSend chatText: String) {
+        print("send chat \(chatText)")
     }
 }
 

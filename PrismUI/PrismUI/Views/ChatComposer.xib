@@ -70,7 +70,7 @@
                     <rect key="frame" x="0.0" y="57" width="375" height="38"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQO-Vf-h9Z" customClass="SmallButton" customModule="PrismUI" customModuleProvider="target">
-                            <rect key="frame" x="20" y="8" width="22" height="22"/>
+                            <rect key="frame" x="10" y="8" width="22" height="22"/>
                             <state key="normal" image="icBtnEmoticon"/>
                             <state key="disabled" image="icBtnSendOff"/>
                             <state key="selected" image="icBtnKeyboardSelect"/>
@@ -79,7 +79,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18m-B8-Up2" customClass="SmallButton" customModule="PrismUI" customModuleProvider="target">
-                            <rect key="frame" x="58" y="8" width="24" height="22"/>
+                            <rect key="frame" x="48" y="8" width="24" height="22"/>
                             <state key="normal" image="icBtnPic"/>
                             <state key="disabled" image="icBtnSendOff"/>
                             <connections>
@@ -87,7 +87,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fP-eu-bQX" customClass="SmallButton" customModule="PrismUI" customModuleProvider="target">
-                            <rect key="frame" x="98" y="8" width="20" height="22"/>
+                            <rect key="frame" x="88" y="8" width="20" height="22"/>
                             <state key="normal" image="icBtnSticker"/>
                             <state key="disabled" image="icBtnSendOff"/>
                             <connections>
@@ -100,7 +100,7 @@
                         <constraint firstAttribute="bottom" secondItem="hQO-Vf-h9Z" secondAttribute="bottom" constant="8" id="9AN-dK-DGD"/>
                         <constraint firstItem="18m-B8-Up2" firstAttribute="centerY" secondItem="hQO-Vf-h9Z" secondAttribute="centerY" id="cjA-ZH-lQ3"/>
                         <constraint firstItem="6fP-eu-bQX" firstAttribute="centerY" secondItem="hQO-Vf-h9Z" secondAttribute="centerY" id="esK-QJ-zVa"/>
-                        <constraint firstItem="hQO-Vf-h9Z" firstAttribute="leading" secondItem="xn3-uI-vCN" secondAttribute="leading" constant="20" id="hIY-Ii-2sk"/>
+                        <constraint firstItem="hQO-Vf-h9Z" firstAttribute="leading" secondItem="xn3-uI-vCN" secondAttribute="leading" constant="10" id="hIY-Ii-2sk"/>
                         <constraint firstItem="hQO-Vf-h9Z" firstAttribute="top" secondItem="xn3-uI-vCN" secondAttribute="top" constant="8" id="nPD-oP-rOy"/>
                         <constraint firstItem="6fP-eu-bQX" firstAttribute="leading" secondItem="18m-B8-Up2" secondAttribute="trailing" constant="16" id="owh-Bo-R4e"/>
                         <constraint firstItem="18m-B8-Up2" firstAttribute="leading" secondItem="hQO-Vf-h9Z" secondAttribute="trailing" constant="16" id="rMi-XG-46k"/>

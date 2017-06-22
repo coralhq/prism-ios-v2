@@ -17,7 +17,7 @@ class ChatProductView: UIView {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(UINib(nibName: ContentProductCell.name, bundle: Bundle.prism), forCellWithReuseIdentifier: ContentProductCell.name)
+        collectionView.register(UINib(nibName: ContentProductCell.className(), bundle: Bundle.prism), forCellWithReuseIdentifier: ContentProductCell.className())
     }
 }
 
@@ -46,7 +46,7 @@ extension ChatProductView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentProductCell.name, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentProductCell.className(), for: indexPath)
         return cell
     }
 }

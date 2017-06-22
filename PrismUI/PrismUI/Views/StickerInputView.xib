@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="adl-Jw-a51" customClass="StickerInputView" customModule="PrismUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="358"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VH4-jS-4Oc">
+                    <rect key="frame" x="0.0" y="45" width="320" height="313"/>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.95294117649999999" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="HEx-hD-NM0">
+                        <size key="itemSize" width="60" height="60"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Aab-Wn-KbA">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="3mh-oS-Bx3"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="ODs-0u-9KS">
+                        <size key="itemSize" width="44" height="44"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="VH4-jS-4Oc" secondAttribute="trailing" id="N3j-IQ-ewF"/>
+                <constraint firstAttribute="bottom" secondItem="VH4-jS-4Oc" secondAttribute="bottom" id="OHj-Xg-K9f"/>
+                <constraint firstItem="VH4-jS-4Oc" firstAttribute="leading" secondItem="adl-Jw-a51" secondAttribute="leading" id="RGT-j5-H8I"/>
+                <constraint firstAttribute="trailing" secondItem="Aab-Wn-KbA" secondAttribute="trailing" id="kK5-n1-2pa"/>
+                <constraint firstItem="Aab-Wn-KbA" firstAttribute="leading" secondItem="adl-Jw-a51" secondAttribute="leading" id="lof-3o-foo"/>
+                <constraint firstItem="VH4-jS-4Oc" firstAttribute="top" secondItem="Aab-Wn-KbA" secondAttribute="bottom" constant="1" id="pkO-Rw-PHN"/>
+                <constraint firstItem="Aab-Wn-KbA" firstAttribute="top" secondItem="adl-Jw-a51" secondAttribute="top" id="zuA-kM-hUz"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="contentStickerView" destination="VH4-jS-4Oc" id="Ovc-0C-F61"/>
+                <outlet property="sectionStickerView" destination="Aab-Wn-KbA" id="tHE-Xd-yPZ"/>
+            </connections>
+            <point key="canvasLocation" x="-444" y="-118"/>
+        </view>
+    </objects>
+</document>

@@ -15,20 +15,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vqa-rK-iJX" customClass="OptionView" customModule="PrismUI" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="280" height="46"/>
+                    <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                     <color key="backgroundColor" red="0.9137254901960784" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="46" id="1Kb-GD-uyn"/>
+                        <constraint firstAttribute="height" constant="44" id="1Kb-GD-uyn"/>
                     </constraints>
                     <connections>
                         <action selector="optionValueChangedWithSender:" destination="iN0-l3-epB" eventType="valueChanged" id="5QY-lV-CKk"/>
                     </connections>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0R-eF-hxL">
-                    <rect key="frame" x="280" y="0.0" width="40" height="46"/>
+                    <rect key="frame" x="280" y="0.0" width="40" height="45"/>
                     <color key="backgroundColor" red="0.96470588235294119" green="0.97647058823529409" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="46" id="JwL-fD-Z3D"/>
                         <constraint firstAttribute="width" constant="40" id="Vyo-MU-zfB"/>
                     </constraints>
                     <state key="normal" image="icRemove"/>
@@ -37,7 +36,7 @@
                     </connections>
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="MVC-x7-VAU">
-                    <rect key="frame" x="0.0" y="47" width="320" height="311"/>
+                    <rect key="frame" x="0.0" y="45" width="320" height="313"/>
                     <color key="backgroundColor" red="0.93725490196078431" green="0.95294117647058818" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="pcT-WA-vR0">
                         <size key="itemSize" width="38" height="38"/>
@@ -49,6 +48,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="MVC-x7-VAU" firstAttribute="top" secondItem="S0R-eF-hxL" secondAttribute="bottom" id="GmB-qn-BgA"/>
                 <constraint firstItem="MVC-x7-VAU" firstAttribute="top" secondItem="Vqa-rK-iJX" secondAttribute="bottom" constant="1" id="Q4E-2l-UjX"/>
                 <constraint firstAttribute="trailing" secondItem="MVC-x7-VAU" secondAttribute="trailing" id="SSq-hb-SBH"/>
                 <constraint firstAttribute="trailing" secondItem="S0R-eF-hxL" secondAttribute="trailing" id="Vwu-wn-i7D"/>

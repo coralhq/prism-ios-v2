@@ -76,10 +76,8 @@ class EmojiInputView: UIView {
                       EmojiCategory(icon: UIImage(imageNamed: "icSymbols"), name: "Symbols")]
         
         var buttons: [OptionButton] = []
-        let color = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        let selectedColor = #colorLiteral(red: 0.8690459132, green: 0.3152537942, blue: 0.4390725493, alpha: 1)
         for (index, value) in categories.enumerated() {
-            let button = OptionButton(image: value.icon, color: color, selectedColor: selectedColor)
+            let button = OptionButton(image: value.icon, selectedColor: #colorLiteral(red: 0.8690459132, green: 0.3152537942, blue: 0.4390725493, alpha: 1))
             button.tag = index
             buttons.append(button)
         }
@@ -91,7 +89,7 @@ class EmojiInputView: UIView {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(UINib(nibName: EmojiCell.name, bundle: Bundle.prism), forCellWithReuseIdentifier: EmojiCell.name)
+        collectionView.register(EmojiCell.classForCoder(), forCellWithReuseIdentifier: EmojiCell.className())
     }
 }
 
@@ -101,7 +99,7 @@ extension EmojiInputView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmojiCell.name, for: indexPath) as! EmojiCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmojiCell.className(), for: indexPath) as! EmojiCell
         cell.emojiLabel.text = selectedEmojis[indexPath.row]
         return cell
     }
@@ -115,7 +113,7 @@ extension EmojiInputView: UICollectionViewDelegate {
         
         if !recentEmojis.contains(where: { $0 == emoji }) {
             recentEmojis.insert(emoji, at: 0)
-            if recentEmojis.count > 10 {
+            if recentEmojis.count > 50 {
                 recentEmojis.removeLast()
             }
         }
@@ -123,7 +121,6 @@ extension EmojiInputView: UICollectionViewDelegate {
 }
 
 extension EmojiInputView {
-    
     @IBAction func backspacePressed(sender: UIButton) {
         inputTextView?.deleteBackward()
     }
@@ -132,5 +129,19 @@ extension EmojiInputView {
         guard let selectedOption = sender.selectedButton else { return }
         selectedCategory = categories[selectedOption.tag]
     }
+}
+
+class EmojiCell: UICollectionViewCell {
+    var emojiLabel: UILabel = UILabel()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        emojiLabel.font = UIFont.systemFont(ofSize: 20)
+        emojiLabel.addTo(view: self, margin: 0)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

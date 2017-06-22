@@ -317,9 +317,9 @@
 				8000D8D51EDD368F00D9E8FB /* Conversation */,
 				8000D8D91EDD368F00D9E8FB /* CreateConversation */,
 				8000D8DF1EDD368F00D9E8FB /* Message */,
+				8000D8F31EDD368F00D9E8FB /* VisitorConnect */,
 				8000D8F11EDD368F00D9E8FB /* Settings.swift */,
 				8000D8F21EDD368F00D9E8FB /* UploadURL.swift */,
-				8000D8F31EDD368F00D9E8FB /* VisitorConnect */,
 				8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */,
 			);
 			path = Model;

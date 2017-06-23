@@ -32,10 +32,7 @@ class ChatViewController: BaseViewController {
             return
         }
         composer.delegate = self
-        composer.translatesAutoresizingMaskIntoConstraints = false
-        barView.addSubview(composer)
-        barView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[composer]-0-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: nil, views: ["composer": composer]))
-        barView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[composer]-0-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: nil, views: ["composer": composer]))
+        composer.addTo(view: barView, margin: 0)
         
         tableView.delegate = self
         tableView.dataSource = self

@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,69 +14,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="358"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vqa-rK-iJX" customClass="OptionButtons" customModule="PrismUI" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vqa-rK-iJX" customClass="OptionView" customModule="PrismUI" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="280" height="46"/>
-                    <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="BB3-ed-pPy">
-                            <rect key="frame" x="0.0" y="0.0" width="280" height="46"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XAD-eg-TGy">
-                                    <rect key="frame" x="0.0" y="0.0" width="31" height="46"/>
-                                    <state key="normal" image="icRecent"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8x-O3-1Gf">
-                                    <rect key="frame" x="31" y="0.0" width="31" height="46"/>
-                                    <state key="normal" image="icSmileysPeople"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSQ-ty-lMo">
-                                    <rect key="frame" x="62" y="0.0" width="31.5" height="46"/>
-                                    <state key="normal" image="icAnimalsNature"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VK5-3C-04m">
-                                    <rect key="frame" x="93.5" y="0.0" width="31" height="46"/>
-                                    <state key="normal" image="icFoodDrink"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3q-Ed-oS8">
-                                    <rect key="frame" x="124.5" y="0.0" width="31" height="46"/>
-                                    <state key="normal" image="icActivity"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVZ-V6-1HO">
-                                    <rect key="frame" x="155.5" y="0.0" width="31" height="46"/>
-                                    <state key="normal" image="icTravelPlaces"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7O-4r-Dja">
-                                    <rect key="frame" x="186.5" y="0.0" width="31.5" height="46"/>
-                                    <state key="normal" image="icObjects"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0R-fv-SWi">
-                                    <rect key="frame" x="218" y="0.0" width="31" height="46"/>
-                                    <state key="normal" image="icSymbols"/>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rwh-YI-j25">
-                                    <rect key="frame" x="249" y="0.0" width="31" height="46"/>
-                                    <state key="normal" image="icFlags"/>
-                                </button>
-                            </subviews>
-                        </stackView>
-                    </subviews>
                     <color key="backgroundColor" red="0.9137254901960784" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="1Kb-GD-uyn"/>
-                        <constraint firstItem="BB3-ed-pPy" firstAttribute="top" secondItem="Vqa-rK-iJX" secondAttribute="top" id="R1v-Tl-gaI"/>
-                        <constraint firstItem="BB3-ed-pPy" firstAttribute="leading" secondItem="Vqa-rK-iJX" secondAttribute="leading" id="WUh-t3-7S7"/>
-                        <constraint firstAttribute="trailing" secondItem="BB3-ed-pPy" secondAttribute="trailing" id="gIu-NG-WKz"/>
-                        <constraint firstAttribute="bottom" secondItem="BB3-ed-pPy" secondAttribute="bottom" id="nWo-ji-ccn"/>
                     </constraints>
                     <connections>
-                        <outletCollection property="buttons" destination="rwh-YI-j25" collectionClass="NSMutableArray" id="nBg-aa-2nw"/>
-                        <outletCollection property="buttons" destination="Y0R-fv-SWi" collectionClass="NSMutableArray" id="aLH-kq-fHB"/>
-                        <outletCollection property="buttons" destination="S7O-4r-Dja" collectionClass="NSMutableArray" id="h4Y-M2-8ZS"/>
-                        <outletCollection property="buttons" destination="vVZ-V6-1HO" collectionClass="NSMutableArray" id="uO8-Qi-dhi"/>
-                        <outletCollection property="buttons" destination="z3q-Ed-oS8" collectionClass="NSMutableArray" id="IkQ-Hr-5dC"/>
-                        <outletCollection property="buttons" destination="VK5-3C-04m" collectionClass="NSMutableArray" id="U1c-jh-5eG"/>
-                        <outletCollection property="buttons" destination="FSQ-ty-lMo" collectionClass="NSMutableArray" id="OSo-UL-zL1"/>
-                        <outletCollection property="buttons" destination="N8x-O3-1Gf" collectionClass="NSMutableArray" id="ehu-0y-220"/>
-                        <outletCollection property="buttons" destination="XAD-eg-TGy" collectionClass="NSMutableArray" id="pTb-hi-DKU"/>
+                        <action selector="optionValueChangedWithSender:" destination="iN0-l3-epB" eventType="valueChanged" id="5QY-lV-CKk"/>
                     </connections>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0R-eF-hxL">
@@ -88,21 +32,24 @@
                         <constraint firstAttribute="width" constant="40" id="Vyo-MU-zfB"/>
                     </constraints>
                     <state key="normal" image="icRemove"/>
+                    <connections>
+                        <action selector="backspacePressedWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="cgm-sw-1yQ"/>
+                    </connections>
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="MVC-x7-VAU">
-                    <rect key="frame" x="0.0" y="46" width="320" height="312"/>
+                    <rect key="frame" x="0.0" y="47" width="320" height="311"/>
                     <color key="backgroundColor" red="0.93725490196078431" green="0.95294117647058818" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="15" id="pcT-WA-vR0">
-                        <size key="itemSize" width="30" height="30"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="pcT-WA-vR0">
+                        <size key="itemSize" width="38" height="38"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="15" minY="15" maxX="15" maxY="15"/>
+                        <inset key="sectionInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="MVC-x7-VAU" firstAttribute="top" secondItem="Vqa-rK-iJX" secondAttribute="bottom" id="Q4E-2l-UjX"/>
+                <constraint firstItem="MVC-x7-VAU" firstAttribute="top" secondItem="Vqa-rK-iJX" secondAttribute="bottom" constant="1" id="Q4E-2l-UjX"/>
                 <constraint firstAttribute="trailing" secondItem="MVC-x7-VAU" secondAttribute="trailing" id="SSq-hb-SBH"/>
                 <constraint firstAttribute="trailing" secondItem="S0R-eF-hxL" secondAttribute="trailing" id="Vwu-wn-i7D"/>
                 <constraint firstItem="S0R-eF-hxL" firstAttribute="leading" secondItem="Vqa-rK-iJX" secondAttribute="trailing" id="XAf-Da-XbP"/>
@@ -118,20 +65,12 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="collectionView" destination="MVC-x7-VAU" id="onX-yY-HOJ"/>
+                <outlet property="emojiOptionView" destination="Vqa-rK-iJX" id="PQD-Fv-vwd"/>
             </connections>
             <point key="canvasLocation" x="-444" y="-118"/>
         </view>
     </objects>
     <resources>
-        <image name="icActivity" width="20" height="20"/>
-        <image name="icAnimalsNature" width="20" height="20"/>
-        <image name="icFlags" width="16" height="20"/>
-        <image name="icFoodDrink" width="20" height="18"/>
-        <image name="icObjects" width="14" height="19"/>
-        <image name="icRecent" width="20" height="20"/>
         <image name="icRemove" width="20" height="14"/>
-        <image name="icSmileysPeople" width="20" height="20"/>
-        <image name="icSymbols" width="18" height="13"/>
-        <image name="icTravelPlaces" width="20" height="18"/>
     </resources>
 </document>

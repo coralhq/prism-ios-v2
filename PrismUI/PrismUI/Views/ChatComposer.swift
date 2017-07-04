@@ -8,14 +8,18 @@
 
 import UIKit
 
+protocol ChatComposerDelegate: class {
+    func chatComposer(composer: ChatComposer, didSend chatText: String)
+}
+
 class ChatComposer: UIView {
     
+    @IBOutlet var textViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet var botSpaceConstraint: NSLayoutConstraint!
-    @IBOutlet var textView: UITextView!    
+    @IBOutlet var textView: UITextView!
+    @IBOutlet var sendButton: SmallButton!
     
-    var emojiInputView: EmojiInputView?
-    
-    //    let keyboardView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 150))
+    weak var delegate: ChatComposerDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,31 +28,50 @@ class ChatComposer: UIView {
         NotificationCenter.default.addObserver(self, selector: #selector(kbWillHide(sender:)), name: .UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(textViewChanged(sender:)), name: .UITextViewTextDidChange, object: nil)
         
-        emojiInputView = EmojiInputView.viewFromNib() as? EmojiInputView
-        
         botSpaceConstraint.constant = 0
+        
+        setText(text: nil)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
+    func setText(text: String?) {
+        textView.text = text
+        
+        if let text = text {
+            sendButton.isEnabled = text.characters.count > 0
+        } else {
+            sendButton.isEnabled = false
+        }
+        
+        let height = textView.sizeThatFits(CGSize(width: textView.bounds.width, height: 300)).height
+        textViewHeightConstraint.constant = height
+        textView.layoutIfNeeded()
+    }
+    
     @IBAction func textInputPressed(sender: UIButton) {
-        textView.inputView = nil
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected {
+            textView.inputView = EmojiInputView.viewFromNib(textView: textView)
+        } else {
+            textView.inputView = nil
+        }
         textView.reloadInputViews()
     }
     
-    @IBAction func emojiInputPressed(sender: UIButton) {
-        //        keyboardView.backgroundColor = UIColor.red
-        textView.inputView = emojiInputView
-        textView.reloadInputViews()
+    @IBAction func attachImagePressed(sender: UIButton) {
+        
     }
     
     @IBAction func stickerInputPressed(sender: UIButton) {
-        //        keyboardView.backgroundColor = UIColor.green
-        textView.inputView = emojiInputView
-        textView.reloadInputViews()
         
+    }
+    
+    @IBAction func sendPressed(sender: UIButton) {
+        delegate?.chatComposer(composer: self, didSend: textView.text)
+        setText(text: nil)
     }
     
     func kbWillShow(sender: Notification) {
@@ -56,11 +79,6 @@ class ChatComposer: UIView {
             let kbFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
             let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber,
             let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber else { return }
-        
-        if var emojiFrame = emojiInputView?.frame {
-            emojiFrame.size.height = kbFrame.cgRectValue.height
-            emojiInputView?.frame = emojiFrame
-        }
         
         UIView.animate(withDuration: duration.doubleValue, delay: 0, options: UIViewAnimationOptions(rawValue: curve.uintValue), animations: {
             let currentConstant = self.botSpaceConstraint.constant
@@ -83,6 +101,6 @@ class ChatComposer: UIView {
     }
     
     func textViewChanged(sender: Notification) {
-        
+        setText(text: textView.text)
     }
 }

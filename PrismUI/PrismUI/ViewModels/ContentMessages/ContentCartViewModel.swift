@@ -8,6 +8,11 @@
 
 import Foundation
 
+struct DiscountType {
+    static var nominal = "NOMINAL"
+    static var percentage = "PERCENTAGE"
+}
+
 class ContentCartViewModel: ContentViewModel {
     var formattedPrice: String
     var itemViewModels: [ContentCartProductViewModel] = []
@@ -26,7 +31,7 @@ class ContentCartViewModel: ContentViewModel {
                 let priceAmount = Double(priceString),
                 let discAmount = Double(discString) else { continue }
             
-            if discType == "NOMINAL" {
+            if discType == DiscountType.nominal {
                 totalPrice += (priceAmount - discAmount)
             } else {
                 totalPrice += priceAmount - (discAmount/100) * priceAmount
@@ -66,12 +71,14 @@ class ContentCartProductViewModel: ContentViewModel {
             var discAmount = Double(discString),
             let discType = contentItem.product?.discount?.discountType,
             discAmount > 0 {
-            if discType == "NOMINAL" {
+            
+            if discType == DiscountType.nominal {
                 discAmount = priceAmount - discAmount
             } else {
                 discAmount = priceAmount - (discAmount / 100) * priceAmount
             }
             self.discount = discAmount.formattedCurrency()
+            
         }
     }
 }

@@ -12,26 +12,26 @@ class ChatCell: UITableViewCell {
     var chatView: ChatContainerView?
     var chatContentView: UIView?
     
-    static func reuseIdentifier(viewModel: ChatViewModel, cellType: ChatCellType) -> String {
-        return viewModel.contentType.rawValue + cellType.rawValue
+    static func reuseIdentifier(viewModel: ChatViewModel) -> String {
+        return viewModel.contentType.rawValue + viewModel.cellType.rawValue
     }
     
-    convenience init(viewModel: ChatViewModel, cellType: ChatCellType) {
-        self.init(style: .default, reuseIdentifier: ChatCell.reuseIdentifier(viewModel: viewModel, cellType: cellType))
+    convenience init(viewModel: ChatViewModel) {
+        self.init(style: .default, reuseIdentifier: ChatCell.reuseIdentifier(viewModel: viewModel))
         
-        switch cellType {
+        switch viewModel.cellType {
         case .In:
             if viewModel.contentType == .Sticker {
-                chatView = StickerInContainer.viewFromNib() as? ChatContainerView
+                chatView = StickerInContainer.viewFromNib(with: viewModel)
             } else {
-                chatView = ChatInContainerView.viewFromNib() as? ChatContainerView
+                chatView = ChatInContainerView.viewFromNib(with: viewModel)
             }
             break
         default:
             if viewModel.contentType == .Sticker {
-                chatView = StickerOutContainer.viewFromNib() as? ChatContainerView
+                chatView = StickerOutContainer.viewFromNib(with: viewModel)
             } else {
-                chatView = ChatOutContainerView.viewFromNib() as? ChatContainerView
+                chatView = ChatOutContainerView.viewFromNib(with: viewModel)
             }
             break
         }
@@ -53,7 +53,7 @@ class ChatCell: UITableViewCell {
             chatContentView = ChatImageView.viewFromNib()
             break
         default:
-            chatContentView = ChatTextView.viewFromNibWithType(type: cellType)
+            chatContentView = ChatTextView.viewFromNib(with: viewModel.cellType)
             break
         }
         
@@ -75,4 +75,9 @@ class ChatCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+enum ChatCellType: String {
+    case In = "_in"
+    case Out = "_out"
 }

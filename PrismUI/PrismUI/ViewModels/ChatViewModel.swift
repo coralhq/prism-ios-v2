@@ -7,51 +7,38 @@
 //
 
 import UIKit
-import PrismCore
 import CoreData
-
-enum ChatCellType: String {
-    case In = "_in"
-    case Out = "_out"
-}
-
-enum ChatContentType: String {
-    case Text = "text_cell"
-    case Sticker = "sticker_cell"
-    case Cart = "cart_cell"
-    case Invoice = "invoice_cell"
-    case Product = "product_cell"
-    case Image = "image_cell"
-    
-    static func typeFrom(typeString: String) -> ChatContentType {
-        let type = MessageType(rawValue: typeString)
-        switch type {
-        case .PlainText:
-            return ChatContentType.Text
-        case .Sticker:
-            return ChatContentType.Sticker
-        case .Cart:
-            return ChatContentType.Cart
-        case .Invoice:
-            return ChatContentType.Invoice
-        case .Product:
-            return ChatContentType.Product
-        case .Attachment:
-            return ChatContentType.Image
-        default:
-            return ChatContentType.Text
-        }
-    }
-}
+import PrismCore
 
 class ChatViewModel {
-    let senderID: String
+    private let message: CDMessage
+    
+    let cellType: ChatCellType
     let messageID: String
     let contentType: ChatContentType
-    init(message: CDMessage) {
+    var messageTime: String
+    var messageStatus: MessageStatus?
+    var senderName: String {
+        if cellType == .Out {
+            return "Me".localized()
+        } else {
+            return message.sender!.name!
+        }
+    }
+    
+    init(message: CDMessage, visitor: MessageSender) {
+        self.message = message
+        
         contentType = ChatContentType.typeFrom(typeString: message.type!)
-        senderID = message.sender!.id!
+        cellType = (message.sender!.id! == visitor.id) ? .Out : .In
         messageID = message.id!
+        
+        Vendor.shared.dateFormatter.dateFormat = "hh:mm a"
+        messageTime = Vendor.shared.dateFormatter.string(from: message.brokerMetaData!.timestamp!)
+        
+        if cellType == .Out {
+            messageStatus = MessageStatus(rawValue: message.status)
+        }
     }
 }
 
@@ -59,12 +46,12 @@ class ChatSectionViewModel {
     var indexTitle: String?
     var objects: [ChatViewModel]?
     
-    init(info: NSFetchedResultsSectionInfo) {
+    init(info: NSFetchedResultsSectionInfo, credential: PrismCredential) {
         guard let messages = info.objects as? [CDMessage] else { return }
         
         objects = []
         for message in messages {
-            objects?.append(ChatViewModel(message: message))
+            objects?.append(ChatViewModel(message: message, visitor: credential.sender))
         }
         
         guard let date = messages.first?.sectionDate else { return }

@@ -22,7 +22,7 @@ class ChatViewController: BaseViewController {
         super.init(nibName: nil, bundle: Bundle.prism)
         
         guard let context = chatManager.coredata?.context else { return }
-        queryManager = ChatQueryManager(context: context)
+        queryManager = ChatQueryManager(context: context, credential: credential)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -79,11 +79,9 @@ extension ChatViewController: UITableViewDataSource {
         }
         
         let viewModel = objects[indexPath.row]
-        let cellType: ChatCellType = viewModel.senderID == chatManager.credential.sender.id ? .Out : .In
-        
-        var cell = tableView.dequeueReusableCell(withIdentifier: ChatCell.reuseIdentifier(viewModel: viewModel, cellType: cellType))
+        var cell = tableView.dequeueReusableCell(withIdentifier: ChatCell.reuseIdentifier(viewModel: viewModel))
         if cell == nil {
-            cell = ChatCell(viewModel: viewModel, cellType: cellType)
+            cell = ChatCell(viewModel: viewModel)
         }
         return cell!
     }

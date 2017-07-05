@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PrismAnalytics
 
 class ChatViewController: BaseViewController {
     
@@ -39,6 +40,12 @@ class ChatViewController: BaseViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        PrismAnalytics.shared.sendTracker(withEvent: .chatScreen)
     }
 }
 

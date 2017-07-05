@@ -9,10 +9,10 @@
 import Foundation
 
 public class MessageSender : Mappable {
-    var id: String
-    var name: String
-    var role: String
-    var userAgent: String
+    public var id: String
+    public var name: String
+    public var role: String
+    public var userAgent: String
     
     public var dictionaryValue: [String: Any] {
         get {

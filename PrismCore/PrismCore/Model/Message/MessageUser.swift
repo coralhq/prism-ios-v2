@@ -9,8 +9,8 @@
 import Foundation
 
 public class MessageUser: Mappable {
-    let id: String
-    let name: String
+    public let id: String
+    public let name: String
     
     public var dictionaryValue: [String: Any] {
         get {

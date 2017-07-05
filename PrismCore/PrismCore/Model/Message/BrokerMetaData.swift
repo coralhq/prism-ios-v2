@@ -10,7 +10,7 @@ import Foundation
 
 public class BrokerMetaData : Mappable {
     
-    let timestamp: Date
+    public let timestamp: Date
     
     public var dictionaryValue: [String: Any] {
         get {
@@ -29,9 +29,8 @@ public class BrokerMetaData : Mappable {
         self.timestamp = timestamp
     }
     
-    convenience public init?(timestamp: String) {
-        let data = ["timestamp": timestamp]
-        
-        self.init(dictionary: data)
+    public init() {
+        self.timestamp = Date()
     }
+    
 }

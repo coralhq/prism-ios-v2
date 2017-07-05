@@ -33,19 +33,19 @@ open class PrismAnalytics {
     open func sendTracker(withEvent event: EventTrackerType) {
         guard let tracker = gai?.defaultTracker else { return }
         
-        var dictionaryBuilder: GAIDictionaryBuilder
-        
         switch event {
         case .uploadImageClicked:
-            guard let builder = GAIDictionaryBuilder.createEvent(withCategory: event.rawValue, action: event.rawValue, label: "", value: 1) else { return }
-            dictionaryBuilder = builder
+            guard let builder = GAIDictionaryBuilder.createEvent(withCategory: "custom_event", action: event.rawValue, label: nil, value: nil) else { return }
+            tracker.send(builder.build() as [NSObject : AnyObject])
             
         case .chatScreen, .visitorConnect:
             tracker.set(kGAIScreenName, value: event.rawValue)
             guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
-            dictionaryBuilder = builder
+            tracker.send(builder.build() as [NSObject : AnyObject])
         }
-        
-        tracker.send(dictionaryBuilder.build() as [NSObject : AnyObject])
+    }
+    
+    open func dispatch() {
+        gai?.dispatch()
     }
 }

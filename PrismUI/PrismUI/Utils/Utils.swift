@@ -34,10 +34,8 @@ extension String {
 }
 
 extension NSObject {
-    static var name: String {
-        get {
-            return String(describing: self)
-        }
+    static func className() -> String {
+        return String(describing: self)
     }
 }
 
@@ -49,6 +47,6 @@ extension Bundle {
 
 extension UITableViewCell {
     static var NIB: UINib {
-        return UINib.init(nibName: self.name, bundle: Bundle.prism)
+        return UINib.init(nibName: self.className(), bundle: Bundle.prism)
     }
 }

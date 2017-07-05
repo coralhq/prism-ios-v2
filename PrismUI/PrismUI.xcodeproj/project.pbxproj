@@ -55,8 +55,6 @@
 		E57440B21EF7CFB3003CA9E7 /* ProductCartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440B11EF7CFB3003CA9E7 /* ProductCartView.xib */; };
 		E57440B41EF7DD8A003CA9E7 /* MidtransView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440B31EF7DD8A003CA9E7 /* MidtransView.swift */; };
 		E57440B61EF7DD97003CA9E7 /* MidtransView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440B51EF7DD97003CA9E7 /* MidtransView.xib */; };
-		E58751BB1EF90EA900878C09 /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58751B91EF90EA900878C09 /* EmojiCell.swift */; };
-		E58751BC1EF90EA900878C09 /* EmojiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E58751BA1EF90EA900878C09 /* EmojiCell.xib */; };
 		E58FAE5D1EF36874002F1A2A /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FAE5C1EF36874002F1A2A /* AuthViewModel.swift */; };
 		E58FAE5F1EF3687D002F1A2A /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FAE5E1EF3687D002F1A2A /* ChatViewModel.swift */; };
 		E58FAE661EF38435002F1A2A /* ChatComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FAE601EF38435002F1A2A /* ChatComposer.swift */; };
@@ -69,6 +67,10 @@
 		E58FAE721EF39407002F1A2A /* ChatTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E58FAE711EF39407002F1A2A /* ChatTextView.xib */; };
 		E58FAE7A1EF3A74D002F1A2A /* ChatBubleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FAE791EF3A74D002F1A2A /* ChatBubleView.swift */; };
 		E58FAE841EF495E4002F1A2A /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FAE831EF495E4002F1A2A /* ChatCell.swift */; };
+		E593AE931EFB673F002E2171 /* StickerInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AE921EFB673F002E2171 /* StickerInputView.swift */; };
+		E593AE951EFB675A002E2171 /* StickerInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E593AE941EFB675A002E2171 /* StickerInputView.xib */; };
+		E593AE971EFB7966002E2171 /* StickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AE961EFB7966002E2171 /* StickerViewModel.swift */; };
+		E593AE991EFB8E71002E2171 /* StickerPackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AE981EFB8E71002E2171 /* StickerPackViewModel.swift */; };
 		E599E8791EF6546F00B67920 /* ChatInContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E599E8781EF6546F00B67920 /* ChatInContainerView.xib */; };
 		E599E87B1EF6551200B67920 /* ChatOutContainerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E599E87A1EF6551200B67920 /* ChatOutContainerView.xib */; };
 		E599E87E1EF67D4300B67920 /* ChatTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599E87D1EF67D4300B67920 /* ChatTextView.swift */; };
@@ -141,8 +143,6 @@
 		E57440B11EF7CFB3003CA9E7 /* ProductCartView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductCartView.xib; path = PrismUI/Views/ProductCartView.xib; sourceTree = SOURCE_ROOT; };
 		E57440B31EF7DD8A003CA9E7 /* MidtransView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MidtransView.swift; path = PrismUI/Views/MidtransView.swift; sourceTree = SOURCE_ROOT; };
 		E57440B51EF7DD97003CA9E7 /* MidtransView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MidtransView.xib; path = PrismUI/Views/MidtransView.xib; sourceTree = SOURCE_ROOT; };
-		E58751B91EF90EA900878C09 /* EmojiCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
-		E58751BA1EF90EA900878C09 /* EmojiCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmojiCell.xib; sourceTree = "<group>"; };
 		E58FAE5C1EF36874002F1A2A /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		E58FAE5E1EF3687D002F1A2A /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		E58FAE601EF38435002F1A2A /* ChatComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatComposer.swift; sourceTree = "<group>"; };
@@ -155,6 +155,10 @@
 		E58FAE711EF39407002F1A2A /* ChatTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatTextView.xib; path = PrismUI/Views/ChatTextView.xib; sourceTree = SOURCE_ROOT; };
 		E58FAE791EF3A74D002F1A2A /* ChatBubleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatBubleView.swift; path = PrismUI/Kits/ChatBubleView.swift; sourceTree = SOURCE_ROOT; };
 		E58FAE831EF495E4002F1A2A /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatCell.swift; path = PrismUI/Views/ChatCell.swift; sourceTree = SOURCE_ROOT; };
+		E593AE921EFB673F002E2171 /* StickerInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerInputView.swift; sourceTree = "<group>"; };
+		E593AE941EFB675A002E2171 /* StickerInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StickerInputView.xib; sourceTree = "<group>"; };
+		E593AE961EFB7966002E2171 /* StickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerViewModel.swift; sourceTree = "<group>"; };
+		E593AE981EFB8E71002E2171 /* StickerPackViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerPackViewModel.swift; sourceTree = "<group>"; };
 		E599E8781EF6546F00B67920 /* ChatInContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatInContainerView.xib; path = PrismUI/Views/ChatInContainerView.xib; sourceTree = SOURCE_ROOT; };
 		E599E87A1EF6551200B67920 /* ChatOutContainerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatOutContainerView.xib; path = PrismUI/Views/ChatOutContainerView.xib; sourceTree = SOURCE_ROOT; };
 		E599E87D1EF67D4300B67920 /* ChatTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatTextView.swift; path = PrismUI/Views/ChatTextView.swift; sourceTree = SOURCE_ROOT; };
@@ -219,6 +223,8 @@
 			children = (
 				E58FAE5C1EF36874002F1A2A /* AuthViewModel.swift */,
 				E58FAE5E1EF3687D002F1A2A /* ChatViewModel.swift */,
+				E593AE961EFB7966002E2171 /* StickerViewModel.swift */,
+				E593AE981EFB8E71002E2171 /* StickerPackViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -240,9 +246,12 @@
 		80389A3A1EEA3053007B9458 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E58751BD1EF941B900878C09 /* Emoji Keyboard */,
 				E58FAE601EF38435002F1A2A /* ChatComposer.swift */,
 				E58FAE611EF38435002F1A2A /* ChatComposer.xib */,
+				E593AE921EFB673F002E2171 /* StickerInputView.swift */,
+				E593AE941EFB675A002E2171 /* StickerInputView.xib */,
+				E58FAE621EF38435002F1A2A /* EmojiInputView.swift */,
+				E58FAE631EF38435002F1A2A /* EmojiInputView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -400,17 +409,6 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		E58751BD1EF941B900878C09 /* Emoji Keyboard */ = {
-			isa = PBXGroup;
-			children = (
-				E58751B91EF90EA900878C09 /* EmojiCell.swift */,
-				E58751BA1EF90EA900878C09 /* EmojiCell.xib */,
-				E58FAE621EF38435002F1A2A /* EmojiInputView.swift */,
-				E58FAE631EF38435002F1A2A /* EmojiInputView.xib */,
-			);
-			name = "Emoji Keyboard";
-			sourceTree = "<group>";
-		};
 		E58FAE701EF38D00002F1A2A /* ChatCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -547,7 +545,6 @@
 				E57440951EF76BEC003CA9E7 /* ChatProductView.xib in Resources */,
 				E508C1B91EF8B479004DCB6A /* ChatImageView.xib in Resources */,
 				E57440881EF76140003CA9E7 /* StickerInContainer.xib in Resources */,
-				E58751BC1EF90EA900878C09 /* EmojiCell.xib in Resources */,
 				E508C1C31EF8D6F9004DCB6A /* Localizable.strings in Resources */,
 				E57440AD1EF7CE58003CA9E7 /* ChatCartView.xib in Resources */,
 				E57440B21EF7CFB3003CA9E7 /* ProductCartView.xib in Resources */,
@@ -556,6 +553,7 @@
 				E599E87B1EF6551200B67920 /* ChatOutContainerView.xib in Resources */,
 				807C89931EEE4AF100DADEBF /* ChatViewController.xib in Resources */,
 				E57440971EF76BFD003CA9E7 /* ChatInvoiceView.xib in Resources */,
+				E593AE951EFB675A002E2171 /* StickerInputView.xib in Resources */,
 				E58FAE721EF39407002F1A2A /* ChatTextView.xib in Resources */,
 				E57440B61EF7DD97003CA9E7 /* MidtransView.xib in Resources */,
 				E599E8791EF6546F00B67920 /* ChatInContainerView.xib in Resources */,
@@ -579,6 +577,7 @@
 			files = (
 				E57440AB1EF7CE43003CA9E7 /* ChatCartView.swift in Sources */,
 				E5053A8F1EF13123006677A4 /* InputFormSettings.swift in Sources */,
+				E593AE971EFB7966002E2171 /* StickerViewModel.swift in Sources */,
 				E5053A861EF10930006677A4 /* LinedTextField.swift in Sources */,
 				E58FAE681EF38435002F1A2A /* EmojiInputView.swift in Sources */,
 				E58FAE7A1EF3A74D002F1A2A /* ChatBubleView.swift in Sources */,
@@ -607,12 +606,13 @@
 				807C898A1EEE389200DADEBF /* Theme.swift in Sources */,
 				E574408D1EF7649A003CA9E7 /* ChatStickerView.swift in Sources */,
 				E54DE6481EFA6A740035EA35 /* SmallButton.swift in Sources */,
+				E593AE991EFB8E71002E2171 /* StickerPackViewModel.swift in Sources */,
 				E559E1F11EF2658C004E3F03 /* Settings.swift in Sources */,
 				807C89991EEE4C3400DADEBF /* UIFont.swift in Sources */,
 				E599E8801EF67D5300B67920 /* ChatInContainerView.swift in Sources */,
 				E574409F1EF76FCF003CA9E7 /* ContentProductCell.swift in Sources */,
 				E599E8861EF67FA400B67920 /* UIViewControllerExt.swift in Sources */,
-				E58751BB1EF90EA900878C09 /* EmojiCell.swift in Sources */,
+				E593AE931EFB673F002E2171 /* StickerInputView.swift in Sources */,
 				807C89911EEE4AF100DADEBF /* ChatViewController.swift in Sources */,
 				E599E8881EF67FD600B67920 /* UITextFieldExt.swift in Sources */,
 				E57440911EF76BBB003CA9E7 /* ChatInvoiceView.swift in Sources */,

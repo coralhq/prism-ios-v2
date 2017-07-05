@@ -8,10 +8,10 @@
 
 import Foundation
 
-open class StickerResponse: Mappable {
+open class StickerResponse: NSObject, NSCoding, Mappable {
     
-    let status: String
-    let packs: [StickerPack]
+    public let status: String
+    public let packs: [StickerPack]
     
     required public init?(dictionary: [String : Any]?) {
         guard let data = dictionary?["data"] as? [String: Any],
@@ -31,5 +31,15 @@ open class StickerResponse: Mappable {
         
         self.status = status
         self.packs = packs
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(status, forKey: "status")
+        aCoder.encode(packs, forKey: "status")
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        status = aDecoder.decodeObject(forKey: "status") as! String
+        packs = aDecoder.decodeObject(forKey: "packs") as! [StickerPack]
     }
 }

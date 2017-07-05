@@ -9,7 +9,8 @@
 import UIKit
 
 protocol ChatComposerDelegate: class {
-    func chatComposer(composer: ChatComposer, didSend chatText: String)
+    func chatComposer(composer: ChatComposer, didSendText text: String)
+    func chatComposer(composer: ChatComposer, didSendSticker sticker: StickerViewModel)
 }
 
 class ChatComposer: UIView {
@@ -20,6 +21,13 @@ class ChatComposer: UIView {
     @IBOutlet var sendButton: SmallButton!
     
     weak var delegate: ChatComposerDelegate?
+    var accessToken: String?
+    
+    static func composerFromNib(with accessToken: String) -> ChatComposer? {
+        let view = ChatComposer.viewFromNib() as? ChatComposer
+        view?.accessToken = accessToken
+        return view
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -66,11 +74,17 @@ class ChatComposer: UIView {
     }
     
     @IBAction func stickerInputPressed(sender: UIButton) {
+        sender.isSelected = !sender.isSelected
         
+        let inputView = StickerInputView.viewFromNib(accessToken: accessToken)
+        inputView?.delegate = self
+        
+        textView.inputView = inputView
+        textView.reloadInputViews()
     }
     
     @IBAction func sendPressed(sender: UIButton) {
-        delegate?.chatComposer(composer: self, didSend: textView.text)
+        delegate?.chatComposer(composer: self, didSendText: textView.text)
         setText(text: nil)
     }
     
@@ -102,5 +116,11 @@ class ChatComposer: UIView {
     
     func textViewChanged(sender: Notification) {
         setText(text: textView.text)
+    }
+}
+
+extension ChatComposer: StickerInputViewDelegate {
+    func stickerInputView(view: StickerInputView, didSend sticker: StickerViewModel) {
+        delegate?.chatComposer(composer: self, didSendSticker: sticker)
     }
 }

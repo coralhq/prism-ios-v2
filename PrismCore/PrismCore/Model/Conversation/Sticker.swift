@@ -9,15 +9,15 @@
 import Foundation
 
 //TODO: create correct date parser
-class Sticker: Mappable {
+open class Sticker: NSObject, NSCoding, Mappable {
     let createdAt: Date
     let updatedAt: Date
     let id: String
-    let name: String
-    let imageURL: URL
+    public let name: String
+    public let imageURL: URL
     let packID: String
     
-    required init?(dictionary: [String : Any]?) {
+    public required init?(dictionary: [String : Any]?) {
         guard let createdAtString = dictionary?["created_at"] as? String,
             let createdAt = createdAtString.ISO8601Date,
             let updatedAtString = dictionary?["updated_at"] as? String,
@@ -38,4 +38,23 @@ class Sticker: Mappable {
         self.imageURL = imageURL
         self.packID = packID
     }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(createdAt, forKey: "created_at")
+        aCoder.encode(updatedAt, forKey: "updated_at")
+        aCoder.encode(id, forKey: "id")
+        aCoder.encode(name, forKey: "name")
+        aCoder.encode(imageURL, forKey: "image_url")
+        aCoder.encode(packID, forKey: "pack_id")
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        createdAt = aDecoder.decodeObject(forKey: "created_at") as! Date
+        updatedAt = aDecoder.decodeObject(forKey: "updated_at") as! Date
+        id = aDecoder.decodeObject(forKey: "id") as! String
+        name = aDecoder.decodeObject(forKey: "name") as! String
+        imageURL = aDecoder.decodeObject(forKey: "image_url") as! URL
+        packID = aDecoder.decodeObject(forKey: "pack_id") as! String
+    }
+    
 }

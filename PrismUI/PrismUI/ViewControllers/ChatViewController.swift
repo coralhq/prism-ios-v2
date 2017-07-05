@@ -28,7 +28,9 @@ class ChatViewController: BaseViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let composer = ChatComposer.viewFromNib() as? ChatComposer else { return }
+        guard let composer = ChatComposer.composerFromNib(with: viewModel.credential.accessToken) else {
+            return
+        }
         composer.delegate = self
         composer.translatesAutoresizingMaskIntoConstraints = false
         barView.addSubview(composer)
@@ -89,8 +91,12 @@ extension ChatViewController: UITableViewDataSource {
 }
 
 extension ChatViewController: ChatComposerDelegate {
-    func chatComposer(composer: ChatComposer, didSend chatText: String) {
-        print("send chat \(chatText)")
+    func chatComposer(composer: ChatComposer, didSendText text: String) {
+        
+    }
+    
+    func chatComposer(composer: ChatComposer, didSendSticker sticker: StickerViewModel) {
+        
     }
 }
 

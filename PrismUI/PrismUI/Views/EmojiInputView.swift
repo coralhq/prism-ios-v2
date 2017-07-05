@@ -52,13 +52,22 @@ class EmojiInputView: UIView {
         get {
             guard let selectedCategory = selectedCategory else { return [] }
             
-            if selectedCategory.name == "Recent" {
+            if selectedCategory.name == SectionTitle.recent {
                 return recentEmojis
             } else {
                 guard let emojis = emojis[selectedCategory.name] else { return [] }
                 return emojis
             }
         }
+    }
+    
+    struct SectionTitle {
+        static var recent = "Recent".localized()
+        static var people = "People".localized()
+        static var objects = "Objects".localized()
+        static var nature = "Nature".localized()
+        static var places = "Places".localized()
+        static var symbols = "Symbols".localized()
     }
     
     override func awakeFromNib() {
@@ -68,12 +77,12 @@ class EmojiInputView: UIView {
             recentEmojis = savedRecentEmojis
         }
         
-        categories = [EmojiCategory(icon: UIImage(imageNamed: "icRecent"), name: "Recent"),
-                      EmojiCategory(icon: UIImage(imageNamed: "icSmileysPeople"), name: "People"),
-                      EmojiCategory(icon: UIImage(imageNamed: "icObjects"), name: "Objects"),
-                      EmojiCategory(icon: UIImage(imageNamed: "icAnimalsNature"), name: "Nature"),
-                      EmojiCategory(icon: UIImage(imageNamed: "icTravelPlaces"), name: "Places"),
-                      EmojiCategory(icon: UIImage(imageNamed: "icSymbols"), name: "Symbols")]
+        categories = [EmojiCategory(icon: UIImage(imageNamed: "icRecent"), name: SectionTitle.recent),
+                      EmojiCategory(icon: UIImage(imageNamed: "icSmileysPeople"), name: SectionTitle.people),
+                      EmojiCategory(icon: UIImage(imageNamed: "icObjects"), name: SectionTitle.objects),
+                      EmojiCategory(icon: UIImage(imageNamed: "icAnimalsNature"), name: SectionTitle.nature),
+                      EmojiCategory(icon: UIImage(imageNamed: "icTravelPlaces"), name: SectionTitle.places),
+                      EmojiCategory(icon: UIImage(imageNamed: "icSymbols"), name: SectionTitle.symbols)]
         
         var buttons: [OptionButton] = []
         for (index, value) in categories.enumerated() {

@@ -12,19 +12,7 @@ class ChatTextView: UIView {
     @IBOutlet var titleLabel: UILabel!
     
     var chatType: ChatCellType = .In
-    var viewModel: ContentTextViewModel? {
-        didSet {
-            titleLabel.text = viewModel?.text
-        }
-    }
-    
-    static func viewFromNib(with chatViewModel: ChatViewModel) -> ChatTextView? {
-        let view: ChatTextView? = ChatTextView.viewFromNib() as? ChatTextView
-        view?.chatType = chatViewModel.cellType
-        view?.viewModel = chatViewModel.contentViewModel as? ContentTextViewModel
-        return view
-    }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -34,7 +22,6 @@ class ChatTextView: UIView {
             titleLabel.textAlignment = .right
         }
     }
-
 }
 
 extension ChatTextView: ChatContentProtocol {
@@ -44,5 +31,12 @@ extension ChatTextView: ChatContentProtocol {
     
     func infoPosition() -> InfoViewPosition {
         return .Bottom
+    }
+    
+    func updateView(with viewModel: ChatViewModel) {
+        chatType = viewModel.cellType
+        
+        guard let vm = viewModel.contentViewModel as? ContentTextViewModel else { return }
+        titleLabel.text = vm.text
     }
 }

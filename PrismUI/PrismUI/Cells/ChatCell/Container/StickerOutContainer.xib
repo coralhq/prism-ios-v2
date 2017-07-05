@@ -27,7 +27,7 @@
                         <constraint firstAttribute="width" constant="120" placeholder="YES" id="iof-xi-X5U"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLq-kX-bdN">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLq-kX-bdN" customClass="ChatInfoView" customModule="PrismUI" customModuleProvider="target">
                     <rect key="frame" x="294.5" y="183" width="48.5" height="10"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icStatusRead" translatesAutoresizingMaskIntoConstraints="NO" id="eJC-B5-VhF">
@@ -50,6 +50,10 @@
                         <constraint firstItem="4Ae-wq-zIa" firstAttribute="top" secondItem="gLq-kX-bdN" secondAttribute="top" id="qaa-8U-SoA"/>
                         <constraint firstItem="4Ae-wq-zIa" firstAttribute="leading" secondItem="gLq-kX-bdN" secondAttribute="leading" id="uC2-o9-Y9j"/>
                     </constraints>
+                    <connections>
+                        <outlet property="statusImageView" destination="eJC-B5-VhF" id="KPK-UZ-uwI"/>
+                        <outlet property="timeLabel" destination="4Ae-wq-zIa" id="CUO-hy-SEz"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -72,6 +76,7 @@
                 <outlet property="infoView" destination="gLq-kX-bdN" id="GnC-0K-fZI"/>
                 <outlet property="infoWithContentHSpace" destination="O8s-qg-gLD" id="4oN-5o-v6s"/>
                 <outlet property="infoWithContentVSpace" destination="lus-2w-XZ7" id="zF2-te-NgY"/>
+                <outlet property="nameLabel" destination="Vz0-Jr-tLv" id="a2y-6r-1EZ"/>
             </connections>
             <point key="canvasLocation" x="67.5" y="1.5"/>
         </view>

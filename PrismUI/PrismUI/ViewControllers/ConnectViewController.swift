@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PrismAnalytics
 
 public class ConnectViewController: BaseViewController {
     
@@ -60,6 +61,7 @@ public class ConnectViewController: BaseViewController {
             if let error = error {
                 print("Error: \(error)")
             } else {
+                PrismAnalytics.shared.sendTracker(withEvent: .visitorConnect)
                 NotificationCenter.default.post(name: ConnectNotification, object: nil)
             }
         }

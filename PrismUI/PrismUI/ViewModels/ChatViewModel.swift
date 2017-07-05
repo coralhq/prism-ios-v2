@@ -25,6 +25,17 @@ class ChatViewModel {
             return message.sender!.name!
         }
     }
+    var statusIcon: UIImage? {
+        if cellType == .Out {
+            if messageStatus == .sent {
+                return UIImage(named: "icStatusRead", in: Bundle.prism, compatibleWith: nil)
+            } else {
+                return UIImage(named: "icStatusSending", in: Bundle.prism, compatibleWith: nil)
+            }
+        } else {
+            return nil
+        }
+    }
     
     var contentViewModel: ContentViewModel?
     

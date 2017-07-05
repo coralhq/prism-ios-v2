@@ -79,10 +79,11 @@ extension ChatViewController: UITableViewDataSource {
         }
         
         let viewModel = objects[indexPath.row]
-        var cell = tableView.dequeueReusableCell(withIdentifier: ChatCell.reuseIdentifier(viewModel: viewModel))
+        var cell = tableView.dequeueReusableCell(withIdentifier: ChatCell.reuseIdentifier(viewModel: viewModel)) as? ChatCell
         if cell == nil {
             cell = ChatCell(viewModel: viewModel)
         }
+        cell?.viewModel = viewModel
         return cell!
     }
 }

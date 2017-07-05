@@ -26,18 +26,19 @@ class ChatContainerView: UIView {
     @IBOutlet var infoWithContentHSpace: NSLayoutConstraint!
     @IBOutlet var infoWithContentVSpace: NSLayoutConstraint!
     
-    var viewModel: ChatViewModel! {
+    static func containerFromNIB() -> ChatContainerView? {
+        return self.viewFromNib() as? ChatContainerView
+    }
+    
+    var viewModel: ChatViewModel? {
         didSet {
-            infoView.timeLabel.text = viewModel.messageTime
-            if viewModel.cellType == .Out {
-                if viewModel.messageStatus == .sent {
-                    infoView.statusImageView?.image = UIImage(named: "icStatusRead", in: Bundle.prism, compatibleWith: nil)
-                } else {
-                    infoView.statusImageView?.image = UIImage(named: "icStatusSending", in: Bundle.prism, compatibleWith: nil)
-                }
-            }
+            guard let vm = viewModel else { return }
             
-            nameLabel.text = viewModel.senderName
+            infoView.timeLabel.text = vm.messageTime
+            infoView.statusImageView?.image = vm.statusIcon
+            nameLabel.text = vm.senderName
+            
+            chatContentView?.updateView(with: vm)
         }
     }
     
@@ -48,12 +49,6 @@ class ChatContainerView: UIView {
         }
     }
 
-    static func viewFromNib(with viewModel: ChatViewModel) -> ChatContainerView? {
-        let view: ChatContainerView = self.viewFromNib() as! ChatContainerView
-        view.viewModel = viewModel
-        return view
-    }
-    
     func updateInfoView() {
         guard let infoPos = chatContentView?.infoPosition() else { return }
         switch infoPos {

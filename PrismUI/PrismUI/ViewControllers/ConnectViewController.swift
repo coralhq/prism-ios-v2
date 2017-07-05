@@ -38,6 +38,12 @@ public class ConnectViewController: BaseViewController {
         update(textField: phoneTF, form: formField.phoneNumber)
     }
     
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        PrismAnalytics.shared.sendTracker(withEvent: .visitorConnect)
+    }
+    
     func update(textField: LinedTextField, form: InputForm) {
         textField.isRequired = form.required
         if form.show {
@@ -61,7 +67,6 @@ public class ConnectViewController: BaseViewController {
             if let error = error {
                 print("Error: \(error)")
             } else {
-                PrismAnalytics.shared.sendTracker(withEvent: .visitorConnect)
                 NotificationCenter.default.post(name: ConnectNotification, object: nil)
             }
         }

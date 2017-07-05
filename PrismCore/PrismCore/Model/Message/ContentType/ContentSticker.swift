@@ -10,26 +10,14 @@ import Foundation
 
 public class ContentSticker: MessageContentMappable {
     
-    let sticker: MessageSticker
-    
-    public var dictionaryValue: [String: Any] {
-        get {
-            return [
-                "sticker": [
-                    "name": sticker.name,
-                    "image_url": sticker.imageURL.absoluteString,
-                    "id": sticker.id,
-                    "pack_id": sticker.packID
-                ]
-            ]
-        }
-    }
+    public let sticker: MessageSticker
+    var dictionary: [String: Any]?
     
     required public init?(dictionary: [String : Any]?) {
+        self.dictionary = dictionary
         guard let sticker = MessageSticker(dictionary: dictionary?["sticker"] as? [String: Any]) else {
             return nil
         }
-        
         self.sticker = sticker
     }
     
@@ -44,16 +32,20 @@ public class ContentSticker: MessageContentMappable {
             ]
         )
     }
+    
+    public func dictionaryValue() -> [String : Any]? {
+        return dictionary
+    }
 }
 
-class MessageSticker: Mappable {
+public class MessageSticker: Mappable {
     
-    let name: String
-    let imageURL: URL
-    let id: String
-    let packID: String
+    public let name: String
+    public let imageURL: URL
+    public let id: String
+    public let packID: String
     
-    required init?(dictionary: [String : Any]?) {
+    required public init?(dictionary: [String : Any]?) {
         guard let name = dictionary?["name"] as? String,
         let url = dictionary?["image_url"] as? String,
         let imageURL = URL(string: url),

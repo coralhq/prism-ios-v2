@@ -26,6 +26,8 @@ class ChatViewModel {
         }
     }
     
+    var contentViewModel: ContentViewModel?
+    
     init(message: CDMessage, visitor: MessageSender) {
         self.message = message
         
@@ -38,6 +40,12 @@ class ChatViewModel {
         
         if cellType == .Out {
             messageStatus = MessageStatus(rawValue: message.status)
+        }
+        
+        if let content = message.content as? CDContentPlainText {
+            contentViewModel = ContentTextViewModel(contentText: content)
+        } else if let content = message.content as? CDContentSticker {
+            contentViewModel = ContentStickerViewModel(contentSticker: content)
         }
     }
 }

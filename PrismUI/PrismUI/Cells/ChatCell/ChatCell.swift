@@ -47,13 +47,13 @@ class ChatCell: UITableViewCell {
             chatContentView = ChatProductView.viewFromNib()
             break
         case .Sticker:
-            chatContentView = ChatStickerView.viewFromNib()
+            chatContentView = ChatStickerView.viewFromNib(with: viewModel)
             break
         case .Image:
             chatContentView = ChatImageView.viewFromNib()
             break
         default:
-            chatContentView = ChatTextView.viewFromNib(with: viewModel.cellType)
+            chatContentView = ChatTextView.viewFromNib(with: viewModel)
             break
         }
         

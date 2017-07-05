@@ -9,7 +9,20 @@
 import UIKit
 
 class ChatStickerView: UIView {
-
+    @IBOutlet var stickerImageView: UIImageView!
+    
+    var viewModel: ContentStickerViewModel? {
+        didSet {
+            guard let url = viewModel?.stickerURL else { return }
+            stickerImageView.downloadedFrom(url: url)
+        }
+    }
+    
+    static func viewFromNib(with chatViewModel: ChatViewModel) -> ChatStickerView? {
+        let view: ChatStickerView? = ChatStickerView.viewFromNib() as? ChatStickerView
+        view?.viewModel = chatViewModel.contentViewModel as? ContentStickerViewModel
+        return view
+    }
 }
 
 

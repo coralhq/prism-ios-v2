@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stickers" translatesAutoresizingMaskIntoConstraints="NO" id="yZk-gg-U5P">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yZk-gg-U5P">
                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -34,10 +34,10 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="stickerImageView" destination="yZk-gg-U5P" id="6WA-mo-0DO"/>
+            </connections>
             <point key="canvasLocation" x="19.5" y="-167"/>
         </view>
     </objects>
-    <resources>
-        <image name="stickers" width="235" height="240"/>
-    </resources>
 </document>

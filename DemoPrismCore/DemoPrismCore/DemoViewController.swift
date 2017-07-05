@@ -32,9 +32,6 @@ class DemoViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         chatButton.layer.cornerRadius = 15
         chatButton.backgroundColor = .white
-        
-        let image = UIImage(named: "icChatwidget", in: Bundle.init(identifier: "io.prismapp.PrismUI"), compatibleWith: nil)
-        chatButton.setImage(image, for: .normal)
     }
     
     @IBAction func chatAction(_ sender: Any) {

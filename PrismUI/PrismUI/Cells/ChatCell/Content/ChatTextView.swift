@@ -9,16 +9,21 @@
 import UIKit
 
 class ChatTextView: UIView {
+    @IBOutlet var titleLabel: UILabel!
     
     var chatType: ChatCellType = .In
-    
-    static func viewFromNib(with type: ChatCellType) -> ChatTextView? {
-        let view: ChatTextView? = ChatTextView.viewFromNib() as? ChatTextView
-        view?.chatType = type
-        return view
+    var viewModel: ContentTextViewModel? {
+        didSet {
+            titleLabel.text = viewModel?.text
+        }
     }
     
-    @IBOutlet var titleLabel: UILabel!
+    static func viewFromNib(with chatViewModel: ChatViewModel) -> ChatTextView? {
+        let view: ChatTextView? = ChatTextView.viewFromNib() as? ChatTextView
+        view?.chatType = chatViewModel.cellType
+        view?.viewModel = chatViewModel.contentViewModel as? ContentTextViewModel
+        return view
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()

@@ -92,11 +92,11 @@ extension ChatViewController: UITableViewDataSource {
 
 extension ChatViewController: ChatComposerDelegate {
     func chatComposer(composer: ChatComposer, didSendText text: String) {
-        print("send chat \(text)")
+        
     }
     
     func chatComposer(composer: ChatComposer, didSendSticker sticker: StickerViewModel) {
-        print("send sticker \(sticker.name)")
+        
     }
 }
 

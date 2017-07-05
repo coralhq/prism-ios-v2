@@ -165,17 +165,22 @@ class Network: NetworkProtocol {
     }
     
     func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, NSError?) -> ()) {
-        
-        let jsonData = try! JSONSerialization.data(withJSONObject: message.dictionaryValue, options: .prettyPrinted)
-        
-        mqttSession.publish(jsonData, in: topic, delivering: .atLeastOnce, retain: false) { (success, error) in
-            DispatchQueue.main.async(){
-                if success {
-                    completionHandler(message, nil)
-                } else {
-                    completionHandler(nil, error as NSError?)
+        do {
+            guard let messageDict = message.dictionaryValue() else { return }
+            
+            let jsonData = try JSONSerialization.data(withJSONObject: messageDict, options: .prettyPrinted)
+            
+            mqttSession.publish(jsonData, in: topic, delivering: .atLeastOnce, retain: false) { (success, error) in
+                DispatchQueue.main.async(){
+                    if success {
+                        completionHandler(message, nil)
+                    } else {
+                        completionHandler(nil, error as NSError?)
+                    }
                 }
             }
+        } catch {
+            print("error \(error)")
         }
     }
 }

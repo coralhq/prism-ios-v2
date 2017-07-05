@@ -8,46 +8,27 @@
 
 import UIKit
 
-enum ChatCellType: String {
-    case In = "_in"
-    case Out = "_out"
-}
-
-enum ChatContentType: String {
-    case Text = "text_cell"
-    case Sticker = "sticker_cell"
-    case Cart = "cart_cell"
-    case Invoice = "invoice_cell"
-    case Product = "product_cell"
-    case Image = "image_cell"
-}
-
-struct ChatCellConfig {
-    let cellType: ChatCellType
-    let contentType: ChatContentType
-}
-
 class ChatCell: UITableViewCell {
     var chatView: ChatContainerView?
     var chatContentView: UIView?
     
-    static func reuseIdentifier(config: ChatCellConfig) -> String {
-        return config.contentType.rawValue + config.cellType.rawValue
+    static func reuseIdentifier(viewModel: ChatViewModel, cellType: ChatCellType) -> String {
+        return viewModel.contentType.rawValue + cellType.rawValue
     }
     
-    convenience init(config: ChatCellConfig) {
-        self.init(style: .default, reuseIdentifier: ChatCell.reuseIdentifier(config: config))
+    convenience init(viewModel: ChatViewModel, cellType: ChatCellType) {
+        self.init(style: .default, reuseIdentifier: ChatCell.reuseIdentifier(viewModel: viewModel, cellType: cellType))
         
-        switch config.cellType {
+        switch cellType {
         case .In:
-            if config.contentType == .Sticker {
+            if viewModel.contentType == .Sticker {
                 chatView = StickerInContainer.viewFromNib() as? ChatContainerView
             } else {
                 chatView = ChatInContainerView.viewFromNib() as? ChatContainerView
             }
             break
         default:
-            if config.contentType == .Sticker {
+            if viewModel.contentType == .Sticker {
                 chatView = StickerOutContainer.viewFromNib() as? ChatContainerView
             } else {
                 chatView = ChatOutContainerView.viewFromNib() as? ChatContainerView
@@ -55,7 +36,7 @@ class ChatCell: UITableViewCell {
             break
         }
         
-        switch config.contentType {
+        switch viewModel.contentType {
         case .Cart:
             chatContentView = ChatCartView.viewFromNib()
             break
@@ -72,7 +53,7 @@ class ChatCell: UITableViewCell {
             chatContentView = ChatImageView.viewFromNib()
             break
         default:
-            chatContentView = ChatTextView.viewFromNibWithType(type: config.cellType)
+            chatContentView = ChatTextView.viewFromNibWithType(type: cellType)
             break
         }
         
@@ -87,6 +68,8 @@ class ChatCell: UITableViewCell {
         backgroundColor = UIColor.clear
         backgroundView = UIView()
         selectedBackgroundView = UIView()
+        
+        transform = CGAffineTransform(scaleX: 1, y: -1)
     }
     
     required init?(coder aDecoder: NSCoder) {

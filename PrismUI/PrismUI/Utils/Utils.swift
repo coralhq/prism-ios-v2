@@ -37,6 +37,7 @@ class Vendor {
     static let shared = Vendor()
     
     let dateFormatter: DateFormatter
+    let currencyFormatter: NumberFormatter
     let calendar = Calendar.current
     
     init() {
@@ -44,5 +45,10 @@ class Vendor {
         dateFormatter.calendar = Calendar(identifier: .iso8601)
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        
+        currencyFormatter = NumberFormatter()
+        currencyFormatter.numberStyle = .decimal
+        currencyFormatter.groupingSeparator = ","
+        currencyFormatter.decimalSeparator = "."
     }
 }

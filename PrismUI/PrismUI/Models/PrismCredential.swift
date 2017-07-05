@@ -16,6 +16,10 @@ class PrismCredential: NSObject, NSCoding {
         static var visitorName = "visitor_name"
         static var accessToken = "access_token"
         static var topic = "topic"
+        static var conversationID = "conversation_id"
+        static var merchantID = "merchant_id"
+        static var visitor = "visitor"
+        static var sender = "sender"
     }
     
     var username: String
@@ -23,6 +27,10 @@ class PrismCredential: NSObject, NSCoding {
     var visitorName: String
     var accessToken: String
     var topic: String
+    var conversationID: String
+    var merchantID: String
+    var visitorInfo: MessageUser
+    var sender: MessageSender
     
     init(connect: ConnectResponse, conversation: CreateConversationResponse) {
         username = connect.mqtt.username
@@ -30,6 +38,11 @@ class PrismCredential: NSObject, NSCoding {
         visitorName = connect.visitor.name
         accessToken = connect.oAuth.accessToken
         topic = conversation.conversation.topic
+        conversationID = conversation.conversation.id
+        merchantID = connect.visitor.merchantID
+        
+        visitorInfo = MessageUser(id: connect.visitor.id, name: connect.visitor.name)!        
+        sender = MessageSender(id: connect.visitor.id, name: connect.visitor.name, role: "visitor", userAgent: "iOSSDK-v1.0.0")!
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -38,6 +51,14 @@ class PrismCredential: NSObject, NSCoding {
         visitorName = aDecoder.decodeObject(forKey: Keys.visitorName) as! String
         accessToken = aDecoder.decodeObject(forKey: Keys.accessToken) as! String
         topic = aDecoder.decodeObject(forKey: Keys.topic) as! String
+        conversationID = aDecoder.decodeObject(forKey: Keys.conversationID) as! String
+        merchantID = aDecoder.decodeObject(forKey: Keys.merchantID) as! String
+        
+        let visitorDict = aDecoder.decodeObject(forKey: Keys.visitor) as! [String: Any]
+        visitorInfo = MessageUser(dictionary: visitorDict)!
+        
+        let senderDict = aDecoder.decodeObject(forKey: Keys.sender) as! [String: Any]
+        sender = MessageSender(dictionary: senderDict)!
     }
     
     public func encode(with aCoder: NSCoder) {
@@ -46,5 +67,9 @@ class PrismCredential: NSObject, NSCoding {
         aCoder.encode(visitorName, forKey: Keys.visitorName)
         aCoder.encode(accessToken, forKey: Keys.accessToken)
         aCoder.encode(topic, forKey: Keys.topic)
+        aCoder.encode(conversationID, forKey: Keys.conversationID)
+        aCoder.encode(merchantID, forKey: Keys.merchantID)
+        aCoder.encode(visitorInfo.dictionaryValue, forKey: Keys.visitor)
+        aCoder.encode(sender.dictionaryValue, forKey: Keys.sender)
     }
 }

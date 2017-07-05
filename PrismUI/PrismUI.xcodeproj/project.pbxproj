@@ -17,6 +17,7 @@
 		807C89991EEE4C3400DADEBF /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C89981EEE4C3400DADEBF /* UIFont.swift */; };
 		807C899C1EEE63B400DADEBF /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C899B1EEE63B400DADEBF /* UIViewController.swift */; };
 		807C899F1EEE7BEC00DADEBF /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C899E1EEE7BEC00DADEBF /* UIImageView.swift */; };
+		808476951F0CBC0500E12323 /* PrismAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 808476941F0CBC0500E12323 /* PrismAnalytics.framework */; };
 		E5053A861EF10930006677A4 /* LinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389A421EEA3140007B9458 /* LinedTextField.swift */; };
 		E5053A891EF10D24006677A4 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5053A871EF10D24006677A4 /* RootViewController.swift */; };
 		E5053A8A1EF10D24006677A4 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5053A881EF10D24006677A4 /* RootViewController.xib */; };
@@ -103,6 +104,7 @@
 		807C89981EEE4C3400DADEBF /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		807C899B1EEE63B400DADEBF /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		807C899E1EEE7BEC00DADEBF /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		808476941F0CBC0500E12323 /* PrismAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrismAnalytics.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/DemoPrismCore-bcrdrdmgikxzvgaenjvefmjtezuy/Build/Products/Debug-iphonesimulator/PrismAnalytics.framework"; sourceTree = "<group>"; };
 		E5053A871EF10D24006677A4 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		E5053A881EF10D24006677A4 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		E5053A8E1EF13123006677A4 /* InputFormSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputFormSettings.swift; path = Models/InputFormSettings.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				808476951F0CBC0500E12323 /* PrismAnalytics.framework in Frameworks */,
 				E54969B81EEA82B7008209D9 /* PrismCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,6 +327,7 @@
 		E54969B61EEA82B7008209D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				808476941F0CBC0500E12323 /* PrismAnalytics.framework */,
 				E54969B71EEA82B7008209D9 /* PrismCore.framework */,
 			);
 			name = Frameworks;

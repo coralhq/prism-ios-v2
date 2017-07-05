@@ -62,7 +62,7 @@ class ChatComposer: UIView {
     @IBAction func textInputPressed(sender: UIButton) {
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
-            textView.inputView = EmojiInputView.viewFromNib(textView: textView)
+            textView.inputView = EmojiInputView.viewFromNib(with: textView)
         } else {
             textView.inputView = nil
         }

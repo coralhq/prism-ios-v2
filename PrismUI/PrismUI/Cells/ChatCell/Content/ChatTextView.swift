@@ -12,7 +12,7 @@ class ChatTextView: UIView {
     
     var chatType: ChatCellType = .In
     
-    static func viewFromNibWithType(type: ChatCellType) -> ChatTextView? {
+    static func viewFromNib(with type: ChatCellType) -> ChatTextView? {
         let view: ChatTextView? = ChatTextView.viewFromNib() as? ChatTextView
         view?.chatType = type
         return view

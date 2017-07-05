@@ -23,7 +23,7 @@ class EmojiInputView: UIView {
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var emojiOptionView: OptionView!
     
-    static func viewFromNib(textView: UITextView?) -> EmojiInputView {
+    static func viewFromNib(with textView: UITextView?) -> EmojiInputView {
         let inputView = self.viewFromNib() as! EmojiInputView
         inputView.inputTextView = textView
         return inputView

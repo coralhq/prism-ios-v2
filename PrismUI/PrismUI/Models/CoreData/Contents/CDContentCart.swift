@@ -44,7 +44,7 @@ class CDLineItem: NSObject, NSCoding {
     
     required init?(coder aDecoder: NSCoder) {
         product = aDecoder.decodeObject(forKey: "product") as? CDProduct
-        quantity = aDecoder.decodeInteger(forKey: "quantity")
+        quantity = aDecoder.decodeObject(forKey: "quantity") as? Int
     }
 }
 

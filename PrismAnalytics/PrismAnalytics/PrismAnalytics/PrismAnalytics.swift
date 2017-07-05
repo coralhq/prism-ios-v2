@@ -40,7 +40,7 @@ open class PrismAnalytics {
             guard let builder = GAIDictionaryBuilder.createEvent(withCategory: event.rawValue, action: event.rawValue, label: "", value: 1) else { return }
             dictionaryBuilder = builder
             
-        default:
+        case .chatScreen, .visitorConnect:
             tracker.set(kGAIScreenName, value: event.rawValue)
             guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
             dictionaryBuilder = builder

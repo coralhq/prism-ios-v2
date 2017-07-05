@@ -103,7 +103,7 @@ extension ChatViewController: ChatComposerDelegate {
     }
     
     func chatComposer(composer: ChatComposer, didSendSticker sticker: StickerViewModel) {
-        print("send sticker \(sticker.name)")
+        
     }
 }
 

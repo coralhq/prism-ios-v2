@@ -11,6 +11,12 @@ import UIKit
 class ChatProductView: UIView {
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var pageControl: UIPageControl!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var priceLabel: UILabel!
+    @IBOutlet var discountLabel: UILabel!
+    @IBOutlet var descriptionLabel: UILabel!
+    
+    var imageURLs: [URL] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +35,23 @@ extension ChatProductView: ChatContentProtocol {
     func infoPosition() -> InfoViewPosition {
         return .Bottom
     }
+    
+    func updateView(with viewModel: ChatViewModel) {
+        guard let contentVM = viewModel.contentViewModel as? ContentProductViewModel else { return }
+        nameLabel.text = contentVM.name
+        descriptionLabel.text = contentVM.description
+        
+        if let _ = contentVM.discount {
+            priceLabel.text = contentVM.discount
+            discountLabel.strikeTroughLined(with: contentVM.price)
+        } else {
+            priceLabel.text = contentVM.price
+            discountLabel.strikeTroughLined(with: nil)
+        }
+        
+        imageURLs = contentVM.imageURLs
+        collectionView.reloadData()
+    }
 }
 
 extension ChatProductView: UICollectionViewDelegate {
@@ -40,13 +63,14 @@ extension ChatProductView: UICollectionViewDelegate {
 
 extension ChatProductView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let count = 4
+        let count = imageURLs.count
         pageControl.numberOfPages = count
         return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentProductCell.className(), for: indexPath)
+        let cell: ContentProductCell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentProductCell.className(), for: indexPath) as! ContentProductCell
+        cell.imageView.downloadedFrom(url: imageURLs[indexPath.row])
         return cell
     }
 }

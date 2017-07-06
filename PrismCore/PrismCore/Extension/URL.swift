@@ -11,9 +11,9 @@ import Foundation
 internal extension URL {
     
     private static let PrismAPIBaseURLProduction = "https://api.prismapp.io"
-    private static let PrismAPIBaseURLSandbox = "https://kong.staging.coral-inc.com"
+    private static let PrismAPIBaseURLSandbox = "https://api.sandbox.prismapp.io"
     private static let PrismMQTTURLProduction = "chat.prismapp.io"
-    private static let PrismMQTTURLSandbox = "chat.prismapp.io"
+    private static let PrismMQTTURLSandbox = "chat.sandbox.prismapp.io"
     private static let PrismMQTTPortSandbox: UInt16 = 1883
     private static let PrismMQTTPortProduction: UInt16 = 1883
     

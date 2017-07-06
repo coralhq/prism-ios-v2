@@ -22,7 +22,7 @@ open class PrismUI {
     
     open func configure(environment: EnvironmentType, merchantID: String, delegate: PrismUIDelegate) {
         self.delegate = delegate
-        PrismCore.shared.configure(environment: environment, merchantID: merchantID, delegate: self)
+        PrismCore.shared.configure(environment: environment, merchantID: merchantID)
     }
     
     open func present(on viewController: UIViewController) {

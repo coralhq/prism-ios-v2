@@ -9,23 +9,23 @@
 import Foundation
 
 public class ContentPlainText : MessageContentMappable {
-    let text: String
+    public let text: String
     
-    public var dictionaryValue: [String: Any] {
-        get {
-            return ["text": text]
-        }
-    }
+    var dictionary: [String: Any]?
 
     required public init?(dictionary: [String : Any]?) {
+        self.dictionary = dictionary
         guard let text = dictionary?["text"] as? String else {
             return nil
         }
-        
         self.text = text
     }
     
     convenience public init?(text: String) {
         self.init(dictionary: ["text": text])
+    }
+    
+    public func dictionaryValue() -> [String : Any]? {
+        return dictionary
     }
 }

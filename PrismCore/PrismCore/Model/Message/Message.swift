@@ -50,8 +50,9 @@ public enum MessageType {
     case StatusUpdate
     case Sticker
     case Typing
+    case Unknown
     
-    public init?(rawValue: String) {
+    public init(rawValue: String) {
         switch rawValue {
         case "auto_responder": self = .AutoResponder
         case "assignment": self = .Assignment
@@ -65,7 +66,7 @@ public enum MessageType {
         case "message_status_update": self = .StatusUpdate
         case "sticker": self = .Sticker
         case "typing": self = .Typing
-        default: return nil
+        default: self = .Unknown
         }
     }
     
@@ -84,6 +85,7 @@ public enum MessageType {
             case .StatusUpdate: return "message_status_update"
             case .Sticker: return "sticker"
             case .Typing: return "typing"
+            case .Unknown: return "unknown"
             }
         }
         
@@ -91,18 +93,20 @@ public enum MessageType {
 }
 
 open class Message: Mappable {
-    var id: String
-    var conversationID: String
-    var merchantID: String
-    var channel: String
-    var channelInfo: MessageChannelInfo
-    var visitor: MessageVisitorInfo
-    var sender: MessageSender
-    var type: MessageType
-    var content: MessageContentMappable
-    var version: Int
-    var brokerMetaData: BrokerMetaData
-    public let dictionaryValue: [String: Any]
+    public var id: String
+    public var conversationID: String
+    public var merchantID: String
+    public var channel: String
+    public var visitor: MessageVisitorInfo
+    public var sender: MessageSender
+    public var type: MessageType
+    public var content: MessageContentMappable
+    public var version: Int
+    public var brokerMetaData: BrokerMetaData
+    
+    public var channelInfo: MessageChannelInfo?
+    
+    var dictionary: [String: Any]?
     
     public required init?(dictionary: [String : Any]?) {
         guard let dictionary = dictionary,
@@ -110,206 +114,92 @@ open class Message: Mappable {
             let conversationID = dictionary["conversation_id"] as? String,
             let merchantID = dictionary["merchant_id"] as? String,
             let channel = dictionary["channel"] as? String,
-            let channelInfo = MessageChannelInfo(dictionary: dictionary["channel_info"] as? [String: Any]),
             let visitor = MessageVisitorInfo(dictionary: dictionary["visitor"] as? [String: Any]),
             let sender = MessageSender(dictionary: dictionary["sender"] as? [String: Any]),
             let typeString = dictionary["type"] as? String,
-            let type = MessageType(rawValue: typeString),
             let version = dictionary["version"] as? Int,
-            let brokerMetaData = BrokerMetaData(dictionary: dictionary["_broker_metadata"] as? [String: Any]) else {
+            let brokerMetaData = BrokerMetaData(dictionary: dictionary["_broker_metadata"] as? [String: Any]),
+            let contentDict = dictionary["content"] as? [String: Any] else {
                 return nil
         }
         
-        if case .Assignment = type, let content = ContentAssignment(dictionary: dictionary["content"] as? [String: Any]) {
-            self.content = content
-        } else if case .AutoResponder = type, let content = ContentAutoResponder(dictionary: dictionary["content"] as? [String: Any]) {
-            self.content = content
-        } else if case .Attachment = type, let content = ContentAttachment(dictionary: dictionary["content"] as? [String: Any]) {
-            self.content = content
-        } else if case .Cart = type, let content = ContentCart(dictionary: dictionary["content"] as? [String: Any]) {
-            self.content = content
-        } else if case .CloseChat = type, let content = ContentCloseChat(dictionary: dictionary["content"] as? [String: Any]) {
-            self.content = content
-        } else if case .Invoice = type, let content = ContentInvoice(dictionary: dictionary["content"] as? [String: Any]) {
-            self.content = content
-        } else if case .OfflineMessage = type, let content = ContentOfflineMessage(dictionary: dictionary["content"] as? [String: Any]) {
-            self.content = content
-        } else if case .PlainText = type, let content = ContentPlainText(dictionary: dictionary["content"] as? [String: Any]) {
-            self.content = content
-        } else if case .Product = type, let content = ContentProduct(dictionary: dictionary["content"] as? [String: Any]) {
-            self.content = content
-        } else if case .StatusUpdate = type, let content = ContentStatusUpdate(dictionary: dictionary["content"] as? [String: Any]) {
-            self.content = content
-        } else if case .Sticker = type, let content = ContentSticker(dictionary: dictionary["content"] as? [String: Any]) {
-            self.content = content
-        } else if case .Typing = type, let content = ContentTyping(dictionary: dictionary["content"] as? [String: Any]) {
-            self.content = content
-        } else {
-            return nil
-        }
+        self.dictionary = dictionary
         
-        self.type = type
+        self.channelInfo = MessageChannelInfo(dictionary: dictionary["channel_info"] as? [String: Any])
+        self.type = MessageType(rawValue: typeString)
+        
         self.id = id
         self.merchantID = merchantID
-        self.channelInfo = channelInfo
         self.conversationID = conversationID
         self.channel = channel
         self.visitor = visitor
         self.sender = sender
         self.brokerMetaData = brokerMetaData
         self.version = version
-        self.dictionaryValue = dictionary
-    }
-    
-    convenience private init?(
-        id: String,
-        conversationID: String,
-        merchantID: String,
-        channel: String,
-        channelInfo: MessageChannelInfo,
-        visitor: MessageVisitorInfo,
-        sender: MessageSender,
-        type: MessageType,
-        content: [String: Any],
-        brokerMetaData: BrokerMetaData) {
         
-        self.init(dictionary: [
-            "id": id,
-            "conversation_id": conversationID,
-            "merchant_id": merchantID,
-            "channel": channel,
-            "channel_info": channelInfo.dictionaryValue,
-            "visitor": visitor.dictionaryValue,
-            "sender": sender.dictionaryValue,
-            "type": type.rawValue,
-            "content": content,
-            "version": 2,
-            "_broker_metadata": brokerMetaData.dictionaryValue
-        ])
-    }
-    
-    convenience public init?(id: String,
-                            conversationID: String,
-                            merchantID: String,
-                            channel: String,
-                            channelInfo: MessageChannelInfo,
-                            visitor: MessageVisitorInfo,
-                            sender: MessageSender,
-                            type: MessageType,
-                            content: ContentPlainText,
-                            brokerMetaData: BrokerMetaData) {
-        
-        self.init(
-            id: id,
-            conversationID: conversationID,
-            merchantID: merchantID,
-            channel: channel,
-            channelInfo: channelInfo,
-            visitor: visitor,
-            sender: sender,
-            type: type,
-            content: content.dictionaryValue,
-            brokerMetaData: brokerMetaData
-        )
-    }
-    
-    convenience public init?(id: String,
-                            conversationID: String,
-                            merchantID: String,
-                            channel: String,
-                            channelInfo: MessageChannelInfo,
-                            visitor: MessageVisitorInfo,
-                            sender: MessageSender,
-                            type: MessageType,
-                            content: ContentAttachment,
-                            brokerMetaData: BrokerMetaData) {
-        
-        self.init(
-            id: id,
-            conversationID: conversationID,
-            merchantID: merchantID,
-            channel: channel,
-            channelInfo: channelInfo,
-            visitor: visitor,
-            sender: sender,
-            type: type,
-            content: content.dictionaryValue,
-            brokerMetaData: brokerMetaData
-        )
-    }
-    
-    convenience public init?(id: String,
-                            conversationID: String,
-                            merchantID: String,
-                            channel: String,
-                            channelInfo: MessageChannelInfo,
-                            visitor: MessageVisitorInfo,
-                            sender: MessageSender,
-                            type: MessageType,
-                            content: ContentSticker,
-                            brokerMetaData: BrokerMetaData) {
-        
-        self.init(
-            id: id,
-            conversationID: conversationID,
-            merchantID: merchantID,
-            channel: channel,
-            channelInfo: channelInfo,
-            visitor: visitor,
-            sender: sender,
-            type: type,
-            content: content.dictionaryValue,
-            brokerMetaData: brokerMetaData
-        )
-    }
-    
-    convenience public init?(id: String,
-                            conversationID: String,
-                            merchantID: String,
-                            channel: String,
-                            channelInfo: MessageChannelInfo,
-                            visitor: MessageVisitorInfo,
-                            sender: MessageSender,
-                            type: MessageType,
-                            content: ContentTyping,
-                            brokerMetaData: BrokerMetaData) {
-        
-        self.init(
-            id: id,
-            conversationID: conversationID,
-            merchantID: merchantID,
-            channel: channel,
-            channelInfo: channelInfo,
-            visitor: visitor,
-            sender: sender,
-            type: type,
-            content: content.dictionaryValue,
-            brokerMetaData: brokerMetaData
-        )
+        var content: MessageContentMappable?
+        switch type {
+        case .Assignment:
+            content = ContentAssignment(dictionary: contentDict)
+        case .Attachment:
+            content = ContentAttachment(dictionary: contentDict)
+        case .AutoResponder:
+            content = ContentAutoResponder(dictionary: contentDict)
+        case .Cart:
+            content = ContentCart(dictionary: contentDict)
+        case .CloseChat:
+            content = ContentCloseChat(dictionary: contentDict)
+        case .Invoice:
+            content = ContentInvoice(dictionary: contentDict)
+        case .OfflineMessage:
+            content = ContentOfflineMessage(dictionary: contentDict)
+        case .PlainText:
+            content = ContentPlainText(dictionary: contentDict)
+        case .Product:
+            content = ContentProduct(dictionary: contentDict)
+        case .StatusUpdate:
+            content = ContentStatusUpdate(dictionary: contentDict)
+        case .Sticker:
+            content = ContentSticker(dictionary: contentDict)
+        case .Typing:
+            content = ContentTyping(dictionary: contentDict)
+        case .Unknown:
+            content = nil
+        }
+        guard let _content = content else { return nil }
+        self.content = _content
     }
     
     convenience public init?(id: String,
                              conversationID: String,
                              merchantID: String,
                              channel: String,
-                             channelInfo: MessageChannelInfo,
                              visitor: MessageVisitorInfo,
                              sender: MessageSender,
                              type: MessageType,
-                             content: ContentOfflineMessage,
-                             brokerMetaData: BrokerMetaData) {
-        
-        self.init(
-            id: id,
-            conversationID: conversationID,
-            merchantID: merchantID,
-            channel: channel,
-            channelInfo: channelInfo,
-            visitor: visitor,
-            sender: sender,
-            type: type,
-            content: content.dictionaryValue,
-            brokerMetaData: brokerMetaData
-        )
+                             content: MessageContentMappable,
+                             brokerMetaData: BrokerMetaData,
+                             channelInfo: MessageChannelInfo? = nil) {
+        guard let contentDict = content.dictionaryValue() else { return nil }
+        var messageDict: [String: Any] = [
+            "id": id,
+            "conversation_id": conversationID,
+            "merchant_id": merchantID,
+            "channel": channel,
+            "visitor": visitor.dictionaryValue,
+            "sender": sender.dictionaryValue,
+            "type": type.rawValue,
+            "content": contentDict,
+            "version": 2,
+            "_broker_metadata": brokerMetaData.dictionaryValue
+        ]
+        if let channelInfo = channelInfo {
+            messageDict["channel_info"] = channelInfo.dictionaryValue
+        }
+        self.init(dictionary: messageDict)
+    }
+    
+    func dictionaryValue() -> [String: Any]? {
+        return dictionary
     }
 }

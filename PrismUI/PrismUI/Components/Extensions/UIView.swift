@@ -1,5 +1,5 @@
 //
-//  UIViewExt.swift
+//  UIView.swift
 //  PrismUI
 //
 //  Created by Nanang Rafsanjani on 6/18/17.

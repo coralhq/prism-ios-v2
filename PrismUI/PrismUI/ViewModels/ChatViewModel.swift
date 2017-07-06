@@ -7,24 +7,59 @@
 //
 
 import UIKit
+import CoreData
 import PrismCore
 
 class ChatViewModel {
-    var credential: PrismCredential
+    private let message: CDMessage
     
-    init(credential: PrismCredential) {
-        self.credential = credential
-    }
-    
-    func connect(completionHandler: @escaping ((Bool, Error?) -> ())) {
-        PrismCore.shared.connectToBroker(username: credential.username, password: credential.password) { (success, error) in
-            completionHandler(success, error)
+    let cellType: ChatCellType
+    let messageID: String
+    let contentType: ChatContentType
+    var messageTime: String
+    var messageStatus: MessageStatus?
+    var senderName: String {
+        if cellType == .Out {
+            return "Me".localized()
+        } else {
+            return message.sender!.name!
         }
     }
     
-    func subscribe(completionHandler: @escaping ((Bool, Error?) -> ())) {
-        PrismCore.shared.subscribeToTopic(credential.topic) { (success, error) in
-            completionHandler(success, error)
+    init(message: CDMessage, visitor: MessageSender) {
+        self.message = message
+        
+        contentType = ChatContentType.typeFrom(typeString: message.type!)
+        cellType = (message.sender!.id! == visitor.id) ? .Out : .In
+        messageID = message.id!
+        
+        Vendor.shared.dateFormatter.dateFormat = "hh:mm a"
+        messageTime = Vendor.shared.dateFormatter.string(from: message.brokerMetaData!.timestamp!)
+        
+        if cellType == .Out {
+            messageStatus = MessageStatus(rawValue: message.status)
         }
+    }
+}
+
+class ChatSectionViewModel {
+    var indexTitle: String?
+    var objects: [ChatViewModel]?
+    
+    init(info: NSFetchedResultsSectionInfo, credential: PrismCredential) {
+        guard let messages = info.objects as? [CDMessage] else { return }
+        
+        objects = []
+        for message in messages {
+            objects?.append(ChatViewModel(message: message, visitor: credential.sender))
+        }
+        
+        guard let date = messages.first?.sectionDate else { return }
+        if Vendor.shared.calendar.isDate(date, equalTo: Date(), toGranularity: .year) {
+            Vendor.shared.dateFormatter.dateFormat = DateFormatVendor.dayFormat
+        } else {
+            Vendor.shared.dateFormatter.dateFormat = DateFormatVendor.dayWithYearFormat
+        }
+        indexTitle = Vendor.shared.dateFormatter.string(from: date)
     }
 }

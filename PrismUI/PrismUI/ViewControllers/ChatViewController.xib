@@ -26,7 +26,7 @@
                         <constraint firstAttribute="height" constant="20" id="92I-aY-2wg"/>
                     </constraints>
                 </imageView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d5q-CB-w5U">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d5q-CB-w5U" customClass="ChatTableView" customModule="PrismUI" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
                     <color key="backgroundColor" red="0.82745098039999998" green="0.21960784310000001" blue="0.36470588240000001" alpha="0.050000000000000003" colorSpace="calibratedRGB"/>
                 </tableView>

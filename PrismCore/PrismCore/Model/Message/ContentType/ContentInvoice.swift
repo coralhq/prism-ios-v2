@@ -8,16 +8,20 @@
 
 import Foundation
 
-class ContentInvoice: MessageContentMappable {
+public class ContentInvoice: MessageContentMappable {
     
-    let id: String
-    let lineItems: [LineItem]
-    let grandTotal: Currency
-    let buyer: Buyer
-    let shipment: Shipment
-    let payment: Payment
+    public let id: String
+    public let lineItems: [LineItem]
+    public let grandTotal: Currency
+    public let buyer: Buyer
+    public let shipment: Shipment
+    public let payment: Payment
     
-    required init?(dictionary: [String : Any]?) {
+    var dictionary: [String: Any]?
+    
+    required public init?(dictionary: [String : Any]?) {
+        self.dictionary = dictionary
+        
         guard let invoice = dictionary?["invoice"] as? [String: Any],
             let id = invoice["id"] as? String,
             let lineItemDictionaries = invoice["line_items"] as? [[String: Any]],
@@ -44,12 +48,16 @@ class ContentInvoice: MessageContentMappable {
         self.shipment = shipment
         self.payment = payment
     }
+    
+    public func dictionaryValue() -> [String : Any]? {
+        return dictionary
+    }
 }
 
-class Payment: Mappable {
-    let type: String
+public class Payment: Mappable {
+    public let type: String
     
-    required init?(dictionary: [String : Any]?) {
+    required public init?(dictionary: [String : Any]?) {
         guard let provider = dictionary?["provider"] as? [String: Any],
             let type = provider["type"] as? String else {
                 return nil
@@ -59,11 +67,11 @@ class Payment: Mappable {
     }
 }
 
-class Shipment: Mappable {
-    let info: ShipmentInfo
-    let cost: Currency
+public class Shipment: Mappable {
+    public let info: ShipmentInfo
+    public let cost: Currency
     
-    required init?(dictionary: [String : Any]?) {
+    required public init?(dictionary: [String : Any]?) {
         guard let info = ShipmentInfo(dictionary: dictionary?["info"] as? [String: Any]),
             let cost = Currency(dictionary: dictionary?["cost"] as? [String: Any]) else {
                 return nil
@@ -74,13 +82,13 @@ class Shipment: Mappable {
     }
 }
 
-class ShipmentInfo: Mappable {
-    let name: String
-    let email: String
-    let address: String
-    let phone: String
+public class ShipmentInfo: Mappable {
+    public let name: String
+    public let email: String
+    public let address: String
+    public let phone: String
     
-    required init?(dictionary: [String : Any]?) {
+    required public init?(dictionary: [String : Any]?) {
         guard let name = dictionary?["customer_name"] as? String,
             let email = dictionary?["customer_email"] as? String,
             let address = dictionary?["customer_address"] as? String,
@@ -95,12 +103,12 @@ class ShipmentInfo: Mappable {
     }
 }
 
-class Buyer: Mappable {
-    let name: String
-    let email: String
-    let phoneNumber: String
+public class Buyer: Mappable {
+    public let name: String
+    public let email: String
+    public let phoneNumber: String
     
-    required init?(dictionary: [String : Any]?) {
+    required public init?(dictionary: [String : Any]?) {
         guard let name = dictionary?["name"] as? String,
             let email = dictionary?["email"] as? String,
             let phoneNumber = dictionary?["phone_number"] as? String else {
@@ -112,11 +120,11 @@ class Buyer: Mappable {
         self.phoneNumber = phoneNumber
     }
 }
-class Currency: Mappable {
-    let currencyCode: String
-    let amount: String
+public class Currency: Mappable {
+    public let currencyCode: String
+    public let amount: String
     
-    required init?(dictionary: [String : Any]?) {
+    required public init?(dictionary: [String : Any]?) {
         guard let currencyCode = dictionary?["currency_code"] as? String,
             let amount = dictionary?["amount"] as? String else {
                 return nil

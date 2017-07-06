@@ -11,12 +11,20 @@ import Foundation
 class ContentStatusUpdate: MessageContentMappable {
     let statusUpdate: StatusUpdate
     
+    var dictionary: [String: Any]?
+    
     required init?(dictionary: [String : Any]?) {
         guard let statusUpdate = StatusUpdate(dictionary: dictionary?["message_status_update"] as? [String: Any]) else {
             return nil
         }
         
+        self.dictionary = dictionary
+        
         self.statusUpdate = statusUpdate
+    }
+    
+    func dictionaryValue() -> [String : Any]? {
+        return dictionary
     }
 }
 

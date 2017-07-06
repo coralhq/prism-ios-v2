@@ -27,7 +27,7 @@
                         <constraint firstAttribute="width" constant="120" placeholder="YES" id="kti-HR-thG"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4p-ZT-nu9">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4p-ZT-nu9" customClass="ChatInfoView" customModule="PrismUI" customModuleProvider="target">
                     <rect key="frame" x="144" y="183" width="32.5" height="10"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:40 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="td7-uu-7VA">
@@ -44,6 +44,9 @@
                         <constraint firstItem="td7-uu-7VA" firstAttribute="top" secondItem="s4p-ZT-nu9" secondAttribute="top" id="rDU-B5-EV7"/>
                         <constraint firstAttribute="trailing" secondItem="td7-uu-7VA" secondAttribute="trailing" id="s1S-if-3to"/>
                     </constraints>
+                    <connections>
+                        <outlet property="timeLabel" destination="td7-uu-7VA" id="h1z-rC-FA2"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -67,6 +70,7 @@
                 <outlet property="infoView" destination="s4p-ZT-nu9" id="nBC-Rw-TbE"/>
                 <outlet property="infoWithContentHSpace" destination="9cP-28-M1J" id="9np-uw-jG4"/>
                 <outlet property="infoWithContentVSpace" destination="P6t-Lv-afT" id="LIV-QF-sHI"/>
+                <outlet property="nameLabel" destination="ELt-Hl-jX3" id="ZbF-IA-fR3"/>
             </connections>
             <point key="canvasLocation" x="67.5" y="1.5"/>
         </view>

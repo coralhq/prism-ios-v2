@@ -12,4 +12,6 @@ public protocol Mappable {
     init?(dictionary: [String: Any]?)
 }
 
-public protocol MessageContentMappable : Mappable {}
+public protocol MessageContentMappable : Mappable {
+    func dictionaryValue() -> [String: Any]?
+}

@@ -10,35 +10,15 @@ import Foundation
 
 public class ContentAttachment: MessageContentMappable {
     
-    let name: String
-    let mimeType: String
-    let url: URL
-    var previewURL: URL? = nil
-    
-    public var dictionaryValue: [String: Any] {
-        get {
-            guard let previewURL = previewURL else {
-                return [
-                    "attachment": [
-                        "name": name,
-                        "mimetype": mimeType,
-                        "url": url.absoluteString,
-                    ]
-                ]
-            }
-            
-            return [
-                "attachment": [
-                    "name": name,
-                    "mimetype": mimeType,
-                    "url": url.absoluteString,
-                    "preview_url": previewURL.absoluteString
-                ]
-            ]
-        }
-    }
+    public let name: String
+    public let mimeType: String
+    public let url: URL
+    public var previewURL: URL? = nil
+    var dictionary: [String : Any]?
     
     required public init?(dictionary: [String: Any]?) {
+        self.dictionary = dictionary
+        
         guard let attachment = dictionary?["attachment"] as? [String: Any],
             let name = attachment["name"] as? String,
             let mimeType = attachment["mimetype"] as? String,
@@ -66,5 +46,9 @@ public class ContentAttachment: MessageContentMappable {
             ]
             ]
         )
+    }
+    
+    public func dictionaryValue() -> [String : Any]? {
+        return dictionary
     }
 }

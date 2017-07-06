@@ -27,26 +27,22 @@ class Utils {
     }
 }
 
-extension String {
-    func localized() -> String {
-        return NSLocalizedString(self, tableName: nil, bundle: Bundle.prism, value: "", comment: "")
-    }
+struct DateFormatVendor {
+    static let ISO8601Format = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+    static let dayFormat = "MMMM dd"
+    static let dayWithYearFormat = "MMMM dd, yyyy"
 }
 
-extension NSObject {
-    static func className() -> String {
-        return String(describing: self)
-    }
-}
-
-extension Bundle {
-    static var prism: Bundle {
-        return Bundle(for: ConnectViewController.classForCoder())
-    }
-}
-
-extension UITableViewCell {
-    static var NIB: UINib {
-        return UINib.init(nibName: self.className(), bundle: Bundle.prism)
+class Vendor {
+    static let shared = Vendor()
+    
+    let dateFormatter: DateFormatter
+    let calendar = Calendar.current
+    
+    init() {
+        dateFormatter = DateFormatter()
+        dateFormatter.calendar = Calendar(identifier: .iso8601)
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
     }
 }

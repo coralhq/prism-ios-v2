@@ -28,7 +28,7 @@
                             <rect key="frame" x="8" y="8" width="137" height="150"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyQ-w0-y83">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyQ-w0-y83" customClass="ChatInfoView" customModule="PrismUI" customModuleProvider="target">
                             <rect key="frame" x="153" y="148" width="39" height="10"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="755" text="00:40 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdO-7k-EqR">
@@ -45,6 +45,9 @@
                                 <constraint firstAttribute="bottom" secondItem="qdO-7k-EqR" secondAttribute="bottom" id="Rzk-Gc-a1u"/>
                                 <constraint firstItem="qdO-7k-EqR" firstAttribute="leading" secondItem="vyQ-w0-y83" secondAttribute="leading" id="kyO-Og-DXt"/>
                             </constraints>
+                            <connections>
+                                <outlet property="timeLabel" destination="qdO-7k-EqR" id="E2w-UN-Dwa"/>
+                            </connections>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -93,6 +96,7 @@
                 <outlet property="infoView" destination="vyQ-w0-y83" id="nDh-RO-Fdy"/>
                 <outlet property="infoWithContentHSpace" destination="xih-cd-VAV" id="HMe-fU-i6s"/>
                 <outlet property="infoWithContentVSpace" destination="muz-8j-jwi" id="1ql-jG-tGY"/>
+                <outlet property="nameLabel" destination="ed7-sP-qYZ" id="QHe-lf-nJa"/>
             </connections>
             <point key="canvasLocation" x="68" y="2"/>
         </view>

@@ -14,18 +14,7 @@ public class ContentOfflineMessage: MessageContentMappable {
     public let phone: String
     public let text: String
     
-    public var dictionaryValue: [String: Any] {
-        get {
-            return [
-                "offline_message": [
-                    "name": name,
-                    "email": email,
-                    "phone": phone,
-                    "text": text
-                ]
-            ]
-        }
-    }
+    var dictionary: [String: Any]?
     
     required public init?(dictionary: [String : Any]?) {
         guard let offlineMessage = dictionary?["offline_message"] as? [String: Any],
@@ -35,6 +24,8 @@ public class ContentOfflineMessage: MessageContentMappable {
             let phone = offlineMessage["phone"] as? String else {
                 return nil
         }
+        
+        self.dictionary = dictionary
         
         self.name = name
         self.email = email
@@ -52,5 +43,9 @@ public class ContentOfflineMessage: MessageContentMappable {
                 ]
             ]
         )
+    }
+    
+    public func dictionaryValue() -> [String : Any]? {
+        return dictionary
     }
 }

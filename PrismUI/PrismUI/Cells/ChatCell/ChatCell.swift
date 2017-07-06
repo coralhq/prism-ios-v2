@@ -11,13 +11,7 @@ import UIKit
 class ChatCell: UITableViewCell {
     var chatView: ChatContainerView?
     var chatContentView: ChatContentProtocol?
-    
-    var viewModel: ChatViewModel? {
-        didSet {
-            chatView?.viewModel = viewModel
-        }
-    }
-    
+
     static func reuseIdentifier(viewModel: ChatViewModel) -> String {
         return viewModel.contentType.rawValue + viewModel.cellType.rawValue
     }

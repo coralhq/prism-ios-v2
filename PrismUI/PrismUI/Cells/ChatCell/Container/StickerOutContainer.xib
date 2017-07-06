@@ -77,6 +77,7 @@
                 <outlet property="infoWithContentHSpace" destination="O8s-qg-gLD" id="4oN-5o-v6s"/>
                 <outlet property="infoWithContentVSpace" destination="lus-2w-XZ7" id="zF2-te-NgY"/>
                 <outlet property="nameLabel" destination="Vz0-Jr-tLv" id="a2y-6r-1EZ"/>
+                <outlet property="topMarginConstraint" destination="EU7-7e-oan" id="3Tf-4b-R6n"/>
             </connections>
             <point key="canvasLocation" x="67.5" y="1.5"/>
         </view>

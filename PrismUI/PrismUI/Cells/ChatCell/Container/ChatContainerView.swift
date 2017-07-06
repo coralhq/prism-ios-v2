@@ -25,21 +25,10 @@ class ChatContainerView: UIView {
     @IBOutlet var containerView: UIView!
     @IBOutlet var infoWithContentHSpace: NSLayoutConstraint!
     @IBOutlet var infoWithContentVSpace: NSLayoutConstraint!
+    @IBOutlet var topMarginConstraint: NSLayoutConstraint!
     
     static func containerFromNIB() -> ChatContainerView? {
         return self.viewFromNib() as? ChatContainerView
-    }
-    
-    var viewModel: ChatViewModel? {
-        didSet {
-            guard let vm = viewModel else { return }
-            
-            infoView.timeLabel.text = vm.messageTime
-            infoView.statusImageView?.image = vm.statusIcon
-            nameLabel.text = vm.senderName
-            
-            chatContentView?.updateView(with: vm)
-        }
     }
     
     var chatContentView: ChatContentProtocol? {
@@ -47,6 +36,21 @@ class ChatContainerView: UIView {
             chatContentView?.addTo(view: containerView)
             updateInfoView()
         }
+    }
+    
+    func update(with viewModel: ChatViewModel, isExtension: Bool) {
+        infoView.timeLabel.text = viewModel.messageTime
+        infoView.statusImageView?.image = viewModel.statusIcon
+        
+        if isExtension {
+            nameLabel.text = nil
+            topMarginConstraint.constant = 4
+        } else {
+            nameLabel.text = viewModel.senderName
+            topMarginConstraint.constant = 10
+        }        
+        
+        chatContentView?.updateView(with: viewModel)
     }
 
     func updateInfoView() {

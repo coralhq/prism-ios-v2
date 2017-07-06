@@ -50,6 +50,15 @@ class ChatViewController: BaseViewController {
         queryManager?.delegate = self
         queryManager?.fetchSections()
     }
+    
+    func isViewModel(vm: ChatViewModel, extensionFrom prevVM: ChatViewModel?) -> Bool {
+        if let prevVM = prevVM,
+            vm.senderID == prevVM.senderID {
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 extension ChatViewController: UITableViewDataSource {
@@ -62,7 +71,7 @@ extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = queryManager?.sections,
             let objects = sections[section].objects {
-            return objects.count + 1 //1 for header
+            return objects.count + 1 //add 1 for header
         }
         return 0
     }
@@ -83,7 +92,10 @@ extension ChatViewController: UITableViewDataSource {
         if cell == nil {
             cell = ChatCell(viewModel: viewModel)
         }
-        cell?.viewModel = viewModel
+        
+        let isExtension = isViewModel(vm: viewModel, extensionFrom: objects[safe: indexPath.row + 1])
+        cell?.chatView?.update(with: viewModel, isExtension: isExtension)
+        
         return cell!
     }
 }

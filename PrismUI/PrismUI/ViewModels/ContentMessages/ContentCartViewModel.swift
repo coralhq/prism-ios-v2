@@ -25,11 +25,9 @@ class ContentCartViewModel: ContentViewModel {
         var totalPrice: Double = 0
         
         for item in items {
-            guard let priceString = item.product?.price,
-                let discString = item.product?.discount?.amount,
-                let discType = item.product?.discount?.discountType,
-                let priceAmount = Double(priceString),
-                let discAmount = Double(discString) else { continue }
+            guard let discType = item.product?.discount?.discountType,
+                let priceAmount = item.product?.price,
+                let discAmount = item.product?.discount?.amount else { continue }
             
             if discType == DiscountType.nominal {
                 totalPrice += (priceAmount - discAmount)
@@ -55,8 +53,7 @@ class ContentCartProductViewModel: ContentViewModel {
     
     init?(contentItem: CDLineItem) {
         guard let name = contentItem.product?.name,
-            let priceString = contentItem.product?.price,
-            let priceAmount = Double(priceString),
+            let priceAmount = contentItem.product?.price,
             let priceFormatted = priceAmount.formattedCurrency(),
             let qty = contentItem.quantity else { return nil }
         self.name = name
@@ -67,8 +64,7 @@ class ContentCartProductViewModel: ContentViewModel {
         
         self.imageURL = contentItem.product?.imageURLs?.first
         
-        if let discString = contentItem.product?.discount?.amount,
-            var discAmount = Double(discString),
+        if var discAmount = contentItem.product?.discount?.amount,
             let discType = contentItem.product?.discount?.discountType,
             discAmount > 0 {
             

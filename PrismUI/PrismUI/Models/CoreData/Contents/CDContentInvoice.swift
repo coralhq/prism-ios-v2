@@ -51,11 +51,11 @@ class CDContentInvoice: ValueTransformer, NSCoding {
 
 class CDCurrency: NSObject, NSCoding {
     var currencyCode: String?
-    var amount: String?
+    var amount: Double?
     
     init(currency: Currency) {
         currencyCode = currency.currencyCode
-        amount = currency.amount
+        amount = Double(currency.amount)
     }
     
     func encode(with aCoder: NSCoder) {
@@ -65,7 +65,7 @@ class CDCurrency: NSObject, NSCoding {
     
     required init?(coder aDecoder: NSCoder) {
         currencyCode = aDecoder.decodeObject(forKey: "currency_code") as? String
-        amount = aDecoder.decodeObject(forKey: "amount") as? String
+        amount = aDecoder.decodeObject(forKey: "amount") as? Double
     }
 }
 

@@ -61,6 +61,8 @@ class ChatViewModel {
             contentViewModel = ContentCartViewModel(contentCart: content)
         } else if let content = message.content as? CDContentProduct {
             contentViewModel = ContentProductViewModel(contentProduct: content)
+        } else if let content = message.content as? CDContentInvoice {
+            contentViewModel = ContentInvoiceViewModel(contentInvoice: content)
         }
     }
 }

@@ -21,8 +21,11 @@ class CDContentInvoice: ValueTransformer, NSCoding {
         id = invoice.id
         grandTotal = CDCurrency(currency: invoice.grandTotal)
         buyer = CDBuyer(buyer: invoice.buyer)
-        shipment = CDShipment(shipment: invoice.shipment)
         payment = CDPayment(payment: invoice.payment)
+        
+        if let shipment = invoice.shipment {
+            self.shipment = CDShipment(shipment: shipment)
+        }
         
         lineItems = []
         for lineItem in invoice.lineItems {
@@ -143,16 +146,20 @@ class CDShipmentInfo: NSObject, NSCoding {
 
 class CDPayment: NSObject, NSCoding {
     var type: String?
+    var midtransPaymentURL: URL?
     
     init(payment: Payment) {
         type = payment.type
+        midtransPaymentURL = payment.midtransPaymentURL
     }
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(type, forKey: "type")
+        aCoder.encode(midtransPaymentURL, forKey: "midtrans_payment_url")
     }
     
     required init?(coder aDecoder: NSCoder) {
         type = aDecoder.decodeObject(forKey: "type") as? String
+        midtransPaymentURL = aDecoder.decodeObject(forKey: "midtrans_payment_url") as? URL
     }
 }

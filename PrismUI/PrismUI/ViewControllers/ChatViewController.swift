@@ -116,7 +116,7 @@ extension ChatViewController: ChatComposerDelegate {
     }
     
     func chatComposer(composer: ChatComposer, didSendSticker sticker: StickerViewModel) {
-        
+        chatManager.sendMessage(sticker: sticker)
     }
 }
 

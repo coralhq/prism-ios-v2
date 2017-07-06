@@ -41,21 +41,8 @@ class ChatManager {
     
     func sendMessage(text: String) {
         guard let content = ContentPlainText(text: text),
-            let message = Message(id: NSUUID().uuidString.lowercased(),
-                                  conversationID: credential.conversationID,
-                                  merchantID: credential.merchantID,
-                                  channel: "IOS_SDK",
-                                  visitor: credential.visitorInfo,
-                                  sender: credential.sender,
-                                  type: .PlainText,
-                                  content: content,
-                                  brokerMetaData: BrokerMetaData()) else { return }
-        
-        coredata?.saveMessage(message: message, status: .pending)
-        
-        PrismCore.shared.publishMessage(topic: credential.topic, message: message) { (message, error) in
-            
-        }
+            let message = message(with: content, type: .PlainText) else { return }
+        sendMessage(message: message)
     }
     
     func sendMessage(image: UIImage) {
@@ -63,7 +50,32 @@ class ChatManager {
     }
     
     func sendMessage(sticker: StickerViewModel) {
+        guard let content = ContentSticker(name: sticker.name,
+                                           imageURL: sticker.imageURL.absoluteString,
+                                           id: sticker.id,
+                                           packID: sticker.packID),
+            let message = message(with: content, type: .Sticker) else { return }
+        sendMessage(message: message)
+    }
+    
+    private func sendMessage(message: Message) {
+        //save to core data
+        coredata?.saveMessage(message: message, status: .pending)
         
+        //publish to mqtt
+        PrismCore.shared.publishMessage(topic: credential.topic, message: message) { (message, error) in }
+    }
+    
+    private func message(with content: MessageContentMappable, type: MessageType) -> Message? {
+        return Message(id: NSUUID().uuidString.lowercased(),
+                       conversationID: credential.conversationID,
+                       merchantID: credential.merchantID,
+                       channel: "IOS_SDK",
+                       visitor: credential.visitorInfo,
+                       sender: credential.sender,
+                       type: type,
+                       content: content,
+                       brokerMetaData: BrokerMetaData())
     }
     
     @objc func chatReceived(sender: Notification) {

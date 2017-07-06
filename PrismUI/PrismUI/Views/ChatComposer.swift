@@ -60,6 +60,10 @@ class ChatComposer: UIView {
     }
     
     @IBAction func textInputPressed(sender: UIButton) {
+        if textView.becomeFirstResponder() == false {
+            textView.becomeFirstResponder()
+        }
+        
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
             textView.inputView = EmojiInputView.viewFromNib(with: textView)
@@ -74,6 +78,10 @@ class ChatComposer: UIView {
     }
     
     @IBAction func stickerInputPressed(sender: UIButton) {
+        if textView.becomeFirstResponder() == false {
+            textView.becomeFirstResponder()
+        }
+        
         sender.isSelected = !sender.isSelected
         
         let inputView = StickerInputView.viewFromNib(accessToken: accessToken)

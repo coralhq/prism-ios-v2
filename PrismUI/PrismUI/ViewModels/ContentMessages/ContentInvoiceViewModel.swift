@@ -122,7 +122,7 @@ class ContentInvoiceProductViewModel: ContentViewModel {
             price = NSMutableAttributedString(string: priceInfo, attributes: atts)
             price.addAttributes(linedAtts, range: range)
         } else {
-            let priceInfo = prefix.appending(priceString).appending(suffix)
+            let priceInfo = prefix + priceString + " " + suffix
             price = NSMutableAttributedString(string: priceInfo, attributes: atts)
         }
     }

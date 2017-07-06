@@ -16,15 +16,10 @@ class ChatViewModel {
     let cellType: ChatCellType
     let messageID: String
     let contentType: ChatContentType
+    let senderID: String
+    
     var messageTime: String
-    var messageStatus: MessageStatus?
-    var senderName: String {
-        if cellType == .Out {
-            return "Me".localized()
-        } else {
-            return message.sender!.name!
-        }
-    }
+    var senderName: String
     var statusIcon: UIImage? {
         if cellType == .Out {
             if messageStatus == .sent {
@@ -37,20 +32,34 @@ class ChatViewModel {
         }
     }
     
+    var messageStatus: MessageStatus?
     var contentViewModel: ContentViewModel?
     
-    init(message: CDMessage, visitor: MessageSender) {
+    init?(message: CDMessage, visitor: MessageSender) {
         self.message = message
         
-        contentType = ChatContentType.typeFrom(typeString: message.type!)
-        cellType = (message.sender!.id! == visitor.id) ? .Out : .In
-        messageID = message.id!
+        guard let contentTypeString = message.type,
+            let senderID = message.sender?.id,
+            let senderName = message.sender?.name,
+            let messageID = message.id,
+            let timestampe = message.brokerMetaData?.timestamp else { return nil }
+        
+        self.contentType = ChatContentType.typeFrom(typeString: contentTypeString)
+        self.cellType = senderID == visitor.id ? .Out : .In
+        self.messageID = messageID
+        self.senderID = senderID
         
         Vendor.shared.dateFormatter.dateFormat = "hh:mm a"
-        messageTime = Vendor.shared.dateFormatter.string(from: message.brokerMetaData!.timestamp!)
+        self.messageTime = Vendor.shared.dateFormatter.string(from: timestampe)
         
         if cellType == .Out {
-            messageStatus = MessageStatus(rawValue: message.status)
+            self.messageStatus = MessageStatus(rawValue: message.status)
+        }
+        
+        if cellType == .Out {
+            self.senderName = "Me".localized()
+        } else {
+            self.senderName = senderName
         }
         
         if let content = message.content as? CDContentPlainText {
@@ -78,7 +87,8 @@ class ChatSectionViewModel {
         
         objects = []
         for message in messages {
-            objects?.append(ChatViewModel(message: message, visitor: credential.sender))
+            guard let vm = ChatViewModel(message: message, visitor: credential.sender) else { return }
+            objects?.append(vm)
         }
         
         guard let date = messages.first?.sectionDate else { return }

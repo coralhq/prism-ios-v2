@@ -107,7 +107,7 @@ class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
             var objects = sections[newIndexPath.section].objects else { return }
         
         let index = newIndexPath.row
-        let chatVM = ChatViewModel(message: message, visitor: credential.sender)
+        guard let chatVM = ChatViewModel(message: message, visitor: credential.sender) else { return }
         
         switch type {
         case .delete:

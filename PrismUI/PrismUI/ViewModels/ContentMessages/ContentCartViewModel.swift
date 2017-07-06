@@ -55,6 +55,8 @@ class ContentCartProductViewModel: ContentViewModel {
         guard let name = contentItem.product?.name,
             let priceAmount = contentItem.product?.price,
             let priceFormatted = priceAmount.formattedCurrency(),
+            var discAmount = contentItem.product?.discount?.amount,
+            let discType = contentItem.product?.discount?.discountType,
             let qty = contentItem.quantity else { return nil }
         self.name = name
         self.price = priceFormatted
@@ -64,17 +66,11 @@ class ContentCartProductViewModel: ContentViewModel {
         
         self.imageURL = contentItem.product?.imageURLs?.first
         
-        if var discAmount = contentItem.product?.discount?.amount,
-            let discType = contentItem.product?.discount?.discountType,
-            discAmount > 0 {
-            
-            if discType == DiscountType.nominal {
-                discAmount = priceAmount - discAmount
-            } else {
-                discAmount = priceAmount - (discAmount / 100) * priceAmount
-            }
-            self.discount = discAmount.formattedCurrency()
-            
+        if discType == DiscountType.percentage {
+            discAmount = (discAmount / 100) * priceAmount
+        }        
+        if discAmount > 0 {
+            self.discount = (priceAmount - discAmount).formattedCurrency()
         }
     }
 }

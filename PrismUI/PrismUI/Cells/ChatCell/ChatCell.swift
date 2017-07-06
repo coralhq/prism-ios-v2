@@ -26,35 +26,27 @@ class ChatCell: UITableViewCell {
             } else {
                 chatView = ChatInContainerView.containerFromNIB()
             }
-            break
         default:
             if viewModel.contentType == .Sticker {
                 chatView = StickerOutContainer.containerFromNIB()
             } else {
                 chatView = ChatOutContainerView.containerFromNIB()
             }
-            break
         }
         
         switch viewModel.contentType {
         case .Cart:
             chatContentView = ChatCartView.viewFromNib() as? ChatContentProtocol
-            break
         case .Invoice:
             chatContentView = ChatInvoiceView.viewFromNib() as? ChatContentProtocol
-            break
         case .Product:
             chatContentView = ChatProductView.viewFromNib() as? ChatContentProtocol
-            break
         case .Sticker:
             chatContentView = ChatStickerView.viewFromNib() as? ChatContentProtocol
-            break
         case .Image:
             chatContentView = ChatImageView.viewFromNib() as? ChatContentProtocol
-            break
         default:
             chatContentView = ChatTextView.viewFromNib() as? ChatContentProtocol
-            break
         }
         
         chatView?.addTo(view: contentView, margin: 0)

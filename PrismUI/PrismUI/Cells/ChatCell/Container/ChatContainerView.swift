@@ -59,15 +59,12 @@ class ChatContainerView: UIView {
         case .Left:
             infoWithContentHSpace.constant = 8
             infoWithContentVSpace.constant = 0
-            break
         case .Inside:
             infoWithContentHSpace.constant = -infoView.bounds.width
             infoWithContentVSpace.constant = 0
-            break
         default:
             infoWithContentHSpace.constant = -infoView.bounds.width
             infoWithContentVSpace.constant = -infoView.bounds.height
-            break
         }
     }
 }

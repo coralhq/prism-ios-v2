@@ -118,8 +118,7 @@ open class Message: Mappable {
             let sender = MessageSender(dictionary: dictionary["sender"] as? [String: Any]),
             let typeString = dictionary["type"] as? String,
             let version = dictionary["version"] as? Int,
-            let brokerMetaData = BrokerMetaData(dictionary: dictionary["_broker_metadata"] as? [String: Any]),
-            let contentDict = dictionary["content"] as? [String: Any] else {
+            let brokerMetaData = BrokerMetaData(dictionary: dictionary["_broker_metadata"] as? [String: Any]) else {
                 return nil
         }
         
@@ -137,37 +136,9 @@ open class Message: Mappable {
         self.brokerMetaData = brokerMetaData
         self.version = version
         
-        var content: MessageContentMappable?
-        switch type {
-        case .Assignment:
-            content = ContentAssignment(dictionary: contentDict)
-        case .Attachment:
-            content = ContentAttachment(dictionary: contentDict)
-        case .AutoResponder:
-            content = ContentAutoResponder(dictionary: contentDict)
-        case .Cart:
-            content = ContentCart(dictionary: contentDict)
-        case .CloseChat:
-            content = ContentCloseChat(dictionary: contentDict)
-        case .Invoice:
-            content = ContentInvoice(dictionary: contentDict)
-        case .OfflineMessage:
-            content = ContentOfflineMessage(dictionary: contentDict)
-        case .PlainText:
-            content = ContentPlainText(dictionary: contentDict)
-        case .Product:
-            content = ContentProduct(dictionary: contentDict)
-        case .StatusUpdate:
-            content = ContentStatusUpdate(dictionary: contentDict)
-        case .Sticker:
-            content = ContentSticker(dictionary: contentDict)
-        case .Typing:
-            content = ContentTyping(dictionary: contentDict)
-        case .Unknown:
-            content = nil
-        }
-        guard let _content = content else { return nil }
-        self.content = _content
+        guard let contentDict = dictionary["content"] as? [String: Any],
+            let content = Message.contentWith(dictionary: contentDict, type: type) else { return nil }
+        self.content = content
     }
     
     convenience public init?(id: String,
@@ -201,5 +172,36 @@ open class Message: Mappable {
     
     func dictionaryValue() -> [String: Any]? {
         return dictionary
+    }
+    
+    static func contentWith(dictionary: [String: Any], type: MessageType) -> MessageContentMappable? {
+        switch type {
+        case .Assignment:
+            return ContentAssignment(dictionary: dictionary)
+        case .Attachment:
+            return ContentAttachment(dictionary: dictionary)
+        case .AutoResponder:
+            return ContentAutoResponder(dictionary: dictionary)
+        case .Cart:
+            return ContentCart(dictionary: dictionary)
+        case .CloseChat:
+            return ContentCloseChat(dictionary: dictionary)
+        case .Invoice:
+            return ContentInvoice(dictionary: dictionary)
+        case .OfflineMessage:
+            return ContentOfflineMessage(dictionary: dictionary)
+        case .PlainText:
+            return ContentPlainText(dictionary: dictionary)
+        case .Product:
+            return ContentProduct(dictionary: dictionary)
+        case .StatusUpdate:
+            return ContentStatusUpdate(dictionary: dictionary)
+        case .Sticker:
+            return ContentSticker(dictionary: dictionary)
+        case .Typing:
+            return ContentTyping(dictionary: dictionary)
+        case .Unknown:
+            return nil
+        }
     }
 }

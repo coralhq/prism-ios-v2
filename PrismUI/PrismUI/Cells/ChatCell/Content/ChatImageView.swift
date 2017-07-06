@@ -27,5 +27,10 @@ extension ChatImageView: ChatContentProtocol {
     func infoPosition() -> InfoViewPosition {
         return .Bottom
     }
+    
+    func updateView(with viewModel: ChatViewModel) {
+        guard let contentVM = viewModel.contentViewModel as? ContentImageViewModel else { return }
+        imageView.downloadedFrom(url: contentVM.imageURL)
+    }
 }
 

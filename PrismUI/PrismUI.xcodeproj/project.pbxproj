@@ -30,13 +30,18 @@
 		E508C1C31EF8D6F9004DCB6A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E508C1C21EF8D6F9004DCB6A /* Localizable.strings */; };
 		E52665841EE91A9600612E19 /* PrismUI.h in Headers */ = {isa = PBXBuildFile; fileRef = E52665761EE91A9600612E19 /* PrismUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E547D2281EF1FA6200B66136 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E547D2271EF1FA6200B66136 /* Media.xcassets */; };
-		E547E7F41F0C869800AFFB20 /* TextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547E7F31F0C869800AFFB20 /* TextViewModel.swift */; };
+		E547E7F41F0C869800AFFB20 /* ContentTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547E7F31F0C869800AFFB20 /* ContentTextViewModel.swift */; };
 		E547E7F61F0C87F100AFFB20 /* ChatContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547E7F51F0C87F100AFFB20 /* ChatContentType.swift */; };
 		E54969B81EEA82B7008209D9 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54969B71EEA82B7008209D9 /* PrismCore.framework */; };
 		E54969BB1EEA8496008209D9 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54969BA1EEA8496008209D9 /* Utils.swift */; };
 		E54DE6481EFA6A740035EA35 /* SmallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54DE6471EFA6A740035EA35 /* SmallButton.swift */; };
 		E559E1F11EF2658C004E3F03 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559E1F01EF2658C004E3F03 /* Settings.swift */; };
 		E559E1F31EF26FBA004E3F03 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559E1F21EF26FBA004E3F03 /* BaseViewController.swift */; };
+		E55AC0CF1F0E0CF100A0354D /* ContentImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55AC0CE1F0E0CF100A0354D /* ContentImageViewModel.swift */; };
+		E562B5CB1F0CBC1A006489C0 /* ContentStickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562B5CA1F0CBC1A006489C0 /* ContentStickerViewModel.swift */; };
+		E562B5CD1F0CCD32006489C0 /* ContentInvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562B5CC1F0CCD32006489C0 /* ContentInvoiceViewModel.swift */; };
+		E562B5D11F0D27A2006489C0 /* ContentCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562B5D01F0D27A2006489C0 /* ContentCartViewModel.swift */; };
+		E562B5D31F0DA44F006489C0 /* ContentProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562B5D21F0DA44F006489C0 /* ContentProductViewModel.swift */; };
 		E57440841EF760C3003CA9E7 /* StickerInContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440831EF760C2003CA9E7 /* StickerInContainer.swift */; };
 		E57440861EF760D0003CA9E7 /* StickerOutContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440851EF760D0003CA9E7 /* StickerOutContainer.swift */; };
 		E57440881EF76140003CA9E7 /* StickerInContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440871EF76140003CA9E7 /* StickerInContainer.xib */; };
@@ -141,13 +146,18 @@
 		E52665761EE91A9600612E19 /* PrismUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrismUI.h; sourceTree = "<group>"; };
 		E52665771EE91A9600612E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E547D2271EF1FA6200B66136 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Resources/Media.xcassets; sourceTree = "<group>"; };
-		E547E7F31F0C869800AFFB20 /* TextViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextViewModel.swift; path = ContentMessages/TextViewModel.swift; sourceTree = "<group>"; };
+		E547E7F31F0C869800AFFB20 /* ContentTextViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentTextViewModel.swift; path = ContentMessages/ContentTextViewModel.swift; sourceTree = "<group>"; };
 		E547E7F51F0C87F100AFFB20 /* ChatContentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatContentType.swift; path = PrismUI/Cells/ChatCell/Content/ChatContentType.swift; sourceTree = SOURCE_ROOT; };
 		E54969B71EEA82B7008209D9 /* PrismCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrismCore.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/DemoPrismCore-friqtlupaxddjygruiinatqqklhk/Build/Products/Debug-iphonesimulator/PrismCore.framework"; sourceTree = "<group>"; };
 		E54969BA1EEA8496008209D9 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
 		E54DE6471EFA6A740035EA35 /* SmallButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmallButton.swift; path = Kits/SmallButton.swift; sourceTree = "<group>"; };
 		E559E1F01EF2658C004E3F03 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = Models/Settings.swift; sourceTree = "<group>"; };
 		E559E1F21EF26FBA004E3F03 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		E55AC0CE1F0E0CF100A0354D /* ContentImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentImageViewModel.swift; path = ContentMessages/ContentImageViewModel.swift; sourceTree = "<group>"; };
+		E562B5CA1F0CBC1A006489C0 /* ContentStickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentStickerViewModel.swift; path = ContentMessages/ContentStickerViewModel.swift; sourceTree = "<group>"; };
+		E562B5CC1F0CCD32006489C0 /* ContentInvoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentInvoiceViewModel.swift; path = ContentMessages/ContentInvoiceViewModel.swift; sourceTree = "<group>"; };
+		E562B5D01F0D27A2006489C0 /* ContentCartViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentCartViewModel.swift; path = ContentMessages/ContentCartViewModel.swift; sourceTree = "<group>"; };
+		E562B5D21F0DA44F006489C0 /* ContentProductViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentProductViewModel.swift; path = ContentMessages/ContentProductViewModel.swift; sourceTree = "<group>"; };
 		E57440831EF760C2003CA9E7 /* StickerInContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StickerInContainer.swift; path = PrismUI/Cells/ChatCell/Container/StickerInContainer.swift; sourceTree = SOURCE_ROOT; };
 		E57440851EF760D0003CA9E7 /* StickerOutContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StickerOutContainer.swift; path = PrismUI/Cells/ChatCell/Container/StickerOutContainer.swift; sourceTree = SOURCE_ROOT; };
 		E57440871EF76140003CA9E7 /* StickerInContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StickerInContainer.xib; path = PrismUI/Cells/ChatCell/Container/StickerInContainer.xib; sourceTree = SOURCE_ROOT; };
@@ -362,11 +372,11 @@
 			children = (
 				E54DE6461EFA6A500035EA35 /* Kits */,
 				E5CD9F6C1EEA7F650066C1CC /* Resources */,
-				800E2EA91EEE2520003AB37B /* Components */,
 				80389A3B1EEA3087007B9458 /* Cells */,
 				80389A3A1EEA3053007B9458 /* Views */,
 				E5053A8D1EF130FD006677A4 /* Models */,
 				80389A391EEA3045007B9458 /* ViewControllers */,
+				800E2EA91EEE2520003AB37B /* Components */,
 				E54969B91EEA847C008209D9 /* Utils */,
 				80389A381EEA3035007B9458 /* ViewModels */,
 				E52665761EE91A9600612E19 /* PrismUI.h */,
@@ -379,7 +389,12 @@
 		E547E7F21F0C866900AFFB20 /* ContentMessages */ = {
 			isa = PBXGroup;
 			children = (
-				E547E7F31F0C869800AFFB20 /* TextViewModel.swift */,
+				E547E7F31F0C869800AFFB20 /* ContentTextViewModel.swift */,
+				E562B5CA1F0CBC1A006489C0 /* ContentStickerViewModel.swift */,
+				E562B5CC1F0CCD32006489C0 /* ContentInvoiceViewModel.swift */,
+				E562B5D01F0D27A2006489C0 /* ContentCartViewModel.swift */,
+				E562B5D21F0DA44F006489C0 /* ContentProductViewModel.swift */,
+				E55AC0CE1F0E0CF100A0354D /* ContentImageViewModel.swift */,
 			);
 			name = ContentMessages;
 			sourceTree = "<group>";
@@ -672,6 +687,7 @@
 			files = (
 				E57440AB1EF7CE43003CA9E7 /* ChatCartView.swift in Sources */,
 				E5053A8F1EF13123006677A4 /* InputFormSettings.swift in Sources */,
+				E562B5CB1F0CBC1A006489C0 /* ContentStickerViewModel.swift in Sources */,
 				E593AEED1EFCCC80002E2171 /* CDBrokerMetaData+CoreDataProperties.swift in Sources */,
 				E593AE971EFB7966002E2171 /* StickerViewModel.swift in Sources */,
 				E5053A861EF10930006677A4 /* LinedTextField.swift in Sources */,
@@ -693,6 +709,7 @@
 				E559E1F31EF26FBA004E3F03 /* BaseViewController.swift in Sources */,
 				E58FAE841EF495E4002F1A2A /* ChatCell.swift in Sources */,
 				E57440B01EF7CFA6003CA9E7 /* ProductCartView.swift in Sources */,
+				E562B5D31F0DA44F006489C0 /* ContentProductViewModel.swift in Sources */,
 				E599E8821EF67D6200B67920 /* ChatOutContainerView.swift in Sources */,
 				E57440841EF760C3003CA9E7 /* StickerInContainer.swift in Sources */,
 				E593AEF21EFCCC80002E2171 /* CDMessage+CoreDataClass.swift in Sources */,
@@ -717,18 +734,20 @@
 				E593AEEC1EFCCC80002E2171 /* CDBrokerMetaData+CoreDataClass.swift in Sources */,
 				E559E1F11EF2658C004E3F03 /* Settings.swift in Sources */,
 				E593AEFA1EFCE7B9002E2171 /* CDContentCart.swift in Sources */,
-				E547E7F41F0C869800AFFB20 /* TextViewModel.swift in Sources */,
+				E547E7F41F0C869800AFFB20 /* ContentTextViewModel.swift in Sources */,
 				807C89991EEE4C3400DADEBF /* UIFont.swift in Sources */,
 				E599E8801EF67D5300B67920 /* ChatInContainerView.swift in Sources */,
 				E574409F1EF76FCF003CA9E7 /* ContentProductCell.swift in Sources */,
 				E593AE931EFB673F002E2171 /* StickerInputView.swift in Sources */,
 				807C89911EEE4AF100DADEBF /* ChatViewController.swift in Sources */,
+				E562B5CD1F0CCD32006489C0 /* ContentInvoiceViewModel.swift in Sources */,
 				E593AEEF1EFCCC80002E2171 /* CDUser+CoreDataProperties.swift in Sources */,
 				E593AEF01EFCCC80002E2171 /* CDSender+CoreDataClass.swift in Sources */,
 				E5C5440D1F151F4C00D5303D /* ChatQueryManager.swift in Sources */,
 				E599E8881EF67FD600B67920 /* UITextField.swift in Sources */,
 				E593AEFC1EFCE7D3002E2171 /* CDContentInvoice.swift in Sources */,
 				E57440911EF76BBB003CA9E7 /* ChatInvoiceView.swift in Sources */,
+				E55AC0CF1F0E0CF100A0354D /* ContentImageViewModel.swift in Sources */,
 				E5F260911F0BA7E40058EB65 /* ChatHeaderCell.swift in Sources */,
 				E593AEC31EFCCB2C002E2171 /* Chat.xcdatamodeld in Sources */,
 				E57440A21EF79EC8003CA9E7 /* ChatContentProtocol.swift in Sources */,
@@ -737,6 +756,7 @@
 				E57440B41EF7DD8A003CA9E7 /* MidtransView.swift in Sources */,
 				E547E7F61F0C87F100AFFB20 /* ChatContentType.swift in Sources */,
 				E593AEF11EFCCC80002E2171 /* CDSender+CoreDataProperties.swift in Sources */,
+				E562B5D11F0D27A2006489C0 /* ContentCartViewModel.swift in Sources */,
 				E599E87E1EF67D4300B67920 /* ChatTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PrismAnalytics
 
 class ChatViewController: BaseViewController {
     
@@ -38,6 +39,7 @@ class ChatViewController: BaseViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+      
         tableView.register(ChatHeaderCell.NIB, forCellReuseIdentifier: ChatHeaderCell.className())
         
         chatManager.connect { [weak self] (success, error) in
@@ -49,6 +51,19 @@ class ChatViewController: BaseViewController {
         
         queryManager?.delegate = self
         queryManager?.fetchSections()
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        PrismAnalytics.shared.sendTracker(withEvent: .chatScreen)
+    }
+}
+
+extension UITableView {
+    func reusableCell(withConfig config: ChatCellConfig) -> ChatCell? {
+        return self.dequeueReusableCell(withIdentifier: ChatCell.reuseIdentifier(config: config)) as? ChatCell
     }
 }
 

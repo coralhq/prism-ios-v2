@@ -62,6 +62,14 @@ class Network: NetworkProtocol {
             }
         }
         
+        if let messageEndPoint = endPoint as? PublishMessageEndPoint {
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: messageEndPoint.messagesBody, options: .prettyPrinted)
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        
         requestDataTask(request: request, mapToObject: mapToObject, completionHandler: completionHandler)
     }
     

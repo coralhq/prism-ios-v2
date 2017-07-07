@@ -9,6 +9,7 @@
 import Foundation
 import PrismCore
 import CoreData
+import PrismAnalytics
 
 class ChatManager {
     var credential: PrismCredential
@@ -52,6 +53,14 @@ class ChatManager {
                                   brokerMetaData: BrokerMetaData()) else { return }
         
         coredata?.saveMessage(message: message, status: .pending)
+        
+        let trackerData = [
+            sendMessageTrackerType.conversationID.rawValue : credential.conversationID,
+            sendMessageTrackerType.messageType.rawValue : message.type.rawValue,
+            sendMessageTrackerType.sender.rawValue : message.sender.id
+        ]
+        
+        PrismAnalytics.shared.sendTracker(withEvent: .sendMessage, data: trackerData)
         
         PrismCore.shared.publishMessage(topic: credential.topic, message: message) { (message, error) in
             

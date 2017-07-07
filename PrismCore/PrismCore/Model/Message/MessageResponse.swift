@@ -10,12 +10,12 @@ import Foundation
 
 open class MessageResponse: Mappable {
     open var failed: [Message]
-    open var skipped: [Message]
+    open var invalid: [Message]
     
     public required init?(dictionary: [String: Any]?) {
         guard let data = dictionary?["data"] as? [String: Any],
             let failed = data["failed"] as? [[String: Any]],
-            let skipped = data["skipped"] as? [[String: Any]] else {
+            let invalid = data["invalid"] as? [[String: Any]] else {
                 return nil
         }
         
@@ -28,16 +28,16 @@ open class MessageResponse: Mappable {
             failedMessages.append(failedMessage)
         }
         
-        var skippedMessages: [Message] = []
-        for message in skipped {
-            guard let skippedMessage = Message(dictionary: message) else {
+        var invalidMessages: [Message] = []
+        for message in invalid {
+            guard let invalidMessage = Message(dictionary: message) else {
                 return nil
             }
             
-            skippedMessages.append(skippedMessage)
+            invalidMessages.append(invalidMessage)
         }
         
         self.failed = failedMessages
-        self.skipped = skippedMessages
+        self.invalid = invalidMessages
     }
 }

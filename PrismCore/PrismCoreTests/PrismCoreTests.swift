@@ -10,6 +10,7 @@ import XCTest
 @testable import PrismCore
 
 class PrismCoreTests: XCTestCase {
+    //TODO: after changing publishMessage from MQTT to HTTP Post, there are some mocking object that need to be update too, do it later
     
     override func setUp() {
         super.setUp()
@@ -24,12 +25,11 @@ class PrismCoreTests: XCTestCase {
     }
     
     func testConfigure() {
-        let delegate = TestDelegate()
         
-        PrismCore.shared.configure(environment: .Production, merchantID: "", delegate: delegate)
+        PrismCore.shared.configure(environment: .Production, merchantID: "")
         XCTAssertTrue(URL.getSettings.absoluteString.contains("api.prismapp.io"))
         
-        PrismCore.shared.configure(environment: .Sandbox, merchantID: "", delegate: delegate)
+        PrismCore.shared.configure(environment: .Sandbox, merchantID: "")
         XCTAssertTrue(URL.getSettings.absoluteString.contains("kong.staging.coral-inc.com"))
         
         XCTAssertNotNil(Config.shared.getEnvironment())
@@ -54,7 +54,7 @@ class PrismCoreTests: XCTestCase {
         
         TestConfig.shared.isValidResponse = true
         
-        PrismCore.shared.visitorConnect(visitorName: "asdasdasd", userID: "asdasd") { (response, error) in
+        PrismCore.shared.visitorConnect(userName: "asdasdasd", userID: "asdasd") { (response, error) in
             XCTAssertNil(error)
             XCTAssertNotNil(response)
         }
@@ -63,7 +63,7 @@ class PrismCoreTests: XCTestCase {
     func testInvalidVisitorConnect() {
         
         TestConfig.shared.isValidResponse = false
-        PrismCore.shared.visitorConnect(visitorName: "asdasdasd", userID: "asdasd") { (response, error) in
+        PrismCore.shared.visitorConnect(userName: "asdasdasd", userID: "asdasd") { (response, error) in
             XCTAssertNil(response)
             XCTAssertNotNil(error)
         }
@@ -196,13 +196,13 @@ class PrismCoreTests: XCTestCase {
         
         let invalidVisitorInfo = MessageVisitorInfo(dictionary: invalidDictionary)
         let invalidSender = MessageSender(dictionary: invalidDictionary)
-        let invalidBroker = BrokerMetaData(timestamp: "")
+        let invalidBroker = BrokerMetaData(dictionary: ["timestamp": ""])
         
         guard let channelInfo = MessageChannelInfo(id: "", name: ""),
             let visitor = MessageVisitorInfo(id: "", name: ""),
             let sender = MessageSender(id: "", name: "", role: "", userAgent: ""),
             let content = ContentPlainText(text: ""),
-            let broker = BrokerMetaData(timestamp: "2017-05-19T03:39:31.814Z") else {
+            let broker = BrokerMetaData(dictionary: ["timestamp": "2017-05-19T03:39:31.814Z"]) else {
                 XCTAssertNotNil(messageObject)
                 return
         }
@@ -211,14 +211,14 @@ class PrismCoreTests: XCTestCase {
         if let visitor = invalidVisitorInfo,
             let sender = invalidSender,
             let broker = invalidBroker,
-            let message = Message(id: "", conversationID: "", merchantID: "", channel: "", channelInfo: channelInfo, visitor: visitor, sender: sender, type: MessageType.PlainText, content: content, brokerMetaData: broker) {
+            let message = Message(id: "", conversationID: "", merchantID: "", channel: "", visitor: visitor, sender: sender, type: MessageType.PlainText, content: content, brokerMetaData: broker, channelInfo: channelInfo) {
             messageObject = message
             
             XCTFail("\(String(describing: messageObject)) should be nil")
-        } else if let message = Message(id: "", conversationID: "", merchantID: "", channel: "", channelInfo: channelInfo, visitor: visitor, sender: sender, type: MessageType.PlainText, content: content, brokerMetaData: broker) {
+        } else if let message = Message(id: "", conversationID: "", merchantID: "", channel: "", visitor: visitor, sender: sender, type: MessageType.PlainText, content: content, brokerMetaData: broker, channelInfo: channelInfo) {
             
             messageObject = message
-            PrismCore.shared.publishMessage(topic: "", message: messageObject!) { (response, error) in
+            PrismCore.shared.publishMessage(token: "", topic: "", messages: [messageObject!]) { (response, error) in
                 XCTAssertNil(error)
                 XCTAssertNotNil(response)
             }
@@ -233,19 +233,19 @@ class PrismCoreTests: XCTestCase {
             let visitor = MessageVisitorInfo(id: "", name: ""),
             let sender = MessageSender(id: "", name: "", role: "", userAgent: ""),
             let content = ContentAttachment(name: "", mimeType: "", url: "https://www.google.com", previewURL: "https://www.google.com"),
-            let broker = BrokerMetaData(timestamp: "2017-05-19T03:39:31.814Z") else {
+            let broker = BrokerMetaData(dictionary: ["timestamp": "2017-05-19T03:39:31.814Z"]) else {
                 XCTAssertNotNil(message)
                 return
         }
         
-        message = Message(id: "", conversationID: "", merchantID: "", channel: "", channelInfo: channelInfo, visitor: visitor, sender: sender, type: MessageType.Attachment, content: content, brokerMetaData: broker)
+        message = Message(id: "", conversationID: "", merchantID: "", channel: "", visitor: visitor, sender: sender, type: MessageType.Attachment, content: content, brokerMetaData: broker, channelInfo: channelInfo)
         
         let contentWithoutPreviewURL = ContentAttachment(name: "", mimeType: "", url: "https://www.google.com")
         
-        let _ = Message(id: "", conversationID: "", merchantID: "", channel: "", channelInfo: channelInfo, visitor: visitor, sender: sender, type: MessageType.Attachment, content: contentWithoutPreviewURL!, brokerMetaData: broker)
+        let _ = Message(id: "", conversationID: "", merchantID: "", channel: "", visitor: visitor, sender: sender, type: MessageType.Attachment, content: contentWithoutPreviewURL!, brokerMetaData: broker, channelInfo: channelInfo)
         
         if let message = message {
-            PrismCore.shared.publishMessage(topic: "", message: message) { (response, error) in
+            PrismCore.shared.publishMessage(token: "", topic: "", messages: [message]) { (response, error) in
                 XCTAssertNil(error)
                 XCTAssertNotNil(response)
             }
@@ -261,15 +261,15 @@ class PrismCoreTests: XCTestCase {
             let visitor = MessageVisitorInfo(id: "", name: ""),
             let sender = MessageSender(id: "", name: "", role: "", userAgent: ""),
             let content = ContentSticker(name: "", imageURL: "https://www.google.com", id: "", packID: ""),
-            let broker = BrokerMetaData(timestamp: "2017-05-19T03:39:31.814Z") else {
+            let broker = BrokerMetaData(dictionary: ["timestamp": "2017-05-19T03:39:31.814Z"]) else {
                 XCTAssertNotNil(message)
                 return
         }
         
-        message = Message(id: "", conversationID: "", merchantID: "", channel: "", channelInfo: channelInfo, visitor: visitor, sender: sender, type: MessageType.Sticker, content: content, brokerMetaData: broker)
+        message = Message(id: "", conversationID: "", merchantID: "", channel: "", visitor: visitor, sender: sender, type: MessageType.Sticker, content: content, brokerMetaData: broker, channelInfo: channelInfo)
         
         if let message = message {
-            PrismCore.shared.publishMessage(topic: "", message: message) { (response, error) in
+            PrismCore.shared.publishMessage(token: "", topic: "", messages: [message]) { (response, error) in
                 XCTAssertNil(error)
                 XCTAssertNotNil(response)
             }
@@ -285,15 +285,15 @@ class PrismCoreTests: XCTestCase {
             let visitor = MessageVisitorInfo(id: "", name: ""),
             let sender = MessageSender(id: "", name: "", role: "", userAgent: ""),
             let content = ContentTyping(status: TypingStatus.StartTyping),
-            let broker = BrokerMetaData(timestamp: "2017-05-19T03:39:31.814Z") else {
+            let broker = BrokerMetaData(dictionary: ["timestamp": "2017-05-19T03:39:31.814Z"]) else {
                 XCTAssertNotNil(message)
                 return
         }
         
-        message = Message(id: "", conversationID: "", merchantID: "", channel: "", channelInfo: channelInfo, visitor: visitor, sender: sender, type: MessageType.Typing, content: content, brokerMetaData: broker)
+        message = Message(id: "", conversationID: "", merchantID: "", channel: "", visitor: visitor, sender: sender, type: MessageType.Typing, content: content, brokerMetaData: broker, channelInfo: channelInfo)
         
         if let message = message {
-            PrismCore.shared.publishMessage(topic: "", message: message) { (response, error) in
+            PrismCore.shared.publishMessage(token: "", topic: "", messages: [message]) { (response, error) in
                 XCTAssertNil(error)
                 XCTAssertNotNil(response)
             }
@@ -309,15 +309,15 @@ class PrismCoreTests: XCTestCase {
             let visitor = MessageVisitorInfo(id: "", name: ""),
             let sender = MessageSender(id: "", name: "", role: "", userAgent: ""),
             let content = ContentOfflineMessage(name: "", email: "", phone: "", text: ""),
-            let broker = BrokerMetaData(timestamp: "2017-05-19T03:39:31.814Z") else {
+            let broker = BrokerMetaData(dictionary: ["timestamp": "2017-05-19T03:39:31.814Z"]) else {
                 XCTAssertNotNil(message)
                 return
         }
         
-        message = Message(id: "", conversationID: "", merchantID: "", channel: "", channelInfo: channelInfo, visitor: visitor, sender: sender, type: MessageType.OfflineMessage, content: content, brokerMetaData: broker)
+        message = Message(id: "", conversationID: "", merchantID: "", channel: "", visitor: visitor, sender: sender, type: MessageType.OfflineMessage, content: content, brokerMetaData: broker, channelInfo: channelInfo)
         
         if let message = message {
-            PrismCore.shared.publishMessage(topic: "", message: message) { (response, error) in
+            PrismCore.shared.publishMessage(token: "", topic: "", messages: [message]) { (response, error) in
                 XCTAssertNil(error)
                 XCTAssertNotNil(response)
             }

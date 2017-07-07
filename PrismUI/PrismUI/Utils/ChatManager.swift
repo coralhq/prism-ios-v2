@@ -53,7 +53,7 @@ class ChatManager {
         
         coredata?.saveMessage(message: message, status: .pending)
         
-        PrismCore.shared.publishMessage(topic: credential.topic, message: message) { (message, error) in
+        PrismCore.shared.publishMessage(token: credential.accessToken, topic: credential.topic, messages: [message]) { (response, error) in
             
         }
     }

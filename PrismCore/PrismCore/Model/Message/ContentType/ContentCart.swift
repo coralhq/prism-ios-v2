@@ -8,10 +8,13 @@
 
 import Foundation
 
-class ContentCart: MessageContentMappable {
-    let lineItems: [LineItem]
+public class ContentCart: MessageContentMappable {
+    public let lineItems: [LineItem]
+    var dictionary: [String: Any]?
     
-    required init?(dictionary: [String : Any]?) {
+    required public init?(dictionary: [String : Any]?) {
+        self.dictionary = dictionary
+        
         guard let cart = dictionary?["cart"] as? [String: Any],
             let lineItemDictionaries = cart["line_items"] as? [[String: Any]] else {
                 return nil
@@ -28,13 +31,17 @@ class ContentCart: MessageContentMappable {
         
         self.lineItems = lineItems
     }
+    
+    public func dictionaryValue() -> [String : Any]? {
+        return dictionary
+    }
 }
 
-class LineItem : Mappable {
-    let product: Product
-    let quantity: Int
+public class LineItem : Mappable {
+    public let product: Product
+    public let quantity: Int
     
-    required init?(dictionary: [String : Any]?) {
+    required public init?(dictionary: [String : Any]?) {
         guard let product = Product(dictionary: dictionary?["product"] as? [String: Any]),
         let quantity = dictionary?["quantity"] as? Int else {
             return nil
@@ -45,11 +52,11 @@ class LineItem : Mappable {
     }
 }
 
-class Discount: Mappable {
-    let discountType: String
-    let amount: String
+public class Discount: Mappable {
+    public let discountType: String
+    public let amount: String
     
-    required init?(dictionary: [String : Any]?) {
+    required public init?(dictionary: [String : Any]?) {
         guard let discountType = dictionary?["discount_type"] as? String,
         let amount = dictionary?["amount"] as? String else {
             return nil

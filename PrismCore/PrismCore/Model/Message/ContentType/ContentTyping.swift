@@ -11,21 +11,16 @@ import Foundation
 public class ContentTyping: MessageContentMappable {
     
     public let status: String
-    public var dictionaryValue: [String: Any] {
-        get {
-            return [
-                "typing": [
-                    "status": status
-                ]
-            ]
-        }
-    }
+    
+    var dictionary: [String: Any]?
     
     required public init?(dictionary: [String : Any]?) {
         guard let typing = dictionary?["typing"] as? [String: Any],
             let status = typing["status"] as? String else {
                 return nil
         }
+        
+        self.dictionary = dictionary
         
         self.status = status
     }
@@ -37,5 +32,9 @@ public class ContentTyping: MessageContentMappable {
                 ]
             ]
         )
+    }
+    
+    public func dictionaryValue() -> [String : Any]? {
+        return dictionary
     }
 }

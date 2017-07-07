@@ -10,23 +10,24 @@ import Foundation
 
 public typealias HTTPRequestResult = (Mappable?, NSError?) -> ()
 
+public let ReceiveChatNotification = NSNotification.Name(rawValue: "ReceiveChatNotification")
+public let DisconnectChatNotification = NSNotification.Name(rawValue: "ConnectChatNotification")
+public let ErrorChatNotification = NSNotification.Name(rawValue: "ErrorChatNotification")
+
 open class PrismCore {
     
-    fileprivate var delegate: PrismCoreDelegate?
+    public var delegate: PrismCoreDelegate?
     
     static open var shared = PrismCore()
-
+    
     internal var network: NetworkProtocol?
     
-    private init() {}
-    
-    open func configure(environment: EnvironmentType, merchantID: String, delegate: PrismCoreDelegate) {
-        self.delegate = delegate
+    open func configure(environment: EnvironmentType, merchantID: String) {
         Config.shared.configure(environment: environment, merchantID: merchantID)
         
         network = Network()
         network?.setMQTTDelegate(delegate: self)
-    }    
+    }
     
     open func visitorConnect(userName: String, userID: String, completionHandler: @escaping (ConnectResponse?, NSError?) -> ()) {
         let endPoint = VisitorConnectEndPoint(visitorName: userName, userID: userID)
@@ -125,16 +126,25 @@ open class PrismCore {
 }
 
 extension PrismCore: MQTTSessionDelegate {
-    
     internal func mqttDidReceive(message data: Data, in topic: String, from session: MQTTSession) {
-        delegate?.didReceive(message: data, in: topic)
+        do {
+            guard let messageDict = try JSONSerialization.jsonObject(with: data, options: .init(rawValue: 0)) as? [String: Any],
+                let message = Message(dictionary: messageDict) else {
+                    print("Error parsing MQTT message")
+                    return
+            }
+            print("message received \(messageDict)")
+            NotificationCenter.default.post(name: ReceiveChatNotification, object: message)
+        } catch {
+            NotificationCenter.default.post(name: ErrorChatNotification, object: error)
+        }
     }
     
     internal func mqttDidDisconnect(session: MQTTSession) {
-        
+        NotificationCenter.default.post(name: DisconnectChatNotification, object: nil)
     }
     
     internal func mqttSocketErrorOccurred(session: MQTTSession) {
-        
+        NotificationCenter.default.post(name: ErrorChatNotification, object: nil)
     }
 }

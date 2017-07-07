@@ -8,28 +8,35 @@
 
 import Foundation
 
-class ContentProduct: MessageContentMappable {
-    let product: Product
+public class ContentProduct: MessageContentMappable {
+    public let product: Product
+    var dictionary: [String: Any]?
     
-    required init?(dictionary: [String : Any]?) {
+    required public init?(dictionary: [String : Any]?) {
+        self.dictionary = dictionary
+        
         guard let product = Product(dictionary: dictionary?["product"] as? [String: Any]) else {
             return nil
         }
         
         self.product = product
     }
+    
+    public func dictionaryValue() -> [String : Any]? {
+        return dictionary
+    }
 }
 
-class Product: Mappable {
-    let id: String
-    let name: String
-    let price: String
-    let description: String
-    let imageURLs: [URL]
-    let discount: Discount
-    let currencyCode: String
+public class Product: Mappable {
+    public let id: String
+    public let name: String
+    public let price: String
+    public let description: String
+    public let imageURLs: [URL]
+    public let discount: Discount
+    public let currencyCode: String
     
-    required init?(dictionary: [String : Any]?) {
+    required public init?(dictionary: [String : Any]?) {
         guard let id = dictionary?["id"] as? String,
             let name = dictionary?["name"] as? String,
             let price = dictionary?["price"] as? String,

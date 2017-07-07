@@ -9,9 +9,10 @@
 import Foundation
 
 class ContentCloseChat: MessageContentMappable {
-    
     let closedBy: MessageUser
     let message: ContentPlainText
+    
+    var dictionary: [String: Any]?
     
     required init?(dictionary: [String : Any]?) {
         guard let closeChat = dictionary?["close_chat"] as? [String: Any],
@@ -20,7 +21,13 @@ class ContentCloseChat: MessageContentMappable {
             return nil
         }
         
+        self.dictionary = dictionary
+        
         self.closedBy = closedBy
         self.message = message
+    }
+    
+    func dictionaryValue() -> [String : Any]? {
+        return dictionary
     }
 }

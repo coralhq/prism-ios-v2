@@ -12,10 +12,10 @@ import Foundation
 open class Sticker: NSObject, NSCoding, Mappable {
     let createdAt: Date
     let updatedAt: Date
-    let id: String
+    public let id: String
     public let name: String
     public let imageURL: URL
-    let packID: String
+    public let packID: String
     
     public required init?(dictionary: [String : Any]?) {
         guard let createdAtString = dictionary?["created_at"] as? String,

@@ -11,8 +11,11 @@ import Foundation
 class ContentAssignment: MessageContentMappable {
     let assignee: MessageUser
     let assignor: MessageUser
+    var dictionary: [String: Any]?
     
     required init?(dictionary: [String: Any]?) {
+        self.dictionary = dictionary
+        
         guard let assignment = dictionary?["assignment"] as? [String: Any],
             let assignee = assignment["assignee"] as? [String: Any],
             let assignor = assignment["assignor"] as? [String: Any],
@@ -22,5 +25,9 @@ class ContentAssignment: MessageContentMappable {
         }
         self.assignee = userAssignee
         self.assignor = userAssignor
+    }
+    
+    func dictionaryValue() -> [String : Any]? {
+        return dictionary
     }
 }

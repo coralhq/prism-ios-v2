@@ -10,28 +10,31 @@ import Foundation
 
 class CacheVendor {
     static var shared = CacheVendor()
-    
-    var imageCache = NSCache<NSString, UIImage>()
+    let cacheImages = NSCache<NSString, UIImage>()
 }
 
 extension UIImageView {
     
-    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
-        contentMode = mode
+    func downloadedFrom(url: URL, defaultImage: UIImage? = nil, contentMode: UIViewContentMode = .scaleAspectFill) {
         
-        if let image = CacheVendor.shared.imageCache.object(forKey: url.absoluteString as NSString) {
+        self.contentMode = contentMode
+        
+        let key = url.absoluteString
+        
+        self.image = defaultImage
+        
+        if let image = CacheVendor.shared.cacheImages.object(forKey: key as NSString) {
             self.image = image
         } else {
             URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
-                
-                guard error == nil,
-                    let image = UIImage(data: data!) else { return }
-                
-                DispatchQueue.main.async() { () -> Void in
-                    CacheVendor.shared.imageCache.setObject(image, forKey: url.absoluteString as NSString)
+                DispatchQueue.main.async {
+                    guard error == nil,
+                        let image = UIImage(data: data!) else {
+                            return
+                    }
+                    CacheVendor.shared.cacheImages.setObject(image, forKey: url.absoluteString as NSString)
                     self?.image = image
                 }
-                
                 }.resume()
         }
     }

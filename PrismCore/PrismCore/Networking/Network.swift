@@ -62,6 +62,14 @@ class Network: NetworkProtocol {
             }
         }
         
+        if let messageEndPoint = endPoint as? PublishMessageEndPoint {
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: messageEndPoint.messagesBody, options: .prettyPrinted)
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        
         requestDataTask(request: request, mapToObject: mapToObject, completionHandler: completionHandler)
     }
     
@@ -161,26 +169,6 @@ class Network: NetworkProtocol {
             DispatchQueue.main.async(){
                 completionHandler(success, error as NSError?)
             }
-        }
-    }
-    
-    func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, NSError?) -> ()) {
-        do {
-            guard let messageDict = message.dictionaryValue() else { return }
-            
-            let jsonData = try JSONSerialization.data(withJSONObject: messageDict, options: .prettyPrinted)
-            
-            mqttSession.publish(jsonData, in: topic, delivering: .atLeastOnce, retain: false) { (success, error) in
-                DispatchQueue.main.async(){
-                    if success {
-                        completionHandler(message, nil)
-                    } else {
-                        completionHandler(nil, error as NSError?)
-                    }
-                }
-            }
-        } catch {
-            print("error \(error)")
         }
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PrismAnalytics
 
 public class ConnectViewController: BaseViewController {
     
@@ -35,6 +36,12 @@ public class ConnectViewController: BaseViewController {
         update(textField: nameTF, form: formField.username)
         update(textField: emailTF, form: formField.email)
         update(textField: phoneTF, form: formField.phoneNumber)
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        PrismAnalytics.shared.sendTracker(withEvent: .visitorConnect)
     }
     
     func update(textField: LinedTextField, form: InputForm) {

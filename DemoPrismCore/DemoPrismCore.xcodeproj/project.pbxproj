@@ -21,6 +21,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		808476631F0C9CFE00E12323 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8084765E1F0C9CFD00E12323 /* PrismAnalytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 808476441F0C9CFD00E12323;
+			remoteInfo = PrismAnalytics;
+		};
+		808476651F0C9CFE00E12323 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8084765E1F0C9CFD00E12323 /* PrismAnalytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8084764D1F0C9CFD00E12323;
+			remoteInfo = PrismAnalyticsTests;
+		};
 		E52665931EE91AA300612E19 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E526658D1EE91AA200612E19 /* PrismUI.xcodeproj */;
@@ -85,6 +99,7 @@
 		8033DB331EEF810000A044A4 /* DemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoViewController.xib; sourceTree = "<group>"; };
 		80389A4E1EEA55AB007B9458 /* DemoMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		80389A4F1EEA55AB007B9458 /* DemoMenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoMenuCollectionViewCell.xib; sourceTree = "<group>"; };
+		8084765E1F0C9CFD00E12323 /* PrismAnalytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PrismAnalytics.xcodeproj; path = ../PrismAnalytics/PrismAnalytics/PrismAnalytics.xcodeproj; sourceTree = "<group>"; };
 		E526658D1EE91AA200612E19 /* PrismUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PrismUI.xcodeproj; path = ../PrismUI/PrismUI.xcodeproj; sourceTree = "<group>"; };
 		E54D95F51ED55E34009FF016 /* DemoPrismCore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoPrismCore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E54D95F81ED55E35009FF016 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +122,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8084765F1F0C9CFD00E12323 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				808476641F0C9CFE00E12323 /* PrismAnalytics.framework */,
+				808476661F0C9CFE00E12323 /* PrismAnalyticsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E526658E1EE91AA200612E19 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +143,7 @@
 		E54D95EC1ED55E34009FF016 = {
 			isa = PBXGroup;
 			children = (
+				8084765E1F0C9CFD00E12323 /* PrismAnalytics.xcodeproj */,
 				E526658D1EE91AA200612E19 /* PrismUI.xcodeproj */,
 				E54D960A1ED55E5A009FF016 /* PrismCore.xcodeproj */,
 				E54D95F71ED55E35009FF016 /* DemoPrismCore */,
@@ -211,6 +236,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 8084765F1F0C9CFD00E12323 /* Products */;
+					ProjectRef = 8084765E1F0C9CFD00E12323 /* PrismAnalytics.xcodeproj */;
+				},
+				{
 					ProductGroup = E54D960B1ED55E5A009FF016 /* Products */;
 					ProjectRef = E54D960A1ED55E5A009FF016 /* PrismCore.xcodeproj */;
 				},
@@ -227,6 +256,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		808476641F0C9CFE00E12323 /* PrismAnalytics.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PrismAnalytics.framework;
+			remoteRef = 808476631F0C9CFE00E12323 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		808476661F0C9CFE00E12323 /* PrismAnalyticsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PrismAnalyticsTests.xctest;
+			remoteRef = 808476651F0C9CFE00E12323 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E52665941EE91AA300612E19 /* PrismUI.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;

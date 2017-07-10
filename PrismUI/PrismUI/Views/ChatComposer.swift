@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import Photos
+import PhotosUI
 
 protocol ChatComposerDelegate: class {
-    func chatComposer(composer: ChatComposer, didSendText text: String)
-    func chatComposer(composer: ChatComposer, didSendSticker sticker: StickerViewModel)
+    func chatComposer(composer: ChatComposer, didComposeText text: String)
+    func chatComposer(composer: ChatComposer, didPickSticker sticker: StickerViewModel)
+    func chatComposer(composer: ChatComposer, didPickImage image: UIImage, imageName: String)
 }
 
 class ChatComposer: UIView {
@@ -74,7 +77,11 @@ class ChatComposer: UIView {
     }
     
     @IBAction func attachImagePressed(sender: UIButton) {
-        
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = false
+        UIViewController.root?.present(picker, animated: true, completion: nil)
     }
     
     @IBAction func stickerInputPressed(sender: UIButton) {
@@ -92,7 +99,7 @@ class ChatComposer: UIView {
     }
     
     @IBAction func sendPressed(sender: UIButton) {
-        delegate?.chatComposer(composer: self, didSendText: textView.text)
+        delegate?.chatComposer(composer: self, didComposeText: textView.text)
         setText(text: nil)
     }
     
@@ -127,8 +134,22 @@ class ChatComposer: UIView {
     }
 }
 
+extension ChatComposer: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage,
+            let imageURL = info[UIImagePickerControllerReferenceURL] as? URL,
+            let asset = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil).firstObject,
+            let imageName = asset.value(forKey: "filename") as? String else {
+                return
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+        delegate?.chatComposer(composer: self, didPickImage: image, imageName: imageName)
+    }
+}
+
 extension ChatComposer: StickerInputViewDelegate {
     func stickerInputView(view: StickerInputView, didSend sticker: StickerViewModel) {
-        delegate?.chatComposer(composer: self, didSendSticker: sticker)
+        delegate?.chatComposer(composer: self, didPickSticker: sticker)
     }
 }

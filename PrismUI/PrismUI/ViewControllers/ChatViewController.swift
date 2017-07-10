@@ -21,8 +21,10 @@ class ChatViewController: BaseViewController {
         
         super.init(nibName: nil, bundle: Bundle.prism)
         
-        guard let context = chatManager.coredata?.context else { return }
-        queryManager = ChatQueryManager(context: context, credential: credential)
+        guard let context = chatManager.coredata?.mainContext else {
+            return
+        }
+        queryManager = ChatQueryManager(context: context, credential: self.chatManager.credential)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -111,12 +113,16 @@ extension ChatViewController: UITableViewDelegate {
 }
 
 extension ChatViewController: ChatComposerDelegate {
-    func chatComposer(composer: ChatComposer, didSendText text: String) {
+    func chatComposer(composer: ChatComposer, didComposeText text: String) {
         chatManager.sendMessage(text: text)
     }
     
-    func chatComposer(composer: ChatComposer, didSendSticker sticker: StickerViewModel) {
+    func chatComposer(composer: ChatComposer, didPickSticker sticker: StickerViewModel) {
         chatManager.sendMessage(sticker: sticker)
+    }
+    
+    func chatComposer(composer: ChatComposer, didPickImage image: UIImage, imageName: String) {
+        chatManager.sendMessage(image: image, imageName: imageName)
     }
 }
 
@@ -151,8 +157,8 @@ extension ChatViewController: ChatQueryManagerDelegate {
             tableView.insertRows(at: [newIndexPath], with: .fade)
         case .move:
             guard let indexPath = indexPath else { return }
-            tableView.deleteRows(at: [indexPath], with: .bottom)
-            tableView.insertRows(at: [newIndexPath], with: .top)
+            tableView.deleteRows(at: [indexPath], with: .none)
+            tableView.insertRows(at: [newIndexPath], with: .none)
         default:
             tableView.reloadRows(at: [newIndexPath], with: .none)
         }

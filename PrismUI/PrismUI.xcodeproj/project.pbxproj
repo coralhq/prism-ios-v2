@@ -31,7 +31,6 @@
 		E52665841EE91A9600612E19 /* PrismUI.h in Headers */ = {isa = PBXBuildFile; fileRef = E52665761EE91A9600612E19 /* PrismUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E547D2281EF1FA6200B66136 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E547D2271EF1FA6200B66136 /* Media.xcassets */; };
 		E547E7F41F0C869800AFFB20 /* ContentTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547E7F31F0C869800AFFB20 /* ContentTextViewModel.swift */; };
-		E547E7F61F0C87F100AFFB20 /* ChatContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547E7F51F0C87F100AFFB20 /* ChatContentType.swift */; };
 		E54969B81EEA82B7008209D9 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54969B71EEA82B7008209D9 /* PrismCore.framework */; };
 		E54969BB1EEA8496008209D9 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54969BA1EEA8496008209D9 /* Utils.swift */; };
 		E54DE6481EFA6A740035EA35 /* SmallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54DE6471EFA6A740035EA35 /* SmallButton.swift */; };
@@ -54,7 +53,7 @@
 		E57440971EF76BFD003CA9E7 /* ChatInvoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440961EF76BFD003CA9E7 /* ChatInvoiceView.xib */; };
 		E574409F1EF76FCF003CA9E7 /* ContentProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574409D1EF76FCF003CA9E7 /* ContentProductCell.swift */; };
 		E57440A01EF76FCF003CA9E7 /* ContentProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E574409E1EF76FCF003CA9E7 /* ContentProductCell.xib */; };
-		E57440A21EF79EC8003CA9E7 /* ChatContentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440A11EF79EC8003CA9E7 /* ChatContentProtocol.swift */; };
+		E57440A21EF79EC8003CA9E7 /* ChatContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440A11EF79EC8003CA9E7 /* ChatContentView.swift */; };
 		E57440A41EF7A898003CA9E7 /* ChatContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440A31EF7A898003CA9E7 /* ChatContainerView.swift */; };
 		E57440AB1EF7CE43003CA9E7 /* ChatCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440AA1EF7CE43003CA9E7 /* ChatCartView.swift */; };
 		E57440AD1EF7CE58003CA9E7 /* ChatCartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440AC1EF7CE58003CA9E7 /* ChatCartView.xib */; };
@@ -147,7 +146,6 @@
 		E52665771EE91A9600612E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E547D2271EF1FA6200B66136 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Resources/Media.xcassets; sourceTree = "<group>"; };
 		E547E7F31F0C869800AFFB20 /* ContentTextViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentTextViewModel.swift; path = ContentMessages/ContentTextViewModel.swift; sourceTree = "<group>"; };
-		E547E7F51F0C87F100AFFB20 /* ChatContentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatContentType.swift; path = PrismUI/Cells/ChatCell/Content/ChatContentType.swift; sourceTree = SOURCE_ROOT; };
 		E54969B71EEA82B7008209D9 /* PrismCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrismCore.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/DemoPrismCore-friqtlupaxddjygruiinatqqklhk/Build/Products/Debug-iphonesimulator/PrismCore.framework"; sourceTree = "<group>"; };
 		E54969BA1EEA8496008209D9 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
 		E54DE6471EFA6A740035EA35 /* SmallButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmallButton.swift; path = Kits/SmallButton.swift; sourceTree = "<group>"; };
@@ -170,7 +168,7 @@
 		E57440961EF76BFD003CA9E7 /* ChatInvoiceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatInvoiceView.xib; path = PrismUI/Cells/ChatCell/Content/ChatInvoiceView.xib; sourceTree = SOURCE_ROOT; };
 		E574409D1EF76FCF003CA9E7 /* ContentProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentProductCell.swift; path = PrismUI/Cells/ChatCell/Cell/ContentProductCell.swift; sourceTree = SOURCE_ROOT; };
 		E574409E1EF76FCF003CA9E7 /* ContentProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContentProductCell.xib; path = PrismUI/Cells/ChatCell/Cell/ContentProductCell.xib; sourceTree = SOURCE_ROOT; };
-		E57440A11EF79EC8003CA9E7 /* ChatContentProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatContentProtocol.swift; path = PrismUI/Cells/ChatCell/Content/ChatContentProtocol.swift; sourceTree = SOURCE_ROOT; };
+		E57440A11EF79EC8003CA9E7 /* ChatContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatContentView.swift; path = PrismUI/Cells/ChatCell/Content/ChatContentView.swift; sourceTree = SOURCE_ROOT; };
 		E57440A31EF7A898003CA9E7 /* ChatContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatContainerView.swift; path = PrismUI/Cells/ChatCell/Container/ChatContainerView.swift; sourceTree = SOURCE_ROOT; };
 		E57440AA1EF7CE43003CA9E7 /* ChatCartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatCartView.swift; path = PrismUI/Cells/ChatCell/Content/ChatCartView.swift; sourceTree = SOURCE_ROOT; };
 		E57440AC1EF7CE58003CA9E7 /* ChatCartView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatCartView.xib; path = PrismUI/Cells/ChatCell/Content/ChatCartView.xib; sourceTree = SOURCE_ROOT; };
@@ -370,6 +368,7 @@
 		E52665751EE91A9600612E19 /* PrismUI */ = {
 			isa = PBXGroup;
 			children = (
+				E55AC0D91F0FC10A00A0354D /* Vendors */,
 				E54DE6461EFA6A500035EA35 /* Kits */,
 				E5CD9F6C1EEA7F650066C1CC /* Resources */,
 				80389A3B1EEA3087007B9458 /* Cells */,
@@ -430,11 +429,17 @@
 			name = Kits;
 			sourceTree = "<group>";
 		};
+		E55AC0D91F0FC10A00A0354D /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Vendors;
+			sourceTree = "<group>";
+		};
 		E574408B1EF76478003CA9E7 /* Content */ = {
 			isa = PBXGroup;
 			children = (
-				E57440A11EF79EC8003CA9E7 /* ChatContentProtocol.swift */,
-				E547E7F51F0C87F100AFFB20 /* ChatContentType.swift */,
+				E57440A11EF79EC8003CA9E7 /* ChatContentView.swift */,
 				E599E87D1EF67D4300B67920 /* ChatTextView.swift */,
 				E58FAE711EF39407002F1A2A /* ChatTextView.xib */,
 				E574408C1EF7649A003CA9E7 /* ChatStickerView.swift */,
@@ -750,11 +755,10 @@
 				E55AC0CF1F0E0CF100A0354D /* ContentImageViewModel.swift in Sources */,
 				E5F260911F0BA7E40058EB65 /* ChatHeaderCell.swift in Sources */,
 				E593AEC31EFCCB2C002E2171 /* Chat.xcdatamodeld in Sources */,
-				E57440A21EF79EC8003CA9E7 /* ChatContentProtocol.swift in Sources */,
+				E57440A21EF79EC8003CA9E7 /* ChatContentView.swift in Sources */,
 				E5053A911EF13728006677A4 /* PrismCredential.swift in Sources */,
 				800E2EB01EEE35D6003AB37B /* UIColor.swift in Sources */,
 				E57440B41EF7DD8A003CA9E7 /* MidtransView.swift in Sources */,
-				E547E7F61F0C87F100AFFB20 /* ChatContentType.swift in Sources */,
 				E593AEF11EFCCC80002E2171 /* CDSender+CoreDataProperties.swift in Sources */,
 				E562B5D11F0D27A2006489C0 /* ContentCartViewModel.swift in Sources */,
 				E599E87E1EF67D4300B67920 /* ChatTextView.swift in Sources */,

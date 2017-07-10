@@ -11,7 +11,8 @@ import PrismCore
 
 class ChatImageView: ChatContentView {
     @IBOutlet var imageView: UIImageView!
-    @IBOutlet var dimmedViewHeight: NSLayoutConstraint!
+    @IBOutlet var dimmedView: UIView!
+    @IBOutlet var indicatorView: UIActivityIndicatorView!
     
     var imageURL: URL?
     
@@ -22,8 +23,6 @@ class ChatImageView: ChatContentView {
         
         imageView.superview?.layer.masksToBounds = true
         imageView.superview?.layer.cornerRadius = 8
-        
-        dimmedViewHeight.constant = 0
         
         NotificationCenter.default.addObserver(self, selector: #selector(uploadProgress(sender:)) , name: UploadProgressNotification, object: nil)
     }
@@ -36,13 +35,15 @@ class ChatImageView: ChatContentView {
                 return
         }
         imageURL = contentVM.imageURL
-        
+
         switch state {
-        case .start:
-            dimmedViewHeight.constant = imageHeight
         case .finished:
-            dimmedViewHeight.constant = 0
-        default: break
+            dimmedView.isHidden = true
+            indicatorView.stopAnimating()
+        case .start: fallthrough
+        default:
+            dimmedView.isHidden = false
+            indicatorView.startAnimating()
         }
         
         if let imageURL = contentVM.imageURL {
@@ -57,12 +58,6 @@ class ChatImageView: ChatContentView {
     }
     
     func uploadProgress(sender: Notification) {
-        guard let url = sender.userInfo?["url"] as? NSURL,
-            let progress = sender.userInfo?["progress"] as? Double else {
-                return
-        }
-        if url.absoluteString == imageURL?.absoluteString {
-            dimmedViewHeight.constant = imageHeight - (imageHeight * CGFloat(progress))
-        }
+        
     }
 }

@@ -14,18 +14,35 @@ enum HTTPMethod: String {
     case GET
 }
 
-class Network: NetworkProtocol {
+class Network: NSObject, NetworkProtocol {
     
     static let shared = Network()
+    
+    var uploadTaskIdentifiers: [Int: URL] = [:]
+    var delegate: NetworkDelegate?
+    
     private let mqttSession: MQTTSession
     
-    init() {
+    private var _urlSession: URLSession?
+    private var urlSession: URLSession? {
+        get {
+            if _urlSession == nil {
+                _urlSession = URLSession(configuration: URLSession.shared.configuration,
+                                         delegate: self,
+                                         delegateQueue: OperationQueue.main)
+            }
+            return _urlSession
+        }
+    }
+    
+    override init() {
         mqttSession = MQTTSession(host: URL.PrismMQTTURL,
                                   port: URL.PrismMQTTPort,
                                   clientID: "iOS-SDK",
                                   cleanSession: true,
                                   keepAlive: 60,
                                   useSSL: false)
+        super.init()
     }
     
     func requestRawResult<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping (([String: Any]?, NSError?) -> ())) {
@@ -69,19 +86,25 @@ class Network: NetworkProtocol {
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
-        let session = URLSession.shared
-        let task = session.uploadTask(with: request, from: attachment) { (data, response, error) in
+        let task = urlSession?.uploadTask(with: request, from: attachment) { (data, response, error) in
             DispatchQueue.main.async(){
                 guard let httpResponse = response as? HTTPURLResponse else { return }
                 completionHandler(httpResponse.statusCode == 200, error as NSError?)
             }
         }
-        task.resume()
+        task?.resume()
+        
+        guard let identifier = task?.taskIdentifier else {
+            return
+        }
+        var comp = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        comp?.query = nil
+        comp?.fragment = nil
+        uploadTaskIdentifiers[identifier] = comp?.url
     }
     
     fileprivate func requestDataTask<T: Mappable>(request: URLRequest, mapToObject: T.Type, completionHandler: @escaping HTTPRequestResult) {
-        let session = URLSession.shared
-        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+        let task = urlSession?.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             
             guard error == nil else {
                 DispatchQueue.main.async() {
@@ -126,7 +149,7 @@ class Network: NetworkProtocol {
                 }
             }
         })
-        task.resume()
+        task?.resume()
     }
     
     func setMQTTDelegate(delegate: MQTTSessionDelegate) {
@@ -168,7 +191,7 @@ class Network: NetworkProtocol {
         do {
             guard let messageDict = message.dictionaryValue() else { return }
             
-            let jsonData = try JSONSerialization.data(withJSONObject: messageDict, options: .prettyPrinted)
+            let jsonData = try JSONSerialization.data(withJSONObject: messageDict, options: .init(rawValue: 0))
             
             mqttSession.publish(jsonData, in: topic, delivering: .atLeastOnce, retain: false) { (success, error) in
                 DispatchQueue.main.async(){
@@ -183,4 +206,19 @@ class Network: NetworkProtocol {
             print("error \(error)")
         }
     }
+}
+
+extension Network: URLSessionTaskDelegate {
+    func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
+        
+        guard let url = uploadTaskIdentifiers[task.taskIdentifier] else {
+            return
+        }
+        let progress: Double = Double(totalBytesSent)/Double(totalBytesExpectedToSend)
+        delegate?.network(network: self, uploadIn: progress, with: url)
+    }
+}
+
+protocol NetworkDelegate: class {
+    func network(network: Network, uploadIn progress: Double, with stringURL: URL)
 }

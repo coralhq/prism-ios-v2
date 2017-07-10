@@ -18,8 +18,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="128" id="3t5-fg-c1N"/>
-                        <constraint firstAttribute="height" constant="128" id="x36-Nl-GcQ"/>
+                        <constraint firstAttribute="width" priority="900" constant="128" id="3t5-fg-c1N"/>
+                        <constraint firstAttribute="height" priority="900" constant="128" id="x36-Nl-GcQ"/>
                     </constraints>
                 </imageView>
             </subviews>

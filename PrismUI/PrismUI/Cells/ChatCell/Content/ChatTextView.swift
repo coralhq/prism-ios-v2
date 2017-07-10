@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatTextView: UIView {
+class ChatTextView: ChatContentView {
     @IBOutlet var titleLabel: UILabel!
     
     var chatType: ChatCellType = .In
@@ -22,18 +22,11 @@ class ChatTextView: UIView {
             titleLabel.textAlignment = .right
         }
     }
-}
-
-extension ChatTextView: ChatContentProtocol {
-    func addTo(view: UIView?) {
-        addTo(view: view, margin: 0)
-    }
     
-    func infoPosition() -> InfoViewPosition {
+    override func infoPosition() -> InfoViewPosition {
         return .Bottom
     }
-    
-    func updateView(with viewModel: ChatViewModel) {
+    override func updateView(with viewModel: ChatViewModel) {
         chatType = viewModel.cellType
         
         guard let vm = viewModel.contentViewModel as? ContentTextViewModel else { return }

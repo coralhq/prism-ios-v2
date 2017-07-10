@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatProductView: UIView {
+class ChatProductView: ChatContentView {
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var pageControl: UIPageControl!
     @IBOutlet var nameLabel: UILabel!
@@ -25,19 +25,14 @@ class ChatProductView: UIView {
         collectionView.delegate = self
         collectionView.register(UINib(nibName: ContentProductCell.className(), bundle: Bundle.prism), forCellWithReuseIdentifier: ContentProductCell.className())
     }
-}
-
-extension ChatProductView: ChatContentProtocol {
-    func addTo(view: UIView?) {
-        addTo(view: view, margin: 0)
-    }
     
-    func infoPosition() -> InfoViewPosition {
+    override func infoPosition() -> InfoViewPosition {
         return .Bottom
     }
-    
-    func updateView(with viewModel: ChatViewModel) {
-        guard let contentVM = viewModel.contentViewModel as? ContentProductViewModel else { return }
+    override func updateView(with viewModel: ChatViewModel) {
+        guard let contentVM = viewModel.contentViewModel as? ContentProductViewModel else {
+            return
+        }
         nameLabel.text = contentVM.name
         descriptionLabel.text = contentVM.description
         

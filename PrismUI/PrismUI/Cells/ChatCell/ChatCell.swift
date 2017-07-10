@@ -10,7 +10,7 @@ import UIKit
 
 class ChatCell: UITableViewCell {
     var chatView: ChatContainerView?
-    var chatContentView: ChatContentProtocol?
+    var chatContentView: ChatContentView?
 
     static func reuseIdentifier(viewModel: ChatViewModel) -> String {
         return viewModel.contentType.rawValue + viewModel.cellType.rawValue
@@ -36,17 +36,17 @@ class ChatCell: UITableViewCell {
         
         switch viewModel.contentType {
         case .Cart:
-            chatContentView = ChatCartView.viewFromNib() as? ChatContentProtocol
+            chatContentView = ChatCartView.contentFromNIB()
         case .Invoice:
-            chatContentView = ChatInvoiceView.viewFromNib() as? ChatContentProtocol
+            chatContentView = ChatInvoiceView.contentFromNIB()
         case .Product:
-            chatContentView = ChatProductView.viewFromNib() as? ChatContentProtocol
+            chatContentView = ChatProductView.contentFromNIB()
         case .Sticker:
-            chatContentView = ChatStickerView.viewFromNib() as? ChatContentProtocol
+            chatContentView = ChatStickerView.contentFromNIB()
         case .Image:
-            chatContentView = ChatImageView.viewFromNib() as? ChatContentProtocol
+            chatContentView = ChatImageView.contentFromNIB()
         default:
-            chatContentView = ChatTextView.viewFromNib() as? ChatContentProtocol
+            chatContentView = ChatTextView.contentFromNIB()
         }
         
         chatView?.addTo(view: contentView, margin: 0)

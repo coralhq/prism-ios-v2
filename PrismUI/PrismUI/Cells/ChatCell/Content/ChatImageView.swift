@@ -7,30 +7,62 @@
 //
 
 import UIKit
+import PrismCore
 
-class ChatImageView: UIView {
+class ChatImageView: ChatContentView {
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var dimmedViewHeight: NSLayoutConstraint!
+    
+    var imageURL: URL?
+    
+    let imageHeight: CGFloat = 150
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 8
+        imageView.superview?.layer.masksToBounds = true
+        imageView.superview?.layer.cornerRadius = 8
+        
+        dimmedViewHeight.constant = 0
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(uploadProgress(sender:)) , name: UploadProgressNotification, object: nil)
     }
-}
-
-extension ChatImageView: ChatContentProtocol {
-    func addTo(view: UIView?) {
-        addTo(view: view, margin: 0)
-    }
-    
-    func infoPosition() -> InfoViewPosition {
+    override func infoPosition() -> InfoViewPosition {
         return .Bottom
     }
+    override func updateView(with viewModel: ChatViewModel) {
+        guard let contentVM = viewModel.contentViewModel as? ContentImageViewModel,
+            let state = contentVM.uploadState else {
+                return
+        }
+        imageURL = contentVM.imageURL
+        
+        switch state {
+        case .start:
+            dimmedViewHeight.constant = imageHeight
+        case .finished:
+            dimmedViewHeight.constant = 0
+        default: break
+        }
+        
+        if let imageURL = contentVM.imageURL {
+            imageView.downloadedFrom(url: imageURL)
+        } else {
+            imageView.image = contentVM.tempImage
+        }
+    }
     
-    func updateView(with viewModel: ChatViewModel) {
-        guard let contentVM = viewModel.contentViewModel as? ContentImageViewModel else { return }
-        imageView.downloadedFrom(url: contentVM.imageURL)
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func uploadProgress(sender: Notification) {
+        guard let url = sender.userInfo?["url"] as? NSURL,
+            let progress = sender.userInfo?["progress"] as? Double else {
+                return
+        }
+        if url.absoluteString == imageURL?.absoluteString {
+            dimmedViewHeight.constant = imageHeight - (imageHeight * CGFloat(progress))
+        }
     }
 }
-

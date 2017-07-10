@@ -31,16 +31,15 @@ class ChatContainerView: UIView {
         return self.viewFromNib() as? ChatContainerView
     }
     
-    var chatContentView: ChatContentProtocol? {
-        didSet {
-            chatContentView?.addTo(view: containerView)
-            updateInfoView()
-        }
-    }
+    var chatContentView: ChatContentView?
     
     func update(with viewModel: ChatViewModel, isExtension: Bool) {
+        chatContentView?.updateView(with: viewModel)
+        
         infoView.timeLabel.text = viewModel.messageTime
         infoView.statusImageView?.image = viewModel.statusIcon
+        
+        chatContentView?.removeFromSuperview()
         
         if isExtension {
             nameLabel.text = nil
@@ -48,13 +47,23 @@ class ChatContainerView: UIView {
         } else {
             nameLabel.text = viewModel.senderName
             topMarginConstraint.constant = 10
-        }        
+        }
         
-        chatContentView?.updateView(with: viewModel)
+        updateInfoPosition()
+        
+        chatContentView?.addTo(view: containerView, margin: 0)
     }
-
-    func updateInfoView() {
-        guard let infoPos = chatContentView?.infoPosition() else { return }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()        
+        
+        infoView.statusImageView?.contentMode = .scaleAspectFit
+    }
+    
+    func updateInfoPosition() {
+        guard let infoPos = chatContentView?.infoPosition() else {
+            return
+        }
         switch infoPos {
         case .Left:
             infoWithContentHSpace.constant = 8

@@ -12,43 +12,38 @@ public class ContentAttachment: MessageContentMappable {
     
     public let name: String
     public let mimeType: String
-    public let url: URL
-    public var previewURL: URL? = nil
-    var dictionary: [String : Any]?
+    public var url: String? = nil
+    public var previewURL: String? = nil
     
     required public init?(dictionary: [String: Any]?) {
-        self.dictionary = dictionary
-        
         guard let attachment = dictionary?["attachment"] as? [String: Any],
             let name = attachment["name"] as? String,
-            let mimeType = attachment["mimetype"] as? String,
-            let urlString = attachment["url"] as? String,
-            let url = URL(string: urlString) else {
+            let mimeType = attachment["mimetype"] as? String else {
                 return nil
         }
+        self.name = name
+        self.mimeType = mimeType
         
-        if let previewURLString = attachment["preview_url"] as? String {
-            previewURL = URL(string: previewURLString)
-        }
-        
+        previewURL = attachment["preview_url"] as? String
+        url = attachment["url"] as? String
+    }
+    
+    public init(name: String, mimeType: String, url: String? = nil, previewURL: String? = nil) {
         self.name = name
         self.mimeType = mimeType
         self.url = url
-    }
-    
-    convenience public init?(name: String, mimeType: String, url: String, previewURL: String? = nil) {
-        self.init(dictionary: [
-            "attachment": [
-                "name": name,
-                "mimetype": mimeType,
-                "url": url,
-                "preview_url": previewURL
-            ]
-            ]
-        )
+        self.previewURL = url
     }
     
     public func dictionaryValue() -> [String : Any]? {
-        return dictionary
+        var attDict: [String: Any] = ["name": name,
+                                      "mimetype": mimeType]
+        if let url = url {
+            attDict["url"] = url
+        }
+        if let previewURL = previewURL {
+            attDict["preview_url"] = previewURL
+        }
+        return ["attachment": attDict]
     }
 }

@@ -62,10 +62,6 @@ class ChatViewController: BaseViewController {
 }
 
 extension UITableView {
-    func reusableCell(withConfig config: ChatCellConfig) -> ChatCell? {
-        return self.dequeueReusableCell(withIdentifier: ChatCell.reuseIdentifier(config: config)) as? ChatCell
-    }
-    
     func isViewModel(vm: ChatViewModel, extensionFrom prevVM: ChatViewModel?) -> Bool {
         if let prevVM = prevVM,
             vm.senderID == prevVM.senderID {

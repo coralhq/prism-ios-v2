@@ -38,6 +38,7 @@ class ChatViewController: BaseViewController {
         composer.delegate = self
         composer.addTo(view: barView, margin: 0)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshToken), name: RefreshTokenNotification, object: nil)
         tableView.delegate = self
         tableView.dataSource = self
       
@@ -59,6 +60,28 @@ class ChatViewController: BaseViewController {
         super.viewDidAppear(animated)
         
         PrismAnalytics.shared.sendTracker(withEvent: .chatScreen)
+    }
+    
+    @objc private func refreshToken() {
+        PrismCore.shared.refreshToken(clientID: PrismCredential.shared.clientID, refreshToken: PrismCredential.shared.refreshToken, completionHandler: { [weak self] (refreshTokenResponse, error) in
+            guard let refreshTokenResponse = refreshTokenResponse, error == nil else {
+                self?.showVisitorConnect()
+                return
+            }
+            
+            PrismCredential.shared.accessToken = refreshTokenResponse.oAuth.accessToken
+            PrismCredential.shared.clientID = refreshTokenResponse.oAuth.clientID
+            PrismCredential.shared.refreshToken = refreshTokenResponse.oAuth.refreshToken
+            
+        })
+    }
+    
+    private func showVisitorConnect() {
+        let viewModel = AuthViewModel()
+        let vc = ConnectViewController(viewModel: viewModel)
+        
+        let currentVC = childViewControllers.first
+        replace(vc1: currentVC, with: vc, animated: true)
     }
 }
 

@@ -60,8 +60,12 @@ class ChatManager {
         
         PrismAnalytics.shared.sendTracker(withEvent: .sendMessage, data: trackerData)
         
-        PrismCore.shared.publishMessage(token: credential.accessToken, topic: credential.topic, messages: [message]) { (response, error) in
+        PrismCore.shared.publishMessage(token: PrismCredential.shared.accessToken, topic: PrismCredential.shared.topic, messages: [message]) { (response, error) in
             
+            guard error == nil, error!.code % 500 > 100 else {
+                NotificationCenter.default.post(name: RefreshTokenNotification, object: nil)
+                return
+            }
         }
     }
     

@@ -51,9 +51,9 @@ class ChatManager {
                                   brokerMetaData: BrokerMetaData()) else { return }
         
         coredata?.saveMessage(message: message, status: .pending)
-
+        
         let trackerData = [
-            sendMessageTrackerType.conversationID.rawValue : credential.conversationID,
+            sendMessageTrackerType.conversationID.rawValue : PrismCredential.shared.conversationID,
             sendMessageTrackerType.messageType.rawValue : message.type.rawValue,
             sendMessageTrackerType.sender.rawValue : message.sender.id
         ]
@@ -62,31 +62,34 @@ class ChatManager {
         
         PrismCore.shared.publishMessage(token: PrismCredential.shared.accessToken, topic: PrismCredential.shared.topic, messages: [message]) { (response, error) in
             
-            guard error == nil, error!.code % 500 > 100 else {
-                NotificationCenter.default.post(name: RefreshTokenNotification, object: nil)
+            guard error == nil else {
+                
+                if error!.code == 401 {
+                    NotificationCenter.default.post(name: RefreshTokenNotification, object: nil)
+                }
+                
                 return
             }
         }
-    }
-    
-    func sendMessage(image: UIImage) {
         
-    }
-    
-    func sendMessage(sticker: StickerViewModel) {
+        func sendMessage(image: UIImage) {
+            
+        }
         
-    }
-    
-    @objc func chatReceived(sender: Notification) {
-        guard let message = sender.object as? Message else { return }
-        coredata?.saveMessage(message: message, status: .sent)
-    }
-    
-    @objc func chatDisconnect(sender: Notification) {
+        func sendMessage(sticker: StickerViewModel) {
+            
+        }
         
-    }
-    
-    @objc func chatError(sender: Notification) {
+        @objc func chatReceived(sender: Notification) {
+            guard let message = sender.object as? Message else { return }
+            coredata?.saveMessage(message: message, status: .sent)
+        }
         
-    }
+        @objc func chatDisconnect(sender: Notification) {
+            
+        }
+        
+        @objc func chatError(sender: Notification) {
+            
+        }
 }

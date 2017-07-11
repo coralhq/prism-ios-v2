@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PrismCore
 
 class RootViewController: UIViewController {
     let viewModel = AuthViewModel()
@@ -20,6 +21,7 @@ class RootViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(connectCalled(sender:)), name: ConnectNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(disconnectCalled(sender:)), name: DisconnectNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshToken), name: RefreshTokenNotification, object: nil)
         
         viewModel.getSettings { [unowned self] (settings) in
             Settings.shared.configure(settings: settings)
@@ -37,6 +39,28 @@ class RootViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc private func refreshToken() {
+        PrismCore.shared.refreshToken(clientID: PrismCredential.shared.clientID, refreshToken: PrismCredential.shared.refreshToken, completionHandler: { [weak self] (refreshTokenResponse, error) in
+            guard let refreshTokenResponse = refreshTokenResponse, error == nil else {
+                self?.showVisitorConnect()
+                return
+            }
+            
+            PrismCredential.shared.accessToken = refreshTokenResponse.oAuth.accessToken
+            PrismCredential.shared.clientID = refreshTokenResponse.oAuth.clientID
+            PrismCredential.shared.refreshToken = refreshTokenResponse.oAuth.refreshToken
+            
+        })
+    }
+    
+    private func showVisitorConnect() {
+        let viewModel = AuthViewModel()
+        let vc = ConnectViewController(viewModel: viewModel)
+        
+        let currentVC = childViewControllers.first
+        replace(vc1: currentVC, with: vc, animated: true)
     }
     
     func connectCalled(sender: Notification) {

@@ -61,12 +61,6 @@ class ChatViewController: BaseViewController {
     }
 }
 
-extension UITableView {
-    func reusableCell(withConfig config: ChatCellConfig) -> ChatCell? {
-        return self.dequeueReusableCell(withIdentifier: ChatCell.reuseIdentifier(config: config)) as? ChatCell
-    }
-}
-
 extension ChatViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         if let sections = queryManager?.sections {

@@ -12,12 +12,10 @@ import CoreData
 import PrismAnalytics
 
 class ChatManager {
-    var credential: PrismCredential
-    var accessToken: String { return credential.accessToken }
+    var accessToken: String { return PrismCredential.shared.accessToken }
     let coredata = CoreDataManager()
     
-    init(credential: PrismCredential) {
-        self.credential = credential
+    init() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(chatReceived(sender:)), name: ReceiveChatNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(chatDisconnect(sender:)), name: DisconnectChatNotification, object: nil)
@@ -29,13 +27,13 @@ class ChatManager {
     }
     
     func connect(completionHandler: @escaping ((Bool, Error?) -> ())) {
-        PrismCore.shared.connectToBroker(username: credential.username, password: credential.password) { (success, error) in
+        PrismCore.shared.connectToBroker(username: PrismCredential.shared.username, password: PrismCredential.shared.password) { (success, error) in
             completionHandler(success, error)
         }
     }
     
     func subscribe(completionHandler: @escaping ((Bool, Error?) -> ())) {
-        PrismCore.shared.subscribeToTopic(credential.topic) { (success, error) in
+        PrismCore.shared.subscribeToTopic(PrismCredential.shared.topic) { (success, error) in
             completionHandler(success, error)
         }
     }
@@ -43,11 +41,11 @@ class ChatManager {
     func sendMessage(text: String) {
         guard let content = ContentPlainText(text: text),
             let message = Message(id: NSUUID().uuidString.lowercased(),
-                                  conversationID: credential.conversationID,
-                                  merchantID: credential.merchantID,
+                                  conversationID: PrismCredential.shared.conversationID,
+                                  merchantID: PrismCredential.shared.merchantID,
                                   channel: "IOS_SDK",
-                                  visitor: credential.visitorInfo,
-                                  sender: credential.sender,
+                                  visitor: PrismCredential.shared.visitorInfo,
+                                  sender: PrismCredential.shared.sender,
                                   type: .PlainText,
                                   content: content,
                                   brokerMetaData: BrokerMetaData()) else { return }

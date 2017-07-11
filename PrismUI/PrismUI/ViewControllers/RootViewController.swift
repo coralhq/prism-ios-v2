@@ -24,16 +24,15 @@ class RootViewController: UIViewController {
         viewModel.getSettings { [unowned self] (settings) in
             Settings.shared.configure(settings: settings)
             
-            if let credential = self.viewModel.credential {
-                self.enterChatpage(credential: credential, animated: false)
+            if PrismCredential.shared.username != "" {
+                self.enterChatpage(animated: false)
             } else {
                 if Settings.shared.inputForm.enabled {
                     let connectVC = ConnectViewController(viewModel: self.viewModel)
                     self.enter(viewController: connectVC, animated: false)
                 } else {
-                    self.viewModel.visitorConnectAnonymous(completion: { (credential, error) in
-                        guard let credential = credential else { return }
-                        self.enterChatpage(credential: credential, animated: false)
+                    self.viewModel.visitorConnectAnonymous(completion: { (error) in
+                        self.enterChatpage(animated: false)
                     })
                 }
             }
@@ -41,8 +40,7 @@ class RootViewController: UIViewController {
     }
     
     func connectCalled(sender: Notification) {
-        guard let credential = sender.object as? PrismCredential else { return }
-        enterChatpage(credential: credential, animated: true)
+        enterChatpage(animated: true)
     }
     
     func disconnectCalled(sender: Notification) {
@@ -50,8 +48,8 @@ class RootViewController: UIViewController {
         enter(viewController: connectVC, animated: true)
     }
     
-    private func enterChatpage(credential: PrismCredential, animated: Bool) {
-        let chatVC = ChatViewController(credential: credential)
+    private func enterChatpage(animated: Bool) {
+        let chatVC = ChatViewController()
         enter(viewController: chatVC, animated: animated)
     }
     

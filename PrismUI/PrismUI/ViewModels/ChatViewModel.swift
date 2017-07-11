@@ -46,12 +46,12 @@ class ChatSectionViewModel {
     var indexTitle: String?
     var objects: [ChatViewModel]?
     
-    init(info: NSFetchedResultsSectionInfo, credential: PrismCredential) {
+    init(info: NSFetchedResultsSectionInfo) {
         guard let messages = info.objects as? [CDMessage] else { return }
         
         objects = []
         for message in messages {
-            objects?.append(ChatViewModel(message: message, visitor: credential.sender))
+            objects?.append(ChatViewModel(message: message, visitor: PrismCredential.shared.sender))
         }
         
         guard let date = messages.first?.sectionDate else { return }

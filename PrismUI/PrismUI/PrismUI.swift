@@ -9,6 +9,8 @@
 import Foundation
 import PrismCore
 
+public let RefreshTokenNotification = NSNotification.Name("RefreshTokenNotification")
+
 public protocol PrismUIDelegate {
     func didReceive(message data: Data, in topic: String)
 }

@@ -20,30 +20,25 @@ class PrismCredential: NSObject, NSCoding {
         static var merchantID = "merchant_id"
         static var visitor = "visitor"
         static var sender = "sender"
+        static var refreshToken = "refresh_token"
+        static var clientID = "client_id"
     }
     
-    var username: String
-    var password: String
-    var visitorName: String
-    var accessToken: String
-    var topic: String
-    var conversationID: String
-    var merchantID: String
-    var visitorInfo: MessageUser
-    var sender: MessageSender
+    var username: String = ""
+    var password: String = ""
+    var visitorName: String = ""
+    var accessToken: String = ""
+    var refreshToken: String = ""
+    var topic: String = ""
+    var conversationID: String = ""
+    var merchantID: String = ""
+    var visitorInfo: MessageUser = MessageUser(id: "", name: "")!
+    var sender: MessageSender = MessageSender(id: "", name: "", role: "", userAgent: "")!
+    var clientID: String = ""
     
-    init(connect: ConnectResponse, conversation: CreateConversationResponse) {
-        username = connect.mqtt.username
-        password = connect.mqtt.password
-        visitorName = connect.visitor.name
-        accessToken = connect.oAuth.accessToken
-        topic = conversation.conversation.topic
-        conversationID = conversation.conversation.id
-        merchantID = connect.visitor.merchantID
-        
-        visitorInfo = MessageUser(id: connect.visitor.id, name: connect.visitor.name)!        
-        sender = MessageSender(id: connect.visitor.id, name: connect.visitor.name, role: "visitor", userAgent: "iOSSDK-v1.0.0")!
-    }
+    static var shared = PrismCredential()
+    
+    private override init() {}
     
     public required init?(coder aDecoder: NSCoder) {
         username = aDecoder.decodeObject(forKey: Keys.username) as! String
@@ -53,6 +48,8 @@ class PrismCredential: NSObject, NSCoding {
         topic = aDecoder.decodeObject(forKey: Keys.topic) as! String
         conversationID = aDecoder.decodeObject(forKey: Keys.conversationID) as! String
         merchantID = aDecoder.decodeObject(forKey: Keys.merchantID) as! String
+        refreshToken = aDecoder.decodeObject(forKey: Keys.refreshToken) as! String
+        clientID = aDecoder.decodeObject(forKey: Keys.clientID) as! String
         
         let visitorDict = aDecoder.decodeObject(forKey: Keys.visitor) as! [String: Any]
         visitorInfo = MessageUser(dictionary: visitorDict)!
@@ -71,5 +68,22 @@ class PrismCredential: NSObject, NSCoding {
         aCoder.encode(merchantID, forKey: Keys.merchantID)
         aCoder.encode(visitorInfo.dictionaryValue, forKey: Keys.visitor)
         aCoder.encode(sender.dictionaryValue, forKey: Keys.sender)
+        aCoder.encode(refreshToken, forKey: Keys.refreshToken)
+        aCoder.encode(clientID, forKey: Keys.clientID)
+    }
+    
+    func configure(connect: ConnectResponse, conversation: CreateConversationResponse) {
+        username = connect.mqtt.username
+        password = connect.mqtt.password
+        visitorName = connect.visitor.name
+        accessToken = connect.oAuth.accessToken
+        refreshToken = connect.oAuth.refreshToken
+        topic = conversation.conversation.topic
+        conversationID = conversation.conversation.id
+        merchantID = connect.visitor.merchantID
+        clientID = connect.oAuth.clientID
+        
+        visitorInfo = MessageUser(id: connect.visitor.id, name: connect.visitor.name)!
+        sender = MessageSender(id: connect.visitor.id, name: connect.visitor.name, role: "visitor", userAgent: "iOSSDK-v1.0.0")!
     }
 }

@@ -39,15 +39,13 @@ protocol ChatQueryManagerDelegate: class {
 class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
     let context: NSManagedObjectContext
     let fetchController: NSFetchedResultsController<CDMessage>
-    let credential: PrismCredential
     
     var delegate: ChatQueryManagerDelegate?
     
     var sections: [ChatSectionViewModel] = []
     
-    init(context: NSManagedObjectContext, credential: PrismCredential) {
+    init(context: NSManagedObjectContext) {
         self.context = context
-        self.credential = credential
         
         let request = NSFetchRequest<CDMessage>(entityName: CDMessage.className())
         request.sortDescriptors = [NSSortDescriptor(key: "brokerMetaData.timestamp", ascending: false)]
@@ -68,7 +66,7 @@ class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
             
             self.sections.removeAll()
             for sectionInfo in sections {
-                self.sections.append(ChatSectionViewModel(info: sectionInfo, credential: credential))
+                self.sections.append(ChatSectionViewModel(info: sectionInfo))
             }
         } catch {
             print("fetch error: \(error)")
@@ -88,10 +86,10 @@ class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
         case .delete:
             sections.remove(at: sectionIndex)
         case .insert:
-            sections.insert(ChatSectionViewModel(info: sectionInfo, credential: credential), at: sectionIndex)
+            sections.insert(ChatSectionViewModel(info: sectionInfo), at: sectionIndex)
         case .update:
             sections.remove(at: sectionIndex)
-            sections.insert(ChatSectionViewModel(info: sectionInfo, credential: credential), at: sectionIndex)
+            sections.insert(ChatSectionViewModel(info: sectionInfo), at: sectionIndex)
         default:
             break
         }
@@ -112,9 +110,9 @@ class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
         case .delete:
             objects.remove(at: index)
         case .insert:
-            objects.insert(viewModel: ChatViewModel(message: message, visitor: credential.sender), at: index)
+            objects.insert(viewModel: ChatViewModel(message: message, visitor: PrismCredential.shared.sender), at: index)
         case .update:
-            objects.update(viewModel: ChatViewModel(message: message, visitor: credential.sender), at: index)
+            objects.update(viewModel: ChatViewModel(message: message, visitor: PrismCredential.shared.sender), at: index)
         case .move:
             guard let indexPath = indexPath else { return }
             objects.moveElement(fromIndex: indexPath.row, toIndex: newIndexPath.row)

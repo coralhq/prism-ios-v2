@@ -20,9 +20,7 @@ class CDContentAttachment: ValueTransformer, NSCoding {
     var mimeType: String?
     var url: String?
     var previewURL: String?
-    
     var uploadState: AttachmentUploadState?
-    var tempAttachment: NSObject?
     
     init(contentAttachment: ContentAttachment) {
         name = contentAttachment.name
@@ -39,7 +37,6 @@ class CDContentAttachment: ValueTransformer, NSCoding {
         aCoder.encode(url, forKey: "url")
         aCoder.encode(previewURL, forKey: "preview_url")
         aCoder.encode(uploadState?.rawValue, forKey: "upload_state")
-        aCoder.encode(tempAttachment, forKey: "temp_attachment")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,7 +44,6 @@ class CDContentAttachment: ValueTransformer, NSCoding {
         mimeType = aDecoder.decodeObject(forKey: "mime_type") as? String
         url = aDecoder.decodeObject(forKey: "url") as? String
         previewURL = aDecoder.decodeObject(forKey: "preview_url") as? String
-        tempAttachment = aDecoder.decodeObject(forKey: "temp_attachment") as? NSObject
         
         guard let state = aDecoder.decodeObject(forKey: "upload_state") as? Int else { return }
         self.uploadState = AttachmentUploadState(rawValue: state)

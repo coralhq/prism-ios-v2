@@ -49,7 +49,7 @@ class ChatImageView: ChatContentView {
         if let imageURL = contentVM.imageURL {
             imageView.downloadedFrom(url: imageURL)
         } else {
-            imageView.image = contentVM.tempImage
+            imageView.image = nil
         }
     }
     

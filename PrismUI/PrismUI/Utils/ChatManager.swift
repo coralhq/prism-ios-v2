@@ -49,12 +49,15 @@ class ChatManager {
         let content = ContentAttachment(name: imageName, mimeType: "image")
         let message = buildMessage(with: content, type: .Attachment)
         
+        let temporaryKey = UUID().uuidString
+        CacheVendor.shared.cacheImages.setObject(image, forKey: temporaryKey as NSString)
+        
         guard let cd = coredata,
             let cdmessage = coredata?.buildMessage(message: message, status: .pending),
             let cdcontent = cdmessage.content as? CDContentAttachment else {
                 return
         }
-        cdcontent.tempAttachment = image
+        cdcontent.url = temporaryKey
         cdcontent.uploadState = .start
         cdmessage.content = cdcontent
         cd.save()
@@ -72,6 +75,7 @@ class ChatManager {
             guard let stringURL = comp?.url?.absoluteString else {
                 return
             }
+            CacheVendor.shared.cacheImages.removeObject(forKey: temporaryKey as NSString)
             CacheVendor.shared.cacheImages.setObject(image, forKey: stringURL as NSString)
             
             content.url = stringURL
@@ -86,7 +90,6 @@ class ChatManager {
                     return
                 }
                 cdcontent.uploadState = .finished
-                cdcontent.tempAttachment = nil
                 cdmessage.content = cdcontent
                 cd.save()
                 

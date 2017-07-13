@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PrismAnalytics
 
 protocol ChatComposerDelegate: class {
     func chatComposer(composer: ChatComposer, didSendText text: String)
@@ -70,7 +71,7 @@ class ChatComposer: UIView {
     }
     
     @IBAction func attachImagePressed(sender: UIButton) {
-        
+        PrismAnalytics.shared.sendTracker(withEvent: .uploadImageClicked)
     }
     
     @IBAction func stickerInputPressed(sender: UIButton) {

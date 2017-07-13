@@ -45,19 +45,19 @@ public class CDMessage: NSManagedObject {
     
     func coreDataContentWith(content: MessageContentMappable) -> NSObject? {
         if let content = content as? ContentSticker {
-            return CDContentSticker(contentSticker: content)
+            return CDContentSticker(dictionary: content.dictionaryValue())
         } else if let content = content as? ContentProduct {
-            return CDContentProduct(contentProduct: content)
+            return CDContentProduct(dictionary: content.dictionaryValue())
         } else if let content = content as? ContentOfflineMessage {
-            return CDContentOfflineMessage(offlineMessage: content)
+            return CDContentOfflineMessage(dictionary: content.dictionaryValue())
         } else if let content = content as? ContentCart {
-            return CDContentCart(cart: content)
+            return CDContentCart(dictionary: content.dictionaryValue())
         } else if let content = content as? ContentPlainText {
-            return CDContentPlainText(plainText: content)
+            return CDContentPlainText(dictionary: content.dictionaryValue())
         } else if let content = content as? ContentInvoice {
-            return CDContentInvoice(invoice: content)
+            return CDContentInvoice(dictionary: content.dictionaryValue())
         } else if let content = content as? ContentAttachment {
-            return CDContentAttachment(contentAttachment: content)
+            return CDContentAttachment(dictionary: content.dictionaryValue())
         } else {
             return nil
         }

@@ -16,20 +16,15 @@ class ContentProductViewModel: ContentViewModel {
     var imageURLs: [URL]
     
     init?(contentProduct: CDContentProduct) {
-        guard let name = contentProduct.product?.name,
-            let priceAmount = contentProduct.product?.price,
-            let priceString = priceAmount.formattedCurrency(),
-            let imageURLs = contentProduct.product?.imageURLs else { return nil }
+        self.name = contentProduct.product.name
+        let priceAmount = Double(contentProduct.product.price)!
+        self.price = priceAmount.formattedCurrency()!
+        self.description = contentProduct.product.desc
+        self.imageURLs = contentProduct.product.imageURLs
         
-        self.name = name
-        self.price = priceString
-        self.description = contentProduct.product?.desc
-        self.imageURLs = imageURLs
-        
-        if var discAmount = contentProduct.product?.discount?.amount,
-            let discType = contentProduct.product?.discount?.discountType {
-            
-            if discType == DiscountType.percentage {
+        if let discount = contentProduct.product.discount {
+            var discAmount = Double(discount.amount)!
+            if discount.discountType == DiscountType.percentage {
                 discAmount = (discAmount / 100) * priceAmount
             }
             if discAmount > 0 {

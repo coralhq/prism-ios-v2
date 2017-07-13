@@ -15,6 +15,6 @@ class ContentTextViewModel: ContentViewModel {
     var text: String
     
     init(contentText: CDContentPlainText) {
-        text = contentText.text!
+        text = contentText.text
     }
 }

@@ -23,7 +23,7 @@ class ContentCloseChat: MessageContentMappable {
     }
     
     func dictionaryValue() -> [String : Any] {
-        return ["close_chat": ["closed_by": closedBy.dictionaryValue,
+        return ["close_chat": ["closed_by": closedBy.dictionaryValue(),
                                "message": message.dictionaryValue()]]
     }
 }

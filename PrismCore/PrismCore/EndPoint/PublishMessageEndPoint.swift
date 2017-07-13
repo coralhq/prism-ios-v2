@@ -28,7 +28,7 @@ class PublishMessageEndPoint : EndPoint {
             var result: [[String: Any]] = []
             for message in messages {
                 result.append(["topic" : topic,
-                               "message" : message.dictionaryValue])
+                               "message" : message.dictionaryValue()])
             }
             
             return result

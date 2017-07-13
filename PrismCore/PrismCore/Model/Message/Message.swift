@@ -164,12 +164,12 @@ open class Message: Mappable {
                 "conversation_id": conversationID,
                 "merchant_id": merchantID,
                 "channel": channel,
-                "visitor": visitor.dictionaryValue,
-                "sender": sender.dictionaryValue,
+                "visitor": visitor.dictionaryValue(),
+                "sender": sender.dictionaryValue(),
                 "type": type.rawValue,
                 "content": content.dictionaryValue(),
                 "version": 2,
-                "_broker_metadata": brokerMetaData.dictionaryValue]
+                "_broker_metadata": brokerMetaData.dictionaryValue()]
     }
     
     static func contentWith(dictionary: [String: Any], type: MessageType) -> MessageContentMappable? {

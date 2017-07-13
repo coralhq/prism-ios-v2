@@ -74,7 +74,7 @@ public class Conversation : Mappable {
     }
     
     public func dictionaryValue() -> [String : Any] {
-        var participants = self.participants.map { (participant) -> [String: Any] in
+        let participants = self.participants.map { (participant) -> [String: Any] in
             return participant.dictionaryValue()
         }
         var result: [String: Any] = ["created_at": createdAt.ISO8601String,

@@ -25,7 +25,7 @@ class ContentAssignment: MessageContentMappable {
     }
     
     func dictionaryValue() -> [String : Any] {
-        return ["assignment": ["assignee": assignee.dictionaryValue,
-                               "assignor": assignor.dictionaryValue]]
+        return ["assignment": ["assignee": assignee.dictionaryValue(),
+                               "assignor": assignor.dictionaryValue()]]
     }
 }

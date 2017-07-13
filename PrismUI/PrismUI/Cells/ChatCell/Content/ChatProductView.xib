@@ -88,7 +88,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="collectionView" destination="MVU-ID-0iq" id="mWt-BU-v22"/>
+                <outlet property="descriptionLabel" destination="Ja5-Iv-MNM" id="GFQ-Dc-yuF"/>
+                <outlet property="discountLabel" destination="hHq-d4-SfJ" id="URf-Hz-udR"/>
+                <outlet property="nameLabel" destination="nyS-TH-j1L" id="f5t-lh-S9K"/>
                 <outlet property="pageControl" destination="A2J-fG-VbS" id="Yov-J0-akI"/>
+                <outlet property="priceLabel" destination="ta8-Jl-Pet" id="dAW-fV-9Yv"/>
             </connections>
             <point key="canvasLocation" x="-44" y="-70.5"/>
         </view>

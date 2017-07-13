@@ -16,28 +16,64 @@ class ChatViewModel {
     let cellType: ChatCellType
     let messageID: String
     let contentType: ChatContentType
+    let senderID: String
+    
     var messageTime: String
-    var messageStatus: MessageStatus?
-    var senderName: String {
+    var senderName: String
+    var statusIcon: UIImage? {
         if cellType == .Out {
-            return "Me".localized()
+            if messageStatus == .sent {
+                return UIImage(named: "icStatusRead", in: Bundle.prism, compatibleWith: nil)
+            } else {
+                return UIImage(named: "icStatusSending", in: Bundle.prism, compatibleWith: nil)
+            }
         } else {
-            return message.sender!.name!
+            return nil
         }
     }
     
-    init(message: CDMessage, visitor: MessageSender) {
+    var messageStatus: MessageStatus?
+    var contentViewModel: ContentViewModel?
+    
+    init?(message: CDMessage, visitor: MessageSender) {
         self.message = message
         
-        contentType = ChatContentType.typeFrom(typeString: message.type!)
-        cellType = (message.sender!.id! == visitor.id) ? .Out : .In
-        messageID = message.id!
+        guard let contentTypeString = message.type,
+            let senderID = message.sender?.id,
+            let senderName = message.sender?.name,
+            let messageID = message.id,
+            let timestampe = message.brokerMetaData?.timestamp else { return nil }
+        
+        self.contentType = ChatContentType.typeFrom(typeString: contentTypeString)
+        self.cellType = senderID == visitor.id ? .Out : .In
+        self.messageID = messageID
+        self.senderID = senderID
         
         Vendor.shared.dateFormatter.dateFormat = "hh:mm a"
-        messageTime = Vendor.shared.dateFormatter.string(from: message.brokerMetaData!.timestamp!)
+        self.messageTime = Vendor.shared.dateFormatter.string(from: timestampe)
         
         if cellType == .Out {
-            messageStatus = MessageStatus(rawValue: message.status)
+            self.messageStatus = MessageStatus(rawValue: message.status)
+        }
+        
+        if cellType == .Out {
+            self.senderName = "Me".localized()
+        } else {
+            self.senderName = senderName
+        }
+        
+        if let content = message.content as? CDContentPlainText {
+            contentViewModel = ContentTextViewModel(contentText: content)
+        } else if let content = message.content as? CDContentSticker {
+            contentViewModel = ContentStickerViewModel(contentSticker: content)
+        } else if let content = message.content as? CDContentCart {
+            contentViewModel = ContentCartViewModel(contentCart: content)
+        } else if let content = message.content as? CDContentProduct {
+            contentViewModel = ContentProductViewModel(contentProduct: content)
+        } else if let content = message.content as? CDContentInvoice {
+            contentViewModel = ContentInvoiceViewModel(contentInvoice: content)
+        } else if let content = message.content as? CDContentAttachment {
+            contentViewModel = ContentImageViewModel(contentImage: content)
         }
     }
 }
@@ -51,7 +87,8 @@ class ChatSectionViewModel {
         
         objects = []
         for message in messages {
-            objects?.append(ChatViewModel(message: message, visitor: credential.sender))
+            guard let vm = ChatViewModel(message: message, visitor: credential.sender) else { return }
+            objects?.append(vm)
         }
         
         guard let date = messages.first?.sectionDate else { return }

@@ -9,17 +9,10 @@
 import UIKit
 
 class ChatTextView: UIView {
-    
-    var chatType: ChatCellType = .In
-    
-    static func viewFromNib(with type: ChatCellType) -> ChatTextView? {
-        let view: ChatTextView? = ChatTextView.viewFromNib() as? ChatTextView
-        view?.chatType = type
-        return view
-    }
-    
     @IBOutlet var titleLabel: UILabel!
     
+    var chatType: ChatCellType = .In
+
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -29,7 +22,6 @@ class ChatTextView: UIView {
             titleLabel.textAlignment = .right
         }
     }
-
 }
 
 extension ChatTextView: ChatContentProtocol {
@@ -39,5 +31,12 @@ extension ChatTextView: ChatContentProtocol {
     
     func infoPosition() -> InfoViewPosition {
         return .Bottom
+    }
+    
+    func updateView(with viewModel: ChatViewModel) {
+        chatType = viewModel.cellType
+        
+        guard let vm = viewModel.contentViewModel as? ContentTextViewModel else { return }
+        titleLabel.text = vm.text
     }
 }

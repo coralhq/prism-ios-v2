@@ -58,3 +58,23 @@ extension Array where Element : ChatViewModel {
         insert(viewModel as! Element, at: index)
     }
 }
+
+extension Collection where Indices.Iterator.Element == Index {
+    subscript (safe index: Index) -> Generator.Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}
+
+extension UILabel {
+    func strikeTroughLined(with text: String?) {
+        if let text = text {
+            let atts: [String: Any] = [NSFontAttributeName: UIFont.systemFont(ofSize: 14),
+                                       NSForegroundColorAttributeName: #colorLiteral(red: 0.1960784314, green: 0.1960784314, blue: 0.1960784314, alpha: 0.5),
+                                       NSStrikethroughStyleAttributeName: NSNumber(value: 1)]
+            self.attributedText = NSAttributedString(string: text, attributes: atts)
+        } else {
+            self.attributedText = nil
+            self.text = nil
+        }
+    }
+}

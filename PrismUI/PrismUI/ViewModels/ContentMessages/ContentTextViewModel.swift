@@ -1,5 +1,5 @@
 //
-//  TextViewModel.swift
+//  ContentTextViewModel.swift
 //  PrismUI
 //
 //  Created by Nanang Rafsanjani on 7/5/17.
@@ -11,10 +11,10 @@ import PrismCore
 
 class ContentViewModel {}
 
-class TextViewModel: ContentViewModel {
+class ContentTextViewModel: ContentViewModel {
     var text: String
     
-    init(contentText: ContentPlainText) {
-        text = contentText.text
+    init(contentText: CDContentPlainText) {
+        text = contentText.text!
     }
 }

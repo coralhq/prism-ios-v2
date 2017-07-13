@@ -57,7 +57,9 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="descriptionLabel" destination="9b3-Rl-gHs" id="t17-PU-VuL"/>
                 <outlet property="productContainer" destination="9kP-hv-jpl" id="0s2-Zc-MUk"/>
+                <outlet property="totalPriceLabel" destination="byY-HC-Ncz" id="Q5E-a9-ieC"/>
             </connections>
             <point key="canvasLocation" x="-190" y="-80"/>
         </view>

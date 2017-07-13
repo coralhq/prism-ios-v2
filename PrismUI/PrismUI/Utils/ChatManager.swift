@@ -14,12 +14,12 @@ import PrismAnalytics
 class ChatManager {
     var credential: PrismCredential { return PrismCredential.shared }
     let coredata = CoreDataManager()
-    let reacability = ReachabilityHelper()!
+    let reachability = ReachabilityHelper()!
     
     init() {
         
         do {
-            try reacability.startNotifier()
+            try reachability.startNotifier()
         } catch{
             print("could not start reachability notifier")
         }
@@ -31,7 +31,7 @@ class ChatManager {
     }
     
     deinit {
-        reacability.stopNotifier()
+        reachability.stopNotifier()
         NotificationCenter.default.removeObserver(self)
     }
     

@@ -9,11 +9,20 @@
 import UIKit
 import PrismCore
 
-class CDContentPlainText: ValueTransformer, NSCoding {
-    var text: String?
+public protocol CDMappable {
+    init?(dictionary: [String: Any])
+    func dictionaryValue() -> [String: Any]
+}
+
+class CDContentPlainText: ValueTransformer, NSCoding, CDMappable {
+    var text: String
     
-    init(plainText: ContentPlainText) {
-        text = plainText.text
+    required init?(dictionary: [String : Any]) {
+        text = dictionary["text"] as! String
+    }
+
+    func dictionaryValue() -> [String : Any] {
+        return ["text": text]
     }
     
     func encode(with aCoder: NSCoder) {
@@ -21,6 +30,6 @@ class CDContentPlainText: ValueTransformer, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        text = aDecoder.decodeObject(forKey: "text") as? String
+        text = aDecoder.decodeObject(forKey: "text") as! String
     }
 }

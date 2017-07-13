@@ -9,11 +9,15 @@
 import UIKit
 import PrismCore
 
-class CDContentProduct: ValueTransformer, NSCoding {
-    var product: CDProduct?
+class CDContentProduct: ValueTransformer, NSCoding, CDMappable {
+    var product: CDProduct
     
-    init(contentProduct: ContentProduct) {
-        product = CDProduct(product: contentProduct.product)
+    required init?(dictionary: [String : Any]) {
+        product = CDProduct(dictionary: dictionary["product"] as! [String: Any])!
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["product": product.dictionaryValue()]
     }
     
     func encode(with aCoder: NSCoder) {
@@ -21,6 +25,6 @@ class CDContentProduct: ValueTransformer, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        product = aDecoder.decodeObject(forKey: "product") as? CDProduct
+        product = aDecoder.decodeObject(forKey: "product") as! CDProduct
     }
 }

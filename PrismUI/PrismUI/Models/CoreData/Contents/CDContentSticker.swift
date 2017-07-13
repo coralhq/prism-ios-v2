@@ -9,11 +9,15 @@
 import UIKit
 import PrismCore
 
-class CDContentSticker: ValueTransformer, NSCoding {
-    var sticker: CDMessageSticker?
+class CDContentSticker: ValueTransformer, NSCoding, CDMappable {
+    var sticker: CDMessageSticker
     
-    init(contentSticker: ContentSticker) {
-        sticker = CDMessageSticker(sticker: contentSticker.sticker)
+    required init?(dictionary: [String : Any]) {
+        sticker = CDMessageSticker(dictionary: dictionary["sticker"] as! [String: Any])!
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["sticker": sticker.dictionaryValue()]
     }
     
     func encode(with aCoder: NSCoder) {
@@ -21,21 +25,28 @@ class CDContentSticker: ValueTransformer, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        sticker = aDecoder.decodeObject(forKey: "sticker") as? CDMessageSticker
+        sticker = aDecoder.decodeObject(forKey: "sticker") as! CDMessageSticker
     }
 }
 
-class CDMessageSticker: NSObject, NSCoding {
-    var name: String?
-    var imageURL: URL?
-    var id: String?
-    var packID: String?
+class CDMessageSticker: NSObject, NSCoding, CDMappable {
+    var name: String
+    var imageURL: URL
+    var id: String
+    var packID: String
     
-    init(sticker: MessageSticker) {
-        name = sticker.name
-        imageURL = sticker.imageURL
-        id = sticker.id
-        packID = sticker.packID
+    required init?(dictionary: [String : Any]) {
+        name = dictionary["name"] as! String
+        imageURL = URL(string: dictionary["image_url"] as! String)!
+        id = dictionary["id"] as! String
+        packID = dictionary["pack_id"] as! String
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["name": name,
+                "image_url": imageURL.absoluteString,
+                "id": id,
+                "pack_id": packID]
     }
     
     func encode(with aCoder: NSCoder) {
@@ -46,9 +57,9 @@ class CDMessageSticker: NSObject, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        name = aDecoder.decodeObject(forKey: "name") as? String
-        imageURL = aDecoder.decodeObject(forKey: "image_url") as? URL
-        id = aDecoder.decodeObject(forKey: "id") as? String
-        packID = aDecoder.decodeObject(forKey: "pack_id") as? String
+        name = aDecoder.decodeObject(forKey: "name") as! String
+        imageURL = aDecoder.decodeObject(forKey: "image_url") as! URL
+        id = aDecoder.decodeObject(forKey: "id") as! String
+        packID = aDecoder.decodeObject(forKey: "pack_id") as! String
     }
 }

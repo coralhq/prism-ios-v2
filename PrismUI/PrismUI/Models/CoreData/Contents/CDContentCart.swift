@@ -9,14 +9,27 @@
 import UIKit
 import PrismCore
 
-class CDContentCart: ValueTransformer, NSCoding {
-    var lineItems: [CDLineItem]?
+class CDContentCart: ValueTransformer, NSCoding, CDMappable {
+    var lineItems: [CDLineItem]
     
-    init(cart: ContentCart) {
-        lineItems = []
-        for lineItem in cart.lineItems {
-            lineItems?.append(CDLineItem(lineItem: lineItem))
+    required init?(dictionary: [String : Any]) {
+        guard let cart = dictionary["cart"] as? [String: Any],
+            let items = cart["line_items"] as? [[String: Any]] else {
+                return nil
         }
+        
+        lineItems = []
+        for item in items {
+            lineItems.append(CDLineItem(dictionary: item)!)
+        }
+    }
+    
+    func dictionaryValue() -> [String : Any] {
+        var items: [[String: Any]] = []
+        for item in lineItems {
+            items.append(item.dictionaryValue())
+        }
+        return ["cart": ["line_items": items]]
     }
     
     func encode(with aCoder: NSCoder) {
@@ -24,17 +37,26 @@ class CDContentCart: ValueTransformer, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        lineItems = aDecoder.decodeObject(forKey: "line_items") as? [CDLineItem]
+        lineItems = aDecoder.decodeObject(forKey: "line_items") as! [CDLineItem]
     }
 }
 
-class CDLineItem: NSObject, NSCoding {
-    var product: CDProduct?
-    var quantity: Int?
+class CDLineItem: NSObject, NSCoding, CDMappable {
+    var product: CDProduct
+    var quantity: Int
     
-    init(lineItem: LineItem) {
-        quantity = lineItem.quantity
-        product = CDProduct(product: lineItem.product)
+    required init?(dictionary: [String : Any]) {
+        guard let product = dictionary["product"] as? [String: Any],
+            let quantity = dictionary["quantity"] as? Int else {
+                return nil
+        }
+        self.product = CDProduct(dictionary: product)!
+        self.quantity = quantity
+    }
+    
+    func dictionaryValue() -> [String : Any] {
+        return ["product": product,
+                "quantity": quantity]
     }
     
     func encode(with aCoder: NSCoder) {
@@ -43,28 +65,49 @@ class CDLineItem: NSObject, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        product = aDecoder.decodeObject(forKey: "product") as? CDProduct
-        quantity = aDecoder.decodeObject(forKey: "quantity") as? Int
+        product = aDecoder.decodeObject(forKey: "product") as! CDProduct
+        quantity = aDecoder.decodeObject(forKey: "quantity") as! Int
     }
 }
 
-class CDProduct: NSObject, NSCoding {
-    var id: String?
-    var name: String?
-    var price: Double?
+class CDProduct: NSObject, NSCoding, CDMappable {
+    var id: String
+    var name: String
+    var price: String
     var desc: String?
-    var imageURLs: [URL]?
+    var imageURLs: [URL]
     var discount: CDDiscount?
-    var currencyCode: String?
+    var currencyCode: String
     
-    init(product: Product) {
-        id = product.id
-        name = product.name
-        price = Double(product.price)
-        desc = product.description
-        imageURLs = product.imageURLs
-        discount = CDDiscount(discount: product.discount)
-        currencyCode = product.currencyCode
+    required init?(dictionary: [String : Any]) {
+        id = dictionary["id"] as! String
+        name = dictionary["name"] as! String
+        price = dictionary["price"] as! String
+        imageURLs = (dictionary["image_urls"] as! [String]).map { (url) -> URL in
+            return URL(string: url)!
+        }
+        currencyCode = dictionary["currency_code"] as! String
+        
+        if let discount = dictionary["discount"] as? [String: Any] {
+            self.discount = CDDiscount(dictionary: discount)!
+        }
+        if let desc = dictionary["description"] as? String {
+            self.desc = desc
+        }
+    }
+    
+    func dictionaryValue() -> [String : Any] {
+        var result: [String: Any] = ["id": id,
+                                     "name": name,
+                                     "price": price,
+                                     "image_urls": imageURLs]
+        if let discount = self.discount {
+            result["discount"] = discount.dictionaryValue()
+        }
+        if let desc = self.desc {
+            result["desc"] = desc
+        }
+        return result
     }
     
     func encode(with aCoder: NSCoder) {
@@ -78,23 +121,28 @@ class CDProduct: NSObject, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        id = aDecoder.decodeObject(forKey: "id") as? String
-        name = aDecoder.decodeObject(forKey: "name") as? String
-        price = aDecoder.decodeObject(forKey: "price") as? Double
+        id = aDecoder.decodeObject(forKey: "id") as! String
+        name = aDecoder.decodeObject(forKey: "name") as! String
+        price = aDecoder.decodeObject(forKey: "price") as! String
         desc = aDecoder.decodeObject(forKey: "description") as? String
-        imageURLs = aDecoder.decodeObject(forKey: "image_urls") as? [URL]
+        imageURLs = aDecoder.decodeObject(forKey: "image_urls") as! [URL]
         discount = aDecoder.decodeObject(forKey: "discount") as? CDDiscount
-        currencyCode = aDecoder.decodeObject(forKey: "currency_code") as? String
+        currencyCode = aDecoder.decodeObject(forKey: "currency_code") as! String
     }
 }
 
-class CDDiscount: NSObject, NSCoding {
-    var discountType: String?
-    var amount: Double?
+class CDDiscount: NSObject, NSCoding, CDMappable {
+    var discountType: String
+    var amount: String
     
-    init(discount: Discount) {
-        discountType = discount.discountType
-        amount = Double(discount.amount)
+    required init?(dictionary: [String : Any]) {
+        discountType = dictionary["discount_type"] as! String
+        amount = dictionary["amount"] as! String
+    }
+    
+    func dictionaryValue() -> [String : Any] {
+        return ["discount_type": discountType,
+                "amount": amount]
     }
     
     func encode(with aCoder: NSCoder) {
@@ -103,7 +151,7 @@ class CDDiscount: NSObject, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        discountType = aDecoder.decodeObject(forKey: "discount_type") as? String
-        amount = aDecoder.decodeObject(forKey: "amount") as? Double
+        discountType = aDecoder.decodeObject(forKey: "discount_type") as! String
+        amount = aDecoder.decodeObject(forKey: "amount") as! String
     }
 }

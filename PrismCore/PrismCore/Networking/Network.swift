@@ -93,6 +93,9 @@ class Network: NetworkProtocol {
             
             guard error == nil else {
                 DispatchQueue.main.async() {
+                    if (error! as NSError).code == 401 {
+                        NotificationCenter.default.post(name: RefreshTokenNotification, object: nil)
+                    }
                     completionHandler(nil, error as NSError?)
                 }
                 return

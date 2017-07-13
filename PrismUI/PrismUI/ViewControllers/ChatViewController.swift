@@ -8,6 +8,7 @@
 
 import UIKit
 import PrismAnalytics
+import PrismCore
 
 class ChatViewController: BaseViewController {
     
@@ -17,13 +18,13 @@ class ChatViewController: BaseViewController {
     var chatManager: ChatManager
     var queryManager: ChatQueryManager?
     
-    init(credential: PrismCredential) {
-        chatManager = ChatManager(credential: credential)
+    init() {
+        chatManager = ChatManager()
         
         super.init(nibName: nil, bundle: Bundle.prism)
         
         guard let context = chatManager.coredata?.context else { return }
-        queryManager = ChatQueryManager(context: context, credential: credential)
+        queryManager = ChatQueryManager(context: context)
     }
     
     required init?(coder aDecoder: NSCoder) {

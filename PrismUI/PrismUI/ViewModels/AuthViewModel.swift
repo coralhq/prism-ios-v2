@@ -19,30 +19,13 @@ let DisconnectNotification = NSNotification.Name(rawValue: "DisconnectNotificati
 
 public class AuthViewModel {
     
-    var _credential: PrismCredential?
-    var credential: PrismCredential? {
-        set {
-            guard let credential = newValue else {
-                Utils.removeArchive(key: SerialisationKeys.credential); return
-            }
-            Utils.archive(object: credential, key: SerialisationKeys.credential)
-            _credential = credential
-        }
-        get {
-            if _credential == nil {
-                _credential = Utils.unarchive(key: SerialisationKeys.credential) as? PrismCredential
-            }
-            return _credential
-        }
-    }
-    
-    func visitorConnectAnonymous(completion: @escaping (PrismCredential?, NSError?) -> Void) {
+    func visitorConnectAnonymous(completion: @escaping (NSError?) -> Void) {
         PrismCore.shared.annonymousVisitorConnect { [weak self] (connect, error) in
             self?.handle(connect: connect, error: error, completion: completion)
         }
     }
     
-    func visitorConnect(name: String?, email: String?, phoneNumber: String?, completion: @escaping (PrismCredential?, NSError?) -> Void) {
+    func visitorConnect(name: String?, email: String?, phoneNumber: String?, completion: @escaping (NSError?) -> Void) {
         var userID: String {
             get {
                 if let email = email,
@@ -99,21 +82,21 @@ public class AuthViewModel {
 
 
 extension AuthViewModel {
-    func handle(connect: ConnectResponse?, error: NSError?, completion: @escaping (PrismCredential?, NSError?) -> Void) {
+    func handle(connect: ConnectResponse?, error: NSError?, completion: @escaping (NSError?) -> Void) {
         guard let connect = connect else { return }
         
         PrismCore.shared.createConversation(visitorName: connect.visitor.name, token: connect.oAuth.accessToken, completionHandler: { (conversation, error) in
             guard let conversation = conversation else { return }
             
             if let error = error {
-                completion(nil, error)
+                completion(error)
             } else {
-                let credential = PrismCredential(connect: connect, conversation: conversation)
+                PrismCredential.shared.configure(connect: connect, conversation: conversation)
                 
                 //save credential
-                Utils.archive(object: credential, key: SerialisationKeys.credential)
+                Utils.archive(object: PrismCredential.shared, key: SerialisationKeys.credential)
                 
-                completion(credential, nil)
+                completion(nil)
             }
         })
     }

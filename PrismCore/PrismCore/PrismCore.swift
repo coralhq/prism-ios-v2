@@ -13,6 +13,7 @@ public typealias HTTPRequestResult = (Mappable?, NSError?) -> ()
 public let ReceiveChatNotification = NSNotification.Name(rawValue: "ReceiveChatNotification")
 public let DisconnectChatNotification = NSNotification.Name(rawValue: "ConnectChatNotification")
 public let ErrorChatNotification = NSNotification.Name(rawValue: "ErrorChatNotification")
+public let RefreshTokenNotification = NSNotification.Name("RefreshTokenNotification")
 
 open class PrismCore {
     

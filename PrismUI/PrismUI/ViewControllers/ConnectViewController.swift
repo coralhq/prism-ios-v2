@@ -63,7 +63,7 @@ public class ConnectViewController: BaseViewController {
             emailTF.isValidEmail(),
             phoneTF.isValidPhoneNumber() else { return }
         
-        viewModel.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (credential, error) in
+        viewModel.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (error) in
             if let error = error {
                 print("Error: \(error)")
             } else {

@@ -14,8 +14,8 @@ public class ContentInvoice: MessageContentMappable {
     public let lineItems: [LineItem]
     public let grandTotal: Currency
     public let buyer: Buyer
-    public let shipment: Shipment
     public let payment: Payment
+    public var shipment: Shipment?
     
     var dictionary: [String: Any]?
     
@@ -27,17 +27,13 @@ public class ContentInvoice: MessageContentMappable {
             let lineItemDictionaries = invoice["line_items"] as? [[String: Any]],
             let grandTotal = Currency(dictionary: invoice["grand_total"] as? [String: Any]),
             let buyer = Buyer(dictionary: invoice["buyer"] as? [String: Any]),
-            let shipment = Shipment(dictionary: invoice["shipment"] as? [String: Any]),
-            let payment = Payment(dictionary: invoice["payment"] as? [String: Any]) else {
-                return nil
-        }
+            let payment = Payment(dictionary: invoice["payment"] as? [String: Any]) else { return nil }
         
         var lineItems = [LineItem]()
         for dictionary in lineItemDictionaries {
             guard let lineItem = LineItem(dictionary: dictionary) else {
                 return nil
             }
-            
             lineItems.append(lineItem)
         }
         
@@ -45,8 +41,11 @@ public class ContentInvoice: MessageContentMappable {
         self.lineItems = lineItems
         self.grandTotal = grandTotal
         self.buyer = buyer
-        self.shipment = shipment
         self.payment = payment
+        
+        if let shipmentDict = invoice["shipment"] as? [String: Any] {
+            self.shipment = Shipment(dictionary: shipmentDict)
+        }
     }
     
     public func dictionaryValue() -> [String : Any]? {
@@ -56,14 +55,20 @@ public class ContentInvoice: MessageContentMappable {
 
 public class Payment: Mappable {
     public let type: String
+    public var midtransPaymentURL: URL?
     
     required public init?(dictionary: [String : Any]?) {
         guard let provider = dictionary?["provider"] as? [String: Any],
             let type = provider["type"] as? String else {
                 return nil
         }
-        
         self.type = type
+        
+        if let vtweb = provider["vt_web"] as? [String: Any],
+            let stringURL = vtweb["redirect_url"] as? String,
+            let redirectURL = URL(string: stringURL) {
+            self.midtransPaymentURL = redirectURL
+        }
     }
 }
 

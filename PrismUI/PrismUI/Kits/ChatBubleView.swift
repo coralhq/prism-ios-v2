@@ -38,10 +38,8 @@ class ChatBubleView: UIView {
         switch bubleType {
         case .In:
             corners = [.bottomLeft, .bottomRight, .topRight]
-            break
         default:
             corners = [.bottomLeft, .bottomRight, .topLeft]
-            break
         }
         
         let path = UIBezierPath(roundedRect: rect.removedFuzzyness(),

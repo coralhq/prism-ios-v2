@@ -25,20 +25,10 @@ class ChatContainerView: UIView {
     @IBOutlet var containerView: UIView!
     @IBOutlet var infoWithContentHSpace: NSLayoutConstraint!
     @IBOutlet var infoWithContentVSpace: NSLayoutConstraint!
+    @IBOutlet var topMarginConstraint: NSLayoutConstraint!
     
-    var viewModel: ChatViewModel! {
-        didSet {
-            infoView.timeLabel.text = viewModel.messageTime
-            if viewModel.cellType == .Out {
-                if viewModel.messageStatus == .sent {
-                    infoView.statusImageView?.image = UIImage(named: "icStatusRead", in: Bundle.prism, compatibleWith: nil)
-                } else {
-                    infoView.statusImageView?.image = UIImage(named: "icStatusSending", in: Bundle.prism, compatibleWith: nil)
-                }
-            }
-            
-            nameLabel.text = viewModel.senderName
-        }
+    static func containerFromNIB() -> ChatContainerView? {
+        return self.viewFromNib() as? ChatContainerView
     }
     
     var chatContentView: ChatContentProtocol? {
@@ -47,28 +37,34 @@ class ChatContainerView: UIView {
             updateInfoView()
         }
     }
-
-    static func viewFromNib(with viewModel: ChatViewModel) -> ChatContainerView? {
-        let view: ChatContainerView = self.viewFromNib() as! ChatContainerView
-        view.viewModel = viewModel
-        return view
-    }
     
+    func update(with viewModel: ChatViewModel, isExtension: Bool) {
+        infoView.timeLabel.text = viewModel.messageTime
+        infoView.statusImageView?.image = viewModel.statusIcon
+        
+        if isExtension {
+            nameLabel.text = nil
+            topMarginConstraint.constant = 4
+        } else {
+            nameLabel.text = viewModel.senderName
+            topMarginConstraint.constant = 10
+        }        
+        
+        chatContentView?.updateView(with: viewModel)
+    }
+
     func updateInfoView() {
         guard let infoPos = chatContentView?.infoPosition() else { return }
         switch infoPos {
         case .Left:
             infoWithContentHSpace.constant = 8
             infoWithContentVSpace.constant = 0
-            break
         case .Inside:
             infoWithContentHSpace.constant = -infoView.bounds.width
             infoWithContentVSpace.constant = 0
-            break
         default:
             infoWithContentHSpace.constant = -infoView.bounds.width
             infoWithContentVSpace.constant = -infoView.bounds.height
-            break
         }
     }
 }

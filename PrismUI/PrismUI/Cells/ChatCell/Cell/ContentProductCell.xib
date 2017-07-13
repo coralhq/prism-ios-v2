@@ -30,6 +30,9 @@
                 <constraint firstItem="AWn-kT-Fms" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="w2V-lp-kAt"/>
             </constraints>
             <size key="customSize" width="237" height="226"/>
+            <connections>
+                <outlet property="imageView" destination="AWn-kT-Fms" id="zVJ-fn-Ppu"/>
+            </connections>
             <point key="canvasLocation" x="-42.5" y="32"/>
         </collectionViewCell>
     </objects>

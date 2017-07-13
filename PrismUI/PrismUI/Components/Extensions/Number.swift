@@ -15,3 +15,12 @@ extension FloatingPoint {
     var degreesToRadians: Self { return self * .pi / 180 }
     var radiansToDegrees: Self { return self * 180 / .pi }
 }
+
+extension Double {
+    func formattedCurrency() -> String? {
+        guard let formatted = Vendor.shared.currencyFormatter.string(from: NSNumber(floatLiteral: self)) else {
+            return nil
+        }
+        return "Rp ".appending(formatted)
+    }
+}

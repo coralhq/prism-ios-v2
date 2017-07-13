@@ -11,4 +11,5 @@ import UIKit
 protocol ChatContentProtocol {
     func infoPosition() -> InfoViewPosition
     func addTo(view: UIView?) -> Void
+    func updateView(with viewModel: ChatViewModel)
 }

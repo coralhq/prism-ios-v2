@@ -105,19 +105,21 @@ class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
             var objects = sections[newIndexPath.section].objects else { return }
         
         let index = newIndexPath.row
+        guard let chatVM = ChatViewModel(message: message, visitor: credential.sender) else { return }
         
         switch type {
         case .delete:
             objects.remove(at: index)
         case .insert:
-            objects.insert(viewModel: ChatViewModel(message: message, visitor: PrismCredential.shared.sender), at: index)
+            objects.insert(viewModel: chatVM, at: index)
         case .update:
-            objects.update(viewModel: ChatViewModel(message: message, visitor: PrismCredential.shared.sender), at: index)
+            objects.update(viewModel: chatVM, at: index)
         case .move:
             guard let indexPath = indexPath else { return }
-            objects.moveElement(fromIndex: indexPath.row, toIndex: newIndexPath.row)
+            objects.remove(at: indexPath.row)
+            objects.insert(chatVM, at: index)
         }
-
+        
         sections[newIndexPath.section].objects = objects
         
         delegate?.changedObject(at: indexPath, newIndexPath: newIndexPath, changeType: ChatChangeType.convertedFrom(type: type))

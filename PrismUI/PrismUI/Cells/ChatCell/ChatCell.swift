@@ -10,8 +10,8 @@ import UIKit
 
 class ChatCell: UITableViewCell {
     var chatView: ChatContainerView?
-    var chatContentView: UIView?
-    
+    var chatContentView: ChatContentProtocol?
+
     static func reuseIdentifier(viewModel: ChatViewModel) -> String {
         return viewModel.contentType.rawValue + viewModel.cellType.rawValue
     }
@@ -22,45 +22,37 @@ class ChatCell: UITableViewCell {
         switch viewModel.cellType {
         case .In:
             if viewModel.contentType == .Sticker {
-                chatView = StickerInContainer.viewFromNib(with: viewModel)
+                chatView = StickerInContainer.containerFromNIB()
             } else {
-                chatView = ChatInContainerView.viewFromNib(with: viewModel)
+                chatView = ChatInContainerView.containerFromNIB()
             }
-            break
         default:
             if viewModel.contentType == .Sticker {
-                chatView = StickerOutContainer.viewFromNib(with: viewModel)
+                chatView = StickerOutContainer.containerFromNIB()
             } else {
-                chatView = ChatOutContainerView.viewFromNib(with: viewModel)
+                chatView = ChatOutContainerView.containerFromNIB()
             }
-            break
         }
         
         switch viewModel.contentType {
         case .Cart:
-            chatContentView = ChatCartView.viewFromNib()
-            break
+            chatContentView = ChatCartView.viewFromNib() as? ChatContentProtocol
         case .Invoice:
-            chatContentView = ChatInvoiceView.viewFromNib()
-            break
+            chatContentView = ChatInvoiceView.viewFromNib() as? ChatContentProtocol
         case .Product:
-            chatContentView = ChatProductView.viewFromNib()
-            break
+            chatContentView = ChatProductView.viewFromNib() as? ChatContentProtocol
         case .Sticker:
-            chatContentView = ChatStickerView.viewFromNib()
-            break
+            chatContentView = ChatStickerView.viewFromNib() as? ChatContentProtocol
         case .Image:
-            chatContentView = ChatImageView.viewFromNib()
-            break
+            chatContentView = ChatImageView.viewFromNib() as? ChatContentProtocol
         default:
-            chatContentView = ChatTextView.viewFromNib(with: viewModel.cellType)
-            break
+            chatContentView = ChatTextView.viewFromNib() as? ChatContentProtocol
         }
         
         chatView?.addTo(view: contentView, margin: 0)
-        chatView?.chatContentView = chatContentView as? ChatContentProtocol
+        chatView?.chatContentView = chatContentView
     }
-    
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

@@ -93,7 +93,7 @@ class DemoViewModel {
             products.append(product)
         }
         
-        PrismUI.shared.configure(environment: .Production, merchantID: "df0772ed-9167-417e-86c7-4643e871fff0", delegate: self)
+        PrismUI.shared.configure(environment: .Sandbox, merchantID: "8d077fae-bf65-4711-a565-047629bbba11", delegate: self)
     }
     
     func presentChatWidget(on vc: UIViewController) {

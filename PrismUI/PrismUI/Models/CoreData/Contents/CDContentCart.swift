@@ -44,14 +44,14 @@ class CDLineItem: NSObject, NSCoding {
     
     required init?(coder aDecoder: NSCoder) {
         product = aDecoder.decodeObject(forKey: "product") as? CDProduct
-        quantity = aDecoder.decodeInteger(forKey: "quantity")
+        quantity = aDecoder.decodeObject(forKey: "quantity") as? Int
     }
 }
 
 class CDProduct: NSObject, NSCoding {
     var id: String?
     var name: String?
-    var price: String?
+    var price: Double?
     var desc: String?
     var imageURLs: [URL]?
     var discount: CDDiscount?
@@ -60,7 +60,7 @@ class CDProduct: NSObject, NSCoding {
     init(product: Product) {
         id = product.id
         name = product.name
-        price = product.price
+        price = Double(product.price)
         desc = product.description
         imageURLs = product.imageURLs
         discount = CDDiscount(discount: product.discount)
@@ -80,7 +80,7 @@ class CDProduct: NSObject, NSCoding {
     required init?(coder aDecoder: NSCoder) {
         id = aDecoder.decodeObject(forKey: "id") as? String
         name = aDecoder.decodeObject(forKey: "name") as? String
-        price = aDecoder.decodeObject(forKey: "price") as? String
+        price = aDecoder.decodeObject(forKey: "price") as? Double
         desc = aDecoder.decodeObject(forKey: "description") as? String
         imageURLs = aDecoder.decodeObject(forKey: "image_urls") as? [URL]
         discount = aDecoder.decodeObject(forKey: "discount") as? CDDiscount
@@ -90,11 +90,11 @@ class CDProduct: NSObject, NSCoding {
 
 class CDDiscount: NSObject, NSCoding {
     var discountType: String?
-    var amount: String?
+    var amount: Double?
     
     init(discount: Discount) {
         discountType = discount.discountType
-        amount = discount.amount
+        amount = Double(discount.amount)
     }
     
     func encode(with aCoder: NSCoder) {
@@ -104,6 +104,6 @@ class CDDiscount: NSObject, NSCoding {
     
     required init?(coder aDecoder: NSCoder) {
         discountType = aDecoder.decodeObject(forKey: "discount_type") as? String
-        amount = aDecoder.decodeObject(forKey: "amount") as? String
+        amount = aDecoder.decodeObject(forKey: "amount") as? Double
     }
 }

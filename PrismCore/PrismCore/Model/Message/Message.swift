@@ -159,10 +159,7 @@ open class Message: Mappable {
         self.version = 2
     }
     
-    public func dictionaryValue() -> [String: Any]? {
-        guard let contentDict = content.dictionaryValue() else {
-            return nil
-        }
+    public func dictionaryValue() -> [String: Any] {
         return ["id": id,
                 "conversation_id": conversationID,
                 "merchant_id": merchantID,
@@ -170,7 +167,7 @@ open class Message: Mappable {
                 "visitor": visitor.dictionaryValue,
                 "sender": sender.dictionaryValue,
                 "type": type.rawValue,
-                "content": contentDict,
+                "content": content.dictionaryValue(),
                 "version": 2,
                 "_broker_metadata": brokerMetaData.dictionaryValue]
     }

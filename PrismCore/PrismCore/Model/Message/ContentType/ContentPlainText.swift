@@ -11,10 +11,7 @@ import Foundation
 public class ContentPlainText : MessageContentMappable {
     public let text: String
     
-    var dictionary: [String: Any]?
-
     required public init?(dictionary: [String : Any]?) {
-        self.dictionary = dictionary
         guard let text = dictionary?["text"] as? String else {
             return nil
         }
@@ -25,7 +22,7 @@ public class ContentPlainText : MessageContentMappable {
         self.init(dictionary: ["text": text])
     }
     
-    public func dictionaryValue() -> [String : Any]? {
-        return dictionary
+    public func dictionaryValue() -> [String : Any] {
+        return ["text": text]
     }
 }

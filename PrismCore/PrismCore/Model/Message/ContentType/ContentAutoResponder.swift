@@ -15,9 +15,9 @@ class ContentAutoResponder: MessageContentMappable {
     
     required init?(dictionary: [String : Any]?) {
         guard let autoResponder = dictionary?["auto_responder"] as? [String: Any],
-        let text = autoResponder["text"] as? String,
-        let workingHour = autoResponder["working_hour"] as? Bool else {
-            return nil
+            let text = autoResponder["text"] as? String,
+            let workingHour = autoResponder["working_hour"] as? Bool else {
+                return nil
         }
         
         self.dictionary = dictionary
@@ -26,7 +26,8 @@ class ContentAutoResponder: MessageContentMappable {
         self.workingHour = workingHour
     }
     
-    func dictionaryValue() -> [String : Any]? {
-        return dictionary
+    func dictionaryValue() -> [String : Any] {
+        return ["auto_responder": ["text": text,
+                                   "working_hour": workingHour]]
     }
 }

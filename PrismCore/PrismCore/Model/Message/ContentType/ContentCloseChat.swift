@@ -12,22 +12,18 @@ class ContentCloseChat: MessageContentMappable {
     let closedBy: MessageUser
     let message: ContentPlainText
     
-    var dictionary: [String: Any]?
-    
     required init?(dictionary: [String : Any]?) {
         guard let closeChat = dictionary?["close_chat"] as? [String: Any],
             let closedBy = MessageUser(dictionary: closeChat["closed_by"] as? [String : Any]),
             let message = ContentPlainText(dictionary: closeChat["message"] as? [String : Any]) else {
-            return nil
+                return nil
         }
-        
-        self.dictionary = dictionary
-        
         self.closedBy = closedBy
         self.message = message
     }
     
-    func dictionaryValue() -> [String : Any]? {
-        return dictionary
+    func dictionaryValue() -> [String : Any] {
+        return ["close_chat": ["closed_by": closedBy.dictionaryValue,
+                               "message": message.dictionaryValue()]]
     }
 }

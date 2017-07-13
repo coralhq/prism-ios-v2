@@ -10,10 +10,8 @@ import Foundation
 
 public class ContentCart: MessageContentMappable {
     public let lineItems: [LineItem]
-    var dictionary: [String: Any]?
     
     required public init?(dictionary: [String : Any]?) {
-        self.dictionary = dictionary
         
         guard let cart = dictionary?["cart"] as? [String: Any],
             let lineItemDictionaries = cart["line_items"] as? [[String: Any]] else {
@@ -32,8 +30,12 @@ public class ContentCart: MessageContentMappable {
         self.lineItems = lineItems
     }
     
-    public func dictionaryValue() -> [String : Any]? {
-        return dictionary
+    public func dictionaryValue() -> [String : Any] {
+        var items: [[String: Any]] = []
+        for item in lineItems {
+            items.append(item.dictionaryValue())
+        }
+        return ["cart": items]
     }
 }
 
@@ -43,12 +45,16 @@ public class LineItem : Mappable {
     
     required public init?(dictionary: [String : Any]?) {
         guard let product = Product(dictionary: dictionary?["product"] as? [String: Any]),
-        let quantity = dictionary?["quantity"] as? Int else {
-            return nil
+            let quantity = dictionary?["quantity"] as? Int else {
+                return nil
         }
-        
         self.product = product
         self.quantity = quantity
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["product": product.dictionaryValue(),
+                "quantity": quantity]
     }
 }
 
@@ -58,11 +64,16 @@ public class Discount: Mappable {
     
     required public init?(dictionary: [String : Any]?) {
         guard let discountType = dictionary?["discount_type"] as? String,
-        let amount = dictionary?["amount"] as? String else {
-            return nil
+            let amount = dictionary?["amount"] as? String else {
+                return nil
         }
         
         self.amount = amount
         self.discountType = discountType
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["discount_type": discountType,
+                "amount": amount]
     }
 }

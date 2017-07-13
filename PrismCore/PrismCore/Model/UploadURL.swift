@@ -19,4 +19,8 @@ open class UploadURL: Mappable {
         }
         self.uploadURL = URL(string: stringURL)!
     }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["data": ["upload_url": uploadURL.absoluteString]]
+    }
 }

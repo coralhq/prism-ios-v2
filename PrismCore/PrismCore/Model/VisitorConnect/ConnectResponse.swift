@@ -35,4 +35,13 @@ public class ConnectResponse : Mappable {
         self.visitor = visitor
         self.serverTimeStamp = serverTimeStamp.doubleValue / 1000.0
     }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["status": status,
+                "message": message,
+                "data": ["oauth": oAuth.dictionaryValue(),
+                         "mqtt": mqtt.dictionaryValue(),
+                         "visitor": visitor.dictionaryValue(),
+                         "server_timestamp": serverTimeStamp]]
+    }
 }

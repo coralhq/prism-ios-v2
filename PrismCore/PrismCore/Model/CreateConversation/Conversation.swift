@@ -72,4 +72,35 @@ public class Conversation : Mappable {
         self.channel = channel
         self.participants = participants
     }
+    
+    public func dictionaryValue() -> [String : Any] {
+        var participants = self.participants.map { (participant) -> [String: Any] in
+            return participant.dictionaryValue()
+        }
+        var result: [String: Any] = ["created_at": createdAt.ISO8601String,
+                                     "updated_at": updatedAt.ISO8601String,
+                                     "id": id,
+                                     "topic": topic,
+                                     "status": status,
+                                     "merchant_id": merchantID,
+                                     "has_content": hasContent,
+                                     "channel": channel,
+                                     "participants": participants]
+        if let info = channelInfo {
+            result["channel_info"] = info
+        }
+        if let assignee = assignee {
+            result["assignee"] = assignee
+        }
+        if let payload = latestMessagePayload {
+            result["latest_msg_payload"] = payload
+        }
+        if let tags = tags {
+            result["tags"] = tags
+        }
+        if let visitor = visitor {
+            result["visitor"] = visitor.dictionaryValue()
+        }        
+        return result
+    }
 }

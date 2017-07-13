@@ -57,4 +57,12 @@ open class Sticker: NSObject, NSCoding, Mappable {
         packID = aDecoder.decodeObject(forKey: "pack_id") as! String
     }
     
+    public func dictionaryValue() -> [String : Any] {
+        return ["created_at": createdAt.ISO8601String,
+                "updated_at": updatedAt.ISO8601String,
+                "id": id,
+                "name": name,
+                "image_url": imageURL.absoluteString,
+                "pack_id": packID]
+    }
 }

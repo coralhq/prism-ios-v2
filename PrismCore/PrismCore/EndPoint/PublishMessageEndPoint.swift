@@ -17,7 +17,7 @@ class PublishMessageEndPoint : EndPoint {
     
     var method = HTTPMethod.POST
     var token: String?
-    var url = URL.prismConnect
+    var url = URL.publishMessage
     var httpBody: [String: Any] {
         get {
             return [:]

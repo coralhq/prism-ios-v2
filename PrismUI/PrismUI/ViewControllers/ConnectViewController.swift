@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PrismAnalytics
 
 public class ConnectViewController: BaseViewController {
     
@@ -37,6 +38,12 @@ public class ConnectViewController: BaseViewController {
         update(textField: phoneTF, form: formField.phoneNumber)
     }
     
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        PrismAnalytics.shared.sendTracker(withEvent: .visitorConnect)
+    }
+    
     func update(textField: LinedTextField, form: InputForm) {
         textField.isRequired = form.required
         if form.show {
@@ -56,7 +63,7 @@ public class ConnectViewController: BaseViewController {
             emailTF.isValidEmail(),
             phoneTF.isValidPhoneNumber() else { return }
         
-        viewModel.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (credential, error) in
+        viewModel.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (error) in
             if let error = error {
                 print("Error: \(error)")
             } else {

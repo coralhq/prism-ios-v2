@@ -14,7 +14,7 @@ public let ReceiveChatNotification = NSNotification.Name(rawValue: "ReceiveChatN
 public let DisconnectChatNotification = NSNotification.Name(rawValue: "ConnectChatNotification")
 public let ErrorChatNotification = NSNotification.Name(rawValue: "ErrorChatNotification")
 public let UploadProgressNotification = NSNotification.Name(rawValue: "UploadProgressNotification")
-
+public let RefreshTokenNotification = NSNotification.Name("RefreshTokenNotification")
 
 open class PrismCore {
     
@@ -69,8 +69,13 @@ open class PrismCore {
         network?.subscribeToTopic(topic: topic, completionHandler: completionHandler)
     }
     
-    open func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, Error?) -> ()) {
-        network?.publishMessage(topic: topic, message: message, completionHandler: completionHandler)
+    open func publishMessage(token: String, topic: String, messages: [Message], completionHandler: @escaping (MessageResponse?, NSError?) -> ()) {
+        
+        let endPoint = PublishMessageEndPoint(token: token, messages: messages, topic: topic)
+        
+        network?.request(endPoint: endPoint, mapToObject: MessageResponse.self) { (mappable, error) in
+            completionHandler(mappable as? MessageResponse, error)
+        }
     }
     
     open func getSettings(completionHandler: @escaping ([String: Any]?, Error?) -> ()) {

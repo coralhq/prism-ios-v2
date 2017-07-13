@@ -56,6 +56,12 @@ internal extension URL {
         }
     }
     
+    static var publishMessage: URL {
+        get {
+            return URL(string: "\(PrismAPIBaseURL)/v2/new_messages")!
+        }
+    }
+    
     static var refreshToken: URL {
         get {
             return URL(string: "\(PrismAPIBaseURL)/v2/token/refresh")!

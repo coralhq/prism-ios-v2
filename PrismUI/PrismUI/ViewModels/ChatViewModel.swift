@@ -82,12 +82,12 @@ class ChatSectionViewModel {
     var indexTitle: String?
     var objects: [ChatViewModel]?
     
-    init(info: NSFetchedResultsSectionInfo, credential: PrismCredential) {
+    init(info: NSFetchedResultsSectionInfo) {
         guard let messages = info.objects as? [CDMessage] else { return }
         
         objects = []
         for message in messages {
-            guard let vm = ChatViewModel(message: message, visitor: credential.sender) else { return }
+            guard let vm = ChatViewModel(message: message, visitor: PrismCredential.shared.sender) else { return }
             objects?.append(vm)
         }
         

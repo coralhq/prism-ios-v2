@@ -19,8 +19,6 @@ protocol NetworkProtocol {
     
     func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, NSError?) -> ()))
     
-    func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, NSError?) -> ())
-    
     func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, NSError?) -> ()))
     
     func setMQTTDelegate(delegate: MQTTSessionDelegate)

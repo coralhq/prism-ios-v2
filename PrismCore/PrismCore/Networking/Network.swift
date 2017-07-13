@@ -79,6 +79,14 @@ class Network: NSObject, NetworkProtocol {
             }
         }
         
+        if let messageEndPoint = endPoint as? PublishMessageEndPoint {
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: messageEndPoint.messagesBody, options: .prettyPrinted)
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        
         requestDataTask(request: request, mapToObject: mapToObject, completionHandler: completionHandler)
     }
     
@@ -108,6 +116,9 @@ class Network: NSObject, NetworkProtocol {
             
             guard error == nil else {
                 DispatchQueue.main.async() {
+                    if (error! as NSError).code == 401 {
+                        NotificationCenter.default.post(name: RefreshTokenNotification, object: nil)
+                    }
                     completionHandler(nil, error as NSError?)
                 }
                 return
@@ -186,7 +197,7 @@ class Network: NSObject, NetworkProtocol {
             }
         }
     }
-    
+
     func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, NSError?) -> ()) {
         do {
             guard let messageDict = message.dictionaryValue() else { return }

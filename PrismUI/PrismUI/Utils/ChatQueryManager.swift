@@ -37,17 +37,18 @@ protocol ChatQueryManagerDelegate: class {
 }
 
 class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
+    var credential: PrismCredential {
+        return PrismCredential.shared
+    }
     let context: NSManagedObjectContext
     let fetchController: NSFetchedResultsController<CDMessage>
-    let credential: PrismCredential
     
     var delegate: ChatQueryManagerDelegate?
     
     var sections: [ChatSectionViewModel] = []
     
-    init(context: NSManagedObjectContext, credential: PrismCredential) {
+    init(context: NSManagedObjectContext) {
         self.context = context
-        self.credential = credential
         
         let request = NSFetchRequest<CDMessage>(entityName: CDMessage.className())
         request.sortDescriptors = [NSSortDescriptor(key: "brokerMetaData.timestamp", ascending: false)]
@@ -68,7 +69,7 @@ class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
             
             self.sections.removeAll()
             for sectionInfo in sections {
-                self.sections.append(ChatSectionViewModel(info: sectionInfo, credential: credential))
+                self.sections.append(ChatSectionViewModel(info: sectionInfo))
             }
         } catch {
             print("fetch error: \(error)")
@@ -88,10 +89,10 @@ class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
         case .delete:
             sections.remove(at: sectionIndex)
         case .insert:
-            sections.insert(ChatSectionViewModel(info: sectionInfo, credential: credential), at: sectionIndex)
+            sections.insert(ChatSectionViewModel(info: sectionInfo), at: sectionIndex)
         case .update:
             sections.remove(at: sectionIndex)
-            sections.insert(ChatSectionViewModel(info: sectionInfo, credential: credential), at: sectionIndex)
+            sections.insert(ChatSectionViewModel(info: sectionInfo), at: sectionIndex)
         default:
             break
         }

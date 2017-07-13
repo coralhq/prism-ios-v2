@@ -7,8 +7,8 @@
 //
 
 import UIKit
+import PrismAnalytics
 import Photos
-import PhotosUI
 
 protocol ChatComposerDelegate: class {
     func chatComposer(composer: ChatComposer, didComposeText text: String)
@@ -82,6 +82,8 @@ class ChatComposer: UIView {
         picker.sourceType = .photoLibrary
         picker.allowsEditing = false
         UIViewController.root?.present(picker, animated: true, completion: nil)
+        
+        PrismAnalytics.shared.sendTracker(withEvent: .uploadImageClicked)
     }
     
     @IBAction func stickerInputPressed(sender: UIButton) {

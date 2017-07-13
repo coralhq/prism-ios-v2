@@ -9,15 +9,14 @@
 import Foundation
 import PrismCore
 import CoreData
+import PrismAnalytics
 
 class ChatManager {
-    var credential: PrismCredential
-    var accessToken: String { return credential.accessToken }
+    var credential: PrismCredential { return PrismCredential.shared }
     let coredata = CoreDataManager()
     let reacability = ReachabilityHelper()!
     
-    init(credential: PrismCredential) {
-        self.credential = credential
+    init() {
         
         do {
             try reacability.startNotifier()
@@ -37,13 +36,13 @@ class ChatManager {
     }
     
     func connect(completionHandler: @escaping ((Bool, Error?) -> ())) {
-        PrismCore.shared.connectToBroker(username: credential.username, password: credential.password) { (success, error) in
+        PrismCore.shared.connectToBroker(username: PrismCredential.shared.username, password: PrismCredential.shared.password) { (success, error) in
             completionHandler(success, error)
         }
     }
     
     func subscribe(completionHandler: @escaping ((Bool, Error?) -> ())) {
-        PrismCore.shared.subscribeToTopic(credential.topic) { (success, error) in
+        PrismCore.shared.subscribeToTopic(PrismCredential.shared.topic) { (success, error) in
             completionHandler(success, error)
         }
     }
@@ -71,7 +70,14 @@ class ChatManager {
         cdmessage.content = cdcontent
         cd.save()
         
-        PrismCore.shared.getAttachmentURL(filename: imageName, conversationID: self.credential.conversationID, token: self.credential.accessToken) { (response, error) in
+        let trackerData = [
+            sendMessageTrackerType.conversationID.rawValue : PrismCredential.shared.conversationID,
+            sendMessageTrackerType.messageType.rawValue : message.type.rawValue,
+            sendMessageTrackerType.sender.rawValue : message.sender.id
+        ]
+        PrismAnalytics.shared.sendTracker(withEvent: .sendMessage, data: trackerData)
+        
+        PrismCore.shared.getAttachmentURL(filename: imageName, conversationID: credential.conversationID, token: credential.accessToken) { (response, error) in
             guard let imageData = UIImagePNGRepresentation(image),
                 let url = response?.uploadURL else {
                     return
@@ -104,7 +110,7 @@ class ChatManager {
                 
                 message.content = content
                 
-                PrismCore.shared.publishMessage(topic: self.credential.topic, message: message, completionHandler: { (message, error) in
+                PrismCore.shared.publishMessage(token: self.credential.accessToken, topic: self.credential.topic, messages: [message], completionHandler: { (message, error) in
                 })
             })
         }
@@ -125,7 +131,9 @@ class ChatManager {
         coredata?.save()
         
         //publish to mqtt
-        PrismCore.shared.publishMessage(topic: credential.topic, message: message) { (message, error) in }
+        PrismCore.shared.publishMessage(token: credential.accessToken, topic: credential.topic, messages: [message]) { (message, error) in
+            
+        }
     }
     
     private func buildMessage(with content: MessageContentMappable, type: MessageType) -> Message {

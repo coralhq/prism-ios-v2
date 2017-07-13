@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import PrismAnalytics
+import PrismCore
 
 class ChatViewController: BaseViewController {
     
@@ -16,15 +18,15 @@ class ChatViewController: BaseViewController {
     var chatManager: ChatManager
     var queryManager: ChatQueryManager?
     
-    init(credential: PrismCredential) {
-        chatManager = ChatManager(credential: credential)
+    init() {
+        chatManager = ChatManager()
         
         super.init(nibName: nil, bundle: Bundle.prism)
         
         guard let context = chatManager.coredata?.mainContext else {
             return
         }
-        queryManager = ChatQueryManager(context: context, credential: self.chatManager.credential)
+        queryManager = ChatQueryManager(context: context)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,12 +36,13 @@ class ChatViewController: BaseViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let composer = ChatComposer.composerFromNib(with: chatManager.accessToken) else { return }
+        guard let composer = ChatComposer.composerFromNib(with: PrismCredential.shared.accessToken) else { return }
         composer.delegate = self
         composer.addTo(view: barView, margin: 0)
         
         tableView.delegate = self
         tableView.dataSource = self
+      
         tableView.register(ChatHeaderCell.NIB, forCellReuseIdentifier: ChatHeaderCell.className())
         
         chatManager.connect { [weak self] (success, error) in
@@ -51,8 +54,17 @@ class ChatViewController: BaseViewController {
         
         queryManager?.delegate = self
         queryManager?.fetchSections()
+
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        PrismAnalytics.shared.sendTracker(withEvent: .chatScreen)
+    }
+}
+
+extension UITableView {
     func isViewModel(vm: ChatViewModel, extensionFrom prevVM: ChatViewModel?) -> Bool {
         if let prevVM = prevVM,
             vm.senderID == prevVM.senderID {
@@ -95,7 +107,7 @@ extension ChatViewController: UITableViewDataSource {
             cell = ChatCell(viewModel: viewModel)
         }
         
-        let isExtension = isViewModel(vm: viewModel, extensionFrom: objects[safe: indexPath.row + 1])
+        let isExtension = tableView.isViewModel(vm: viewModel, extensionFrom: objects[safe: indexPath.row + 1])
         cell?.chatView?.update(with: viewModel, isExtension: isExtension)
         
         return cell!

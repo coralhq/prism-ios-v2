@@ -35,7 +35,7 @@ public class ContentCart: MessageContentMappable {
         for item in lineItems {
             items.append(item.dictionaryValue())
         }
-        return ["cart": items]
+        return ["cart": ["line_items": items]]
     }
 }
 

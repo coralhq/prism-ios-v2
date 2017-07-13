@@ -66,8 +66,8 @@ class PrismCredential: NSObject, NSCoding {
         aCoder.encode(topic, forKey: Keys.topic)
         aCoder.encode(conversationID, forKey: Keys.conversationID)
         aCoder.encode(merchantID, forKey: Keys.merchantID)
-        aCoder.encode(visitorInfo.dictionaryValue, forKey: Keys.visitor)
-        aCoder.encode(sender.dictionaryValue, forKey: Keys.sender)
+        aCoder.encode(visitorInfo.dictionaryValue(), forKey: Keys.visitor)
+        aCoder.encode(sender.dictionaryValue(), forKey: Keys.sender)
         aCoder.encode(refreshToken, forKey: Keys.refreshToken)
         aCoder.encode(clientID, forKey: Keys.clientID)
     }

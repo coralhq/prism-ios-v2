@@ -14,19 +14,28 @@ class ChatManager {
     var credential: PrismCredential
     var accessToken: String { return credential.accessToken }
     let coredata = CoreDataManager()
+    let reacability = ReachabilityHelper()!
     
     init(credential: PrismCredential) {
         self.credential = credential
         
+        do {
+            try reacability.startNotifier()
+        } catch{
+            print("could not start reachability notifier")
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(sender:)), name: ReachabilityChangedNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(chatReceived(sender:)), name: ReceiveChatNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(chatDisconnect(sender:)), name: DisconnectChatNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(chatError(sender:)), name: ErrorChatNotification, object: nil)
     }
     
     deinit {
+        reacability.stopNotifier()
         NotificationCenter.default.removeObserver(self)
     }
-
+    
     func connect(completionHandler: @escaping ((Bool, Error?) -> ())) {
         PrismCore.shared.connectToBroker(username: credential.username, password: credential.password) { (success, error) in
             completionHandler(success, error)
@@ -129,6 +138,21 @@ class ChatManager {
                        type: type,
                        content: content,
                        brokerMetaData: BrokerMetaData())
+    }
+    
+    @objc func reachabilityChanged(sender: Notification) {
+        let reachability = sender.object as! ReachabilityHelper
+        if reachability.isReachable {
+            connect(completionHandler: { (success, error) in })
+            
+            if reachability.isReachableViaWiFi {
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+        } else {
+            print("Network not reachable")
+        }
     }
     
     @objc func chatReceived(sender: Notification) {

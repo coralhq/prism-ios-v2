@@ -67,14 +67,11 @@ class CoreDataManager {
     func buildMessage(message: Message, status: MessageStatus) -> CDMessage {
         var cdmsg = messageWithIdentifier(identifier: message.id)
         if cdmsg == nil {
-            cdmsg = CDMessage(with: privateContext)
+            cdmsg = CDMessage(with: privateContext, dictionary: message.dictionaryValue())
+        } else {
+            cdmsg?.updateMessage(with: message.dictionaryValue())
         }
-        
-        if let cdmsg = cdmsg {
-            cdmsg.setMessage(message: message)
-            cdmsg.status = status.rawValue
-        }
-        
+        cdmsg?.status = status.rawValue
         return cdmsg!
     }
     

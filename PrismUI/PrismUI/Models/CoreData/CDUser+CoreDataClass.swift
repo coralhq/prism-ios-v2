@@ -10,12 +10,20 @@ import Foundation
 import CoreData
 import PrismCore
 
-public class CDUser: NSManagedObject {
-    convenience init(context: NSManagedObjectContext, user: MessageUser?) {
+public class CDUser: NSManagedObject, CDManagedMappable {
+    required public init(with context: NSManagedObjectContext, dictionary: [String : Any]) {
         let entityDesc = NSEntityDescription.entity(forEntityName: CDUser.className(), in: context)!
-        self.init(entity: entityDesc, insertInto: context)
+        super.init(entity: entityDesc, insertInto: context)
 
-        id = user?.id
-        name = user?.name
+        id = dictionary["id"] as? String
+        name = dictionary["name"] as? String
+    }
+    
+    func dictionaryValue() -> [String : Any]? {
+        guard let id = id,
+            let name = name else {
+                return nil
+        }
+        return ["id": id, "name": name]
     }
 }

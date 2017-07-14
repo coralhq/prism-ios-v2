@@ -10,11 +10,26 @@ import Foundation
 import CoreData
 import PrismCore
 
-public class CDBrokerMetaData: NSManagedObject {
-    convenience init(context: NSManagedObjectContext, brokerMetaData: BrokerMetaData) {
+protocol CDManagedMappable {
+    init(with context: NSManagedObjectContext, dictionary: [String: Any])
+    func dictionaryValue() -> [String: Any]?
+}
+
+public class CDBrokerMetaData: NSManagedObject, CDManagedMappable {
+    let df = Vendor.shared.dateFormatter
+    
+    required public init(with context: NSManagedObjectContext, dictionary: [String : Any]) {
         let entityDesc = NSEntityDescription.entity(forEntityName: CDBrokerMetaData.className(), in: context)!
-        self.init(entity: entityDesc, insertInto: context)
+        super.init(entity: entityDesc, insertInto: context)
         
-        timestamp = brokerMetaData.timestamp
+        let timestamp = dictionary["timestamp"] as! String
+        self.timestamp =  timestamp.ISO8601()
+    }
+    
+    func dictionaryValue() -> [String : Any]? {
+        guard let timestamp = timestamp else {
+            return nil
+        }
+        return ["timestamp": timestamp.ISO8601()]
     }
 }

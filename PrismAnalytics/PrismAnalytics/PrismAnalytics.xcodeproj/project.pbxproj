@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		800890581F172F8800736600 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800890571F172F8800736600 /* Network.swift */; };
+		800890591F172F8800736600 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800890571F172F8800736600 /* Network.swift */; };
+		8008905C1F17304200736600 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008905B1F17304200736600 /* URL.swift */; };
+		8008905D1F17304200736600 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8008905B1F17304200736600 /* URL.swift */; };
 		8084764E1F0C9CFD00E12323 /* PrismAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 808476441F0C9CFD00E12323 /* PrismAnalytics.framework */; };
 		808476531F0C9CFD00E12323 /* PrismAnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808476521F0C9CFD00E12323 /* PrismAnalyticsTests.swift */; };
 		808476551F0C9CFD00E12323 /* PrismAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 808476471F0C9CFD00E12323 /* PrismAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		800890571F172F8800736600 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		8008905B1F17304200736600 /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		808476441F0C9CFD00E12323 /* PrismAnalytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrismAnalytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		808476471F0C9CFD00E12323 /* PrismAnalytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrismAnalytics.h; sourceTree = "<group>"; };
 		808476481F0C9CFD00E12323 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -95,6 +101,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		800890561F17220C00736600 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				800890571F172F8800736600 /* Network.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		8008905A1F17302300736600 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8008905B1F17304200736600 /* URL.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8084763A1F0C9CFD00E12323 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +140,8 @@
 		808476461F0C9CFD00E12323 /* PrismAnalytics */ = {
 			isa = PBXGroup;
 			children = (
+				8008905A1F17302300736600 /* Extensions */,
+				800890561F17220C00736600 /* Network */,
 				808476471F0C9CFD00E12323 /* PrismAnalytics.h */,
 				808476481F0C9CFD00E12323 /* Info.plist */,
 				808476691F0C9D5E00E12323 /* PrismAnalytics.swift */,
@@ -276,6 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				800890701F176E4A00736600 /* ifaddrsConfig.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,7 +318,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				800890581F172F8800736600 /* Network.swift in Sources */,
 				8084766A1F0C9D5E00E12323 /* PrismAnalytics.swift in Sources */,
+				8008905C1F17304200736600 /* URL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +330,8 @@
 			files = (
 				8084766B1F0C9D5E00E12323 /* PrismAnalytics.swift in Sources */,
 				808476531F0C9CFD00E12323 /* PrismAnalyticsTests.swift in Sources */,
+				800890591F172F8800736600 /* Network.swift in Sources */,
+				8008905D1F17304200736600 /* URL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

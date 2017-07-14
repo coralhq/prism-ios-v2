@@ -8,6 +8,11 @@
 
 import Foundation
 
+public enum AnalyticEnvironment {
+    case Sandbox
+    case Production
+}
+
 public enum EventTrackerType: String {
     case uploadImageClicked = "upload_image_clicked"
     case visitorConnect = "visitor_connect"
@@ -24,6 +29,9 @@ public enum sendMessageTrackerType: String {
 open class PrismAnalytics {
     
     private var gai: GAI?
+    private let network = Network()
+    internal var environment: AnalyticEnvironment?
+    private var ipAddress: String?
     
     private init() {
         guard let GAIInstance = GAI.sharedInstance() else {
@@ -36,6 +44,19 @@ open class PrismAnalytics {
     }
     
     static open let shared = PrismAnalytics()
+    
+    open func configure(environment: AnalyticEnvironment) {
+        self.environment = environment
+        
+        let url = URL(string: "https://api.ipify.org")!
+        do {
+            ipAddress = try String(contentsOf: url)
+        } catch {}
+    }
+    
+    open func sendConversationDataToRover(data: [String: Any], token: String) {
+        network.request(data: data, token: token, url: URL.conversation)
+    }
     
     open func sendTracker(withEvent event: EventTrackerType, data: [String: String]? = nil) {
         guard let tracker = gai?.defaultTracker else { return }
@@ -60,6 +81,12 @@ open class PrismAnalytics {
             
             guard let builder = GAIDictionaryBuilder.createEvent(withCategory: "custom_event", action: event.rawValue, label: nil, value: nil) else { return }
             tracker.send(builder.build() as [NSObject : AnyObject])
+        }
+    }
+    
+    open func getIPAddress(completionHandler:((String)->())) {
+        network.getIPAddress { (value) in
+            completionHandler(value)
         }
     }
     

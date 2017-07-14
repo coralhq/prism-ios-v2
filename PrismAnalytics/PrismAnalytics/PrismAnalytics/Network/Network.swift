@@ -32,18 +32,7 @@ class Network {
     
     fileprivate func requestDataTask(request: URLRequest) {
         let session = URLSession.shared
-        let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
-            
-            guard let response = response as? HTTPURLResponse else {
-                return
-            }
-            
-            do {
-                if response.statusCode >= 400 &&
-                    response.statusCode <= 499 {
-                }
-            }
-        })
+        let task = session.dataTask(with: request as URLRequest)
         task.resume()
     }
     

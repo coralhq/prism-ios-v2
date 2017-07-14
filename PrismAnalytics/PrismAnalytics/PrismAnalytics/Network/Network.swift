@@ -41,8 +41,6 @@ class Network {
         do {
             let ip = try String(contentsOf: url)
             completionHandler(ip)
-        } catch {
-            
-        }
+        } catch {}
     }
 }

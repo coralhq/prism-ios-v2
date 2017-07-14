@@ -93,10 +93,9 @@ class ChatSectionViewModel {
         
         guard let date = messages.first?.sectionDate else { return }
         if Vendor.shared.calendar.isDate(date, equalTo: Date(), toGranularity: .year) {
-            Vendor.shared.dateFormatter.dateFormat = DateFormatVendor.dayFormat
+            indexTitle = date.day()
         } else {
-            Vendor.shared.dateFormatter.dateFormat = DateFormatVendor.dayWithYearFormat
+            indexTitle = date.dayWithYear()
         }
-        indexTitle = Vendor.shared.dateFormatter.string(from: date)
     }
 }

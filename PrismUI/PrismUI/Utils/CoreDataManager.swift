@@ -50,13 +50,13 @@ class CoreDataManager {
             do {
                 try self.privateContext.save()
                 
-                self.mainContext.perform({
+                self.mainContext.performAndWait {
                     do {
                         try self.mainContext.save()
                     } catch {
                         print("Error \(error)")
                     }
-                })
+                }
             } catch {
                 print("Error \(error)")
             }
@@ -83,6 +83,19 @@ class CoreDataManager {
         } catch {
             print("error \(error)")
             return nil
+        }
+    }
+    
+    func fetchPendingMessages(completion:(([CDMessage]) -> ())?) {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: CDMessage.className())
+        request.predicate = NSPredicate(format: "status == %i", MessageStatus.pending.rawValue)
+        privateContext.perform {
+            do {
+                let messages = try self.privateContext.fetch(request) as! [CDMessage]
+                completion?(messages)
+            } catch {
+                print("Error \(error)")
+            }
         }
     }
 }

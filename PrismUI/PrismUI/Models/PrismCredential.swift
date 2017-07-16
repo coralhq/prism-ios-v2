@@ -35,10 +35,9 @@ class PrismCredential: NSObject, NSCoding {
     var visitorInfo: MessageUser = MessageUser(id: "", name: "")!
     var sender: MessageSender = MessageSender(id: "", name: "", role: "", userAgent: "")!
     var clientID: String = ""
-    
-    static var shared = PrismCredential()
-    
-    private override init() {}
+
+    override init() {
+    }
     
     public required init?(coder aDecoder: NSCoder) {
         username = aDecoder.decodeObject(forKey: Keys.username) as! String

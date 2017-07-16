@@ -91,11 +91,9 @@ extension AuthViewModel {
             if let error = error {
                 completion(error)
             } else {
-                PrismCredential.shared.configure(connect: connect, conversation: conversation)
-                
-                //save credential
-                Utils.archive(object: PrismCredential.shared, key: SerialisationKeys.credential)
-                
+                let credential = PrismCredential()
+                credential.configure(connect: connect, conversation: conversation)
+                Vendor.shared.credential = credential
                 completion(nil)
             }
         })

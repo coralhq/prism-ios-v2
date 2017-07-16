@@ -21,9 +21,9 @@ class Utils {
         UserDefaults.standard.synchronize()
     }
     
-    static func unarchive(key: String) -> Any? {
+    static func unarchive<T>(key: String) -> T? {
         guard let data = UserDefaults.standard.value(forKey: key) as? Data else { return nil }
-        return NSKeyedUnarchiver.unarchiveObject(with: data)
+        return NSKeyedUnarchiver.unarchiveObject(with: data) as? T
     }
 }
 
@@ -66,6 +66,13 @@ struct DateFormat {
 class Vendor {
     static let shared = Vendor()
     
+    var credential: PrismCredential? {
+        didSet {
+            if let credential = credential {
+                Utils.archive(object: credential, key: "prism_credential")
+            }
+        }
+    }
     let dateFormatter: DateFormatter
     let currencyFormatter: NumberFormatter
     let calendar = Calendar.current
@@ -80,5 +87,7 @@ class Vendor {
         currencyFormatter.numberStyle = .decimal
         currencyFormatter.groupingSeparator = ","
         currencyFormatter.decimalSeparator = "."
+        
+        credential = Utils.unarchive(key: "prism_credential")
     }
 }

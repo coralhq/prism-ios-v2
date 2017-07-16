@@ -87,7 +87,8 @@ class ChatSectionViewModel {
         
         objects = []
         for message in messages {
-            guard let vm = ChatViewModel(message: message, visitor: PrismCredential.shared.sender) else { return }
+            guard let credential = Vendor.shared.credential,
+                let vm = ChatViewModel(message: message, visitor: credential.sender) else { return }
             objects?.append(vm)
         }
         

@@ -18,29 +18,29 @@ class ContentCartViewModel: ContentViewModel {
     var itemViewModels: [ContentCartProductViewModel] = []
     
     init?(contentCart: CDContentCart) {
-        let priceTitle = "Total Amount ".localized()
-        
-        guard let items = contentCart.lineItems else { return nil }
         
         var totalPrice: Double = 0
         
-        for item in items {
-            guard let discType = item.product?.discount?.discountType,
-                let priceAmount = item.product?.price,
-                let discAmount = item.product?.discount?.amount else { continue }
-            
-            if discType == DiscountType.nominal {
-                totalPrice += (priceAmount - discAmount)
+        for item in contentCart.lineItems {
+            let priceAmount = Double(item.product.price)!
+
+            if let discount = item.product.discount {
+                let discAmount = Double(discount.amount)!
+                
+                if discount.discountType == DiscountType.nominal {
+                    totalPrice += (priceAmount - discAmount)
+                } else {
+                    totalPrice += priceAmount - (discAmount / 100) * priceAmount
+                }
             } else {
-                totalPrice += priceAmount - (discAmount/100) * priceAmount
+                totalPrice += priceAmount
             }
-            
+
             guard let vm = ContentCartProductViewModel(contentItem: item) else { continue }
             itemViewModels.append(vm)
         }
-        
-        guard let formattedPrice = totalPrice.formattedCurrency() else { return nil }
-        self.formattedPrice = priceTitle.appending(formattedPrice)
+
+        self.formattedPrice = "Total Amount" + ": " + totalPrice.formattedCurrency()!
     }
 }
 
@@ -52,25 +52,20 @@ class ContentCartProductViewModel: ContentViewModel {
     var imageURL: URL?
     
     init?(contentItem: CDLineItem) {
-        guard let name = contentItem.product?.name,
-            let priceAmount = contentItem.product?.price,
-            let priceFormatted = priceAmount.formattedCurrency(),
-            var discAmount = contentItem.product?.discount?.amount,
-            let discType = contentItem.product?.discount?.discountType,
-            let qty = contentItem.quantity else { return nil }
-        self.name = name
-        self.price = priceFormatted
+        let priceAmount = Double(contentItem.product.price)!
+        self.price = priceAmount.formattedCurrency()!
+        self.name = contentItem.product.name
+        self.quantity = "Quantity".localized() + ": " + String(contentItem.quantity)
+        self.imageURL = contentItem.product.imageURLs.count > 0 ? contentItem.product.imageURLs.first : nil
         
-        let qtyTitle = "Quantity: ".localized()
-        self.quantity = qtyTitle.appending(String(qty))
-        
-        self.imageURL = contentItem.product?.imageURLs?.first
-        
-        if discType == DiscountType.percentage {
-            discAmount = (discAmount / 100) * priceAmount
-        }        
-        if discAmount > 0 {
-            self.discount = (priceAmount - discAmount).formattedCurrency()
+        if let discount = contentItem.product.discount {
+            var discAmount = Double(discount.amount)!
+            if discount.discountType == DiscountType.percentage {
+                discAmount = (discAmount / 100) * priceAmount
+            }
+            if discAmount > 0 {
+                self.discount = (priceAmount - discAmount).formattedCurrency()
+            }
         }
     }
 }

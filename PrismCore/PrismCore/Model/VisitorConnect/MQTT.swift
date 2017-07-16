@@ -23,4 +23,9 @@ public class MQTT : Mappable {
         self.username = username
         self.password = password
     }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["username": username,
+                "password": password]
+    }
 }

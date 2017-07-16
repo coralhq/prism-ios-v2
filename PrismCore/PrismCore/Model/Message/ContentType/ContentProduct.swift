@@ -10,20 +10,16 @@ import Foundation
 
 public class ContentProduct: MessageContentMappable {
     public let product: Product
-    var dictionary: [String: Any]?
     
     required public init?(dictionary: [String : Any]?) {
-        self.dictionary = dictionary
-        
         guard let product = Product(dictionary: dictionary?["product"] as? [String: Any]) else {
             return nil
         }
-        
         self.product = product
     }
     
-    public func dictionaryValue() -> [String : Any]? {
-        return dictionary
+    public func dictionaryValue() -> [String : Any] {
+        return ["product": product.dictionaryValue()]
     }
 }
 
@@ -63,5 +59,18 @@ public class Product: Mappable {
         self.imageURLs = imageURLs
         self.discount = discount
         self.currencyCode = currencyCode
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        let imageURLs = self.imageURLs.map { (url) -> String in
+            return url.absoluteString
+        }
+        return ["id": id,
+                "name": name,
+                "price": price,
+                "description": description,
+                "image_urls": imageURLs,
+                "discount": discount.dictionaryValue(),
+                "currency_code": currencyCode]
     }
 }

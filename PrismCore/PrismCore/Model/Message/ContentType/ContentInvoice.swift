@@ -17,10 +17,7 @@ public class ContentInvoice: MessageContentMappable {
     public let payment: Payment
     public var shipment: Shipment?
     
-    var dictionary: [String: Any]?
-    
     required public init?(dictionary: [String : Any]?) {
-        self.dictionary = dictionary
         
         guard let invoice = dictionary?["invoice"] as? [String: Any],
             let id = invoice["id"] as? String,
@@ -48,27 +45,107 @@ public class ContentInvoice: MessageContentMappable {
         }
     }
     
-    public func dictionaryValue() -> [String : Any]? {
-        return dictionary
+    public func dictionaryValue() -> [String : Any] {
+        var items: [[String: Any]] = []
+        for item in lineItems {
+            items.append(item.dictionaryValue())
+        }
+        
+        var invoice: [String: Any] = ["id": id,
+                                      "line_items": items,
+                                      "grand_total": grandTotal.dictionaryValue(),
+                                      "buyer": buyer.dictionaryValue(),
+                                      "payment": payment.dictionaryValue()]
+        if let shipment = shipment {
+            invoice["shipment"] = shipment.dictionaryValue()
+        }
+        
+        return ["invoice": invoice]
     }
 }
 
 public class Payment: Mappable {
-    public let type: String
-    public var midtransPaymentURL: URL?
+    public let provider: PaymentProvider
     
     required public init?(dictionary: [String : Any]?) {
-        guard let provider = dictionary?["provider"] as? [String: Any],
-            let type = provider["type"] as? String else {
+        guard let providerDictionary = dictionary?["provider"] as? [String: Any],
+            let provider = PaymentProvider(dictionary: providerDictionary) else {
                 return nil
+        }
+        self.provider = provider
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["provider": provider.dictionaryValue()]
+    }
+}
+
+public class PaymentProvider: Mappable {
+    public let type: String
+    public let info: Mappable?
+    
+    public required init?(dictionary: [String : Any]?) {
+        guard let type = dictionary?["type"] as? String else {
+            return nil
         }
         self.type = type
         
-        if let vtweb = provider["vt_web"] as? [String: Any],
-            let stringURL = vtweb["redirect_url"] as? String,
-            let redirectURL = URL(string: stringURL) {
-            self.midtransPaymentURL = redirectURL
+        if let info = dictionary?["info"] as? [String: Any] {
+            if type == "vt_web" {
+                self.info = MidtransInfo(dictionary: info)
+            } else if type == "transfer" {
+                self.info = BankTransferInfo(dictionary: info)
+            } else {
+                self.info = nil
+            }
+        } else {
+            self.info = nil
         }
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        var result: [String: Any] = ["type": type]
+        if let info = info {
+            result["info"] = info.dictionaryValue()
+        }
+        return result
+    }
+}
+
+class MidtransInfo: Mappable {
+    public let redirectURL: String
+    
+    required init?(dictionary: [String : Any]?) {
+        guard let redirectURL = dictionary?["redirect_url"] as? String else {
+            return nil
+        }
+        self.redirectURL = redirectURL
+    }
+    
+    func dictionaryValue() -> [String : Any] {
+        return ["redirect_url": redirectURL]
+    }
+}
+
+class BankTransferInfo: Mappable {
+    public let accountNumber: String
+    public let accountHolder: String
+    public let bankName: String
+    
+    required init?(dictionary: [String : Any]?) {
+        guard let accNumber = dictionary?["account_number"] as? String,
+            let accHolder = dictionary?["account_holder"] as? String,
+            let bankName = dictionary?["bank_name"] as? String else {
+                return nil
+        }
+        self.accountNumber = accNumber
+        self.accountHolder = accHolder
+        self.bankName = bankName
+    }
+    func dictionaryValue() -> [String : Any] {
+        return ["account_number": accountNumber,
+                "account_holder": accountHolder,
+                "bank_name": bankName]
     }
 }
 
@@ -81,9 +158,13 @@ public class Shipment: Mappable {
             let cost = Currency(dictionary: dictionary?["cost"] as? [String: Any]) else {
                 return nil
         }
-        
         self.info = info
         self.cost = cost
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["info": info.dictionaryValue(),
+                "cost": cost.dictionaryValue()]
     }
 }
 
@@ -106,6 +187,13 @@ public class ShipmentInfo: Mappable {
         self.address = address
         self.phone = phone
     }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["customer_name": name,
+                "customer_email": email,
+                "customer_address": address,
+                "customer_phone": phone]
+    }
 }
 
 public class Buyer: Mappable {
@@ -124,7 +212,14 @@ public class Buyer: Mappable {
         self.email = email
         self.phoneNumber = phoneNumber
     }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["name": name,
+                "email": email,
+                "phone_number": phoneNumber]
+    }
 }
+
 public class Currency: Mappable {
     public let currencyCode: String
     public let amount: String
@@ -137,5 +232,10 @@ public class Currency: Mappable {
         
         self.amount = amount
         self.currencyCode = currencyCode
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["currency_code": currencyCode,
+                "amount": amount]
     }
 }

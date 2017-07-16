@@ -26,7 +26,7 @@ class RootViewController: UIViewController {
         viewModel.getSettings { [unowned self] (settings) in
             Settings.shared.configure(settings: settings)
             
-            if PrismCredential.shared.username != "" {
+            if let _ = Vendor.shared.credential {
                 self.enterChatpage(animated: false)
             } else {
                 if Settings.shared.inputForm.enabled {
@@ -42,15 +42,18 @@ class RootViewController: UIViewController {
     }
     
     @objc private func refreshToken() {
-        PrismCore.shared.refreshToken(clientID: PrismCredential.shared.clientID, refreshToken: PrismCredential.shared.refreshToken, completionHandler: { [weak self] (refreshTokenResponse, error) in
+        guard let credential = Vendor.shared.credential else {
+            return
+        }
+        PrismCore.shared.refreshToken(clientID: credential.clientID, refreshToken: credential.refreshToken, completionHandler: { [weak self] (refreshTokenResponse, error) in
             guard let refreshTokenResponse = refreshTokenResponse, error == nil else {
                 self?.showVisitorConnect()
                 return
             }
             
-            PrismCredential.shared.accessToken = refreshTokenResponse.oAuth.accessToken
-            PrismCredential.shared.clientID = refreshTokenResponse.oAuth.clientID
-            PrismCredential.shared.refreshToken = refreshTokenResponse.oAuth.refreshToken
+            credential.accessToken = refreshTokenResponse.oAuth.accessToken
+            credential.clientID = refreshTokenResponse.oAuth.clientID
+            credential.refreshToken = refreshTokenResponse.oAuth.refreshToken
             
         })
     }

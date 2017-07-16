@@ -37,20 +37,20 @@ public enum TypingStatus : String {
     }
 }
 
-public enum MessageType {
-    case Assignment
-    case AutoResponder
-    case Attachment
-    case Cart
-    case CloseChat
-    case Invoice
-    case OfflineMessage
-    case PlainText
-    case Product
-    case StatusUpdate
-    case Sticker
-    case Typing
-    case Unknown
+public enum MessageType: String {
+    case Assignment = "assignment"
+    case AutoResponder = "auto_responder"
+    case Attachment = "attachment"
+    case Cart = "cart"
+    case CloseChat = "close_chat"
+    case Invoice = "invoice"
+    case OfflineMessage = "offline_message"
+    case PlainText = "text"
+    case Product = "product"
+    case StatusUpdate = "message_status_update"
+    case Sticker = "sticker"
+    case Typing = "typing"
+    case Unknown = "unknown"
     
     public init(rawValue: String) {
         switch rawValue {
@@ -69,26 +69,6 @@ public enum MessageType {
         default: self = .Unknown
         }
     }
-    
-    public var rawValue: String {
-        get {
-            switch self {
-            case .AutoResponder: return "auto_responder"
-            case .Assignment: return "assignment"
-            case .Attachment: return "attachment"
-            case .Cart: return "cart"
-            case .CloseChat: return "close_chat"
-            case .Invoice: return "invoice"
-            case .OfflineMessage: return "offline_message"
-            case .PlainText: return "text"
-            case .Product: return "product"
-            case .StatusUpdate: return "message_status_update"
-            case .Sticker: return "sticker"
-            case .Typing: return "typing"
-            case .Unknown: return "unknown"
-            }
-        }
-    }
 }
 
 open class Message: Mappable {
@@ -100,7 +80,7 @@ open class Message: Mappable {
     public var sender: MessageSender
     public var type: MessageType
     public var content: MessageContentMappable
-    public var version: Int
+    public var version: String
     public var brokerMetaData: BrokerMetaData
     
     public var channelInfo: MessageChannelInfo?
@@ -114,7 +94,7 @@ open class Message: Mappable {
             let visitor = MessageVisitorInfo(dictionary: dictionary["visitor"] as? [String: Any]),
             let sender = MessageSender(dictionary: dictionary["sender"] as? [String: Any]),
             let typeString = dictionary["type"] as? String,
-            let version = dictionary["version"] as? Int,
+            let version = dictionary["version"] as? String,
             let brokerMetaData = BrokerMetaData(dictionary: dictionary["_broker_metadata"] as? [String: Any]) else {
                 return nil
         }
@@ -156,23 +136,20 @@ open class Message: Mappable {
         self.content = content
         self.brokerMetaData = brokerMetaData
         self.channelInfo = channelInfo
-        self.version = 2
+        self.version = String(PrismCoreVersionNumber)
     }
     
-    public func dictionaryValue() -> [String: Any]? {
-        guard let contentDict = content.dictionaryValue() else {
-            return nil
-        }
+    public func dictionaryValue() -> [String: Any] {
         return ["id": id,
                 "conversation_id": conversationID,
                 "merchant_id": merchantID,
                 "channel": channel,
-                "visitor": visitor.dictionaryValue,
-                "sender": sender.dictionaryValue,
+                "visitor": visitor.dictionaryValue(),
+                "sender": sender.dictionaryValue(),
                 "type": type.rawValue,
-                "content": contentDict,
-                "version": 2,
-                "_broker_metadata": brokerMetaData.dictionaryValue]
+                "content": content.dictionaryValue(),
+                "version": version,
+                "_broker_metadata": brokerMetaData.dictionaryValue()]
     }
     
     static func contentWith(dictionary: [String: Any], type: MessageType) -> MessageContentMappable? {

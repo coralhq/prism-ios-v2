@@ -12,7 +12,7 @@ import CoreData
 import PrismAnalytics
 
 class ChatManager {
-    var credential: PrismCredential { return PrismCredential.shared }
+    let credential = Vendor.shared.credential!
     let coredata = CoreDataManager()
     let reachability = ReachabilityHelper()!
     
@@ -36,14 +36,11 @@ class ChatManager {
     }
     
     func connect(completionHandler: @escaping ((Bool, Error?) -> ())) {
-        PrismCore.shared.connectToBroker(username: PrismCredential.shared.username, password: PrismCredential.shared.password) { (success, error) in
-            completionHandler(success, error)
-        }
-    }
-    
-    func subscribe(completionHandler: @escaping ((Bool, Error?) -> ())) {
-        PrismCore.shared.subscribeToTopic(PrismCredential.shared.topic) { (success, error) in
-            completionHandler(success, error)
+        PrismCore.shared.connectToBroker(username: credential.username, password: credential.password) { (success, error) in
+            PrismCore.shared.subscribeToTopic(self.credential.topic) { (success, error) in
+                self.sendPendingMessages()
+                completionHandler(success, error)
+            }
         }
     }
     
@@ -71,7 +68,7 @@ class ChatManager {
         cd.save()
         
         let trackerData = [
-            sendMessageTrackerType.conversationID.rawValue : PrismCredential.shared.conversationID,
+            sendMessageTrackerType.conversationID.rawValue : credential.conversationID,
             sendMessageTrackerType.messageType.rawValue : message.type.rawValue,
             sendMessageTrackerType.sender.rawValue : message.sender.id
         ]
@@ -116,6 +113,18 @@ class ChatManager {
         }
     }
     
+    func sendPendingMessages() {
+        coredata?.fetchPendingMessages(completion: { (cdMessages) in
+            for cdMessage in cdMessages {
+                guard let rawMessage = cdMessage.dictionaryValue(),
+                    let message = Message(dictionary: rawMessage) else {
+                        continue
+                }
+                self.sendMessage(message: message)
+            }
+        })
+    }
+    
     func sendMessage(sticker: StickerViewModel) {
         guard let content = ContentSticker(name: sticker.name,
                                            imageURL: sticker.imageURL.absoluteString,
@@ -151,7 +160,10 @@ class ChatManager {
     @objc func reachabilityChanged(sender: Notification) {
         let reachability = sender.object as! ReachabilityHelper
         if reachability.isReachable {
-            connect(completionHandler: { (success, error) in })
+            
+            self.connect(completionHandler: { (success, error) in
+                
+            })
             
             if reachability.isReachableViaWiFi {
                 print("Reachable via WiFi")

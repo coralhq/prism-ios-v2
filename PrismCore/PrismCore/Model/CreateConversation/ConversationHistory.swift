@@ -27,4 +27,12 @@ open class ConversationHistory: Mappable {
         
         self.messages = messages
     }
+    
+    public func dictionaryValue() -> [String : Any] {
+        var messages: [[String: Any]] = []
+        for message in self.messages {
+            messages.append(message.dictionaryValue())
+        }
+        return ["data": ["messages": messages]]
+    }
 }

@@ -12,6 +12,6 @@ class ContentStickerViewModel: ContentViewModel {
     let stickerURL: URL?
     
     init(contentSticker: CDContentSticker) {
-        stickerURL = contentSticker.sticker?.imageURL
+        stickerURL = contentSticker.sticker.imageURL
     }
 }

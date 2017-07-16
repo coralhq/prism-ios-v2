@@ -68,7 +68,7 @@ class StickerInputView: UIView {
     }
     
     private func getStickers(token: String?) {
-        if let packs = Utils.unarchive(key: "prism_sticker_packs") as? [StickerPackViewModel] {
+        if let packs: [StickerPackViewModel] = Utils.unarchive(key: "prism_sticker_packs") {
             self.packs = packs
         } else {
             guard let token = token else { return }

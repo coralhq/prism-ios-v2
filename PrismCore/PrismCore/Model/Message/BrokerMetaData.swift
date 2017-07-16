@@ -11,15 +11,7 @@ import Foundation
 public class BrokerMetaData : Mappable {
     
     public let timestamp: Date
-    
-    public var dictionaryValue: [String: Any] {
-        get {
-            return [
-                "timestamp": timestamp.ISO8601String
-            ]
-        }
-    }
-    
+
     required public init?(dictionary: [String : Any]?) {
         guard let timestampString = dictionary?["timestamp"] as? String,
             let timestamp = timestampString.ISO8601Date else {
@@ -33,4 +25,7 @@ public class BrokerMetaData : Mappable {
         self.timestamp = Date()
     }
     
+    public func dictionaryValue() -> [String : Any] {
+        return ["timestamp": timestamp.ISO8601String]
+    }
 }

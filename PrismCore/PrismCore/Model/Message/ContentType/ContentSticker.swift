@@ -9,12 +9,9 @@
 import Foundation
 
 public class ContentSticker: MessageContentMappable {
-    
     public let sticker: MessageSticker
-    var dictionary: [String: Any]?
     
     required public init?(dictionary: [String : Any]?) {
-        self.dictionary = dictionary
         guard let sticker = MessageSticker(dictionary: dictionary?["sticker"] as? [String: Any]) else {
             return nil
         }
@@ -22,19 +19,14 @@ public class ContentSticker: MessageContentMappable {
     }
     
     convenience public init?(name: String, imageURL: String, id: String, packID: String) {
-        self.init(dictionary: [
-            "sticker": [
-                "name": name,
-                "image_url": imageURL,
-                "id": id,
-                "pack_id": packID
-            ]
-            ]
-        )
+        self.init(dictionary: ["sticker": ["name": name,
+                                           "image_url": imageURL,
+                                           "id": id,
+                                           "pack_id": packID]])
     }
     
-    public func dictionaryValue() -> [String : Any]? {
-        return dictionary
+    public func dictionaryValue() -> [String : Any] {
+        return ["sticker": sticker.dictionaryValue()]
     }
 }
 
@@ -47,16 +39,23 @@ public class MessageSticker: Mappable {
     
     required public init?(dictionary: [String : Any]?) {
         guard let name = dictionary?["name"] as? String,
-        let url = dictionary?["image_url"] as? String,
-        let imageURL = URL(string: url),
-        let id = dictionary?["id"] as? String,
-        let packID = dictionary?["pack_id"] as? String else {
-            return nil
+            let url = dictionary?["image_url"] as? String,
+            let imageURL = URL(string: url),
+            let id = dictionary?["id"] as? String,
+            let packID = dictionary?["pack_id"] as? String else {
+                return nil
         }
         
         self.id = id
         self.name = name
         self.imageURL = imageURL
         self.packID = packID
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["name": name,
+                "image_url": imageURL.absoluteString,
+                "id": id,
+                "pack_id": packID]
     }
 }

@@ -35,10 +35,9 @@ class PrismCredential: NSObject, NSCoding {
     var visitorInfo: MessageUser = MessageUser(id: "", name: "")!
     var sender: MessageSender = MessageSender(id: "", name: "", role: "", userAgent: "")!
     var clientID: String = ""
-    
-    static var shared = PrismCredential()
-    
-    private override init() {}
+
+    override init() {
+    }
     
     public required init?(coder aDecoder: NSCoder) {
         username = aDecoder.decodeObject(forKey: Keys.username) as! String
@@ -66,8 +65,8 @@ class PrismCredential: NSObject, NSCoding {
         aCoder.encode(topic, forKey: Keys.topic)
         aCoder.encode(conversationID, forKey: Keys.conversationID)
         aCoder.encode(merchantID, forKey: Keys.merchantID)
-        aCoder.encode(visitorInfo.dictionaryValue, forKey: Keys.visitor)
-        aCoder.encode(sender.dictionaryValue, forKey: Keys.sender)
+        aCoder.encode(visitorInfo.dictionaryValue(), forKey: Keys.visitor)
+        aCoder.encode(sender.dictionaryValue(), forKey: Keys.sender)
         aCoder.encode(refreshToken, forKey: Keys.refreshToken)
         aCoder.encode(clientID, forKey: Keys.clientID)
     }

@@ -10,8 +10,9 @@ import Foundation
 
 public protocol Mappable {
     init?(dictionary: [String: Any]?)
+    func dictionaryValue() -> [String: Any]
 }
 
 public protocol MessageContentMappable : Mappable {
-    func dictionaryValue() -> [String: Any]?
+    
 }

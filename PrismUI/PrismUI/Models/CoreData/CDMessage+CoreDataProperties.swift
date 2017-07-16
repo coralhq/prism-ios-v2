@@ -2,7 +2,7 @@
 //  CDMessage+CoreDataProperties.swift
 //  PrismUI
 //
-//  Created by Nanang Rafsanjani on 7/13/17.
+//  Created by Nanang Rafsanjani on 7/14/17.
 //  Copyright © 2017 Prism. All rights reserved.
 //
 
@@ -22,9 +22,9 @@ extension CDMessage {
     @NSManaged public var id: String?
     @NSManaged public var merchantID: String?
     @NSManaged public var sectionDate: Date?
-    @NSManaged public var type: String?
-    @NSManaged public var version: Int16
     @NSManaged public var status: Int16
+    @NSManaged public var type: String?
+    @NSManaged public var version: String?
     @NSManaged public var brokerMetaData: CDBrokerMetaData?
     @NSManaged public var channelInfo: CDUser?
     @NSManaged public var sender: CDSender?

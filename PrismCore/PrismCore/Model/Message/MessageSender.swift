@@ -14,17 +14,6 @@ public class MessageSender : Mappable {
     public var role: String
     public var userAgent: String
     
-    public var dictionaryValue: [String: Any] {
-        get {
-            return [
-                "id": id,
-                "name": name,
-                "role": role,
-                "user_agent": userAgent
-            ]
-        }
-    }
-    
     required public init?(dictionary: [String : Any]?) {
         guard let id = dictionary?["id"] as? String,
             let name = dictionary?["name"] as? String,
@@ -43,5 +32,12 @@ public class MessageSender : Mappable {
     convenience public init?(id: String, name: String, role: String, userAgent: String) {
         let data = ["id": id, "name": name, "role": role, "user_agent": userAgent ]
         self.init(dictionary: data)
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["id": id,
+                "name": name,
+                "role": role,
+                "user_agent": userAgent]
     }
 }

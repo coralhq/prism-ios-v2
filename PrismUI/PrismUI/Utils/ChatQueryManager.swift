@@ -37,9 +37,6 @@ protocol ChatQueryManagerDelegate: class {
 }
 
 class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
-    var credential: PrismCredential {
-        return PrismCredential.shared
-    }
     let context: NSManagedObjectContext
     let fetchController: NSFetchedResultsController<CDMessage>
     
@@ -108,7 +105,8 @@ class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
             var objects = sections[newIndexPath.section].objects else { return }
         
         let index = newIndexPath.row
-        guard let chatVM = ChatViewModel(message: message, visitor: credential.sender) else { return }
+        guard let credential = Vendor.shared.credential,
+            let chatVM = ChatViewModel(message: message, visitor: credential.sender) else { return }
         
         switch type {
         case .delete:

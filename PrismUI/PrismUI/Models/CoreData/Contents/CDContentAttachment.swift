@@ -15,20 +15,31 @@ enum AttachmentUploadState: Int {
     case finished = 33
 }
 
-class CDContentAttachment: ValueTransformer, NSCoding {
-    var name: String?
-    var mimeType: String?
+class CDContentAttachment: ValueTransformer, NSCoding, CDMappable, CDContentEditable{
+    var name: String
+    var mimeType: String
     var url: String?
     var previewURL: String?
-    var uploadState: AttachmentUploadState?
+    var uploadState: AttachmentUploadState = .finished
     
-    init(contentAttachment: ContentAttachment) {
-        name = contentAttachment.name
-        mimeType = contentAttachment.mimeType
-        url = contentAttachment.url
-        previewURL = contentAttachment.previewURL
-        
-        uploadState = .finished
+    required init?(dictionary: [String : Any]) {
+        let attachment = dictionary["attachment"] as! [String: Any]
+        name = attachment["name"] as! String
+        mimeType = attachment["mimetype"] as! String
+        url = attachment["url"] as? String
+        previewURL = attachment["preview_url"] as? String
+    }
+    
+    func dictionaryValue() -> [String : Any] {
+        var result: [String: Any] = ["name": name,
+                                     "mimetype": mimeType]
+        if let url = url {
+            result["url"] = url
+        }
+        if let previewURL = previewURL {
+            result["preview_url"] = previewURL
+        }
+        return result
     }
     
     func encode(with aCoder: NSCoder) {
@@ -36,21 +47,21 @@ class CDContentAttachment: ValueTransformer, NSCoding {
         aCoder.encode(mimeType, forKey: "mime_type")
         aCoder.encode(url, forKey: "url")
         aCoder.encode(previewURL, forKey: "preview_url")
-        aCoder.encode(uploadState?.rawValue, forKey: "upload_state")
+        aCoder.encode(uploadState.rawValue, forKey: "upload_state")
     }
     
     required init?(coder aDecoder: NSCoder) {
-        name = aDecoder.decodeObject(forKey: "name") as? String
-        mimeType = aDecoder.decodeObject(forKey: "mime_type") as? String
+        name = aDecoder.decodeObject(forKey: "name") as! String
+        mimeType = aDecoder.decodeObject(forKey: "mime_type") as! String
         url = aDecoder.decodeObject(forKey: "url") as? String
         previewURL = aDecoder.decodeObject(forKey: "preview_url") as? String
-        
-        guard let state = aDecoder.decodeObject(forKey: "upload_state") as? Int else { return }
-        self.uploadState = AttachmentUploadState(rawValue: state)
-    }
-}
 
-extension CDContentAttachment: CDContentEditable {
+        guard let state = aDecoder.decodeObject(forKey: "upload_state") as? Int else {
+            return
+        }
+        self.uploadState = AttachmentUploadState(rawValue: state)!
+    }
+    
     func editWithContent(content: MessageContentMappable) {
         guard let content = content as? ContentAttachment else {
             return

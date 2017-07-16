@@ -18,4 +18,8 @@ open class Settings: Mappable {
         
         self.data = data
     }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["data": data]
+    }
 }

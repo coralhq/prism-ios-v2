@@ -36,7 +36,7 @@ class ChatViewController: BaseViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let composer = ChatComposer.composerFromNib(with: PrismCredential.shared.accessToken) else { return }
+        guard let composer = ChatComposer.composerFromNib(with: Vendor.shared.credential!.accessToken) else { return }
         composer.delegate = self
         composer.addTo(view: barView, margin: 0)
         
@@ -45,11 +45,8 @@ class ChatViewController: BaseViewController {
       
         tableView.register(ChatHeaderCell.NIB, forCellReuseIdentifier: ChatHeaderCell.className())
         
-        chatManager.connect { [weak self] (success, error) in
+        chatManager.connect {(success, error) in
             guard success else { return }
-            self?.chatManager.subscribe(completionHandler: { (success, error) in
-                guard success else { return }
-            })
         }
         
         queryManager?.delegate = self

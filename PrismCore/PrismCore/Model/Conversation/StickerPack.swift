@@ -53,6 +53,20 @@ open class StickerPack: NSObject, NSCoding, Mappable {
         self.createdBy = createdBy
     }
     
+    public func dictionaryValue() -> [String : Any] {
+        let rawStickers = self.stickers.map { (sticker) -> [String: Any] in
+            return sticker.dictionaryValue()
+        }        
+        return ["created_at": createdAt.ISO8601String,
+                "updated_at": updatedAt.ISO8601String,
+                "id": id,
+                "name": name,
+                "logo_url": logoURL.absoluteString,
+                "is_public": isPublic,
+                "stickers": rawStickers,
+                "created_by": createdBy]
+    }
+    
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(stickers, forKey: "stickers")
         aCoder.encode(createdAt, forKey: "created_at")

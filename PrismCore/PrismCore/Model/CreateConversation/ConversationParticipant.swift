@@ -9,7 +9,7 @@
 import Foundation
 
 //TODO: some properties might unused, re-check later
-public class ConversationParticipant {
+public class ConversationParticipant: Mappable {
     let createdAt: Date //"2017-05-19T03:39:31.808Z"
     let updatedAt: Date
     let id: String
@@ -39,5 +39,15 @@ public class ConversationParticipant {
         self.role = role
         self.conversationID = conversationID
         self.isRead = isRead
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["created_at": createdAt.ISO8601String,
+                "updated_at": updatedAt.ISO8601String,
+                "id": id,
+                "user_id": userID,
+                "role": role,
+                "conversation_id": conversationID,
+                "is_read": isRead]
     }
 }

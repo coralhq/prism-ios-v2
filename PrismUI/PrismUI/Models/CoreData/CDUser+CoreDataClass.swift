@@ -14,9 +14,13 @@ public class CDUser: NSManagedObject, CDManagedMappable {
     required public init(with context: NSManagedObjectContext, dictionary: [String : Any]) {
         let entityDesc = NSEntityDescription.entity(forEntityName: CDUser.className(), in: context)!
         super.init(entity: entityDesc, insertInto: context)
-
+        
         id = dictionary["id"] as? String
         name = dictionary["name"] as? String
+    }
+    
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
     }
     
     func dictionaryValue() -> [String : Any]? {

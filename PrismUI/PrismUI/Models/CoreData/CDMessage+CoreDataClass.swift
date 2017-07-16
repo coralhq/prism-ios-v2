@@ -18,7 +18,11 @@ public class CDMessage: NSManagedObject, CDManagedMappable {
         
         updateMessage(with: dictionary)
     }
-
+    
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+    }
+    
     func updateMessage(with dictionary: [String: Any]) {
         guard let context = managedObjectContext else {
             return
@@ -30,12 +34,15 @@ public class CDMessage: NSManagedObject, CDManagedMappable {
         visitor = CDUser(with: context, dictionary: dictionary["visitor"] as! [String : Any])
         sender = CDSender(with: context, dictionary: dictionary["sender"] as! [String : Any])
         type = dictionary["type"] as? String
-        version = dictionary["version"] as! Int16
+        version = dictionary["version"] as? String
         brokerMetaData = CDBrokerMetaData(with: context, dictionary: dictionary["_broker_metadata"] as! [String: Any])
+        content = coreDataContentWith(dictionary: dictionary["content"] as! [String: Any], type: type)
+        sectionDate = Date().removedTime()
     }
     
     func dictionaryValue() -> [String : Any]? {
         guard let id = id,
+            let version = version,
             let conversationID = conversationID,
             let merchantID = merchantID,
             let channel = channel,
@@ -58,22 +65,28 @@ public class CDMessage: NSManagedObject, CDManagedMappable {
                 "_broker_metadata": brokerMetaData]
     }
     
-    func coreDataContentWith(content: MessageContentMappable) -> NSObject? {
-        if let content = content as? ContentSticker {
-            return CDContentSticker(dictionary: content.dictionaryValue())
-        } else if let content = content as? ContentProduct {
-            return CDContentProduct(dictionary: content.dictionaryValue())
-        } else if let content = content as? ContentOfflineMessage {
-            return CDContentOfflineMessage(dictionary: content.dictionaryValue())
-        } else if let content = content as? ContentCart {
-            return CDContentCart(dictionary: content.dictionaryValue())
-        } else if let content = content as? ContentPlainText {
-            return CDContentPlainText(dictionary: content.dictionaryValue())
-        } else if let content = content as? ContentInvoice {
-            return CDContentInvoice(dictionary: content.dictionaryValue())
-        } else if let content = content as? ContentAttachment {
-            return CDContentAttachment(dictionary: content.dictionaryValue())
-        } else {
+    func coreDataContentWith(dictionary: [String: Any], type: String?) -> NSObject? {
+        guard let type = type else {
+            return nil
+        }
+        
+        let messageType = MessageType(rawValue: type)
+        switch messageType {
+        case .Sticker:
+            return CDContentSticker(dictionary: dictionary)
+        case .Product:
+            return CDContentProduct(dictionary: dictionary)
+        case .OfflineMessage:
+            return CDContentOfflineMessage(dictionary: dictionary)
+        case .Cart:
+            return CDContentCart(dictionary: dictionary)
+        case .PlainText:
+            return CDContentPlainText(dictionary: dictionary)
+        case .Invoice:
+            return CDContentInvoice(dictionary: dictionary)
+        case .Attachment:
+            return CDContentAttachment(dictionary: dictionary)
+        default:
             return nil
         }
     }

@@ -26,6 +26,10 @@ public class CDBrokerMetaData: NSManagedObject, CDManagedMappable {
         self.timestamp =  timestamp.ISO8601()
     }
     
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+    }
+    
     func dictionaryValue() -> [String : Any]? {
         guard let timestamp = timestamp else {
             return nil

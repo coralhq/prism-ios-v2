@@ -67,13 +67,6 @@ class ChatManager {
         cdmessage.content = cdcontent
         cd.save()
         
-        let trackerData = [
-            sendMessageTrackerType.conversationID.rawValue : credential.conversationID,
-            sendMessageTrackerType.messageType.rawValue : message.type.rawValue,
-            sendMessageTrackerType.sender.rawValue : message.sender.id
-        ]
-        PrismAnalytics.shared.sendTracker(withEvent: .sendMessage, data: trackerData)
-
         PrismCore.shared.getAttachmentURL(filename: imageName, conversationID: credential.conversationID, token: credential.accessToken) { (response, error) in
             guard let imageData = UIImagePNGRepresentation(image),
                 let url = response?.uploadURL else {
@@ -144,7 +137,7 @@ class ChatManager {
         coredata?.save()
         
         let trackerData = [
-            sendMessageTrackerType.conversationID.rawValue : PrismCredential.shared.conversationID,
+            sendMessageTrackerType.conversationID.rawValue : credential.conversationID,
             sendMessageTrackerType.messageType.rawValue : message.type.rawValue,
             sendMessageTrackerType.sender.rawValue : message.sender.id
         ]
@@ -191,17 +184,21 @@ class ChatManager {
             return
         }
         
+        guard let credential = Vendor.shared.credential else {
+            return
+        }
+        
         PrismAnalytics.shared.getIPAddress { (ipAddress) in
             let data : [String: Any] = [
                 "device_id": UIDevice.current.identifierForVendor!,
-                "conversation_id": PrismCredential.shared.conversationID,
+                "conversation_id": credential.conversationID,
                 "channel": "IOS-SDK",
                 "public_ip_address": ipAddress,
-                "sender_id": PrismCredential.shared.sender.id,
+                "sender_id": credential.sender.id,
                 "sent_time": Int(floor(Date().timeIntervalSince1970))
             ]
             
-            PrismAnalytics.shared.sendConversationDataToRover(data: data, token: PrismCredential.shared.accessToken)
+            PrismAnalytics.shared.sendConversationDataToRover(data: data, token: credential.accessToken)
             UserDefaults.standard.set(false, forKey: "isFirstMessage")
         }
     }

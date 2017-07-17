@@ -70,13 +70,6 @@ class ChatManager {
         cdmessage.content = cdcontent
         cd.save()
         
-        let trackerData = [
-            sendMessageTrackerType.conversationID.rawValue : PrismCredential.shared.conversationID,
-            sendMessageTrackerType.messageType.rawValue : message.type.rawValue,
-            sendMessageTrackerType.sender.rawValue : message.sender.id
-        ]
-        PrismAnalytics.shared.sendTracker(withEvent: .sendMessage, data: trackerData)
-        
         PrismCore.shared.getAttachmentURL(filename: imageName, conversationID: credential.conversationID, token: credential.accessToken) { (response, error) in
             guard let imageData = UIImagePNGRepresentation(image),
                 let url = response?.uploadURL else {
@@ -123,12 +116,29 @@ class ChatManager {
                                            packID: sticker.packID) else { return }
         let message = buildMessage(with: content, type: .Sticker)
         sendMessage(message: message)
+
+        PrismCore.shared.publishMessage(token: PrismCredential.shared.accessToken, topic: PrismCredential.shared.topic, messages: [message]) { [weak self] (response, error) in
+            self?.sendDataToRover()
+        }
+    }
+    
+    func sendMessage(image: UIImage) {
+        
+        //TODO: put this code inside publishmessage callback
+        sendDataToRover()
     }
     
     private func sendMessage(message: Message) {
         //save to core data
         coredata?.buildMessage(message: message, status: .pending)
         coredata?.save()
+        
+        let trackerData = [
+            sendMessageTrackerType.conversationID.rawValue : PrismCredential.shared.conversationID,
+            sendMessageTrackerType.messageType.rawValue : message.type.rawValue,
+            sendMessageTrackerType.sender.rawValue : message.sender.id
+        ]
+        PrismAnalytics.shared.sendTracker(withEvent: .sendMessage, data: trackerData)
         
         //publish to mqtt
         PrismCore.shared.publishMessage(token: credential.accessToken, topic: credential.topic, messages: [message]) { (message, error) in
@@ -163,10 +173,37 @@ class ChatManager {
         }
     }
     
+    private func sendDataToRover() {
+        guard UserDefaults.standard.bool(forKey: "isFirstMessage") || UserDefaults.standard.object(forKey: "isFirstMessage") == nil else {
+            return
+        }
+        
+        PrismAnalytics.shared.getIPAddress { (ipAddress) in
+            let data : [String: Any] = [
+                "device_id": UIDevice.current.identifierForVendor!,
+                "conversation_id": PrismCredential.shared.conversationID,
+                "channel": "IOS-SDK",
+                "public_ip_address": ipAddress,
+                "sender_id": PrismCredential.shared.sender.id,
+                "sent_time": Int(floor(Date().timeIntervalSince1970))
+            ]
+            
+            PrismAnalytics.shared.sendConversationDataToRover(data: data, token: PrismCredential.shared.accessToken)
+            UserDefaults.standard.set(false, forKey: "isFirstMessage")
+        }
+    }
+    
     @objc func chatReceived(sender: Notification) {
         guard let message = sender.object as? Message else { return }
+
         coredata?.buildMessage(message: message, status: .sent)
         coredata?.save()
+
+        if message.type == .CloseChat {
+            UserDefaults.standard.set(true, forKey: "isFirstMessage")
+        }
+        
+        coredata?.saveMessage(message: message, status: .sent)
     }
     
     @objc func chatDisconnect(sender: Notification) {

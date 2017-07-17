@@ -22,6 +22,10 @@ public class CDSender: NSManagedObject, CDManagedMappable {
         userAgent = dictionary["user_agent"] as? String
     }
     
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+    }
+    
     func dictionaryValue() -> [String : Any]? {
         guard let id = id,
             let name = name,

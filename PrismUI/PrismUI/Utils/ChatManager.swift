@@ -12,7 +12,7 @@ import CoreData
 import PrismAnalytics
 
 class ChatManager {
-    var credential: PrismCredential { return PrismCredential.shared }
+    let credential = Vendor.shared.credential!
     let coredata = CoreDataManager()
     let reachability = ReachabilityHelper()!
     
@@ -36,14 +36,11 @@ class ChatManager {
     }
     
     func connect(completionHandler: @escaping ((Bool, Error?) -> ())) {
-        PrismCore.shared.connectToBroker(username: PrismCredential.shared.username, password: PrismCredential.shared.password) { (success, error) in
-            completionHandler(success, error)
-        }
-    }
-    
-    func subscribe(completionHandler: @escaping ((Bool, Error?) -> ())) {
-        PrismCore.shared.subscribeToTopic(PrismCredential.shared.topic) { (success, error) in
-            completionHandler(success, error)
+        PrismCore.shared.connectToBroker(username: credential.username, password: credential.password) { (success, error) in
+            PrismCore.shared.subscribeToTopic(self.credential.topic) { (success, error) in
+                self.sendPendingMessages()
+                completionHandler(success, error)
+            }
         }
     }
     
@@ -107,6 +104,18 @@ class ChatManager {
         }
     }
     
+    func sendPendingMessages() {
+        coredata?.fetchPendingMessages(completion: { (cdMessages) in
+            for cdMessage in cdMessages {
+                guard let rawMessage = cdMessage.dictionaryValue(),
+                    let message = Message(dictionary: rawMessage) else {
+                        continue
+                }
+                self.sendMessage(message: message)
+            }
+        })
+    }
+    
     func sendMessage(sticker: StickerViewModel) {
         guard let content = ContentSticker(name: sticker.name,
                                            imageURL: sticker.imageURL.absoluteString,
@@ -128,7 +137,7 @@ class ChatManager {
         coredata?.save()
         
         let trackerData = [
-            sendMessageTrackerType.conversationID.rawValue : PrismCredential.shared.conversationID,
+            sendMessageTrackerType.conversationID.rawValue : credential.conversationID,
             sendMessageTrackerType.messageType.rawValue : message.type.rawValue,
             sendMessageTrackerType.sender.rawValue : message.sender.id
         ]
@@ -155,7 +164,10 @@ class ChatManager {
     @objc func reachabilityChanged(sender: Notification) {
         let reachability = sender.object as! ReachabilityHelper
         if reachability.isReachable {
-            connect(completionHandler: { (success, error) in })
+            
+            self.connect(completionHandler: { (success, error) in
+                
+            })
             
             if reachability.isReachableViaWiFi {
                 print("Reachable via WiFi")
@@ -172,17 +184,21 @@ class ChatManager {
             return
         }
         
+        guard let credential = Vendor.shared.credential else {
+            return
+        }
+        
         PrismAnalytics.shared.getIPAddress { (ipAddress) in
             let data : [String: Any] = [
                 "device_id": UIDevice.current.identifierForVendor!,
-                "conversation_id": PrismCredential.shared.conversationID,
+                "conversation_id": credential.conversationID,
                 "channel": "IOS-SDK",
                 "public_ip_address": ipAddress,
-                "sender_id": PrismCredential.shared.sender.id,
+                "sender_id": credential.sender.id,
                 "sent_time": Int(floor(Date().timeIntervalSince1970))
             ]
             
-            PrismAnalytics.shared.sendConversationDataToRover(data: data, token: PrismCredential.shared.accessToken)
+            PrismAnalytics.shared.sendConversationDataToRover(data: data, token: credential.accessToken)
             UserDefaults.standard.set(false, forKey: "isFirstMessage")
         }
     }

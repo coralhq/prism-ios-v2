@@ -203,7 +203,7 @@ class ChatManager {
             UserDefaults.standard.set(true, forKey: "isFirstMessage")
         }
         
-        coredata?.saveMessage(message: message, status: .sent)
+        coredata?.buildMessage(message: message, status: .sent)
     }
     
     @objc func chatDisconnect(sender: Notification) {

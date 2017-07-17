@@ -34,4 +34,13 @@ public class Visitor : Mappable {
         self.channelName = channelName
         self.channelUserID = channelUserID
     }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["id": id,
+                "name": name,
+                "merchant_id": merchantID,
+                "app_name": appName,
+                "channel_name": channelName,
+                "channel_user_id": channelUserID]
+    }
 }

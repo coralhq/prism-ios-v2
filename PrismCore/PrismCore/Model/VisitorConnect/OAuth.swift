@@ -32,4 +32,13 @@ public class OAuth : Mappable {
         self.clientID = clientID
         self.expireIn = expireIn
     }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["refresh_token": refreshToken,
+                "token_type": tokenType,
+                "access_token": accessToken,
+                "client_id": clientID,
+                "expires_in": expireIn]
+    }
 }
+

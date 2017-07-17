@@ -26,5 +26,9 @@ open class CreateConversationResponse : Mappable {
         self.conversation = conversation
     }
     
+    public func dictionaryValue() -> [String : Any] {
+        return ["status": status,
+                "data": ["conversation": conversation.dictionaryValue()]]
+    }
 }
 

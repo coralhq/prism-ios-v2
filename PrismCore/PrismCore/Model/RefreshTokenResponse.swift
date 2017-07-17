@@ -24,4 +24,15 @@ public class RefreshTokenResponse: Mappable {
         self.message = dictionary?["message"] as? String
         self.oAuth = oAuth
     }
+    
+    public func dictionaryValue() -> [String : Any] {
+        var data: [String: Any] = ["oauth": oAuth.dictionaryValue()]
+        if let status = self.status {
+            data["status"] = status
+        }
+        if let message = self.message {
+            data["message"] = message
+        }
+        return ["data": data]
+    }
 }

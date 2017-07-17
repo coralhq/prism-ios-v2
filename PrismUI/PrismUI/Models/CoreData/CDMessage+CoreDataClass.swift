@@ -10,54 +10,69 @@ import Foundation
 import PrismCore
 import CoreData
 
-extension NSManagedObject {
-    convenience init(with context: NSManagedObjectContext) {
-        let entityDesc = NSEntityDescription.entity(forEntityName: String(describing: type(of: self)), in: context)!
-        self.init(entity: entityDesc, insertInto: context)
-    }
-}
-
-public class CDMessage: NSManagedObject {
+public class CDMessage: NSManagedObject, CDManagedMappable {
     
-    func setMessage(message: Message) {
-        id = message.id
-        conversationID = message.conversationID
-        merchantID = message.merchantID
-        channel = message.channel
-        type = message.type.rawValue
-        version = Int16(message.version)
+    required public init(with context: NSManagedObjectContext, dictionary: [String : Any]) {
+        let entityDesc = NSEntityDescription.entity(forEntityName: String(describing: type(of: self)), in: context)!
+        super.init(entity: entityDesc, insertInto: context)
         
-        if let content = self.content as? CDContentEditable {
-            content.editWithContent(content: message.content)
-        } else {
-            self.content = coreDataContentWith(content: message.content)
-        }
+        updateMessage(with: dictionary)
+    }
 
-        guard let context = managedObjectContext else { return }
-        visitor = CDUser(context: context, user: message.visitor)
-        sender = CDSender(context: context, sender: message.sender)
-        brokerMetaData = CDBrokerMetaData(context: context, brokerMetaData: message.brokerMetaData)
-        
-        channelInfo = CDUser(context: context, user: message.channelInfo)
-        
-        sectionDate = brokerMetaData?.timestamp?.removedTime()
+    func updateMessage(with dictionary: [String: Any]) {
+        guard let context = managedObjectContext else {
+            return
+        }
+        id = dictionary["id"] as? String
+        conversationID = dictionary["conversation_id"] as? String
+        merchantID = dictionary["merchant_id"] as? String
+        channel = dictionary["channel"] as? String
+        visitor = CDUser(with: context, dictionary: dictionary["visitor"] as! [String : Any])
+        sender = CDSender(with: context, dictionary: dictionary["sender"] as! [String : Any])
+        type = dictionary["type"] as? String
+        version = dictionary["version"] as! Int16
+        brokerMetaData = CDBrokerMetaData(with: context, dictionary: dictionary["_broker_metadata"] as! [String: Any])
+    }
+    
+    func dictionaryValue() -> [String : Any]? {
+        guard let id = id,
+            let conversationID = conversationID,
+            let merchantID = merchantID,
+            let channel = channel,
+            let visitor = visitor?.dictionaryValue(),
+            let sender = sender?.dictionaryValue(),
+            let type = type,
+            let content = (content as? CDMappable)?.dictionaryValue(),
+            let brokerMetaData = brokerMetaData?.dictionaryValue() else {
+                return nil
+        }
+        return ["id": id,
+                "conversation_id": conversationID,
+                "merchant_id": merchantID,
+                "channel": channel,
+                "visitor": visitor,
+                "sender": sender,
+                "type": type,
+                "content": content,
+                "version": version,
+                "_broker_metadata": brokerMetaData]
     }
     
     func coreDataContentWith(content: MessageContentMappable) -> NSObject? {
         if let content = content as? ContentSticker {
-            return CDContentSticker(contentSticker: content)
+            return CDContentSticker(dictionary: content.dictionaryValue())
         } else if let content = content as? ContentProduct {
-            return CDContentProduct(contentProduct: content)
+            return CDContentProduct(dictionary: content.dictionaryValue())
         } else if let content = content as? ContentOfflineMessage {
-            return CDContentOfflineMessage(offlineMessage: content)
+            return CDContentOfflineMessage(dictionary: content.dictionaryValue())
         } else if let content = content as? ContentCart {
-            return CDContentCart(cart: content)
+            return CDContentCart(dictionary: content.dictionaryValue())
         } else if let content = content as? ContentPlainText {
-            return CDContentPlainText(plainText: content)
+            return CDContentPlainText(dictionary: content.dictionaryValue())
         } else if let content = content as? ContentInvoice {
-            return CDContentInvoice(invoice: content)
+            return CDContentInvoice(dictionary: content.dictionaryValue())
         } else if let content = content as? ContentAttachment {
-            return CDContentAttachment(contentAttachment: content)
+            return CDContentAttachment(dictionary: content.dictionaryValue())
         } else {
             return nil
         }

@@ -197,12 +197,10 @@ class Network: NSObject, NetworkProtocol {
             }
         }
     }
-
+    
     func publishMessage(topic: String, message: Message, completionHandler: @escaping (Message?, NSError?) -> ()) {
         do {
-            guard let messageDict = message.dictionaryValue() else { return }
-            
-            let jsonData = try JSONSerialization.data(withJSONObject: messageDict, options: .init(rawValue: 0))
+            let jsonData = try JSONSerialization.data(withJSONObject: message.dictionaryValue(), options: .init(rawValue: 0))
             
             mqttSession.publish(jsonData, in: topic, delivering: .atLeastOnce, retain: false) { (success, error) in
                 DispatchQueue.main.async(){

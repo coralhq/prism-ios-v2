@@ -50,37 +50,31 @@ class ContentInvoiceViewModel: ContentViewModel {
     
     init?(contentInvoice: CDContentInvoice) {
         
-        guard let totalPriceAmount = contentInvoice.grandTotal?.amount,
-            let totalPrice = totalPriceAmount.formattedCurrency(),
-            let items = contentInvoice.lineItems,
-            let invoiceID = contentInvoice.id,
-            let name = contentInvoice.buyer?.name,
-            let phoneNumber = contentInvoice.buyer?.phoneNumber,
-            let email = contentInvoice.buyer?.email,
-            let paymentMethodID = contentInvoice.payment?.type else { return nil }
+        self.invoiceID = contentInvoice.id
+        self.name = contentInvoice.buyer.name
+        self.phoneNumber = contentInvoice.buyer.phoneNumber
+        self.email = contentInvoice.buyer.email
         
-        self.invoiceID = invoiceID
-        self.name = name
-        self.phoneNumber = phoneNumber
-        self.email = email
+        let totalAmount = Double(contentInvoice.grandTotal.amount)!
+        self.totalPrice = "Total Price".localized() + " = " + totalAmount.formattedCurrency()!
+        self.paymentMethod = PaymentMethod.value(with: contentInvoice.payment.provider.type)
         
-        self.totalPrice = "Total Price".localized() + " = " + totalPrice
-        
-        self.paymentMethod = PaymentMethod.value(with: paymentMethodID)
-        
-        for item in items {
+        for item in contentInvoice.lineItems {
             guard let vm = ContentInvoiceProductViewModel(contentItem: item) else { continue }
             self.productModels.append(vm)
         }
         
         if let shipment = contentInvoice.shipment {
-            self.address = shipment.info?.address
-            if let shipmentCost = shipment.cost?.amount?.formattedCurrency() {
+            self.address = shipment.info.address
+            let cost = Double(shipment.cost.amount)!
+            if let shipmentCost = cost.formattedCurrency() {
                 self.shippingCost = "Shipping Cost".localized() + " = " + shipmentCost
             }
         }
         
-        self.midtransPaymentURL = contentInvoice.payment?.midtransPaymentURL
+        if let info = contentInvoice.payment.provider.info as? CDMidtransInfo {
+            self.midtransPaymentURL = URL(string: info.redirectURL)
+        }
     }
 }
 
@@ -89,33 +83,23 @@ class ContentInvoiceProductViewModel: ContentViewModel {
     var name: String
     
     init?(contentItem: CDLineItem) {
+        self.name = contentItem.product.name
         
-        guard let name = contentItem.product?.name,
-            let qty = contentItem.quantity,
-            let priceAmount = contentItem.product?.price,
-            var discAmount = contentItem.product?.discount?.amount,
-            let priceString = priceAmount.formattedCurrency(),
-            let discType = contentItem.product?.discount?.discountType else { return nil }
+        let priceAmount = Double(contentItem.product.price)!
+        let priceString = priceAmount.formattedCurrency()!
         
-        self.name = name
-        
-        if discType == DiscountType.percentage {
-            discAmount = (discAmount / 100) * priceAmount
-        }
-        
+        let prefix = "Price".localized() + " = "
+        let suffix = "(Qty \(contentItem.quantity))"
         let atts: [String: Any] = [NSFontAttributeName: UIFont.systemFont(ofSize: 14),
                                    NSForegroundColorAttributeName: UIColor.jetBlack]
-        let prefix = "Price".localized() + " = "
-        let suffix = "(Qty \(qty))"
         
-        if discAmount > 0 {
+        if let discount = contentItem.product.discount {
             let linedAtts: [String: Any] = [NSFontAttributeName: UIFont.systemFont(ofSize: 14),
                                             NSForegroundColorAttributeName: UIColor.jetBlack.withAlphaComponent(0.5),
                                             NSBaselineOffsetAttributeName: NSNumber(value: 0),
                                             NSStrikethroughStyleAttributeName: NSNumber(value: 1)]
-            
-            guard let discString = (priceAmount - discAmount).formattedCurrency() else { return nil }
-            
+            let discAmount = Double(discount.amount)!
+            let discString = (priceAmount - discAmount).formattedCurrency()!
             let priceInfo = prefix + priceString + " " + discString + " " + suffix
             let range = (priceInfo as NSString).range(of: priceString)
             

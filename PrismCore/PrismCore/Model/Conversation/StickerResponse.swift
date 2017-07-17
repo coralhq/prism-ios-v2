@@ -33,6 +33,14 @@ open class StickerResponse: NSObject, NSCoding, Mappable {
         self.packs = packs
     }
     
+    public func dictionaryValue() -> [String : Any] {
+        let stickerPakcs = self.packs.map { (pack) -> [String: Any] in
+            return pack.dictionaryValue()
+        }
+        return ["data": ["packs": stickerPakcs],
+                "status": status]
+    }
+    
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(status, forKey: "status")
         aCoder.encode(packs, forKey: "status")

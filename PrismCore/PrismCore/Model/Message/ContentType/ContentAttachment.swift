@@ -35,7 +35,7 @@ public class ContentAttachment: MessageContentMappable {
         self.previewURL = url
     }
     
-    public func dictionaryValue() -> [String : Any]? {
+    public func dictionaryValue() -> [String : Any] {
         var attDict: [String: Any] = ["name": name,
                                       "mimetype": mimeType]
         if let url = url {

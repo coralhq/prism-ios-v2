@@ -93,7 +93,7 @@ class ChatManager {
             cdmessage.content = cdcontent
             cd.save()
             
-            PrismCore.shared.uploadAttachment(with: imageData, url: url, completionHandler: { (success, error) in
+            PrismCore.shared.uploadAttachment(with: imageData, url: url, completionHandler: { [weak self] (success, error) in
                 guard success else {
                     return
                 }
@@ -102,9 +102,7 @@ class ChatManager {
                 cd.save()
                 
                 message.content = content
-                
-                PrismCore.shared.publishMessage(token: self.credential.accessToken, topic: self.credential.topic, messages: [message], completionHandler: { (message, error) in
-                })
+                self?.sendMessage(message: message)
             })
         }
     }
@@ -116,10 +114,6 @@ class ChatManager {
                                            packID: sticker.packID) else { return }
         let message = buildMessage(with: content, type: .Sticker)
         sendMessage(message: message)
-
-        PrismCore.shared.publishMessage(token: PrismCredential.shared.accessToken, topic: PrismCredential.shared.topic, messages: [message]) { [weak self] (response, error) in
-            self?.sendDataToRover()
-        }
     }
     
     func sendMessage(image: UIImage) {
@@ -141,8 +135,8 @@ class ChatManager {
         PrismAnalytics.shared.sendTracker(withEvent: .sendMessage, data: trackerData)
         
         //publish to mqtt
-        PrismCore.shared.publishMessage(token: credential.accessToken, topic: credential.topic, messages: [message]) { (message, error) in
-            
+        PrismCore.shared.publishMessage(token: credential.accessToken, topic: credential.topic, messages: [message]) { [weak self] (message, error) in
+            self?.sendDataToRover()
         }
     }
     

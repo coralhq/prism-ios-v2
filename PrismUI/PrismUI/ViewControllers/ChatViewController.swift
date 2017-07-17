@@ -23,7 +23,9 @@ class ChatViewController: BaseViewController {
         
         super.init(nibName: nil, bundle: Bundle.prism)
         
-        guard let context = chatManager.coredata?.context else { return }
+        guard let context = chatManager.coredata?.mainContext else {
+            return
+        }
         queryManager = ChatQueryManager(context: context)
     }
     
@@ -34,7 +36,7 @@ class ChatViewController: BaseViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let composer = ChatComposer.composerFromNib(with: chatManager.accessToken) else { return }
+        guard let composer = ChatComposer.composerFromNib(with: PrismCredential.shared.accessToken) else { return }
         composer.delegate = self
         composer.addTo(view: barView, margin: 0)
         
@@ -105,7 +107,7 @@ extension ChatViewController: UITableViewDataSource {
             cell = ChatCell(viewModel: viewModel)
         }
         
-        let isExtension = isViewModel(vm: viewModel, extensionFrom: objects[safe: indexPath.row + 1])
+        let isExtension = tableView.isViewModel(vm: viewModel, extensionFrom: objects[safe: indexPath.row + 1])
         cell?.chatView?.update(with: viewModel, isExtension: isExtension)
         
         return cell!
@@ -123,12 +125,16 @@ extension ChatViewController: UITableViewDelegate {
 }
 
 extension ChatViewController: ChatComposerDelegate {
-    func chatComposer(composer: ChatComposer, didSendText text: String) {
+    func chatComposer(composer: ChatComposer, didComposeText text: String) {
         chatManager.sendMessage(text: text)
     }
     
-    func chatComposer(composer: ChatComposer, didSendSticker sticker: StickerViewModel) {
-        
+    func chatComposer(composer: ChatComposer, didPickSticker sticker: StickerViewModel) {
+        chatManager.sendMessage(sticker: sticker)
+    }
+    
+    func chatComposer(composer: ChatComposer, didPickImage image: UIImage, imageName: String) {
+        chatManager.sendMessage(image: image, imageName: imageName)
     }
 }
 
@@ -163,8 +169,8 @@ extension ChatViewController: ChatQueryManagerDelegate {
             tableView.insertRows(at: [newIndexPath], with: .fade)
         case .move:
             guard let indexPath = indexPath else { return }
-            tableView.deleteRows(at: [indexPath], with: .bottom)
-            tableView.insertRows(at: [newIndexPath], with: .top)
+            tableView.deleteRows(at: [indexPath], with: .none)
+            tableView.insertRows(at: [newIndexPath], with: .none)
         default:
             tableView.reloadRows(at: [newIndexPath], with: .none)
         }

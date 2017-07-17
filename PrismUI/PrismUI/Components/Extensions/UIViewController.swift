@@ -122,4 +122,28 @@ extension UIViewController {
             remove(viewController: vc)
         }
     }
+    
+    static var root: UIViewController? {
+        var rootVC = UIApplication.shared.keyWindow?.rootViewController
+        while (rootVC?.presentedViewController != nil) {
+            if let presentedVC = rootVC?.presentedViewController,
+                presentedVC.isKind(of: UIAlertController.classForCoder()) == false {
+                rootVC = rootVC?.presentedViewController
+            } else {
+                break
+            }
+        }
+        
+        if let navVC = rootVC as? UINavigationController {
+            return navVC.topViewController
+        } else if let tabVC = rootVC as? UITabBarController {
+            if let navVC = tabVC.selectedViewController as? UINavigationController {
+                return navVC.topViewController
+            } else {
+                return tabVC.selectedViewController
+            }
+        } else {
+            return rootVC
+        }
+    }
 }

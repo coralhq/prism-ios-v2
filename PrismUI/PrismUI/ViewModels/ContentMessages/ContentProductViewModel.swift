@@ -26,15 +26,14 @@ class ContentProductViewModel: ContentViewModel {
         self.description = contentProduct.product?.desc
         self.imageURLs = imageURLs
         
-        if let discount = contentProduct.product?.discount,
-            var discAmount = contentProduct.product?.discount?.amount,
+        if var discAmount = contentProduct.product?.discount?.amount,
             let discType = contentProduct.product?.discount?.discountType {
             
             if discType == DiscountType.percentage {
                 discAmount = (discAmount / 100) * priceAmount
             }
             if discAmount > 0 {
-                discount = (priceAmount - discAmount).formattedCurrency()
+                self.discount = (priceAmount - discAmount).formattedCurrency()
             }
         }
     }

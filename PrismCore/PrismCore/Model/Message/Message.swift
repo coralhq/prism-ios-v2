@@ -88,7 +88,6 @@ public enum MessageType {
             case .Unknown: return "unknown"
             }
         }
-        
     }
 }
 
@@ -106,8 +105,6 @@ open class Message: Mappable {
     
     public var channelInfo: MessageChannelInfo?
     
-    var dictionary: [String: Any]?
-    
     public required init?(dictionary: [String : Any]?) {
         guard let dictionary = dictionary,
             let id = dictionary["id"] as? String,
@@ -121,8 +118,6 @@ open class Message: Mappable {
             let brokerMetaData = BrokerMetaData(dictionary: dictionary["_broker_metadata"] as? [String: Any]) else {
                 return nil
         }
-        
-        self.dictionary = dictionary
         
         self.channelInfo = MessageChannelInfo(dictionary: dictionary["channel_info"] as? [String: Any])
         self.type = MessageType(rawValue: typeString)
@@ -141,37 +136,43 @@ open class Message: Mappable {
         self.content = content
     }
     
-    convenience public init?(id: String,
-                             conversationID: String,
-                             merchantID: String,
-                             channel: String,
-                             visitor: MessageVisitorInfo,
-                             sender: MessageSender,
-                             type: MessageType,
-                             content: MessageContentMappable,
-                             brokerMetaData: BrokerMetaData,
-                             channelInfo: MessageChannelInfo? = nil) {
-        guard let contentDict = content.dictionaryValue() else { return nil }
-        var messageDict: [String: Any] = [
-            "id": id,
-            "conversation_id": conversationID,
-            "merchant_id": merchantID,
-            "channel": channel,
-            "visitor": visitor.dictionaryValue,
-            "sender": sender.dictionaryValue,
-            "type": type.rawValue,
-            "content": contentDict,
-            "version": 2,
-            "_broker_metadata": brokerMetaData.dictionaryValue
-        ]
-        if let channelInfo = channelInfo {
-            messageDict["channel_info"] = channelInfo.dictionaryValue
-        }
-        self.init(dictionary: messageDict)
+    public init(id: String,
+                conversationID: String,
+                merchantID: String,
+                channel: String,
+                visitor: MessageVisitorInfo,
+                sender: MessageSender,
+                type: MessageType,
+                content: MessageContentMappable,
+                brokerMetaData: BrokerMetaData,
+                channelInfo: MessageChannelInfo? = nil) {
+        self.id = id
+        self.conversationID = conversationID
+        self.merchantID = merchantID
+        self.channel = channel
+        self.visitor = visitor
+        self.sender = sender
+        self.type = type
+        self.content = content
+        self.brokerMetaData = brokerMetaData
+        self.channelInfo = channelInfo
+        self.version = 2
     }
     
-    func dictionaryValue() -> [String: Any]? {
-        return dictionary
+    public func dictionaryValue() -> [String: Any]? {
+        guard let contentDict = content.dictionaryValue() else {
+            return nil
+        }
+        return ["id": id,
+                "conversation_id": conversationID,
+                "merchant_id": merchantID,
+                "channel": channel,
+                "visitor": visitor.dictionaryValue,
+                "sender": sender.dictionaryValue,
+                "type": type.rawValue,
+                "content": contentDict,
+                "version": 2,
+                "_broker_metadata": brokerMetaData.dictionaryValue]
     }
     
     static func contentWith(dictionary: [String: Any], type: MessageType) -> MessageContentMappable? {

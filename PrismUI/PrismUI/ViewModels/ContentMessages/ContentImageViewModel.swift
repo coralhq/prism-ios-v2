@@ -7,12 +7,16 @@
 //
 
 import Foundation
+import PrismCore
 
 class ContentImageViewModel: ContentViewModel {
-    var imageURL: URL
+    var imageURL: URL?
+    var uploadState: AttachmentUploadState?
     
     init?(contentImage: CDContentAttachment) {
-        guard let imageURL = contentImage.url else { return nil }
-        self.imageURL = imageURL
+        if let stringURL = contentImage.url {
+            self.imageURL = URL(string: stringURL)
+        }
+        self.uploadState = contentImage.uploadState
     }
 }

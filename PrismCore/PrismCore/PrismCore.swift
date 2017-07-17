@@ -13,6 +13,7 @@ public typealias HTTPRequestResult = (Mappable?, NSError?) -> ()
 public let ReceiveChatNotification = NSNotification.Name(rawValue: "ReceiveChatNotification")
 public let DisconnectChatNotification = NSNotification.Name(rawValue: "ConnectChatNotification")
 public let ErrorChatNotification = NSNotification.Name(rawValue: "ErrorChatNotification")
+public let UploadProgressNotification = NSNotification.Name(rawValue: "UploadProgressNotification")
 public let RefreshTokenNotification = NSNotification.Name("RefreshTokenNotification")
 
 open class PrismCore {
@@ -21,12 +22,13 @@ open class PrismCore {
     
     static open var shared = PrismCore()
     
-    internal var network: NetworkProtocol?
+    internal var network: Network?
     
     open func configure(environment: EnvironmentType, merchantID: String) {
         Config.shared.configure(environment: environment, merchantID: merchantID)
         
         network = Network()
+        network?.delegate = self
         network?.setMQTTDelegate(delegate: self)
     }
     
@@ -139,7 +141,6 @@ extension PrismCore: MQTTSessionDelegate {
                     print("Error parsing MQTT message")
                     return
             }
-            print("message received \(messageDict)")
             NotificationCenter.default.post(name: ReceiveChatNotification, object: message)
         } catch {
             NotificationCenter.default.post(name: ErrorChatNotification, object: error)
@@ -152,5 +153,13 @@ extension PrismCore: MQTTSessionDelegate {
     
     internal func mqttSocketErrorOccurred(session: MQTTSession) {
         NotificationCenter.default.post(name: ErrorChatNotification, object: nil)
+    }
+}
+
+extension PrismCore: NetworkDelegate {
+    func network(network: Network, uploadIn progress: Double, with stringURL: URL) {
+        NotificationCenter.default.post(name: UploadProgressNotification,
+                                        object: nil,
+                                        userInfo: ["progress": progress, "url": stringURL])
     }
 }

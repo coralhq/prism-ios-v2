@@ -18,7 +18,7 @@ extension NSManagedObject {
 }
 
 public class CDMessage: NSManagedObject {
-
+    
     func setMessage(message: Message) {
         id = message.id
         conversationID = message.conversationID
@@ -27,8 +27,12 @@ public class CDMessage: NSManagedObject {
         type = message.type.rawValue
         version = Int16(message.version)
         
-        content = coreDataContentWith(content: message.content)
-        
+        if let content = self.content as? CDContentEditable {
+            content.editWithContent(content: message.content)
+        } else {
+            self.content = coreDataContentWith(content: message.content)
+        }
+
         guard let context = managedObjectContext else { return }
         visitor = CDUser(context: context, user: message.visitor)
         sender = CDSender(context: context, sender: message.sender)

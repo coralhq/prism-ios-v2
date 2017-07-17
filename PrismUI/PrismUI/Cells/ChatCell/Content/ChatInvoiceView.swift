@@ -41,7 +41,7 @@ class ChatInvoiceProductView: UIView {
     }
 }
 
-class ChatInvoiceView: UIView {
+class ChatInvoiceView: ChatContentView {
     let midtransView = MidtransView.viewFromNib() as! MidtransView
     
     @IBOutlet var containerView: UIStackView!
@@ -81,20 +81,14 @@ class ChatInvoiceView: UIView {
             UIApplication.shared.canOpenURL(payURL) else { return }
         UIApplication.shared.openURL(payURL)
     }
-}
-
-extension ChatInvoiceView: ChatContentProtocol {
-    func addTo(view: UIView?) {
-        addTo(view: view, margin: 0)
-    }
     
-    func infoPosition() -> InfoViewPosition {
+    override func infoPosition() -> InfoViewPosition {
         return .Bottom
     }
-    
-    func updateView(with viewModel: ChatViewModel) {
-        guard let contentVM = viewModel.contentViewModel as? ContentInvoiceViewModel else { return }
-        
+    override func updateView(with viewModel: ChatViewModel) {
+        guard let contentVM = viewModel.contentViewModel as? ContentInvoiceViewModel else {
+            return
+        }
         nameLabel.text = contentVM.name
         phoneLabel.text = contentVM.phoneNumber
         emailLabel.text = contentVM.email

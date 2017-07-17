@@ -1,13 +1,22 @@
 //
-//  ChatContentType.swift
+//  ChatContentView.swift
 //  PrismUI
 //
-//  Created by Nanang Rafsanjani on 7/5/17.
+//  Created by Nanang Rafsanjani on 6/19/17.
 //  Copyright © 2017 Prism. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import PrismCore
+
+class ChatContentView: UIView {
+    func infoPosition() -> InfoViewPosition { return .Bottom }
+    func updateView(with viewModel: ChatViewModel) {}
+    
+    static func contentFromNIB() -> ChatContentView? {
+        return self.viewFromNib() as? ChatContentView
+    }
+}
 
 enum ChatContentType: String {
     case Text = "text_cell"

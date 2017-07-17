@@ -12,17 +12,26 @@ import CoreData
 import PrismAnalytics
 
 class ChatManager {
-    var accessToken: String { return PrismCredential.shared.accessToken }
+    var credential: PrismCredential { return PrismCredential.shared }
     let coredata = CoreDataManager()
+    let reachability = ReachabilityHelper()!
     
     init() {
         
+        do {
+            try reachability.startNotifier()
+        } catch{
+            print("could not start reachability notifier")
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(sender:)), name: ReachabilityChangedNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(chatReceived(sender:)), name: ReceiveChatNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(chatDisconnect(sender:)), name: DisconnectChatNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(chatError(sender:)), name: ErrorChatNotification, object: nil)
     }
     
     deinit {
+        reachability.stopNotifier()
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -39,43 +48,125 @@ class ChatManager {
     }
     
     func sendMessage(text: String) {
-        guard let content = ContentPlainText(text: text),
-            let message = Message(id: NSUUID().uuidString.lowercased(),
-                                  conversationID: PrismCredential.shared.conversationID,
-                                  merchantID: PrismCredential.shared.merchantID,
-                                  channel: "IOS_SDK",
-                                  visitor: PrismCredential.shared.visitorInfo,
-                                  sender: PrismCredential.shared.sender,
-                                  type: .PlainText,
-                                  content: content,
-                                  brokerMetaData: BrokerMetaData()) else { return }
+        guard let content = ContentPlainText(text: text) else { return }
+        let message = buildMessage(with: content, type: .PlainText)
+        sendMessage(message: message)
+    }
+    
+    func sendMessage(image: UIImage, imageName: String) {
+        let content = ContentAttachment(name: imageName, mimeType: "image")
+        let message = buildMessage(with: content, type: .Attachment)
         
-        coredata?.saveMessage(message: message, status: .pending)
+        let temporaryKey = UUID().uuidString
+        CacheVendor.shared.cacheImages.setObject(image, forKey: temporaryKey as NSString)
+        
+        guard let cd = coredata,
+            let cdmessage = coredata?.buildMessage(message: message, status: .pending),
+            let cdcontent = cdmessage.content as? CDContentAttachment else {
+                return
+        }
+        cdcontent.url = temporaryKey
+        cdcontent.uploadState = .start
+        cdmessage.content = cdcontent
+        cd.save()
         
         let trackerData = [
             sendMessageTrackerType.conversationID.rawValue : PrismCredential.shared.conversationID,
             sendMessageTrackerType.messageType.rawValue : message.type.rawValue,
             sendMessageTrackerType.sender.rawValue : message.sender.id
         ]
-        
         PrismAnalytics.shared.sendTracker(withEvent: .sendMessage, data: trackerData)
         
-        PrismCore.shared.publishMessage(token: PrismCredential.shared.accessToken, topic: PrismCredential.shared.topic, messages: [message]) { (response, error) in
+        PrismCore.shared.getAttachmentURL(filename: imageName, conversationID: credential.conversationID, token: credential.accessToken) { (response, error) in
+            guard let imageData = UIImagePNGRepresentation(image),
+                let url = response?.uploadURL else {
+                    return
+            }
+            
+            var comp = URLComponents(url: url, resolvingAgainstBaseURL: false)
+            comp?.query = nil
+            comp?.fragment = nil
+            
+            guard let stringURL = comp?.url?.absoluteString else {
+                return
+            }
+            CacheVendor.shared.cacheImages.removeObject(forKey: temporaryKey as NSString)
+            CacheVendor.shared.cacheImages.setObject(image, forKey: stringURL as NSString)
+            
+            content.url = stringURL
+            
+            cdcontent.url = stringURL
+            cdcontent.uploadState = .uploading
+            cdmessage.content = cdcontent
+            cd.save()
+            
+            PrismCore.shared.uploadAttachment(with: imageData, url: url, completionHandler: { (success, error) in
+                guard success else {
+                    return
+                }
+                cdcontent.uploadState = .finished
+                cdmessage.content = cdcontent
+                cd.save()
+                
+                message.content = content
+                
+                PrismCore.shared.publishMessage(token: self.credential.accessToken, topic: self.credential.topic, messages: [message], completionHandler: { (message, error) in
+                })
+            })
+        }
+    }
+    
+    func sendMessage(sticker: StickerViewModel) {
+        guard let content = ContentSticker(name: sticker.name,
+                                           imageURL: sticker.imageURL.absoluteString,
+                                           id: sticker.id,
+                                           packID: sticker.packID) else { return }
+        let message = buildMessage(with: content, type: .Sticker)
+        sendMessage(message: message)
+    }
+    
+    private func sendMessage(message: Message) {
+        //save to core data
+        coredata?.buildMessage(message: message, status: .pending)
+        coredata?.save()
+        
+        //publish to mqtt
+        PrismCore.shared.publishMessage(token: credential.accessToken, topic: credential.topic, messages: [message]) { (message, error) in
             
         }
     }
     
-    func sendMessage(image: UIImage) {
-        
+    private func buildMessage(with content: MessageContentMappable, type: MessageType) -> Message {
+        return Message(id: NSUUID().uuidString.lowercased(),
+                       conversationID: credential.conversationID,
+                       merchantID: credential.merchantID,
+                       channel: "IOS_SDK",
+                       visitor: credential.visitorInfo,
+                       sender: credential.sender,
+                       type: type,
+                       content: content,
+                       brokerMetaData: BrokerMetaData())
     }
     
-    func sendMessage(sticker: StickerViewModel) {
-        
+    @objc func reachabilityChanged(sender: Notification) {
+        let reachability = sender.object as! ReachabilityHelper
+        if reachability.isReachable {
+            connect(completionHandler: { (success, error) in })
+            
+            if reachability.isReachableViaWiFi {
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+        } else {
+            print("Network not reachable")
+        }
     }
     
     @objc func chatReceived(sender: Notification) {
         guard let message = sender.object as? Message else { return }
-        coredata?.saveMessage(message: message, status: .sent)
+        coredata?.buildMessage(message: message, status: .sent)
+        coredata?.save()
     }
     
     @objc func chatDisconnect(sender: Notification) {

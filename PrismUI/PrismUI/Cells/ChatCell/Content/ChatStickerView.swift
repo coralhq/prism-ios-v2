@@ -8,20 +8,13 @@
 
 import UIKit
 
-class ChatStickerView: UIView {
+class ChatStickerView: ChatContentView {
     @IBOutlet var stickerImageView: UIImageView!
-}
-
-extension ChatStickerView: ChatContentProtocol {
-    func addTo(view: UIView?) {
-        addTo(view: view, margin: 0)
-    }
     
-    func infoPosition() -> InfoViewPosition {
+    override func infoPosition() -> InfoViewPosition {
         return .Bottom
     }
-    
-    func updateView(with viewModel: ChatViewModel) {
+    override func updateView(with viewModel: ChatViewModel) {
         guard let contentVM = viewModel.contentViewModel as? ContentStickerViewModel,
             let url = contentVM.stickerURL else { return }
         stickerImageView.downloadedFrom(url: url)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatCartView: UIView {
+class ChatCartView: ChatContentView {
     @IBOutlet var productContainer: UIStackView!
     @IBOutlet var totalPriceLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
@@ -18,19 +18,13 @@ class ChatCartView: UIView {
         
         descriptionLabel.text = "Biaya diatas belum termasuk ongkos kirim".localized()
     }
-}
-
-extension ChatCartView: ChatContentProtocol {
-    func addTo(view: UIView?) {
-        addTo(view: view, margin: 0)
-    }
-    
-    func infoPosition() -> InfoViewPosition {
+    override func infoPosition() -> InfoViewPosition {
         return .Bottom
     }
-    
-    func updateView(with viewModel: ChatViewModel) {
-        guard let vm = viewModel.contentViewModel as? ContentCartViewModel else { return }
+    override func updateView(with viewModel: ChatViewModel) {
+        guard let vm = viewModel.contentViewModel as? ContentCartViewModel else {
+            return
+        }
         totalPriceLabel.text = vm.formattedPrice
         
         for view in productContainer.arrangedSubviews {

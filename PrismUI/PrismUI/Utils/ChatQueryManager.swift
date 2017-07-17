@@ -37,6 +37,9 @@ protocol ChatQueryManagerDelegate: class {
 }
 
 class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
+    var credential: PrismCredential {
+        return PrismCredential.shared
+    }
     let context: NSManagedObjectContext
     let fetchController: NSFetchedResultsController<CDMessage>
     

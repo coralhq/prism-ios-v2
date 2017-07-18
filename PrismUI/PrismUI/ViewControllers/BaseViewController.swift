@@ -8,13 +8,29 @@
 
 import UIKit
 
+extension UIImage {
+    static func image(with name: String) -> UIImage? {
+        return UIImage(named: name, in: Bundle.prism, compatibleWith: nil)
+    }
+}
+
 public class BaseViewController: UIViewController {
 
+    convenience init() {
+        self.init(nibName: nil, bundle: Bundle.prism)
+    }
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.image(with: "icBack"), style: .plain, target: self, action: #selector(closePressed(sender:)))
         
         automaticallyAdjustsScrollViewInsets = false
         extendedLayoutIncludesOpaqueBars = false
         edgesForExtendedLayout = .init(rawValue: 0)
+    }
+    
+    func closePressed(sender: UIBarButtonItem) {
+        navigationController?.dismiss(animated: true, completion: nil)
     }
 }

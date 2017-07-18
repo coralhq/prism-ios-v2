@@ -8,9 +8,11 @@
 
 import UIKit
 import PrismCore
+import PrismAnalytics
 
-class RootViewController: UIViewController {
+class RootViewController: BaseViewController {
     let viewModel = AuthViewModel()
+    var chatManager: ChatManager? = nil
     
     convenience init() {
         self.init(nibName: nil, bundle: Bundle.prism)
@@ -24,8 +26,6 @@ class RootViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(refreshToken), name: RefreshTokenNotification, object: nil)
         
         viewModel.getSettings { [unowned self] (settings) in
-            Settings.shared.configure(settings: settings)
-            
             if let _ = Vendor.shared.credential {
                 self.enterChatpage(animated: false)
             } else {
@@ -76,11 +76,22 @@ class RootViewController: UIViewController {
     }
     
     private func enterChatpage(animated: Bool) {
-        let chatVC = ChatViewController()
-        enter(viewController: chatVC, animated: animated)
+        if chatManager == nil {
+            chatManager = ChatManager()
+        }
+        
+        if Settings.shared.workingHour.isOnWorkingHour {
+            let chatVC = ChatViewController(with: chatManager!)
+            enter(viewController: chatVC, animated: animated)
+        } else {
+            let offlineVC = OfflineFormViewController(with: chatManager!)
+            enter(viewController: offlineVC, animated: animated)
+        }
     }
     
     private func enter(viewController vc: UIViewController, animated: Bool) {
+        chatManager = nil
+        
         let currentVC = childViewControllers.first
         replace(vc1: currentVC, with: vc, animated: animated)
     }

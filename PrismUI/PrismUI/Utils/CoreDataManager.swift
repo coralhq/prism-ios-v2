@@ -46,7 +46,7 @@ class CoreDataManager {
             return
         }
         
-        privateContext.perform {
+        privateContext.performAndWait {
             do {
                 try self.privateContext.save()
                 

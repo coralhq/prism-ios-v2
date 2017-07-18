@@ -61,25 +61,35 @@ public class AuthViewModel {
     }
     
     func getSettings(completion: @escaping ([String: Any]) -> ()) {
-        if let settings = UserDefaults.standard.value(forKey: SerialisationKeys.setting) as? [String: Any] {
+        let currentSettings: [String: Any]? = Utils.unarchive(key: SerialisationKeys.setting)
+        
+        var isConfigured = false
+        
+        if let settings = currentSettings {
+            Settings.shared.configure(settings: settings)
             completion(settings)
-        } else {
-            PrismCore.shared.getSettings { (settings, error) in
-                guard error == nil else {
-                    print(error!.localizedDescription)
-                    return
-                }
-                
-                guard let settings = settings?["public"] as? [String: Any] else { return }
-                
-                UserDefaults.standard.set(settings, forKey: SerialisationKeys.setting)
-                
+            isConfigured = true
+        }
+        
+        PrismCore.shared.getSettings { (settings, error) in
+            guard let settings = settings?["public"] as? [String: Any] else {
+                return
+            }
+            
+            if settings.isEqual(to: currentSettings) == false {
+                Utils.archive(object: settings, key: SerialisationKeys.setting)
+            }
+            
+            Settings.shared.configure(settings: settings)
+            
+            if isConfigured == false {
                 completion(settings)
             }
+            
+            isConfigured = true
         }
     }
 }
-
 
 extension AuthViewModel {
     func handle(connect: ConnectResponse?, error: NSError?, completion: @escaping (NSError?) -> Void) {

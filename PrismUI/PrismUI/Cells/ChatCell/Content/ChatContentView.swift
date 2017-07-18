@@ -20,6 +20,7 @@ class ChatContentView: UIView {
 
 enum ChatContentType: String {
     case Text = "text_cell"
+    case OfflineMessage = "offline_message"
     case Sticker = "sticker_cell"
     case Cart = "cart_cell"
     case Invoice = "invoice_cell"
@@ -29,8 +30,6 @@ enum ChatContentType: String {
     static func typeFrom(typeString: String) -> ChatContentType {
         let type = MessageType(rawValue: typeString)
         switch type {
-        case .PlainText:
-            return ChatContentType.Text
         case .Sticker:
             return ChatContentType.Sticker
         case .Cart:
@@ -41,6 +40,9 @@ enum ChatContentType: String {
             return ChatContentType.Product
         case .Attachment:
             return ChatContentType.Image
+        case .OfflineMessage:
+            return ChatContentType.OfflineMessage
+        case .PlainText: fallthrough
         default:
             return ChatContentType.Text
         }

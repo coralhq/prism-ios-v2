@@ -9,16 +9,18 @@
 import UIKit
 import PrismAnalytics
 
+let formTextFieldHeight: CGFloat = 55
+
 public class ConnectViewController: BaseViewController {
     
     @IBOutlet var nameTF: LinedTextField!
     @IBOutlet var emailTF: LinedTextField!
     @IBOutlet var phoneTF: LinedTextField!
     
-    let fieldHeight: CGFloat = 55
+    
     
     var viewModel: AuthViewModel
-
+    
     public init(viewModel: AuthViewModel) {
         self.viewModel = viewModel
         
@@ -32,7 +34,7 @@ public class ConnectViewController: BaseViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        let formField = Settings.shared.inputForm        
+        let formField = Settings.shared.inputForm
         update(textField: nameTF, form: formField.username)
         update(textField: emailTF, form: formField.email)
         update(textField: phoneTF, form: formField.phoneNumber)
@@ -47,7 +49,7 @@ public class ConnectViewController: BaseViewController {
     func update(textField: LinedTextField, form: InputForm) {
         textField.isRequired = form.required
         if form.show {
-            textField.constraint(with: .height)?.constant = fieldHeight
+            textField.constraint(with: .height)?.constant = formTextFieldHeight
             textField.isHidden = false
         } else {
             textField.constraint(with: .height)?.constant = 0
@@ -56,10 +58,7 @@ public class ConnectViewController: BaseViewController {
     }
     
     @IBAction func startChatPressed(_ sender: UIButton) {
-        guard let nameTF = nameTF,
-            let emailTF = emailTF,
-            let phoneTF = phoneTF,
-            nameTF.isValidUsername(),
+        guard nameTF.isValidUsername(),
             emailTF.isValidEmail(),
             phoneTF.isValidPhoneNumber() else { return }
         

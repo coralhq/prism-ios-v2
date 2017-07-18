@@ -29,7 +29,10 @@ class ChatTextView: ChatContentView {
     override func updateView(with viewModel: ChatViewModel) {
         chatType = viewModel.cellType
         
-        guard let vm = viewModel.contentViewModel as? ContentTextViewModel else { return }
-        titleLabel.text = vm.text
+        if let vm = viewModel.contentViewModel as? ContentTextViewModel {
+            titleLabel.text = vm.text
+        } else if let vm = viewModel.contentViewModel as? ContentOfflineViewModel {
+            titleLabel.text = vm.text
+        }
     }
 }

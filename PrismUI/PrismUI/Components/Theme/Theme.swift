@@ -18,17 +18,18 @@ public enum ThemeOptions {
     case CoralReef
     case BananaTokyo
     
-    public init?(rawValue: String) {
+    public init(settings: [String: Any]) {
+        let rawValue = (settings["widget"] as! [String: Any])["style"] as! String        
         switch rawValue {
         case "PINK": self = .PinkScarlet
-        case "BLUE": self = .OceanBlue
         case "BLACK": self = .JetBlack
         case "WHITE": self = .AzureWhite
         case "GREEN": self = .CitrusLime
         case "RED": self = .CoralReef
         case "YELLOW": self = .BananaTokyo
+        case "BLUE": fallthrough
         default:
-            return nil
+            self = .OceanBlue
         }
     }
 }
@@ -43,11 +44,6 @@ open class Theme {
     open var chatReceivedBubleBorderColor: UIColor
     open var chatTextColor: UIColor
     open var chatSenderTextColor: UIColor
-    open var navigationBarBackButtonImage: UIImage
-    open var chatSendButtonImage: UIImage
-    open var stickerButtonImage: UIImage
-    open var emojiButtonImage: UIImage
-    open var attachmentButtonImage: UIImage
     
     init() {
         navigationBarColor = UIColor.white
@@ -59,11 +55,6 @@ open class Theme {
         chatReceivedBubleBorderColor = UIColor.steelBlueBorder
         chatTextColor = UIColor.jetBlack
         chatSenderTextColor = UIColor.jetBlack
-        navigationBarBackButtonImage = UIImage()
-        chatSendButtonImage = UIImage()
-        stickerButtonImage = UIImage()
-        emojiButtonImage = UIImage()
-        attachmentButtonImage = UIImage()
     }
     
     func configure(option: ThemeOptions) {
@@ -78,11 +69,6 @@ open class Theme {
             chatReceivedBubleBorderColor = UIColor.steelBlueBorder
             chatTextColor = UIColor.jetBlack
             chatSenderTextColor = UIColor.jetBlack
-            navigationBarBackButtonImage = UIImage(named: "persebaya")!
-            chatSendButtonImage = UIImage(named: "icSendSteelBlue", in: Bundle.init(identifier: "io.prismapp.PrismUI"), compatibleWith: nil)!
-            stickerButtonImage = UIImage(named: "persebaya")!
-            emojiButtonImage = UIImage(named: "persebaya")!
-            attachmentButtonImage = UIImage(named: "persebaya")!
             
         case .JetBlack:
             navigationBarColor = UIColor.jetBlack
@@ -94,11 +80,6 @@ open class Theme {
             chatReceivedBubleBorderColor = UIColor.jetBlackBorder
             chatTextColor = UIColor.jetBlack
             chatSenderTextColor = UIColor.jetBlack
-            navigationBarBackButtonImage = UIImage(named: "persebaya")!
-            chatSendButtonImage = UIImage(named: "icSendJetBlack", in: Bundle.init(identifier: "io.prismapp.PrismUI"), compatibleWith: nil)!
-            stickerButtonImage = UIImage(named: "persebaya")!
-            emojiButtonImage = UIImage(named: "persebaya")!
-            attachmentButtonImage = UIImage(named: "persebaya")!
             
         case .PinkScarlet:
             navigationBarColor = UIColor.fadedRed
@@ -110,11 +91,6 @@ open class Theme {
             chatReceivedBubleBorderColor = UIColor.fadedRedBorder
             chatTextColor = UIColor.jetBlack
             chatSenderTextColor = UIColor.jetBlack
-            navigationBarBackButtonImage = UIImage(named: "persebaya")!
-            chatSendButtonImage = UIImage(named: "icSendFadedRed", in: Bundle.init(identifier: "io.prismapp.PrismUI"), compatibleWith: nil)!
-            stickerButtonImage = UIImage(named: "persebaya")!
-            emojiButtonImage = UIImage(named: "persebaya")!
-            attachmentButtonImage = UIImage(named: "persebaya")!
             
         case .CitrusLime:
             navigationBarColor = UIColor.coolGreen
@@ -126,11 +102,6 @@ open class Theme {
             chatReceivedBubleBorderColor = UIColor.coolGreenBorder
             chatTextColor = UIColor.jetBlack
             chatSenderTextColor = UIColor.jetBlack
-            navigationBarBackButtonImage = UIImage(named: "persebaya")!
-            chatSendButtonImage = UIImage(named: "icSendCoolGreen", in: Bundle.init(identifier: "io.prismapp.PrismUI"), compatibleWith: nil)!
-            stickerButtonImage = UIImage(named: "persebaya")!
-            emojiButtonImage = UIImage(named: "persebaya")!
-            attachmentButtonImage = UIImage(named: "persebaya")!
             
         case .OceanBlue:
             navigationBarColor = UIColor.darkSkyBlue
@@ -142,11 +113,6 @@ open class Theme {
             chatReceivedBubleBorderColor = UIColor.darkSkyBlueBorder
             chatTextColor = UIColor.jetBlack
             chatSenderTextColor = UIColor.jetBlack
-            navigationBarBackButtonImage = UIImage(named: "persebaya")!
-            chatSendButtonImage = UIImage(named: "icSendDarkSkyBlue", in: Bundle.init(identifier: "io.prismapp.PrismUI"), compatibleWith: nil)!
-            stickerButtonImage = UIImage(named: "persebaya")!
-            emojiButtonImage = UIImage(named: "persebaya")!
-            attachmentButtonImage = UIImage(named: "persebaya")!
             
         case .CoralReef:
             navigationBarColor = UIColor.tomato
@@ -158,11 +124,6 @@ open class Theme {
             chatReceivedBubleBorderColor = UIColor.tomatoBorder
             chatTextColor = UIColor.jetBlack
             chatSenderTextColor = UIColor.jetBlack
-            navigationBarBackButtonImage = UIImage(named: "persebaya")!
-            chatSendButtonImage = UIImage(named: "icSendTomato", in: Bundle.init(identifier: "io.prismapp.PrismUI"), compatibleWith: nil)!
-            stickerButtonImage = UIImage(named: "persebaya")!
-            emojiButtonImage = UIImage(named: "persebaya")!
-            attachmentButtonImage = UIImage(named: "persebaya")!
             
         case .BananaTokyo:
             navigationBarColor = UIColor.yellowOrange
@@ -174,11 +135,6 @@ open class Theme {
             chatReceivedBubleBorderColor = UIColor.yellowOrangeBorder
             chatTextColor = UIColor.jetBlack
             chatSenderTextColor = UIColor.jetBlack
-            navigationBarBackButtonImage = UIImage(named: "persebaya")!
-            chatSendButtonImage = UIImage(named: "icSendYellowOrange", in: Bundle.init(identifier: "io.prismapp.PrismUI"), compatibleWith: nil)!
-            stickerButtonImage = UIImage(named: "persebaya")!
-            emojiButtonImage = UIImage(named: "persebaya")!
-            attachmentButtonImage = UIImage(named: "persebaya")!
             
         }
     }

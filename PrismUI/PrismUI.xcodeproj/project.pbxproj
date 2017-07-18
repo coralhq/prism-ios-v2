@@ -30,11 +30,16 @@
 		E508C1BB1EF8BD22004DCB6A /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508C1BA1EF8BD22004DCB6A /* Number.swift */; };
 		E508C1C31EF8D6F9004DCB6A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E508C1C21EF8D6F9004DCB6A /* Localizable.strings */; };
 		E52665841EE91A9600612E19 /* PrismUI.h in Headers */ = {isa = PBXBuildFile; fileRef = E52665761EE91A9600612E19 /* PrismUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E52899DA1F1CBE2D00FED3BA /* OfflineFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52899D81F1CBE2D00FED3BA /* OfflineFormViewController.swift */; };
+		E52899DB1F1CBE2D00FED3BA /* OfflineFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E52899D91F1CBE2D00FED3BA /* OfflineFormViewController.xib */; };
 		E547D2281EF1FA6200B66136 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E547D2271EF1FA6200B66136 /* Media.xcassets */; };
 		E547E7F41F0C869800AFFB20 /* ContentTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547E7F31F0C869800AFFB20 /* ContentTextViewModel.swift */; };
 		E54969B81EEA82B7008209D9 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54969B71EEA82B7008209D9 /* PrismCore.framework */; };
 		E54969BB1EEA8496008209D9 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54969BA1EEA8496008209D9 /* Utils.swift */; };
 		E54DE6481EFA6A740035EA35 /* SmallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54DE6471EFA6A740035EA35 /* SmallButton.swift */; };
+		E552CD431F1DD45500455B36 /* OfflineMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E552CD411F1DD45500455B36 /* OfflineMessageViewController.swift */; };
+		E552CD441F1DD45500455B36 /* OfflineMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E552CD421F1DD45500455B36 /* OfflineMessageViewController.xib */; };
+		E552CD481F1DD45500455B36 /* ContentOfflineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E552CD471F1DD45500455B36 /* ContentOfflineViewModel.swift */; };
 		E559E1F11EF2658C004E3F03 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559E1F01EF2658C004E3F03 /* Settings.swift */; };
 		E559E1F31EF26FBA004E3F03 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E559E1F21EF26FBA004E3F03 /* BaseViewController.swift */; };
 		E55AC0CF1F0E0CF100A0354D /* ContentImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55AC0CE1F0E0CF100A0354D /* ContentImageViewModel.swift */; };
@@ -147,11 +152,16 @@
 		E52665731EE91A9600612E19 /* PrismUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrismUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E52665761EE91A9600612E19 /* PrismUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrismUI.h; sourceTree = "<group>"; };
 		E52665771EE91A9600612E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E52899D81F1CBE2D00FED3BA /* OfflineFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineFormViewController.swift; sourceTree = "<group>"; };
+		E52899D91F1CBE2D00FED3BA /* OfflineFormViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfflineFormViewController.xib; sourceTree = "<group>"; };
 		E547D2271EF1FA6200B66136 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Resources/Media.xcassets; sourceTree = "<group>"; };
 		E547E7F31F0C869800AFFB20 /* ContentTextViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentTextViewModel.swift; path = ContentMessages/ContentTextViewModel.swift; sourceTree = "<group>"; };
 		E54969B71EEA82B7008209D9 /* PrismCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrismCore.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/DemoPrismCore-friqtlupaxddjygruiinatqqklhk/Build/Products/Debug-iphonesimulator/PrismCore.framework"; sourceTree = "<group>"; };
 		E54969BA1EEA8496008209D9 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
 		E54DE6471EFA6A740035EA35 /* SmallButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmallButton.swift; path = Kits/SmallButton.swift; sourceTree = "<group>"; };
+		E552CD411F1DD45500455B36 /* OfflineMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineMessageViewController.swift; sourceTree = "<group>"; };
+		E552CD421F1DD45500455B36 /* OfflineMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfflineMessageViewController.xib; sourceTree = "<group>"; };
+		E552CD471F1DD45500455B36 /* ContentOfflineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentOfflineViewModel.swift; path = ContentMessages/ContentOfflineViewModel.swift; sourceTree = "<group>"; };
 		E559E1F01EF2658C004E3F03 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = Models/Settings.swift; sourceTree = "<group>"; };
 		E559E1F21EF26FBA004E3F03 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		E55AC0CE1F0E0CF100A0354D /* ContentImageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentImageViewModel.swift; path = ContentMessages/ContentImageViewModel.swift; sourceTree = "<group>"; };
@@ -298,6 +308,10 @@
 			isa = PBXGroup;
 			children = (
 				E559E1F21EF26FBA004E3F03 /* BaseViewController.swift */,
+				E52899D81F1CBE2D00FED3BA /* OfflineFormViewController.swift */,
+				E52899D91F1CBE2D00FED3BA /* OfflineFormViewController.xib */,
+				E552CD411F1DD45500455B36 /* OfflineMessageViewController.swift */,
+				E552CD421F1DD45500455B36 /* OfflineMessageViewController.xib */,
 				80389A3C1EEA3132007B9458 /* ConnectViewController.swift */,
 				80389A3D1EEA3132007B9458 /* ConnectViewController.xib */,
 				807C898F1EEE4AF100DADEBF /* ChatViewController.swift */,
@@ -399,6 +413,7 @@
 				E562B5D01F0D27A2006489C0 /* ContentCartViewModel.swift */,
 				E562B5D21F0DA44F006489C0 /* ContentProductViewModel.swift */,
 				E55AC0CE1F0E0CF100A0354D /* ContentImageViewModel.swift */,
+				E552CD471F1DD45500455B36 /* ContentOfflineViewModel.swift */,
 			);
 			name = ContentMessages;
 			sourceTree = "<group>";
@@ -676,8 +691,10 @@
 				807C89931EEE4AF100DADEBF /* ChatViewController.xib in Resources */,
 				E57440971EF76BFD003CA9E7 /* ChatInvoiceView.xib in Resources */,
 				E593AE951EFB675A002E2171 /* StickerInputView.xib in Resources */,
+				E52899DB1F1CBE2D00FED3BA /* OfflineFormViewController.xib in Resources */,
 				E58FAE721EF39407002F1A2A /* ChatTextView.xib in Resources */,
 				E57440B61EF7DD97003CA9E7 /* MidtransView.xib in Resources */,
+				E552CD441F1DD45500455B36 /* OfflineMessageViewController.xib in Resources */,
 				E599E8791EF6546F00B67920 /* ChatInContainerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -747,6 +764,7 @@
 				E593AEEC1EFCCC80002E2171 /* CDBrokerMetaData+CoreDataClass.swift in Sources */,
 				E559E1F11EF2658C004E3F03 /* Settings.swift in Sources */,
 				E593AEFA1EFCE7B9002E2171 /* CDContentCart.swift in Sources */,
+				E52899DA1F1CBE2D00FED3BA /* OfflineFormViewController.swift in Sources */,
 				E547E7F41F0C869800AFFB20 /* ContentTextViewModel.swift in Sources */,
 				807C89991EEE4C3400DADEBF /* UIFont.swift in Sources */,
 				E599E8801EF67D5300B67920 /* ChatInContainerView.swift in Sources */,
@@ -754,10 +772,12 @@
 				E593AE931EFB673F002E2171 /* StickerInputView.swift in Sources */,
 				807C89911EEE4AF100DADEBF /* ChatViewController.swift in Sources */,
 				E562B5CD1F0CCD32006489C0 /* ContentInvoiceViewModel.swift in Sources */,
+				E552CD481F1DD45500455B36 /* ContentOfflineViewModel.swift in Sources */,
 				E593AEEF1EFCCC80002E2171 /* CDUser+CoreDataProperties.swift in Sources */,
 				E593AEF01EFCCC80002E2171 /* CDSender+CoreDataClass.swift in Sources */,
 				E5C5440D1F151F4C00D5303D /* ChatQueryManager.swift in Sources */,
 				E599E8881EF67FD600B67920 /* UITextField.swift in Sources */,
+				E552CD431F1DD45500455B36 /* OfflineMessageViewController.swift in Sources */,
 				E593AEFC1EFCE7D3002E2171 /* CDContentInvoice.swift in Sources */,
 				E57440911EF76BBB003CA9E7 /* ChatInvoiceView.swift in Sources */,
 				E55AC0CF1F0E0CF100A0354D /* ContentImageViewModel.swift in Sources */,

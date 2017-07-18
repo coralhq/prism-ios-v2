@@ -8,6 +8,7 @@
 
 import Foundation
 import PrismCore
+import PrismAnalytics
 
 public protocol PrismUIDelegate {
     func didReceive(message data: Data, in topic: String)
@@ -23,6 +24,9 @@ open class PrismUI {
     open func configure(environment: EnvironmentType, merchantID: String, delegate: PrismUIDelegate) {
         self.delegate = delegate
         PrismCore.shared.configure(environment: environment, merchantID: merchantID)
+        
+        let analyticsEnv = environment == .Production ? AnalyticEnvironment.Production : AnalyticEnvironment.Sandbox
+        PrismAnalytics.shared.configure(environment: analyticsEnv)
     }
     
     open func present(on viewController: UIViewController) {

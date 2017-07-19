@@ -2,7 +2,7 @@
 //  CDSender+CoreDataProperties.swift
 //  PrismUI
 //
-//  Created by Nanang Rafsanjani on 7/14/17.
+//  Created by Nanang Rafsanjani on 7/19/17.
 //  Copyright © 2017 Prism. All rights reserved.
 //
 

@@ -80,7 +80,7 @@ open class Message: Mappable {
     public var sender: MessageSender
     public var type: MessageType
     public var content: MessageContentMappable
-    public var version: String
+    public var version: Int
     public var brokerMetaData: BrokerMetaData
     
     public var channelInfo: MessageChannelInfo?
@@ -94,7 +94,7 @@ open class Message: Mappable {
             let visitor = MessageVisitorInfo(dictionary: dictionary["visitor"] as? [String: Any]),
             let sender = MessageSender(dictionary: dictionary["sender"] as? [String: Any]),
             let typeString = dictionary["type"] as? String,
-            let version = dictionary["version"] as? String,
+            let version = dictionary["version"] as? Int,
             let brokerMetaData = BrokerMetaData(dictionary: dictionary["_broker_metadata"] as? [String: Any]) else {
                 return nil
         }
@@ -136,7 +136,7 @@ open class Message: Mappable {
         self.content = content
         self.brokerMetaData = brokerMetaData
         self.channelInfo = channelInfo
-        self.version = String(PrismCoreVersionNumber)
+        self.version = 2
     }
     
     public func dictionaryValue() -> [String: Any] {

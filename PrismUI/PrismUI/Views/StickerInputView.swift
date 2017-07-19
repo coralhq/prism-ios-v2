@@ -17,7 +17,7 @@ class StickerInputView: UIView {
     @IBOutlet var contentStickerView: UICollectionView!
     @IBOutlet var sectionStickerView: UICollectionView!
     
-    var delegate: StickerInputViewDelegate?
+    weak var delegate: StickerInputViewDelegate?
     
     var packs: [StickerPackViewModel] = [] {
         didSet {

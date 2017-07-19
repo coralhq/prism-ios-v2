@@ -10,7 +10,7 @@ import Foundation
 import PrismCore
 import PrismAnalytics
 
-public protocol PrismUIDelegate {
+public protocol PrismUIDelegate: class {
     func didReceive(message data: Data, in topic: String)
 }
 
@@ -19,7 +19,7 @@ open class PrismUI {
     open static var shared = PrismUI()
     private init() {}
     
-    var delegate: PrismUIDelegate?
+    weak var delegate: PrismUIDelegate?
     
     open func configure(environment: EnvironmentType, merchantID: String, delegate: PrismUIDelegate) {
         self.delegate = delegate

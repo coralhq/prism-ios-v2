@@ -19,7 +19,7 @@ class Network: NSObject, NetworkProtocol {
     static let shared = Network()
     
     var uploadTaskIdentifiers: [Int: URL] = [:]
-    var delegate: NetworkDelegate?
+    weak var delegate: NetworkDelegate?
     
     private let mqttSession: MQTTSession
     
@@ -59,7 +59,6 @@ class Network: NSObject, NetworkProtocol {
     
     func request<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping HTTPRequestResult) {
         var request = URLRequest(url: endPoint.url)
-        
         if let token = endPoint.token {
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }

@@ -44,11 +44,7 @@ class ChatViewController: BaseViewController {
         tableView.dataSource = self
       
         tableView.register(ChatHeaderCell.NIB, forCellReuseIdentifier: ChatHeaderCell.className())
-        
-        chatManager.connect {(success, error) in
-            guard success else { return }
-        }
-        
+
         queryManager?.delegate = self
         queryManager?.fetchSections()
 

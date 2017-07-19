@@ -36,9 +36,12 @@ class ChatManager {
     }
     
     func connect(completionHandler: @escaping ((Bool, Error?) -> ())) {
-        PrismCore.shared.connectToBroker(username: credential.username, password: credential.password) { (success, error) in
-            PrismCore.shared.subscribeToTopic(self.credential.topic) { (success, error) in
-                self.sendPendingMessages()
+        PrismCore.shared.connectToBroker(username: credential.username, password: credential.password) { [weak self] (success, error) in
+            guard let topic = self?.credential.topic else {
+                return
+            }
+            PrismCore.shared.subscribeToTopic(topic) { (success, error) in
+                self?.sendPendingMessages()
                 completionHandler(success, error)
             }
         }
@@ -67,7 +70,7 @@ class ChatManager {
         cdmessage.content = cdcontent
         cd.save()
         
-        PrismCore.shared.getAttachmentURL(filename: imageName, conversationID: credential.conversationID, token: credential.accessToken) { (response, error) in
+        PrismCore.shared.getAttachmentURL(filename: imageName, conversationID: credential.conversationID, token: credential.accessToken) { [weak self] (response, error) in
             guard let imageData = UIImagePNGRepresentation(image),
                 let url = response?.uploadURL else {
                     return
@@ -90,7 +93,7 @@ class ChatManager {
             cdmessage.content = cdcontent
             cd.save()
             
-            PrismCore.shared.uploadAttachment(with: imageData, url: url, completionHandler: { [weak self] (success, error) in
+            PrismCore.shared.uploadAttachment(with: imageData, url: url, completionHandler: { (success, error) in
                 guard success else {
                     return
                 }
@@ -105,13 +108,13 @@ class ChatManager {
     }
     
     func sendPendingMessages() {
-        coredata?.fetchPendingMessages(completion: { (cdMessages) in
+        coredata?.fetchPendingMessages(completion: { [weak self] (cdMessages) in
             for cdMessage in cdMessages {
                 guard let rawMessage = cdMessage.dictionaryValue(),
                     let message = Message(dictionary: rawMessage) else {
                         continue
                 }
-                self.sendMessage(message: message, completion: nil)
+                self?.sendMessage(message: message, completion: nil)
             }
         })
     }
@@ -168,9 +171,10 @@ class ChatManager {
         let reachability = sender.object as! ReachabilityHelper
         if reachability.isReachable {
             
-            self.connect(completionHandler: { (success, error) in
-                
-            })
+            DispatchQueue.main.async {
+                self.syncChatLocalWithServer()
+                self.connect(completionHandler: { (success, error) in })
+            }
             
             if reachability.isReachableViaWiFi {
                 print("Reachable via WiFi")
@@ -223,5 +227,32 @@ class ChatManager {
     
     @objc func chatError(sender: Notification) {
         
+    }
+}
+
+extension TimeInterval {
+    var unixTime: Int {
+        return Int(self * 1000)
+    }
+}
+
+extension ChatManager {
+    
+    
+    func syncChatLocalWithServer() {
+        coredata?.fetchLatestMessage(completion: { (message) in
+            let convID = self.credential.conversationID
+            let token = self.credential.accessToken
+            
+            guard let timestamp = message.brokerMetaData?.timestamp else {
+                return
+            }
+            let startTime = timestamp.timeIntervalSince1970.unixTime
+            let endTime = Date().timeIntervalSince1970.unixTime
+            
+            PrismCore.shared.getConversationHistory(conversationID: convID, token: token, startTime: startTime, endTime: endTime, completionHandler: { (history, error) in
+                print("history: \(history?.messages), error: \(error)")
+            })
+        })
     }
 }

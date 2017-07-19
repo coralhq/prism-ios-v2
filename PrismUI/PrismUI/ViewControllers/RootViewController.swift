@@ -41,6 +41,10 @@ class RootViewController: BaseViewController {
         }
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @objc private func refreshToken() {
         guard let credential = Vendor.shared.credential else {
             return

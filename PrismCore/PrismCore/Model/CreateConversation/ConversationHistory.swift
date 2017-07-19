@@ -9,7 +9,7 @@
 import Foundation
 
 open class ConversationHistory: Mappable {
-    let messages: [Message]
+    public let messages: [Message]
     
     required public init?(dictionary: [String : Any]?) {
         guard let data = dictionary?["data"] as? [String: Any],
@@ -18,7 +18,8 @@ open class ConversationHistory: Mappable {
         
         var messages: [Message] = []
         for dictionary in messageDictionaries {
-            guard let message = Message(dictionary: dictionary) else {
+            guard let payload = dictionary["payload"] as? [String: Any],
+                let message = Message(dictionary: payload) else {
                 return nil
             }
             

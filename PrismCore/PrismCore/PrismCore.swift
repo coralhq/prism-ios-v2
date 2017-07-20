@@ -15,6 +15,7 @@ public let DisconnectChatNotification = NSNotification.Name(rawValue: "ConnectCh
 public let ErrorChatNotification = NSNotification.Name(rawValue: "ErrorChatNotification")
 public let UploadProgressNotification = NSNotification.Name(rawValue: "UploadProgressNotification")
 public let RefreshTokenNotification = NSNotification.Name("RefreshTokenNotification")
+public let UploadFailedNotification = NSNotification.Name("UploadFailedNotification")
 
 open class PrismCore {
     

@@ -17,6 +17,7 @@ class ChatViewController: BaseViewController {
     
     let chatManager: ChatManager
     var queryManager: ChatQueryManager?
+    var delay = 2
     
     init(with chatManager: ChatManager) {
         self.chatManager = chatManager
@@ -27,6 +28,8 @@ class ChatViewController: BaseViewController {
             return
         }
         queryManager = ChatQueryManager(context: context)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(uploadAttachment(notification:)), name: UploadFailedNotification, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,6 +61,22 @@ class ChatViewController: BaseViewController {
         super.viewDidAppear(animated)
         
         PrismAnalytics.shared.sendTracker(withEvent: .chatScreen)
+    }
+    
+    @objc fileprivate func uploadAttachment(notification: Notification) {
+        guard let image = notification.userInfo?["image"] as? UIImage, let imageName = notification.userInfo?["imageName"] as? String else {
+            return
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay), execute: { [weak self] in
+            self?.chatManager.sendMessage(image: image, imageName: imageName)
+        })
+        
+        if delay * delay > Int.max {
+            delay = Int.max
+        } else {
+            delay = (delay * delay) % Int.max
+        }
     }
 }
 
@@ -131,6 +150,7 @@ extension ChatViewController: ChatComposerDelegate {
     }
     
     func chatComposer(composer: ChatComposer, didPickImage image: UIImage, imageName: String) {
+        delay = 2
         chatManager.sendMessage(image: image, imageName: imageName)
     }
 }

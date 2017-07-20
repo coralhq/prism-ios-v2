@@ -92,6 +92,7 @@ class ChatManager {
             
             PrismCore.shared.uploadAttachment(with: imageData, url: url, completionHandler: { [weak self] (success, error) in
                 guard success else {
+                    NotificationCenter.default.post(name: UploadFailedNotification, object: ["image": image, "imageName": imageName])
                     return
                 }
                 cdcontent.uploadState = .finished

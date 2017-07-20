@@ -9,8 +9,37 @@
 import Foundation
 
 extension String {
+    /**
+     Localisation helper
+     */
     func localized() -> String {
         return NSLocalizedString(self, tableName: nil, bundle: Bundle.prism, value: "", comment: "")
+    }
+    
+    /**
+     convert time string `00:00` to minutes integer
+     */
+    func minutes() -> Int? {
+        let timeArray = self.components(separatedBy: ":")
+        guard let hour = timeArray.first,
+            let minute = timeArray.last,
+            let intHour = Int(hour),
+            let intMinute = Int(minute) else {
+                return nil
+        }
+        return intHour * 60 + intMinute
+    }
+}
+
+extension Dictionary {
+    /**
+     Compare two Dictionary
+     */
+    func isEqual(to dictionary: Dictionary?) -> Bool {
+        guard let dictionary = dictionary else {
+            return false
+        }
+        return NSDictionary(dictionary: self).isEqual(to: dictionary)
     }
 }
 

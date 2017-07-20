@@ -9,6 +9,22 @@
 import Foundation
 
 extension LinedTextField {
+    func isValidMessage() -> Bool {
+        warning = nil
+        
+        if let char = text?.characters,
+            char.count > 0 {
+            return true
+        } else {
+            if isRequired {
+                warning = "message is required".localized()
+                return false
+            } else {
+                return true
+            }
+        }
+    }
+    
     func isValidUsername() -> Bool {
         warning = nil
         
@@ -32,7 +48,7 @@ extension LinedTextField {
             char.count > 0 {
             let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
             let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-            if emailTest.evaluate(with: self) {
+            if emailTest.evaluate(with: self.text) {
                 return true
             } else {
                 warning = "email is invalid".localized()
@@ -53,9 +69,9 @@ extension LinedTextField {
         
         if let char = text?.characters,
             char.count > 0 {
-            let regex = "^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
+            let regex = "^\\d+$"
             let tester = NSPredicate.init(format: "SELF MATCHES %@", regex)
-            if tester.evaluate(with:self) {
+            if tester.evaluate(with: self.text) {
                 return true
             } else {
                 warning = "phone number is invalid".localized()

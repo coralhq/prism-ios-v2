@@ -15,11 +15,11 @@ class ChatViewController: BaseViewController {
     @IBOutlet var barView: UIView!
     @IBOutlet var tableView: ChatTableView!
     
-    var chatManager: ChatManager
+    let chatManager: ChatManager
     var queryManager: ChatQueryManager?
     
-    init() {
-        chatManager = ChatManager()
+    init(with chatManager: ChatManager) {
+        self.chatManager = chatManager
         
         super.init(nibName: nil, bundle: Bundle.prism)
         

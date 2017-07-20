@@ -11,7 +11,7 @@ import UIKit
 class ChatCell: UITableViewCell {
     var chatView: ChatContainerView?
     var chatContentView: ChatContentView?
-
+    
     static func reuseIdentifier(viewModel: ChatViewModel) -> String {
         return viewModel.contentType.rawValue + viewModel.cellType.rawValue
     }
@@ -45,6 +45,8 @@ class ChatCell: UITableViewCell {
             chatContentView = ChatStickerView.contentFromNIB()
         case .Image:
             chatContentView = ChatImageView.contentFromNIB()
+        case .OfflineMessage:
+            chatContentView = ChatTextView.contentFromNIB()
         default:
             chatContentView = ChatTextView.contentFromNIB()
         }
@@ -52,7 +54,7 @@ class ChatCell: UITableViewCell {
         chatView?.addTo(view: contentView, margin: 0)
         chatView?.chatContentView = chatContentView
     }
-
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

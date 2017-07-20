@@ -1,33 +1,29 @@
 //
-//  ConnectViewController.swift
+//  OfflineFormViewController.swift
 //  PrismUI
 //
-//  Created by Nanang Rafsanjani on 6/8/17.
+//  Created by Nanang Rafsanjani on 7/17/17.
 //  Copyright © 2017 Prism. All rights reserved.
 //
 
 import UIKit
-import PrismAnalytics
+import PrismCore
 
-let formTextFieldHeight: CGFloat = 55
-
-public class ConnectViewController: BaseViewController {
-    
+class OfflineFormViewController: BaseViewController {
     @IBOutlet var nameTF: LinedTextField!
     @IBOutlet var emailTF: LinedTextField!
     @IBOutlet var phoneTF: LinedTextField!
+    @IBOutlet var messageTF: LinedTextField!
     
+    let chatManager: ChatManager
     
-    
-    var viewModel: AuthViewModel
-    
-    public init(viewModel: AuthViewModel) {
-        self.viewModel = viewModel
+    init(with chatManager: ChatManager) {
+        self.chatManager = chatManager
         
         super.init(nibName: nil, bundle: Bundle.prism)
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -40,14 +36,8 @@ public class ConnectViewController: BaseViewController {
         update(textField: phoneTF, form: formField.phoneNumber)
     }
     
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        PrismAnalytics.shared.sendTracker(withEvent: .visitorConnect)
-    }
-    
     func update(textField: LinedTextField, form: InputForm) {
-        textField.isRequired = form.required
+        textField.isRequired = true
         if form.show {
             textField.constraint(with: .height)?.constant = formTextFieldHeight
             textField.isHidden = false
@@ -57,17 +47,22 @@ public class ConnectViewController: BaseViewController {
         }
     }
     
-    @IBAction func startChatPressed(_ sender: UIButton) {
-        guard nameTF.isValidUsername(),
+    @IBAction func sendMessagePressed(_ sender: UIButton) {
+        guard messageTF.isValidMessage(),
+            nameTF.isValidUsername(),
             emailTF.isValidEmail(),
-            phoneTF.isValidPhoneNumber() else { return }
+            phoneTF.isValidPhoneNumber(),
+            let name = nameTF.text,
+            let email = emailTF.text,
+            let phone = phoneTF.text,
+            let message = messageTF.text else { return }
         
-        viewModel.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (error) in
-            if let error = error {
-                print("Error: \(error)")
-            } else {
-                NotificationCenter.default.post(name: ConnectNotification, object: nil)
+        chatManager.sendOfflineMessage(with: name, email: email, phone: phone, message: message) { (response, error) in
+            guard error == nil else {
+                return
             }
+            let vc = OfflineMessageViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

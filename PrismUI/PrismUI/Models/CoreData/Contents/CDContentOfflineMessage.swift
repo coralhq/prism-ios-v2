@@ -16,10 +16,13 @@ class CDContentOfflineMessage: ValueTransformer, NSCoding, CDMappable {
     var text: String
     
     required init?(dictionary: [String : Any]) {
-        name = dictionary["name"] as! String
-        email = dictionary["email"] as! String
-        phone = dictionary["text"] as! String
-        text = dictionary["phone"] as! String
+        guard let message = dictionary["offline_message"] as? [String: Any] else {
+            return nil
+        }
+        name = message["name"] as! String
+        email = message["email"] as! String
+        phone = message["text"] as! String
+        text = message["phone"] as! String
     }
     
     public func dictionaryValue() -> [String : Any] {

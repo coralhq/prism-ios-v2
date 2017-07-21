@@ -23,8 +23,8 @@ class ChatComposer: UIView {
     @IBOutlet var textView: UITextView!
     @IBOutlet var sendButton: SmallButton!
     @IBOutlet var topSeparatorView: UIView!
-     @IBOutlet var emojiButton: SmallButton!
-     @IBOutlet var stickerButton: SmallButton!
+    @IBOutlet var emojiButton: SmallButton!
+    @IBOutlet var stickerButton: SmallButton!
     
     weak var delegate: ChatComposerDelegate?
     var accessToken: String?
@@ -42,7 +42,7 @@ class ChatComposer: UIView {
         
         sendButton.color = Settings.shared.theme.buttonColor
         sendButton.disabledColor = Settings.shared.theme.buttonColor.withAlphaComponent(0.5)
-                
+        
         NotificationCenter.default.addObserver(self, selector: #selector(kbWillShow(sender:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(kbWillHide(sender:)), name: .UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(textViewChanged(sender:)), name: .UITextViewTextDidChange, object: nil)

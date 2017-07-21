@@ -29,6 +29,12 @@ class ChatBubleView: UIView {
     
     var bubleType: ChatBubleType = .In
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        contentMode = .redraw
+    }
+    
     override func draw(_ rect: CGRect) {
         let corners: UIRectCorner
         
@@ -49,7 +55,6 @@ class ChatBubleView: UIView {
         path.fill()
         path.stroke()
     }
-    
 }
 
 extension CGRect {

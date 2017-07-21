@@ -18,6 +18,8 @@
 		E54D96031ED55E35009FF016 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E54D96011ED55E35009FF016 /* LaunchScreen.storyboard */; };
 		E54D96141ED55E74009FF016 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54D96101ED55E5A009FF016 /* PrismCore.framework */; };
 		E54D96151ED55E74009FF016 /* PrismCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E54D96101ED55E5A009FF016 /* PrismCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E5AC247B1F21065D00950A2E /* PrismAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 808476641F0C9CFE00E12323 /* PrismAnalytics.framework */; };
+		E5AC247C1F21065D00950A2E /* PrismAnalytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 808476641F0C9CFE00E12323 /* PrismAnalytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,13 @@
 			remoteGlobalIDString = E5053A981EF1F6B3006677A4;
 			remoteInfo = PrismUnitTests;
 		};
+		E5AC247D1F21065D00950A2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8084765E1F0C9CFD00E12323 /* PrismAnalytics.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 808476431F0C9CFD00E12323;
+			remoteInfo = PrismAnalytics;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -87,6 +96,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E52665A21EE9310800612E19 /* PrismUI.framework in Embed Frameworks */,
+				E5AC247C1F21065D00950A2E /* PrismAnalytics.framework in Embed Frameworks */,
 				E54D96151ED55E74009FF016 /* PrismCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -115,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E52665A11EE9310800612E19 /* PrismUI.framework in Frameworks */,
+				E5AC247B1F21065D00950A2E /* PrismAnalytics.framework in Frameworks */,
 				E54D96141ED55E74009FF016 /* PrismCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,6 +211,7 @@
 			dependencies = (
 				E54D96171ED55E74009FF016 /* PBXTargetDependency */,
 				E52665A41EE9310800612E19 /* PBXTargetDependency */,
+				E5AC247E1F21065D00950A2E /* PBXTargetDependency */,
 			);
 			name = DemoPrismCore;
 			productName = DemoPrismCore;
@@ -337,6 +349,11 @@
 			isa = PBXTargetDependency;
 			name = PrismCore;
 			targetProxy = E54D96161ED55E74009FF016 /* PBXContainerItemProxy */;
+		};
+		E5AC247E1F21065D00950A2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PrismAnalytics;
+			targetProxy = E5AC247D1F21065D00950A2E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

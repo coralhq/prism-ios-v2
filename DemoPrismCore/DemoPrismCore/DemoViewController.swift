@@ -93,6 +93,8 @@ class DemoViewModel {
             products.append(product)
         }
         
+        //8c31f365-05d2-49fe-8c8d-59c84624c870
+        //8d077fae-bf65-4711-a565-047629bbba11
         PrismUI.shared.configure(environment: .Sandbox, merchantID: "8c31f365-05d2-49fe-8c8d-59c84624c870", delegate: self)
     }
     

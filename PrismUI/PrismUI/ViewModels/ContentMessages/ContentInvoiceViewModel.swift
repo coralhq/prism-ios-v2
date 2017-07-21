@@ -10,7 +10,7 @@ import Foundation
 
 enum PaymentMethod: String {
     case midtrans = "vt_web"
-    case bankTransfer = "bank_transfer"
+    case bankTransfer = "transfer"
     case cod = "cod"
     case unknown = "unknown"
     

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HeaderView" customModule="PrismUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="v57-Pb-Pz4">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sXI-VB-H5r">
+                            <rect key="frame" x="0.0" y="6" width="32" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="32" id="bBm-mN-Jh9"/>
+                                <constraint firstAttribute="height" constant="32" id="ebr-I3-mai"/>
+                            </constraints>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BhT-sd-5LT">
+                            <rect key="frame" x="40" y="9" width="335" height="26.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLx-do-TRS">
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="14.5"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0x-V2-Wfi">
+                                    <rect key="frame" x="0.0" y="14.5" width="335" height="12"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="C0x-V2-Wfi" secondAttribute="bottom" id="Bi9-9O-PsG"/>
+                                <constraint firstItem="C0x-V2-Wfi" firstAttribute="top" secondItem="hLx-do-TRS" secondAttribute="bottom" id="FQ7-4C-OQx"/>
+                                <constraint firstAttribute="trailing" secondItem="hLx-do-TRS" secondAttribute="trailing" id="HTT-gi-IzV"/>
+                                <constraint firstItem="hLx-do-TRS" firstAttribute="leading" secondItem="BhT-sd-5LT" secondAttribute="leading" id="PPy-hb-iCj"/>
+                                <constraint firstItem="C0x-V2-Wfi" firstAttribute="leading" secondItem="BhT-sd-5LT" secondAttribute="leading" id="UDa-9H-ylz"/>
+                                <constraint firstAttribute="trailing" secondItem="C0x-V2-Wfi" secondAttribute="trailing" id="eTI-v4-mGh"/>
+                                <constraint firstItem="hLx-do-TRS" firstAttribute="top" secondItem="BhT-sd-5LT" secondAttribute="top" id="fYu-HV-ZGx"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="v57-Pb-Pz4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="8ci-uq-lgc"/>
+                <constraint firstItem="v57-Pb-Pz4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KQl-Wy-SlI"/>
+                <constraint firstAttribute="bottom" secondItem="v57-Pb-Pz4" secondAttribute="bottom" id="QMd-Vc-dix"/>
+                <constraint firstAttribute="trailing" secondItem="v57-Pb-Pz4" secondAttribute="trailing" id="kvj-xe-YsA"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="container" destination="v57-Pb-Pz4" id="Wgt-YU-lBG"/>
+                <outlet property="imageView" destination="sXI-VB-H5r" id="d6M-il-lFA"/>
+                <outlet property="subtitleLabel" destination="C0x-V2-Wfi" id="VKe-3z-5hz"/>
+                <outlet property="titleLabel" destination="hLx-do-TRS" id="B2w-9B-chw"/>
+            </connections>
+            <point key="canvasLocation" x="34.5" y="-241.5"/>
+        </view>
+    </objects>
+</document>

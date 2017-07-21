@@ -58,6 +58,10 @@ open class PrismAnalytics {
         network.request(data: data, token: token, url: URL.conversation)
     }
     
+    open func sendDeviceInfoToRover(data: [String: Any], token: String) {
+        network.request(data: data, token: token, url: URL.deviceInfo)
+    }
+    
     open func sendTracker(withEvent event: EventTrackerType, data: [String: String]? = nil) {
         guard let tracker = gai?.defaultTracker else { return }
         

@@ -50,16 +50,14 @@ class CoreDataManager {
     }
     
     func save() {
-        DispatchQueue(label: "save_queue").async {
-            guard self.privateContext.hasChanges else {
-                return
-            }
-            
-            do {
-                try self.privateContext.save()
-            } catch {
-                print("Error \(error)")
-            }
+        guard self.privateContext.hasChanges else {
+            return
+        }
+        
+        do {
+            try self.privateContext.save()
+        } catch {
+            print("Error \(error)")
         }
     }
     

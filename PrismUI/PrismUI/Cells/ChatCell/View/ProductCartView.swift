@@ -14,10 +14,13 @@ class ProductCartView: UIView {
     @IBOutlet var discountLabel: UILabel!
     @IBOutlet var qtyLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var container: UIStackView!
     
     var viewModel: ContentCartProductViewModel? {
         didSet {
-            guard let vm = viewModel else { return }
+            guard let vm = viewModel else {
+                return
+            }
             nameLabel.text = vm.name
             
             if let _ = vm.discount {
@@ -30,8 +33,11 @@ class ProductCartView: UIView {
             
             qtyLabel.text = vm.quantity
             
-            guard let imageURL = vm.imageURL else { return }
-            imageView.downloadedFrom(url: imageURL)
+            container.removeArrangedSubview(imageView)
+            if let url = vm.imageURL {
+                container.insertArrangedSubview(imageView, at: 0)
+                imageView.downloadedFrom(url: url, defaultImage: UIImage.image(with: "icPlaceholderS"))
+            }
         }
     }
 }

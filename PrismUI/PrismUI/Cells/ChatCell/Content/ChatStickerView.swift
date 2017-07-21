@@ -15,8 +15,9 @@ class ChatStickerView: ChatContentView {
         return .Bottom
     }
     override func updateView(with viewModel: ChatViewModel) {
-        guard let contentVM = viewModel.contentViewModel as? ContentStickerViewModel,
-            let url = contentVM.stickerURL else { return }
-        stickerImageView.downloadedFrom(url: url)
+        guard let contentVM = viewModel.contentViewModel as? ContentStickerViewModel else {
+            return
+        }
+        stickerImageView.downloadedFrom(url: contentVM.stickerURL)
     }
 }

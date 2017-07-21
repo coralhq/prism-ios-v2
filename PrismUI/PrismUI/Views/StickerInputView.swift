@@ -36,7 +36,7 @@ class StickerInputView: UIView {
     }
     
     static func viewFromNib(accessToken: String?) -> StickerInputView? {
-        let view = StickerInputView.viewFromNib() as? StickerInputView
+        let view: StickerInputView? = StickerInputView.viewFromNib()
         view?.getStickers(token: accessToken)
         return view
     }

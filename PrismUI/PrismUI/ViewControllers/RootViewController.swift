@@ -26,6 +26,7 @@ class RootViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(refreshToken), name: RefreshTokenNotification, object: nil)
         
         viewModel.getSettings { [unowned self] (settings) in
+
             if let _ = Vendor.shared.credential {
                 self.enterChatpage(animated: false)
             } else {
@@ -98,5 +99,26 @@ class RootViewController: BaseViewController {
         
         let currentVC = childViewControllers.first
         replace(vc1: currentVC, with: vc, animated: animated)
+    }
+    
+    func replace(vc1: UIViewController?, with vc2: UIViewController?, animated: Bool) {
+        guard let vc2 = vc2 else { return }
+        let nvc = UINavigationController(rootViewController: vc2)
+        nvc.view.alpha = 0
+        
+        add(viewController: nvc, toView: view)
+        
+        if animated {
+            UIView.animate(withDuration: 0.25, animations: {
+                nvc.view.alpha = 1
+            }, completion: { (finished) in
+                guard let vc = vc1 else { return }
+                self.remove(viewController: vc)
+            })
+        } else {
+            nvc.view.alpha = 1
+            guard let vc = vc1 else { return }
+            remove(viewController: vc)
+        }
     }
 }

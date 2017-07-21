@@ -16,8 +16,8 @@ extension UIView {
         return filteredArray.first
     }
     
-    static func viewFromNib() -> UIView? {
-        return Bundle.prism.loadNibNamed(String(describing: self), owner: self, options: nil)?.first as? UIView
+    static func viewFromNib<T>() -> T? {
+        return Bundle.prism.loadNibNamed(String(describing: self), owner: self, options: nil)?.first as? T
     }
     
     func addTo(view: UIView?, margin: Double) {

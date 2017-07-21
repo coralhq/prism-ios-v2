@@ -33,7 +33,7 @@ class ChatCartView: ChatContentView {
         }
         
         for itemVM in vm.itemViewModels {
-            guard let view = ProductCartView.viewFromNib() as? ProductCartView else { continue }
+            guard let view: ProductCartView = ProductCartView.viewFromNib() else { continue }
             view.viewModel = itemVM
             productContainer.addArrangedSubview(view)
         }

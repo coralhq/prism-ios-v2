@@ -48,18 +48,56 @@ class WorkingHour {
     }
 }
 
+class Persona {
+    var enabled: Bool = false
+    var name: String? = nil
+    var imageURL: URL? = nil
+    
+    init() { }
+    
+    func configure(settings: [String: Any]) {
+        guard let widget = settings["widget"] as? [String: Any] else {
+            return
+        }
+        enabled = widget["persona_enabled"] as! Bool
+        name = widget["persona_name"] as? String
+        if let stringURL = widget["persona_image_url"] as? String {
+            imageURL = URL(string: stringURL)
+        }
+    }
+}
+
 open class Settings {
+    var subtitle: String? = ""
+    var titleExpanded: String? = ""
+    var titleMinimized: String? = ""
+    var welcomeMessage: String? = ""
     var theme: Theme = Theme()
     var inputForm: InputFormSettings = InputFormSettings()
+    var offlineFormMessage: String? = ""
+    var offlineMessage: String? = ""
     var offlineForm: OfflineFormSettings = OfflineFormSettings()
     var workingHour = WorkingHour()
+    var persona = Persona()
     
     static public var shared = Settings()
     
     func configure(settings: [String: Any]) {
-        self.theme.configure(option: ThemeOptions(settings: settings))
+        self.theme.configure(option: ThemeType(settings: settings))
         self.inputForm.configure(settings: settings)
         self.offlineForm.configure(settings: settings)
         self.workingHour.configure(settings: settings)
+        self.persona.configure(settings: settings)
+        
+        guard let widget = settings["widget"] as? [String: Any] else {
+            return
+        }
+        subtitle = widget["subtitle"] as? String
+        titleExpanded = widget["title_expanded"] as? String
+        titleMinimized = widget["title_minimized"] as? String
+        welcomeMessage = widget["welcome_message"] as? String
+        
+        offlineMessage = widget["offline_message"] as? String
+        offlineFormMessage = widget["offline_form_message"] as? String
     }
 }

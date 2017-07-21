@@ -22,18 +22,26 @@ class ChatComposer: UIView {
     @IBOutlet var botSpaceConstraint: NSLayoutConstraint!
     @IBOutlet var textView: UITextView!
     @IBOutlet var sendButton: SmallButton!
+    @IBOutlet var topSeparatorView: UIView!
+    @IBOutlet var emojiButton: SmallButton!
+    @IBOutlet var stickerButton: SmallButton!
     
     weak var delegate: ChatComposerDelegate?
     var accessToken: String?
     
     static func composerFromNib(with accessToken: String) -> ChatComposer? {
-        let view = ChatComposer.viewFromNib() as? ChatComposer
+        let view: ChatComposer? = ChatComposer.viewFromNib()
         view?.accessToken = accessToken
         return view
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        topSeparatorView.backgroundColor = Settings.shared.theme.buttonColor.withAlphaComponent(0.15)
+        
+        sendButton.color = Settings.shared.theme.buttonColor
+        sendButton.disabledColor = Settings.shared.theme.buttonColor.withAlphaComponent(0.5)
         
         NotificationCenter.default.addObserver(self, selector: #selector(kbWillShow(sender:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(kbWillHide(sender:)), name: .UIKeyboardWillHide, object: nil)
@@ -67,9 +75,29 @@ class ChatComposer: UIView {
             textView.becomeFirstResponder()
         }
         
-        sender.isSelected = !sender.isSelected
+        stickerButton.isSelected = false
+        emojiButton.isSelected = !emojiButton.isSelected
+        
         if sender.isSelected {
             textView.inputView = EmojiInputView.viewFromNib(with: textView)
+        } else {
+            textView.inputView = nil
+        }
+        textView.reloadInputViews()
+    }
+    
+    @IBAction func stickerInputPressed(sender: UIButton) {
+        if textView.becomeFirstResponder() == false {
+            textView.becomeFirstResponder()
+        }
+        
+        emojiButton.isSelected = false
+        stickerButton.isSelected = !stickerButton.isSelected
+        
+        if sender.isSelected {
+            let inputView = StickerInputView.viewFromNib(accessToken: accessToken)
+            inputView?.delegate = self
+            textView.inputView = inputView
         } else {
             textView.inputView = nil
         }
@@ -84,20 +112,6 @@ class ChatComposer: UIView {
         UIViewController.root?.present(picker, animated: true, completion: nil)
         
         PrismAnalytics.shared.sendTracker(withEvent: .uploadImageClicked)
-    }
-    
-    @IBAction func stickerInputPressed(sender: UIButton) {
-        if textView.becomeFirstResponder() == false {
-            textView.becomeFirstResponder()
-        }
-        
-        sender.isSelected = !sender.isSelected
-        
-        let inputView = StickerInputView.viewFromNib(accessToken: accessToken)
-        inputView?.delegate = self
-        
-        textView.inputView = inputView
-        textView.reloadInputViews()
     }
     
     @IBAction func sendPressed(sender: UIButton) {

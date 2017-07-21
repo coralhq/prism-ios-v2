@@ -17,7 +17,7 @@ class StickerInputView: UIView {
     @IBOutlet var contentStickerView: UICollectionView!
     @IBOutlet var sectionStickerView: UICollectionView!
     
-    var delegate: StickerInputViewDelegate?
+    weak var delegate: StickerInputViewDelegate?
     
     var packs: [StickerPackViewModel] = [] {
         didSet {
@@ -36,7 +36,7 @@ class StickerInputView: UIView {
     }
     
     static func viewFromNib(accessToken: String?) -> StickerInputView? {
-        let view = StickerInputView.viewFromNib() as? StickerInputView
+        let view: StickerInputView? = StickerInputView.viewFromNib()
         view?.getStickers(token: accessToken)
         return view
     }

@@ -91,13 +91,9 @@ public class PaymentProvider: Mappable {
         self.type = type
         
         if let info = dictionary?["info"] as? [String: Any] {
-            if type == "vt_web" {
-                self.info = MidtransInfo(dictionary: info)
-            } else if type == "transfer" {
-                self.info = BankTransferInfo(dictionary: info)
-            } else {
-                self.info = nil
-            }
+            self.info = MidtransInfo(dictionary: info)
+        } else if let transfer = dictionary?["transfer"] as? [String: Any] {
+            self.info = BankTransferInfo(dictionary: transfer)
         } else {
             self.info = nil
         }
@@ -105,8 +101,13 @@ public class PaymentProvider: Mappable {
     
     public func dictionaryValue() -> [String : Any] {
         var result: [String: Any] = ["type": type]
-        if let info = info {
+        guard let info = info else {
+            return result
+        }
+        if type == "vt_web" {
             result["info"] = info.dictionaryValue()
+        } else if type == "transfer" {
+            result["transfer"] = info.dictionaryValue()
         }
         return result
     }

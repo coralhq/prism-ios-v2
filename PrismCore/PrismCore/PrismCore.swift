@@ -8,6 +8,8 @@
 
 import Foundation
 
+public let PrismChannelName = "IOS_SDK"
+
 public typealias HTTPRequestResult = (Mappable?, NSError?) -> ()
 
 public let ReceiveChatNotification = NSNotification.Name(rawValue: "ReceiveChatNotification")
@@ -18,7 +20,7 @@ public let RefreshTokenNotification = NSNotification.Name("RefreshTokenNotificat
 
 open class PrismCore {
     
-    public var delegate: PrismCoreDelegate?
+    public weak var delegate: PrismCoreDelegate?
     
     static open var shared = PrismCore()
     
@@ -70,7 +72,6 @@ open class PrismCore {
     }
     
     open func publishMessage(token: String, topic: String, messages: [Message], completionHandler: @escaping (MessageResponse?, NSError?) -> ()) {
-        
         let endPoint = PublishMessageEndPoint(token: token, messages: messages, topic: topic)
         
         network?.request(endPoint: endPoint, mapToObject: MessageResponse.self) { (mappable, error) in
@@ -110,9 +111,9 @@ open class PrismCore {
         }
     }
     
-    open func getConversationHistory(conversationID: String, token: String, completionHandler: @escaping ((ConversationHistory?, Error?) -> ())) {
-        let endPoint = GetConversationHistoryEndPoint(conversationID: conversationID, token: token)
-        
+    open func getConversationHistory(conversationID: String, token: String, startTime: Int, endTime: Int, completionHandler: @escaping ((ConversationHistory?, Error?) -> ())) {
+        let endPoint = GetConversationHistoryEndPoint(conversationID: conversationID, token: token, startTime: startTime, endTime: endTime)
+        print("URL: \(endPoint.url)")
         network?.request(endPoint: endPoint, mapToObject: ConversationHistory.self) { (mappable, error) in
             completionHandler(mappable as? ConversationHistory, error)
         }

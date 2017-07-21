@@ -90,7 +90,7 @@ internal extension URL {
         return URL(string: "\(PrismAPIBaseURL)/v2/conversations/\(conversationID)/upload_url")!
     }
     
-    static func getConversationHistory(conversationID: String) -> URL {
-        return URL(string: "\(PrismAPIBaseURL)/v2/conversations_history/\(conversationID)/messages")!
+    static func getConversationHistory(conversationID: String, startTime: Int, endTime: Int) -> URL {
+        return URL(string: "\(PrismAPIBaseURL)/v2/conversations_history/\(conversationID)/messages?start_time=\(startTime)&end_time=\(endTime)")!
     }
 }

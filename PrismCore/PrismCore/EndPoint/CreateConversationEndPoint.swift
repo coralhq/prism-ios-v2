@@ -19,7 +19,7 @@ class CreateConversationEndPoint : EndPoint {
             return [
                 
                 //TODO: change channel name after ready
-                "channel": "SHAMU",
+                "channel": PrismChannelName,
                 "visitor": [
                     "name": visitorName,
                     "avatar_url": ""

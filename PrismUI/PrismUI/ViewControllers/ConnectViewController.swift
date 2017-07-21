@@ -13,11 +13,11 @@ let formTextFieldHeight: CGFloat = 55
 
 public class ConnectViewController: BaseViewController {
     
+    @IBOutlet var helloLabel: UILabel!
     @IBOutlet var nameTF: LinedTextField!
     @IBOutlet var emailTF: LinedTextField!
     @IBOutlet var phoneTF: LinedTextField!
-    
-    
+    @IBOutlet var startChatButton: UIButton!
     
     var viewModel: AuthViewModel
     
@@ -33,6 +33,11 @@ public class ConnectViewController: BaseViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nameTF.selectedColor = Settings.shared.theme.buttonColor
+        emailTF.selectedColor = Settings.shared.theme.buttonColor
+        phoneTF.selectedColor = Settings.shared.theme.buttonColor
+        startChatButton.backgroundColor = Settings.shared.theme.buttonColor
         
         let formField = Settings.shared.inputForm
         update(textField: nameTF, form: formField.username)

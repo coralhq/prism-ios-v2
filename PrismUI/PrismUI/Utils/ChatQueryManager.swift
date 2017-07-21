@@ -40,7 +40,7 @@ class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
     let context: NSManagedObjectContext
     let fetchController: NSFetchedResultsController<CDMessage>
     
-    var delegate: ChatQueryManagerDelegate?
+    weak var delegate: ChatQueryManagerDelegate?
     
     var sections: [ChatSectionViewModel] = []
     
@@ -58,7 +58,7 @@ class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
         
         fetchController.delegate = self
     }
-    
+
     func fetchSections() {
         do {
             try fetchController.performFetch()

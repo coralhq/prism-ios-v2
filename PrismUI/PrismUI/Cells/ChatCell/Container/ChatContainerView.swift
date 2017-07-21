@@ -23,12 +23,14 @@ class ChatContainerView: UIView {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var infoView: ChatInfoView!
     @IBOutlet var containerView: UIView!
-    @IBOutlet var infoWithContentHSpace: NSLayoutConstraint!
-    @IBOutlet var infoWithContentVSpace: NSLayoutConstraint!
     @IBOutlet var topMarginConstraint: NSLayoutConstraint!
+    @IBOutlet var contentTrailing: NSLayoutConstraint?
+    @IBOutlet var contentBottom: NSLayoutConstraint?
+    @IBOutlet var infoTrailing: NSLayoutConstraint?
+    @IBOutlet var infoBottom: NSLayoutConstraint?
     
     static func containerFromNIB() -> ChatContainerView? {
-        return self.viewFromNib() as? ChatContainerView
+        return self.viewFromNib()
     }
     
     var chatContentView: ChatContentView?
@@ -57,6 +59,8 @@ class ChatContainerView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()        
         
+        nameLabel.textColor = Settings.shared.theme.buttonColor
+        
         infoView.statusImageView?.contentMode = .scaleAspectFit
     }
     
@@ -66,14 +70,20 @@ class ChatContainerView: UIView {
         }
         switch infoPos {
         case .Left:
-            infoWithContentHSpace.constant = 8
-            infoWithContentVSpace.constant = 0
+            contentTrailing?.constant = infoView.bounds.width + 8 * 2
+            contentBottom?.constant = 8
+            infoTrailing?.constant = 8
+            infoBottom?.constant = 8
         case .Inside:
-            infoWithContentHSpace.constant = -infoView.bounds.width
-            infoWithContentVSpace.constant = 0
+            contentTrailing?.constant = 8
+            contentBottom?.constant = 8
+            infoTrailing?.constant = 8 * 2
+            infoBottom?.constant = 8 * 2
         default:
-            infoWithContentHSpace.constant = -infoView.bounds.width
-            infoWithContentVSpace.constant = -infoView.bounds.height
+            contentTrailing?.constant = 8
+            contentBottom?.constant = infoView.bounds.height + 8 * 2
+            infoTrailing?.constant = 8
+            infoBottom?.constant = 8
         }
     }
 }

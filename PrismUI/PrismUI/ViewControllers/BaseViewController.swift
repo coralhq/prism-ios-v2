@@ -23,6 +23,14 @@ public class BaseViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = Settings.shared.theme.headerColor
+        navigationController?.navigationBar.tintColor = Settings.shared.theme.strokeColor
+        
+        let header: HeaderView? = HeaderView.viewFromNib()
+        header?.configure(settings: Settings.shared)
+        navigationItem.titleView = header
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.image(with: "icBack"), style: .plain, target: self, action: #selector(closePressed(sender:)))
         
         automaticallyAdjustsScrollViewInsets = false

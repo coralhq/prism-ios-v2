@@ -46,11 +46,7 @@ class ChatImageView: ChatContentView {
             indicatorView.startAnimating()
         }
         
-        if let imageURL = contentVM.imageURL {
-            imageView.downloadedFrom(url: imageURL)
-        } else {
-            imageView.image = nil
-        }
+        imageView.downloadedFrom(url: contentVM.imageURL)
     }
     
     deinit {

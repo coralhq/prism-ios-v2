@@ -110,6 +110,8 @@
 		E599E8821EF67D6200B67920 /* ChatOutContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599E8811EF67D6200B67920 /* ChatOutContainerView.swift */; };
 		E599E8841EF67F6500B67920 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599E8831EF67F6500B67920 /* UIView.swift */; };
 		E599E8881EF67FD600B67920 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599E8871EF67FD600B67920 /* UITextField.swift */; };
+		E5AC24761F208E0200950A2E /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5AC24751F208E0200950A2E /* HeaderView.xib */; };
+		E5AC24781F208F0B00950A2E /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC24771F208F0B00950A2E /* HeaderView.swift */; };
 		E5B9615C1F17039D00764A12 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B9615B1F17039D00764A12 /* ReachabilityHelper.swift */; };
 		E5C5440B1F151F0100D5303D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C5440A1F151F0100D5303D /* CoreDataManager.swift */; };
 		E5C5440D1F151F4C00D5303D /* ChatQueryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C5440C1F151F4C00D5303D /* ChatQueryManager.swift */; };
@@ -237,6 +239,8 @@
 		E599E8811EF67D6200B67920 /* ChatOutContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatOutContainerView.swift; path = PrismUI/Cells/ChatCell/Container/ChatOutContainerView.swift; sourceTree = SOURCE_ROOT; };
 		E599E8831EF67F6500B67920 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		E599E8871EF67FD600B67920 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		E5AC24751F208E0200950A2E /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		E5AC24771F208F0B00950A2E /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E5B9615B1F17039D00764A12 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReachabilityHelper.swift; path = Vendors/ReachabilityHelper.swift; sourceTree = "<group>"; };
 		E5C5440A1F151F0100D5303D /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = PrismUI/Utils/CoreDataManager.swift; sourceTree = SOURCE_ROOT; };
 		E5C5440C1F151F4C00D5303D /* ChatQueryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatQueryManager.swift; path = PrismUI/Utils/ChatQueryManager.swift; sourceTree = SOURCE_ROOT; };
@@ -339,6 +343,8 @@
 				E593AE941EFB675A002E2171 /* StickerInputView.xib */,
 				E58FAE621EF38435002F1A2A /* EmojiInputView.swift */,
 				E58FAE631EF38435002F1A2A /* EmojiInputView.xib */,
+				E5AC24771F208F0B00950A2E /* HeaderView.swift */,
+				E5AC24751F208E0200950A2E /* HeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -706,6 +712,7 @@
 				E57440AD1EF7CE58003CA9E7 /* ChatCartView.xib in Resources */,
 				8071E0F71F218D430003732F /* DeviceList.plist in Resources */,
 				E57440B21EF7CFB3003CA9E7 /* ProductCartView.xib in Resources */,
+				E5AC24761F208E0200950A2E /* HeaderView.xib in Resources */,
 				E5053A8A1EF10D24006677A4 /* RootViewController.xib in Resources */,
 				E574408F1EF764AC003CA9E7 /* ChatStickerView.xib in Resources */,
 				E5F260921F0BA7E40058EB65 /* ChatHeaderCell.xib in Resources */,
@@ -801,6 +808,7 @@
 				E593AEEF1EFCCC80002E2171 /* CDUser+CoreDataProperties.swift in Sources */,
 				E593AEF01EFCCC80002E2171 /* CDSender+CoreDataClass.swift in Sources */,
 				E5C5440D1F151F4C00D5303D /* ChatQueryManager.swift in Sources */,
+				E5AC24781F208F0B00950A2E /* HeaderView.swift in Sources */,
 				E599E8881EF67FD600B67920 /* UITextField.swift in Sources */,
 				E552CD431F1DD45500455B36 /* OfflineMessageViewController.swift in Sources */,
 				E593AEFC1EFCE7D3002E2171 /* CDContentInvoice.swift in Sources */,

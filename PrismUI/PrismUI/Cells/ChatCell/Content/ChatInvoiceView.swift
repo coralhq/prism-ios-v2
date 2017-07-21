@@ -42,7 +42,7 @@ class ChatInvoiceProductView: UIView {
 }
 
 class ChatInvoiceView: ChatContentView {
-    let midtransView = MidtransView.viewFromNib() as! MidtransView
+    let midtransView: MidtransView = MidtransView.viewFromNib()!
     
     @IBOutlet var containerView: UIStackView!
     @IBOutlet var productContainerView: UIStackView!

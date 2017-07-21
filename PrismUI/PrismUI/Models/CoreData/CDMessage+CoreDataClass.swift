@@ -34,7 +34,13 @@ public class CDMessage: NSManagedObject, CDManagedMappable {
         visitor = CDUser(with: context, dictionary: dictionary["visitor"] as! [String : Any])
         sender = CDSender(with: context, dictionary: dictionary["sender"] as! [String : Any])
         type = dictionary["type"] as? String
-        version = dictionary["version"] as? String
+        
+        if let version = dictionary["version"] as? Int {
+            self.version = Int16(version)
+        } else {
+            self.version = 2
+        }
+        
         brokerMetaData = CDBrokerMetaData(with: context, dictionary: dictionary["_broker_metadata"] as! [String: Any])
         content = coreDataContentWith(dictionary: dictionary["content"] as! [String: Any], type: type)
         sectionDate = Date().removedTime()
@@ -42,7 +48,6 @@ public class CDMessage: NSManagedObject, CDManagedMappable {
     
     func dictionaryValue() -> [String : Any]? {
         guard let id = id,
-            let version = version,
             let conversationID = conversationID,
             let merchantID = merchantID,
             let channel = channel,

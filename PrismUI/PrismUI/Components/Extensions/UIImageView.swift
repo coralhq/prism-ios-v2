@@ -15,13 +15,15 @@ class CacheVendor {
 
 extension UIImageView {
     
-    func downloadedFrom(url: URL, defaultImage: UIImage? = nil, contentMode: UIViewContentMode = .scaleAspectFill) {
-        
+    func downloadedFrom(url: URL?, defaultImage: UIImage? = nil, contentMode: UIViewContentMode = .scaleAspectFill) {
         self.contentMode = contentMode
+        self.image = defaultImage
+        
+        guard let url = url else {
+            return
+        }
         
         let key = url.absoluteString
-        
-        self.image = defaultImage
         
         if let image = CacheVendor.shared.cacheImages.object(forKey: key as NSString) {
             self.image = image

@@ -66,7 +66,7 @@ class CDLineItem: NSObject, NSCoding, CDMappable {
     
     required init?(coder aDecoder: NSCoder) {
         product = aDecoder.decodeObject(forKey: "product") as! CDProduct
-        quantity = aDecoder.decodeObject(forKey: "quantity") as! Int
+        quantity = aDecoder.decodeInteger(forKey: "quantity")
     }
 }
 

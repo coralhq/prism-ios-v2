@@ -21,7 +21,7 @@ class VisitorConnectEndPoint : EndPoint {
             return [
                 "name": visitorName,
                 "merchant_id": Config.shared.getMerchantID()!,
-                "channel_name": "SHAMU",
+                "channel_name": PrismChannelName,
                 "channel_user_id": userID,
                 "app_name": "paw"
             ]

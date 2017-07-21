@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol PrismCoreDelegate {
+public protocol PrismCoreDelegate: class {
     func didReceive(message data: Data, in topic: String)
 }

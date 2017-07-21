@@ -216,17 +216,20 @@ class CDPaymentProvider: NSObject, NSCoding, CDMappable {
         type = dictionary["type"] as! String
         
         if let info = dictionary["info"] as? [String: Any] {
-            if type == "vt_web" {
-                self.info = CDMidtransInfo(dictionary: info)
-            } else if type == "transfer" {
-                self.info = CDBankTransferInfo(dictionary: info)
-            }
+            self.info = CDMidtransInfo(dictionary: info)
+        } else if let transfer = dictionary["transfer"] as? [String: Any] {
+            self.info = CDBankTransferInfo(dictionary: transfer)
         }
     }
     func dictionaryValue() -> [String : Any] {
         var result: [String: Any] = ["type": type]
-        if let info = info {
+        guard let info = info else {
+            return result
+        }
+        if type == "vt_web" {
             result["info"] = info.dictionaryValue()
+        } else if type == "transfer" {
+            result["transfer"] = info.dictionaryValue()
         }
         return result
     }

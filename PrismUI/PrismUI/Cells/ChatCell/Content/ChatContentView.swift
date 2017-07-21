@@ -14,7 +14,7 @@ class ChatContentView: UIView {
     func updateView(with viewModel: ChatViewModel) {}
     
     static func contentFromNIB() -> ChatContentView? {
-        return self.viewFromNib() as? ChatContentView
+        return self.viewFromNib()
     }
 }
 

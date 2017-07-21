@@ -44,7 +44,7 @@ class JSONResponseMock {
                         "name": "Visitor2",
                         "merchant_id": "62ccf49f-0386-49a3-858c-70c98a9dc4fc",
                         "app_name": "paw",
-                        "channel_name": "SHAMU",
+                        "channel_name": PrismChannelName,
                         "channel_user_id": "fanni@prismapp.io",
                         "available": true
                     ],
@@ -97,7 +97,7 @@ class JSONResponseMock {
                         "name": "Visitor2",
                         "merchant_id": "62ccf49f-0386-49a3-858c-70c98a9dc4fc",
                         "app_name": "paw",
-                        "channel_name": "SHAMU",
+                        "channel_name": PrismChannelName,
                         "channel_user_id": "fanni@prismapp.io",
                         "available": true
                     ],
@@ -123,7 +123,7 @@ class JSONResponseMock {
                         "name": "Visitor2",
                         "merchant_id": "62ccf49f-0386-49a3-858c-70c98a9dc4fc",
                         "app_name": "paw",
-                        "channel_name": "SHAMU",
+                        "channel_name": PrismChannelName,
                         "channel_user_id": "fanni@prismapp.io",
                         "available": true
                     ],
@@ -254,11 +254,11 @@ class JSONResponseMock {
                         "created_at": "2017-05-19T03:39:31.812Z",
                         "updated_at": "2017-05-19T03:39:31.812Z",
                         "id": "781e9d79-b831-4c6f-b344-8c0f51102fea",
-                        "topic": "/chats/8c31f365-05d2-49fe-8c8d-59c84624c870/SHAMU/b09d7f44-3ed9-45cc-855b-281ec7898713",
+                        "topic": "/chats/8c31f365-05d2-49fe-8c8d-59c84624c870/PrismChannelName/b09d7f44-3ed9-45cc-855b-281ec7898713",
                         "status": "open",
                         "merchant_id": "8c31f365-05d2-49fe-8c8d-59c84624c870",
                         "has_content": false,
-                        "channel": "SHAMU",
+                        "channel": PrismChannelName,
                         "visitor": [
                             "created_at": "2017-05-19T03:39:31.808Z",
                             "updated_at": "2017-05-19T03:39:31.808Z",
@@ -294,11 +294,11 @@ class JSONResponseMock {
                         "created_at": "2017-05-19T03:39:31.812Z",
                         "updated_at": "2017-05-19T03:39:31.812Z",
                         "id": "781e9d79-b831-4c6f-b344-8c0f51102fea",
-                        "topic": "/chats/8c31f365-05d2-49fe-8c8d-59c84624c870/SHAMU/b09d7f44-3ed9-45cc-855b-281ec7898713",
+                        "topic": "/chats/8c31f365-05d2-49fe-8c8d-59c84624c870/PrismChannelName/b09d7f44-3ed9-45cc-855b-281ec7898713",
                         "status": "open",
                         "merchant_id": "8c31f365-05d2-49fe-8c8d-59c84624c870",
                         "has_content": false,
-                        "channel": "SHAMU",
+                        "channel": PrismChannelName,
                         "visitor": [
                             "created_at": "2017"
                         ],
@@ -329,11 +329,11 @@ class JSONResponseMock {
                         "created_at": "2017-05-19T03:39:31.812Z",
                         "updated_at": "2017-05-19T03:39:31.812Z",
                         "id": "781e9d79-b831-4c6f-b344-8c0f51102fea",
-                        "topic": "/chats/8c31f365-05d2-49fe-8c8d-59c84624c870/SHAMU/b09d7f44-3ed9-45cc-855b-281ec7898713",
+                        "topic": "/chats/8c31f365-05d2-49fe-8c8d-59c84624c870/PrismChannelName/b09d7f44-3ed9-45cc-855b-281ec7898713",
                         "status": "open",
                         "merchant_id": "8c31f365-05d2-49fe-8c8d-59c84624c870",
                         "has_content": false,
-                        "channel": "SHAMU",
+                        "channel": PrismChannelName,
                         "visitor": [
                             "created_at": "2017-05-19T03:39:31.808Z",
                             "updated_at": "2017-05-19T03:39:31.808Z",

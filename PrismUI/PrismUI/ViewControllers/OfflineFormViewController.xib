@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,9 @@
                 <outlet property="emailTF" destination="fWz-eC-VIH" id="2aG-XB-bv0"/>
                 <outlet property="messageTF" destination="0e2-as-1WZ" id="82i-Km-WS3"/>
                 <outlet property="nameTF" destination="pys-8B-kgu" id="Asi-bg-WUq"/>
+                <outlet property="offlineFormLabel" destination="G27-PK-J3n" id="XwO-EZ-GpD"/>
                 <outlet property="phoneTF" destination="IvQ-Cd-QEf" id="uBd-eG-7ce"/>
+                <outlet property="sendButton" destination="wqV-Ha-F1X" id="ABS-XZ-nHH"/>
                 <outlet property="view" destination="86V-gU-wx1" id="azg-Ah-i5Q"/>
             </connections>
         </placeholder>
@@ -22,14 +24,14 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, We are on offline service now. Please leave messages, we will contact you back." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G27-PK-J3n">
-                    <rect key="frame" x="28" y="50" width="319" height="33.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G27-PK-J3n">
+                    <rect key="frame" x="28" y="50" width="319" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqV-Ha-F1X">
-                    <rect key="frame" x="28" y="359.5" width="319" height="44"/>
+                    <rect key="frame" x="28" y="343" width="319" height="44"/>
                     <color key="backgroundColor" red="0.82745098039999998" green="0.21960784310000001" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="IBH-Q5-tdz"/>
@@ -41,7 +43,7 @@
                     </connections>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9pO-V2-IWs">
-                    <rect key="frame" x="28" y="111.5" width="319" height="220"/>
+                    <rect key="frame" x="28" y="95" width="319" height="220"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pys-8B-kgu" customClass="LinedTextField" customModule="PrismUI" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="319" height="55"/>

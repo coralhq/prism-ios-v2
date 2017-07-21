@@ -14,6 +14,8 @@ class OfflineFormViewController: BaseViewController {
     @IBOutlet var emailTF: LinedTextField!
     @IBOutlet var phoneTF: LinedTextField!
     @IBOutlet var messageTF: LinedTextField!
+    @IBOutlet var sendButton: UIButton!
+    @IBOutlet var offlineFormLabel: UILabel!
     
     let chatManager: ChatManager
     
@@ -29,6 +31,14 @@ class OfflineFormViewController: BaseViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        offlineFormLabel.text = Settings.shared.offlineFormMessage
+        
+        nameTF.selectedColor = Settings.shared.theme.buttonColor
+        emailTF.selectedColor = Settings.shared.theme.buttonColor
+        phoneTF.selectedColor = Settings.shared.theme.buttonColor
+        messageTF.selectedColor = Settings.shared.theme.buttonColor
+        sendButton.backgroundColor = Settings.shared.theme.buttonColor
         
         let formField = Settings.shared.inputForm
         update(textField: nameTF, form: formField.username)

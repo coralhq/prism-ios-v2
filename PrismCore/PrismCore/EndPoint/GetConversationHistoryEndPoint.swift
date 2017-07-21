@@ -11,10 +11,12 @@ import Foundation
 class GetConversationHistoryEndPoint: EndPoint {
     
     let conversationID: String
+    let startTime: Int
+    let endTime: Int
     
     var url: URL {
         get {
-            return URL.getConversationHistory(conversationID: conversationID)
+            return URL.getConversationHistory(conversationID: conversationID, startTime: startTime, endTime: endTime)
         }
     }
     var method = HTTPMethod.GET
@@ -30,8 +32,10 @@ class GetConversationHistoryEndPoint: EndPoint {
         }
     }
     
-    init(conversationID: String, token: String) {
+    init(conversationID: String, token: String, startTime: Int, endTime: Int) {
         self.conversationID = conversationID
         self.token = token
+        self.startTime = startTime
+        self.endTime = endTime
     }
 }

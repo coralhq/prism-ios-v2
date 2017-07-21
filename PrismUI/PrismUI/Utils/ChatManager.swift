@@ -139,7 +139,7 @@ class ChatManager {
         return Message(id: NSUUID().uuidString.lowercased(),
                        conversationID: credential.conversationID,
                        merchantID: credential.merchantID,
-                       channel: "IOS_SDK",
+                       channel: PrismChannelName,
                        visitor: credential.visitorInfo,
                        sender: credential.sender,
                        type: type,

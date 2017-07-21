@@ -8,6 +8,8 @@
 
 import Foundation
 
+public let PrismChannelName = "IOS_SDK"
+
 public typealias HTTPRequestResult = (Mappable?, NSError?) -> ()
 
 public let ReceiveChatNotification = NSNotification.Name(rawValue: "ReceiveChatNotification")
@@ -70,16 +72,6 @@ open class PrismCore {
     }
     
     open func publishMessage(token: String, topic: String, messages: [Message], completionHandler: @escaping (MessageResponse?, NSError?) -> ()) {
-        
-        if let message = messages.first {
-            do {
-                let data = try JSONSerialization.data(withJSONObject: message.dictionaryValue(), options: .init(rawValue: 0))
-                print(String(data: data, encoding: .utf8))
-            } catch {
-                
-            }
-        }
-        
         let endPoint = PublishMessageEndPoint(token: token, messages: messages, topic: topic)
         
         network?.request(endPoint: endPoint, mapToObject: MessageResponse.self) { (mappable, error) in

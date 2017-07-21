@@ -41,4 +41,10 @@ extension URL {
             return URL(string: PrismAPIBaseURL + "/conversations")!
         }
     }
+    
+    static var deviceInfo: URL {
+        get {
+            return URL(string: PrismAPIBaseURL + "/devices/ios")!
+        }
+    }
 }

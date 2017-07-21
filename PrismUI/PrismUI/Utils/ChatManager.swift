@@ -210,6 +210,26 @@ class ChatManager {
         }
     }
     
+    func syncChatLocalWithServer() {
+        coredata?.fetchLatestMessage(completion: { (message) in
+            let convID = self.credential.conversationID
+            let token = self.credential.accessToken
+            
+            guard let timestamp = message.brokerMetaData?.timestamp else {
+                return
+            }
+            let startTime = timestamp.timeIntervalSince1970.unixTime
+            let endTime = Date().timeIntervalSince1970.unixTime
+            
+            PrismCore.shared.getConversationHistory(conversationID: convID, token: token, startTime: startTime, endTime: endTime, completionHandler: { [weak self] (history, error) in
+                guard let messages = history?.messages else {
+                    return
+                }
+                self?.coredata?.saveMessages(messages: messages)
+            })
+        })
+    }
+    
     @objc func chatReceived(sender: Notification) {
         guard let message = sender.object as? Message else { return }
         
@@ -233,26 +253,5 @@ class ChatManager {
 extension TimeInterval {
     var unixTime: Int {
         return Int(self * 1000)
-    }
-}
-
-extension ChatManager {
-    
-    
-    func syncChatLocalWithServer() {
-        coredata?.fetchLatestMessage(completion: { (message) in
-            let convID = self.credential.conversationID
-            let token = self.credential.accessToken
-            
-            guard let timestamp = message.brokerMetaData?.timestamp else {
-                return
-            }
-            let startTime = timestamp.timeIntervalSince1970.unixTime
-            let endTime = Date().timeIntervalSince1970.unixTime
-            
-            PrismCore.shared.getConversationHistory(conversationID: convID, token: token, startTime: startTime, endTime: endTime, completionHandler: { (history, error) in
-                print("history: \(history?.messages), error: \(error)")
-            })
-        })
     }
 }

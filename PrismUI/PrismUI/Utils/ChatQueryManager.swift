@@ -62,15 +62,21 @@ class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
     func fetchSections() {
         do {
             try fetchController.performFetch()
-            guard let sections = fetchController.sections else { return }
-            
-            self.sections.removeAll()
-            for sectionInfo in sections {
-                self.sections.append(ChatSectionViewModel(info: sectionInfo))
-            }
+            modelMessageObjects()
         } catch {
             print("fetch error: \(error)")
         }
+    }
+    
+    func modelMessageObjects() {
+        guard let sections = fetchController.sections else {
+            return
+        }
+        var models: [ChatSectionViewModel] = []
+        for sectionInfo in sections {
+            models.append(ChatSectionViewModel(info: sectionInfo))
+        }
+        self.sections = models
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -98,31 +104,7 @@ class ChatQueryManager: NSObject, NSFetchedResultsControllerDelegate {
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-        guard let newIndexPath = newIndexPath,
-            let sectionInfo = controller.sections?[newIndexPath.section],
-            let message = sectionInfo.objects?[newIndexPath.row] as? CDMessage,
-            var objects = sections[newIndexPath.section].objects else { return }
-        
-        let index = newIndexPath.row
-        guard let credential = Vendor.shared.credential,
-            let chatVM = ChatViewModel(message: message, visitor: credential.sender) else { return }
-        
-        switch type {
-        case .delete:
-            objects.remove(at: index)
-        case .insert:
-            objects.insert(viewModel: chatVM, at: index)
-        case .update:
-            objects.update(viewModel: chatVM, at: index)
-        case .move:
-            guard let indexPath = indexPath else { return }
-            objects.remove(at: indexPath.row)
-            objects.insert(chatVM, at: index)
-        }
-        
-        sections[newIndexPath.section].objects = objects
-        
+        modelMessageObjects()
         delegate?.changedObject(at: indexPath, newIndexPath: newIndexPath, changeType: ChatChangeType.convertedFrom(type: type))
     }
 }

@@ -57,8 +57,9 @@ open class PrismUI {
             batteryState = "Unknown"
         }
         
-        let operatorCode = CTCarrier().mobileCountryCode ?? "0"
-        let operatorCodeInt = Int(operatorCode) ?? 0
+        let MCCode = CTCarrier().mobileCountryCode ?? "0"
+        let MNCode = CTCarrier().mobileNetworkCode ?? "0"
+        let operatorCodeInt = Int(MCCode + MNCode) ?? 0
         let operatorName = CTCarrier().carrierName ?? "Unknown"
         
         PrismAnalytics.shared.getIPAddress { (ipAddress) in

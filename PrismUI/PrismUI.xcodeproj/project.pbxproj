@@ -11,6 +11,10 @@
 		80389A3E1EEA3132007B9458 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389A3C1EEA3132007B9458 /* ConnectViewController.swift */; };
 		80389A401EEA3132007B9458 /* ConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80389A3D1EEA3132007B9458 /* ConnectViewController.xib */; };
 		80389A531EEA7A13007B9458 /* PrismUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389A521EEA7A13007B9458 /* PrismUI.swift */; };
+		8071E0F61F218D430003732F /* DeviceGuru.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071E0F31F218D430003732F /* DeviceGuru.swift */; };
+		8071E0F71F218D430003732F /* DeviceList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8071E0F41F218D430003732F /* DeviceList.plist */; };
+		8071E0F81F218D430003732F /* Hardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071E0F51F218D430003732F /* Hardware.swift */; };
+		8071E0FA1F219E2B0003732F /* DiskStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8071E0F91F219E2B0003732F /* DiskStatus.swift */; };
 		807C898A1EEE389200DADEBF /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C89891EEE389200DADEBF /* Theme.swift */; };
 		807C89911EEE4AF100DADEBF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C898F1EEE4AF100DADEBF /* ChatViewController.swift */; };
 		807C89931EEE4AF100DADEBF /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 807C89901EEE4AF100DADEBF /* ChatViewController.xib */; };
@@ -131,6 +135,10 @@
 		80389A3D1EEA3132007B9458 /* ConnectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectViewController.xib; sourceTree = "<group>"; };
 		80389A421EEA3140007B9458 /* LinedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinedTextField.swift; path = Kits/LinedTextField.swift; sourceTree = "<group>"; };
 		80389A521EEA7A13007B9458 /* PrismUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrismUI.swift; sourceTree = "<group>"; };
+		8071E0F31F218D430003732F /* DeviceGuru.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceGuru.swift; sourceTree = "<group>"; };
+		8071E0F41F218D430003732F /* DeviceList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DeviceList.plist; sourceTree = "<group>"; };
+		8071E0F51F218D430003732F /* Hardware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hardware.swift; sourceTree = "<group>"; };
+		8071E0F91F219E2B0003732F /* DiskStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiskStatus.swift; path = Vendors/DiskStatus.swift; sourceTree = "<group>"; };
 		807C89891EEE389200DADEBF /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Theme.swift; path = PrismUI/Components/Theme/Theme.swift; sourceTree = SOURCE_ROOT; };
 		807C898F1EEE4AF100DADEBF /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		807C89901EEE4AF100DADEBF /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
@@ -345,6 +353,17 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
+		8071E0F21F218D170003732F /* DeviceGuru */ = {
+			isa = PBXGroup;
+			children = (
+				8071E0F31F218D430003732F /* DeviceGuru.swift */,
+				8071E0F41F218D430003732F /* DeviceList.plist */,
+				8071E0F51F218D430003732F /* Hardware.swift */,
+			);
+			name = DeviceGuru;
+			path = Vendors/DeviceGuru;
+			sourceTree = "<group>";
+		};
 		E5053A8D1EF130FD006677A4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -453,7 +472,9 @@
 		E55AC0D91F0FC10A00A0354D /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				8071E0F21F218D170003732F /* DeviceGuru */,
 				E5B9615B1F17039D00764A12 /* ReachabilityHelper.swift */,
+				8071E0F91F219E2B0003732F /* DiskStatus.swift */,
 			);
 			name = Vendors;
 			sourceTree = "<group>";
@@ -683,6 +704,7 @@
 				E57440881EF76140003CA9E7 /* StickerInContainer.xib in Resources */,
 				E508C1C31EF8D6F9004DCB6A /* Localizable.strings in Resources */,
 				E57440AD1EF7CE58003CA9E7 /* ChatCartView.xib in Resources */,
+				8071E0F71F218D430003732F /* DeviceList.plist in Resources */,
 				E57440B21EF7CFB3003CA9E7 /* ProductCartView.xib in Resources */,
 				E5053A8A1EF10D24006677A4 /* RootViewController.xib in Resources */,
 				E574408F1EF764AC003CA9E7 /* ChatStickerView.xib in Resources */,
@@ -754,6 +776,7 @@
 				E5C5440B1F151F0100D5303D /* CoreDataManager.swift in Sources */,
 				E508C1BB1EF8BD22004DCB6A /* Number.swift in Sources */,
 				E58FAE5F1EF3687D002F1A2A /* ChatViewModel.swift in Sources */,
+				8071E0F61F218D430003732F /* DeviceGuru.swift in Sources */,
 				E593AEF31EFCCC80002E2171 /* CDMessage+CoreDataProperties.swift in Sources */,
 				E599E8841EF67F6500B67920 /* UIView.swift in Sources */,
 				807C898A1EEE389200DADEBF /* Theme.swift in Sources */,
@@ -764,6 +787,7 @@
 				E593AEEC1EFCCC80002E2171 /* CDBrokerMetaData+CoreDataClass.swift in Sources */,
 				E559E1F11EF2658C004E3F03 /* Settings.swift in Sources */,
 				E593AEFA1EFCE7B9002E2171 /* CDContentCart.swift in Sources */,
+				8071E0F81F218D430003732F /* Hardware.swift in Sources */,
 				E52899DA1F1CBE2D00FED3BA /* OfflineFormViewController.swift in Sources */,
 				E547E7F41F0C869800AFFB20 /* ContentTextViewModel.swift in Sources */,
 				807C89991EEE4C3400DADEBF /* UIFont.swift in Sources */,
@@ -773,6 +797,7 @@
 				807C89911EEE4AF100DADEBF /* ChatViewController.swift in Sources */,
 				E562B5CD1F0CCD32006489C0 /* ContentInvoiceViewModel.swift in Sources */,
 				E552CD481F1DD45500455B36 /* ContentOfflineViewModel.swift in Sources */,
+				8071E0FA1F219E2B0003732F /* DiskStatus.swift in Sources */,
 				E593AEEF1EFCCC80002E2171 /* CDUser+CoreDataProperties.swift in Sources */,
 				E593AEF01EFCCC80002E2171 /* CDSender+CoreDataClass.swift in Sources */,
 				E5C5440D1F151F4C00D5303D /* ChatQueryManager.swift in Sources */,

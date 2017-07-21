@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -71,6 +71,7 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQO-Vf-h9Z" customClass="SmallButton" customModule="PrismUI" customModuleProvider="target">
                             <rect key="frame" x="10" y="8" width="22" height="22"/>
+                            <color key="tintColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" image="icBtnEmoticon"/>
                             <state key="selected" image="icBtnKeyboardSelect"/>
                             <connections>
@@ -79,6 +80,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18m-B8-Up2" customClass="SmallButton" customModule="PrismUI" customModuleProvider="target">
                             <rect key="frame" x="48" y="8" width="24" height="22"/>
+                            <color key="tintColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" image="icBtnPic"/>
                             <connections>
                                 <action selector="attachImagePressedWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="emb-AV-lxB"/>
@@ -86,6 +88,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fP-eu-bQX" customClass="SmallButton" customModule="PrismUI" customModuleProvider="target">
                             <rect key="frame" x="88" y="8" width="20" height="22"/>
+                            <color key="tintColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" image="icBtnSticker"/>
                             <connections>
                                 <action selector="stickerInputPressedWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="Atd-68-qcf"/>
@@ -135,9 +138,12 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="botSpaceConstraint" destination="tgp-Wp-1Hb" id="ibh-9i-Vdd"/>
+                <outlet property="emojiButton" destination="hQO-Vf-h9Z" id="fld-Rf-AO3"/>
                 <outlet property="sendButton" destination="DZ9-rX-7hb" id="aUq-VT-AQB"/>
+                <outlet property="stickerButton" destination="6fP-eu-bQX" id="TiT-QO-Ju6"/>
                 <outlet property="textView" destination="1qC-rM-eqd" id="rmO-g8-uXZ"/>
                 <outlet property="textViewHeightConstraint" destination="HCE-zd-nka" id="g7i-fp-Zb2"/>
+                <outlet property="topSeparatorView" destination="zDA-70-jyQ" id="a4F-b1-eYW"/>
             </connections>
             <point key="canvasLocation" x="-232.5" y="-266.5"/>
         </view>

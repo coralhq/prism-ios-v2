@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,10 +28,10 @@
                             <rect key="frame" x="8" y="8" width="137" height="150"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyQ-w0-y83" customClass="ChatInfoView" customModule="PrismUI" customModuleProvider="target">
+                        <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="vyQ-w0-y83" customClass="ChatInfoView" customModule="PrismUI" customModuleProvider="target">
                             <rect key="frame" x="153" y="148" width="39" height="10"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="755" text="00:40 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdO-7k-EqR">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="00:40 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdO-7k-EqR">
                                     <rect key="frame" x="0.0" y="0.0" width="39" height="10"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                     <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
@@ -53,13 +53,13 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="vyQ-w0-y83" secondAttribute="trailing" constant="8" id="2wM-XX-EhT"/>
+                        <constraint firstAttribute="bottom" secondItem="Atx-fN-zPY" secondAttribute="bottom" constant="8" id="5a6-Lb-ogG"/>
+                        <constraint firstAttribute="trailing" secondItem="Atx-fN-zPY" secondAttribute="trailing" constant="55" id="74J-bS-rb5"/>
+                        <constraint firstItem="vyQ-w0-y83" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rqc-Gb-vfo" secondAttribute="leading" constant="8" id="8u7-JS-9mv"/>
                         <constraint firstItem="Atx-fN-zPY" firstAttribute="top" secondItem="Rqc-Gb-vfo" secondAttribute="top" constant="8" id="KqI-cg-NS2"/>
-                        <constraint firstItem="vyQ-w0-y83" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rqc-Gb-vfo" secondAttribute="leading" constant="10" id="Tyu-Ce-nUL"/>
                         <constraint firstAttribute="bottom" secondItem="vyQ-w0-y83" secondAttribute="bottom" constant="8" id="dJw-7a-8Oh"/>
-                        <constraint firstItem="Atx-fN-zPY" firstAttribute="bottom" secondItem="vyQ-w0-y83" secondAttribute="bottom" id="muz-8j-jwi"/>
                         <constraint firstAttribute="width" constant="200" placeholder="YES" id="u8g-eg-2lt"/>
                         <constraint firstItem="Atx-fN-zPY" firstAttribute="leading" secondItem="Rqc-Gb-vfo" secondAttribute="leading" constant="8" id="wAo-sg-gAV"/>
-                        <constraint firstItem="vyQ-w0-y83" firstAttribute="leading" secondItem="Atx-fN-zPY" secondAttribute="trailing" constant="8" id="xih-cd-VAV"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -92,10 +92,13 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="bubleView" destination="Rqc-Gb-vfo" id="ZJO-Eu-yXi"/>
                 <outlet property="containerView" destination="Atx-fN-zPY" id="13O-Dv-R8X"/>
+                <outlet property="contentBottom" destination="5a6-Lb-ogG" id="LOq-hR-wpU"/>
+                <outlet property="contentTrailing" destination="74J-bS-rb5" id="40L-pk-m1b"/>
+                <outlet property="infoBottom" destination="dJw-7a-8Oh" id="uZm-hW-LSs"/>
+                <outlet property="infoTrailing" destination="2wM-XX-EhT" id="dGs-Li-Myk"/>
                 <outlet property="infoView" destination="vyQ-w0-y83" id="nDh-RO-Fdy"/>
-                <outlet property="infoWithContentHSpace" destination="xih-cd-VAV" id="HMe-fU-i6s"/>
-                <outlet property="infoWithContentVSpace" destination="muz-8j-jwi" id="1ql-jG-tGY"/>
                 <outlet property="nameLabel" destination="ed7-sP-qYZ" id="QHe-lf-nJa"/>
                 <outlet property="topMarginConstraint" destination="nP5-Vs-roq" id="D6e-T2-j4C"/>
             </connections>

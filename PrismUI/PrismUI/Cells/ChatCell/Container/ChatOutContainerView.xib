@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -27,13 +27,13 @@
                             <rect key="frame" x="8" y="8" width="121" height="150"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
-                        <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qXz-pM-Rbn" customClass="ChatInfoView" customModule="PrismUI" customModuleProvider="target">
+                        <view contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="qXz-pM-Rbn" customClass="ChatInfoView" customModule="PrismUI" customModuleProvider="target">
                             <rect key="frame" x="137" y="148" width="55" height="10"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icStatusRead" translatesAutoresizingMaskIntoConstraints="NO" id="xRk-9x-Nr9">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="icStatusRead" translatesAutoresizingMaskIntoConstraints="NO" id="xRk-9x-Nr9">
                                     <rect key="frame" x="42" y="0.0" width="13" height="10"/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:40 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xE-Cx-ZSm">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="00:40 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xE-Cx-ZSm">
                                     <rect key="frame" x="0.0" y="0.0" width="39" height="10"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                     <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
@@ -62,10 +62,10 @@
                         <constraint firstItem="n37-bD-oWi" firstAttribute="top" secondItem="k9e-9g-2zL" secondAttribute="top" constant="8" id="3ns-8k-VSX"/>
                         <constraint firstAttribute="bottom" secondItem="qXz-pM-Rbn" secondAttribute="bottom" constant="8" id="6TJ-Fa-hXl"/>
                         <constraint firstAttribute="width" constant="200" placeholder="YES" id="A6y-Pd-Sxb"/>
+                        <constraint firstAttribute="trailing" secondItem="n37-bD-oWi" secondAttribute="trailing" constant="71" id="BH2-YY-rii"/>
                         <constraint firstItem="n37-bD-oWi" firstAttribute="leading" secondItem="k9e-9g-2zL" secondAttribute="leading" constant="8" id="S0M-dE-PgX"/>
-                        <constraint firstItem="qXz-pM-Rbn" firstAttribute="leading" secondItem="n37-bD-oWi" secondAttribute="trailing" constant="8" id="TkS-jm-kkA"/>
-                        <constraint firstItem="qXz-pM-Rbn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="k9e-9g-2zL" secondAttribute="leading" constant="8" id="dJL-rK-DKS"/>
-                        <constraint firstItem="n37-bD-oWi" firstAttribute="bottom" secondItem="qXz-pM-Rbn" secondAttribute="bottom" id="lYZ-5G-4cC"/>
+                        <constraint firstAttribute="bottom" secondItem="n37-bD-oWi" secondAttribute="bottom" constant="8" id="XqO-ij-Idn"/>
+                        <constraint firstItem="qXz-pM-Rbn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="k9e-9g-2zL" secondAttribute="leading" constant="8" id="yAN-U5-S2A"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -98,10 +98,13 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="bubleView" destination="k9e-9g-2zL" id="Y8O-ya-epM"/>
                 <outlet property="containerView" destination="n37-bD-oWi" id="1GE-Mk-hBP"/>
+                <outlet property="contentBottom" destination="XqO-ij-Idn" id="ViN-OL-gVY"/>
+                <outlet property="contentTrailing" destination="BH2-YY-rii" id="l81-91-vAr"/>
+                <outlet property="infoBottom" destination="6TJ-Fa-hXl" id="Oua-r6-AsJ"/>
+                <outlet property="infoTrailing" destination="3d6-1u-1dG" id="N2w-fz-Ai1"/>
                 <outlet property="infoView" destination="qXz-pM-Rbn" id="RrL-pJ-aey"/>
-                <outlet property="infoWithContentHSpace" destination="TkS-jm-kkA" id="CJ2-HV-VMH"/>
-                <outlet property="infoWithContentVSpace" destination="lYZ-5G-4cC" id="ObP-lP-QQy"/>
                 <outlet property="nameLabel" destination="7Yy-wc-ZY0" id="lTV-wc-LTv"/>
                 <outlet property="topMarginConstraint" destination="3XT-Ck-Rd9" id="fop-D3-KSv"/>
             </connections>

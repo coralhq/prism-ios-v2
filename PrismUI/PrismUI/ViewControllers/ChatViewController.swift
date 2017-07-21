@@ -40,6 +40,7 @@ class ChatViewController: BaseViewController {
         composer.delegate = self
         composer.addTo(view: barView, margin: 0)
         
+        tableView.backgroundColor = Settings.shared.theme.buttonColor.withAlphaComponent(0.05)
         tableView.delegate = self
         tableView.dataSource = self
       
@@ -47,7 +48,6 @@ class ChatViewController: BaseViewController {
 
         queryManager?.delegate = self
         queryManager?.fetchSections()
-
     }
     
     override func viewDidAppear(_ animated: Bool) {

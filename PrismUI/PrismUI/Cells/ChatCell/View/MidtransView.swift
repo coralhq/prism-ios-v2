@@ -14,9 +14,10 @@ class MidtransView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        payButton.setTitleColor(Settings.shared.theme.buttonColor, for: .normal)
         payButton.layer.cornerRadius = 3
         payButton.layer.borderWidth = 1
-        payButton.layer.borderColor = payButton.currentTitleColor.cgColor
+        payButton.layer.borderColor = Settings.shared.theme.buttonColor.cgColor
     }
 
 }

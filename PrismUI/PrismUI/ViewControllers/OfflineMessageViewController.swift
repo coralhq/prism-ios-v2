@@ -9,6 +9,8 @@
 import UIKit
 
 class OfflineMessageViewController: BaseViewController {
+    @IBOutlet var offlineMessageLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
 
     init() {
         super.init(nibName: nil, bundle: Bundle.prism)
@@ -18,4 +20,11 @@ class OfflineMessageViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = Settings.shared.theme.headerColor.withAlphaComponent(0.05)
+        
+        titleLabel.text = "Terimakasih telah menghubungi kami".localized()
+        offlineMessageLabel.text = Settings.shared.offlineMessage
+    }
 }

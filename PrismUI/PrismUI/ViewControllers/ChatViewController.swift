@@ -27,6 +27,7 @@ class ChatViewController: BaseViewController {
             return
         }
         queryManager = ChatQueryManager(context: context)
+        queryManager?.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,10 +44,8 @@ class ChatViewController: BaseViewController {
         tableView.backgroundColor = Settings.shared.theme.buttonColor.withAlphaComponent(0.05)
         tableView.delegate = self
         tableView.dataSource = self
-      
         tableView.register(ChatHeaderCell.NIB, forCellReuseIdentifier: ChatHeaderCell.className())
-
-        queryManager?.delegate = self
+        
         queryManager?.fetchSections()
     }
     

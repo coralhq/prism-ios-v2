@@ -42,12 +42,8 @@ open class MessageResponse: Mappable {
     }
     
     public func dictionaryValue() -> [String : Any] {
-        let failedMessages = failed.map { (message) -> [String: Any] in
-            return message.dictionaryValue()
-        }
-        let invalidMessages = invalid.map { (message) -> [String: Any] in
-            return message.dictionaryValue()
-        }
+        let failedMessages = failed.flatMap { $0.dictionaryValue() }
+        let invalidMessages = invalid.flatMap { $0.dictionaryValue() }
         return ["data": ["failed": failedMessages,
                          "invalid": invalidMessages]]
     }

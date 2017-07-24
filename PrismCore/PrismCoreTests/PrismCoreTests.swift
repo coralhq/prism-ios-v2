@@ -418,6 +418,7 @@ class PrismCoreTests: XCTestCase {
         
         PrismCore.shared.getConversationHistory(conversationID: "", token: "", startTime: 0, endTime: 10) { (response, error) in
             XCTAssertNil(error)
+            XCTAssertNotNil(response)
             XCTAssertNotNil(response?.dictionaryValue())
         }
     }

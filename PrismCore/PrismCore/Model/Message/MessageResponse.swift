@@ -21,8 +21,8 @@ open class MessageResponse: Mappable {
         
         var failedMessages: [Message] = []
         for message in failed {
-            guard let failedMessage = Message(dictionary: message) else {
-                return nil
+            guard let failedMessage = Message(dictionary: message["message"] as? [String: Any]) else {
+                continue
             }
             
             failedMessages.append(failedMessage)
@@ -30,8 +30,8 @@ open class MessageResponse: Mappable {
         
         var invalidMessages: [Message] = []
         for message in invalid {
-            guard let invalidMessage = Message(dictionary: message) else {
-                return nil
+            guard let invalidMessage = Message(dictionary: message["message"] as? [String: Any]) else {
+                continue
             }
             
             invalidMessages.append(invalidMessage)

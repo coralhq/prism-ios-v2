@@ -18,7 +18,7 @@ public class MessageSender : Mappable {
         guard let id = dictionary?["id"] as? String,
             let name = dictionary?["name"] as? String,
             let role = dictionary?["role"] as? String,
-            let userAgent = dictionary?["user_agent"] as? String else {
+            let userAgent = dictionary?["app_name"] as? String else {
                 return nil
         }
         
@@ -30,7 +30,7 @@ public class MessageSender : Mappable {
     
     
     convenience public init?(id: String, name: String, role: String, userAgent: String) {
-        let data = ["id": id, "name": name, "role": role, "user_agent": userAgent ]
+        let data = ["id": id, "name": name, "role": role, "app_name": userAgent ]
         self.init(dictionary: data)
     }
     
@@ -38,6 +38,6 @@ public class MessageSender : Mappable {
         return ["id": id,
                 "name": name,
                 "role": role,
-                "user_agent": userAgent]
+                "app_name": userAgent]
     }
 }

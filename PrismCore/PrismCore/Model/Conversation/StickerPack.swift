@@ -86,6 +86,6 @@ open class StickerPack: NSObject, NSCoding, Mappable {
         name = aDecoder.decodeObject(forKey: "name") as! String
         logoURL = aDecoder.decodeObject(forKey: "logo_url") as! URL
         createdBy = aDecoder.decodeObject(forKey: "created_by") as! String
-        isPublic = aDecoder.decodeObject(forKey: "is_public") as! Bool
+        isPublic = aDecoder.decodeBool(forKey: "is_public")
     }
 }

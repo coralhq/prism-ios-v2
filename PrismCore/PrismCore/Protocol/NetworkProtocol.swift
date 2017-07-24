@@ -9,6 +9,8 @@
 import Foundation
 
 protocol NetworkProtocol {
+    weak var delegate: NetworkDelegate? { get set }
+    
     func requestRawResult<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping (([String: Any]?, NSError?) -> ()))
     
     func request<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping HTTPRequestResult)

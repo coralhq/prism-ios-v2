@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-public typealias MessageChannelInfo = MessageUser
 public typealias MessageVisitorInfo = MessageUser
 
 public enum TypingStatus : String {

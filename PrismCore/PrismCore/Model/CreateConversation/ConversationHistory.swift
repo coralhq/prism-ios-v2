@@ -20,7 +20,7 @@ open class ConversationHistory: Mappable {
         for dictionary in messageDictionaries {
             guard let payload = dictionary["payload"] as? [String: Any],
                 let message = Message(dictionary: payload) else {
-                return nil
+                continue
             }
             
             messages.append(message)

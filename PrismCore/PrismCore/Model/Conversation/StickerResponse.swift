@@ -43,7 +43,7 @@ open class StickerResponse: NSObject, NSCoding, Mappable {
     
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(status, forKey: "status")
-        aCoder.encode(packs, forKey: "status")
+        aCoder.encode(packs, forKey: "packs")
     }
     
     public required init?(coder aDecoder: NSCoder) {

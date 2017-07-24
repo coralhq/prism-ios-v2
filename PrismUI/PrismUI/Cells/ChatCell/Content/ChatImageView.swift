@@ -26,9 +26,7 @@ class ChatImageView: ChatContentView {
         
         NotificationCenter.default.addObserver(self, selector: #selector(uploadProgress(sender:)) , name: UploadProgressNotification, object: nil)
     }
-    override func infoPosition() -> InfoViewPosition {
-        return .Bottom
-    }
+    
     override func updateView(with viewModel: ChatViewModel) {
         guard let contentVM = viewModel.contentViewModel as? ContentImageViewModel,
             let state = contentVM.uploadState else {

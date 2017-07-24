@@ -11,9 +11,6 @@ import UIKit
 class ChatStickerView: ChatContentView {
     @IBOutlet var stickerImageView: UIImageView!
     
-    override func infoPosition() -> InfoViewPosition {
-        return .Bottom
-    }
     override func updateView(with viewModel: ChatViewModel) {
         guard let contentVM = viewModel.contentViewModel as? ContentStickerViewModel else {
             return

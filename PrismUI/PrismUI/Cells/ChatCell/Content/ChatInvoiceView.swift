@@ -82,9 +82,6 @@ class ChatInvoiceView: ChatContentView {
         UIApplication.shared.openURL(payURL)
     }
     
-    override func infoPosition() -> InfoViewPosition {
-        return .Bottom
-    }
     override func updateView(with viewModel: ChatViewModel) {
         guard let contentVM = viewModel.contentViewModel as? ContentInvoiceViewModel else {
             return
@@ -107,5 +104,7 @@ class ChatInvoiceView: ChatContentView {
         for itemVM in contentVM.productModels {
             productContainerView.addArrangedSubview(ChatInvoiceProductView(viewModel: itemVM))
         }
+        
+        calculateContentWidth(label: paymentMethodLabel)
     }
 }

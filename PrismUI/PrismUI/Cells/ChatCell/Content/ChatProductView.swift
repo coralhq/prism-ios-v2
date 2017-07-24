@@ -31,9 +31,6 @@ class ChatProductView: ChatContentView {
         collectionView.register(UINib(nibName: ContentProductCell.className(), bundle: Bundle.prism), forCellWithReuseIdentifier: ContentProductCell.className())
     }
     
-    override func infoPosition() -> InfoViewPosition {
-        return .Bottom
-    }
     override func updateView(with viewModel: ChatViewModel) {
         guard let contentVM = viewModel.contentViewModel as? ContentProductViewModel else {
             return
@@ -59,6 +56,8 @@ class ChatProductView: ChatContentView {
             productListHeight.constant = 0
             productPageControlHeight.constant = 0
         }
+        
+        calculateContentWidth(label: descriptionLabel)
     }
 }
 

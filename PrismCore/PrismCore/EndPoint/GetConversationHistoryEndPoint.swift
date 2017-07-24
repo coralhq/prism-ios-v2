@@ -11,8 +11,8 @@ import Foundation
 class GetConversationHistoryEndPoint: EndPoint {
     
     let conversationID: String
-    let startTime: Int
-    let endTime: Int
+    let startTime: Int64
+    let endTime: Int64
     
     var url: URL {
         get {
@@ -32,7 +32,7 @@ class GetConversationHistoryEndPoint: EndPoint {
         }
     }
     
-    init(conversationID: String, token: String, startTime: Int, endTime: Int) {
+    init(conversationID: String, token: String, startTime: Int64, endTime: Int64) {
         self.conversationID = conversationID
         self.token = token
         self.startTime = startTime

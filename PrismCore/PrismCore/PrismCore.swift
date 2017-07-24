@@ -111,7 +111,7 @@ open class PrismCore {
         }
     }
     
-    open func getConversationHistory(conversationID: String, token: String, startTime: Int, endTime: Int, completionHandler: @escaping ((ConversationHistory?, Error?) -> ())) {
+    open func getConversationHistory(conversationID: String, token: String, startTime: Int64, endTime: Int64, completionHandler: @escaping ((ConversationHistory?, Error?) -> ())) {
         let endPoint = GetConversationHistoryEndPoint(conversationID: conversationID, token: token, startTime: startTime, endTime: endTime)
         print("URL: \(endPoint.url)")
         network?.request(endPoint: endPoint, mapToObject: ConversationHistory.self) { (mappable, error) in

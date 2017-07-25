@@ -39,7 +39,7 @@ class CDContentAttachment: ValueTransformer, NSCoding, CDMappable, CDContentEdit
         if let previewURL = previewURL {
             result["preview_url"] = previewURL
         }
-        return result
+        return ["attachment": result]
     }
     
     func encode(with aCoder: NSCoder) {
@@ -56,9 +56,7 @@ class CDContentAttachment: ValueTransformer, NSCoding, CDMappable, CDContentEdit
         url = aDecoder.decodeObject(forKey: "url") as? String
         previewURL = aDecoder.decodeObject(forKey: "preview_url") as? String
 
-        guard let state = aDecoder.decodeObject(forKey: "upload_state") as? Int else {
-            return
-        }
+        let state = aDecoder.decodeInteger(forKey: "upload_state")
         self.uploadState = AttachmentUploadState(rawValue: state)!
     }
     

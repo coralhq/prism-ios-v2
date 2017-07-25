@@ -112,8 +112,11 @@ open class Message: Mappable {
         self.version = version
         
         guard let contentDict = dictionary["content"] as? [String: Any],
-            let content = Message.contentWith(dictionary: contentDict, type: type) else { return nil }
+            let content = Message.contentWith(dictionary: contentDict, type: type) else {
+            return nil
+        }
         self.content = content
+        
     }
     
     public init(id: String,

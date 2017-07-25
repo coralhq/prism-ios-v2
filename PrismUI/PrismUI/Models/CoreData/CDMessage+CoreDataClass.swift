@@ -66,7 +66,7 @@ public class CDMessage: NSManagedObject, CDManagedMappable {
                 "sender": sender,
                 "type": type,
                 "content": content,
-                "version": version,
+                "version": Int(version),
                 "_broker_metadata": brokerMetaData]
     }
     

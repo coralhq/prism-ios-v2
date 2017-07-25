@@ -360,6 +360,12 @@ class JSONResponseMock {
         }
     }
     
+    static var getMessageResponse: [String: Any] {
+        get {
+            return Utils.jsonObject(from: "messageResponse") as! [String : Any]
+        }
+    }
+    
     static var getConversationHistoryResponseInvalidMessage: [String: Any] {
         get {
             return [
@@ -367,23 +373,23 @@ class JSONResponseMock {
                 "data": [
                     "messages": [
                         [
-                            "id": "sd",
-                            "conversation_id": "asd",
-                            "merchant_id": "sd",
-                            "channel": "dsa",
+                            "id": "7ed2ec7e-d1fc-4395-b7c6-225fd313d652",
+                            "conversation_id": "2baa1dd5-803e-4682-97a6-f58262e44244",
+                            "merchant_id": "6181dda9-af7d-46fb-a47e-cf4b5be64b42",
+                            "channel": "LINE",
                             "channel_info": [
-                                "id": "asd",
-                                "name": "asd",
-                            ],
-                            "visitor": [
-                                "id": "asd",
-                                "name": "das",
+                                "id": "....",
+                                "name": "....",
                             ],
                             "sender": [
-                                "id": "asd",
-                                "name": "Asd",
-                                "role": "asd",
-                                "user_agent": "asd"
+                                "id": "3cee7874-343c-4be1-a12e-ad058d74665e",
+                                "name": "James Bond",
+                                "app_name": "Prism Mobile v1.0",
+                                "role": "agent"
+                            ],
+                            "visitor": [
+                                "id": "ed13265e-fdb3-488c-8d4e-712b5578ec7b",
+                                "name": "Buyer Wannabe"
                             ],
                             "type": "text",
                             "content": [
@@ -391,7 +397,7 @@ class JSONResponseMock {
                             ],
                             "version": 2,
                             "_broker_metadata": [
-                                "timestamp": "2017-05-19T03:39:31.808Z"
+                                "timestamp": "2016-11-02T07:05:46.827Z"
                             ]
                         ], ["null":""]
                     ]
@@ -878,6 +884,8 @@ class JSONResponseMock {
     static var refreshTokenResponse: [String: Any] {
         get {
             return [
+                "status" : "success",
+                "message" : "amajing",
                 "data" : [
                     "oauth" : [
                         "refresh_token": "cd06593d7deb4613be3797b70e351b08",

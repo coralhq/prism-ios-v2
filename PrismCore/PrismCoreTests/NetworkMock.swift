@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import PrismCore
 
 class TestConfig {
     static let shared = TestConfig()
@@ -18,6 +19,7 @@ class TestConfig {
 
 class NetworkMock: NetworkProtocol {
     
+    weak var delegate: NetworkDelegate?
     static let shared = NetworkMock()
     private let mqttSession = MQTTSession(host: "", port: 1882, clientID: "iOSDK", cleanSession: true, keepAlive: 60, useSSL: true)
     private init() {}
@@ -64,6 +66,10 @@ class NetworkMock: NetworkProtocol {
             }
         }
         
+        if mapToObject == MessageResponse.self {
+            data = JSONResponseMock.getMessageResponse
+        }
+        
         var error: NSError? = NSError(domain: "", code: 0, userInfo: nil)
         if TestConfig.shared.isValidResponse {
             data = getValidResponse(object: mapToObject)
@@ -77,9 +83,15 @@ class NetworkMock: NetworkProtocol {
         if object == ConnectResponse.self {
             return JSONResponseMock.connectResponse
         } else if object == Settings.self {
+            let mock = JSONResponseMock.getSettingsResponse
+            let setting = Settings(dictionary: mock)
+            guard setting?.dictionaryValue() != nil else { return [:]}
+            
             return JSONResponseMock.getSettingsResponse
         } else if object == UploadURL.self {
-            return JSONResponseMock.getAttachmentURLResponse
+            let result = JSONResponseMock.getAttachmentURLResponse
+            let uploadURL = UploadURL(dictionary: result)
+            return uploadURL!.dictionaryValue()
         } else if object == CreateConversationResponse.self {
             return JSONResponseMock.createConverationResponse
         } else if object == StickerResponse.self {

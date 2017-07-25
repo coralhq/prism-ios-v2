@@ -110,6 +110,7 @@
 		E599E8821EF67D6200B67920 /* ChatOutContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599E8811EF67D6200B67920 /* ChatOutContainerView.swift */; };
 		E599E8841EF67F6500B67920 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599E8831EF67F6500B67920 /* UIView.swift */; };
 		E599E8881EF67FD600B67920 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599E8871EF67FD600B67920 /* UITextField.swift */; };
+		E59E58A71F270148006B12B3 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59E58A61F270148006B12B3 /* String+MD5.swift */; };
 		E5AC24761F208E0200950A2E /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5AC24751F208E0200950A2E /* HeaderView.xib */; };
 		E5AC24781F208F0B00950A2E /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC24771F208F0B00950A2E /* HeaderView.swift */; };
 		E5B9615C1F17039D00764A12 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B9615B1F17039D00764A12 /* ReachabilityHelper.swift */; };
@@ -239,6 +240,7 @@
 		E599E8811EF67D6200B67920 /* ChatOutContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatOutContainerView.swift; path = PrismUI/Cells/ChatCell/Container/ChatOutContainerView.swift; sourceTree = SOURCE_ROOT; };
 		E599E8831EF67F6500B67920 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		E599E8871EF67FD600B67920 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		E59E58A61F270148006B12B3 /* String+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+MD5.swift"; path = "Utils/String+MD5.swift"; sourceTree = "<group>"; };
 		E5AC24751F208E0200950A2E /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		E5AC24771F208F0B00950A2E /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E5B9615B1F17039D00764A12 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReachabilityHelper.swift; path = Vendors/ReachabilityHelper.swift; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 		E54969B91EEA847C008209D9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E59E58A61F270148006B12B3 /* String+MD5.swift */,
 				E54969BA1EEA8496008209D9 /* Utils.swift */,
 				E5F2608D1F0B4D1D0058EB65 /* ChatManager.swift */,
 				E5C5440A1F151F0100D5303D /* CoreDataManager.swift */,
@@ -746,6 +749,7 @@
 				E57440AB1EF7CE43003CA9E7 /* ChatCartView.swift in Sources */,
 				E5053A8F1EF13123006677A4 /* InputFormSettings.swift in Sources */,
 				E562B5CB1F0CBC1A006489C0 /* ContentStickerViewModel.swift in Sources */,
+				E59E58A71F270148006B12B3 /* String+MD5.swift in Sources */,
 				E593AEED1EFCCC80002E2171 /* CDBrokerMetaData+CoreDataProperties.swift in Sources */,
 				E593AE971EFB7966002E2171 /* StickerViewModel.swift in Sources */,
 				E5053A861EF10930006677A4 /* LinedTextField.swift in Sources */,

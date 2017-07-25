@@ -15,7 +15,7 @@ struct ContentWidthInfo {
 }
 
 class ChatContentView: UIView {
-    var widthInfo: ContentWidthInfo = ContentWidthInfo()
+    var widthInfo: ContentWidthInfo?
     
     var contentConstraint: CGSize {
         let maxContentWidth = UIScreen.main.bounds.width - chatContentPadding * 2 - chatBublePadding * 2
@@ -36,6 +36,7 @@ class ChatContentView: UIView {
         var widestWidth: CGFloat = 0
         var lastWidth: CGFloat = 0
         let linedStrings = text.linesArrayString(constraint: contentConstraint, font: label.font)
+        
         for (index, value) in linedStrings.enumerated() {
             let width = value.width(font: label.font)
             
@@ -47,7 +48,10 @@ class ChatContentView: UIView {
                 lastWidth = width
             }
         }
-        widthInfo = ContentWidthInfo(lastWidth: lastWidth, widestWidth: widestWidth)
+        
+        if lastWidth > 0 {
+            widthInfo = ContentWidthInfo(lastWidth: lastWidth, widestWidth: widestWidth)
+        }
     }
 }
 

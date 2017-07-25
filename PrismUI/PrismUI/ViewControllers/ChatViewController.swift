@@ -126,7 +126,7 @@ extension ChatViewController: ChatComposerDelegate {
     }
     
     func chatComposer(composer: ChatComposer, didPickImage image: UIImage, imageName: String) {
-        chatManager.sendMessage(image: image, imageName: imageName)
+        chatManager.sendMessage(image: image, imageName: imageName, state: .start)
     }
 }
 

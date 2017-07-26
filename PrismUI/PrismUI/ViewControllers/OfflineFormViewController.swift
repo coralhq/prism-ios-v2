@@ -32,7 +32,7 @@ class OfflineFormViewController: BaseViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        offlineFormLabel.text = Settings.shared.offlineFormMessage
+        offlineFormLabel.text = Settings.shared.offlineWidget.offlineMessage
         
         nameTF.selectedColor = Settings.shared.theme.buttonColor
         emailTF.selectedColor = Settings.shared.theme.buttonColor

@@ -9,12 +9,46 @@
 import UIKit
 import PrismCore
 
+struct ContentWidthInfo {
+    var lastWidth: CGFloat = 0
+    var widestWidth: CGFloat = 0
+}
+
 class ChatContentView: UIView {
-    func infoPosition() -> InfoViewPosition { return .Bottom }
+    var widthInfo: ContentWidthInfo = ContentWidthInfo()
+    
+    var contentConstraint: CGSize {
+        let sideCount: CGFloat = 2
+        let maxContentWidth = UIScreen.main.bounds.width - chatContentPadding * sideCount - chatBublePadding * sideCount
+        let constraint = CGSize(width: maxContentWidth, height: maxViewSize)
+        return constraint
+    }
+    
     func updateView(with viewModel: ChatViewModel) {}
     
     static func contentFromNIB() -> ChatContentView? {
         return self.viewFromNib()
+    }
+    
+    func calculateContentWidth(label: UILabel) {
+        guard let text = label.text else {
+            return
+        }
+        var widestWidth: CGFloat = 0
+        var lastWidth: CGFloat = 0
+        let linedStrings = text.linesArrayString(constraint: contentConstraint, font: label.font)
+        for (index, value) in linedStrings.enumerated() {
+            let width = value.width(font: label.font)
+            
+            if widestWidth < width {
+                widestWidth = width
+            }
+            
+            if index == linedStrings.count - 1 {
+                lastWidth = width
+            }
+        }
+        widthInfo = ContentWidthInfo(lastWidth: lastWidth, widestWidth: widestWidth)
     }
 }
 

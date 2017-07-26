@@ -251,7 +251,7 @@ class ChatManager {
 }
 
 extension TimeInterval {
-    var unixTime: Int {
-        return Int(self * 1000)
+    var unixTime: Int64 {
+        return Int64(self * 1000)
     }
 }

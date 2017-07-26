@@ -18,9 +18,7 @@ class ChatCartView: ChatContentView {
         
         descriptionLabel.text = "Biaya diatas belum termasuk ongkos kirim".localized()
     }
-    override func infoPosition() -> InfoViewPosition {
-        return .Bottom
-    }
+    
     override func updateView(with viewModel: ChatViewModel) {
         guard let vm = viewModel.contentViewModel as? ContentCartViewModel else {
             return
@@ -37,5 +35,7 @@ class ChatCartView: ChatContentView {
             view.viewModel = itemVM
             productContainer.addArrangedSubview(view)
         }
+        
+        calculateContentWidth(label: descriptionLabel)
     }
 }

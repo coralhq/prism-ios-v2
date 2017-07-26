@@ -8,6 +8,9 @@
 
 import UIKit
 
+let chatBublePadding: CGFloat = 16
+let chatContentPadding: CGFloat = 8
+
 enum InfoViewPosition {
     case Bottom
     case Inside
@@ -33,16 +36,21 @@ class ChatContainerView: UIView {
         return self.viewFromNib()
     }
     
-    var chatContentView: ChatContentView?
+    var chatContentView: ChatContentView? {
+        didSet {
+            guard let content = chatContentView else {
+                return
+            }
+            content.addTo(view: containerView, margin: 0)
+        }
+    }
     
     func update(with viewModel: ChatViewModel, isExtension: Bool) {
         chatContentView?.updateView(with: viewModel)
         
         infoView.timeLabel.text = viewModel.messageTime
         infoView.statusImageView?.image = viewModel.statusIcon
-        
-        chatContentView?.removeFromSuperview()
-        
+
         if isExtension {
             nameLabel.text = nil
             topMarginConstraint.constant = 4
@@ -52,38 +60,54 @@ class ChatContainerView: UIView {
         }
         
         updateInfoPosition()
-        
-        chatContentView?.addTo(view: containerView, margin: 0)
     }
     
     override func awakeFromNib() {
-        super.awakeFromNib()        
+        super.awakeFromNib()
         
         nameLabel.textColor = Settings.shared.theme.buttonColor
         
         infoView.statusImageView?.contentMode = .scaleAspectFit
     }
     
-    func updateInfoPosition() {
-        guard let infoPos = chatContentView?.infoPosition() else {
-            return
+    func calculateInfoPosition() -> InfoViewPosition {
+        guard let content = chatContentView else {
+            return .Bottom
         }
-        switch infoPos {
+        
+        let maxContentWidth = content.contentConstraint.width
+        let haveSpaceLeft = (content.widthInfo.lastWidth + infoView.bounds.width + chatContentPadding) < maxContentWidth
+        
+        if haveSpaceLeft {
+            let haveSpaceInside = (content.widthInfo.widestWidth - content.widthInfo.lastWidth) > (infoView.bounds.width + chatContentPadding)
+            if haveSpaceInside {
+                return .Inside
+            } else {
+                return .Left
+            }
+        } else {
+            return .Bottom
+        }
+    }
+    
+    func updateInfoPosition() {
+        let position = calculateInfoPosition()
+        switch position {
         case .Left:
-            contentTrailing?.constant = infoView.bounds.width + 8 * 2
-            contentBottom?.constant = 8
-            infoTrailing?.constant = 8
-            infoBottom?.constant = 8
+            contentTrailing?.constant = infoView.bounds.width + chatContentPadding * 1.25
+            contentBottom?.constant = chatContentPadding
+            infoTrailing?.constant = chatContentPadding
+            infoBottom?.constant = chatContentPadding
         case .Inside:
-            contentTrailing?.constant = 8
-            contentBottom?.constant = 8
-            infoTrailing?.constant = 8 * 2
-            infoBottom?.constant = 8 * 2
+            contentTrailing?.constant = chatContentPadding
+            contentBottom?.constant = chatContentPadding
+            infoTrailing?.constant = chatContentPadding
+            infoBottom?.constant = chatContentPadding
         default:
-            contentTrailing?.constant = 8
-            contentBottom?.constant = infoView.bounds.height + 8 * 2
-            infoTrailing?.constant = 8
-            infoBottom?.constant = 8
+            contentTrailing?.constant = chatContentPadding
+            contentBottom?.constant = infoView.bounds.height + chatContentPadding * 2
+            infoTrailing?.constant = chatContentPadding
+            infoBottom?.constant = chatContentPadding
         }
     }
 }

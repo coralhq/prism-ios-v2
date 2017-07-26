@@ -38,6 +38,7 @@ public class ConnectViewController: BaseViewController {
         emailTF.selectedColor = Settings.shared.theme.buttonColor
         phoneTF.selectedColor = Settings.shared.theme.buttonColor
         startChatButton.backgroundColor = Settings.shared.theme.buttonColor
+        startChatButton.setTitle("START CHAT".localized(), for: .normal)
         
         let formField = Settings.shared.inputForm
         update(textField: nameTF, form: formField.username)
@@ -67,12 +68,16 @@ public class ConnectViewController: BaseViewController {
             emailTF.isValidEmail(),
             phoneTF.isValidPhoneNumber() else { return }
         
+        startChatButton.startLoading()
+        
         viewModel.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (error) in
             if let error = error {
                 print("Error: \(error)")
             } else {
                 NotificationCenter.default.post(name: ConnectNotification, object: nil)
             }
+            
+            self.startChatButton.stopLoading()
         }
     }
 }

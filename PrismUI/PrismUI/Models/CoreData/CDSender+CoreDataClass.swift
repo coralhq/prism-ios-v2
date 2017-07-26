@@ -19,7 +19,7 @@ public class CDSender: NSManagedObject, CDManagedMappable {
         id = dictionary["id"] as? String
         name = dictionary["name"] as? String
         role = dictionary["role"] as? String
-        userAgent = dictionary["user_agent"] as? String
+        userAgent = dictionary["app_name"] as? String
     }
     
     public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
@@ -36,6 +36,6 @@ public class CDSender: NSManagedObject, CDManagedMappable {
         return ["id": id,
                 "name": name,
                 "role": role,
-                "user_agent": userAgent]
+                "app_name": userAgent]
     }
 }

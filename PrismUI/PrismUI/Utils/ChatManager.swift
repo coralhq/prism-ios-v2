@@ -53,68 +53,107 @@ class ChatManager {
         sendMessage(message: message, completion: nil)
     }
     
-    func sendMessage(image: UIImage, imageName: String) {
-        let content = ContentAttachment(name: imageName, mimeType: "image")
-        let message = newMessage(with: content, type: .Attachment)
+    func sendMessage(image: UIImage, imageName: String, state: AttachmentUploadState, uploadURL: URL? = nil, message: Message? = nil, cdmessage: CDMessage? = nil) {
+        var cdmsg = cdmessage
+        var msg = message
         
-        let temporaryKey = UUID().uuidString
-        CacheVendor.shared.cacheImages.setObject(image, forKey: temporaryKey as NSString)
+        if msg == nil {
+            let content = ContentAttachment(name: imageName, mimeType: "image")
+            msg = newMessage(with: content, type: .Attachment)
+        }
         
-        guard let cd = coredata,
-            let cdmessage = coredata?.buildMessage(message: message, status: .pending),
-            let cdcontent = cdmessage.content as? CDContentAttachment else {
+        if cdmsg == nil {
+            cdmsg = coredata?.buildMessage(message: msg!, status: .pending)
+        }
+        
+        guard let content = msg?.content as? ContentAttachment,
+            let cdcontent = cdmsg?.content as? CDContentAttachment else {
                 return
         }
-        cdcontent.url = temporaryKey
-        cdcontent.uploadState = .start
-        cdmessage.content = cdcontent
-        cd.save()
         
-        PrismCore.shared.getAttachmentURL(filename: imageName, conversationID: credential.conversationID, token: credential.accessToken) { [weak self] (response, error) in
+        switch state {
+        case .start:
+            let tempURL = UUID().uuidString
+            CacheImage.shared.store(image: image, key: tempURL)
+            
+            cdcontent.url = tempURL
+            cdcontent.uploadState = state
+            cdmsg?.content = cdcontent
+            coredata?.save()
+            
+            sendMessage(image: image, imageName: imageName, state: .uploading, message: msg, cdmessage: cdmsg)
+            
+        case .uploading:
+            PrismCore.shared.getAttachmentURL(filename: imageName, conversationID: credential.conversationID, token: credential.accessToken) { [weak self] (response, error) in
+                
+                guard let upURL = response?.uploadURL,
+                    let key = upURL.cleared?.absoluteString else {
+                        return
+                }
+                
+                CacheImage.shared.remove(key: key, completion: {
+                    CacheImage.shared.store(image: image, key: key)
+                })
+                
+                content.url = key
+                
+                cdcontent.url = key
+                cdcontent.uploadState = state
+                cdmsg?.content = cdcontent
+                self?.coredata?.save()
+                
+                self?.sendMessage(image: image,
+                                  imageName: imageName,
+                                  state: .finished,
+                                  uploadURL: upURL,
+                                  message: msg,
+                                  cdmessage: cdmsg)
+            }
+        default:
             guard let imageData = UIImagePNGRepresentation(image),
-                let url = response?.uploadURL else {
+                let upURL = uploadURL else {
                     return
             }
-            
-            var comp = URLComponents(url: url, resolvingAgainstBaseURL: false)
-            comp?.query = nil
-            comp?.fragment = nil
-            
-            guard let stringURL = comp?.url?.absoluteString else {
-                return
-            }
-            CacheVendor.shared.cacheImages.removeObject(forKey: temporaryKey as NSString)
-            CacheVendor.shared.cacheImages.setObject(image, forKey: stringURL as NSString)
-            
-            content.url = stringURL
-            
-            cdcontent.url = stringURL
-            cdcontent.uploadState = .uploading
-            cdmessage.content = cdcontent
-            cd.save()
-            
-            PrismCore.shared.uploadAttachment(with: imageData, url: url, completionHandler: { (success, error) in
+            PrismCore.shared.uploadAttachment(with: imageData, url: upURL, completionHandler: { [weak self] (success, error) in
                 guard success else {
                     return
                 }
-                cdcontent.uploadState = .finished
-                cdmessage.content = cdcontent
-                cd.save()
+                cdcontent.uploadState = state
+                cdmsg?.content = cdcontent
+                self?.coredata?.save()
                 
-                message.content = content
-                self?.sendMessage(message: message, completion: nil)
+                msg?.content = content
+                self?.sendMessage(message: msg!, completion: nil)
             })
         }
     }
     
     func sendPendingMessages() {
-        coredata?.fetchPendingMessages(completion: { [weak self] (cdMessages) in
+        coredata?.fetchPendingMessages(completion: { [unowned self] (cdMessages) in
             for cdMessage in cdMessages {
                 guard let rawMessage = cdMessage.dictionaryValue(),
                     let message = Message(dictionary: rawMessage) else {
                         continue
                 }
-                self?.sendMessage(message: message, completion: nil)
+                if message.type == .Attachment {
+                    guard let cdcontent = cdMessage.content as? CDContentAttachment,
+                        let content = message.content as? ContentAttachment,
+                        let stringURL = content.url else {
+                            return
+                    }
+                    CacheImage.shared.fetch(key: stringURL, completion: { (image) in
+                        guard let image = image else {
+                            return
+                        }
+                        self.sendMessage(image: image,
+                                         imageName: content.name,
+                                         state: cdcontent.uploadState,
+                                         message: message,
+                                         cdmessage: cdMessage)
+                    })
+                } else {
+                    self.sendMessage(message: message, completion: nil)
+                }
             }
         })
     }
@@ -247,6 +286,15 @@ class ChatManager {
     
     @objc func chatError(sender: Notification) {
         
+    }
+}
+
+extension URL {
+    var cleared: URL? {
+        var comp = URLComponents(url: self, resolvingAgainstBaseURL: false)
+        comp?.query = nil
+        comp?.fragment = nil
+        return comp?.url
     }
 }
 

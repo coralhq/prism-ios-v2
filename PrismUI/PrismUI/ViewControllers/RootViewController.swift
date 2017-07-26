@@ -38,6 +38,9 @@ class RootViewController: BaseViewController {
                         self.enterChatpage(animated: false)
                     })
                 }
+                
+                //new user? then clear the cache
+                CacheImage.shared.clearCache()
             }
         }
     }

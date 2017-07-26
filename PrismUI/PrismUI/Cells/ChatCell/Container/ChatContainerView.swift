@@ -36,12 +36,9 @@ class ChatContainerView: UIView {
         return self.viewFromNib()
     }
     
-    var chatContentView: ChatContentView? {
+    var chatContentView: ChatContentView! {
         didSet {
-            guard let content = chatContentView else {
-                return
-            }
-            content.addTo(view: containerView, margin: 0)
+            chatContentView.addTo(view: containerView, margin: 0)
         }
     }
     
@@ -50,7 +47,7 @@ class ChatContainerView: UIView {
         
         infoView.timeLabel.text = viewModel.messageTime
         infoView.statusImageView?.image = viewModel.statusIcon
-
+        
         if isExtension {
             nameLabel.text = nil
             topMarginConstraint.constant = 4
@@ -71,15 +68,14 @@ class ChatContainerView: UIView {
     }
     
     func calculateInfoPosition() -> InfoViewPosition {
-        guard let content = chatContentView else {
+        guard let widthInfo = chatContentView.widthInfo else {
             return .Bottom
         }
         
-        let maxContentWidth = content.contentConstraint.width
-        let haveSpaceLeft = (content.widthInfo.lastWidth + infoView.bounds.width + chatContentPadding) < maxContentWidth
-        
+        let maxContentWidth = chatContentView.contentConstraint.width
+        let haveSpaceLeft = (widthInfo.lastWidth + infoView.bounds.width + chatContentPadding) < maxContentWidth
         if haveSpaceLeft {
-            let haveSpaceInside = (content.widthInfo.widestWidth - content.widthInfo.lastWidth) > (infoView.bounds.width + chatContentPadding)
+            let haveSpaceInside = (widthInfo.widestWidth - widthInfo.lastWidth) > (infoView.bounds.width + chatContentPadding)
             if haveSpaceInside {
                 return .Inside
             } else {

@@ -152,15 +152,22 @@ class ChatComposer: UIView {
 
 extension ChatComposer: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage,
-            let imageURL = info[UIImagePickerControllerReferenceURL] as? URL,
-            let asset = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil).firstObject,
-            let imageName = asset.value(forKey: "filename") as? String else {
-                return
-        }
-        
         picker.dismiss(animated: true, completion: nil)
-        delegate?.chatComposer(composer: self, didPickImage: image, imageName: imageName)
+        
+        DispatchQueue(label: "resize_queue").async { [unowned self] in
+            guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage,
+                let imageURL = info[UIImagePickerControllerReferenceURL] as? URL,
+                let asset = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil).firstObject,
+                let imageName = asset.value(forKey: "filename") as? String else {
+                    return
+            }
+            
+            let finalImage = image.resize(targetSize: CGSize(width: 1500, height: 1500))
+            
+            DispatchQueue.main.async {
+                self.delegate?.chatComposer(composer: self, didPickImage: finalImage, imageName: imageName)
+            }
+        }
     }
 }
 

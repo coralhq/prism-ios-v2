@@ -25,6 +25,6 @@ class OfflineMessageViewController: BaseViewController {
         view.backgroundColor = Settings.shared.theme.headerColor.withAlphaComponent(0.05)
         
         titleLabel.text = "Terimakasih telah menghubungi kami".localized()
-        offlineMessageLabel.text = Settings.shared.offlineMessage
+        offlineMessageLabel.text = Settings.shared.offlineWidget.offlineMessageConfirmation
     }
 }

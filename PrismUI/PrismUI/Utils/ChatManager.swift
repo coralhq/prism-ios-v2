@@ -12,11 +12,14 @@ import CoreData
 import PrismAnalytics
 
 class ChatManager {
+    let coredata: CoreDataManager
     let credential = Vendor.shared.credential!
-    let coredata = CoreDataManager()
     let reachability = ReachabilityHelper()!
     
-    init() {
+    let prismCore: PrismCore = PrismCore()
+    
+    init(coreDatamanager: CoreDataManager) {
+        self.coredata = coreDatamanager
         
         do {
             try reachability.startNotifier()
@@ -36,12 +39,10 @@ class ChatManager {
     }
     
     func connect(completionHandler: @escaping ((Bool, Error?) -> ())) {
-        PrismCore.shared.connectToBroker(username: credential.username, password: credential.password) { [weak self] (success, error) in
-            guard let topic = self?.credential.topic else {
-                return
-            }
-            PrismCore.shared.subscribeToTopic(topic) { (success, error) in
-                self?.sendPendingMessages()
+        prismCore.connectToBroker(username: credential.username, password: credential.password) { [unowned self] (success, error) in
+            let topic = self.credential.topic
+            self.prismCore.subscribeToTopic(topic) { (success, error) in
+                self.sendPendingMessages()
                 completionHandler(success, error)
             }
         }
@@ -63,7 +64,7 @@ class ChatManager {
         }
         
         if cdmsg == nil {
-            cdmsg = coredata?.buildMessage(message: msg!, status: .pending)
+            cdmsg = coredata.buildMessage(message: msg!, status: .pending)
         }
         
         guard let content = msg?.content as? ContentAttachment,
@@ -79,12 +80,12 @@ class ChatManager {
             cdcontent.url = tempURL
             cdcontent.uploadState = state
             cdmsg?.content = cdcontent
-            coredata?.save()
+            coredata.save()
             
             sendMessage(image: image, imageName: imageName, state: .uploading, message: msg, cdmessage: cdmsg)
             
         case .uploading:
-            PrismCore.shared.getAttachmentURL(filename: imageName, conversationID: credential.conversationID, token: credential.accessToken) { [weak self] (response, error) in
+            prismCore.getAttachmentURL(filename: imageName, conversationID: credential.conversationID, token: credential.accessToken) { [unowned self] (response, error) in
                 
                 guard let upURL = response?.uploadURL,
                     let key = upURL.cleared?.absoluteString else {
@@ -100,36 +101,36 @@ class ChatManager {
                 cdcontent.url = key
                 cdcontent.uploadState = state
                 cdmsg?.content = cdcontent
-                self?.coredata?.save()
+                self.coredata.save()
                 
-                self?.sendMessage(image: image,
-                                  imageName: imageName,
-                                  state: .finished,
-                                  uploadURL: upURL,
-                                  message: msg,
-                                  cdmessage: cdmsg)
+                self.sendMessage(image: image,
+                                 imageName: imageName,
+                                 state: .finished,
+                                 uploadURL: upURL,
+                                 message: msg,
+                                 cdmessage: cdmsg)
             }
         default:
             guard let imageData = UIImagePNGRepresentation(image),
                 let upURL = uploadURL else {
                     return
             }
-            PrismCore.shared.uploadAttachment(with: imageData, url: upURL, completionHandler: { [weak self] (success, error) in
+            prismCore.uploadAttachment(with: imageData, url: upURL, completionHandler: { [unowned self] (success, error) in
                 guard success else {
                     return
                 }
                 cdcontent.uploadState = state
                 cdmsg?.content = cdcontent
-                self?.coredata?.save()
+                self.coredata.save()
                 
                 msg?.content = content
-                self?.sendMessage(message: msg!, completion: nil)
+                self.sendMessage(message: msg!, completion: nil)
             })
         }
     }
     
     func sendPendingMessages() {
-        coredata?.fetchPendingMessages(completion: { [unowned self] (cdMessages) in
+        coredata.fetchPendingMessages(completion: { [unowned self] (cdMessages) in
             for cdMessage in cdMessages {
                 guard let rawMessage = cdMessage.dictionaryValue(),
                     let message = Message(dictionary: rawMessage) else {
@@ -188,8 +189,8 @@ class ChatManager {
     
     private func sendMessage(message: Message, completion: ((MessageResponse?, NSError?) -> ())?) {
         //save to core data
-        coredata?.buildMessage(message: message, status: .pending)
-        coredata?.save()
+        coredata.buildMessage(message: message, status: .pending)
+        coredata.save()
         
         let trackerData = [
             sendMessageTrackerType.conversationID.rawValue : credential.conversationID,
@@ -199,8 +200,8 @@ class ChatManager {
         PrismAnalytics.shared.sendTracker(withEvent: .sendMessage, data: trackerData)
         
         //publish to mqtt
-        PrismCore.shared.publishMessage(token: credential.accessToken, topic: credential.topic, messages: [message]) { [weak self] (message, error) in
-            self?.sendDataToRover()
+        prismCore.publishMessage(token: credential.accessToken, topic: credential.topic, messages: [message]) { [unowned self] (message, error) in
+            self.sendDataToRover()
             
             completion?(message, error)
         }
@@ -250,7 +251,7 @@ class ChatManager {
     }
     
     func syncChatLocalWithServer() {
-        coredata?.fetchLatestMessage(completion: { (message) in
+        coredata.fetchLatestMessage(completion: { (message) in
             let convID = self.credential.conversationID
             let token = self.credential.accessToken
             
@@ -260,11 +261,11 @@ class ChatManager {
             let startTime = timestamp.timeIntervalSince1970.unixTime
             let endTime = Date().timeIntervalSince1970.unixTime
             
-            PrismCore.shared.getConversationHistory(conversationID: convID, token: token, startTime: startTime, endTime: endTime, completionHandler: { [weak self] (history, error) in
+            self.prismCore.getConversationHistory(conversationID: convID, token: token, startTime: startTime, endTime: endTime, completionHandler: { [unowned self] (history, error) in
                 guard let messages = history?.messages else {
                     return
                 }
-                self?.coredata?.saveMessages(messages: messages)
+                self.coredata.saveMessages(messages: messages)
             })
         })
     }
@@ -272,8 +273,8 @@ class ChatManager {
     @objc func chatReceived(sender: Notification) {
         guard let message = sender.object as? Message else { return }
         
-        coredata?.buildMessage(message: message, status: .sent)
-        coredata?.save()
+        coredata.buildMessage(message: message, status: .sent)
+        coredata.save()
         
         if message.type == .CloseChat {
             UserDefaults.standard.set(true, forKey: "isFirstMessage")

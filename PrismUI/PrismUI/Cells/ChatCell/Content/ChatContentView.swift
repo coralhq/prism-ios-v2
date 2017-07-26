@@ -18,7 +18,8 @@ class ChatContentView: UIView {
     var widthInfo: ContentWidthInfo?
     
     var contentConstraint: CGSize {
-        let maxContentWidth = UIScreen.main.bounds.width - chatContentPadding * 2 - chatBublePadding * 2
+        let sideCount: CGFloat = 2
+        let maxContentWidth = UIScreen.main.bounds.width - chatContentPadding * sideCount - chatBublePadding * sideCount
         let constraint = CGSize(width: maxContentWidth, height: maxViewSize)
         return constraint
     }

@@ -68,15 +68,6 @@ class OfflineFormSettings {
 }
 
 public class InputFormSettings: NSObject {
-    struct Keys {
-        static var enabled = "enabled"
-        static var username = "name"
-        static var email = "email"
-        static var phoneNumber = "phone"
-        static var inputFormField = "input_form_field"
-        static var inputForm = "input_form"
-        static var widget = "widget"
-    }
     
     var enabled: Bool
     var username: InputForm
@@ -91,12 +82,13 @@ public class InputFormSettings: NSObject {
     }
 
     func configure(settings: [String: Any]) {
-        if let widget = settings[Keys.widget] as? [String: Any],
-            let formEnabled = widget[Keys.inputForm] as? String,
-            let formField = widget[Keys.inputFormField] as? [String: Any],
-            let nameDict = formField[Keys.username] as? [String: Any],
-            let emailDict = formField[Keys.email] as? [String: Any],
-            let phoneDict = formField[Keys.phoneNumber] as? [String: Any] {
+        if let widget = settings["widget"] as? [String: Any],
+            let visitorConnect = widget["visitor_connect"] as? [String: Any],
+            let formEnabled = visitorConnect["option"] as? String,
+            let formField = visitorConnect["form_options"] as? [String: Any],
+            let nameDict = formField["name"] as? [String: Any],
+            let emailDict = formField["email"] as? [String: Any],
+            let phoneDict = formField["phone"] as? [String: Any] {
             
             self.enabled = formEnabled == "ENABLED"
             self.username = InputForm(settings: nameDict)

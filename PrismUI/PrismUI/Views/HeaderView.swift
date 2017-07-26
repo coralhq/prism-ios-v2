@@ -25,8 +25,8 @@ class HeaderView: UIView {
         titleLabel.textColor = settings.theme.strokeColor
         subtitleLabel.textColor = settings.theme.strokeColor
         
-        titleLabel.text = settings.titleExpanded
-        subtitleLabel.text = settings.subtitle
+        titleLabel.text = settings.texts.titleExpanded
+        subtitleLabel.text = settings.texts.subtitle
         
         container.removeArrangedSubview(imageView)
         if settings.persona.enabled {

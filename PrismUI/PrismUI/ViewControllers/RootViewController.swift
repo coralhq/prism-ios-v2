@@ -11,6 +11,8 @@ import PrismCore
 import PrismAnalytics
 
 class RootViewController: BaseViewController {
+    @IBOutlet var loadingIndicator: UIActivityIndicatorView!
+    
     let viewModel = AuthViewModel()
     var chatManager: ChatManager? = nil
     
@@ -25,17 +27,20 @@ class RootViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(disconnectCalled(sender:)), name: DisconnectNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(refreshToken), name: RefreshTokenNotification, object: nil)
         
+        loadingIndicator.startAnimating()
         viewModel.getSettings { [unowned self] (settings) in
-
             if let _ = Vendor.shared.credential {
                 self.enterChatpage(animated: false)
+                self.loadingIndicator.stopAnimating()
             } else {
                 if Settings.shared.inputForm.enabled {
                     let connectVC = ConnectViewController(viewModel: self.viewModel)
                     self.enter(viewController: connectVC, animated: false)
+                    self.loadingIndicator.stopAnimating()
                 } else {
                     self.viewModel.visitorConnectAnonymous(completion: { (error) in
                         self.enterChatpage(animated: false)
+                        self.loadingIndicator.stopAnimating()
                     })
                 }
                 

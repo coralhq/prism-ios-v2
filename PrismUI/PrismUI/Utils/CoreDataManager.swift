@@ -19,30 +19,45 @@ class CoreDataManager {
     fileprivate var privateContext: NSManagedObjectContext
     var mainContext: NSManagedObjectContext
     
-    init?() {
+    var dbPath: URL? {
+        guard let docURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+        return docURL.appendingPathComponent("prism_sdk.sqlite")
+    }
+    
+    init() {
         mainContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         mainContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         
         privateContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         
-        guard let docURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
-            let modelURL = Bundle.prism.url(forResource: "Chat", withExtension: "momd"),
-            let model = NSManagedObjectModel(contentsOf: modelURL)
-            else {
-                return
-        }
+        let modelURL = Bundle.prism.url(forResource: "Chat", withExtension: "momd")!
+        let model = NSManagedObjectModel(contentsOf: modelURL)!
         
         do {
-            let storeURL = docURL.appendingPathComponent("prism_sdk.sqlite")
             let psc = NSPersistentStoreCoordinator(managedObjectModel: model)
             mainContext.persistentStoreCoordinator = psc
             privateContext.persistentStoreCoordinator = psc
-            try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
+            try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: dbPath, options: nil)
         } catch {
             print("Error: \(error)")
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(mocDidSave(note:)), name: .NSManagedObjectContextDidSave, object: nil)
+    }
+    
+    func clearData() {
+        guard let psc = mainContext.persistentStoreCoordinator,
+            let path = dbPath else {
+                return
+        }
+        do {
+            try psc.destroyPersistentStore(at: path, ofType: NSSQLiteStoreType, options: nil)
+            try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: path, options: nil)
+        } catch {
+            print("Error: \(error)")
+        }
     }
     
     deinit {
@@ -164,23 +179,4 @@ extension CoreDataManager {
             self.mainContext.mergeChanges(fromContextDidSave: note)
         }
     }
-    
-    /**
-     this for reset all data, for testing purpose
-     */
-    func deleteAllRecords() {
-        guard let store = mainContext.persistentStoreCoordinator?.persistentStores.first,
-            let storeURL = store.url else {
-                return
-        }
-        
-        do {
-            try mainContext.persistentStoreCoordinator?.remove(store)
-            try FileManager.default.removeItem(at: storeURL)
-        } catch {
-            print("Delete error \(error)")
-        }
-        
-    }
-    
 }

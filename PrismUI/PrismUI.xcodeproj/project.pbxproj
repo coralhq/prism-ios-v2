@@ -41,6 +41,8 @@
 		E54969B81EEA82B7008209D9 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54969B71EEA82B7008209D9 /* PrismCore.framework */; };
 		E54969BB1EEA8496008209D9 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54969BA1EEA8496008209D9 /* Utils.swift */; };
 		E54DE6481EFA6A740035EA35 /* SmallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54DE6471EFA6A740035EA35 /* SmallButton.swift */; };
+		E54F7FE61F2965450022E15D /* CacheImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54F7FE51F2965450022E15D /* CacheImage.swift */; };
+		E54F7FE81F2965740022E15D /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54F7FE71F2965740022E15D /* UIImage.swift */; };
 		E552CD431F1DD45500455B36 /* OfflineMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E552CD411F1DD45500455B36 /* OfflineMessageViewController.swift */; };
 		E552CD441F1DD45500455B36 /* OfflineMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E552CD421F1DD45500455B36 /* OfflineMessageViewController.xib */; };
 		E552CD481F1DD45500455B36 /* ContentOfflineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E552CD471F1DD45500455B36 /* ContentOfflineViewModel.swift */; };
@@ -171,6 +173,8 @@
 		E54969B71EEA82B7008209D9 /* PrismCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrismCore.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/DemoPrismCore-friqtlupaxddjygruiinatqqklhk/Build/Products/Debug-iphonesimulator/PrismCore.framework"; sourceTree = "<group>"; };
 		E54969BA1EEA8496008209D9 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
 		E54DE6471EFA6A740035EA35 /* SmallButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmallButton.swift; path = Kits/SmallButton.swift; sourceTree = "<group>"; };
+		E54F7FE51F2965450022E15D /* CacheImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CacheImage.swift; path = Utils/CacheImage.swift; sourceTree = "<group>"; };
+		E54F7FE71F2965740022E15D /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		E552CD411F1DD45500455B36 /* OfflineMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineMessageViewController.swift; sourceTree = "<group>"; };
 		E552CD421F1DD45500455B36 /* OfflineMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfflineMessageViewController.xib; sourceTree = "<group>"; };
 		E552CD471F1DD45500455B36 /* ContentOfflineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentOfflineViewModel.swift; path = ContentMessages/ContentOfflineViewModel.swift; sourceTree = "<group>"; };
@@ -305,6 +309,7 @@
 				E599E8871EF67FD600B67920 /* UITextField.swift */,
 				E508C1BA1EF8BD22004DCB6A /* Number.swift */,
 				E573A4401F287E6500DB93E7 /* UIButton.swift */,
+				E54F7FE71F2965740022E15D /* UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -464,6 +469,7 @@
 				E5F2608D1F0B4D1D0058EB65 /* ChatManager.swift */,
 				E5C5440A1F151F0100D5303D /* CoreDataManager.swift */,
 				E5C5440C1F151F4C00D5303D /* ChatQueryManager.swift */,
+				E54F7FE51F2965450022E15D /* CacheImage.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -786,6 +792,7 @@
 				E54969BB1EEA8496008209D9 /* Utils.swift in Sources */,
 				E573A4411F287E6500DB93E7 /* UIButton.swift in Sources */,
 				E5EF28011F1700A400C2588F /* Extensions.swift in Sources */,
+				E54F7FE61F2965450022E15D /* CacheImage.swift in Sources */,
 				E58FAE661EF38435002F1A2A /* ChatComposer.swift in Sources */,
 				807C899C1EEE63B400DADEBF /* UIViewController.swift in Sources */,
 				E5C5440B1F151F0100D5303D /* CoreDataManager.swift in Sources */,
@@ -817,6 +824,7 @@
 				E593AEF01EFCCC80002E2171 /* CDSender+CoreDataClass.swift in Sources */,
 				E5C5440D1F151F4C00D5303D /* ChatQueryManager.swift in Sources */,
 				E5AC24781F208F0B00950A2E /* HeaderView.swift in Sources */,
+				E54F7FE81F2965740022E15D /* UIImage.swift in Sources */,
 				E599E8881EF67FD600B67920 /* UITextField.swift in Sources */,
 				E552CD431F1DD45500455B36 /* OfflineMessageViewController.swift in Sources */,
 				E593AEFC1EFCE7D3002E2171 /* CDContentInvoice.swift in Sources */,

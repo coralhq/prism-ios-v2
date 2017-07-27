@@ -68,6 +68,7 @@ public class ConnectViewController: BaseViewController {
             emailTF.isValidEmail(),
             phoneTF.isValidPhoneNumber() else { return }
         
+        view.isUserInteractionEnabled = false
         startChatButton.startLoading()
         
         viewModel.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (error) in
@@ -76,7 +77,8 @@ public class ConnectViewController: BaseViewController {
             } else {
                 NotificationCenter.default.post(name: ConnectNotification, object: nil)
             }
-            
+        
+            self.view.isUserInteractionEnabled = true
             self.startChatButton.stopLoading()
         }
     }

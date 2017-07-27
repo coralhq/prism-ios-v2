@@ -41,6 +41,8 @@
 		E54969B81EEA82B7008209D9 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54969B71EEA82B7008209D9 /* PrismCore.framework */; };
 		E54969BB1EEA8496008209D9 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54969BA1EEA8496008209D9 /* Utils.swift */; };
 		E54DE6481EFA6A740035EA35 /* SmallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54DE6471EFA6A740035EA35 /* SmallButton.swift */; };
+		E54F7FE61F2965450022E15D /* CacheImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54F7FE51F2965450022E15D /* CacheImage.swift */; };
+		E54F7FE81F2965740022E15D /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54F7FE71F2965740022E15D /* UIImage.swift */; };
 		E552CD431F1DD45500455B36 /* OfflineMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E552CD411F1DD45500455B36 /* OfflineMessageViewController.swift */; };
 		E552CD441F1DD45500455B36 /* OfflineMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E552CD421F1DD45500455B36 /* OfflineMessageViewController.xib */; };
 		E552CD481F1DD45500455B36 /* ContentOfflineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E552CD471F1DD45500455B36 /* ContentOfflineViewModel.swift */; };
@@ -51,6 +53,7 @@
 		E562B5CD1F0CCD32006489C0 /* ContentInvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562B5CC1F0CCD32006489C0 /* ContentInvoiceViewModel.swift */; };
 		E562B5D11F0D27A2006489C0 /* ContentCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562B5D01F0D27A2006489C0 /* ContentCartViewModel.swift */; };
 		E562B5D31F0DA44F006489C0 /* ContentProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E562B5D21F0DA44F006489C0 /* ContentProductViewModel.swift */; };
+		E573A4411F287E6500DB93E7 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E573A4401F287E6500DB93E7 /* UIButton.swift */; };
 		E57440841EF760C3003CA9E7 /* StickerInContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440831EF760C2003CA9E7 /* StickerInContainer.swift */; };
 		E57440861EF760D0003CA9E7 /* StickerOutContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440851EF760D0003CA9E7 /* StickerOutContainer.swift */; };
 		E57440881EF76140003CA9E7 /* StickerInContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440871EF76140003CA9E7 /* StickerInContainer.xib */; };
@@ -110,9 +113,9 @@
 		E599E8821EF67D6200B67920 /* ChatOutContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599E8811EF67D6200B67920 /* ChatOutContainerView.swift */; };
 		E599E8841EF67F6500B67920 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599E8831EF67F6500B67920 /* UIView.swift */; };
 		E599E8881EF67FD600B67920 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599E8871EF67FD600B67920 /* UITextField.swift */; };
-		E59E58A71F270148006B12B3 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59E58A61F270148006B12B3 /* String+MD5.swift */; };
 		E5AC24761F208E0200950A2E /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5AC24751F208E0200950A2E /* HeaderView.xib */; };
 		E5AC24781F208F0B00950A2E /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC24771F208F0B00950A2E /* HeaderView.swift */; };
+		E5B39F2D1F284ED100BE68C9 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B39F2B1F284ED100BE68C9 /* String+MD5.swift */; };
 		E5B9615C1F17039D00764A12 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B9615B1F17039D00764A12 /* ReachabilityHelper.swift */; };
 		E5C5440B1F151F0100D5303D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C5440A1F151F0100D5303D /* CoreDataManager.swift */; };
 		E5C5440D1F151F4C00D5303D /* ChatQueryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C5440C1F151F4C00D5303D /* ChatQueryManager.swift */; };
@@ -170,6 +173,8 @@
 		E54969B71EEA82B7008209D9 /* PrismCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrismCore.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/DemoPrismCore-friqtlupaxddjygruiinatqqklhk/Build/Products/Debug-iphonesimulator/PrismCore.framework"; sourceTree = "<group>"; };
 		E54969BA1EEA8496008209D9 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
 		E54DE6471EFA6A740035EA35 /* SmallButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmallButton.swift; path = Kits/SmallButton.swift; sourceTree = "<group>"; };
+		E54F7FE51F2965450022E15D /* CacheImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CacheImage.swift; path = Utils/CacheImage.swift; sourceTree = "<group>"; };
+		E54F7FE71F2965740022E15D /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		E552CD411F1DD45500455B36 /* OfflineMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineMessageViewController.swift; sourceTree = "<group>"; };
 		E552CD421F1DD45500455B36 /* OfflineMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfflineMessageViewController.xib; sourceTree = "<group>"; };
 		E552CD471F1DD45500455B36 /* ContentOfflineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentOfflineViewModel.swift; path = ContentMessages/ContentOfflineViewModel.swift; sourceTree = "<group>"; };
@@ -180,6 +185,7 @@
 		E562B5CC1F0CCD32006489C0 /* ContentInvoiceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentInvoiceViewModel.swift; path = ContentMessages/ContentInvoiceViewModel.swift; sourceTree = "<group>"; };
 		E562B5D01F0D27A2006489C0 /* ContentCartViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentCartViewModel.swift; path = ContentMessages/ContentCartViewModel.swift; sourceTree = "<group>"; };
 		E562B5D21F0DA44F006489C0 /* ContentProductViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentProductViewModel.swift; path = ContentMessages/ContentProductViewModel.swift; sourceTree = "<group>"; };
+		E573A4401F287E6500DB93E7 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		E57440831EF760C2003CA9E7 /* StickerInContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StickerInContainer.swift; path = PrismUI/Cells/ChatCell/Container/StickerInContainer.swift; sourceTree = SOURCE_ROOT; };
 		E57440851EF760D0003CA9E7 /* StickerOutContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StickerOutContainer.swift; path = PrismUI/Cells/ChatCell/Container/StickerOutContainer.swift; sourceTree = SOURCE_ROOT; };
 		E57440871EF76140003CA9E7 /* StickerInContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StickerInContainer.xib; path = PrismUI/Cells/ChatCell/Container/StickerInContainer.xib; sourceTree = SOURCE_ROOT; };
@@ -240,9 +246,9 @@
 		E599E8811EF67D6200B67920 /* ChatOutContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatOutContainerView.swift; path = PrismUI/Cells/ChatCell/Container/ChatOutContainerView.swift; sourceTree = SOURCE_ROOT; };
 		E599E8831EF67F6500B67920 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		E599E8871EF67FD600B67920 /* UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
-		E59E58A61F270148006B12B3 /* String+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+MD5.swift"; path = "Utils/String+MD5.swift"; sourceTree = "<group>"; };
 		E5AC24751F208E0200950A2E /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		E5AC24771F208F0B00950A2E /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		E5B39F2B1F284ED100BE68C9 /* String+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+MD5.swift"; path = "Vendors/String+MD5.swift"; sourceTree = "<group>"; };
 		E5B9615B1F17039D00764A12 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReachabilityHelper.swift; path = Vendors/ReachabilityHelper.swift; sourceTree = "<group>"; };
 		E5C5440A1F151F0100D5303D /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = PrismUI/Utils/CoreDataManager.swift; sourceTree = SOURCE_ROOT; };
 		E5C5440C1F151F4C00D5303D /* ChatQueryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatQueryManager.swift; path = PrismUI/Utils/ChatQueryManager.swift; sourceTree = SOURCE_ROOT; };
@@ -302,6 +308,8 @@
 				E599E8831EF67F6500B67920 /* UIView.swift */,
 				E599E8871EF67FD600B67920 /* UITextField.swift */,
 				E508C1BA1EF8BD22004DCB6A /* Number.swift */,
+				E573A4401F287E6500DB93E7 /* UIButton.swift */,
+				E54F7FE71F2965740022E15D /* UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -457,11 +465,11 @@
 		E54969B91EEA847C008209D9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				E59E58A61F270148006B12B3 /* String+MD5.swift */,
 				E54969BA1EEA8496008209D9 /* Utils.swift */,
 				E5F2608D1F0B4D1D0058EB65 /* ChatManager.swift */,
 				E5C5440A1F151F0100D5303D /* CoreDataManager.swift */,
 				E5C5440C1F151F4C00D5303D /* ChatQueryManager.swift */,
+				E54F7FE51F2965450022E15D /* CacheImage.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -484,6 +492,7 @@
 				8071E0F21F218D170003732F /* DeviceGuru */,
 				E5B9615B1F17039D00764A12 /* ReachabilityHelper.swift */,
 				8071E0F91F219E2B0003732F /* DiskStatus.swift */,
+				E5B39F2B1F284ED100BE68C9 /* String+MD5.swift */,
 			);
 			name = Vendors;
 			sourceTree = "<group>";
@@ -749,7 +758,6 @@
 				E57440AB1EF7CE43003CA9E7 /* ChatCartView.swift in Sources */,
 				E5053A8F1EF13123006677A4 /* InputFormSettings.swift in Sources */,
 				E562B5CB1F0CBC1A006489C0 /* ContentStickerViewModel.swift in Sources */,
-				E59E58A71F270148006B12B3 /* String+MD5.swift in Sources */,
 				E593AEED1EFCCC80002E2171 /* CDBrokerMetaData+CoreDataProperties.swift in Sources */,
 				E593AE971EFB7966002E2171 /* StickerViewModel.swift in Sources */,
 				E5053A861EF10930006677A4 /* LinedTextField.swift in Sources */,
@@ -765,6 +773,7 @@
 				807C899F1EEE7BEC00DADEBF /* UIImageView.swift in Sources */,
 				E57440931EF76BD0003CA9E7 /* ChatProductView.swift in Sources */,
 				E593AF001EFCE7FD002E2171 /* CDContentProduct.swift in Sources */,
+				E5B39F2D1F284ED100BE68C9 /* String+MD5.swift in Sources */,
 				E593AEF51EFCCD43002E2171 /* CDContentPlainText.swift in Sources */,
 				E5053A891EF10D24006677A4 /* RootViewController.swift in Sources */,
 				E593AF021EFCE85B002E2171 /* CDContentSticker.swift in Sources */,
@@ -781,7 +790,9 @@
 				E57440A41EF7A898003CA9E7 /* ChatContainerView.swift in Sources */,
 				E58FAE5D1EF36874002F1A2A /* AuthViewModel.swift in Sources */,
 				E54969BB1EEA8496008209D9 /* Utils.swift in Sources */,
+				E573A4411F287E6500DB93E7 /* UIButton.swift in Sources */,
 				E5EF28011F1700A400C2588F /* Extensions.swift in Sources */,
+				E54F7FE61F2965450022E15D /* CacheImage.swift in Sources */,
 				E58FAE661EF38435002F1A2A /* ChatComposer.swift in Sources */,
 				807C899C1EEE63B400DADEBF /* UIViewController.swift in Sources */,
 				E5C5440B1F151F0100D5303D /* CoreDataManager.swift in Sources */,
@@ -813,6 +824,7 @@
 				E593AEF01EFCCC80002E2171 /* CDSender+CoreDataClass.swift in Sources */,
 				E5C5440D1F151F4C00D5303D /* ChatQueryManager.swift in Sources */,
 				E5AC24781F208F0B00950A2E /* HeaderView.swift in Sources */,
+				E54F7FE81F2965740022E15D /* UIImage.swift in Sources */,
 				E599E8881EF67FD600B67920 /* UITextField.swift in Sources */,
 				E552CD431F1DD45500455B36 /* OfflineMessageViewController.swift in Sources */,
 				E593AEFC1EFCE7D3002E2171 /* CDContentInvoice.swift in Sources */,

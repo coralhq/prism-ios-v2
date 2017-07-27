@@ -95,7 +95,8 @@ class DemoViewModel {
         
         //8c31f365-05d2-49fe-8c8d-59c84624c870
         //8d077fae-bf65-4711-a565-047629bbba11
-        PrismUI.shared.configure(environment: .Sandbox, merchantID: "8c31f365-05d2-49fe-8c8d-59c84624c870", delegate: self)
+        //3853f3c6-2025-47d5-b57a-b0dde7e48500 -> staging
+        PrismUI.shared.configure(environment: .Staging, merchantID: "3853f3c6-2025-47d5-b57a-b0dde7e48500", delegate: self)
     }
     
     func presentChatWidget(on vc: UIViewController) {

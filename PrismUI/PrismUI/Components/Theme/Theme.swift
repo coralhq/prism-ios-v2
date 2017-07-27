@@ -19,8 +19,14 @@ public enum ThemeType {
     case BananaTokyo
     
     public init(settings: [String: Any]) {
-        let rawValue = (settings["widget"] as! [String: Any])["style"] as! String
-        switch rawValue {
+        guard let widget = settings["widget"] as? [String: Any],
+            let appearance = widget["appearance"] as? [String: Any],
+            let theme = appearance["color_theme"] as? String else {
+                self = .OceanBlue
+                return
+        }
+        
+        switch theme {
         case "PINK":
             self = .PinkScarlet
             

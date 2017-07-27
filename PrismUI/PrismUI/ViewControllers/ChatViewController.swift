@@ -22,10 +22,8 @@ class ChatViewController: BaseViewController {
         self.chatManager = chatManager
         
         super.init(nibName: nil, bundle: Bundle.prism)
-        
-        guard let context = chatManager.coredata?.mainContext else {
-            return
-        }
+
+        let context = chatManager.coredata.mainContext
         queryManager = ChatQueryManager(context: context)
         queryManager?.delegate = self
     }

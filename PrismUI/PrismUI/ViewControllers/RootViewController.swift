@@ -11,8 +11,10 @@ import PrismCore
 import PrismAnalytics
 
 class RootViewController: BaseViewController {
+    @IBOutlet var loadingIndicator: UIActivityIndicatorView!
+    
     let viewModel = AuthViewModel()
-    var chatManager: ChatManager? = nil
+    let coreDataManager: CoreDataManager = CoreDataManager()
     
     convenience init() {
         self.init(nibName: nil, bundle: Bundle.prism)
@@ -25,21 +27,25 @@ class RootViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(disconnectCalled(sender:)), name: DisconnectNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(refreshToken), name: RefreshTokenNotification, object: nil)
         
-        viewModel.getSettings { [unowned self] (settings) in
-
+        loadingIndicator.startAnimating()
+        viewModel.getSettings { [unowned self] (settings) in            
             if let _ = Vendor.shared.credential {
                 self.enterChatpage(animated: false)
+                self.loadingIndicator.stopAnimating()
             } else {
                 if Settings.shared.inputForm.enabled {
                     let connectVC = ConnectViewController(viewModel: self.viewModel)
                     self.enter(viewController: connectVC, animated: false)
+                    self.loadingIndicator.stopAnimating()
                 } else {
                     self.viewModel.visitorConnectAnonymous(completion: { (error) in
                         self.enterChatpage(animated: false)
+                        self.loadingIndicator.stopAnimating()
                     })
                 }
                 
-                //new user? then clear the cache
+                //new user? then clear the data
+                self.coreDataManager.clearData()
                 CacheImage.shared.clearCache()
             }
         }
@@ -84,22 +90,18 @@ class RootViewController: BaseViewController {
     }
     
     private func enterChatpage(animated: Bool) {
-        if chatManager == nil {
-            chatManager = ChatManager()
-        }
+        let chatManager = ChatManager(coreDatamanager: coreDataManager)
         
         if Settings.shared.workingHour.isOnWorkingHour {
-            let chatVC = ChatViewController(with: chatManager!)
+            let chatVC = ChatViewController(with: chatManager)
             enter(viewController: chatVC, animated: animated)
         } else {
-            let offlineVC = OfflineFormViewController(with: chatManager!)
+            let offlineVC = OfflineFormViewController(with: chatManager)
             enter(viewController: offlineVC, animated: animated)
         }
     }
     
     private func enter(viewController vc: UIViewController, animated: Bool) {
-        chatManager = nil
-        
         let currentVC = childViewControllers.first
         replace(vc1: currentVC, with: vc, animated: animated)
     }

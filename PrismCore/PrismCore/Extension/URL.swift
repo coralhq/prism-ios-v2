@@ -11,11 +11,16 @@ import Foundation
 internal extension URL {
     
     private static let PrismAPIBaseURLProduction = "https://api.prismapp.io"
-    private static let PrismAPIBaseURLSandbox = "https://api.sandbox.prismapp.io"
     private static let PrismMQTTURLProduction = "chat.prismapp.io"
+    private static let PrismMQTTPortProduction: UInt16 = 1883
+    
+    private static let PrismAPIBaseURLSandbox = "https://api.sandbox.prismapp.io"
     private static let PrismMQTTURLSandbox = "chat.sandbox.prismapp.io"
     private static let PrismMQTTPortSandbox: UInt16 = 1883
-    private static let PrismMQTTPortProduction: UInt16 = 1883
+    
+    private static let PrismAPIBaseURLStaging = "https://kong-feat-stg.prismapp.io"
+    private static let PrismMQTTURLStaging = "mqtt-feat-stg.prismapp.io"
+    private static let PrismMQTTPortStaging: UInt16 = 1883
     
     private static var PrismAPIBaseURL: String {
         get {
@@ -24,6 +29,8 @@ internal extension URL {
                 return PrismAPIBaseURLProduction
             case .Sandbox:
                 return PrismAPIBaseURLSandbox
+            case .Staging:
+                return PrismAPIBaseURLStaging
             }
         }
     }
@@ -35,6 +42,8 @@ internal extension URL {
                 return PrismMQTTPortProduction
             case .Sandbox:
                 return PrismMQTTPortSandbox
+            case .Staging:
+                return PrismMQTTPortStaging
             }
         }
     }
@@ -46,6 +55,8 @@ internal extension URL {
                 return PrismMQTTURLProduction
             case .Sandbox:
                 return PrismMQTTURLSandbox
+            case .Staging:
+                return PrismMQTTURLStaging
             }
         }
     }

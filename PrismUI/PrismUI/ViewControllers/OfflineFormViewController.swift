@@ -67,7 +67,13 @@ class OfflineFormViewController: BaseViewController {
             let phone = phoneTF.text,
             let message = messageTF.text else { return }
         
+        view.isUserInteractionEnabled = false
+        sendButton.startLoading()
+        
         chatManager.sendOfflineMessage(with: name, email: email, phone: phone, message: message) { (response, error) in
+            self.sendButton.stopLoading()
+            self.view.isUserInteractionEnabled = true
+            
             guard error == nil else {
                 return
             }

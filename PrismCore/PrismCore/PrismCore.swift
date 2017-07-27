@@ -34,6 +34,13 @@ open class PrismCore {
         network?.setMQTTDelegate(delegate: self)
     }
     
+    public init() { }
+    
+    deinit {
+        network?.disconnectFromBroker(completionHandler: { (success) in })
+        print("Prism Core De-Initialized")
+    }
+    
     open func visitorConnect(userName: String, userID: String, completionHandler: @escaping (ConnectResponse?, NSError?) -> ()) {
         let endPoint = VisitorConnectEndPoint(visitorName: userName, userID: userID)
         network?.request(endPoint: endPoint, mapToObject: ConnectResponse.self) { (mappable, error) in

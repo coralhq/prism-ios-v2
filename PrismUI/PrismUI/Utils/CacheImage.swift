@@ -117,6 +117,6 @@ class CacheImage {
         guard let cachePath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
             return ""
         }
-        return cachePath.appendingPathComponent("prism_images").path //.path// + "/prism_images"
+        return cachePath.appendingPathComponent("prism_images").path
     }
 }

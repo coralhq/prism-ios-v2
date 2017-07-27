@@ -18,9 +18,11 @@ class OfflineFormViewController: BaseViewController {
     @IBOutlet var offlineFormLabel: UILabel!
     
     let chatManager: ChatManager
+    let viewModel: AuthViewModel
     
-    init(with chatManager: ChatManager) {
+    init(viewModel: AuthViewModel, chatManager: ChatManager) {
         self.chatManager = chatManager
+        self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: Bundle.prism)
     }
@@ -70,15 +72,34 @@ class OfflineFormViewController: BaseViewController {
         view.isUserInteractionEnabled = false
         sendButton.startLoading()
         
-        chatManager.sendOfflineMessage(with: name, email: email, phone: phone, message: message) { (response, error) in
-            self.sendButton.stopLoading()
-            self.view.isUserInteractionEnabled = true
-            
+        if Vendor.shared.credential == nil {
+            viewModel.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (error) in
+                if let _ = error {
+                    return
+                }
+                
+                self.sendOfflineMessage(name: name, email: email, phone: phone, message: message, completion: { (success) in
+                    self.sendButton.stopLoading()
+                    self.view.isUserInteractionEnabled = true
+                })
+            }
+        } else {
+            self.sendOfflineMessage(name: name, email: email, phone: phone, message: message, completion: { (success) in
+                self.sendButton.stopLoading()
+                self.view.isUserInteractionEnabled = true
+            })
+        }
+    }
+    
+    private func sendOfflineMessage(name: String, email: String, phone: String, message: String, completion: ((Bool) -> ())?) {
+        self.chatManager.sendOfflineMessage(with: name, email: email, phone: phone, message: message) { (response, error) in
             guard error == nil else {
+                completion?(false)
                 return
             }
             let vc = OfflineMessageViewController()
             self.navigationController?.pushViewController(vc, animated: true)
+            completion?(true)
         }
     }
 }

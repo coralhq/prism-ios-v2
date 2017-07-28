@@ -60,7 +60,7 @@ public class AuthViewModel {
         }
     }
     
-    func getSettings(completion: @escaping ([String: Any]) -> ()) {
+    func getSettings(completion: @escaping ([String: Any]?) -> ()) {
         let currentSettings: [String: Any]? = Utils.unarchive(key: SerialisationKeys.setting)
         
         var isConfigured = false
@@ -73,6 +73,7 @@ public class AuthViewModel {
         
         PrismCore.shared.getSettings { (settings, error) in
             guard let settings = settings?["public"] as? [String: Any] else {
+                completion(nil)
                 return
             }
             

@@ -15,7 +15,9 @@ class ChatManager {
     let coredata: CoreDataManager
     let reachability = ReachabilityHelper()!
     let prismCore: PrismCore = PrismCore()
-    let credential: PrismCredential? = Vendor.shared.credential
+    var credential: PrismCredential? {
+        return Vendor.shared.credential
+    }
     
     init(coreDatamanager: CoreDataManager) {
         self.coredata = coreDatamanager

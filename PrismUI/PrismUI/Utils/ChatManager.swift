@@ -43,10 +43,10 @@ class ChatManager {
         guard let credential = credential else {
             return
         }
-        prismCore.connectToBroker(username: credential.username, password: credential.password) { [unowned self] (success, error) in
+        prismCore.connectToBroker(username: credential.username, password: credential.password) { [weak self] (success, error) in
             let topic = credential.topic
-            self.prismCore.subscribeToTopic(topic) { (success, error) in
-                self.sendPendingMessages()
+            self?.prismCore.subscribeToTopic(topic) { (success, error) in
+                self?.sendPendingMessages()
                 completionHandler(success, error)
             }
         }
@@ -93,7 +93,7 @@ class ChatManager {
             sendMessage(image: image, imageName: imageName, state: .uploading, message: msg, cdmessage: cdmsg)
             
         case .uploading:
-            prismCore.getAttachmentURL(filename: imageName, conversationID: credential.conversationID, token: credential.accessToken) { [unowned self] (response, error) in
+            prismCore.getAttachmentURL(filename: imageName, conversationID: credential.conversationID, token: credential.accessToken) { [weak self] (response, error) in
                 
                 guard let upURL = response?.uploadURL,
                     let key = upURL.cleared?.absoluteString else {
@@ -109,9 +109,9 @@ class ChatManager {
                 cdcontent.url = key
                 cdcontent.uploadState = state
                 cdmsg?.content = cdcontent
-                self.coredata.save()
+                self?.coredata.save()
                 
-                self.sendMessage(image: image,
+                self?.sendMessage(image: image,
                                  imageName: imageName,
                                  state: .finished,
                                  uploadURL: upURL,
@@ -123,22 +123,22 @@ class ChatManager {
                 let upURL = uploadURL else {
                     return
             }
-            prismCore.uploadAttachment(with: imageData, url: upURL, completionHandler: { [unowned self] (success, error) in
+            prismCore.uploadAttachment(with: imageData, url: upURL, completionHandler: { [weak self] (success, error) in
                 guard success else {
                     return
                 }
                 cdcontent.uploadState = state
                 cdmsg?.content = cdcontent
-                self.coredata.save()
+                self?.coredata.save()
                 
                 msg?.content = content
-                self.sendMessage(message: msg!, completion: nil)
+                self?.sendMessage(message: msg!, completion: nil)
             })
         }
     }
     
     func sendPendingMessages() {
-        coredata.fetchPendingMessages(completion: { [unowned self] (cdMessages) in
+        coredata.fetchPendingMessages(completion: { [weak self] (cdMessages) in
             for cdMessage in cdMessages {
                 guard let rawMessage = cdMessage.dictionaryValue(),
                     let message = Message(dictionary: rawMessage) else {
@@ -154,14 +154,14 @@ class ChatManager {
                         guard let image = image else {
                             return
                         }
-                        self.sendMessage(image: image,
+                        self?.sendMessage(image: image,
                                          imageName: content.name,
                                          state: cdcontent.uploadState,
                                          message: message,
                                          cdmessage: cdMessage)
                     })
                 } else {
-                    self.sendMessage(message: message, completion: nil)
+                    self?.sendMessage(message: message, completion: nil)
                 }
             }
         })
@@ -212,8 +212,8 @@ class ChatManager {
         PrismAnalytics.shared.sendTracker(withEvent: .sendMessage, data: trackerData)
         
         //publish to mqtt
-        prismCore.publishMessage(token: credential.accessToken, topic: credential.topic, messages: [message]) { [unowned self] (message, error) in
-            self.sendDataToRover()
+        prismCore.publishMessage(token: credential.accessToken, topic: credential.topic, messages: [message]) { [weak self] (message, error) in
+            self?.sendDataToRover()
             
             completion?(message, error)
         }
@@ -277,11 +277,11 @@ class ChatManager {
             let startTime = timestamp.timeIntervalSince1970.unixTime
             let endTime = Date().timeIntervalSince1970.unixTime
             
-            self.prismCore.getConversationHistory(conversationID: convID, token: token, startTime: startTime, endTime: endTime, completionHandler: { [unowned self] (history, error) in
+            self.prismCore.getConversationHistory(conversationID: convID, token: token, startTime: startTime, endTime: endTime, completionHandler: { [weak self] (history, error) in
                 guard let messages = history?.messages else {
                     return
                 }
-                self.coredata.saveMessages(messages: messages)
+                self?.coredata.saveMessages(messages: messages)
             })
         })
     }

@@ -29,45 +29,44 @@ class RootViewController: BaseViewController {
         
         loadingIndicator.startAnimating()
         viewModel.getSettings { [weak self] (settings) in
-            guard let cdm = self?.coreDataManager,
-                let vm = self?.viewModel else {
-                    return
+            guard let `self` = self else {
+                return
             }
             
-            let chatManager = ChatManager(coreDatamanager: cdm)
+            let chatManager = ChatManager(coreDatamanager: self.coreDataManager)
             
             if Settings.shared.workingHour.isOnWorkingHour {
                 
-                let offlineVC = OfflineFormViewController(viewModel: vm, chatManager: chatManager)
-                self?.enter(viewController: offlineVC, animated: false)
-                self?.loadingIndicator.stopAnimating()
+                let offlineVC = OfflineFormViewController(viewModel: self.viewModel, chatManager: chatManager)
+                self.enter(viewController: offlineVC, animated: false)
+                self.loadingIndicator.stopAnimating()
                 return
                 
             }
             
             if let _ = Vendor.shared.credential {
                 
-                self?.enterChatpage(animated: false)
-                self?.loadingIndicator.stopAnimating()
+                self.enterChatpage(animated: false)
+                self.loadingIndicator.stopAnimating()
                 return
                 
             }
             
             //New user, then clear previous data
-            cdm.clearData()
+            self.coreDataManager.clearData()
             CacheImage.shared.clearCache()
             
             if Settings.shared.inputForm.enabled {
                 
-                let connectVC = ConnectViewController(viewModel: vm)
-                self?.enter(viewController: connectVC, animated: false)
-                self?.loadingIndicator.stopAnimating()
+                let connectVC = ConnectViewController(viewModel: self.viewModel)
+                self.enter(viewController: connectVC, animated: false)
+                self.loadingIndicator.stopAnimating()
                 
             } else {
                 
-                self?.viewModel.visitorConnectAnonymous(completion: { (error) in
-                    self?.enterChatpage(animated: false)
-                    self?.loadingIndicator.stopAnimating()
+                self.viewModel.visitorConnectAnonymous(completion: { (error) in
+                    self.enterChatpage(animated: false)
+                    self.loadingIndicator.stopAnimating()
                 })
                 
             }
@@ -133,9 +132,9 @@ class RootViewController: BaseViewController {
         if animated {
             UIView.animate(withDuration: 0.25, animations: {
                 nvc.view.alpha = 1
-            }, completion: { (finished) in
+            }, completion: { [weak self] (finished) in
                 guard let vc = vc1 else { return }
-                self.remove(viewController: vc)
+                self?.remove(viewController: vc)
             })
         } else {
             nvc.view.alpha = 1

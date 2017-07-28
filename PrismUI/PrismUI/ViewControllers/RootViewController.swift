@@ -28,41 +28,46 @@ class RootViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(refreshToken), name: RefreshTokenNotification, object: nil)
         
         loadingIndicator.startAnimating()
-        viewModel.getSettings { [unowned self] (settings) in
-            let chatManager = ChatManager(coreDatamanager: self.coreDataManager)
+        viewModel.getSettings { [weak self] (settings) in
+            guard let cdm = self?.coreDataManager,
+                let vm = self?.viewModel else {
+                    return
+            }
+            
+            let chatManager = ChatManager(coreDatamanager: cdm)
             
             if Settings.shared.workingHour.isOnWorkingHour {
                 
-                let offlineVC = OfflineFormViewController(viewModel: self.viewModel, chatManager: chatManager)
-                self.enter(viewController: offlineVC, animated: false)
-                self.loadingIndicator.stopAnimating()
+                let offlineVC = OfflineFormViewController(viewModel: vm, chatManager: chatManager)
+                self?.enter(viewController: offlineVC, animated: false)
+                self?.loadingIndicator.stopAnimating()
                 return
                 
             }
             
             if let _ = Vendor.shared.credential {
                 
-                self.enterChatpage(animated: false)
-                self.loadingIndicator.stopAnimating()
+                self?.enterChatpage(animated: false)
+                self?.loadingIndicator.stopAnimating()
                 return
                 
             }
             
             //New user, then clear previous data
-            self.coreDataManager.clearData()
+            cdm.clearData()
             CacheImage.shared.clearCache()
             
             if Settings.shared.inputForm.enabled {
                 
-                let connectVC = ConnectViewController(viewModel: self.viewModel)
-                self.enter(viewController: connectVC, animated: false)
-                self.loadingIndicator.stopAnimating()
+                let connectVC = ConnectViewController(viewModel: vm)
+                self?.enter(viewController: connectVC, animated: false)
+                self?.loadingIndicator.stopAnimating()
                 
             } else {
                 
-                self.viewModel.visitorConnectAnonymous(completion: { (error) in
-                    self.enterChatpage(animated: false)
-                    self.loadingIndicator.stopAnimating()
+                self?.viewModel.visitorConnectAnonymous(completion: { (error) in
+                    self?.enterChatpage(animated: false)
+                    self?.loadingIndicator.stopAnimating()
                 })
                 
             }
@@ -110,7 +115,7 @@ class RootViewController: BaseViewController {
     private func enterChatpage(animated: Bool) {
         let chatManager = ChatManager(coreDatamanager: coreDataManager)
         let chatVC = ChatViewController(with: chatManager)
-        enter(viewController: chatVC, animated: animated)        
+        enter(viewController: chatVC, animated: animated)
     }
     
     private func enter(viewController vc: UIViewController, animated: Bool) {

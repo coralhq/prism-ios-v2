@@ -20,9 +20,9 @@ extension UIImageView {
         
         let key = url.absoluteString
         
-        CacheImage.shared.fetch(key: key) { [unowned self] (image) in
+        CacheImage.shared.fetch(key: key) { [weak self] (image) in
             if let image = image {
-                self.image = image
+                self?.image = image
             } else {
                 URLSession.shared.dataTask(with: url) { (data, response, error) in
                     DispatchQueue.main.async {
@@ -31,7 +31,7 @@ extension UIImageView {
                                 return
                         }
                         CacheImage.shared.store(image: image, key: key)
-                        self.image = image
+                        self?.image = image
                     }}.resume()
             }
         }

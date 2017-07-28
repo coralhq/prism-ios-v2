@@ -13,10 +13,9 @@ import PrismAnalytics
 
 class ChatManager {
     let coredata: CoreDataManager
-    let credential = Vendor.shared.credential!
     let reachability = ReachabilityHelper()!
-    
     let prismCore: PrismCore = PrismCore()
+    let credential: PrismCredential? = Vendor.shared.credential
     
     init(coreDatamanager: CoreDataManager) {
         self.coredata = coreDatamanager
@@ -39,8 +38,11 @@ class ChatManager {
     }
     
     func connect(completionHandler: @escaping ((Bool, Error?) -> ())) {
+        guard let credential = credential else {
+            return
+        }
         prismCore.connectToBroker(username: credential.username, password: credential.password) { [unowned self] (success, error) in
-            let topic = self.credential.topic
+            let topic = credential.topic
             self.prismCore.subscribeToTopic(topic) { (success, error) in
                 self.sendPendingMessages()
                 completionHandler(success, error)
@@ -55,6 +57,10 @@ class ChatManager {
     }
     
     func sendMessage(image: UIImage, imageName: String, state: AttachmentUploadState, uploadURL: URL? = nil, message: Message? = nil, cdmessage: CDMessage? = nil) {
+        guard let credential = credential else {
+            return
+        }
+        
         var cdmsg = cdmessage
         var msg = message
         
@@ -188,6 +194,10 @@ class ChatManager {
     }
     
     private func sendMessage(message: Message, completion: ((MessageResponse?, NSError?) -> ())?) {
+        guard let credential = credential else {
+            return
+        }
+        
         //save to core data
         coredata.buildMessage(message: message, status: .pending)
         coredata.save()
@@ -251,9 +261,13 @@ class ChatManager {
     }
     
     func syncChatLocalWithServer() {
+        guard let credential = credential else {
+            return
+        }
+        
         coredata.fetchLatestMessage(completion: { (message) in
-            let convID = self.credential.conversationID
-            let token = self.credential.accessToken
+            let convID = credential.conversationID
+            let token = credential.accessToken
             
             guard let timestamp = message.brokerMetaData?.timestamp else {
                 return

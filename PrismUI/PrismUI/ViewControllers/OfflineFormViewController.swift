@@ -73,7 +73,11 @@ class OfflineFormViewController: BaseViewController {
         sendButton.startLoading()
         
         if Vendor.shared.credential == nil {
-            viewModel.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (error) in
+            viewModel.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { [weak self] (error) in
+                guard let `self` = self else {
+                    return
+                }
+                
                 if let _ = error {
                     self.sendButton.stopLoading()
                     self.view.isUserInteractionEnabled = true
@@ -86,21 +90,21 @@ class OfflineFormViewController: BaseViewController {
                 })
             }
         } else {
-            self.sendOfflineMessage(name: name, email: email, phone: phone, message: message, completion: { (success) in
-                self.sendButton.stopLoading()
-                self.view.isUserInteractionEnabled = true
+            self.sendOfflineMessage(name: name, email: email, phone: phone, message: message, completion: { [weak self] (success) in
+                self?.sendButton.stopLoading()
+                self?.view.isUserInteractionEnabled = true
             })
         }
     }
     
     private func sendOfflineMessage(name: String, email: String, phone: String, message: String, completion: ((Bool) -> ())?) {
-        self.chatManager.sendOfflineMessage(with: name, email: email, phone: phone, message: message) { (response, error) in
+        self.chatManager.sendOfflineMessage(with: name, email: email, phone: phone, message: message) { [weak self] (response, error) in
             guard error == nil else {
                 completion?(false)
                 return
             }
             let vc = OfflineMessageViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+            self?.navigationController?.pushViewController(vc, animated: true)
             completion?(true)
         }
     }

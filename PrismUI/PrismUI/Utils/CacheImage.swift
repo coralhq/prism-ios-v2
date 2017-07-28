@@ -34,13 +34,13 @@ class CacheImage {
     
     func remove(key: String, completion: (() -> ())? = nil) {
         opQueue.async { [weak self] in
-            let fileName = key.md5
-            self?.memCache.removeObject(forKey: fileName as NSString)
-            guard let imgPath = self?.imagePath(fileName: fileName) else {
+            guard let `self` = self else {
                 return
             }
+            let fileName = key.md5
+            self.memCache.removeObject(forKey: fileName as NSString)
             do {
-                try FileManager.default.removeItem(atPath: imgPath)
+                try FileManager.default.removeItem(atPath: self.imagePath(fileName: fileName))
                 DispatchQueue.main.async {
                     completion?()
                 }
@@ -56,18 +56,21 @@ class CacheImage {
         let fileName = key.md5
         
         opQueue.async { [weak self] in
-            if let _ = self?.memCache.object(forKey: fileName as NSString) {
+            guard let `self` = self else {
                 return
             }
             
-            self?.memCache.setObject(image, forKey: fileName as NSString)
-            
-            guard let data = UIImagePNGRepresentation(image),
-                let fileName = self?.imagePath(fileName: fileName) else {
-                    return
+            if let _ = self.memCache.object(forKey: fileName as NSString) {
+                return
             }
             
-            let imgPath = URL(fileURLWithPath: fileName)
+            self.memCache.setObject(image, forKey: fileName as NSString)
+            
+            guard let data = UIImagePNGRepresentation(image) else {
+                return
+            }
+            
+            let imgPath = URL(fileURLWithPath: self.imagePath(fileName: fileName))
             do {
                 try data.write(to: imgPath)
             } catch {
@@ -83,23 +86,22 @@ class CacheImage {
         let fileName = key.md5
         
         opQueue.async { [weak self] in
-            if let img = self?.memCache.object(forKey: fileName as NSString) {
+            guard let `self` = self else {
+                return
+            }
+            
+            if let img = self.memCache.object(forKey: fileName as NSString) {
                 DispatchQueue.main.async {
                     completion?(img)
                 }
                 return
             }
             
-            guard let fileName = self?.imagePath(fileName: fileName) else {
-                return
-            }
-            
-            let imgPath = URL(fileURLWithPath: fileName)
+            let imgPath = URL(fileURLWithPath: self.imagePath(fileName: fileName))
             do {
                 let data = try Data(contentsOf: imgPath)
                 if let img = UIImage(data: data) {
-                    self?.memCache.setObject(img, forKey: fileName as NSString)
-                    
+                    self.memCache.setObject(img, forKey: fileName as NSString)
                     DispatchQueue.main.async {
                         completion?(img)
                     }

@@ -155,7 +155,8 @@ extension ChatComposer: UIImagePickerControllerDelegate, UINavigationControllerD
         picker.dismiss(animated: true, completion: nil)
         
         DispatchQueue(label: "resize_queue").async { [weak self] in
-            guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage,
+            guard let `self` = self,
+                let image = info[UIImagePickerControllerOriginalImage] as? UIImage,
                 let imageURL = info[UIImagePickerControllerReferenceURL] as? URL,
                 let asset = PHAsset.fetchAssets(withALAssetURLs: [imageURL], options: nil).firstObject,
                 let imageName = asset.value(forKey: "filename") as? String else {
@@ -165,10 +166,7 @@ extension ChatComposer: UIImagePickerControllerDelegate, UINavigationControllerD
             let finalImage = image.resize(targetSize: CGSize(width: 1500, height: 1500))
             
             DispatchQueue.main.async {
-                guard let weakSelf = self else {
-                    return
-                }
-                weakSelf.delegate?.chatComposer(composer: weakSelf, didPickImage: finalImage, imageName: imageName)
+                self.delegate?.chatComposer(composer: self, didPickImage: finalImage, imageName: imageName)
             }
         }
     }

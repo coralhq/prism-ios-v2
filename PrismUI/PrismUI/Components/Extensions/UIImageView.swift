@@ -21,10 +21,14 @@ extension UIImageView {
         let key = url.absoluteString
         
         CacheImage.shared.fetch(key: key) { [weak self] (image) in
+            guard let `self` = self else {
+                return
+            }
+
             if let image = image {
                 self?.image = image
             } else {
-                URLSession.shared.dataTask(with: url) { (data, response, error) in
+                URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
                     DispatchQueue.main.async {
                         guard let data = data,
                             let image = UIImage(data: data) else {

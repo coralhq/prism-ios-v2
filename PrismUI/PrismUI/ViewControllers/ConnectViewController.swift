@@ -71,15 +71,15 @@ public class ConnectViewController: BaseViewController {
         view.isUserInteractionEnabled = false
         startChatButton.startLoading()
         
-        viewModel.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (error) in
+        viewModel.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { [weak self] (error) in
             if let error = error {
                 print("Error: \(error)")
             } else {
                 NotificationCenter.default.post(name: ConnectNotification, object: nil)
             }
         
-            self.view.isUserInteractionEnabled = true
-            self.startChatButton.stopLoading()
+            self?.view.isUserInteractionEnabled = true
+            self?.startChatButton.stopLoading()
         }
     }
 }

@@ -214,7 +214,6 @@ class ChatManager {
         //publish to mqtt
         prismCore.publishMessage(token: credential.accessToken, topic: credential.topic, messages: [message]) { [weak self] (message, error) in
             self?.sendDataToRover()
-            
             completion?(message, error)
         }
     }
@@ -267,7 +266,7 @@ class ChatManager {
             return
         }
         
-        coredata.fetchLatestMessage(completion: { (message) in
+        coredata.fetchLatestMessage(completion: { [weak self] (message) in
             let convID = credential.conversationID
             let token = credential.accessToken
             
@@ -276,8 +275,8 @@ class ChatManager {
             }
             let startTime = timestamp.timeIntervalSince1970.unixTime
             let endTime = Date().timeIntervalSince1970.unixTime
-            
-            self.prismCore.getConversationHistory(conversationID: convID, token: token, startTime: startTime, endTime: endTime, completionHandler: { [weak self] (history, error) in
+
+            self?.prismCore.getConversationHistory(conversationID: convID, token: token, startTime: startTime, endTime: endTime, completionHandler: { (history, error) in
                 guard let messages = history?.messages else {
                     return
                 }

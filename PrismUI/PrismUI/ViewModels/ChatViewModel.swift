@@ -18,7 +18,7 @@ class ChatViewModel {
     let contentType: ChatContentType
     let senderID: String
     
-    var messageTime: String
+    var messageTime: Date
     var senderName: String
     var statusIcon: UIImage? {
         if cellType == .Out {
@@ -42,15 +42,14 @@ class ChatViewModel {
             let senderID = message.sender?.id,
             let senderName = message.sender?.name,
             let messageID = message.id,
-            let timestampe = message.brokerMetaData?.timestamp else { return nil }
+            let messageTime = message.brokerMetaData?.timestamp else { return nil }
         
         self.contentType = ChatContentType.typeFrom(typeString: contentTypeString)
         self.cellType = senderID == visitor.id ? .Out : .In
         self.messageID = messageID
         self.senderID = senderID
         
-        Vendor.shared.dateFormatter.dateFormat = "hh:mm a"
-        self.messageTime = Vendor.shared.dateFormatter.string(from: timestampe)
+        self.messageTime = messageTime
         
         if cellType == .Out {
             self.messageStatus = MessageStatus(rawValue: message.status)

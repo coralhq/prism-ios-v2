@@ -18,8 +18,8 @@ internal extension URL {
     private static let PrismMQTTURLSandbox = "chat.sandbox.prismapp.io"
     private static let PrismMQTTPortSandbox: UInt16 = 1883
     
-    private static let PrismAPIBaseURLStaging = "https://kong-feat-stg.prismapp.io"
-    private static let PrismMQTTURLStaging = "mqtt-feat-stg.prismapp.io"
+    private static let PrismAPIBaseURLStaging = "https://kong-feat-sdk.prismapp.io"
+    private static let PrismMQTTURLStaging = "mqtt-feat-sdk.prismapp.io"
     private static let PrismMQTTPortStaging: UInt16 = 1883
     
     private static var PrismAPIBaseURL: String {

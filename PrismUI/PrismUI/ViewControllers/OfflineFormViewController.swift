@@ -75,6 +75,8 @@ class OfflineFormViewController: BaseViewController {
         if Vendor.shared.credential == nil {
             viewModel.visitorConnect(name: nameTF.text, email: emailTF.text, phoneNumber: phoneTF.text) { (error) in
                 if let _ = error {
+                    self.sendButton.stopLoading()
+                    self.view.isUserInteractionEnabled = true
                     return
                 }
                 

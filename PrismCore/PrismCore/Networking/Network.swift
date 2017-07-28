@@ -21,7 +21,11 @@ class Network: NSObject, NetworkProtocol {
     var uploadTaskIdentifiers: [Int: URL] = [:]
     weak var delegate: NetworkDelegate?
     
-    private let mqttSession: MQTTSession
+    private override init() {
+        super.init()
+    }
+    
+    private var mqttSession: MQTTSession = MQTTSession(host: "", port: 1883, clientID: "", cleanSession: true, keepAlive: 60)
     
     private var _urlSession: URLSession?
     private var urlSession: URLSession? {
@@ -35,14 +39,13 @@ class Network: NSObject, NetworkProtocol {
         }
     }
     
-    override init() {
+    func configure() {
         mqttSession = MQTTSession(host: URL.PrismMQTTURL,
                                   port: URL.PrismMQTTPort,
                                   clientID: "iOS-SDK",
                                   cleanSession: true,
                                   keepAlive: 60,
                                   useSSL: false)
-        super.init()
     }
     
     func requestRawResult<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping (([String: Any]?, NSError?) -> ())) {

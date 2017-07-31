@@ -33,7 +33,7 @@ class PrismCredential: NSObject, NSCoding {
     var conversationID: String = ""
     var merchantID: String = ""
     var visitorInfo: MessageUser = MessageUser(id: "", name: "")!
-    var sender: MessageSender = MessageSender(id: "", name: "", role: "", userAgent: "")!
+    var sender: MessageSender = MessageSender(id: "", name: "", role: "", appName: "")!
     var clientID: String = ""
 
     override init() {
@@ -83,6 +83,6 @@ class PrismCredential: NSObject, NSCoding {
         clientID = connect.oAuth.clientID
         
         visitorInfo = MessageUser(id: connect.visitor.id, name: connect.visitor.name)!
-        sender = MessageSender(id: connect.visitor.id, name: connect.visitor.name, role: "visitor", userAgent: "iOSSDK-v1.0.0")!
+        sender = MessageSender(id: connect.visitor.id, name: connect.visitor.name, role: "visitor", appName: "iOSSDK-v1.0.0")!
     }
 }

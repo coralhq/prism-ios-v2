@@ -24,7 +24,7 @@ open class PrismCore {
     
     static open var shared = PrismCore()
     
-    internal var network: NetworkProtocol = Network.shared
+    internal var network: NetworkProtocol = Network()
 
     open func configure(environment: EnvironmentType, merchantID: String) {
         Config.shared.configure(environment: environment, merchantID: merchantID)

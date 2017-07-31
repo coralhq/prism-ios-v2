@@ -21,7 +21,7 @@ class Network: NSObject, NetworkProtocol {
     var uploadTaskIdentifiers: [Int: URL] = [:]
     weak var delegate: NetworkDelegate?
     
-    private override init() {
+    override init() {
         super.init()
     }
     

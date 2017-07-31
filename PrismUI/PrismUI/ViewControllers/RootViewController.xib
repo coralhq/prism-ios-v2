@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RootViewController" customModule="PrismUI" customModuleProvider="target">
             <connections>
                 <outlet property="loadingIndicator" destination="uBm-oZ-P6v" id="hAb-H9-wqT"/>
+                <outlet property="loadingIndicatorView" destination="WOm-m4-xaB" id="N40-CH-Khy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

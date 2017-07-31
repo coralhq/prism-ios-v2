@@ -23,4 +23,13 @@ extension Date {
         let formatter = Date.ISO8601Formatter()
         return formatter.string(from: self)
     }
+    
+    var UTCTime: Date {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        let str = formatter.string(from: self)
+        
+        return formatter.date(from: str)!
+    }
 }

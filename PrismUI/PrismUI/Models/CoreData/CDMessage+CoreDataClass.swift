@@ -46,7 +46,7 @@ public class CDMessage: NSManagedObject, CDManagedMappable {
         
         brokerMetaData = CDBrokerMetaData(with: context, dictionary: dictionary["_broker_metadata"] as! [String: Any])
         content = coreDataContentWith(dictionary: dictionary["content"] as! [String: Any], type: type)
-        sectionDate = Date().removedTime()
+        sectionDate = brokerMetaData?.timestamp?.removedTime()
     }
     
     func dictionaryValue() -> [String : Any]? {

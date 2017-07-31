@@ -204,10 +204,10 @@ class ChatManager {
         coredata.buildMessage(message: message, status: .pending)
         coredata.save()
         
-        let trackerData = [
+        let trackerData: [String: String] = [
             sendMessageTrackerType.conversationID.rawValue : credential.conversationID,
             sendMessageTrackerType.messageType.rawValue : message.type.rawValue,
-            sendMessageTrackerType.sender.rawValue : message.sender.id
+            sendMessageTrackerType.sender.rawValue : message.sender?.id ?? ""
         ]
         PrismAnalytics.shared.sendTracker(withEvent: .sendMessage, data: trackerData)
         

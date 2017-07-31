@@ -20,10 +20,10 @@
         <relationship name="visitor" maxCount="1" deletionRule="Deny" destinationEntity="CDUser" inverseName="visitor" inverseEntity="CDUser" syncable="YES"/>
     </entity>
     <entity name="CDSender" representedClassName=".CDSender" syncable="YES">
+        <attribute name="appName" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="role" attributeType="String" syncable="YES"/>
-        <attribute name="userAgent" attributeType="String" syncable="YES"/>
         <relationship name="message" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDMessage" inverseName="sender" inverseEntity="CDMessage" syncable="YES"/>
     </entity>
     <entity name="CDUser" representedClassName=".CDUser" syncable="YES">

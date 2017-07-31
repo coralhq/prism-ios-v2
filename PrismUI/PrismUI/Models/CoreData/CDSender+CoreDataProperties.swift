@@ -19,7 +19,7 @@ extension CDSender {
     @NSManaged public var id: String?
     @NSManaged public var name: String?
     @NSManaged public var role: String?
-    @NSManaged public var userAgent: String?
+    @NSManaged public var appName: String?
     @NSManaged public var message: CDMessage?
 
 }

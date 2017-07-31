@@ -26,7 +26,7 @@ extension UIImageView {
             }
 
             if let image = image {
-                self?.image = image
+                self.image = image
             } else {
                 URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
                     DispatchQueue.main.async {

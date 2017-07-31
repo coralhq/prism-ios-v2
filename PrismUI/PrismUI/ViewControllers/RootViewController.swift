@@ -35,7 +35,7 @@ class RootViewController: BaseViewController {
             
             let chatManager = ChatManager(coreDatamanager: self.coreDataManager)
             
-            if Settings.shared.workingHour.isOnWorkingHour {
+            if !Settings.shared.workingHour.isOnWorkingHour {
                 
                 let offlineVC = OfflineFormViewController(viewModel: self.viewModel, chatManager: chatManager)
                 self.enter(viewController: offlineVC, animated: false)

@@ -32,8 +32,12 @@ class RootViewController: BaseViewController {
         loadingIndicatorView.isHidden = false
         
         viewModel.getSettings { [weak self] (settings) in
-            guard let _ = settings,
-                let `self` = self else {
+            guard settings != nil else {
+                self?.dismiss(animated: true, completion: nil)
+                return
+            }
+            
+            guard let `self` = self else {
                 return
             }
             

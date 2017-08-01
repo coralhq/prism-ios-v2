@@ -29,12 +29,7 @@ open class PrismCore {
     open func configure(environment: EnvironmentType, merchantID: String) {
         Config.shared.configure(environment: environment, merchantID: merchantID)
         
-        if let network = network as? Network {
-            network.configure()
-        }
-        
         network.delegate = self
-        network.setMQTTDelegate(delegate: self)
     }
     
     public init() {}
@@ -142,29 +137,6 @@ open class PrismCore {
         network.request(endPoint: endPoint, mapToObject: RefreshTokenResponse.self) { (response, error) in
             completionHandler(response as? RefreshTokenResponse, error)
         }
-    }
-}
-
-extension PrismCore: MQTTSessionDelegate {
-    internal func mqttDidReceive(message data: Data, in topic: String, from session: MQTTSession) {
-        do {
-            guard let messageDict = try JSONSerialization.jsonObject(with: data, options: .init(rawValue: 0)) as? [String: Any],
-                let message = Message(dictionary: messageDict) else {
-                    print("Error parsing MQTT message")
-                    return
-            }
-            NotificationCenter.default.post(name: ReceiveChatNotification, object: message)
-        } catch {
-            NotificationCenter.default.post(name: ErrorChatNotification, object: error)
-        }
-    }
-    
-    internal func mqttDidDisconnect(session: MQTTSession) {
-        NotificationCenter.default.post(name: DisconnectChatNotification, object: nil)
-    }
-    
-    internal func mqttSocketErrorOccurred(session: MQTTSession) {
-        NotificationCenter.default.post(name: ErrorChatNotification, object: nil)
     }
 }
 

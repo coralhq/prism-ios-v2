@@ -286,7 +286,8 @@ class ChatManager {
     }
     
     @objc func chatReceived(sender: Notification) {
-        guard let message = sender.object as? Message else { return }
+        guard let message = sender.object as? Message,
+        message.type != .Assignment else { return }
         
         coredata.buildMessage(message: message, status: .sent)
         coredata.save()

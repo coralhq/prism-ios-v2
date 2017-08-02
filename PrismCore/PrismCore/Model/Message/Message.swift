@@ -85,7 +85,6 @@ open class Message: Mappable {
     
     public required init?(dictionary: [String : Any]?) {
         let dictionary: [String: Any] = dictionary ?? [:]
-        print(dictionary)
         guard
             let id = dictionary["id"] as? String,
             let conversationID = dictionary["conversation_id"] as? String,
@@ -95,7 +94,6 @@ open class Message: Mappable {
             let typeString = dictionary["type"] as? String,
             let version = dictionary["version"] as? Int,
             let brokerMetaData = BrokerMetaData(dictionary: dictionary["_broker_metadata"] as? [String: Any]) else {
-                print("return nil")
                 return nil
         }
         
@@ -113,7 +111,6 @@ open class Message: Mappable {
         
         guard let contentDict = dictionary["content"] as? [String: Any],
             let content = Message.contentWith(dictionary: contentDict, type: type) else {
-                print("content return nil")
             return nil
         }
         self.content = content

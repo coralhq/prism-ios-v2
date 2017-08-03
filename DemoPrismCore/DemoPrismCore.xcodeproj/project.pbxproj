@@ -110,6 +110,7 @@
 		80389A4E1EEA55AB007B9458 /* DemoMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		80389A4F1EEA55AB007B9458 /* DemoMenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoMenuCollectionViewCell.xib; sourceTree = "<group>"; };
 		8084765E1F0C9CFD00E12323 /* PrismAnalytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PrismAnalytics.xcodeproj; path = ../PrismAnalytics/PrismAnalytics/PrismAnalytics.xcodeproj; sourceTree = "<group>"; };
+		80E9F3E31F32DE4000F49A6F /* DemoPrismCore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DemoPrismCore.entitlements; sourceTree = "<group>"; };
 		E526658D1EE91AA200612E19 /* PrismUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PrismUI.xcodeproj; path = ../PrismUI/PrismUI.xcodeproj; sourceTree = "<group>"; };
 		E54D95F51ED55E34009FF016 /* DemoPrismCore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoPrismCore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E54D95F81ED55E35009FF016 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -173,6 +174,7 @@
 		E54D95F71ED55E35009FF016 /* DemoPrismCore */ = {
 			isa = PBXGroup;
 			children = (
+				80E9F3E31F32DE4000F49A6F /* DemoPrismCore.entitlements */,
 				E54D95F81ED55E35009FF016 /* AppDelegate.swift */,
 				E54D95FF1ED55E35009FF016 /* Assets.xcassets */,
 				E54D96011ED55E35009FF016 /* LaunchScreen.storyboard */,
@@ -231,7 +233,12 @@
 					E54D95F41ED55E34009FF016 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 36T5DNWZL4;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -467,11 +474,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DemoPrismCore/DemoPrismCore.entitlements;
 				DEVELOPMENT_TEAM = 36T5DNWZL4;
 				INFOPLIST_FILE = DemoPrismCore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.prismapp.ios.demo.DemoPrismCore;
+				PRODUCT_BUNDLE_IDENTIFIER = io.prismapp.DemoPrismCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b4bc003d-7039-428b-bac1-5ac521dd6b24";
+				PROVISIONING_PROFILE_SPECIFIER = PrismiOSSDKDemo;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -481,11 +491,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DemoPrismCore/DemoPrismCore.entitlements;
 				DEVELOPMENT_TEAM = 36T5DNWZL4;
 				INFOPLIST_FILE = DemoPrismCore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.prismapp.ios.demo.DemoPrismCore;
+				PRODUCT_BUNDLE_IDENTIFIER = io.prismapp.DemoPrismCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b4bc003d-7039-428b-bac1-5ac521dd6b24";
+				PROVISIONING_PROFILE_SPECIFIER = PrismiOSSDKDemo;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

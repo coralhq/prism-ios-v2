@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,36 +20,47 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icPrism" translatesAutoresizingMaskIntoConstraints="NO" id="xHx-Xl-WYh">
-                    <rect key="frame" x="0.0" y="647" width="375" height="20"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nuT-SP-Nmw">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d5q-CB-w5U" customClass="ChatTableView" customModule="PrismUI" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
+                            <color key="backgroundColor" red="0.82745098039999998" green="0.21960784310000001" blue="0.36470588240000001" alpha="0.050000000000000003" colorSpace="calibratedRGB"/>
+                        </tableView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ws-IB-1Vn">
+                            <rect key="frame" x="0.0" y="597" width="375" height="50"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" placeholder="YES" identifier="barViewHeight" id="XzI-hV-9rQ"/>
+                            </constraints>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icPrism" translatesAutoresizingMaskIntoConstraints="NO" id="xHx-Xl-WYh">
+                            <rect key="frame" x="0.0" y="647" width="375" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="92I-aY-2wg"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="92I-aY-2wg"/>
+                        <constraint firstItem="7Ws-IB-1Vn" firstAttribute="top" secondItem="d5q-CB-w5U" secondAttribute="bottom" id="0KF-Hl-khg"/>
+                        <constraint firstItem="7Ws-IB-1Vn" firstAttribute="leading" secondItem="nuT-SP-Nmw" secondAttribute="leading" id="0Mv-hz-Qmc"/>
+                        <constraint firstAttribute="trailing" secondItem="d5q-CB-w5U" secondAttribute="trailing" id="7o8-jT-bhx"/>
+                        <constraint firstAttribute="trailing" secondItem="7Ws-IB-1Vn" secondAttribute="trailing" id="7uL-s4-S84"/>
+                        <constraint firstAttribute="trailing" secondItem="xHx-Xl-WYh" secondAttribute="trailing" id="DI3-du-l6L"/>
+                        <constraint firstItem="d5q-CB-w5U" firstAttribute="leading" secondItem="nuT-SP-Nmw" secondAttribute="leading" id="H2a-yl-S8x"/>
+                        <constraint firstItem="xHx-Xl-WYh" firstAttribute="top" secondItem="7Ws-IB-1Vn" secondAttribute="bottom" id="V2X-Ec-p43"/>
+                        <constraint firstItem="d5q-CB-w5U" firstAttribute="top" secondItem="nuT-SP-Nmw" secondAttribute="top" id="iI3-PY-NVK"/>
+                        <constraint firstAttribute="bottom" secondItem="xHx-Xl-WYh" secondAttribute="bottom" id="pJu-6g-GJb"/>
+                        <constraint firstItem="xHx-Xl-WYh" firstAttribute="leading" secondItem="nuT-SP-Nmw" secondAttribute="leading" id="qgz-uo-vJL"/>
                     </constraints>
-                </imageView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d5q-CB-w5U" customClass="ChatTableView" customModule="PrismUI" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
-                    <color key="backgroundColor" red="0.82745098039999998" green="0.21960784310000001" blue="0.36470588240000001" alpha="0.050000000000000003" colorSpace="calibratedRGB"/>
-                </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ws-IB-1Vn">
-                    <rect key="frame" x="0.0" y="597" width="375" height="50"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" placeholder="YES" id="XzI-hV-9rQ"/>
-                    </constraints>
-                </view>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="xHx-Xl-WYh" firstAttribute="top" secondItem="7Ws-IB-1Vn" secondAttribute="bottom" id="8hK-Pt-yyR"/>
-                <constraint firstItem="7Ws-IB-1Vn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CoQ-Gf-h6B"/>
-                <constraint firstAttribute="trailing" secondItem="xHx-Xl-WYh" secondAttribute="trailing" id="QrH-VV-rON"/>
-                <constraint firstAttribute="trailing" secondItem="7Ws-IB-1Vn" secondAttribute="trailing" id="Ya7-Cx-Ow1"/>
-                <constraint firstItem="xHx-Xl-WYh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bju-Bd-05Z"/>
-                <constraint firstItem="d5q-CB-w5U" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="drN-wm-7yp"/>
-                <constraint firstItem="7Ws-IB-1Vn" firstAttribute="top" secondItem="d5q-CB-w5U" secondAttribute="bottom" id="eRS-Ai-IYN"/>
-                <constraint firstAttribute="trailing" secondItem="d5q-CB-w5U" secondAttribute="trailing" id="eg1-ct-N87"/>
-                <constraint firstAttribute="bottom" secondItem="xHx-Xl-WYh" secondAttribute="bottom" id="egz-G7-pO3"/>
-                <constraint firstItem="d5q-CB-w5U" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nfI-Xe-p5H"/>
+                <constraint firstAttribute="trailing" secondItem="nuT-SP-Nmw" secondAttribute="trailing" id="1NK-HG-Z2A"/>
+                <constraint firstAttribute="bottom" secondItem="nuT-SP-Nmw" secondAttribute="bottom" id="66K-Zd-GPa"/>
+                <constraint firstItem="nuT-SP-Nmw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XA9-D0-9lD"/>
+                <constraint firstItem="nuT-SP-Nmw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ybP-Uj-WQ6"/>
             </constraints>
             <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>

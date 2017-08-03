@@ -15,6 +15,7 @@ class ChatViewController: BaseViewController {
     @IBOutlet var barView: UIView!
     @IBOutlet var tableView: ChatTableView!
     
+    let authViewModel = AuthViewModel()
     let chatManager: ChatManager
     var queryManager: ChatQueryManager?
     
@@ -35,14 +36,15 @@ class ChatViewController: BaseViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let composer = ChatComposer.composerFromNib(with: Vendor.shared.credential!.accessToken) else { return }
-        composer.delegate = self
-        composer.addTo(view: barView, margin: 0)
+        addComposer()
         
         tableView.backgroundColor = Settings.shared.theme.buttonColor.withAlphaComponent(0.05)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ChatHeaderCell.NIB, forCellReuseIdentifier: ChatHeaderCell.className())
+        tableView.register(CloseChatTableViewCell.NIB, forCellReuseIdentifier: CloseChatTableViewCell.reuseIdentifier)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reconnectingChat), name: ChatReconnectNotification, object: nil)
         
         queryManager?.fetchSections()
     }
@@ -51,6 +53,35 @@ class ChatViewController: BaseViewController {
         super.viewDidAppear(animated)
         
         PrismAnalytics.shared.sendTracker(withEvent: .chatScreen)
+    }
+    
+    func addComposer() {
+        guard let composer = ChatComposer.composerFromNib(with: Vendor.shared.credential!.accessToken) else { return }
+        
+        composer.delegate = self
+        composer.addTo(view: barView, margin: 0)
+        composer.tag = 80314
+    }
+    
+    func hideComposer() {
+        barView.isHidden = true
+    }
+    
+    func showComposer() {
+        barView.isHidden = false
+    }
+    
+    func reconnectingChat() {
+        authViewModel.visitorConnect() { [weak self] (error) in
+            if let error = error {
+                print("Error: \(error)")
+            } else {
+                self?.showComposer()
+                self?.chatManager.coredata.clearData()
+                self?.queryManager?.fetchSections()
+                self?.tableView.reloadData()
+            }
+        }
     }
 }
 
@@ -92,6 +123,13 @@ extension ChatViewController: UITableViewDataSource {
         }
         
         let viewModel = objects[indexPath.row]
+        if let closeChatViewModel = viewModel.contentViewModel as? ContentCloseChatViewModel {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CloseChatTableViewCell.reuseIdentifier) as! CloseChatTableViewCell
+            cell.configure(viewModel: closeChatViewModel)
+            hideComposer()
+            return cell
+        }
+        
         var cell = tableView.dequeueReusableCell(withIdentifier: ChatCell.reuseIdentifier(viewModel: viewModel)) as? ChatCell
         if cell == nil {
             cell = ChatCell(viewModel: viewModel)

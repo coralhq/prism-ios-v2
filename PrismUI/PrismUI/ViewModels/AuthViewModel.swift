@@ -60,6 +60,25 @@ public class AuthViewModel {
         }
     }
     
+    func visitorConnect(completion: @escaping (NSError?) -> Void) {
+        guard let credential = Vendor.shared.credential else {
+            completion(nil)
+            return
+        }
+        
+        PrismCore.shared.visitorConnect(userName: credential.channelName, userID: credential.channelID) { [weak self] (connect, error) in
+            
+            DispatchQueue.main.async {
+                guard let `self` = self else {
+                    completion(NSError(domain: "", code: 1, userInfo: nil))
+                    return
+                }
+                
+                self.handle(connect: connect, error: error, completion: completion)
+            }
+        }
+    }
+    
     func getSettings(completion: @escaping ([String: Any]?) -> ()) {
         let currentSettings: [String: Any]? = Utils.unarchive(key: SerialisationKeys.setting)
         
@@ -97,15 +116,17 @@ extension AuthViewModel {
         guard let connect = connect else { return }
         
         PrismCore.shared.createConversation(visitorName: connect.visitor.name, token: connect.oAuth.accessToken, completionHandler: { (conversation, error) in
-            guard let conversation = conversation else { return }
-            
-            if let error = error {
-                completion(error)
-            } else {
-                let credential = PrismCredential()
-                credential.configure(connect: connect, conversation: conversation)
-                Vendor.shared.credential = credential
-                completion(nil)
+            DispatchQueue.main.async {
+                guard let conversation = conversation else { return }
+                
+                if let error = error {
+                    completion(error)
+                } else {
+                    let credential = PrismCredential()
+                    credential.configure(connect: connect, conversation: conversation)
+                    Vendor.shared.credential = credential
+                    completion(nil)
+                }
             }
         })
     }

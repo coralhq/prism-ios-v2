@@ -15,8 +15,7 @@ class RootViewController: BaseViewController {
     @IBOutlet var loadingIndicatorView: UIStackView!
     
     let viewModel = AuthViewModel()
-    let coreDataManager: CoreDataManager = CoreDataManager()
-    
+
     convenience init() {
         self.init(nibName: nil, bundle: Bundle.prism)
     }
@@ -41,19 +40,14 @@ class RootViewController: BaseViewController {
                 return
             }
             
-            let chatManager = ChatManager(coreDatamanager: self.coreDataManager)
-            
             if !Settings.shared.workingHour.isOnWorkingHour {
-                
-                let offlineVC = OfflineFormViewController(viewModel: self.viewModel, chatManager: chatManager)
+                let offlineVC = OfflineFormViewController(viewModel: self.viewModel)
                 self.enter(viewController: offlineVC, animated: false)
                 self.stopLoading()
                 return
-                
             }
             
             if let _ = Vendor.shared.credential {
-                
                 self.enterChatpage(animated: false)
                 self.stopLoading()
                 return
@@ -61,7 +55,7 @@ class RootViewController: BaseViewController {
             }
             
             //New user, then clear previous data
-            self.coreDataManager.clearData()
+            CoreDataManager.shared.clearData()
             CacheImage.shared.clearCache()
             
             if Settings.shared.inputForm.enabled {
@@ -125,9 +119,7 @@ class RootViewController: BaseViewController {
     }
     
     private func enterChatpage(animated: Bool) {
-        let chatManager = ChatManager(coreDatamanager: coreDataManager)
-        let chatVC = ChatViewController(with: chatManager)
-        enter(viewController: chatVC, animated: animated)
+        enter(viewController: ChatViewController(), animated: animated)
     }
     
     private func enter(viewController vc: UIViewController, animated: Bool) {

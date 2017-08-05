@@ -11,11 +11,15 @@ import PrismCore
 import CoreData
 
 public class CDMessage: NSManagedObject, CDManagedMappable {
+    var messageStatus: MessageStatus = .pending {
+        didSet {
+            status = messageStatus.rawValue
+        }
+    }
     
     required public init(with context: NSManagedObjectContext, dictionary: [String : Any]) {
         let entityDesc = NSEntityDescription.entity(forEntityName: String(describing: type(of: self)), in: context)!
         super.init(entity: entityDesc, insertInto: context)
-        
         updateMessage(with: dictionary)
     }
     
@@ -70,7 +74,7 @@ public class CDMessage: NSManagedObject, CDManagedMappable {
                                      "version": Int(version),
                                      "_broker_metadata": brokerMetaData]
         if let sender = sender {
-            result["sender"] = sender
+            result["sender"] = sender.dictionaryValue()
         }
         return result
     }

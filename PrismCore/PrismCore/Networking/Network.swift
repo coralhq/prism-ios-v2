@@ -29,7 +29,7 @@ class Network: NSObject, NetworkProtocol {
     
     private var mqttSession = MQTTSession(host: URL.PrismMQTTURL,
                                           port: URL.PrismMQTTPort,
-                                          clientID: "iOS-SDK",
+                                          clientID: UIDevice.current.identifierForVendor?.description ?? String.randomUserID ,
                                           cleanSession: true,
                                           keepAlive: 60,
                                           useSSL: false)
@@ -44,16 +44,6 @@ class Network: NSObject, NetworkProtocol {
             }
             return _urlSession
         }
-    }
-    
-    func configure() {
-        mqttSession = MQTTSession(host: URL.PrismMQTTURL,
-                                  port: URL.PrismMQTTPort,
-                                  clientID: "iOS-SDK",
-                                  cleanSession: true,
-                                  keepAlive: 60,
-                                  useSSL: false)
-        mqttSession.delegate = self
     }
     
     func requestRawResult<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping (([String: Any]?, NSError?) -> ())) {

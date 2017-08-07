@@ -12,16 +12,17 @@ import CoreData
 import PrismAnalytics
 
 class ChatManager {
-    let coredata: CoreDataManager
+    var coredata: CoreDataManager {
+        return CoreDataManager.shared
+    }
+    
     let reachability = ReachabilityHelper()!
     let prismCore: PrismCore = PrismCore()
     var credential: PrismCredential? {
         return Vendor.shared.credential
     }
     
-    init(coreDatamanager: CoreDataManager) {
-        self.coredata = coreDatamanager
-        
+    init() {
         do {
             try reachability.startNotifier()
         } catch{
@@ -58,7 +59,7 @@ class ChatManager {
         sendMessage(message: message, completion: nil)
     }
     
-    func sendMessage(image: UIImage, imageName: String, state: AttachmentUploadState, uploadURL: URL? = nil, message: Message? = nil, cdmessage: CDMessage? = nil) {
+    func sendMessage(image: UIImage, imageName: String, state: AttachmentUploadState, uploadURL: String? = nil, message: Message? = nil, cdmessage: CDMessage? = nil) {
         guard let credential = credential else {
             return
         }
@@ -72,7 +73,8 @@ class ChatManager {
         }
         
         if cdmsg == nil {
-            cdmsg = coredata.buildMessage(message: msg!, status: .pending)
+            cdmsg = coredata.buildMessage(message: msg!)
+            cdmsg?.messageStatus = .pending
         }
         
         guard let content = msg?.content as? ContentAttachment,
@@ -90,40 +92,47 @@ class ChatManager {
             cdmsg?.content = cdcontent
             coredata.save()
             
-            sendMessage(image: image, imageName: imageName, state: .uploading, message: msg, cdmessage: cdmsg)
+            sendMessage(image: image,
+                        imageName: imageName,
+                        state: .uploading,
+                        uploadURL: tempURL,
+                        message: msg,
+                        cdmessage: cdmsg)
             
         case .uploading:
             prismCore.getAttachmentURL(filename: imageName, conversationID: credential.conversationID, token: credential.accessToken) { [weak self] (response, error) in
                 
-                guard let upURL = response?.uploadURL,
-                    let key = upURL.cleared?.absoluteString else {
+                guard let finalUploadURL = response?.uploadURL,
+                    let oldKey = uploadURL,
+                    let newKey = finalUploadURL.cleared?.absoluteString else {
                         return
                 }
                 
-                CacheImage.shared.remove(key: key, completion: {
-                    CacheImage.shared.store(image: image, key: key)
+                CacheImage.shared.remove(key: oldKey)
+                
+                CacheImage.shared.store(image: image, key: newKey, completion: { 
+                    content.url = newKey
+                    
+                    cdcontent.url = newKey
+                    cdcontent.uploadState = state
+                    cdmsg?.content = cdcontent
+                    self?.coredata.save()
+                    
+                    self?.sendMessage(image: image,
+                                      imageName: imageName,
+                                      state: .finished,
+                                      uploadURL: finalUploadURL.absoluteString,
+                                      message: msg,
+                                      cdmessage: cdmsg)
                 })
-                
-                content.url = key
-                
-                cdcontent.url = key
-                cdcontent.uploadState = state
-                cdmsg?.content = cdcontent
-                self?.coredata.save()
-                
-                self?.sendMessage(image: image,
-                                 imageName: imageName,
-                                 state: .finished,
-                                 uploadURL: upURL,
-                                 message: msg,
-                                 cdmessage: cdmsg)
             }
         default:
             guard let imageData = UIImagePNGRepresentation(image),
-                let upURL = uploadURL else {
+                let uploadURL = uploadURL,
+                let finalUploadURL = URL(string: uploadURL) else {
                     return
             }
-            prismCore.uploadAttachment(with: imageData, url: upURL, completionHandler: { [weak self] (success, error) in
+            prismCore.uploadAttachment(with: imageData, url: finalUploadURL, completionHandler: { [weak self] (success, error) in
                 guard success else {
                     return
                 }
@@ -138,33 +147,46 @@ class ChatManager {
     }
     
     func sendPendingMessages() {
-        coredata.fetchPendingMessages(completion: { [weak self] (cdMessages) in
-            for cdMessage in cdMessages {
-                guard let rawMessage = cdMessage.dictionaryValue(),
-                    let message = Message(dictionary: rawMessage) else {
-                        continue
-                }
-                if message.type == .Attachment {
-                    guard let cdcontent = cdMessage.content as? CDContentAttachment,
-                        let content = message.content as? ContentAttachment,
-                        let stringURL = content.url else {
-                            return
-                    }
-                    CacheImage.shared.fetch(key: stringURL, completion: { (image) in
-                        guard let image = image else {
-                            return
-                        }
-                        self?.sendMessage(image: image,
-                                         imageName: content.name,
-                                         state: cdcontent.uploadState,
-                                         message: message,
-                                         cdmessage: cdMessage)
-                    })
-                } else {
-                    self?.sendMessage(message: message, completion: nil)
-                }
+        coredata.fetchPendingMessages { [weak self] (cdMessages) in
+            guard let cdMessages = cdMessages else {
+                return
             }
-        })
+            for cdMessage in cdMessages {
+                self?.sendPendingMessage(cdMsg: cdMessage)
+            }
+        }
+    }
+    
+    private func sendPendingMessage(cdMsg: CDMessage) {
+        guard let dictionary = cdMsg.dictionaryValue(),
+            let msg = Message(dictionary: dictionary) else {
+                return
+        }
+        
+        let cdm = coredata.buildMessage(message: msg)
+        
+        if msg.type == .Attachment {
+            guard let content = msg.content as? ContentAttachment,
+                let stringURL = content.url,
+                let cdcontent = cdMsg.content as? CDContentAttachment else {
+                    return
+            }
+            
+            let uploadState = cdcontent.uploadState
+            
+            CacheImage.shared.fetch(key: stringURL, completion: { [weak self] (img) in
+                guard let img = img else {
+                    return
+                }
+                self?.sendMessage(image: img,
+                                  imageName: content.name,
+                                  state: uploadState,
+                                  message: msg,
+                                  cdmessage: cdm)
+            })
+        } else {
+            publishMessage(message: msg, completion: nil)
+        }
     }
     
     func sendMessage(sticker: StickerViewModel) {
@@ -196,26 +218,12 @@ class ChatManager {
     }
     
     private func sendMessage(message: Message, completion: ((MessageResponse?, NSError?) -> ())?) {
-        guard let credential = credential else {
-            return
-        }
-        
         //save to core data
-        coredata.buildMessage(message: message, status: .pending)
+        let cdm = coredata.buildMessage(message: message)
+        cdm.messageStatus = .pending
         coredata.save()
         
-        let trackerData = [
-            sendMessageTrackerType.conversationID.rawValue : credential.conversationID,
-            sendMessageTrackerType.messageType.rawValue : message.type.rawValue,
-            sendMessageTrackerType.sender.rawValue : message.sender.id
-        ]
-        PrismAnalytics.shared.sendTracker(withEvent: .sendMessage, data: trackerData)
-        
-        //publish to mqtt
-        prismCore.publishMessage(token: credential.accessToken, topic: credential.topic, messages: [message]) { [weak self] (message, error) in
-            self?.sendDataToRover()
-            completion?(message, error)
-        }
+        publishMessage(message: message, completion: completion)
     }
     
     @objc func reachabilityChanged(sender: Notification) {
@@ -270,12 +278,12 @@ class ChatManager {
             let convID = credential.conversationID
             let token = credential.accessToken
             
-            guard let timestamp = message.brokerMetaData?.timestamp else {
+            guard let timestamp = message?.brokerMetaData?.timestamp else {
                 return
             }
             let startTime = timestamp.timeIntervalSince1970.unixTime
             let endTime = Date().timeIntervalSince1970.unixTime
-
+            
             self?.prismCore.getConversationHistory(conversationID: convID, token: token, startTime: startTime, endTime: endTime, completionHandler: { (history, error) in
                 guard let messages = history?.messages else {
                     return
@@ -286,9 +294,11 @@ class ChatManager {
     }
     
     @objc func chatReceived(sender: Notification) {
-        guard let message = sender.object as? Message else { return }
+        guard let message = sender.object as? Message,
+            message.type != .Assignment else { return }
         
-        coredata.buildMessage(message: message, status: .sent)
+        let cdm = coredata.buildMessage(message: message)
+        cdm.messageStatus = .sent
         coredata.save()
         
         if message.type == .CloseChat {
@@ -297,11 +307,31 @@ class ChatManager {
     }
     
     @objc func chatDisconnect(sender: Notification) {
-        
+        print("MQTT DISCONNECTED")
     }
     
     @objc func chatError(sender: Notification) {
+        print("MQTT ERROR")
+    }
+    
+    
+    private func publishMessage(message: Message, completion: ((MessageResponse?, NSError?) -> ())?) {
+        guard let credential = credential else {
+            return
+        }
         
+        let trackerData: [String: String] = [
+            sendMessageTrackerType.conversationID.rawValue : credential.conversationID,
+            sendMessageTrackerType.messageType.rawValue : message.type.rawValue,
+            sendMessageTrackerType.sender.rawValue : message.sender?.id ?? ""
+        ]
+        PrismAnalytics.shared.sendTracker(withEvent: .sendMessage, data: trackerData)
+        
+        //publish to mqtt
+        prismCore.publishMessage(token: credential.accessToken, topic: credential.topic, messages: [message]) { [weak self] (message, error) in
+            self?.sendDataToRover()
+            completion?(message, error)
+        }
     }
 }
 

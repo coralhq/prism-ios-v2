@@ -12,10 +12,10 @@ import PrismAnalytics
 
 class RootViewController: BaseViewController {
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet var loadingIndicatorView: UIStackView!
     
     let viewModel = AuthViewModel()
-    let coreDataManager: CoreDataManager = CoreDataManager()
-    
+
     convenience init() {
         self.init(nibName: nil, bundle: Bundle.prism)
     }
@@ -28,49 +28,56 @@ class RootViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(refreshToken), name: RefreshTokenNotification, object: nil)
         
         loadingIndicator.startAnimating()
+        loadingIndicatorView.isHidden = false
+        
         viewModel.getSettings { [weak self] (settings) in
+            guard settings != nil else {
+                self?.dismiss(animated: true, completion: nil)
+                return
+            }
+            
             guard let `self` = self else {
                 return
             }
             
-            let chatManager = ChatManager(coreDatamanager: self.coreDataManager)
-            
-            if Settings.shared.workingHour.isOnWorkingHour {
-                
-                let offlineVC = OfflineFormViewController(viewModel: self.viewModel, chatManager: chatManager)
+            if !Settings.shared.workingHour.isOnWorkingHour {
+                let offlineVC = OfflineFormViewController(viewModel: self.viewModel)
                 self.enter(viewController: offlineVC, animated: false)
-                self.loadingIndicator.stopAnimating()
+                self.stopLoading()
                 return
-                
             }
             
             if let _ = Vendor.shared.credential {
-                
                 self.enterChatpage(animated: false)
-                self.loadingIndicator.stopAnimating()
+                self.stopLoading()
                 return
                 
             }
             
             //New user, then clear previous data
-            self.coreDataManager.clearData()
+            CoreDataManager.shared.clearData()
             CacheImage.shared.clearCache()
             
             if Settings.shared.inputForm.enabled {
                 
                 let connectVC = ConnectViewController(viewModel: self.viewModel)
                 self.enter(viewController: connectVC, animated: false)
-                self.loadingIndicator.stopAnimating()
+                self.stopLoading()
                 
             } else {
                 
                 self.viewModel.visitorConnectAnonymous(completion: { (error) in
                     self.enterChatpage(animated: false)
-                    self.loadingIndicator.stopAnimating()
+                    self.stopLoading()
                 })
                 
             }
         }
+    }
+    
+    func stopLoading() {
+        self.loadingIndicator.stopAnimating()
+        loadingIndicatorView.isHidden = true
     }
     
     deinit {
@@ -112,9 +119,7 @@ class RootViewController: BaseViewController {
     }
     
     private func enterChatpage(animated: Bool) {
-        let chatManager = ChatManager(coreDatamanager: coreDataManager)
-        let chatVC = ChatViewController(with: chatManager)
-        enter(viewController: chatVC, animated: animated)
+        enter(viewController: ChatViewController(), animated: animated)
     }
     
     private func enter(viewController vc: UIViewController, animated: Bool) {

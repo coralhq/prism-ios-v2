@@ -50,7 +50,7 @@ class PrismCoreTests: XCTestCase {
         
         guard let channelInfo = MessageChannelInfo(id: "", name: ""),
             let visitor = MessageVisitorInfo(id: "", name: ""),
-            let sender = MessageSender(id: "", name: "", role: "", userAgent: ""),
+            let sender = MessageSender(id: "", name: "", role: "", appName: ""),
             let broker = BrokerMetaData(dictionary: ["timestamp": "2017-05-19T03:39:31.814Z"]) else {
                 return
         }
@@ -233,7 +233,7 @@ class PrismCoreTests: XCTestCase {
         
         guard let channelInfo = MessageChannelInfo(id: "", name: ""),
             let visitor = MessageVisitorInfo(id: "", name: ""),
-            let sender = MessageSender(id: "", name: "", role: "", userAgent: ""),
+            let sender = MessageSender(id: "", name: "", role: "", appName: ""),
             let content = ContentPlainText(text: ""),
             let broker = BrokerMetaData(dictionary: ["timestamp": "2017-05-19T03:39:31.814Z"]) else {
                 XCTAssertNotNil(messageObject)
@@ -269,7 +269,7 @@ class PrismCoreTests: XCTestCase {
         
         guard let channelInfo = MessageChannelInfo(id: "", name: ""),
             let visitor = MessageVisitorInfo(id: "", name: ""),
-            let sender = MessageSender(id: "", name: "", role: "", userAgent: ""),
+            let sender = MessageSender(id: "", name: "", role: "", appName: ""),
             let broker = BrokerMetaData(dictionary: ["timestamp": "2017-05-19T03:39:31.814Z"]) else {
                 XCTAssertNotNil(message)
                 return
@@ -301,7 +301,7 @@ class PrismCoreTests: XCTestCase {
         var message: Message?
         guard let channelInfo = MessageChannelInfo(id: "", name: ""),
             let visitor = MessageVisitorInfo(id: "", name: ""),
-            let sender = MessageSender(id: "", name: "", role: "", userAgent: ""),
+            let sender = MessageSender(id: "", name: "", role: "", appName: ""),
             let content = ContentSticker(name: "", imageURL: "https://www.google.com", id: "", packID: ""),
             let broker = BrokerMetaData(dictionary: ["timestamp": "2017-05-19T03:39:31.814Z"]) else {
                 
@@ -328,7 +328,7 @@ class PrismCoreTests: XCTestCase {
         var message: Message?
         guard let channelInfo = MessageChannelInfo(id: "", name: ""),
             let visitor = MessageVisitorInfo(id: "", name: ""),
-            let sender = MessageSender(id: "", name: "", role: "", userAgent: ""),
+            let sender = MessageSender(id: "", name: "", role: "", appName: ""),
             let content = ContentTyping(status: TypingStatus.StartTyping),
             let broker = BrokerMetaData(dictionary: ["timestamp": "2017-05-19T03:39:31.814Z"]) else {
                 XCTAssertNotNil(message)
@@ -353,7 +353,7 @@ class PrismCoreTests: XCTestCase {
         var message: Message?
         guard let channelInfo = MessageChannelInfo(id: "", name: ""),
             let visitor = MessageVisitorInfo(id: "", name: ""),
-            let sender = MessageSender(id: "", name: "", role: "", userAgent: ""),
+            let sender = MessageSender(id: "", name: "", role: "", appName: ""),
             let content = ContentOfflineMessage(name: "", email: "", phone: "", text: ""),
             let broker = BrokerMetaData(dictionary: ["timestamp": "2017-05-19T03:39:31.814Z"]) else {
                 XCTAssertNotNil(message)

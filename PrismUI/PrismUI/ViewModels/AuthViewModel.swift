@@ -73,7 +73,7 @@ public class AuthViewModel {
         
         PrismCore.shared.getSettings { (settings, error) in
             guard let settings = settings?["public"] as? [String: Any] else {
-                completion(nil)
+                completion(currentSettings)
                 return
             }
             

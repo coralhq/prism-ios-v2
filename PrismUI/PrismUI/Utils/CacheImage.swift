@@ -82,38 +82,31 @@ class CacheImage {
         }
     }
     
-    func fetch(key: String, completion:((UIImage?) -> ())? = nil) {
+    func fetch(key: String) -> UIImage? {
         let fileName = key.md5
+        if let img = self.memCache.object(forKey: fileName as NSString) {
+            return img
+        }
         
+        let imgPath = URL(fileURLWithPath: self.imagePath(fileName: fileName))
+        do {
+            let data = try Data(contentsOf: imgPath)
+            if let img = UIImage(data: data) {
+                self.memCache.setObject(img, forKey: fileName as NSString)
+                return img
+            } else {
+                return nil
+            }
+        } catch {
+            return nil
+        }
+    }
+    
+    func fetch(key: String, completion:((UIImage?) -> ())? = nil) {
         opQueue.async { [weak self] in
-            guard let `self` = self else {
-                return
-            }
-            
-            if let img = self.memCache.object(forKey: fileName as NSString) {
-                DispatchQueue.main.async {
-                    completion?(img)
-                }
-                return
-            }
-            
-            let imgPath = URL(fileURLWithPath: self.imagePath(fileName: fileName))
-            do {
-                let data = try Data(contentsOf: imgPath)
-                if let img = UIImage(data: data) {
-                    self.memCache.setObject(img, forKey: fileName as NSString)
-                    DispatchQueue.main.async {
-                        completion?(img)
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        completion?(nil)
-                    }
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    completion?(nil)
-                }
+            let img = self?.fetch(key: key)
+            DispatchQueue.main.async {
+                completion?(img)
             }
         }
     }

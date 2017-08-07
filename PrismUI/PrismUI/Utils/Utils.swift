@@ -90,4 +90,12 @@ class Vendor {
         
         credential = Utils.unarchive(key: "prism_credential")
     }
+    
+    func getLocalDateWith(date: Date, format: String) -> String {
+        let df = dateFormatter
+        df.timeZone = TimeZone.current
+        df.dateFormat = format
+        
+        return df.string(from: date)
+    }
 }

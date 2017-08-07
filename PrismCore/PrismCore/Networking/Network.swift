@@ -21,7 +21,18 @@ class Network: NSObject, NetworkProtocol {
     var uploadTaskIdentifiers: [Int: URL] = [:]
     weak var delegate: NetworkDelegate?
     
-    private let mqttSession: MQTTSession
+    override init() {
+        super.init()
+        
+        mqttSession.delegate = self
+    }
+    
+    private var mqttSession = MQTTSession(host: URL.PrismMQTTURL,
+                                          port: URL.PrismMQTTPort,
+                                          clientID: UIDevice.current.identifierForVendor?.description ?? String.randomUserID ,
+                                          cleanSession: true,
+                                          keepAlive: 60,
+                                          useSSL: false)
     
     private var _urlSession: URLSession?
     private var urlSession: URLSession? {
@@ -33,16 +44,6 @@ class Network: NSObject, NetworkProtocol {
             }
             return _urlSession
         }
-    }
-    
-    override init() {
-        mqttSession = MQTTSession(host: URL.PrismMQTTURL,
-                                  port: URL.PrismMQTTPort,
-                                  clientID: "iOS-SDK",
-                                  cleanSession: true,
-                                  keepAlive: 60,
-                                  useSSL: false)
-        super.init()
     }
     
     func requestRawResult<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping (([String: Any]?, NSError?) -> ())) {
@@ -162,13 +163,10 @@ class Network: NSObject, NetworkProtocol {
         task?.resume()
     }
     
-    func setMQTTDelegate(delegate: MQTTSessionDelegate) {
-        mqttSession.delegate = delegate
-    }
-    
     func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, NSError?) -> ())) {
         mqttSession.username = username
         mqttSession.password = password
+        
         mqttSession.connect { (connected, error) in
             DispatchQueue.main.async(){
                 completionHandler(connected, error as NSError?)
@@ -179,6 +177,7 @@ class Network: NSObject, NetworkProtocol {
     func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, NSError?) -> ())) {
         mqttSession.subscribe(to: topic, delivering: MQTTQoS.atLeastOnce) { (success, error) in
             DispatchQueue.main.async(){
+                
                 completionHandler(success, error as NSError?)
             }
         }
@@ -213,6 +212,29 @@ class Network: NSObject, NetworkProtocol {
         } catch {
             print("error \(error)")
         }
+    }
+}
+
+extension Network: MQTTSessionDelegate {
+    internal func mqttDidReceive(message data: Data, in topic: String, from session: MQTTSession) {
+        do {
+            guard let messageDict = try JSONSerialization.jsonObject(with: data, options: .init(rawValue: 0)) as? [String: Any],
+                let message = Message(dictionary: messageDict) else {
+                    print("Error parsing MQTT message")
+                    return
+            }
+            NotificationCenter.default.post(name: ReceiveChatNotification, object: message)
+        } catch {
+            NotificationCenter.default.post(name: ErrorChatNotification, object: error)
+        }
+    }
+    
+    internal func mqttDidDisconnect(session: MQTTSession) {
+        NotificationCenter.default.post(name: DisconnectChatNotification, object: nil)
+    }
+    
+    internal func mqttSocketErrorOccurred(session: MQTTSession) {
+        NotificationCenter.default.post(name: ErrorChatNotification, object: nil)
     }
 }
 

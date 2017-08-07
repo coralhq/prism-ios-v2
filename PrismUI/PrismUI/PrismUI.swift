@@ -26,7 +26,16 @@ open class PrismUI {
         self.delegate = delegate
         PrismCore.shared.configure(environment: environment, merchantID: merchantID)
         
-        let analyticsEnv = environment == .Production ? AnalyticEnvironment.Production : AnalyticEnvironment.Sandbox
+        var analyticsEnv: AnalyticEnvironment
+        switch environment {
+        case .Production:
+            analyticsEnv = .Production
+        case .Sandbox:
+            analyticsEnv = .Sandbox
+        case .Staging:
+            analyticsEnv = .Staging
+        }
+        
         PrismAnalytics.shared.configure(environment: analyticsEnv)
         
         sendDeviceInfoToRover()

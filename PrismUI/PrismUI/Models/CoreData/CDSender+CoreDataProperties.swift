@@ -2,7 +2,7 @@
 //  CDSender+CoreDataProperties.swift
 //  PrismUI
 //
-//  Created by Nanang Rafsanjani on 7/19/17.
+//  Created by Nanang Rafsanjani on 8/4/17.
 //  Copyright © 2017 Prism. All rights reserved.
 //
 
@@ -16,10 +16,10 @@ extension CDSender {
         return NSFetchRequest<CDSender>(entityName: "CDSender")
     }
 
+    @NSManaged public var appName: String?
     @NSManaged public var id: String?
     @NSManaged public var name: String?
     @NSManaged public var role: String?
-    @NSManaged public var userAgent: String?
     @NSManaged public var message: CDMessage?
 
 }

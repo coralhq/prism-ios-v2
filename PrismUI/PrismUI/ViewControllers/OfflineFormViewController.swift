@@ -17,11 +17,10 @@ class OfflineFormViewController: BaseViewController {
     @IBOutlet var sendButton: UIButton!
     @IBOutlet var offlineFormLabel: UILabel!
     
-    let chatManager: ChatManager
+    let chatManager: ChatManager = ChatManager()
     let viewModel: AuthViewModel
     
-    init(viewModel: AuthViewModel, chatManager: ChatManager) {
-        self.chatManager = chatManager
+    init(viewModel: AuthViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: Bundle.prism)

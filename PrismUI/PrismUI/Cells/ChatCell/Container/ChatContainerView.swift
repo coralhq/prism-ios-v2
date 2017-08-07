@@ -45,7 +45,7 @@ class ChatContainerView: UIView {
     func update(with viewModel: ChatViewModel, isExtension: Bool) {
         chatContentView?.updateView(with: viewModel)
         
-        infoView.timeLabel.text = viewModel.messageTime
+        infoView.timeLabel.text = Vendor.shared.getLocalDateWith(date: viewModel.messageTime, format: "hh:mm a")
         infoView.statusImageView?.image = viewModel.statusIcon
         
         if isExtension {

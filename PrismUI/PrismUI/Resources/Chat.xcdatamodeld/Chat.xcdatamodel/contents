@@ -13,19 +13,19 @@
         <attribute name="version" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Sender" representedClassName="Sender" syncable="YES" codeGenerationType="class">
+        <attribute name="appName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="role" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userAgent" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Chat" positionX="-567" positionY="-117" width="128" height="148"/>
-        <element name="User" positionX="-198" positionY="-138" width="128" height="75"/>
         <element name="BrokerMetaData" positionX="-189" positionY="18" width="128" height="60"/>
+        <element name="Chat" positionX="-567" positionY="-117" width="128" height="148"/>
         <element name="Sender" positionX="-180" positionY="117" width="128" height="105"/>
+        <element name="User" positionX="-198" positionY="-138" width="128" height="75"/>
     </elements>
 </model>

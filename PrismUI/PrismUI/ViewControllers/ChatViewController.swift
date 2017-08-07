@@ -15,12 +15,10 @@ class ChatViewController: BaseViewController {
     @IBOutlet var barView: UIView!
     @IBOutlet var tableView: ChatTableView!
     
-    let chatManager: ChatManager
+    let chatManager: ChatManager = ChatManager()
     var queryManager: ChatQueryManager?
     
-    init(with chatManager: ChatManager) {
-        self.chatManager = chatManager
-        
+    init() {
         super.init(nibName: nil, bundle: Bundle.prism)
 
         let context = chatManager.coredata.mainContext
@@ -45,6 +43,10 @@ class ChatViewController: BaseViewController {
         tableView.register(ChatHeaderCell.NIB, forCellReuseIdentifier: ChatHeaderCell.className())
         
         queryManager?.fetchSections()
+    }
+    
+    deinit {
+        print("\(self) deinitialized")
     }
     
     override func viewDidAppear(_ animated: Bool) {

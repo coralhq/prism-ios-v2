@@ -22,7 +22,7 @@ public class BrokerMetaData : Mappable {
     }
     
     public init() {
-        self.timestamp = Date()
+        self.timestamp = Date().UTCTime
     }
     
     public func dictionaryValue() -> [String : Any] {

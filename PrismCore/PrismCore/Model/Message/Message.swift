@@ -75,7 +75,7 @@ open class Message: Mappable {
     public var merchantID: String
     public var channel: String
     public var visitor: MessageVisitorInfo
-    public var sender: MessageSender
+    public var sender: MessageSender?
     public var type: MessageType
     public var content: MessageContentMappable
     public var version: Int
@@ -84,13 +84,13 @@ open class Message: Mappable {
     public var channelInfo: MessageChannelInfo?
     
     public required init?(dictionary: [String : Any]?) {
-        guard let dictionary = dictionary,
+        let dictionary: [String: Any] = dictionary ?? [:]
+        guard
             let id = dictionary["id"] as? String,
             let conversationID = dictionary["conversation_id"] as? String,
             let merchantID = dictionary["merchant_id"] as? String,
             let channel = dictionary["channel"] as? String,
             let visitor = MessageVisitorInfo(dictionary: dictionary["visitor"] as? [String: Any]),
-            let sender = MessageSender(dictionary: dictionary["sender"] as? [String: Any]),
             let typeString = dictionary["type"] as? String,
             let version = dictionary["version"] as? Int,
             let brokerMetaData = BrokerMetaData(dictionary: dictionary["_broker_metadata"] as? [String: Any]) else {
@@ -99,13 +99,13 @@ open class Message: Mappable {
         
         self.channelInfo = MessageChannelInfo(dictionary: dictionary["channel_info"] as? [String: Any])
         self.type = MessageType(rawValue: typeString)
+        self.sender = MessageSender(dictionary: dictionary["sender"] as? [String: Any])
         
         self.id = id
         self.merchantID = merchantID
         self.conversationID = conversationID
         self.channel = channel
         self.visitor = visitor
-        self.sender = sender
         self.brokerMetaData = brokerMetaData
         self.version = version
         
@@ -146,7 +146,7 @@ open class Message: Mappable {
                 "merchant_id": merchantID,
                 "channel": channel,
                 "visitor": visitor.dictionaryValue(),
-                "sender": sender.dictionaryValue(),
+                "sender": sender?.dictionaryValue() ?? [:],
                 "type": type.rawValue,
                 "content": content.dictionaryValue(),
                 "version": version,

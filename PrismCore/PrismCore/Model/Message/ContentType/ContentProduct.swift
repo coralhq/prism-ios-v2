@@ -29,7 +29,7 @@ public class Product: Mappable {
     public let price: String
     public let description: String
     public let imageURLs: [URL]
-    public let discount: Discount
+    public let discount: Discount?
     public let currencyCode: String
     
     required public init?(dictionary: [String : Any]?) {
@@ -38,7 +38,6 @@ public class Product: Mappable {
             let price = dictionary?["price"] as? String,
             let description = dictionary?["description"] as? String,
             let imageURLDictionaries = dictionary?["image_urls"] as? [String],
-            let discount = Discount(dictionary: dictionary?["discount"] as? [String: Any]),
             let currencyCode = dictionary?["currency_code"] as? String else {
                 return nil
         }
@@ -52,12 +51,13 @@ public class Product: Mappable {
             imageURLs.append(url)
         }
         
+        self.discount = Discount(dictionary: dictionary?["discount"] as? [String: Any])
+        
         self.id = id
         self.name = name
         self.price = price
         self.description = description
         self.imageURLs = imageURLs
-        self.discount = discount
         self.currencyCode = currencyCode
     }
     
@@ -65,12 +65,15 @@ public class Product: Mappable {
         let imageURLs = self.imageURLs.map { (url) -> String in
             return url.absoluteString
         }
-        return ["id": id,
-                "name": name,
-                "price": price,
-                "description": description,
-                "image_urls": imageURLs,
-                "discount": discount.dictionaryValue(),
-                "currency_code": currencyCode]
+        var result: [String: Any] = ["id": id,
+                                     "name": name,
+                                     "price": price,
+                                     "description": description,
+                                     "image_urls": imageURLs,
+                                     "currency_code": currencyCode]
+        if let discount = discount {
+            result["discount"] = discount.dictionaryValue()
+        }
+        return result
     }
 }

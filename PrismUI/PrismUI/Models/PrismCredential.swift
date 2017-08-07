@@ -22,6 +22,8 @@ class PrismCredential: NSObject, NSCoding {
         static var sender = "sender"
         static var refreshToken = "refresh_token"
         static var clientID = "client_id"
+        static var channelID = "channel_id"
+        static var channelName = "channel_name"
     }
     
     var username: String = ""
@@ -35,6 +37,8 @@ class PrismCredential: NSObject, NSCoding {
     var visitorInfo: MessageUser = MessageUser(id: "", name: "")!
     var sender: MessageSender = MessageSender(id: "", name: "", role: "", appName: "")!
     var clientID: String = ""
+    var channelID: String = ""
+    var channelName: String = ""
 
     override init() {
     }
@@ -49,6 +53,8 @@ class PrismCredential: NSObject, NSCoding {
         merchantID = aDecoder.decodeObject(forKey: Keys.merchantID) as! String
         refreshToken = aDecoder.decodeObject(forKey: Keys.refreshToken) as! String
         clientID = aDecoder.decodeObject(forKey: Keys.clientID) as! String
+        channelName = aDecoder.decodeObject(forKey: Keys.channelName) as! String
+        channelID = aDecoder.decodeObject(forKey: Keys.channelID) as! String
         
         let visitorDict = aDecoder.decodeObject(forKey: Keys.visitor) as! [String: Any]
         visitorInfo = MessageUser(dictionary: visitorDict)!
@@ -69,6 +75,8 @@ class PrismCredential: NSObject, NSCoding {
         aCoder.encode(sender.dictionaryValue(), forKey: Keys.sender)
         aCoder.encode(refreshToken, forKey: Keys.refreshToken)
         aCoder.encode(clientID, forKey: Keys.clientID)
+        aCoder.encode(channelName, forKey: Keys.channelName)
+        aCoder.encode(channelID, forKey: Keys.channelID)
     }
     
     func configure(connect: ConnectResponse, conversation: CreateConversationResponse) {
@@ -81,6 +89,8 @@ class PrismCredential: NSObject, NSCoding {
         conversationID = conversation.conversation.id
         merchantID = connect.visitor.merchantID
         clientID = connect.oAuth.clientID
+        channelName = connect.visitor.channelName
+        channelID = connect.visitor.channelUserID
         
         visitorInfo = MessageUser(id: connect.visitor.id, name: connect.visitor.name)!
         sender = MessageSender(id: connect.visitor.id, name: connect.visitor.name, role: "visitor", appName: "iOSSDK-v1.0.0")!

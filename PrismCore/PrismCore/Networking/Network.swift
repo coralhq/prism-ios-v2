@@ -237,6 +237,14 @@ extension Network: MQTTSessionDelegate {
     internal func mqttSocketErrorOccurred(session: MQTTSession) {
         NotificationCenter.default.post(name: ErrorChatNotification, object: nil)
     }
+    
+    func mqttDidConnect(session: MQTTSession) {
+        NotificationCenter.default.post(name: ConnectChatNotification, object: nil)
+    }
+    
+    func mqttDidSubscribe(session: MQTTSession) {
+        NotificationCenter.default.post(name: SubscribeChatNotification, object: nil)
+    }
 }
 
 extension Network: URLSessionTaskDelegate {

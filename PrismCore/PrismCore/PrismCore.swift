@@ -13,7 +13,9 @@ public let PrismChannelName = "IOS_SDK"
 public typealias HTTPRequestResult = (Mappable?, NSError?) -> ()
 
 public let ReceiveChatNotification = NSNotification.Name(rawValue: "ReceiveChatNotification")
-public let DisconnectChatNotification = NSNotification.Name(rawValue: "ConnectChatNotification")
+public let DisconnectChatNotification = NSNotification.Name(rawValue: "DisconnectChatNotification")
+public let ConnectChatNotification = NSNotification.Name(rawValue: "ConnectChatNotification")
+public let SubscribeChatNotification = NSNotification.Name(rawValue: "SubscribeChatNotification")
 public let ErrorChatNotification = NSNotification.Name(rawValue: "ErrorChatNotification")
 public let UploadProgressNotification = NSNotification.Name(rawValue: "UploadProgressNotification")
 public let RefreshTokenNotification = NSNotification.Name("RefreshTokenNotification")

@@ -22,6 +22,10 @@ class ChatManager {
         return Vendor.shared.credential
     }
     
+    static let minReconInterval: Double = 1
+    var reconInterval: Double = minReconInterval
+    var reconTimer: Timer? = nil
+    
     init() {
         do {
             try reachability.startNotifier()
@@ -31,7 +35,7 @@ class ChatManager {
         
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(sender:)), name: ReachabilityChangedNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(chatReceived(sender:)), name: ReceiveChatNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(chatDisconnect(sender:)), name: DisconnectChatNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(chatSubscribe(sender:)), name: SubscribeChatNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(chatError(sender:)), name: ErrorChatNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
     }
@@ -42,15 +46,15 @@ class ChatManager {
     }
     
     // MARK: functions
-    func connect(completionHandler: @escaping ((Bool, Error?) -> ())) {
+    func connect(completionHandler: ((Bool, Error?) -> ())?) {
         guard let credential = credential else {
+            completionHandler?(false, nil)
             return
         }
         prismCore.connectToBroker(username: credential.username, password: credential.password) { [weak self] (success, error) in
             let topic = credential.topic
             self?.prismCore.subscribeToTopic(topic) { (success, error) in
-                self?.sendPendingMessages()
-                completionHandler(success, error)
+                completionHandler?(success, error)
             }
         }
     }
@@ -174,7 +178,8 @@ class ChatManager {
         sendMessage(message: message, completion: completion)
     }
     
-    func newMessage(with content: MessageContentMappable, type: MessageType) -> Message {
+    // MARK: private functions
+    private func newMessage(with content: MessageContentMappable, type: MessageType) -> Message {
         let credential = Vendor.shared.credential!
         return Message(id: NSUUID().uuidString.lowercased(),
                        conversationID: credential.conversationID,
@@ -187,7 +192,6 @@ class ChatManager {
                        brokerMetaData: BrokerMetaData())
     }
     
-    // MARK: private functions
     private func sendPendingMessage(cdMsg: CDMessage) {
         guard let dictionary = cdMsg.dictionaryValue(),
             let msg = Message(dictionary: dictionary) else {
@@ -219,6 +223,7 @@ class ChatManager {
             publishMessage(message: msg, completion: nil)
         }
     }
+    
     private func sendMessage(message: Message, completion: ((MessageResponse?, NSError?) -> ())?) {
         //save to core data
         let cdm = coredata.buildMessage(message: message)
@@ -227,6 +232,7 @@ class ChatManager {
         
         publishMessage(message: message, completion: completion)
     }
+    
     private func sendDataToRover() {
         guard UserDefaults.standard.bool(forKey: "isFirstMessage") || UserDefaults.standard.object(forKey: "isFirstMessage") == nil else {
             return
@@ -274,6 +280,7 @@ class ChatManager {
             })
         })
     }
+    
     private func publishMessage(message: Message, completion: ((MessageResponse?, NSError?) -> ())?) {
         guard let credential = credential else {
             return
@@ -293,37 +300,27 @@ class ChatManager {
         }
     }
     
-    // MARK: selectors
-    @objc func reachabilityChanged(sender: Notification) {
-        let reachability = sender.object as! ReachabilityHelper
-        if reachability.isReachable {
-            
-            DispatchQueue.main.async {
-                self.syncChatLocalWithServer()
-                self.connect(completionHandler: { (success, error) in })
-            }
-            
-            if reachability.isReachableViaWiFi {
-                print("Reachable via WiFi")
-            } else {
-                print("Reachable via Cellular")
-            }
-        } else {
-            print("Network not reachable")
-        }
+    func reconnectMQTT() {
+        reconTimer?.invalidate()
+        reconTimer = Timer.scheduledTimer(timeInterval: reconInterval, target: self, selector: #selector(connectMQTT), userInfo: nil, repeats: false)
     }
-    @objc func chatDisconnect(sender: Notification) {
-        print("MQTT DISCONNECTED")
+    
+    // MARK: selectors
+    @objc func connectMQTT() {
+        connect(completionHandler: nil)
+        reconInterval = reconInterval * 2 //exponential recon time
+    }
+    
+    @objc func chatSubscribe(sender: Notification) {
+        reconInterval = ChatManager.minReconInterval
+        sendPendingMessages()
+        syncChatLocalWithServer()
     }
     
     @objc func chatError(sender: Notification) {
-        print("MQTT ERROR")
+        reconnectMQTT()
     }
     
-    @objc func didBecomeActive(_ notification: Notification) {
-        self.syncChatLocalWithServer()
-        self.connect(completionHandler: { (success, error) in })
-    }
     @objc func chatReceived(sender: Notification) {
         guard let message = sender.object as? Message,
             message.type != .Assignment else { return }
@@ -334,6 +331,28 @@ class ChatManager {
         
         if message.type == .CloseChat {
             UserDefaults.standard.set(true, forKey: "isFirstMessage")
+        }
+    }
+    
+    @objc func didBecomeActive(_ notification: Notification) {
+        self.connect(completionHandler: { (success, error) in })
+    }
+    
+    @objc func reachabilityChanged(sender: Notification) {
+        let reachability = sender.object as! ReachabilityHelper
+        if reachability.isReachable {
+            
+            DispatchQueue.main.async {
+                self.connect(completionHandler: { (success, error) in })
+            }
+            
+            if reachability.isReachableViaWiFi {
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+        } else {
+            print("Network not reachable")
         }
     }
 }

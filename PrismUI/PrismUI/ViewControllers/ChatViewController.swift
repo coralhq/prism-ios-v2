@@ -15,12 +15,13 @@ class ChatViewController: BaseViewController {
     @IBOutlet var barView: UIView!
     @IBOutlet var tableView: ChatTableView!
     
+    let authViewModel = AuthViewModel()
     let chatManager: ChatManager = ChatManager()
     var queryManager: ChatQueryManager?
     
     init() {
         super.init(nibName: nil, bundle: Bundle.prism)
-
+        
         let context = chatManager.coredata.mainContext
         queryManager = ChatQueryManager(context: context)
         queryManager?.delegate = self
@@ -33,14 +34,13 @@ class ChatViewController: BaseViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let composer = ChatComposer.composerFromNib(with: Vendor.shared.credential!.accessToken) else { return }
-        composer.delegate = self
-        composer.addTo(view: barView, margin: 0)
+        addComposer()
         
         tableView.backgroundColor = Settings.shared.theme.buttonColor.withAlphaComponent(0.05)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ChatHeaderCell.NIB, forCellReuseIdentifier: ChatHeaderCell.className())
+        tableView.register(CloseChatTableViewCell.NIB, forCellReuseIdentifier: CloseChatTableViewCell.className())
         
         queryManager?.fetchSections()
     }
@@ -53,6 +53,20 @@ class ChatViewController: BaseViewController {
         super.viewDidAppear(animated)
         
         PrismAnalytics.shared.sendTracker(withEvent: .chatScreen)
+    }
+    
+    func addComposer() {
+        guard let composer = ChatComposer.composerFromNib(with: Vendor.shared.credential!.accessToken) else {
+            return
+        }
+        composer.delegate = self
+        composer.addTo(view: barView, margin: 0)
+    }
+    
+    func removeComposer() {
+        for subView in barView.subviews {
+            subView.removeFromSuperview()
+        }
     }
 }
 
@@ -94,6 +108,15 @@ extension ChatViewController: UITableViewDataSource {
         }
         
         let viewModel = objects[indexPath.row]
+        if let closeChatViewModel = viewModel.contentViewModel as? ContentCloseChatViewModel {
+            removeComposer()
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: CloseChatTableViewCell.className()) as! CloseChatTableViewCell
+            cell.configure(viewModel: closeChatViewModel)
+            cell.delegate = self
+            return cell
+        }
+        
         var cell = tableView.dequeueReusableCell(withIdentifier: ChatCell.reuseIdentifier(viewModel: viewModel)) as? ChatCell
         if cell == nil {
             cell = ChatCell(viewModel: viewModel)
@@ -103,6 +126,27 @@ extension ChatViewController: UITableViewDataSource {
         cell?.chatView?.update(with: viewModel, isExtension: isExtension)
         
         return cell!
+    }
+}
+
+extension ChatViewController: CloseChatTableViewCellDelegate {
+    func reconnectTapped(sender: UIButton) {
+        view.isUserInteractionEnabled = false
+        sender.startLoading(indicatorColor: Settings.shared.theme.buttonColor)
+        
+        authViewModel.visitorConnect() { [weak self] (error) in
+            self?.view.isUserInteractionEnabled = true
+            sender.stopLoading()
+            
+            if let error = error {
+                print("Error: \(error)")
+            } else {
+                self?.addComposer()
+                self?.chatManager.coredata.clearData()
+                self?.queryManager?.fetchSections()
+                self?.tableView.reloadData()
+            }
+        }
     }
 }
 

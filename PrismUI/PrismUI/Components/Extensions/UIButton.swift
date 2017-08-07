@@ -9,9 +9,9 @@
 import Foundation
 
 extension UIButton {
-    func startLoading() {
+    func startLoading(indicatorColor: UIColor = Settings.shared.theme.strokeColor) {
         let indicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
-        indicator.color = Settings.shared.theme.strokeColor
+        indicator.color = indicatorColor
         indicator.startAnimating()
         indicator.tag = 212 //random number, act as indicator id
         

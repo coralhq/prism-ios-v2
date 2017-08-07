@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="148" id="KGk-i7-Jjw" customClass="CloseChatTableViewCell" customModule="PrismUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="122"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="122"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThV-gE-fjc">
+                        <rect key="frame" x="22" y="8" width="276" height="54"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="54" id="z1H-sq-ptZ"/>
+                        </constraints>
+                        <string key="text">Your chat session has ended, please click
+reconnect to start new conversation with
+our agent.</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pAm-WO-K0m">
+                        <rect key="frame" x="22" y="70" width="276" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="E8t-Gy-AR6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <state key="normal" title="RECONNECT">
+                            <color key="titleColor" red="0.84313725490000002" green="0.23921568630000001" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="reconnectButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="s8h-6A-rHN"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="ThV-gE-fjc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="14" id="1NX-i2-4eq"/>
+                    <constraint firstItem="ThV-gE-fjc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Q5s-ff-LEk"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ThV-gE-fjc" secondAttribute="trailing" constant="14" id="QaE-sA-xt3"/>
+                    <constraint firstItem="pAm-WO-K0m" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="14" id="Qlt-8p-27l"/>
+                    <constraint firstAttribute="bottom" secondItem="pAm-WO-K0m" secondAttribute="bottom" constant="8" id="gJQ-nE-uP6"/>
+                    <constraint firstItem="pAm-WO-K0m" firstAttribute="top" secondItem="ThV-gE-fjc" secondAttribute="bottom" constant="8" id="hAk-U3-ZB0"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="pAm-WO-K0m" secondAttribute="trailing" constant="14" id="pMU-gP-o2m"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="reconnectButton" destination="pAm-WO-K0m" id="gIm-ab-5Ee"/>
+                <outlet property="titleLabel" destination="ThV-gE-fjc" id="wjj-sd-iLy"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="182"/>
+        </tableViewCell>
+    </objects>
+</document>

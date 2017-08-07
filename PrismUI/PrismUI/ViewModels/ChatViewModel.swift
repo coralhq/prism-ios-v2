@@ -75,6 +75,8 @@ class ChatViewModel {
             contentViewModel = ContentImageViewModel(contentImage: content)
         } else if let content = message.content as? CDContentOfflineMessage {
             contentViewModel = ContentOfflineViewModel(contentOfflineMessage: content)
+        } else if let content = message.content as? CDContentCloseChat {
+            contentViewModel = ContentCloseChatViewModel(contentText: content)
         }
     }
 }

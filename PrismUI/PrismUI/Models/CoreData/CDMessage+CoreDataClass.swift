@@ -85,6 +85,7 @@ public class CDMessage: NSManagedObject, CDManagedMappable {
         }
         
         let messageType = MessageType(rawValue: type)
+        
         switch messageType {
         case .Sticker:
             return CDContentSticker(dictionary: dictionary)
@@ -100,6 +101,8 @@ public class CDMessage: NSManagedObject, CDManagedMappable {
             return CDContentInvoice(dictionary: dictionary)
         case .Attachment:
             return CDContentAttachment(dictionary: dictionary)
+        case .CloseChat:
+            return CDContentCloseChat(dictionary: dictionary)
         default:
             return nil
         }

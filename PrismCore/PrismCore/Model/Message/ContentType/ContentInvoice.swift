@@ -90,8 +90,8 @@ public class PaymentProvider: Mappable {
         }
         self.type = type
         
-        if let info = dictionary?["info"] as? [String: Any] {
-            self.info = MidtransInfo(dictionary: info)
+        if let vtweb = dictionary?["vt_web"] as? [String: Any] {
+            self.info = MidtransInfo(dictionary: vtweb)
         } else if let transfer = dictionary?["transfer"] as? [String: Any] {
             self.info = BankTransferInfo(dictionary: transfer)
         } else {

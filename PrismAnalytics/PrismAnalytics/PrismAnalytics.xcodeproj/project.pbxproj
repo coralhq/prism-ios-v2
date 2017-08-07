@@ -34,6 +34,7 @@
 		8084768F1F0CBBC400E12323 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8084768E1F0CBBC400E12323 /* libz.tbd */; };
 		808476911F0CBBD600E12323 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 808476901F0CBBD600E12323 /* SystemConfiguration.framework */; };
 		808476931F0CBBEA00E12323 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 808476921F0CBBEA00E12323 /* CoreData.framework */; };
+		E563996B1F382714009F78BD /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E563996A1F382714009F78BD /* PrismCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		8084768E1F0CBBC400E12323 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		808476901F0CBBD600E12323 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		808476921F0CBBEA00E12323 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E563996A1F382714009F78BD /* PrismCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrismCore.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/DemoPrismCore-friqtlupaxddjygruiinatqqklhk/Build/Products/Debug-iphoneos/PrismCore.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E563996B1F382714009F78BD /* PrismCore.framework in Frameworks */,
 				808476931F0CBBEA00E12323 /* CoreData.framework in Frameworks */,
 				808476911F0CBBD600E12323 /* SystemConfiguration.framework in Frameworks */,
 				8084768F1F0CBBC400E12323 /* libz.tbd in Frameworks */,
@@ -188,6 +191,7 @@
 		8084768B1F0CBBB700E12323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E563996A1F382714009F78BD /* PrismCore.framework */,
 				808476921F0CBBEA00E12323 /* CoreData.framework */,
 				808476901F0CBBD600E12323 /* SystemConfiguration.framework */,
 				8084768E1F0CBBC400E12323 /* libz.tbd */,
@@ -548,6 +552,7 @@
 				8084765A1F0C9CFD00E12323 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8084765B1F0C9CFD00E12323 /* Build configuration list for PBXNativeTarget "PrismAnalyticsTests" */ = {
 			isa = XCConfigurationList;
@@ -556,6 +561,7 @@
 				8084765D1F0C9CFD00E12323 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

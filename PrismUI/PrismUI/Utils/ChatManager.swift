@@ -33,6 +33,7 @@ class ChatManager {
         NotificationCenter.default.addObserver(self, selector: #selector(chatReceived(sender:)), name: ReceiveChatNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(chatDisconnect(sender:)), name: DisconnectChatNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(chatError(sender:)), name: ErrorChatNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
     }
     
     deinit {
@@ -40,6 +41,7 @@ class ChatManager {
         NotificationCenter.default.removeObserver(self)
     }
     
+    // MARK: functions
     func connect(completionHandler: @escaping ((Bool, Error?) -> ())) {
         guard let credential = credential else {
             return
@@ -110,7 +112,7 @@ class ChatManager {
                 
                 CacheImage.shared.remove(key: oldKey)
                 
-                CacheImage.shared.store(image: image, key: newKey, completion: { 
+                CacheImage.shared.store(image: image, key: newKey, completion: {
                     content.url = newKey
                     
                     cdcontent.url = newKey
@@ -157,6 +159,35 @@ class ChatManager {
         }
     }
     
+    func sendMessage(sticker: StickerViewModel) {
+        guard let content = ContentSticker(name: sticker.name,
+                                           imageURL: sticker.imageURL.absoluteString,
+                                           id: sticker.id,
+                                           packID: sticker.packID) else { return }
+        let message = newMessage(with: content, type: .Sticker)
+        sendMessage(message: message, completion: nil)
+    }
+    
+    func sendOfflineMessage(with name: String, email: String, phone: String, message: String, completion: ((MessageResponse?, NSError?) -> ())?) {
+        let content = ContentOfflineMessage(name: name, email: email, phone: phone, text: message)!
+        let message = newMessage(with: content, type: .OfflineMessage)
+        sendMessage(message: message, completion: completion)
+    }
+    
+    func newMessage(with content: MessageContentMappable, type: MessageType) -> Message {
+        let credential = Vendor.shared.credential!
+        return Message(id: NSUUID().uuidString.lowercased(),
+                       conversationID: credential.conversationID,
+                       merchantID: credential.merchantID,
+                       channel: PrismChannelName,
+                       visitor: credential.visitorInfo,
+                       sender: credential.sender,
+                       type: type,
+                       content: content,
+                       brokerMetaData: BrokerMetaData())
+    }
+    
+    // MARK: private functions
     private func sendPendingMessage(cdMsg: CDMessage) {
         guard let dictionary = cdMsg.dictionaryValue(),
             let msg = Message(dictionary: dictionary) else {
@@ -188,35 +219,6 @@ class ChatManager {
             publishMessage(message: msg, completion: nil)
         }
     }
-    
-    func sendMessage(sticker: StickerViewModel) {
-        guard let content = ContentSticker(name: sticker.name,
-                                           imageURL: sticker.imageURL.absoluteString,
-                                           id: sticker.id,
-                                           packID: sticker.packID) else { return }
-        let message = newMessage(with: content, type: .Sticker)
-        sendMessage(message: message, completion: nil)
-    }
-    
-    func sendOfflineMessage(with name: String, email: String, phone: String, message: String, completion: ((MessageResponse?, NSError?) -> ())?) {
-        let content = ContentOfflineMessage(name: name, email: email, phone: phone, text: message)!
-        let message = newMessage(with: content, type: .OfflineMessage)
-        sendMessage(message: message, completion: completion)
-    }
-    
-    func newMessage(with content: MessageContentMappable, type: MessageType) -> Message {
-        let credential = Vendor.shared.credential!
-        return Message(id: NSUUID().uuidString.lowercased(),
-                       conversationID: credential.conversationID,
-                       merchantID: credential.merchantID,
-                       channel: PrismChannelName,
-                       visitor: credential.visitorInfo,
-                       sender: credential.sender,
-                       type: type,
-                       content: content,
-                       brokerMetaData: BrokerMetaData())
-    }
-    
     private func sendMessage(message: Message, completion: ((MessageResponse?, NSError?) -> ())?) {
         //save to core data
         let cdm = coredata.buildMessage(message: message)
@@ -225,26 +227,6 @@ class ChatManager {
         
         publishMessage(message: message, completion: completion)
     }
-    
-    @objc func reachabilityChanged(sender: Notification) {
-        let reachability = sender.object as! ReachabilityHelper
-        if reachability.isReachable {
-            
-            DispatchQueue.main.async {
-                self.syncChatLocalWithServer()
-                self.connect(completionHandler: { (success, error) in })
-            }
-            
-            if reachability.isReachableViaWiFi {
-                print("Reachable via WiFi")
-            } else {
-                print("Reachable via Cellular")
-            }
-        } else {
-            print("Network not reachable")
-        }
-    }
-    
     private func sendDataToRover() {
         guard UserDefaults.standard.bool(forKey: "isFirstMessage") || UserDefaults.standard.object(forKey: "isFirstMessage") == nil else {
             return
@@ -269,7 +251,7 @@ class ChatManager {
         }
     }
     
-    func syncChatLocalWithServer() {
+    private func syncChatLocalWithServer() {
         guard let credential = credential else {
             return
         }
@@ -292,29 +274,6 @@ class ChatManager {
             })
         })
     }
-    
-    @objc func chatReceived(sender: Notification) {
-        guard let message = sender.object as? Message,
-            message.type != .Assignment else { return }
-        
-        let cdm = coredata.buildMessage(message: message)
-        cdm.messageStatus = .sent
-        coredata.save()
-        
-        if message.type == .CloseChat {
-            UserDefaults.standard.set(true, forKey: "isFirstMessage")
-        }
-    }
-    
-    @objc func chatDisconnect(sender: Notification) {
-        print("MQTT DISCONNECTED")
-    }
-    
-    @objc func chatError(sender: Notification) {
-        print("MQTT ERROR")
-    }
-    
-    
     private func publishMessage(message: Message, completion: ((MessageResponse?, NSError?) -> ())?) {
         guard let credential = credential else {
             return
@@ -331,6 +290,50 @@ class ChatManager {
         prismCore.publishMessage(token: credential.accessToken, topic: credential.topic, messages: [message]) { [weak self] (message, error) in
             self?.sendDataToRover()
             completion?(message, error)
+        }
+    }
+    
+    // MARK: selectors
+    @objc func reachabilityChanged(sender: Notification) {
+        let reachability = sender.object as! ReachabilityHelper
+        if reachability.isReachable {
+            
+            DispatchQueue.main.async {
+                self.syncChatLocalWithServer()
+                self.connect(completionHandler: { (success, error) in })
+            }
+            
+            if reachability.isReachableViaWiFi {
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+        } else {
+            print("Network not reachable")
+        }
+    }
+    @objc func chatDisconnect(sender: Notification) {
+        print("MQTT DISCONNECTED")
+    }
+    
+    @objc func chatError(sender: Notification) {
+        print("MQTT ERROR")
+    }
+    
+    @objc func didBecomeActive(_ notification: Notification) {
+        self.syncChatLocalWithServer()
+        self.connect(completionHandler: { (success, error) in })
+    }
+    @objc func chatReceived(sender: Notification) {
+        guard let message = sender.object as? Message,
+            message.type != .Assignment else { return }
+        
+        let cdm = coredata.buildMessage(message: message)
+        cdm.messageStatus = .sent
+        coredata.save()
+        
+        if message.type == .CloseChat {
+            UserDefaults.standard.set(true, forKey: "isFirstMessage")
         }
     }
 }

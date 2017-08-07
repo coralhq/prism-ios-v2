@@ -22,6 +22,14 @@
 		807C899C1EEE63B400DADEBF /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C899B1EEE63B400DADEBF /* UIViewController.swift */; };
 		807C899F1EEE7BEC00DADEBF /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C899E1EEE7BEC00DADEBF /* UIImageView.swift */; };
 		808476951F0CBC0500E12323 /* PrismAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 808476941F0CBC0500E12323 /* PrismAnalytics.framework */; };
+		80DF9B061F32084400495FB0 /* ContentCloseChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF9B051F32084400495FB0 /* ContentCloseChatViewModel.swift */; };
+		80DF9B071F32084400495FB0 /* ContentCloseChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF9B051F32084400495FB0 /* ContentCloseChatViewModel.swift */; };
+		80DF9B091F320BC100495FB0 /* CDContentCloseChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF9B081F320BC100495FB0 /* CDContentCloseChat.swift */; };
+		80DF9B0A1F320BC100495FB0 /* CDContentCloseChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF9B081F320BC100495FB0 /* CDContentCloseChat.swift */; };
+		80E9F3DC1F32BD8700F49A6F /* CloseChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E9F3DA1F32BD8700F49A6F /* CloseChatTableViewCell.swift */; };
+		80E9F3DD1F32BD8700F49A6F /* CloseChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E9F3DA1F32BD8700F49A6F /* CloseChatTableViewCell.swift */; };
+		80E9F3DE1F32BD8700F49A6F /* CloseChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E9F3DB1F32BD8700F49A6F /* CloseChatTableViewCell.xib */; };
+		80E9F3DF1F32BD8700F49A6F /* CloseChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E9F3DB1F32BD8700F49A6F /* CloseChatTableViewCell.xib */; };
 		E5053A861EF10930006677A4 /* LinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389A421EEA3140007B9458 /* LinedTextField.swift */; };
 		E5053A891EF10D24006677A4 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5053A871EF10D24006677A4 /* RootViewController.swift */; };
 		E5053A8A1EF10D24006677A4 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5053A881EF10D24006677A4 /* RootViewController.xib */; };
@@ -152,6 +160,10 @@
 		807C899B1EEE63B400DADEBF /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		807C899E1EEE7BEC00DADEBF /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		808476941F0CBC0500E12323 /* PrismAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrismAnalytics.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/DemoPrismCore-bcrdrdmgikxzvgaenjvefmjtezuy/Build/Products/Debug-iphonesimulator/PrismAnalytics.framework"; sourceTree = "<group>"; };
+		80DF9B051F32084400495FB0 /* ContentCloseChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCloseChatViewModel.swift; sourceTree = "<group>"; };
+		80DF9B081F320BC100495FB0 /* CDContentCloseChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDContentCloseChat.swift; sourceTree = "<group>"; };
+		80E9F3DA1F32BD8700F49A6F /* CloseChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CloseChatTableViewCell.swift; path = Cells/CloseChatTableViewCell.swift; sourceTree = "<group>"; };
+		80E9F3DB1F32BD8700F49A6F /* CloseChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CloseChatTableViewCell.xib; path = Cells/CloseChatTableViewCell.xib; sourceTree = "<group>"; };
 		E5053A871EF10D24006677A4 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		E5053A881EF10D24006677A4 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		E5053A8E1EF13123006677A4 /* InputFormSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InputFormSettings.swift; path = Models/InputFormSettings.swift; sourceTree = "<group>"; };
@@ -365,6 +377,8 @@
 				E58FAE701EF38D00002F1A2A /* ChatCell */,
 				E5F2608F1F0BA7E40058EB65 /* ChatHeaderCell.swift */,
 				E5F260901F0BA7E40058EB65 /* ChatHeaderCell.xib */,
+				80E9F3DA1F32BD8700F49A6F /* CloseChatTableViewCell.swift */,
+				80E9F3DB1F32BD8700F49A6F /* CloseChatTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -449,6 +463,7 @@
 				E562B5D21F0DA44F006489C0 /* ContentProductViewModel.swift */,
 				E55AC0CE1F0E0CF100A0354D /* ContentImageViewModel.swift */,
 				E552CD471F1DD45500455B36 /* ContentOfflineViewModel.swift */,
+				80DF9B051F32084400495FB0 /* ContentCloseChatViewModel.swift */,
 			);
 			name = ContentMessages;
 			sourceTree = "<group>";
@@ -592,6 +607,7 @@
 				E593AEFD1EFCE7EB002E2171 /* CDContentOfflineMessage.swift */,
 				E593AEFF1EFCE7FC002E2171 /* CDContentProduct.swift */,
 				E593AF011EFCE85B002E2171 /* CDContentSticker.swift */,
+				80DF9B081F320BC100495FB0 /* CDContentCloseChat.swift */,
 			);
 			name = Contents;
 			sourceTree = "<group>";
@@ -703,6 +719,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80E9F3DF1F32BD8700F49A6F /* CloseChatTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,6 +731,7 @@
 				E547D2281EF1FA6200B66136 /* Media.xcassets in Resources */,
 				E58FAE6F1EF385F3002F1A2A /* EmojisList.plist in Resources */,
 				E57440A01EF76FCF003CA9E7 /* ContentProductCell.xib in Resources */,
+				80E9F3DE1F32BD8700F49A6F /* CloseChatTableViewCell.xib in Resources */,
 				80389A401EEA3132007B9458 /* ConnectViewController.xib in Resources */,
 				E58FAE691EF38435002F1A2A /* EmojiInputView.xib in Resources */,
 				E58FAE671EF38435002F1A2A /* ChatComposer.xib in Resources */,
@@ -748,6 +766,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5053A9B1EF1F6B3006677A4 /* PrismUnitTests.swift in Sources */,
+				80E9F3DD1F32BD8700F49A6F /* CloseChatTableViewCell.swift in Sources */,
+				80DF9B071F32084400495FB0 /* ContentCloseChatViewModel.swift in Sources */,
+				80DF9B0A1F320BC100495FB0 /* CDContentCloseChat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,6 +783,7 @@
 				E593AE971EFB7966002E2171 /* StickerViewModel.swift in Sources */,
 				E5053A861EF10930006677A4 /* LinedTextField.swift in Sources */,
 				E58FAE681EF38435002F1A2A /* EmojiInputView.swift in Sources */,
+				80E9F3DC1F32BD8700F49A6F /* CloseChatTableViewCell.swift in Sources */,
 				E5B9615C1F17039D00764A12 /* ReachabilityHelper.swift in Sources */,
 				E58FAE7A1EF3A74D002F1A2A /* ChatBubleView.swift in Sources */,
 				E593AEEE1EFCCC80002E2171 /* CDUser+CoreDataClass.swift in Sources */,
@@ -805,6 +827,7 @@
 				E574408D1EF7649A003CA9E7 /* ChatStickerView.swift in Sources */,
 				E5F2608E1F0B4D1D0058EB65 /* ChatManager.swift in Sources */,
 				E54DE6481EFA6A740035EA35 /* SmallButton.swift in Sources */,
+				80DF9B061F32084400495FB0 /* ContentCloseChatViewModel.swift in Sources */,
 				E593AE991EFB8E71002E2171 /* StickerPackViewModel.swift in Sources */,
 				E593AEEC1EFCCC80002E2171 /* CDBrokerMetaData+CoreDataClass.swift in Sources */,
 				E559E1F11EF2658C004E3F03 /* Settings.swift in Sources */,
@@ -819,6 +842,7 @@
 				807C89911EEE4AF100DADEBF /* ChatViewController.swift in Sources */,
 				E562B5CD1F0CCD32006489C0 /* ContentInvoiceViewModel.swift in Sources */,
 				E552CD481F1DD45500455B36 /* ContentOfflineViewModel.swift in Sources */,
+				80DF9B091F320BC100495FB0 /* CDContentCloseChat.swift in Sources */,
 				8071E0FA1F219E2B0003732F /* DiskStatus.swift in Sources */,
 				E593AEEF1EFCCC80002E2171 /* CDUser+CoreDataProperties.swift in Sources */,
 				E593AEF01EFCCC80002E2171 /* CDSender+CoreDataClass.swift in Sources */,

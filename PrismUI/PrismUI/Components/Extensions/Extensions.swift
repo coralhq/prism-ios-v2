@@ -119,7 +119,7 @@ extension String {
     
     func linesArrayString(constraint: CGSize, font: UIFont) -> [String] {
         
-        let myFont = CTFontCreateWithName(font.fontName as CFString?, font.pointSize-1, nil)
+        let myFont = CTFontCreateWithName(font.fontName as CFString?, font.pointSize, nil)
         let attStr = NSMutableAttributedString(string: self)
         attStr.addAttribute(String(kCTFontAttributeName), value:myFont, range: NSRange(location: 0, length: attStr.length))
         let frameSetter = CTFramesetterCreateWithAttributedString(attStr as CFAttributedString)

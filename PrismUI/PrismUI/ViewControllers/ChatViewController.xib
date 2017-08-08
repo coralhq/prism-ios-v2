@@ -53,32 +53,6 @@
             </constraints>
             <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>
-        <view contentMode="scaleToFill" id="r5R-kg-NXc" customClass="EmptyChatView" customModule="PrismUI" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="352" height="545"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, we’re here to make your shopping smoother. Let’s chat!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecF-qF-85O">
-                    <rect key="frame" x="28" y="20" width="296" height="33.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
-            <color key="backgroundColor" red="0.82745098039215681" green="0.2196078431372549" blue="0.36470588235294116" alpha="0.050000000000000003" colorSpace="calibratedRGB"/>
-            <constraints>
-                <constraint firstItem="ecF-qF-85O" firstAttribute="leading" secondItem="r5R-kg-NXc" secondAttribute="leading" constant="28" id="4q7-Qu-EnQ"/>
-                <constraint firstItem="ecF-qF-85O" firstAttribute="top" secondItem="r5R-kg-NXc" secondAttribute="top" constant="20" id="E4c-rn-Xi6"/>
-                <constraint firstAttribute="trailing" secondItem="ecF-qF-85O" secondAttribute="trailing" constant="28" id="EFs-2a-ldb"/>
-            </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
-            <nil key="simulatedTopBarMetrics"/>
-            <nil key="simulatedBottomBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="titleLabel" destination="ecF-qF-85O" id="mg6-7M-ZyJ"/>
-            </connections>
-            <point key="canvasLocation" x="39" y="728.5"/>
-        </view>
     </objects>
     <resources>
         <image name="icPrism" width="122" height="8"/>

@@ -312,6 +312,7 @@ class ChatManager {
     }
     
     @objc func chatSubscribe(sender: Notification) {
+        reconTimer?.invalidate()
         reconInterval = ChatManager.minReconInterval
         sendPendingMessages()
         syncChatLocalWithServer()

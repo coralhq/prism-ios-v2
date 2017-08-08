@@ -118,10 +118,7 @@ extension String {
     }
     
     func linesArrayString(constraint: CGSize, font: UIFont) -> [String] {
-        
-        let myFont = CTFontCreateWithName(font.fontName as CFString?, font.pointSize, nil)
-        let attStr = NSMutableAttributedString(string: self)
-        attStr.addAttribute(String(kCTFontAttributeName), value:myFont, range: NSRange(location: 0, length: attStr.length))
+        let attStr = NSMutableAttributedString(string: self, attributes: [NSFontAttributeName: font])
         let frameSetter = CTFramesetterCreateWithAttributedString(attStr as CFAttributedString)
         let path = CGPath(rect: CGRect(x: 0, y: 0, width: constraint.width, height: constraint.height), transform: nil)
         let frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, nil)
@@ -138,7 +135,7 @@ extension String {
             let lineString = nsstring.substring(with: range)
             linesArray.append(lineString as String)
         }
-
+        
         return linesArray
     }
 }

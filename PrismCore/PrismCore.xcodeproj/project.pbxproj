@@ -135,6 +135,10 @@
 		8000D9951EDD36B400D9E8FB /* NetworkMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8000D9911EDD36B400D9E8FB /* NetworkMock.swift */; };
 		800FD4241ED5293F00BE13CD /* PrismCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800FD4231ED5293F00BE13CD /* PrismCore.swift */; };
 		800FD4251ED5293F00BE13CD /* PrismCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800FD4231ED5293F00BE13CD /* PrismCore.swift */; };
+		80202CA61F399A9C00C43B07 /* SendDeviceTokenEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80202CA51F399A9C00C43B07 /* SendDeviceTokenEndpoint.swift */; };
+		80202CA71F399AA400C43B07 /* SendDeviceTokenEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80202CA51F399A9C00C43B07 /* SendDeviceTokenEndpoint.swift */; };
+		80202CA91F399D4300C43B07 /* SendTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80202CA81F399D4300C43B07 /* SendTokenResponse.swift */; };
+		80202CAA1F399D4300C43B07 /* SendTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80202CA81F399D4300C43B07 /* SendTokenResponse.swift */; };
 		8043E1271F0E130B006EF0ED /* PublishMessageEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8043E1261F0E130B006EF0ED /* PublishMessageEndPoint.swift */; };
 		8043E1281F0E130B006EF0ED /* PublishMessageEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8043E1261F0E130B006EF0ED /* PublishMessageEndPoint.swift */; };
 		8047ECD21F0F2BCD008730D7 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8047ECD11F0F2BCD008730D7 /* MessageResponse.swift */; };
@@ -240,6 +244,8 @@
 		8000D9901EDD36B400D9E8FB /* JSONResponseMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONResponseMock.swift; sourceTree = "<group>"; };
 		8000D9911EDD36B400D9E8FB /* NetworkMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMock.swift; sourceTree = "<group>"; };
 		800FD4231ED5293F00BE13CD /* PrismCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrismCore.swift; sourceTree = "<group>"; };
+		80202CA51F399A9C00C43B07 /* SendDeviceTokenEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendDeviceTokenEndpoint.swift; sourceTree = "<group>"; };
+		80202CA81F399D4300C43B07 /* SendTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendTokenResponse.swift; sourceTree = "<group>"; };
 		8043E1261F0E130B006EF0ED /* PublishMessageEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishMessageEndPoint.swift; sourceTree = "<group>"; };
 		8047ECD11F0F2BCD008730D7 /* MessageResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
 		80564C3C1ED5289D00BDA006 /* PrismCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrismCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -305,6 +311,7 @@
 				8000D8CF1EDD368F00D9E8FB /* VisitorConnectEndPoint.swift */,
 				8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */,
 				8043E1261F0E130B006EF0ED /* PublishMessageEndPoint.swift */,
+				80202CA51F399A9C00C43B07 /* SendDeviceTokenEndpoint.swift */,
 			);
 			path = EndPoint;
 			sourceTree = "<group>";
@@ -330,6 +337,7 @@
 				8000D8F11EDD368F00D9E8FB /* Settings.swift */,
 				8000D8F21EDD368F00D9E8FB /* UploadURL.swift */,
 				8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */,
+				80202CA81F399D4300C43B07 /* SendTokenResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -671,6 +679,7 @@
 				8000D92F1EDD368F00D9E8FB /* ConversationHistory.swift in Sources */,
 				8043E1271F0E130B006EF0ED /* PublishMessageEndPoint.swift in Sources */,
 				8000D94F1EDD369000D9E8FB /* ContentTyping.swift in Sources */,
+				80202CA91F399D4300C43B07 /* SendTokenResponse.swift in Sources */,
 				8000D9271EDD368F00D9E8FB /* Sticker.swift in Sources */,
 				8000D9571EDD369000D9E8FB /* Settings.swift in Sources */,
 				8000D97F1EDD369000D9E8FB /* MQTTPubMsg.swift in Sources */,
@@ -733,6 +742,7 @@
 				8000D9591EDD369000D9E8FB /* UploadURL.swift in Sources */,
 				8000D95B1EDD369000D9E8FB /* ConnectResponse.swift in Sources */,
 				8000D95F1EDD369000D9E8FB /* OAuth.swift in Sources */,
+				80202CA61F399A9C00C43B07 /* SendDeviceTokenEndpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -810,7 +820,9 @@
 				8000D94A1EDD369000D9E8FB /* ContentProduct.swift in Sources */,
 				8000D9401EDD369000D9E8FB /* ContentCart.swift in Sources */,
 				8000D9861EDD369000D9E8FB /* MQTTUnSubAckPacket.swift in Sources */,
+				80202CA71F399AA400C43B07 /* SendDeviceTokenEndpoint.swift in Sources */,
 				8000D9341EDD368F00D9E8FB /* ConversationVisitor.swift in Sources */,
+				80202CAA1F399D4300C43B07 /* SendTokenResponse.swift in Sources */,
 				8000D94E1EDD369000D9E8FB /* ContentSticker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

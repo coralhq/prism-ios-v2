@@ -124,7 +124,7 @@ class Persona {
 open class Settings {
     var texts = Texts()
     var theme: Theme = Theme()
-    var inputForm: InputFormSettings = InputFormSettings()
+    var connectForm: InputFormSettings = InputFormSettings()
     var workingHour = WorkingHour()
     var persona = Persona()
     var offlineWidget = OfflineWidget()
@@ -133,7 +133,7 @@ open class Settings {
     
     func configure(settings: [String: Any]) {
         theme.configure(option: ThemeType(settings: settings))
-        inputForm.configure(settings: settings)
+        connectForm.configure(settings: settings)
         workingHour.configure(settings: settings)
         persona.configure(settings: settings)
         texts.configure(settings: settings)

@@ -36,6 +36,6 @@ class ChatCartView: ChatContentView {
             productContainer.addArrangedSubview(view)
         }
         
-        calculateContentWidth(label: descriptionLabel)
+        calculateContentWidth(label: descriptionLabel, supportLeft: false)
     }
 }

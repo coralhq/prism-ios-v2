@@ -19,6 +19,6 @@ class ChatTextView: ChatContentView {
             titleLabel.text = vm.text
         }
 
-        calculateContentWidth(label: titleLabel)
+        calculateContentWidth(label: titleLabel, supportLeft: true)
     }
 }

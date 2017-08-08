@@ -56,7 +56,12 @@ class ChatViewModel {
         }
         
         if cellType == .Out {
-            self.senderName = "Me".localized()
+            if Settings.shared.persona.enabled,
+                let name = Settings.shared.persona.name {
+                self.senderName = name
+            } else {
+                self.senderName = "Me".localized()
+            }
         } else {
             self.senderName = senderName
         }

@@ -58,15 +58,20 @@ class ChatInvoiceView: ChatContentView {
     
     var paymentMethod: PaymentMethod? {
         didSet {
-            guard let pm = paymentMethod else { return }
-            midtransView.removeFromSuperview()
+            guard let pm = paymentMethod else {
+                return
+            }
+            
+            paymentMethodLabel.text = "Payment Method".localized() + " = " + pm.name()
+            
             switch pm {
             case .midtrans:
                 containerView.addArrangedSubview(midtransView)
+                calculateContentWidth(label: midtransView.descLabel, supportLeft: false)
             default:
-                break
+                midtransView.removeFromSuperview()
+                calculateContentWidth(label: paymentMethodLabel, supportLeft: false)
             }
-            paymentMethodLabel.text = "Payment Method".localized() + " = " + pm.name()
         }
     }
     
@@ -104,7 +109,5 @@ class ChatInvoiceView: ChatContentView {
         for itemVM in contentVM.productModels {
             productContainerView.addArrangedSubview(ChatInvoiceProductView(viewModel: itemVM))
         }
-        
-        calculateContentWidth(label: paymentMethodLabel)
     }
 }

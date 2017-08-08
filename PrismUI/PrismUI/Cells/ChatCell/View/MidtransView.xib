@@ -46,6 +46,7 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="descLabel" destination="yHP-cg-AvD" id="8cb-bl-d5R"/>
                 <outlet property="payButton" destination="GkG-LR-JfP" id="4qC-QQ-CP4"/>
             </connections>
             <point key="canvasLocation" x="-7.5" y="346.5"/>

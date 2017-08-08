@@ -25,9 +25,7 @@ class SendDeviceTokenEndpoint: EndPoint {
         get {
             return [
                 "id": UIDevice.current.identifierForVendor?.description ?? String.randomUserID,
-                
                 "token": deviceToken,
-                
                 "device_type": "iOS"
             ]
         }

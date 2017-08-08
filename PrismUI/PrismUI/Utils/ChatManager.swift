@@ -37,6 +37,7 @@ class ChatManager {
         NotificationCenter.default.addObserver(self, selector: #selector(chatReceived(sender:)), name: ReceiveChatNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(chatSubscribe(sender:)), name: SubscribeChatNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(chatError(sender:)), name: ErrorChatNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(chatDisconnect(sender:)), name: DisconnectChatNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(didBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
     }
     
@@ -319,6 +320,10 @@ class ChatManager {
     }
     
     @objc func chatError(sender: Notification) {
+        reconnectMQTT()
+    }
+    
+    @objc func chatDisconnect(sender: Notification) {
         reconnectMQTT()
     }
     

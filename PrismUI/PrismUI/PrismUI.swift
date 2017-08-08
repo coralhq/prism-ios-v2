@@ -46,6 +46,18 @@ open class PrismUI {
         viewController.present(rootVC, animated: true, completion: nil)
     }
     
+    open func sendDeviceToken(deviceToken: String) {
+        guard let credential = Vendor.shared.credential else {
+            return
+        }
+        
+        PrismCore.shared.sendDeviceToken(visitorID: credential.visitorInfo.id, token: credential.accessToken, deviceToken: deviceToken) { (succeed, error) in
+            if let error = error {
+                print(error)
+            }
+        }
+    }
+    
     private func sendDeviceInfoToRover() {
         UIDevice.current.isBatteryMonitoringEnabled = true
         

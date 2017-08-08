@@ -25,21 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.rootViewController = vc
         window!.makeKeyAndVisible()
         
-        registerForPushNotifications()
-        
         return true
-    }
-    
-    func registerForPushNotifications() {
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
-                (granted, error) in
-                print("Permission granted: \(granted)")
-            }
-        } else {
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-            UIApplication.shared.registerForRemoteNotifications()
-        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -70,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        print("\n\n\n\n\n\n\n\n\n\ndevice token:\(token)\n\n\n\n\n\n\n\n\n\n")
+        PrismUI.shared.sendDeviceToken(deviceToken: token)
     }
 }
 

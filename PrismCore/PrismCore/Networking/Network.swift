@@ -68,7 +68,7 @@ class Network: NSObject, NetworkProtocol {
             request.addValue(contentType, forHTTPHeaderField: "Content-Type")
         }
         
-        request.addValue("ApiVersion", forHTTPHeaderField: "ApiVersion")
+        request.addValue("X-Prism-API-Version", forHTTPHeaderField: "20170807")
         request.httpMethod = endPoint.method.rawValue
         
         if !endPoint.httpBody.isEmpty {
@@ -92,6 +92,7 @@ class Network: NSObject, NetworkProtocol {
     
     func upload(attachment: Data, url: URL, completionHandler: @escaping ((Bool, NSError?) -> ())) {
         var request = URLRequest(url: url)
+        request.addValue("X-Prism-API-Version", forHTTPHeaderField: "20170807")
         request.httpMethod = "PUT"
         request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
         let task = urlSession?.uploadTask(with: request, from: attachment) { (data, response, error) in

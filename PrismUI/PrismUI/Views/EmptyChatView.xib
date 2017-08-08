@@ -20,19 +20,10 @@
                     <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4H6-w0-1p3">
-                    <rect key="frame" x="28" y="87" width="296" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="0.82745098039999998" green="0.21960784310000001" blue="0.36470588240000001" alpha="0.050000000000000003" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="4H6-w0-1p3" firstAttribute="top" secondItem="ZHb-Bw-Ytg" secondAttribute="bottom" constant="50" id="2kn-O6-cO4"/>
                 <constraint firstItem="ZHb-Bw-Ytg" firstAttribute="top" secondItem="FVx-8a-iXG" secondAttribute="top" constant="20" id="2op-wn-yrK"/>
-                <constraint firstAttribute="trailing" secondItem="4H6-w0-1p3" secondAttribute="trailing" constant="28" id="IHL-US-Le6"/>
-                <constraint firstItem="4H6-w0-1p3" firstAttribute="leading" secondItem="FVx-8a-iXG" secondAttribute="leading" constant="28" id="O7e-AO-Al7"/>
                 <constraint firstItem="ZHb-Bw-Ytg" firstAttribute="leading" secondItem="FVx-8a-iXG" secondAttribute="leading" constant="28" id="X4j-66-oAb"/>
                 <constraint firstAttribute="trailing" secondItem="ZHb-Bw-Ytg" secondAttribute="trailing" constant="28" id="wN7-7D-3lH"/>
             </constraints>
@@ -41,7 +32,6 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="label2" destination="4H6-w0-1p3" id="t26-6d-AT6"/>
                 <outlet property="titleLabel" destination="ZHb-Bw-Ytg" id="ZQh-8F-oLp"/>
             </connections>
             <point key="canvasLocation" x="39" y="728.5"/>

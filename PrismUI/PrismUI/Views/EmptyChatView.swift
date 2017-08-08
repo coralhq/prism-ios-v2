@@ -11,8 +11,6 @@ import UIKit
 class EmptyChatView: UIView {
     @IBOutlet var titleLabel: UILabel!
     
-    @IBOutlet var label2: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -21,8 +19,5 @@ class EmptyChatView: UIView {
         backgroundColor = Settings.shared.theme.headerColor.withAlphaComponent(0.05)
         
         titleLabel.text = Settings.shared.connectForm.message
-        
-        label2.text = nil
-        label2.attributedText = NSAttributedString(string: Settings.shared.connectForm.message, attributes: [NSFontAttributeName: titleLabel.font])
     }
 }

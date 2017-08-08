@@ -58,7 +58,7 @@ class RootViewController: BaseViewController {
             CoreDataManager.shared.clearData()
             CacheImage.shared.clearCache()
             
-            if Settings.shared.inputForm.enabled {
+            if Settings.shared.connectForm.enabled {
                 
                 let connectVC = ConnectViewController(viewModel: self.viewModel)
                 self.enter(viewController: connectVC, animated: false)

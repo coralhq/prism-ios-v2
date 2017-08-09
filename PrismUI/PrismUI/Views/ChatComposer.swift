@@ -24,10 +24,16 @@ class ChatComposer: UIView {
     @IBOutlet var sendButton: SmallButton!
     @IBOutlet var topSeparatorView: UIView!
     @IBOutlet var emojiButton: SmallButton!
+    @IBOutlet var abcButton: SmallButton!
     @IBOutlet var stickerButton: SmallButton!
     
     weak var delegate: ChatComposerDelegate?
     var accessToken: String?
+    
+    /*
+     This UITextView purpose is only as StickerInputView container. It'll and must not shown on the screen
+     */
+    let fakeTextView = UITextView()
     
     static func composerFromNib(with accessToken: String) -> ChatComposer? {
         let view: ChatComposer? = ChatComposer.viewFromNib()
@@ -37,6 +43,8 @@ class ChatComposer: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        textView.delegate = self
         
         topSeparatorView.backgroundColor = Settings.shared.theme.buttonColor.withAlphaComponent(0.15)
         
@@ -70,38 +78,47 @@ class ChatComposer: UIView {
         textView.layoutIfNeeded()
     }
     
-    @IBAction func textInputPressed(sender: UIButton) {
+    @IBAction func abcPressed(sender: UIButton) {
         if textView.becomeFirstResponder() == false {
             textView.becomeFirstResponder()
         }
         
-        stickerButton.isSelected = false
-        emojiButton.isSelected = !emojiButton.isSelected
+        abcButton.isHidden = true
+        emojiButton.isHidden = false
         
-        if sender.isSelected {
-            textView.inputView = EmojiInputView.viewFromNib(with: textView)
-        } else {
-            textView.inputView = nil
+        textView.inputView = nil
+        textView.reloadInputViews()
+    }
+    
+    @IBAction func emojiPressed(sender: UIButton) {
+        if textView.becomeFirstResponder() == false {
+            textView.becomeFirstResponder()
         }
+        
+        abcButton.isHidden = false
+        emojiButton.isHidden = true
+        
+        textView.inputView = EmojiInputView.viewFromNib(with: textView)
         textView.reloadInputViews()
     }
     
     @IBAction func stickerInputPressed(sender: UIButton) {
-        if textView.becomeFirstResponder() == false {
-            textView.becomeFirstResponder()
+        if fakeTextView.superview == nil {
+            fakeTextView.delegate = self
+            fakeTextView.isHidden = true
+            addSubview(fakeTextView)
         }
         
-        emojiButton.isSelected = false
-        stickerButton.isSelected = !stickerButton.isSelected
+        if fakeTextView.becomeFirstResponder() == false {
+            fakeTextView.becomeFirstResponder()
+        }
         
-        if sender.isSelected {
+        if fakeTextView.inputView == nil {
             let inputView = StickerInputView.viewFromNib(accessToken: accessToken)
             inputView?.delegate = self
-            textView.inputView = inputView
-        } else {
-            textView.inputView = nil
+            fakeTextView.inputView = inputView
+            fakeTextView.reloadInputViews()
         }
-        textView.reloadInputViews()
     }
     
     @IBAction func attachImagePressed(sender: UIButton) {
@@ -175,5 +192,27 @@ extension ChatComposer: UIImagePickerControllerDelegate, UINavigationControllerD
 extension ChatComposer: StickerInputViewDelegate {
     func stickerInputView(view: StickerInputView, didSend sticker: StickerViewModel) {
         delegate?.chatComposer(composer: self, didPickSticker: sticker)
+    }
+}
+
+extension ChatComposer: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if fakeTextView == textView {
+            stickerButton.setImage(UIImage(named: "icBtnStickerSelected", in: Bundle.prism, compatibleWith: nil), for: .normal)
+        } else {
+            emojiButton.tintColor = Settings.shared.theme.buttonColor
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        textView.inputView = nil
+        
+        if fakeTextView == textView {
+            stickerButton.setImage(UIImage(named: "icBtnSticker", in: Bundle.prism, compatibleWith: nil), for: .normal)
+        } else {
+            abcButton.isHidden = true
+            emojiButton.isHidden = false
+            emojiButton.tintColor = UIColor.jetBlack.withAlphaComponent(0.8)
+        }
     }
 }

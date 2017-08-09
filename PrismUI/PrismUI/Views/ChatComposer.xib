@@ -71,11 +71,19 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQO-Vf-h9Z" customClass="SmallButton" customModule="PrismUI" customModuleProvider="target">
                             <rect key="frame" x="10" y="8" width="22" height="22"/>
-                            <color key="tintColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" image="icBtnEmoticon"/>
-                            <state key="selected" image="icBtnKeyboardSelect"/>
+                            <state key="highlighted" image="icBtnEmoticon"/>
                             <connections>
-                                <action selector="textInputPressedWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="T18-mH-83i"/>
+                                <action selector="emojiPressedWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="4Gi-vh-dfq"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pw7-qd-UxE" customClass="SmallButton" customModule="PrismUI" customModuleProvider="target">
+                            <rect key="frame" x="8.5" y="8" width="25" height="22"/>
+                            <color key="tintColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" image="icBtnKeyboardSelect"/>
+                            <connections>
+                                <action selector="abcPressedWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="MxA-qt-8E3"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18m-B8-Up2" customClass="SmallButton" customModule="PrismUI" customModuleProvider="target">
@@ -98,9 +106,11 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="hQO-Vf-h9Z" secondAttribute="bottom" constant="8" id="9AN-dK-DGD"/>
+                        <constraint firstItem="Pw7-qd-UxE" firstAttribute="centerY" secondItem="hQO-Vf-h9Z" secondAttribute="centerY" id="ILO-nK-NT9"/>
                         <constraint firstItem="18m-B8-Up2" firstAttribute="centerY" secondItem="hQO-Vf-h9Z" secondAttribute="centerY" id="cjA-ZH-lQ3"/>
                         <constraint firstItem="6fP-eu-bQX" firstAttribute="centerY" secondItem="hQO-Vf-h9Z" secondAttribute="centerY" id="esK-QJ-zVa"/>
                         <constraint firstItem="hQO-Vf-h9Z" firstAttribute="leading" secondItem="xn3-uI-vCN" secondAttribute="leading" constant="10" id="hIY-Ii-2sk"/>
+                        <constraint firstItem="Pw7-qd-UxE" firstAttribute="centerX" secondItem="hQO-Vf-h9Z" secondAttribute="centerX" id="iKT-J3-9vG"/>
                         <constraint firstItem="hQO-Vf-h9Z" firstAttribute="top" secondItem="xn3-uI-vCN" secondAttribute="top" constant="8" id="nPD-oP-rOy"/>
                         <constraint firstItem="6fP-eu-bQX" firstAttribute="leading" secondItem="18m-B8-Up2" secondAttribute="trailing" constant="16" id="owh-Bo-R4e"/>
                         <constraint firstItem="18m-B8-Up2" firstAttribute="leading" secondItem="hQO-Vf-h9Z" secondAttribute="trailing" constant="16" id="rMi-XG-46k"/>
@@ -137,6 +147,7 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="abcButton" destination="Pw7-qd-UxE" id="8to-CA-nTd"/>
                 <outlet property="botSpaceConstraint" destination="tgp-Wp-1Hb" id="ibh-9i-Vdd"/>
                 <outlet property="emojiButton" destination="hQO-Vf-h9Z" id="fld-Rf-AO3"/>
                 <outlet property="sendButton" destination="DZ9-rX-7hb" id="aUq-VT-AQB"/>

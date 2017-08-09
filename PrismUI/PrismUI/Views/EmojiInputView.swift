@@ -28,7 +28,7 @@ class EmojiInputView: UIView {
         inputView.inputTextView = textView
         return inputView
     }
-    
+
     weak var inputTextView: UITextView? {
         didSet {
             inputTextView?.inputView = self

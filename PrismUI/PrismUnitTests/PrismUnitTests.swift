@@ -37,7 +37,16 @@ class PrismUnitTests: XCTestCase {
         let credential = PrismCredential()
         credential.configure(connect: connect, conversation: conversation)
         
-        Settings.shared.configure(settings: AuthViewModelMock().getSetting())
+        Settings.shared.configure(settings: AuthViewModelMock().getInvalidSetting())
+        Settings.shared.configure(settings: AuthViewModelMock().getSetting(type: .BLACK))
+        Settings.shared.configure(settings: AuthViewModelMock().getSetting(type: .BLUE))
+        Settings.shared.configure(settings: AuthViewModelMock().getSetting(type: .CORAL))
+        Settings.shared.configure(settings: AuthViewModelMock().getSetting(type: .GREEN))
+        Settings.shared.configure(settings: AuthViewModelMock().getSetting(type: .PINK))
+        Settings.shared.configure(settings: AuthViewModelMock().getSetting(type: .WHITE))
+        Settings.shared.configure(settings: AuthViewModelMock().getSetting(type: .YELLOW))
+        Settings.shared.configure(settings: AuthViewModelMock().getSetting(type: .RED))
+        
         Vendor.shared.credential = credential
         
         XCTAssertNotNil(Vendor.shared.credential)
@@ -61,6 +70,13 @@ class PrismUnitTests: XCTestCase {
         }
         
         let viewModel = ChatViewModel(message: cdMessage, visitor: visitor)
+        
+        let statusIcon = viewModel?.statusIcon
+        if viewModel?.cellType == .Out {
+            XCTAssertNotNil(statusIcon)
+        } else {
+            XCTAssertNil(statusIcon)
+        }
         
         XCTAssertNotNil(cdMessage.dictionaryValue())
         XCTAssertNotNil(viewModel)
@@ -127,6 +143,8 @@ class PrismUnitTests: XCTestCase {
         let attDict: [String: Any] = ContentMock().attachment()
         let contentAtt = CDContentAttachment(dictionary: attDict)
         let att = ContentImageViewModel(contentImage: contentAtt!)
+        contentAtt?.editWithContent(content: ContentAttachment(dictionary: attDict)!)
+        contentAtt?.editWithContent(content: ContentCart(dictionary: cartDict)!)
         Decoder(object: contentAtt)
         XCTAssertNotNil(contentAtt?.dictionaryValue())
         XCTAssertNotNil(att)

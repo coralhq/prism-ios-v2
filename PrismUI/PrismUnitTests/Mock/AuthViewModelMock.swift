@@ -9,9 +9,24 @@
 import Foundation
 import PrismCore
 
+enum ThemeTypeMock: String {
+    case PINK
+    case WHITE
+    case BLACK
+    case BLUE
+    case GREEN
+    case CORAL
+    case YELLOW
+    case RED
+}
+
 class AuthViewModelMock {
     
-    func getSetting() -> [String: Any] {
+    func getInvalidSetting() -> [String: Any] {
+        return [:]
+    }
+    
+    func getSetting(type: ThemeTypeMock) -> [String: Any] {
         return [
             "widget":[
                 "enabled": true,
@@ -45,7 +60,7 @@ class AuthViewModelMock {
                         "title_minimized": "Mau pesan? Klik disini",
                         "welcome_message": "Hello, we’re here to make your shopping smoother. Let’s chat!"
                     ],
-                    "color_theme": "PINK|WHITE|BLACK|BLUE|GREEN|CORAL|YELLOW",
+                    "color_theme": type.rawValue,
                     "position": "bottom-right"
                 ],
                 "attention_grabber":[

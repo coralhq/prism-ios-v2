@@ -79,7 +79,11 @@ class ChatContainerView: UIView {
             if haveSpaceInside {
                 return .Inside
             } else {
-                return .Left
+                if widthInfo.supportLeft {
+                    return .Left
+                } else {
+                    return .Inside
+                }
             }
         } else {
             return .Bottom

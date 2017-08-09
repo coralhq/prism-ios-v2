@@ -12,7 +12,9 @@ class HeaderView: UIView {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
-    @IBOutlet var container: UIStackView!
+    
+    @IBOutlet var imageWidth: NSLayoutConstraint!
+    @IBOutlet var imageSpace: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,10 +30,15 @@ class HeaderView: UIView {
         titleLabel.text = settings.texts.titleExpanded
         subtitleLabel.text = settings.texts.subtitle
         
-        container.removeArrangedSubview(imageView)
         if settings.persona.enabled {
-            container.insertArrangedSubview(imageView, at: 0)
+            imageWidth.constant = 32
+            imageSpace.constant = 8
+            imageView.isHidden = false
             imageView.downloadedFrom(url: settings.persona.imageURL)
+        } else {
+            imageWidth.constant = 0
+            imageSpace.constant = 0
+            imageView.isHidden = true
         }
     }
 }

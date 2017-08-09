@@ -10,6 +10,7 @@ import UIKit
 
 class MidtransView: UIView {
     @IBOutlet var payButton: UIButton!
+    @IBOutlet var descLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

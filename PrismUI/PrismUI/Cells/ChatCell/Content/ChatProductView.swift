@@ -57,7 +57,7 @@ class ChatProductView: ChatContentView {
             productPageControlHeight.constant = 0
         }
         
-        calculateContentWidth(label: descriptionLabel)
+        calculateContentWidth(label: descriptionLabel, supportLeft: false)
     }
 }
 

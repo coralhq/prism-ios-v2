@@ -18,6 +18,7 @@ public class ConnectViewController: BaseViewController {
     @IBOutlet var emailTF: LinedTextField!
     @IBOutlet var phoneTF: LinedTextField!
     @IBOutlet var startChatButton: UIButton!
+    @IBOutlet var formContainerView: UIView!
     
     var viewModel: AuthViewModel
     
@@ -25,6 +26,8 @@ public class ConnectViewController: BaseViewController {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: Bundle.prism)
+        
+        
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -40,10 +43,12 @@ public class ConnectViewController: BaseViewController {
         startChatButton.backgroundColor = Settings.shared.theme.buttonColor
         startChatButton.setTitle("START CHAT".localized(), for: .normal)
         
-        let formField = Settings.shared.inputForm
-        update(textField: nameTF, form: formField.username)
-        update(textField: emailTF, form: formField.email)
-        update(textField: phoneTF, form: formField.phoneNumber)
+        let form = Settings.shared.connectForm
+        update(textField: nameTF, form: form.username)
+        update(textField: emailTF, form: form.email)
+        update(textField: phoneTF, form: form.phoneNumber)
+        
+        KeyboardAvoiding.avoidingView = formContainerView
     }
     
     public override func viewDidAppear(_ animated: Bool) {

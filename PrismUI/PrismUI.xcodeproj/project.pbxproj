@@ -125,6 +125,10 @@
 		E5AC24781F208F0B00950A2E /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AC24771F208F0B00950A2E /* HeaderView.swift */; };
 		E5B39F2D1F284ED100BE68C9 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B39F2B1F284ED100BE68C9 /* String+MD5.swift */; };
 		E5B9615C1F17039D00764A12 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B9615B1F17039D00764A12 /* ReachabilityHelper.swift */; };
+		E5BC92841F3940A300B318EC /* EmptyChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BC92831F3940A300B318EC /* EmptyChatView.swift */; };
+		E5BC92861F3940AB00B318EC /* EmptyChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5BC92851F3940AB00B318EC /* EmptyChatView.xib */; };
+		E5BC92921F39938B00B318EC /* KeyboardAvoiding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BC92901F39938B00B318EC /* KeyboardAvoiding.swift */; };
+		E5BC92931F39938B00B318EC /* KeyboardDismissingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BC92911F39938B00B318EC /* KeyboardDismissingView.swift */; };
 		E5C5440B1F151F0100D5303D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C5440A1F151F0100D5303D /* CoreDataManager.swift */; };
 		E5C5440D1F151F4C00D5303D /* ChatQueryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C5440C1F151F4C00D5303D /* ChatQueryManager.swift */; };
 		E5EF28011F1700A400C2588F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EF28001F1700A400C2588F /* Extensions.swift */; };
@@ -262,6 +266,10 @@
 		E5AC24771F208F0B00950A2E /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		E5B39F2B1F284ED100BE68C9 /* String+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+MD5.swift"; path = "Vendors/String+MD5.swift"; sourceTree = "<group>"; };
 		E5B9615B1F17039D00764A12 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReachabilityHelper.swift; path = Vendors/ReachabilityHelper.swift; sourceTree = "<group>"; };
+		E5BC92831F3940A300B318EC /* EmptyChatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyChatView.swift; sourceTree = "<group>"; };
+		E5BC92851F3940AB00B318EC /* EmptyChatView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyChatView.xib; sourceTree = "<group>"; };
+		E5BC92901F39938B00B318EC /* KeyboardAvoiding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardAvoiding.swift; sourceTree = "<group>"; };
+		E5BC92911F39938B00B318EC /* KeyboardDismissingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardDismissingView.swift; sourceTree = "<group>"; };
 		E5C5440A1F151F0100D5303D /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = PrismUI/Utils/CoreDataManager.swift; sourceTree = SOURCE_ROOT; };
 		E5C5440C1F151F4C00D5303D /* ChatQueryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatQueryManager.swift; path = PrismUI/Utils/ChatQueryManager.swift; sourceTree = SOURCE_ROOT; };
 		E5EF28001F1700A400C2588F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -367,6 +375,8 @@
 				E58FAE631EF38435002F1A2A /* EmojiInputView.xib */,
 				E5AC24771F208F0B00950A2E /* HeaderView.swift */,
 				E5AC24751F208E0200950A2E /* HeaderView.xib */,
+				E5BC92831F3940A300B318EC /* EmptyChatView.swift */,
+				E5BC92851F3940AB00B318EC /* EmptyChatView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -504,6 +514,7 @@
 		E55AC0D91F0FC10A00A0354D /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				E5BC928F1F39938B00B318EC /* IHKeyboardAvoiding */,
 				8071E0F21F218D170003732F /* DeviceGuru */,
 				E5B9615B1F17039D00764A12 /* ReachabilityHelper.swift */,
 				8071E0F91F219E2B0003732F /* DiskStatus.swift */,
@@ -610,6 +621,16 @@
 				80DF9B081F320BC100495FB0 /* CDContentCloseChat.swift */,
 			);
 			name = Contents;
+			sourceTree = "<group>";
+		};
+		E5BC928F1F39938B00B318EC /* IHKeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				E5BC92901F39938B00B318EC /* KeyboardAvoiding.swift */,
+				E5BC92911F39938B00B318EC /* KeyboardDismissingView.swift */,
+			);
+			name = IHKeyboardAvoiding;
+			path = Vendors/IHKeyboardAvoiding;
 			sourceTree = "<group>";
 		};
 		E5CD9F6C1EEA7F650066C1CC /* Resources */ = {
@@ -730,6 +751,7 @@
 				E574408A1EF7615B003CA9E7 /* StickerOutContainer.xib in Resources */,
 				E547D2281EF1FA6200B66136 /* Media.xcassets in Resources */,
 				E58FAE6F1EF385F3002F1A2A /* EmojisList.plist in Resources */,
+				E5BC92861F3940AB00B318EC /* EmptyChatView.xib in Resources */,
 				E57440A01EF76FCF003CA9E7 /* ContentProductCell.xib in Resources */,
 				80E9F3DE1F32BD8700F49A6F /* CloseChatTableViewCell.xib in Resources */,
 				80389A401EEA3132007B9458 /* ConnectViewController.xib in Resources */,
@@ -776,6 +798,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5BC92841F3940A300B318EC /* EmptyChatView.swift in Sources */,
 				E57440AB1EF7CE43003CA9E7 /* ChatCartView.swift in Sources */,
 				E5053A8F1EF13123006677A4 /* InputFormSettings.swift in Sources */,
 				E562B5CB1F0CBC1A006489C0 /* ContentStickerViewModel.swift in Sources */,
@@ -804,11 +827,13 @@
 				E58FAE841EF495E4002F1A2A /* ChatCell.swift in Sources */,
 				E57440B01EF7CFA6003CA9E7 /* ProductCartView.swift in Sources */,
 				E562B5D31F0DA44F006489C0 /* ContentProductViewModel.swift in Sources */,
+				E5BC92921F39938B00B318EC /* KeyboardAvoiding.swift in Sources */,
 				E599E8821EF67D6200B67920 /* ChatOutContainerView.swift in Sources */,
 				E57440841EF760C3003CA9E7 /* StickerInContainer.swift in Sources */,
 				E593AEF21EFCCC80002E2171 /* CDMessage+CoreDataClass.swift in Sources */,
 				E58FAE6B1EF38435002F1A2A /* PlaceholderTextView.swift in Sources */,
 				E508C1B71EF8B469004DCB6A /* ChatImageView.swift in Sources */,
+				E5BC92931F39938B00B318EC /* KeyboardDismissingView.swift in Sources */,
 				E57440A41EF7A898003CA9E7 /* ChatContainerView.swift in Sources */,
 				E58FAE5D1EF36874002F1A2A /* AuthViewModel.swift in Sources */,
 				E54969BB1EEA8496008209D9 /* Utils.swift in Sources */,

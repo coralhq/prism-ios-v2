@@ -85,10 +85,16 @@ extension UITableView {
 extension ChatViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         if let sections = queryManager?.sections {
+            if sections.count > 0 {
+                tableView.backgroundView = nil
+            } else {
+                tableView.backgroundView = EmptyChatView.viewFromNib()
+            }            
             return sections.count
         }
         return 0
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = queryManager?.sections,
             let objects = sections[section].objects {
@@ -212,10 +218,6 @@ extension ChatViewController: ChatQueryManagerDelegate {
             tableView.reloadRows(at: [newIndexPath], with: .none)
         }
     }
-}
-
-class EmptyChatView: UIView {
-    @IBOutlet var titleLabel: UILabel!
 }
 
 class ChatTableView: UITableView {

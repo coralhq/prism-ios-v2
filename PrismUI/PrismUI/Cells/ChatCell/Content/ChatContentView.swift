@@ -12,6 +12,7 @@ import PrismCore
 struct ContentWidthInfo {
     var lastWidth: CGFloat = 0
     var widestWidth: CGFloat = 0
+    var supportLeft: Bool = false
 }
 
 class ChatContentView: UIView {
@@ -30,7 +31,7 @@ class ChatContentView: UIView {
         return self.viewFromNib()
     }
     
-    func calculateContentWidth(label: UILabel) {
+    func calculateContentWidth(label: UILabel, supportLeft: Bool) {
         guard let text = label.text else {
             return
         }
@@ -51,7 +52,9 @@ class ChatContentView: UIView {
         }
         
         if lastWidth > 0 {
-            widthInfo = ContentWidthInfo(lastWidth: lastWidth, widestWidth: widestWidth)
+            widthInfo = ContentWidthInfo(lastWidth: lastWidth,
+                                         widestWidth: widestWidth,
+                                         supportLeft: supportLeft)
         }
     }
 }

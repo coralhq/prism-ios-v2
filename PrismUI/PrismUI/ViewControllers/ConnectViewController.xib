@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConnectViewController" customModule="PrismUI" customModuleProvider="target">
             <connections>
                 <outlet property="emailTF" destination="LNf-3K-DIP" id="CYC-8N-NMY"/>
+                <outlet property="formContainerView" destination="drD-Wj-Z6s" id="huw-Qp-2LZ"/>
                 <outlet property="helloLabel" destination="fO8-D0-eps" id="CFl-i9-j2L"/>
                 <outlet property="nameTF" destination="mpX-cZ-Jxk" id="Jko-Zx-5K7"/>
                 <outlet property="phoneTF" destination="4i1-iK-oc3" id="UBb-HS-fd5"/>
@@ -19,118 +20,130 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="KeyboardDismissingView" customModule="PrismUI" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, Please fill form below to connect and chat with us" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fO8-D0-eps">
-                    <rect key="frame" x="28" y="50" width="319" height="33.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AoC-gK-KZC">
-                    <rect key="frame" x="28" y="304.5" width="319" height="44"/>
-                    <color key="backgroundColor" red="0.82745098039215681" green="0.2196078431372549" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="dIc-5g-X91"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                    <state key="normal" title="MULAI CHAT"/>
-                    <connections>
-                        <action selector="startChatPressed:" destination="-1" eventType="touchUpInside" id="JJh-bi-2ls"/>
-                    </connections>
-                </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1VL-MP-Qpd">
-                    <rect key="frame" x="28" y="111.5" width="319" height="165"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="drD-Wj-Z6s">
+                    <rect key="frame" x="28" y="50" width="319" height="308.5"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mpX-cZ-Jxk" customClass="LinedTextField" customModule="PrismUI" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="319" height="55"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="55" id="AuL-eZ-vWw"/>
-                            </constraints>
-                            <nil key="textColor"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, Please fill form below to connect and chat with us" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fO8-D0-eps">
+                            <rect key="frame" x="0.0" y="0.0" width="319" height="33.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="warningColor">
-                                    <color key="value" red="0.95294117649999999" green="0.28235294119999998" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
-                                    <color key="value" red="0.46666666870000001" green="0.76470589639999997" blue="0.26666668059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LNf-3K-DIP" customClass="LinedTextField" customModule="PrismUI" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="55" width="319" height="55"/>
+                            <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AoC-gK-KZC">
+                            <rect key="frame" x="0.0" y="254.5" width="319" height="44"/>
+                            <color key="backgroundColor" red="0.82745098039215681" green="0.2196078431372549" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="55" id="L32-id-0jq"/>
+                                <constraint firstAttribute="height" constant="44" id="dIc-5g-X91"/>
                             </constraints>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="warningColor">
-                                    <color key="value" red="0.95294117649999999" green="0.28235294119999998" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
-                                    <color key="value" red="0.46666666870000001" green="0.76470589639999997" blue="0.26666668059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4i1-iK-oc3" customClass="LinedTextField" customModule="PrismUI" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="110" width="319" height="55"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                            <state key="normal" title="MULAI CHAT"/>
+                            <connections>
+                                <action selector="startChatPressed:" destination="-1" eventType="touchUpInside" id="JJh-bi-2ls"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1VL-MP-Qpd">
+                            <rect key="frame" x="0.0" y="61.5" width="319" height="165"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mpX-cZ-Jxk" customClass="LinedTextField" customModule="PrismUI" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="319" height="55"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="55" id="AuL-eZ-vWw"/>
+                                    </constraints>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="warningColor">
+                                            <color key="value" red="0.95294117649999999" green="0.28235294119999998" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
+                                            <color key="value" red="0.46666666870000001" green="0.76470589639999997" blue="0.26666668059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LNf-3K-DIP" customClass="LinedTextField" customModule="PrismUI" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="55" width="319" height="55"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="55" id="L32-id-0jq"/>
+                                    </constraints>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="warningColor">
+                                            <color key="value" red="0.95294117649999999" green="0.28235294119999998" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
+                                            <color key="value" red="0.46666666870000001" green="0.76470589639999997" blue="0.26666668059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4i1-iK-oc3" customClass="LinedTextField" customModule="PrismUI" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="110" width="319" height="55"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="55" id="xak-EA-mV8"/>
+                                    </constraints>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="warningColor">
+                                            <color key="value" red="0.95294117649999999" green="0.28235294119999998" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
+                                            <color key="value" red="0.46666666870000001" green="0.76470589639999997" blue="0.26666668059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="55" id="xak-EA-mV8"/>
+                                <constraint firstAttribute="trailing" secondItem="4i1-iK-oc3" secondAttribute="trailing" id="DCw-ua-4U8"/>
+                                <constraint firstItem="LNf-3K-DIP" firstAttribute="leading" secondItem="1VL-MP-Qpd" secondAttribute="leading" id="E3o-2R-baH"/>
+                                <constraint firstItem="mpX-cZ-Jxk" firstAttribute="leading" secondItem="1VL-MP-Qpd" secondAttribute="leading" id="IgH-Rj-iae"/>
+                                <constraint firstAttribute="trailing" secondItem="mpX-cZ-Jxk" secondAttribute="trailing" id="KLO-fN-cw8"/>
+                                <constraint firstItem="4i1-iK-oc3" firstAttribute="leading" secondItem="1VL-MP-Qpd" secondAttribute="leading" id="OYD-ug-5vT"/>
+                                <constraint firstAttribute="bottom" secondItem="4i1-iK-oc3" secondAttribute="bottom" id="bTO-Pf-P7f"/>
+                                <constraint firstItem="mpX-cZ-Jxk" firstAttribute="top" secondItem="1VL-MP-Qpd" secondAttribute="top" id="lhJ-tu-BZn"/>
+                                <constraint firstItem="LNf-3K-DIP" firstAttribute="top" secondItem="mpX-cZ-Jxk" secondAttribute="bottom" id="q4f-JJ-X3L"/>
+                                <constraint firstAttribute="trailing" secondItem="LNf-3K-DIP" secondAttribute="trailing" id="xGq-Ln-66L"/>
+                                <constraint firstItem="4i1-iK-oc3" firstAttribute="top" secondItem="LNf-3K-DIP" secondAttribute="bottom" id="xiO-N4-cSQ"/>
                             </constraints>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="warningColor">
-                                    <color key="value" red="0.95294117649999999" green="0.28235294119999998" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
-                                    <color key="value" red="0.46666666870000001" green="0.76470589639999997" blue="0.26666668059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </textField>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="4i1-iK-oc3" secondAttribute="trailing" id="DCw-ua-4U8"/>
-                        <constraint firstItem="LNf-3K-DIP" firstAttribute="leading" secondItem="1VL-MP-Qpd" secondAttribute="leading" id="E3o-2R-baH"/>
-                        <constraint firstItem="mpX-cZ-Jxk" firstAttribute="leading" secondItem="1VL-MP-Qpd" secondAttribute="leading" id="IgH-Rj-iae"/>
-                        <constraint firstAttribute="trailing" secondItem="mpX-cZ-Jxk" secondAttribute="trailing" id="KLO-fN-cw8"/>
-                        <constraint firstItem="4i1-iK-oc3" firstAttribute="leading" secondItem="1VL-MP-Qpd" secondAttribute="leading" id="OYD-ug-5vT"/>
-                        <constraint firstAttribute="bottom" secondItem="4i1-iK-oc3" secondAttribute="bottom" id="bTO-Pf-P7f"/>
-                        <constraint firstItem="mpX-cZ-Jxk" firstAttribute="top" secondItem="1VL-MP-Qpd" secondAttribute="top" id="lhJ-tu-BZn"/>
-                        <constraint firstItem="LNf-3K-DIP" firstAttribute="top" secondItem="mpX-cZ-Jxk" secondAttribute="bottom" id="q4f-JJ-X3L"/>
-                        <constraint firstAttribute="trailing" secondItem="LNf-3K-DIP" secondAttribute="trailing" id="xGq-Ln-66L"/>
-                        <constraint firstItem="4i1-iK-oc3" firstAttribute="top" secondItem="LNf-3K-DIP" secondAttribute="bottom" id="xiO-N4-cSQ"/>
+                        <constraint firstItem="fO8-D0-eps" firstAttribute="leading" secondItem="drD-Wj-Z6s" secondAttribute="leading" id="A7D-da-XuR"/>
+                        <constraint firstItem="AoC-gK-KZC" firstAttribute="leading" secondItem="fO8-D0-eps" secondAttribute="leading" id="IYZ-EE-5rk"/>
+                        <constraint firstItem="1VL-MP-Qpd" firstAttribute="leading" secondItem="drD-Wj-Z6s" secondAttribute="leading" id="bH6-uU-rek"/>
+                        <constraint firstItem="1VL-MP-Qpd" firstAttribute="top" secondItem="fO8-D0-eps" secondAttribute="bottom" constant="28" id="g4n-uk-fjt"/>
+                        <constraint firstAttribute="trailing" secondItem="1VL-MP-Qpd" secondAttribute="trailing" id="gUm-p4-mig"/>
+                        <constraint firstItem="fO8-D0-eps" firstAttribute="top" secondItem="drD-Wj-Z6s" secondAttribute="top" id="j23-n7-a55"/>
+                        <constraint firstItem="AoC-gK-KZC" firstAttribute="trailing" secondItem="fO8-D0-eps" secondAttribute="trailing" id="o5P-xG-Ige"/>
+                        <constraint firstAttribute="trailing" secondItem="fO8-D0-eps" secondAttribute="trailing" id="qsd-d7-TaC"/>
+                        <constraint firstItem="AoC-gK-KZC" firstAttribute="top" secondItem="1VL-MP-Qpd" secondAttribute="bottom" constant="28" id="rSB-QH-9kI"/>
+                        <constraint firstAttribute="bottom" secondItem="AoC-gK-KZC" secondAttribute="bottom" constant="10" id="vv9-XV-24V"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="AoC-gK-KZC" firstAttribute="trailing" secondItem="fO8-D0-eps" secondAttribute="trailing" id="AjM-BV-ff6"/>
-                <constraint firstItem="AoC-gK-KZC" firstAttribute="leading" secondItem="fO8-D0-eps" secondAttribute="leading" id="GDd-5K-G1d"/>
-                <constraint firstItem="fO8-D0-eps" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="28" id="GTH-Ig-xXi"/>
-                <constraint firstItem="1VL-MP-Qpd" firstAttribute="top" secondItem="fO8-D0-eps" secondAttribute="bottom" constant="28" id="WPg-8p-Duj"/>
-                <constraint firstItem="AoC-gK-KZC" firstAttribute="top" secondItem="1VL-MP-Qpd" secondAttribute="bottom" constant="28" id="cZg-Dl-r87"/>
-                <constraint firstItem="1VL-MP-Qpd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="28" id="fhD-9a-zHJ"/>
-                <constraint firstAttribute="trailing" secondItem="1VL-MP-Qpd" secondAttribute="trailing" constant="28" id="m2d-0Z-fgA"/>
-                <constraint firstAttribute="trailing" secondItem="fO8-D0-eps" secondAttribute="trailing" constant="28" id="pNJ-04-5Wz"/>
-                <constraint firstItem="fO8-D0-eps" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="sjE-aL-Hrf"/>
+                <constraint firstItem="drD-Wj-Z6s" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="4yl-I5-M3Q"/>
+                <constraint firstAttribute="trailing" secondItem="drD-Wj-Z6s" secondAttribute="trailing" constant="28" id="9nH-17-ZIi"/>
+                <constraint firstItem="drD-Wj-Z6s" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="28" id="oRh-XX-6UA"/>
             </constraints>
             <point key="canvasLocation" x="34.5" y="69.5"/>
         </view>

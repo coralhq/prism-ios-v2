@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        print("\n\n\n\n\n\n\n\n\n\ndevice token:\(token)\n\n\n\n\n\n\n\n\n\n")
+        PrismUI.shared.sendDeviceToken(deviceToken: token)
     }
 }
 

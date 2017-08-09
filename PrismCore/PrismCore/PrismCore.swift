@@ -62,6 +62,16 @@ open class PrismCore {
         }
     }
     
+    open func sendDeviceToken(visitorID: String, token: String, deviceToken: String, completionHandler: @escaping ((Bool?, NSError?) -> ())) {
+        let endpoint = SendDeviceTokenEndpoint(visitorID: visitorID, deviceToken: deviceToken, authToken: token)
+        
+        network.request(endPoint: endpoint, mapToObject: SendTokenResponse.self) { (mappable, error) in
+            DispatchQueue.main.async(){
+                completionHandler(error != nil ? true : false, error)
+            }
+        }
+    }
+    
     open func createConversation(visitorName: String, token: String, completionHandler: @escaping ((CreateConversationResponse? ,NSError?) -> ())) {
         let endPoint = CreateConversationEndPoint(visitorName: visitorName, token: token)
         

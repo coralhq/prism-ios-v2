@@ -97,6 +97,10 @@ internal extension URL {
         }
     }
     
+    static func sendDeviceToken(visitorID: String) -> URL {
+        return URL(string: "\(PrismAPIBaseURL)/v2/visitors/\(visitorID)/device")!
+    }
+    
     static func getAttachmentURL(conversationID: String) -> URL {
         return URL(string: "\(PrismAPIBaseURL)/v2/conversations/\(conversationID)/upload_url")!
     }

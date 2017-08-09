@@ -137,6 +137,26 @@
 		80C084F71F3AAF3E009909B9 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508C1BA1EF8BD22004DCB6A /* Number.swift */; };
 		80C084F81F3AAF3E009909B9 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E573A4401F287E6500DB93E7 /* UIButton.swift */; };
 		80C084F91F3AAF3E009909B9 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54F7FE71F2965740022E15D /* UIImage.swift */; };
+		80C084FD1F3AB9F5009909B9 /* CollieGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F7711F3A72CB001F73F8 /* CollieGallery.swift */; };
+		80C084FE1F3AB9F5009909B9 /* CollieGalleryAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F7721F3A72CB001F73F8 /* CollieGalleryAppearance.swift */; };
+		80C084FF1F3AB9F5009909B9 /* CollieGalleryCaptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F7731F3A72CB001F73F8 /* CollieGalleryCaptionView.swift */; };
+		80C085001F3AB9F5009909B9 /* CollieGalleryCustomAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F7741F3A72CB001F73F8 /* CollieGalleryCustomAction.swift */; };
+		80C085011F3AB9F5009909B9 /* CollieGalleryDefaultTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F7751F3A72CB001F73F8 /* CollieGalleryDefaultTransition.swift */; };
+		80C085021F3AB9F5009909B9 /* CollieGalleryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F7761F3A72CB001F73F8 /* CollieGalleryDelegate.swift */; };
+		80C085031F3AB9F5009909B9 /* CollieGalleryOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F7771F3A72CB001F73F8 /* CollieGalleryOptions.swift */; };
+		80C085041F3AB9F5009909B9 /* CollieGalleryPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F7781F3A72CB001F73F8 /* CollieGalleryPicture.swift */; };
+		80C085051F3AB9F5009909B9 /* CollieGalleryTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F7791F3A72CB001F73F8 /* CollieGalleryTheme.swift */; };
+		80C085061F3AB9F5009909B9 /* CollieGalleryTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F77A1F3A72CB001F73F8 /* CollieGalleryTransitionManager.swift */; };
+		80C085071F3AB9F5009909B9 /* CollieGalleryTransitionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F77B1F3A72CB001F73F8 /* CollieGalleryTransitionProtocol.swift */; };
+		80C085081F3AB9F5009909B9 /* CollieGalleryTransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F77C1F3A72CB001F73F8 /* CollieGalleryTransitionType.swift */; };
+		80C085091F3AB9F5009909B9 /* CollieGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F77D1F3A72CB001F73F8 /* CollieGalleryView.swift */; };
+		80C0850A1F3AB9F5009909B9 /* CollieGalleryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F77E1F3A72CB001F73F8 /* CollieGalleryViewDelegate.swift */; };
+		80C0850B1F3AB9F5009909B9 /* CollieGalleryZoomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F77F1F3A72CB001F73F8 /* CollieGalleryZoomTransition.swift */; };
+		80C0850D1F3ABA1A009909B9 /* AuthViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0850C1F3ABA1A009909B9 /* AuthViewModelMock.swift */; };
+		80C0850F1F3ABD98009909B9 /* ChatViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0850E1F3ABD98009909B9 /* ChatViewModelMock.swift */; };
+		80C085111F3AC47E009909B9 /* StickerViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C085101F3AC47E009909B9 /* StickerViewModelMock.swift */; };
+		80C085131F3AC8E1009909B9 /* StickerPackViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C085121F3AC8E1009909B9 /* StickerPackViewModelMock.swift */; };
+		80C085151F3ADEDF009909B9 /* ContentMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C085141F3ADEDF009909B9 /* ContentMock.swift */; };
 		80DF9B061F32084400495FB0 /* ContentCloseChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF9B051F32084400495FB0 /* ContentCloseChatViewModel.swift */; };
 		80DF9B071F32084400495FB0 /* ContentCloseChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF9B051F32084400495FB0 /* ContentCloseChatViewModel.swift */; };
 		80DF9B091F320BC100495FB0 /* CDContentCloseChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF9B081F320BC100495FB0 /* CDContentCloseChat.swift */; };
@@ -294,6 +314,11 @@
 		807C899B1EEE63B400DADEBF /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		807C899E1EEE7BEC00DADEBF /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		808476941F0CBC0500E12323 /* PrismAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrismAnalytics.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/DemoPrismCore-bcrdrdmgikxzvgaenjvefmjtezuy/Build/Products/Debug-iphonesimulator/PrismAnalytics.framework"; sourceTree = "<group>"; };
+		80C0850C1F3ABA1A009909B9 /* AuthViewModelMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModelMock.swift; sourceTree = "<group>"; };
+		80C0850E1F3ABD98009909B9 /* ChatViewModelMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModelMock.swift; sourceTree = "<group>"; };
+		80C085101F3AC47E009909B9 /* StickerViewModelMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerViewModelMock.swift; sourceTree = "<group>"; };
+		80C085121F3AC8E1009909B9 /* StickerPackViewModelMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerPackViewModelMock.swift; sourceTree = "<group>"; };
+		80C085141F3ADEDF009909B9 /* ContentMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentMock.swift; sourceTree = "<group>"; };
 		80DF9B051F32084400495FB0 /* ContentCloseChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCloseChatViewModel.swift; sourceTree = "<group>"; };
 		80DF9B081F320BC100495FB0 /* CDContentCloseChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDContentCloseChat.swift; sourceTree = "<group>"; };
 		80E9F3DA1F32BD8700F49A6F /* CloseChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CloseChatTableViewCell.swift; path = Cells/CloseChatTableViewCell.swift; sourceTree = "<group>"; };
@@ -549,6 +574,18 @@
 			path = Vendors/DeviceGuru;
 			sourceTree = "<group>";
 		};
+		80C084FA1F3AB92C009909B9 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				80C0850C1F3ABA1A009909B9 /* AuthViewModelMock.swift */,
+				80C0850E1F3ABD98009909B9 /* ChatViewModelMock.swift */,
+				80C085101F3AC47E009909B9 /* StickerViewModelMock.swift */,
+				80C085121F3AC8E1009909B9 /* StickerPackViewModelMock.swift */,
+				80C085141F3ADEDF009909B9 /* ContentMock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		E5053A8D1EF130FD006677A4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,6 +600,7 @@
 		E5053A991EF1F6B3006677A4 /* PrismUnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				80C084FA1F3AB92C009909B9 /* Mock */,
 				E5053A9A1EF1F6B3006677A4 /* PrismUnitTests.swift */,
 				E5053A9C1EF1F6B3006677A4 /* Info.plist */,
 			);
@@ -991,22 +1029,29 @@
 				80C0849D1F3AAE91009909B9 /* ChatCartView.swift in Sources */,
 				80C084F51F3AAF3E009909B9 /* UIView.swift in Sources */,
 				80C084A41F3AAE97009909B9 /* ChatOutContainerView.swift in Sources */,
+				80C085011F3AB9F5009909B9 /* CollieGalleryDefaultTransition.swift in Sources */,
+				80C084FE1F3AB9F5009909B9 /* CollieGalleryAppearance.swift in Sources */,
 				80C084AA1F3AAE97009909B9 /* ChatCell.swift in Sources */,
 				80C084DF1F3AAEF4009909B9 /* Utils.swift in Sources */,
 				80C084881F3AAE6D009909B9 /* ChatBubleView.swift in Sources */,
 				E5053A9B1EF1F6B3006677A4 /* PrismUnitTests.swift in Sources */,
 				80C084A81F3AAE97009909B9 /* StickerOutContainer.swift in Sources */,
 				80E9F3DD1F32BD8700F49A6F /* CloseChatTableViewCell.swift in Sources */,
+				80C085151F3ADEDF009909B9 /* ContentMock.swift in Sources */,
 				80C084871F3AAE6D009909B9 /* LinedTextField.swift in Sources */,
+				80C0850A1F3AB9F5009909B9 /* CollieGalleryViewDelegate.swift in Sources */,
 				80C084841F3AAE68009909B9 /* String+MD5.swift in Sources */,
 				80C084E51F3AAF2A009909B9 /* ChatViewModel.swift in Sources */,
 				80C084BA1F3AAECF009909B9 /* CDUser+CoreDataProperties.swift in Sources */,
 				80C0847D1F3AAE62009909B9 /* KeyboardAvoiding.swift in Sources */,
 				80C084EA1F3AAF3A009909B9 /* ContentProductViewModel.swift in Sources */,
+				80C085031F3AB9F5009909B9 /* CollieGalleryOptions.swift in Sources */,
 				80DF9B071F32084400495FB0 /* ContentCloseChatViewModel.swift in Sources */,
 				80C084C21F3AAED3009909B9 /* CDContentInvoice.swift in Sources */,
 				80C084921F3AAE8C009909B9 /* ContentProductCell.swift in Sources */,
 				80C084E91F3AAF3A009909B9 /* ContentCartViewModel.swift in Sources */,
+				80C085041F3AB9F5009909B9 /* CollieGalleryPicture.swift in Sources */,
+				80C0850F1F3ABD98009909B9 /* ChatViewModelMock.swift in Sources */,
 				80C084C01F3AAED3009909B9 /* CDContentAttachment.swift in Sources */,
 				80C084AD1F3AAE9D009909B9 /* ChatComposer.swift in Sources */,
 				80C084C81F3AAED3009909B9 /* Settings.swift in Sources */,
@@ -1017,12 +1062,15 @@
 				80C084DE1F3AAEE7009909B9 /* Theme.swift in Sources */,
 				80C084CE1F3AAED9009909B9 /* ConnectViewController.swift in Sources */,
 				80C084E31F3AAEF4009909B9 /* CacheImage.swift in Sources */,
+				80C085021F3AB9F5009909B9 /* CollieGalleryDelegate.swift in Sources */,
+				80C085051F3AB9F5009909B9 /* CollieGalleryTheme.swift in Sources */,
 				80C084ED1F3AAF3A009909B9 /* AuthViewModel.swift in Sources */,
 				80C084B91F3AAECF009909B9 /* CDUser+CoreDataClass.swift in Sources */,
 				80C084F81F3AAF3E009909B9 /* UIButton.swift in Sources */,
 				80C084901F3AAE87009909B9 /* MidtransView.swift in Sources */,
 				80C084C41F3AAED3009909B9 /* CDContentProduct.swift in Sources */,
 				80C084A11F3AAE97009909B9 /* ChatContainerView.swift in Sources */,
+				80C085061F3AB9F5009909B9 /* CollieGalleryTransitionManager.swift in Sources */,
 				80C084B81F3AAECF009909B9 /* CDBrokerMetaData+CoreDataProperties.swift in Sources */,
 				80C084E71F3AAF3A009909B9 /* ContentStickerViewModel.swift in Sources */,
 				80C084B11F3AAE9D009909B9 /* EmojiInputView.swift in Sources */,
@@ -1041,22 +1089,29 @@
 				80C084EE1F3AAF3A009909B9 /* StickerViewModel.swift in Sources */,
 				80C084991F3AAE91009909B9 /* ChatInvoiceView.swift in Sources */,
 				80C084F71F3AAF3E009909B9 /* Number.swift in Sources */,
+				80C085081F3AB9F5009909B9 /* CollieGalleryTransitionType.swift in Sources */,
 				80C084BF1F3AAED3009909B9 /* CDContentPlainText.swift in Sources */,
+				80C084FD1F3AB9F5009909B9 /* CollieGallery.swift in Sources */,
 				80C084BD1F3AAECF009909B9 /* CDMessage+CoreDataClass.swift in Sources */,
 				80C084B31F3AAE9D009909B9 /* HeaderView.swift in Sources */,
+				80C0850B1F3AB9F5009909B9 /* CollieGalleryZoomTransition.swift in Sources */,
 				80C084CA1F3AAED9009909B9 /* OfflineFormViewController.swift in Sources */,
 				80C084E81F3AAF3A009909B9 /* ContentInvoiceViewModel.swift in Sources */,
 				80C084E11F3AAEF4009909B9 /* CoreDataManager.swift in Sources */,
+				80C085071F3AB9F5009909B9 /* CollieGalleryTransitionProtocol.swift in Sources */,
 				80C084F31F3AAF3E009909B9 /* UIViewController.swift in Sources */,
 				80C0849F1F3AAE91009909B9 /* ChatImageView.swift in Sources */,
 				80C084AF1F3AAE9D009909B9 /* StickerInputView.swift in Sources */,
+				80C085131F3AC8E1009909B9 /* StickerPackViewModelMock.swift in Sources */,
 				80C084851F3AAE6D009909B9 /* SmallButton.swift in Sources */,
 				80C084A21F3AAE97009909B9 /* ChatInContainerView.swift in Sources */,
+				80C0850D1F3ABA1A009909B9 /* AuthViewModelMock.swift in Sources */,
 				80C0849B1F3AAE91009909B9 /* ChatProductView.swift in Sources */,
 				80C084BB1F3AAECF009909B9 /* CDSender+CoreDataClass.swift in Sources */,
 				80C084941F3AAE91009909B9 /* ChatContentView.swift in Sources */,
 				80C084F01F3AAF3E009909B9 /* Extensions.swift in Sources */,
 				80C084B51F3AAE9D009909B9 /* EmptyChatView.swift in Sources */,
+				80C085001F3AB9F5009909B9 /* CollieGalleryCustomAction.swift in Sources */,
 				80C084EC1F3AAF3A009909B9 /* ContentOfflineViewModel.swift in Sources */,
 				80C084EF1F3AAF3A009909B9 /* StickerPackViewModel.swift in Sources */,
 				80C084C11F3AAED3009909B9 /* CDContentCart.swift in Sources */,
@@ -1066,6 +1121,9 @@
 				80C084831F3AAE68009909B9 /* DiskStatus.swift in Sources */,
 				80C0848D1F3AAE80009909B9 /* Chat.xcdatamodeld in Sources */,
 				80C084BE1F3AAECF009909B9 /* CDMessage+CoreDataProperties.swift in Sources */,
+				80C085091F3AB9F5009909B9 /* CollieGalleryView.swift in Sources */,
+				80C084FF1F3AB9F5009909B9 /* CollieGalleryCaptionView.swift in Sources */,
+				80C085111F3AC47E009909B9 /* StickerViewModelMock.swift in Sources */,
 				80C084971F3AAE91009909B9 /* ChatStickerView.swift in Sources */,
 				80C0848E1F3AAE87009909B9 /* ProductCartView.swift in Sources */,
 				80C084E01F3AAEF4009909B9 /* ChatManager.swift in Sources */,

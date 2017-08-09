@@ -28,7 +28,7 @@ class StickerInputView: UIView {
             sectionStickerView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .init(rawValue: 0))
         }
     }
-    
+
     var selectedPack: StickerPackViewModel? {
         didSet {
             contentStickerView.reloadData()

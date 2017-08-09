@@ -9,6 +9,7 @@
 import UIKit
 import PrismAnalytics
 import PrismCore
+import UserNotifications
 
 class ChatViewController: BaseViewController {
     

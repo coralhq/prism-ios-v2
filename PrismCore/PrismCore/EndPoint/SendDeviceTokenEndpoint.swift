@@ -23,7 +23,6 @@ class SendDeviceTokenEndpoint: EndPoint {
     var token: String?
     var httpBody: [String : Any] {
         get {
-            print(deviceToken)
             return [
                 "id": UIDevice.current.identifierForVendor?.description ?? String.randomUserID,
                 "token": deviceToken,

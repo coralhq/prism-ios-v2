@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension UIButton {
     func startLoading(indicatorColor: UIColor = Settings.shared.theme.strokeColor) {

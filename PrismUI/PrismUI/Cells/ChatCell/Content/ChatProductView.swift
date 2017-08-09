@@ -71,10 +71,7 @@ extension ChatProductView: UICollectionViewDelegate {
         guard let rootVC = UIViewController.root else {
             return
         }
-        var pictures: [CollieGalleryPicture] = []
-        for url in imageURLs {
-            pictures.append(CollieGalleryPicture(url: url.absoluteString))
-        }
+        let pictures = imageURLs.map { CollieGalleryPicture(url: $0.absoluteString) }
         let viewer = CollieGallery(pictures: pictures, options: nil, theme: nil)
         viewer.presentInViewController(rootVC)
     }

@@ -23,6 +23,8 @@ class ChatImageView: ChatContentView {
         
         imageView.superview?.layer.masksToBounds = true
         imageView.superview?.layer.cornerRadius = 8
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
         
         NotificationCenter.default.addObserver(self, selector: #selector(uploadProgress(sender:)) , name: UploadProgressNotification, object: nil)
     }
@@ -33,7 +35,7 @@ class ChatImageView: ChatContentView {
                 return
         }
         imageURL = contentVM.imageURL
-
+        
         switch state {
         case .finished:
             dimmedView.isHidden = true
@@ -45,6 +47,16 @@ class ChatImageView: ChatContentView {
         }
         
         imageView.downloadedFrom(url: contentVM.imageURL)
+    }
+    
+    func imageTapped() {
+        guard let imgURL = imageURL?.absoluteString,
+            let rootVC = UIViewController.root else {
+                return
+        }
+        let picture = CollieGalleryPicture(url: imgURL)
+        let viewer = CollieGallery(pictures: [picture], options: nil, theme: nil)
+        viewer.presentInViewController(rootVC)
     }
     
     deinit {

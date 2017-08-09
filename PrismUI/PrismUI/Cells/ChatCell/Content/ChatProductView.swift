@@ -66,6 +66,18 @@ extension ChatProductView: UICollectionViewDelegate {
         let pageWidth = scrollView.frame.size.width
         pageControl.currentPage = Int(scrollView.contentOffset.x / pageWidth)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let rootVC = UIViewController.root else {
+            return
+        }
+        var pictures: [CollieGalleryPicture] = []
+        for url in imageURLs {
+            pictures.append(CollieGalleryPicture(url: url.absoluteString))
+        }
+        let viewer = CollieGallery(pictures: pictures, options: nil, theme: nil)
+        viewer.presentInViewController(rootVC)
+    }
 }
 
 extension ChatProductView: UICollectionViewDataSource {

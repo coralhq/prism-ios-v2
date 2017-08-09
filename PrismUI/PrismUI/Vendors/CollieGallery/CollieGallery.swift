@@ -131,11 +131,9 @@ open class CollieGallery: UIViewController, UIScrollViewDelegate, CollieGalleryV
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         isStatusBarHidden = true
-        UIView.animate(withDuration: 0.3) {
-            self.setNeedsStatusBarAppearanceUpdate()
-        }
+        setNeedsStatusBarAppearanceUpdate()
         
         pagingScrollView.delegate = self
         scrollToIndex(options.openAtIndex, animated: false)
@@ -158,26 +156,25 @@ open class CollieGallery: UIViewController, UIScrollViewDelegate, CollieGalleryV
         super.viewWillDisappear(animated)
         
         isStatusBarHidden = false
-        UIView.animate(withDuration: 0.3) { 
-            self.setNeedsStatusBarAppearanceUpdate()
-        }
+        setNeedsStatusBarAppearanceUpdate()
         
         pagingScrollView.delegate = nil
+    }
+    
+    var isStatusBarHidden = false
+    open override var prefersStatusBarHidden: Bool {
+        return isStatusBarHidden
+    }
+    
+    open override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
     }
     
     open override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         clearImagesFarFromIndex(currentPageIndex)
     }
-    
-    var isStatusBarHidden = false
-    override open var prefersStatusBarHidden : Bool {
-        return isStatusBarHidden
-    }
-    open override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        return .slide
-    }
-    
+
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
@@ -189,6 +186,7 @@ open class CollieGallery: UIViewController, UIScrollViewDelegate, CollieGalleryV
     
     // MARK: - Private functions
     fileprivate func setupView() {
+        
         view.backgroundColor = theme.backgroundColor
         
         setupScrollView()

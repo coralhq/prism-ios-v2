@@ -13,95 +13,151 @@ class AuthViewModelMock {
     
     func getSetting() -> [String: Any] {
         return [
-                    "widget": [
-                        "enabled": true,
-                        "persona_enabled": true,
-                        "persona_image_url": "https://s3-ap-southeast-1.amazonaws.com/prismapp-staging/images/01BBRCNEWPNWPW0TW5THRP1QT5/logo.png",
-                        "persona_name": "PRISM",
-                        "title_expanded": "Let's shop with us!",
-                        "subtitle": "Chat to buy",
-                        "title_minimized": "Mau pesan? Klik disini",
-                        "welcome_message": "Hello, we’re here to make your shopping smoother. Let’s chat!",
-                        "offline_form_message": "Hello, We are on offline service now.",
-                        "connect_form_message": "hello please fill this form",
-                        "style": "CORAL",
-                        "attention_grabber": [
-                            "option": "TEXT_AND_IMAGE",
-                            "desktop_text": "PRISM IS AWESOME",
-                            "desktop_image_url": "https://s3-ap-southeast-1.amazonaws.com/prismapp-staging/images/01BBT91DXERBDS1NQM22JJ04GA/Group @2x.png",
-                            "mobile_text": "PRISM IS AWESOME",
-                            "mobile_image_url": "https://s3-ap-southeast-1.amazonaws.com/prismapp-staging/images/01BBRH08W35SGA1HQQK1SB10KX/ag-test-2.png"
+            "widget":[
+                "enabled": true,
+                "visitor_connect": [
+                    "option": "DISABLED|ENABLED",
+                    "form_message": "Hello, we’re here to make your shopping smoother. Let’s chat!",
+                    "form_options": [
+                        "name": [
+                            "show":false,
+                            "required":false
                         ],
-                        "offline_message": "Informasi data dan pesan yang Anda kirim sudah kami terima. Kami akan menghubungi Anda segera.",
-                        "working_hours": [
-                            "monday": [
-                                [
-                                    "from": "00:00",
-                                    "to": "23:59"
-                                ]
-                            ],
-                            "tuesday": [
-                                [
-                                    "from": "00:00",
-                                    "to": "23:59"
-                                ]
-                            ],
-                            "wednesday": [
-                                [
-                                    "from": "00:00",
-                                    "to": "23:59"
-                                ]
-                            ],
-                            "thursday": [
-                                [
-                                    "from": "00:00",
-                                    "to": "23:59"
-                                ]
-                            ],
-                            "friday": [
-                                [
-                                    "from": "00:00",
-                                    "to": "23:59"
-                                ]
-                            ],
-                            "saturday": [
-                                [
-                                    "from": "00:00",
-                                    "to": "23:59"
-                                ]
-                            ],
-                            "sunday": [
-                                [
-                                    "from": "00:00",
-                                    "to": "23:59"
-                                ]
-                            ]
+                        "phone": [
+                            "show":false,
+                            "required":false
                         ],
-                        "position": "bottom-right",
-                        "input_form": "ENABLED",
-                        "input_form_field": [
-                            "name": [
-                                "show": true,
-                                "required": true
-                            ],
-                            "phone": [
-                                "show": true,
-                                "required": true
-                            ],
-                            "email": [
-                                "show": true,
-                                "required": true
-                            ]
-                        ],
-                        "timezone": "Asia/Jakarta",
-                        "triggers": [
-                            [
-                                "url": "https://waldo.staging.coral-inc.com/prism",
-                                "wait_time": "20"
-                            ]
+                        "email": [
+                            "show":false,
+                            "required":false
                         ]
                     ]
+                ],
+                "appearance": [
+                    "persona": [
+                        "enabled":false,
+                        "image_url":"https://img.com/avatar.png",
+                        "name":"Danny"
+                    ],
+                    "texts": [
+                        "title_expanded": "Let`s shop with us!",
+                        "subtitle": "Chat to buy",
+                        "title_minimized": "Mau pesan? Klik disini",
+                        "welcome_message": "Hello, we’re here to make your shopping smoother. Let’s chat!"
+                    ],
+                    "color_theme": "PINK|WHITE|BLACK|BLUE|GREEN|CORAL|YELLOW",
+                    "position": "bottom-right"
+                ],
+                "attention_grabber":[
+                    "option":"DISABLED|TEXT|IMAGE|TEXT_AND_IMAGE",
+                    "desktop_text":"PRISM IS YOUR CONVERSION RATE BOOSTER",
+                    "desktop_image_url":"https://img.com/attention-grabber-desktop.png",
+                    "mobile_text":"PRISM IS YOUR CONVERSION RATE BOOSTER",
+                    "mobile_image_url":"https://img.com/attention-grabber-desktop.png"
+                ],
+                "working_hours":[
+                    "monday":[
+                        [
+                            "from":"08:00",
+                            "to":"12:00"
+                        ],
+                        [
+                            "from":"13:00",
+                            "to":"18:00"
+                        ]
+                    ],
+                    "tuesday":[
+                        [
+                            "from":"08:00",
+                            "to":"12:00"
+                        ],
+                        [
+                            "from":"13:00",
+                            "to":"18:00"
+                        ]
+                        ],
+                    "wednesday":[
+                        [
+                            "from":"08:00",
+                            "to":"12:00"
+                        ],
+                        [
+                            "from":"13:00",
+                            "to":"18:00"
+                        ]
+                    ],
+                    "thursday":[
+                        [
+                        "from":"08:00",
+                        "to":"12:00"
+                        ],
+                        [
+                        "from":"13:00",
+                        "to":"18:00"
+                        ]
+                    ],
+                    "friday":[
+                        [
+                            "from":"08:00",
+                            "to":"12:00"
+                        ],
+                        [
+                            "from":"13:00",
+                            "to":"18:00"
+                        ]
+                    ],
+                    "saturday":[],
+                    "sunday":[]
+                ],
+                "offline_widget":[
+                    "texts":[
+                        "equals_title_minimized": false,
+                        "equals_title_expanded": false,
+                        "title_expanded":"We’re Offline, leave us a message",
+                        "title_minimized":"We’re Offline, leave us a message",
+                        "offline_message":"Hello, our chat service is closed now. Please leave a message, we will contact you as soon as we’re back",
+                        "offline_message_confirmation": "Thank you for contact us"
+                    ],
+                    "form_options":[
+                        "name":[
+                            "show":false,
+                            "required":false
+                        ],
+                        "phone":[
+                            "show":false,
+                            "required":false
+                        ],
+                        "email":[
+                            "show":false,
+                            "required":false
+                        ]
+                    ]
+                ],
+                "triggers": [
+                    [
+                        "url": "http://prismapp.io/trigger",
+                        "wait_time": "5",
+                        "action": "Widget Expanded|Widget Minimized",
+                        "enabled": true
+                    ],
+                    [
+                        "url": "http://prismapp.io/products",
+                        "wait_time": "15",
+                        "action": "Widget Expanded|Widget Minimized",
+                        "enabled": true
+                    ]
+                ],
+                "auto_responders":[  
+                    [
+                        "channel_id": "123674762",
+                        "channel_type": "SHAMU|LINE|FACEBOOK",
+                        "condition": "When Online|When Offline",
+                        "response_message": "Welcome to Prismshop, what can we do for you today?",
+                        "enabled": true
+                    ]
                 ]
+            ]
+        ]
     }
     
     func getConnectResponse(valid: Bool) -> ConnectResponse? {

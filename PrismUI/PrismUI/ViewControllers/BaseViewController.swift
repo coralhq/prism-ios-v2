@@ -41,4 +41,12 @@ public class BaseViewController: UIViewController {
     func closePressed(sender: UIBarButtonItem) {
         navigationController?.dismiss(animated: true, completion: nil)
     }
+    
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        if Settings.shared.theme.headerColor == UIColor.white {
+            return .default
+        } else {
+            return .lightContent
+        }
+    }
 }

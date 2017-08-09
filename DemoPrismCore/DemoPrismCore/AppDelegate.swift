@@ -25,7 +25,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.rootViewController = vc
         window!.makeKeyAndVisible()
         
+        registerForPushNotifications()
+        
         return true
+    }
+    
+    func registerForPushNotifications() {
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+                (granted, error) in
+                print("Permission granted: \(granted)")
+            }
+        } else {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

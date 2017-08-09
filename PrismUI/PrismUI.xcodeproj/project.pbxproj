@@ -80,14 +80,6 @@
 		80C084B41F3AAE9D009909B9 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5AC24751F208E0200950A2E /* HeaderView.xib */; };
 		80C084B51F3AAE9D009909B9 /* EmptyChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BC92831F3940A300B318EC /* EmptyChatView.swift */; };
 		80C084B61F3AAE9D009909B9 /* EmptyChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5BC92851F3940AB00B318EC /* EmptyChatView.xib */; };
-		80C084B71F3AAECF009909B9 /* CDBrokerMetaData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEE41EFCCC80002E2171 /* CDBrokerMetaData+CoreDataClass.swift */; };
-		80C084B81F3AAECF009909B9 /* CDBrokerMetaData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEE51EFCCC80002E2171 /* CDBrokerMetaData+CoreDataProperties.swift */; };
-		80C084B91F3AAECF009909B9 /* CDUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEE61EFCCC80002E2171 /* CDUser+CoreDataClass.swift */; };
-		80C084BA1F3AAECF009909B9 /* CDUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEE71EFCCC80002E2171 /* CDUser+CoreDataProperties.swift */; };
-		80C084BB1F3AAECF009909B9 /* CDSender+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEE81EFCCC80002E2171 /* CDSender+CoreDataClass.swift */; };
-		80C084BC1F3AAECF009909B9 /* CDSender+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEE91EFCCC80002E2171 /* CDSender+CoreDataProperties.swift */; };
-		80C084BD1F3AAECF009909B9 /* CDMessage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEEA1EFCCC80002E2171 /* CDMessage+CoreDataClass.swift */; };
-		80C084BE1F3AAECF009909B9 /* CDMessage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEEB1EFCCC80002E2171 /* CDMessage+CoreDataProperties.swift */; };
 		80C084BF1F3AAED3009909B9 /* CDContentPlainText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEF41EFCCD43002E2171 /* CDContentPlainText.swift */; };
 		80C084C01F3AAED3009909B9 /* CDContentAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEF71EFCE7AB002E2171 /* CDContentAttachment.swift */; };
 		80C084C11F3AAED3009909B9 /* CDContentCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEF91EFCE7B9002E2171 /* CDContentCart.swift */; };
@@ -161,6 +153,24 @@
 		80DF9B071F32084400495FB0 /* ContentCloseChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF9B051F32084400495FB0 /* ContentCloseChatViewModel.swift */; };
 		80DF9B091F320BC100495FB0 /* CDContentCloseChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF9B081F320BC100495FB0 /* CDContentCloseChat.swift */; };
 		80DF9B0A1F320BC100495FB0 /* CDContentCloseChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF9B081F320BC100495FB0 /* CDContentCloseChat.swift */; };
+		80E58FDA1F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD21F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataClass.swift */; };
+		80E58FDB1F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD21F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataClass.swift */; };
+		80E58FDC1F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD31F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataProperties.swift */; };
+		80E58FDD1F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD31F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataProperties.swift */; };
+		80E58FDE1F3B5FC100A85B06 /* CDMessage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD41F3B5FC100A85B06 /* CDMessage+CoreDataClass.swift */; };
+		80E58FDF1F3B5FC100A85B06 /* CDMessage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD41F3B5FC100A85B06 /* CDMessage+CoreDataClass.swift */; };
+		80E58FE01F3B5FC100A85B06 /* CDMessage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD51F3B5FC100A85B06 /* CDMessage+CoreDataProperties.swift */; };
+		80E58FE11F3B5FC100A85B06 /* CDMessage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD51F3B5FC100A85B06 /* CDMessage+CoreDataProperties.swift */; };
+		80E58FE21F3B5FC100A85B06 /* CDSender+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD61F3B5FC100A85B06 /* CDSender+CoreDataClass.swift */; };
+		80E58FE31F3B5FC100A85B06 /* CDSender+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD61F3B5FC100A85B06 /* CDSender+CoreDataClass.swift */; };
+		80E58FE41F3B5FC100A85B06 /* CDSender+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD71F3B5FC100A85B06 /* CDSender+CoreDataProperties.swift */; };
+		80E58FE51F3B5FC100A85B06 /* CDSender+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD71F3B5FC100A85B06 /* CDSender+CoreDataProperties.swift */; };
+		80E58FE61F3B5FC100A85B06 /* CDUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD81F3B5FC100A85B06 /* CDUser+CoreDataClass.swift */; };
+		80E58FE71F3B5FC100A85B06 /* CDUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD81F3B5FC100A85B06 /* CDUser+CoreDataClass.swift */; };
+		80E58FE81F3B5FC100A85B06 /* CDUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD91F3B5FC100A85B06 /* CDUser+CoreDataProperties.swift */; };
+		80E58FE91F3B5FC100A85B06 /* CDUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FD91F3B5FC100A85B06 /* CDUser+CoreDataProperties.swift */; };
+		80E58FEB1F3B617E00A85B06 /* ChatSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FEA1F3B617E00A85B06 /* ChatSectionViewModel.swift */; };
+		80E58FEC1F3B617E00A85B06 /* ChatSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E58FEA1F3B617E00A85B06 /* ChatSectionViewModel.swift */; };
 		80E9F3DC1F32BD8700F49A6F /* CloseChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E9F3DA1F32BD8700F49A6F /* CloseChatTableViewCell.swift */; };
 		80E9F3DD1F32BD8700F49A6F /* CloseChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E9F3DA1F32BD8700F49A6F /* CloseChatTableViewCell.swift */; };
 		80E9F3DE1F32BD8700F49A6F /* CloseChatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E9F3DB1F32BD8700F49A6F /* CloseChatTableViewCell.xib */; };
@@ -249,14 +259,6 @@
 		E593AE971EFB7966002E2171 /* StickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AE961EFB7966002E2171 /* StickerViewModel.swift */; };
 		E593AE991EFB8E71002E2171 /* StickerPackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AE981EFB8E71002E2171 /* StickerPackViewModel.swift */; };
 		E593AEC31EFCCB2C002E2171 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E593AE9A1EFCB42F002E2171 /* Chat.xcdatamodeld */; };
-		E593AEEC1EFCCC80002E2171 /* CDBrokerMetaData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEE41EFCCC80002E2171 /* CDBrokerMetaData+CoreDataClass.swift */; };
-		E593AEED1EFCCC80002E2171 /* CDBrokerMetaData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEE51EFCCC80002E2171 /* CDBrokerMetaData+CoreDataProperties.swift */; };
-		E593AEEE1EFCCC80002E2171 /* CDUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEE61EFCCC80002E2171 /* CDUser+CoreDataClass.swift */; };
-		E593AEEF1EFCCC80002E2171 /* CDUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEE71EFCCC80002E2171 /* CDUser+CoreDataProperties.swift */; };
-		E593AEF01EFCCC80002E2171 /* CDSender+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEE81EFCCC80002E2171 /* CDSender+CoreDataClass.swift */; };
-		E593AEF11EFCCC80002E2171 /* CDSender+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEE91EFCCC80002E2171 /* CDSender+CoreDataProperties.swift */; };
-		E593AEF21EFCCC80002E2171 /* CDMessage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEEA1EFCCC80002E2171 /* CDMessage+CoreDataClass.swift */; };
-		E593AEF31EFCCC80002E2171 /* CDMessage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEEB1EFCCC80002E2171 /* CDMessage+CoreDataProperties.swift */; };
 		E593AEF51EFCCD43002E2171 /* CDContentPlainText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEF41EFCCD43002E2171 /* CDContentPlainText.swift */; };
 		E593AEF81EFCE7AB002E2171 /* CDContentAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEF71EFCE7AB002E2171 /* CDContentAttachment.swift */; };
 		E593AEFA1EFCE7B9002E2171 /* CDContentCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593AEF91EFCE7B9002E2171 /* CDContentCart.swift */; };
@@ -321,6 +323,15 @@
 		80C085141F3ADEDF009909B9 /* ContentMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentMock.swift; sourceTree = "<group>"; };
 		80DF9B051F32084400495FB0 /* ContentCloseChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCloseChatViewModel.swift; sourceTree = "<group>"; };
 		80DF9B081F320BC100495FB0 /* CDContentCloseChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDContentCloseChat.swift; sourceTree = "<group>"; };
+		80E58FD21F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDBrokerMetaData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		80E58FD31F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDBrokerMetaData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		80E58FD41F3B5FC100A85B06 /* CDMessage+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDMessage+CoreDataClass.swift"; sourceTree = "<group>"; };
+		80E58FD51F3B5FC100A85B06 /* CDMessage+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDMessage+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		80E58FD61F3B5FC100A85B06 /* CDSender+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDSender+CoreDataClass.swift"; sourceTree = "<group>"; };
+		80E58FD71F3B5FC100A85B06 /* CDSender+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDSender+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		80E58FD81F3B5FC100A85B06 /* CDUser+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDUser+CoreDataClass.swift"; sourceTree = "<group>"; };
+		80E58FD91F3B5FC100A85B06 /* CDUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		80E58FEA1F3B617E00A85B06 /* ChatSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatSectionViewModel.swift; sourceTree = "<group>"; };
 		80E9F3DA1F32BD8700F49A6F /* CloseChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CloseChatTableViewCell.swift; path = Cells/CloseChatTableViewCell.swift; sourceTree = "<group>"; };
 		80E9F3DB1F32BD8700F49A6F /* CloseChatTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CloseChatTableViewCell.xib; path = Cells/CloseChatTableViewCell.xib; sourceTree = "<group>"; };
 		E5053A871EF10D24006677A4 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -410,14 +421,6 @@
 		E593AE981EFB8E71002E2171 /* StickerPackViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerPackViewModel.swift; sourceTree = "<group>"; };
 		E593AE9B1EFCB42F002E2171 /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
 		E593AEA01EFCC873002E2171 /* v1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = v1.xcdatamodel; sourceTree = "<group>"; };
-		E593AEE41EFCCC80002E2171 /* CDBrokerMetaData+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDBrokerMetaData+CoreDataClass.swift"; path = "Models/CoreData/CDBrokerMetaData+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E593AEE51EFCCC80002E2171 /* CDBrokerMetaData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDBrokerMetaData+CoreDataProperties.swift"; path = "Models/CoreData/CDBrokerMetaData+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		E593AEE61EFCCC80002E2171 /* CDUser+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDUser+CoreDataClass.swift"; path = "Models/CoreData/CDUser+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E593AEE71EFCCC80002E2171 /* CDUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDUser+CoreDataProperties.swift"; path = "Models/CoreData/CDUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		E593AEE81EFCCC80002E2171 /* CDSender+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDSender+CoreDataClass.swift"; path = "Models/CoreData/CDSender+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E593AEE91EFCCC80002E2171 /* CDSender+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDSender+CoreDataProperties.swift"; path = "Models/CoreData/CDSender+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		E593AEEA1EFCCC80002E2171 /* CDMessage+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDMessage+CoreDataClass.swift"; path = "Models/CoreData/CDMessage+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E593AEEB1EFCCC80002E2171 /* CDMessage+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CDMessage+CoreDataProperties.swift"; path = "Models/CoreData/CDMessage+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E593AEF41EFCCD43002E2171 /* CDContentPlainText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CDContentPlainText.swift; path = Models/CoreData/Contents/CDContentPlainText.swift; sourceTree = "<group>"; };
 		E593AEF71EFCE7AB002E2171 /* CDContentAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CDContentAttachment.swift; path = Models/CoreData/Contents/CDContentAttachment.swift; sourceTree = "<group>"; };
 		E593AEF91EFCE7B9002E2171 /* CDContentCart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CDContentCart.swift; path = Models/CoreData/Contents/CDContentCart.swift; sourceTree = "<group>"; };
@@ -512,6 +515,7 @@
 				E58FAE5E1EF3687D002F1A2A /* ChatViewModel.swift */,
 				E593AE961EFB7966002E2171 /* StickerViewModel.swift */,
 				E593AE981EFB8E71002E2171 /* StickerPackViewModel.swift */,
+				80E58FEA1F3B617E00A85B06 /* ChatSectionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -584,6 +588,21 @@
 				80C085141F3ADEDF009909B9 /* ContentMock.swift */,
 			);
 			path = Mock;
+			sourceTree = "<group>";
+		};
+		80E58FD11F3B5F6E00A85B06 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				80E58FD21F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataClass.swift */,
+				80E58FD31F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataProperties.swift */,
+				80E58FD41F3B5FC100A85B06 /* CDMessage+CoreDataClass.swift */,
+				80E58FD51F3B5FC100A85B06 /* CDMessage+CoreDataProperties.swift */,
+				80E58FD61F3B5FC100A85B06 /* CDSender+CoreDataClass.swift */,
+				80E58FD71F3B5FC100A85B06 /* CDSender+CoreDataProperties.swift */,
+				80E58FD81F3B5FC100A85B06 /* CDUser+CoreDataClass.swift */,
+				80E58FD91F3B5FC100A85B06 /* CDUser+CoreDataProperties.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		E5053A8D1EF130FD006677A4 /* Models */ = {
@@ -802,14 +821,7 @@
 		E593AE9F1EFCC856002E2171 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				E593AEE41EFCCC80002E2171 /* CDBrokerMetaData+CoreDataClass.swift */,
-				E593AEE51EFCCC80002E2171 /* CDBrokerMetaData+CoreDataProperties.swift */,
-				E593AEE61EFCCC80002E2171 /* CDUser+CoreDataClass.swift */,
-				E593AEE71EFCCC80002E2171 /* CDUser+CoreDataProperties.swift */,
-				E593AEE81EFCCC80002E2171 /* CDSender+CoreDataClass.swift */,
-				E593AEE91EFCCC80002E2171 /* CDSender+CoreDataProperties.swift */,
-				E593AEEA1EFCCC80002E2171 /* CDMessage+CoreDataClass.swift */,
-				E593AEEB1EFCCC80002E2171 /* CDMessage+CoreDataProperties.swift */,
+				80E58FD11F3B5F6E00A85B06 /* Helpers */,
 				E593AEF61EFCE368002E2171 /* Contents */,
 			);
 			name = CoreData;
@@ -1022,9 +1034,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80C084BC1F3AAECF009909B9 /* CDSender+CoreDataProperties.swift in Sources */,
 				80C084E61F3AAF3A009909B9 /* ContentTextViewModel.swift in Sources */,
-				80C084B71F3AAECF009909B9 /* CDBrokerMetaData+CoreDataClass.swift in Sources */,
 				80C084F61F3AAF3E009909B9 /* UITextField.swift in Sources */,
 				80C0849D1F3AAE91009909B9 /* ChatCartView.swift in Sources */,
 				80C084F51F3AAF3E009909B9 /* UIView.swift in Sources */,
@@ -1033,16 +1043,17 @@
 				80C084FE1F3AB9F5009909B9 /* CollieGalleryAppearance.swift in Sources */,
 				80C084AA1F3AAE97009909B9 /* ChatCell.swift in Sources */,
 				80C084DF1F3AAEF4009909B9 /* Utils.swift in Sources */,
+				80E58FDD1F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataProperties.swift in Sources */,
 				80C084881F3AAE6D009909B9 /* ChatBubleView.swift in Sources */,
 				E5053A9B1EF1F6B3006677A4 /* PrismUnitTests.swift in Sources */,
 				80C084A81F3AAE97009909B9 /* StickerOutContainer.swift in Sources */,
 				80E9F3DD1F32BD8700F49A6F /* CloseChatTableViewCell.swift in Sources */,
 				80C085151F3ADEDF009909B9 /* ContentMock.swift in Sources */,
+				80E58FE11F3B5FC100A85B06 /* CDMessage+CoreDataProperties.swift in Sources */,
 				80C084871F3AAE6D009909B9 /* LinedTextField.swift in Sources */,
 				80C0850A1F3AB9F5009909B9 /* CollieGalleryViewDelegate.swift in Sources */,
 				80C084841F3AAE68009909B9 /* String+MD5.swift in Sources */,
 				80C084E51F3AAF2A009909B9 /* ChatViewModel.swift in Sources */,
-				80C084BA1F3AAECF009909B9 /* CDUser+CoreDataProperties.swift in Sources */,
 				80C0847D1F3AAE62009909B9 /* KeyboardAvoiding.swift in Sources */,
 				80C084EA1F3AAF3A009909B9 /* ContentProductViewModel.swift in Sources */,
 				80C085031F3AB9F5009909B9 /* CollieGalleryOptions.swift in Sources */,
@@ -1065,13 +1076,11 @@
 				80C085021F3AB9F5009909B9 /* CollieGalleryDelegate.swift in Sources */,
 				80C085051F3AB9F5009909B9 /* CollieGalleryTheme.swift in Sources */,
 				80C084ED1F3AAF3A009909B9 /* AuthViewModel.swift in Sources */,
-				80C084B91F3AAECF009909B9 /* CDUser+CoreDataClass.swift in Sources */,
 				80C084F81F3AAF3E009909B9 /* UIButton.swift in Sources */,
 				80C084901F3AAE87009909B9 /* MidtransView.swift in Sources */,
 				80C084C41F3AAED3009909B9 /* CDContentProduct.swift in Sources */,
 				80C084A11F3AAE97009909B9 /* ChatContainerView.swift in Sources */,
 				80C085061F3AB9F5009909B9 /* CollieGalleryTransitionManager.swift in Sources */,
-				80C084B81F3AAECF009909B9 /* CDBrokerMetaData+CoreDataProperties.swift in Sources */,
 				80C084E71F3AAF3A009909B9 /* ContentStickerViewModel.swift in Sources */,
 				80C084B11F3AAE9D009909B9 /* EmojiInputView.swift in Sources */,
 				80C084C61F3AAED3009909B9 /* InputFormSettings.swift in Sources */,
@@ -1083,6 +1092,8 @@
 				80C084CC1F3AAED9009909B9 /* OfflineMessageViewController.swift in Sources */,
 				80C084951F3AAE91009909B9 /* ChatTextView.swift in Sources */,
 				80C084861F3AAE6D009909B9 /* OptionView.swift in Sources */,
+				80E58FE51F3B5FC100A85B06 /* CDSender+CoreDataProperties.swift in Sources */,
+				80E58FDB1F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataClass.swift in Sources */,
 				80C084C31F3AAED3009909B9 /* CDContentOfflineMessage.swift in Sources */,
 				80C084D21F3AAED9009909B9 /* RootViewController.swift in Sources */,
 				80C0847E1F3AAE62009909B9 /* KeyboardDismissingView.swift in Sources */,
@@ -1090,14 +1101,15 @@
 				80C084991F3AAE91009909B9 /* ChatInvoiceView.swift in Sources */,
 				80C084F71F3AAF3E009909B9 /* Number.swift in Sources */,
 				80C085081F3AB9F5009909B9 /* CollieGalleryTransitionType.swift in Sources */,
+				80E58FE71F3B5FC100A85B06 /* CDUser+CoreDataClass.swift in Sources */,
 				80C084BF1F3AAED3009909B9 /* CDContentPlainText.swift in Sources */,
 				80C084FD1F3AB9F5009909B9 /* CollieGallery.swift in Sources */,
-				80C084BD1F3AAECF009909B9 /* CDMessage+CoreDataClass.swift in Sources */,
 				80C084B31F3AAE9D009909B9 /* HeaderView.swift in Sources */,
 				80C0850B1F3AB9F5009909B9 /* CollieGalleryZoomTransition.swift in Sources */,
 				80C084CA1F3AAED9009909B9 /* OfflineFormViewController.swift in Sources */,
 				80C084E81F3AAF3A009909B9 /* ContentInvoiceViewModel.swift in Sources */,
 				80C084E11F3AAEF4009909B9 /* CoreDataManager.swift in Sources */,
+				80E58FE91F3B5FC100A85B06 /* CDUser+CoreDataProperties.swift in Sources */,
 				80C085071F3AB9F5009909B9 /* CollieGalleryTransitionProtocol.swift in Sources */,
 				80C084F31F3AAF3E009909B9 /* UIViewController.swift in Sources */,
 				80C0849F1F3AAE91009909B9 /* ChatImageView.swift in Sources */,
@@ -1107,7 +1119,6 @@
 				80C084A21F3AAE97009909B9 /* ChatInContainerView.swift in Sources */,
 				80C0850D1F3ABA1A009909B9 /* AuthViewModelMock.swift in Sources */,
 				80C0849B1F3AAE91009909B9 /* ChatProductView.swift in Sources */,
-				80C084BB1F3AAECF009909B9 /* CDSender+CoreDataClass.swift in Sources */,
 				80C084941F3AAE91009909B9 /* ChatContentView.swift in Sources */,
 				80C084F01F3AAF3E009909B9 /* Extensions.swift in Sources */,
 				80C084B51F3AAE9D009909B9 /* EmptyChatView.swift in Sources */,
@@ -1120,12 +1131,13 @@
 				80C084E41F3AAF07009909B9 /* PrismUI.swift in Sources */,
 				80C084831F3AAE68009909B9 /* DiskStatus.swift in Sources */,
 				80C0848D1F3AAE80009909B9 /* Chat.xcdatamodeld in Sources */,
-				80C084BE1F3AAECF009909B9 /* CDMessage+CoreDataProperties.swift in Sources */,
 				80C085091F3AB9F5009909B9 /* CollieGalleryView.swift in Sources */,
 				80C084FF1F3AB9F5009909B9 /* CollieGalleryCaptionView.swift in Sources */,
 				80C085111F3AC47E009909B9 /* StickerViewModelMock.swift in Sources */,
 				80C084971F3AAE91009909B9 /* ChatStickerView.swift in Sources */,
 				80C0848E1F3AAE87009909B9 /* ProductCartView.swift in Sources */,
+				80E58FEC1F3B617E00A85B06 /* ChatSectionViewModel.swift in Sources */,
+				80E58FDF1F3B5FC100A85B06 /* CDMessage+CoreDataClass.swift in Sources */,
 				80C084E01F3AAEF4009909B9 /* ChatManager.swift in Sources */,
 				80C084AB1F3AAE97009909B9 /* ChatHeaderCell.swift in Sources */,
 				80C084F21F3AAF3E009909B9 /* UIFont.swift in Sources */,
@@ -1133,6 +1145,7 @@
 				80C084C71F3AAED3009909B9 /* PrismCredential.swift in Sources */,
 				80C084811F3AAE68009909B9 /* Hardware.swift in Sources */,
 				80C084C91F3AAED9009909B9 /* BaseViewController.swift in Sources */,
+				80E58FE31F3B5FC100A85B06 /* CDSender+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1145,7 +1158,6 @@
 				E57440AB1EF7CE43003CA9E7 /* ChatCartView.swift in Sources */,
 				E5053A8F1EF13123006677A4 /* InputFormSettings.swift in Sources */,
 				E562B5CB1F0CBC1A006489C0 /* ContentStickerViewModel.swift in Sources */,
-				E593AEED1EFCCC80002E2171 /* CDBrokerMetaData+CoreDataProperties.swift in Sources */,
 				E593AE971EFB7966002E2171 /* StickerViewModel.swift in Sources */,
 				E5053A861EF10930006677A4 /* LinedTextField.swift in Sources */,
 				E58FAE681EF38435002F1A2A /* EmojiInputView.swift in Sources */,
@@ -1153,13 +1165,13 @@
 				80E9F3DC1F32BD8700F49A6F /* CloseChatTableViewCell.swift in Sources */,
 				E5B9615C1F17039D00764A12 /* ReachabilityHelper.swift in Sources */,
 				E58FAE7A1EF3A74D002F1A2A /* ChatBubleView.swift in Sources */,
-				E593AEEE1EFCCC80002E2171 /* CDUser+CoreDataClass.swift in Sources */,
 				E57440861EF760D0003CA9E7 /* StickerOutContainer.swift in Sources */,
 				80389A531EEA7A13007B9458 /* PrismUI.swift in Sources */,
 				E593AEFE1EFCE7EB002E2171 /* CDContentOfflineMessage.swift in Sources */,
 				E58FAE6A1EF38435002F1A2A /* OptionView.swift in Sources */,
 				E593AEF81EFCE7AB002E2171 /* CDContentAttachment.swift in Sources */,
 				807C899F1EEE7BEC00DADEBF /* UIImageView.swift in Sources */,
+				80E58FDA1F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataClass.swift in Sources */,
 				E57440931EF76BD0003CA9E7 /* ChatProductView.swift in Sources */,
 				E593AF001EFCE7FD002E2171 /* CDContentProduct.swift in Sources */,
 				E5B39F2D1F284ED100BE68C9 /* String+MD5.swift in Sources */,
@@ -1177,11 +1189,12 @@
 				E507F7851F3A72CB001F73F8 /* CollieGalleryDefaultTransition.swift in Sources */,
 				E57440841EF760C3003CA9E7 /* StickerInContainer.swift in Sources */,
 				E507F7821F3A72CB001F73F8 /* CollieGalleryAppearance.swift in Sources */,
-				E593AEF21EFCCC80002E2171 /* CDMessage+CoreDataClass.swift in Sources */,
+				80E58FE41F3B5FC100A85B06 /* CDSender+CoreDataProperties.swift in Sources */,
 				E58FAE6B1EF38435002F1A2A /* PlaceholderTextView.swift in Sources */,
 				E508C1B71EF8B469004DCB6A /* ChatImageView.swift in Sources */,
 				E5BC92931F39938B00B318EC /* KeyboardDismissingView.swift in Sources */,
 				E57440A41EF7A898003CA9E7 /* ChatContainerView.swift in Sources */,
+				80E58FDE1F3B5FC100A85B06 /* CDMessage+CoreDataClass.swift in Sources */,
 				E58FAE5D1EF36874002F1A2A /* AuthViewModel.swift in Sources */,
 				E54969BB1EEA8496008209D9 /* Utils.swift in Sources */,
 				E573A4411F287E6500DB93E7 /* UIButton.swift in Sources */,
@@ -1191,11 +1204,11 @@
 				E58FAE661EF38435002F1A2A /* ChatComposer.swift in Sources */,
 				807C899C1EEE63B400DADEBF /* UIViewController.swift in Sources */,
 				E507F78D1F3A72CB001F73F8 /* CollieGalleryView.swift in Sources */,
+				80E58FE01F3B5FC100A85B06 /* CDMessage+CoreDataProperties.swift in Sources */,
 				E5C5440B1F151F0100D5303D /* CoreDataManager.swift in Sources */,
 				E508C1BB1EF8BD22004DCB6A /* Number.swift in Sources */,
 				E58FAE5F1EF3687D002F1A2A /* ChatViewModel.swift in Sources */,
 				8071E0F61F218D430003732F /* DeviceGuru.swift in Sources */,
-				E593AEF31EFCCC80002E2171 /* CDMessage+CoreDataProperties.swift in Sources */,
 				E599E8841EF67F6500B67920 /* UIView.swift in Sources */,
 				807C898A1EEE389200DADEBF /* Theme.swift in Sources */,
 				E574408D1EF7649A003CA9E7 /* ChatStickerView.swift in Sources */,
@@ -1207,12 +1220,13 @@
 				E507F7861F3A72CB001F73F8 /* CollieGalleryDelegate.swift in Sources */,
 				80DF9B061F32084400495FB0 /* ContentCloseChatViewModel.swift in Sources */,
 				E593AE991EFB8E71002E2171 /* StickerPackViewModel.swift in Sources */,
-				E593AEEC1EFCCC80002E2171 /* CDBrokerMetaData+CoreDataClass.swift in Sources */,
 				E559E1F11EF2658C004E3F03 /* Settings.swift in Sources */,
 				E507F78B1F3A72CB001F73F8 /* CollieGalleryTransitionProtocol.swift in Sources */,
 				E593AEFA1EFCE7B9002E2171 /* CDContentCart.swift in Sources */,
 				8071E0F81F218D430003732F /* Hardware.swift in Sources */,
+				80E58FE61F3B5FC100A85B06 /* CDUser+CoreDataClass.swift in Sources */,
 				E52899DA1F1CBE2D00FED3BA /* OfflineFormViewController.swift in Sources */,
+				80E58FE21F3B5FC100A85B06 /* CDSender+CoreDataClass.swift in Sources */,
 				E547E7F41F0C869800AFFB20 /* ContentTextViewModel.swift in Sources */,
 				807C89991EEE4C3400DADEBF /* UIFont.swift in Sources */,
 				E599E8801EF67D5300B67920 /* ChatInContainerView.swift in Sources */,
@@ -1220,18 +1234,18 @@
 				E593AE931EFB673F002E2171 /* StickerInputView.swift in Sources */,
 				807C89911EEE4AF100DADEBF /* ChatViewController.swift in Sources */,
 				E562B5CD1F0CCD32006489C0 /* ContentInvoiceViewModel.swift in Sources */,
+				80E58FE81F3B5FC100A85B06 /* CDUser+CoreDataProperties.swift in Sources */,
 				E552CD481F1DD45500455B36 /* ContentOfflineViewModel.swift in Sources */,
 				80DF9B091F320BC100495FB0 /* CDContentCloseChat.swift in Sources */,
 				E507F7811F3A72CB001F73F8 /* CollieGallery.swift in Sources */,
 				8071E0FA1F219E2B0003732F /* DiskStatus.swift in Sources */,
-				E593AEEF1EFCCC80002E2171 /* CDUser+CoreDataProperties.swift in Sources */,
-				E593AEF01EFCCC80002E2171 /* CDSender+CoreDataClass.swift in Sources */,
 				E5C5440D1F151F4C00D5303D /* ChatQueryManager.swift in Sources */,
 				E5AC24781F208F0B00950A2E /* HeaderView.swift in Sources */,
 				E54F7FE81F2965740022E15D /* UIImage.swift in Sources */,
 				E599E8881EF67FD600B67920 /* UITextField.swift in Sources */,
 				E507F78C1F3A72CB001F73F8 /* CollieGalleryTransitionType.swift in Sources */,
 				E552CD431F1DD45500455B36 /* OfflineMessageViewController.swift in Sources */,
+				80E58FEB1F3B617E00A85B06 /* ChatSectionViewModel.swift in Sources */,
 				E593AEFC1EFCE7D3002E2171 /* CDContentInvoice.swift in Sources */,
 				E57440911EF76BBB003CA9E7 /* ChatInvoiceView.swift in Sources */,
 				E55AC0CF1F0E0CF100A0354D /* ContentImageViewModel.swift in Sources */,
@@ -1241,8 +1255,8 @@
 				E5053A911EF13728006677A4 /* PrismCredential.swift in Sources */,
 				800E2EB01EEE35D6003AB37B /* UIColor.swift in Sources */,
 				E57440B41EF7DD8A003CA9E7 /* MidtransView.swift in Sources */,
-				E593AEF11EFCCC80002E2171 /* CDSender+CoreDataProperties.swift in Sources */,
 				E507F7841F3A72CB001F73F8 /* CollieGalleryCustomAction.swift in Sources */,
+				80E58FDC1F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataProperties.swift in Sources */,
 				E562B5D11F0D27A2006489C0 /* ContentCartViewModel.swift in Sources */,
 				E599E87E1EF67D4300B67920 /* ChatTextView.swift in Sources */,
 			);

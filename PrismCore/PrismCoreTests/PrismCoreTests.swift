@@ -40,9 +40,7 @@ class PrismCoreTests: XCTestCase {
         XCTAssertNotNil(Config.shared.getMerchantID())
         
         let session = MQTTSession(host: "", port: 12, clientID: "", cleanSession: true, keepAlive: 20)
-        PrismCore.shared.mqttDidDisconnect(session: session)
-        PrismCore.shared.mqttDidReceive(message: Data(), in: "", from: session)
-        PrismCore.shared.mqttSocketErrorOccurred(session: session)
+        XCTAssertNotNil(session)
     }
     
     func testPublishMessageEndPoint() {

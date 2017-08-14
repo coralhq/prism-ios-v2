@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class SendDeviceTokenEndpoint: EndPoint {
     
@@ -26,7 +27,7 @@ class SendDeviceTokenEndpoint: EndPoint {
             return [
                 "id": UIDevice.current.identifierForVendor?.description ?? String.randomUserID,
                 "token": deviceToken,
-                "device_type": "iOS"
+                "device_type": "IOS"
             ]
         }
     }

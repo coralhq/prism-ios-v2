@@ -49,26 +49,23 @@ class WorkingHour {
         
         guard let widget = settings["widget"] as? [String: Any],
             let workHours = widget["working_hours"] as? [String: Any],
-            let workTimes = workHours[currentDay] as? [[String: Any]],
-            let timeZoneName = widget["timezone"] as? String,
-            let timeZone = NSTimeZone(name: timeZoneName) else {
+            let workTimes = workHours[currentDay] as? [[String: Any]] else {
                 return
         }
         
         for workTime in workTimes {
-            let cal = Vendor.shared.calendar
-            let component = cal.dateComponents(in: timeZone as TimeZone, from: Date())
-            
             guard let fromTime = workTime["from"] as? String,
                 let toTime = workTime["to"] as? String,
                 let fromMinutes = fromTime.minutes(),
-                let toMinutes = toTime.minutes(),
-                let currentHour = component.hour,
-                let currentMinute = component.minute else {
+                let toMinutes = toTime.minutes() else {
                     continue
             }
             
-            let currentMinutes = currentHour * 60 + currentMinute
+            let cal = Vendor.shared.calendar
+            let hour = cal.component(.hour, from: Date())
+            let minute = cal.component(.minute, from: Date())
+            let currentMinutes = hour * 60 + minute
+            
             if currentMinutes > fromMinutes &&
                 currentMinutes < toMinutes {
                 isOnWorkingHour = true
@@ -137,5 +134,6 @@ open class Settings {
         workingHour.configure(settings: settings)
         persona.configure(settings: settings)
         texts.configure(settings: settings)
+        offlineWidget.configure(settings: settings)
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum PaymentMethod: String {
     case midtrans = "vt_web"

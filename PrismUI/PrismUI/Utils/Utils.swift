@@ -70,6 +70,8 @@ class Vendor {
         didSet {
             if let credential = credential {
                 Utils.archive(object: credential, key: "prism_credential")
+            } else {
+                Utils.removeArchive(key: "prism_credential")
             }
         }
     }

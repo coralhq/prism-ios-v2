@@ -57,6 +57,7 @@ class RootViewController: BaseViewController {
             //New user, then clear previous data
             CoreDataManager.shared.clearData()
             CacheImage.shared.clearCache()
+            Vendor.shared.credential = nil
             
             if Settings.shared.connectForm.enabled {
                 
@@ -110,6 +111,7 @@ class RootViewController: BaseViewController {
     }
     
     func connectCalled(sender: Notification) {
+        UIApplication.shared.registerForRemoteNotifications()
         enterChatpage(animated: true)
     }
     

@@ -22,13 +22,11 @@ class StickerInputView: UIView {
     var packs: [StickerPackViewModel] = [] {
         didSet {
             sectionStickerView.reloadData()
-            
-            guard let pack = packs.first else { return }
-            selectedPack = pack
+            selectedPack = packs.first
             sectionStickerView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .init(rawValue: 0))
         }
     }
-
+    
     var selectedPack: StickerPackViewModel? {
         didSet {
             contentStickerView.reloadData()
@@ -37,7 +35,7 @@ class StickerInputView: UIView {
     
     static func viewFromNib(accessToken: String?) -> StickerInputView? {
         let view: StickerInputView? = StickerInputView.viewFromNib()
-        view?.getStickers(token: accessToken)
+        view?.reloadStickers()
         return view
     }
     
@@ -51,6 +49,10 @@ class StickerInputView: UIView {
         
         contentStickerView.register(StickerContentCell.classForCoder(), forCellWithReuseIdentifier: StickerContentCell.className())
         sectionStickerView.register(StickerSectionCell.classForCoder(), forCellWithReuseIdentifier: StickerSectionCell.className())
+        
+        StickerPackViewModel.getStickers { 
+            self.reloadStickers()
+        }
     }
     
     func stickers(with pack: StickerPackViewModel?) -> [StickerViewModel] {
@@ -67,18 +69,9 @@ class StickerInputView: UIView {
         }
     }
     
-    private func getStickers(token: String?) {
+    private func reloadStickers() {
         if let packs: [StickerPackViewModel] = Utils.unarchive(key: "prism_sticker_packs") {
             self.packs = packs
-        } else {
-            guard let token = token else { return }
-            StickerPackViewModel.getStickers(accessToken: token, completion: { [weak self] (packs) in
-                guard let packs = packs else {
-                    return
-                }
-                self?.packs = packs
-                Utils.archive(object: packs, key: "prism_sticker_packs")
-            })
         }
     }
 }
@@ -87,7 +80,7 @@ extension StickerInputView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == sectionStickerView {
             return packs.count
-        }        
+        }
         return stickers(with: selectedPack).count
     }
     

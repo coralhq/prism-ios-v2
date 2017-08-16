@@ -79,27 +79,27 @@ class ChatComposer: UIView {
     }
     
     @IBAction func abcPressed(sender: UIButton) {
-        if textView.becomeFirstResponder() == false {
-            textView.becomeFirstResponder()
-        }
-        
         abcButton.isHidden = true
         emojiButton.isHidden = false
         
         textView.inputView = nil
         textView.reloadInputViews()
-    }
-    
-    @IBAction func emojiPressed(sender: UIButton) {
+        
         if textView.becomeFirstResponder() == false {
             textView.becomeFirstResponder()
         }
-        
+    }
+    
+    @IBAction func emojiPressed(sender: UIButton) {
         abcButton.isHidden = false
         emojiButton.isHidden = true
         
         textView.inputView = EmojiInputView.viewFromNib(with: textView)
         textView.reloadInputViews()
+        
+        if textView.becomeFirstResponder() == false {
+            textView.becomeFirstResponder()
+        }
     }
     
     @IBAction func stickerInputPressed(sender: UIButton) {
@@ -109,15 +109,15 @@ class ChatComposer: UIView {
             addSubview(fakeTextView)
         }
         
-        if fakeTextView.becomeFirstResponder() == false {
-            fakeTextView.becomeFirstResponder()
-        }
-        
         if fakeTextView.inputView == nil {
             let inputView = StickerInputView.viewFromNib(accessToken: accessToken)
             inputView?.delegate = self
             fakeTextView.inputView = inputView
             fakeTextView.reloadInputViews()
+        }
+        
+        if fakeTextView.becomeFirstResponder() == false {
+            fakeTextView.becomeFirstResponder()
         }
     }
     

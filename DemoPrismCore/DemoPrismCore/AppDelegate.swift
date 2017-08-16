@@ -24,25 +24,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         window = UIWindow(frame: UIScreen.main.bounds)
-
+        
         let vc = DemoViewController(nibName: "DemoViewController", bundle: nil)
         window!.rootViewController = vc
         window!.makeKeyAndVisible()
         
-        registerForPushNotifications()
+        registerForPushNotifications(app: application)
+        
+        PrismUI.shared.configure(environment: .Staging, merchantID: "fc69d550-07fa-44e6-9c03-b35250a7bd43")
         
         return true
     }
     
-    func registerForPushNotifications() {
+    func registerForPushNotifications(app: UIApplication) {
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
                 (granted, error) in
-                print("Permission granted: \(granted)")
+                app.registerForRemoteNotifications()
             }
         } else {
-            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-            UIApplication.shared.registerForRemoteNotifications()
+            app.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
+            app.registerForRemoteNotifications()
         }
     }
     
@@ -69,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nyeayyyyyyyy!")
+        print("notif: \(userInfo)")
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

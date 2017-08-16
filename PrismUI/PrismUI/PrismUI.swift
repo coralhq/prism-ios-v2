@@ -11,19 +11,12 @@ import PrismCore
 import PrismAnalytics
 import CoreTelephony
 
-public protocol PrismUIDelegate: class {
-    func didReceive(message data: Data, in topic: String)
-}
-
 open class PrismUI {
     
     open static var shared = PrismUI()
     private init() {}
     
-    weak var delegate: PrismUIDelegate?
-    
-    open func configure(environment: EnvironmentType, merchantID: String, delegate: PrismUIDelegate) {
-        self.delegate = delegate
+    open func configure(environment: EnvironmentType, merchantID: String) {
         PrismCore.shared.configure(environment: environment, merchantID: merchantID)
         
         var analyticsEnv: AnalyticEnvironment
@@ -117,11 +110,5 @@ open class PrismUI {
             
             PrismAnalytics.shared.sendDeviceInfoToRover(data: data, token: credential.accessToken)
         }
-    }
-}
-
-extension PrismUI: PrismCoreDelegate {
-    public func didReceive(message data: Data, in topic: String) {
-        delegate?.didReceive(message: data, in: topic)
     }
 }

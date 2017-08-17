@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -31,7 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         registerForPushNotifications(app: application)
         
-        PrismUI.shared.configure(environment: .Staging, merchantID: "fc69d550-07fa-44e6-9c03-b35250a7bd43")
+        //staging > fc69d550-07fa-44e6-9c03-b35250a7bd43
+        //sanbox > 8c31f365-05d2-49fe-8c8d-59c84624c870
+        PrismUI.shared.configure(environment: .Sandbox, merchantID: "8c31f365-05d2-49fe-8c8d-59c84624c870")
         
         return true
     }

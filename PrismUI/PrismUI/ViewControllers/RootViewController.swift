@@ -29,7 +29,7 @@ class RootViewController: BaseViewController {
         
         loadingIndicator.startAnimating()
         loadingIndicatorView.isHidden = false
-        
+
         viewModel.getSettings { [weak self] (settings) in
             guard settings != nil else {
                 self?.dismiss(animated: true, completion: nil)
@@ -111,7 +111,7 @@ class RootViewController: BaseViewController {
     }
     
     func connectCalled(sender: Notification) {
-        UIApplication.shared.registerForRemoteNotifications()
+        UIApplication.shared.registerForRemoteNotifications()        
         enterChatpage(animated: true)
     }
     

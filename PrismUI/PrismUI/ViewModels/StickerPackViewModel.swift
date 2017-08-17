@@ -25,18 +25,23 @@ class StickerPackViewModel: NSObject, NSCoding {
         self.stickers = stickers
     }
     
-    static func getStickers(accessToken: String, completion:@escaping (_ stickerPacks: [StickerPackViewModel]?) -> ()) {
-        PrismCore.shared.getStickers(token: accessToken) { (response, error) in
+    static func getStickers(completion:(() -> ())?) {
+        guard let token = Vendor.shared.credential?.accessToken else {
+            return
+        }
+        PrismCore.shared.getStickers(token: token) { (response, error) in
             guard let response = response else {
-                completion(nil)
                 return
             }
             
-            var result: [StickerPackViewModel] = []
+            var packs: [StickerPackViewModel] = []
             for pack in response.packs {
-                result.append(StickerPackViewModel(pack: pack))
+                packs.append(StickerPackViewModel(pack: pack))
             }
-            completion(result)
+            
+            Utils.archive(object: packs, key: "prism_sticker_packs")
+            
+            completion?()
         }
     }
     

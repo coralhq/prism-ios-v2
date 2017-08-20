@@ -39,6 +39,7 @@ public class BaseViewController: UIViewController {
     }
     
     func closePressed(sender: UIBarButtonItem) {
+        view.endEditing(true)
         navigationController?.dismiss(animated: true, completion: nil)
     }
     

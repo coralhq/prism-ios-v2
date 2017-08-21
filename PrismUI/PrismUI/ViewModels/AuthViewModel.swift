@@ -40,17 +40,18 @@ public class AuthViewModel {
                     phone.characters.count > 0 {
                     return phone
                 } else {
-                    return ""
+                    return NSUUID().uuidString
                 }
             }
         }
         
         var userName: String {
             get {
-                if let name = name {
+                if let name = name,
+                    name.characters.count > 0 {
                     return name
                 } else {
-                    return ""
+                    return "visitor_\(String.randomString(length: 7))"
                 }
             }
         }

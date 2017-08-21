@@ -23,8 +23,6 @@ open class PrismUI {
         switch environment {
         case .Production:
             analyticsEnv = .Production
-        case .Sandbox:
-            analyticsEnv = .Sandbox
         case .Staging:
             analyticsEnv = .Staging
         }

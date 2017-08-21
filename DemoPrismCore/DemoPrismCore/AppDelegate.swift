@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //staging > fc69d550-07fa-44e6-9c03-b35250a7bd43
         //sanbox > 8c31f365-05d2-49fe-8c8d-59c84624c870
-        PrismUI.shared.configure(environment: .Staging, merchantID: "fc69d550-07fa-44e6-9c03-b35250a7bd43")
+        PrismUI.shared.configure(environment: .Staging, merchantID: "6ba2f4a9-e89a-42a0-8f09-ee3de88aa928")
         
         return true
     }

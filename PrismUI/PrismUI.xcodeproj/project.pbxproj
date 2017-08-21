@@ -201,6 +201,8 @@
 		E508C1B91EF8B479004DCB6A /* ChatImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E508C1B81EF8B479004DCB6A /* ChatImageView.xib */; };
 		E508C1BB1EF8BD22004DCB6A /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = E508C1BA1EF8BD22004DCB6A /* Number.swift */; };
 		E508C1C31EF8D6F9004DCB6A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E508C1C21EF8D6F9004DCB6A /* Localizable.strings */; };
+		E51F138C1F4B4CFD0091C4BC /* FieldsNavigatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E51F138B1F4B4CFD0091C4BC /* FieldsNavigatorView.xib */; };
+		E51F13901F4B4CFD0091C4BC /* FieldsNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51F138F1F4B4CFD0091C4BC /* FieldsNavigatorView.swift */; };
 		E52665841EE91A9600612E19 /* PrismUI.h in Headers */ = {isa = PBXBuildFile; fileRef = E52665761EE91A9600612E19 /* PrismUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E52899DA1F1CBE2D00FED3BA /* OfflineFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52899D81F1CBE2D00FED3BA /* OfflineFormViewController.swift */; };
 		E52899DB1F1CBE2D00FED3BA /* OfflineFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E52899D91F1CBE2D00FED3BA /* OfflineFormViewController.xib */; };
@@ -360,6 +362,8 @@
 		E508C1B81EF8B479004DCB6A /* ChatImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatImageView.xib; path = PrismUI/Cells/ChatCell/Content/ChatImageView.xib; sourceTree = SOURCE_ROOT; };
 		E508C1BA1EF8BD22004DCB6A /* Number.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
 		E508C1C21EF8D6F9004DCB6A /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Resources/Localizable.strings; sourceTree = "<group>"; };
+		E51F138B1F4B4CFD0091C4BC /* FieldsNavigatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FieldsNavigatorView.xib; sourceTree = "<group>"; };
+		E51F138F1F4B4CFD0091C4BC /* FieldsNavigatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldsNavigatorView.swift; sourceTree = "<group>"; };
 		E52665731EE91A9600612E19 /* PrismUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrismUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E52665761EE91A9600612E19 /* PrismUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrismUI.h; sourceTree = "<group>"; };
 		E52665771EE91A9600612E19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -551,6 +555,8 @@
 				E5AC24751F208E0200950A2E /* HeaderView.xib */,
 				E5BC92831F3940A300B318EC /* EmptyChatView.swift */,
 				E5BC92851F3940AB00B318EC /* EmptyChatView.xib */,
+				E51F138F1F4B4CFD0091C4BC /* FieldsNavigatorView.swift */,
+				E51F138B1F4B4CFD0091C4BC /* FieldsNavigatorView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1016,6 +1022,7 @@
 				E574408F1EF764AC003CA9E7 /* ChatStickerView.xib in Resources */,
 				E5F260921F0BA7E40058EB65 /* ChatHeaderCell.xib in Resources */,
 				E599E87B1EF6551200B67920 /* ChatOutContainerView.xib in Resources */,
+				E51F138C1F4B4CFD0091C4BC /* FieldsNavigatorView.xib in Resources */,
 				807C89931EEE4AF100DADEBF /* ChatViewController.xib in Resources */,
 				E57440971EF76BFD003CA9E7 /* ChatInvoiceView.xib in Resources */,
 				E593AE951EFB675A002E2171 /* StickerInputView.xib in Resources */,
@@ -1189,6 +1196,7 @@
 				E507F7851F3A72CB001F73F8 /* CollieGalleryDefaultTransition.swift in Sources */,
 				E57440841EF760C3003CA9E7 /* StickerInContainer.swift in Sources */,
 				E507F7821F3A72CB001F73F8 /* CollieGalleryAppearance.swift in Sources */,
+				E51F13901F4B4CFD0091C4BC /* FieldsNavigatorView.swift in Sources */,
 				80E58FE41F3B5FC100A85B06 /* CDSender+CoreDataProperties.swift in Sources */,
 				E58FAE6B1EF38435002F1A2A /* PlaceholderTextView.swift in Sources */,
 				E508C1B71EF8B469004DCB6A /* ChatImageView.swift in Sources */,

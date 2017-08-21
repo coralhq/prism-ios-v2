@@ -37,6 +37,10 @@ public class ConnectViewController: BaseViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        nameTF.delegate = self
+        emailTF.delegate = self
+        phoneTF.delegate = self
+        
         nameTF.selectedColor = Settings.shared.theme.buttonColor
         emailTF.selectedColor = Settings.shared.theme.buttonColor
         phoneTF.selectedColor = Settings.shared.theme.buttonColor
@@ -48,7 +52,10 @@ public class ConnectViewController: BaseViewController {
         update(textField: emailTF, form: form.email)
         update(textField: phoneTF, form: form.phoneNumber)
         
-        KeyboardAvoiding.avoidingView = formContainerView
+        let navView: FieldsNavigatorView = FieldsNavigatorView.viewFromNib()!
+        if let fields = nameTF.superview?.subviews.filter({ $0.isHidden == false }) as? [UITextField] {
+            navView.textFields = fields
+        }
     }
     
     public override func viewDidAppear(_ animated: Bool) {
@@ -86,5 +93,12 @@ public class ConnectViewController: BaseViewController {
             self?.view.isUserInteractionEnabled = true
             self?.startChatButton.stopLoading()
         }
+    }
+}
+
+extension ConnectViewController: UITextFieldDelegate {
+    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        KeyboardAvoiding.setAvoidingView(formContainerView, withTriggerView: textField)
+        return true
     }
 }

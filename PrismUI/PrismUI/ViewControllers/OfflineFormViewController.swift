@@ -36,6 +36,11 @@ class OfflineFormViewController: BaseViewController {
         
         offlineFormLabel.text = Settings.shared.offlineWidget.offlineMessage
         
+        nameTF.delegate = self
+        emailTF.delegate = self
+        phoneTF.delegate = self
+        messageTF.delegate = self
+        
         nameTF.selectedColor = Settings.shared.theme.buttonColor
         emailTF.selectedColor = Settings.shared.theme.buttonColor
         phoneTF.selectedColor = Settings.shared.theme.buttonColor
@@ -47,7 +52,10 @@ class OfflineFormViewController: BaseViewController {
         update(textField: emailTF, form: form.email)
         update(textField: phoneTF, form: form.phoneNumber)
         
-        KeyboardAvoiding.avoidingView = formContainerView
+        let navView: FieldsNavigatorView = FieldsNavigatorView.viewFromNib()!
+        if let fields = nameTF.superview?.subviews.filter({ $0.isHidden == false }) as? [UITextField] {
+            navView.textFields = fields
+        }
     }
     
     func update(textField: LinedTextField, form: InputForm) {
@@ -109,5 +117,12 @@ class OfflineFormViewController: BaseViewController {
             self?.navigationController?.pushViewController(vc, animated: true)
             completion?(true)
         }
+    }
+}
+
+extension OfflineFormViewController: UITextFieldDelegate {
+    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        KeyboardAvoiding.setAvoidingView(formContainerView, withTriggerView: textField)
+        return true
     }
 }

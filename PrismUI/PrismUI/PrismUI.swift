@@ -8,7 +8,6 @@
 
 import Foundation
 import PrismCore
-import PrismAnalytics
 import CoreTelephony
 
 open class PrismUI {

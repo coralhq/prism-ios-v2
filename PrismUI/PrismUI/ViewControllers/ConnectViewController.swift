@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PrismAnalytics
 
 let formTextFieldHeight: CGFloat = 55
 

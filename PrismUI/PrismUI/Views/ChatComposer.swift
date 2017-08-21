@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PrismAnalytics
 import Photos
 
 protocol ChatComposerDelegate: class {

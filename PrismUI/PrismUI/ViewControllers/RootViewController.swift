@@ -8,7 +8,6 @@
 
 import UIKit
 import PrismCore
-import PrismAnalytics
 
 class RootViewController: BaseViewController {
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!

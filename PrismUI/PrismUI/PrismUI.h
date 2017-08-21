@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAITracker.h"
+#import "GAIEcommerceFields.h"
+#import "GAIFields.h"
 
 //! Project version number for PrismUI.
 FOUNDATION_EXPORT double PrismUIVersionNumber;

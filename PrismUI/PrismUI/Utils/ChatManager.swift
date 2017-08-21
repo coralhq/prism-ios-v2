@@ -9,7 +9,6 @@
 import Foundation
 import PrismCore
 import CoreData
-import PrismAnalytics
 
 class ChatManager {
     var coredata: CoreDataManager {

@@ -43,7 +43,7 @@ class WorkingHour {
     init() {}
     
     func configure(settings: [String: Any]) {
-        let df = Vendor.shared.dateFormatter
+        let df = DateFormatter()
         df.dateFormat = "EEEE"
         let currentDay = df.string(from: Date()).lowercased()
         
@@ -52,7 +52,7 @@ class WorkingHour {
             let workTimes = workHours[currentDay] as? [[String: Any]] else {
                 return
         }
-        
+
         for workTime in workTimes {
             guard let fromTime = workTime["from"] as? String,
                 let toTime = workTime["to"] as? String,

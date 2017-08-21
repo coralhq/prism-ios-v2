@@ -58,6 +58,19 @@ class ChatComposer: UIView {
         botSpaceConstraint.constant = 0
         
         setText(text: nil)
+        
+        checkStickerAvailability()
+    }
+    
+    func checkStickerAvailability() {
+        StickerPackViewModel.getStickers { [weak self] in
+            if let packs: [StickerPackViewModel] = Utils.unarchive(key: "prism_sticker_packs"),
+                packs.count > 0 {
+                self?.stickerButton.isHidden = false
+            } else {
+                self?.stickerButton.isHidden = true
+            }
+        }
     }
     
     deinit {

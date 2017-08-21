@@ -15,17 +15,16 @@ public class ConnectResponse : Mappable {
     public let mqtt: MQTT
     public let oAuth: OAuth
     public let visitor: Visitor
-    let serverTimeStamp: UInt64
+    let serverTimeStamp: Double
     
-    required public init?(json: [String: Any]?) {
-        guard let status = json?["status"] as? String,
-            let message = json?["message"] as? String,
-            let data = json?["data"] as? [String: Any],
-            let oAuth = OAuth(json: data["oauth"] as? [String: Any]),
-            let mqtt = MQTT(json: data["mqtt"] as? [String: Any]),
-            let visitor = Visitor(json: data["visitor"] as? [String: Any]),
-            let serverTimeStamp = data["server_timestamp"] as? UInt64
-            else {
+    required public init?(dictionary: [String: Any]?) {
+        guard let status = dictionary?["status"] as? String,
+            let message = dictionary?["message"] as? String,
+            let data = dictionary?["data"] as? [String: Any],
+            let oAuth = OAuth(dictionary: data["oauth"] as? [String: Any]),
+            let mqtt = MQTT(dictionary: data["mqtt"] as? [String: Any]),
+            let visitor = Visitor(dictionary: data["visitor"] as? [String: Any]),
+            let serverTimeStamp = data["server_timestamp"] as? NSNumber else {
                 return nil
         }
         
@@ -34,6 +33,15 @@ public class ConnectResponse : Mappable {
         self.mqtt = mqtt
         self.oAuth = oAuth
         self.visitor = visitor
-        self.serverTimeStamp = serverTimeStamp
+        self.serverTimeStamp = serverTimeStamp.doubleValue / 1000.0
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["status": status,
+                "message": message,
+                "data": ["oauth": oAuth.dictionaryValue(),
+                         "mqtt": mqtt.dictionaryValue(),
+                         "visitor": visitor.dictionaryValue(),
+                         "server_timestamp": serverTimeStamp]]
     }
 }

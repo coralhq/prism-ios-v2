@@ -9,13 +9,17 @@
 import Foundation
 
 open class Settings: Mappable {
-    let data: [String: Any]
+    public let data: [String: Any]
     
-    public required init?(json: [String: Any]?) {
-        guard let data = json?["data"] as? [String: Any] else {
+    public required init?(dictionary: [String: Any]?) {
+        guard let data = dictionary?["data"] as? [String: Any] else {
             return nil
         }
         
         self.data = data
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["data": data]
     }
 }

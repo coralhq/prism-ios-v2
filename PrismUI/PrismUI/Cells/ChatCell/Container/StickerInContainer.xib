@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="myt-qu-bZR" customClass="StickerInContainer" customModule="PrismUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="359" height="193"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELt-Hl-jX3">
+                    <rect key="frame" x="16" y="10" width="327" height="17"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                    <color key="textColor" red="0.82745098039999998" green="0.21960784310000001" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgw-cb-e3w">
+                    <rect key="frame" x="16" y="27" width="120" height="148"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" placeholder="YES" id="kti-HR-thG"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4p-ZT-nu9" customClass="ChatInfoView" customModule="PrismUI" customModuleProvider="target">
+                    <rect key="frame" x="103.5" y="183" width="32.5" height="10"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:40 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="td7-uu-7VA">
+                            <rect key="frame" x="0.0" y="0.0" width="32.5" height="10"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                            <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="td7-uu-7VA" secondAttribute="bottom" id="K71-aF-rhX"/>
+                        <constraint firstItem="td7-uu-7VA" firstAttribute="leading" secondItem="s4p-ZT-nu9" secondAttribute="leading" id="ddl-xA-Inq"/>
+                        <constraint firstItem="td7-uu-7VA" firstAttribute="top" secondItem="s4p-ZT-nu9" secondAttribute="top" id="rDU-B5-EV7"/>
+                        <constraint firstAttribute="trailing" secondItem="td7-uu-7VA" secondAttribute="trailing" id="s1S-if-3to"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="timeLabel" destination="td7-uu-7VA" id="h1z-rC-FA2"/>
+                    </connections>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ELt-Hl-jX3" firstAttribute="top" secondItem="myt-qu-bZR" secondAttribute="top" constant="10" id="WKZ-zx-k52"/>
+                <constraint firstItem="s4p-ZT-nu9" firstAttribute="trailing" secondItem="rgw-cb-e3w" secondAttribute="trailing" id="ag1-VM-yEu"/>
+                <constraint firstAttribute="bottom" secondItem="s4p-ZT-nu9" secondAttribute="bottom" id="dNT-0O-6li"/>
+                <constraint firstItem="s4p-ZT-nu9" firstAttribute="top" secondItem="rgw-cb-e3w" secondAttribute="bottom" constant="8" id="nmz-RW-HJh"/>
+                <constraint firstItem="rgw-cb-e3w" firstAttribute="top" secondItem="ELt-Hl-jX3" secondAttribute="bottom" id="nyc-aL-g37"/>
+                <constraint firstItem="rgw-cb-e3w" firstAttribute="leading" secondItem="ELt-Hl-jX3" secondAttribute="leading" id="oRi-Bl-ABv"/>
+                <constraint firstAttribute="trailing" secondItem="ELt-Hl-jX3" secondAttribute="trailing" constant="16" id="xnV-lV-73F"/>
+                <constraint firstItem="ELt-Hl-jX3" firstAttribute="leading" secondItem="myt-qu-bZR" secondAttribute="leading" constant="16" id="xrJ-DH-46L"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="containerView" destination="rgw-cb-e3w" id="Edc-Ll-QK2"/>
+                <outlet property="infoView" destination="s4p-ZT-nu9" id="nBC-Rw-TbE"/>
+                <outlet property="nameLabel" destination="ELt-Hl-jX3" id="ZbF-IA-fR3"/>
+                <outlet property="topMarginConstraint" destination="WKZ-zx-k52" id="XLk-Vz-7NV"/>
+            </connections>
+            <point key="canvasLocation" x="67.5" y="1.5"/>
+        </view>
+    </objects>
+</document>

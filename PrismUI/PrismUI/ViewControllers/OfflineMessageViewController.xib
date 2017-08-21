@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OfflineMessageViewController" customModule="PrismUI" customModuleProvider="target">
+            <connections>
+                <outlet property="offlineMessageLabel" destination="XDF-ir-PL2" id="KZU-JH-G0a"/>
+                <outlet property="titleLabel" destination="3Ez-cf-jic" id="IIp-bL-3cc"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ez-cf-jic">
+                    <rect key="frame" x="18" y="40" width="339" height="17"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDF-ir-PL2">
+                    <rect key="frame" x="18" y="77" width="339" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icPrism" translatesAutoresizingMaskIntoConstraints="NO" id="yTj-6o-Yer">
+                    <rect key="frame" x="0.0" y="647" width="375" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="YJd-Zu-FGe"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="XDF-ir-PL2" secondAttribute="trailing" constant="18" id="3Y8-AJ-m9P"/>
+                <constraint firstItem="yTj-6o-Yer" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DHJ-bu-KT6"/>
+                <constraint firstItem="XDF-ir-PL2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="18" id="Eoz-4m-NXd"/>
+                <constraint firstItem="3Ez-cf-jic" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="18" id="Pyp-C6-WOF"/>
+                <constraint firstItem="XDF-ir-PL2" firstAttribute="top" secondItem="3Ez-cf-jic" secondAttribute="bottom" constant="20" id="VoO-hU-k6Y"/>
+                <constraint firstAttribute="trailing" secondItem="yTj-6o-Yer" secondAttribute="trailing" id="YOh-D0-eW3"/>
+                <constraint firstItem="3Ez-cf-jic" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="b9m-On-cl8"/>
+                <constraint firstAttribute="trailing" secondItem="3Ez-cf-jic" secondAttribute="trailing" constant="18" id="bNB-i5-r3t"/>
+                <constraint firstAttribute="bottom" secondItem="yTj-6o-Yer" secondAttribute="bottom" id="jWK-SN-D7W"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="icPrism" width="122" height="8"/>
+    </resources>
+</document>

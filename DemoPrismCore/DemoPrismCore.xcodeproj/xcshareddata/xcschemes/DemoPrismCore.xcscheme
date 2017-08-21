@@ -28,6 +28,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E52665721EE91A9600612E19"
+               BuildableName = "PrismUI.framework"
+               BlueprintName = "PrismUI"
+               ReferencedContainer = "container:../PrismUI/PrismUI.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "E54D95F41ED55E34009FF016"
                BuildableName = "DemoPrismCore.app"
                BlueprintName = "DemoPrismCore"

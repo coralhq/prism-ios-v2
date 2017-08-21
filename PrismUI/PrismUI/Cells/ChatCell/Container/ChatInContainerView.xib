@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ChatInContainerView" customModule="PrismUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="359" height="193"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ed7-sP-qYZ">
+                    <rect key="frame" x="16" y="10" width="327" height="17"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                    <color key="textColor" red="0.82745098039999998" green="0.2196078431372549" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rqc-Gb-vfo" customClass="ChatBubleView" customModule="PrismUI" customModuleProvider="target">
+                    <rect key="frame" x="16" y="27" width="200" height="166"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Atx-fN-zPY">
+                            <rect key="frame" x="8" y="8" width="137" height="150"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="vyQ-w0-y83" customClass="ChatInfoView" customModule="PrismUI" customModuleProvider="target">
+                            <rect key="frame" x="153" y="148" width="39" height="10"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="00:40 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdO-7k-EqR">
+                                    <rect key="frame" x="0.0" y="0.0" width="39" height="10"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                    <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="qdO-7k-EqR" firstAttribute="top" secondItem="vyQ-w0-y83" secondAttribute="top" id="8yz-kz-LlU"/>
+                                <constraint firstAttribute="trailing" secondItem="qdO-7k-EqR" secondAttribute="trailing" id="QJD-iK-5CC"/>
+                                <constraint firstAttribute="bottom" secondItem="qdO-7k-EqR" secondAttribute="bottom" id="Rzk-Gc-a1u"/>
+                                <constraint firstItem="qdO-7k-EqR" firstAttribute="leading" secondItem="vyQ-w0-y83" secondAttribute="leading" id="kyO-Og-DXt"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="timeLabel" destination="qdO-7k-EqR" id="E2w-UN-Dwa"/>
+                            </connections>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="vyQ-w0-y83" secondAttribute="trailing" constant="8" id="2wM-XX-EhT"/>
+                        <constraint firstAttribute="bottom" secondItem="Atx-fN-zPY" secondAttribute="bottom" constant="8" id="5a6-Lb-ogG"/>
+                        <constraint firstAttribute="trailing" secondItem="Atx-fN-zPY" secondAttribute="trailing" constant="55" id="74J-bS-rb5"/>
+                        <constraint firstItem="vyQ-w0-y83" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Rqc-Gb-vfo" secondAttribute="leading" constant="8" id="8u7-JS-9mv"/>
+                        <constraint firstItem="Atx-fN-zPY" firstAttribute="top" secondItem="Rqc-Gb-vfo" secondAttribute="top" constant="8" id="KqI-cg-NS2"/>
+                        <constraint firstAttribute="bottom" secondItem="vyQ-w0-y83" secondAttribute="bottom" constant="8" id="dJw-7a-8Oh"/>
+                        <constraint firstAttribute="width" constant="200" placeholder="YES" id="u8g-eg-2lt"/>
+                        <constraint firstItem="Atx-fN-zPY" firstAttribute="leading" secondItem="Rqc-Gb-vfo" secondAttribute="leading" constant="8" id="wAo-sg-gAV"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                            <color key="value" red="0.82745098039999998" green="0.1960784314" blue="0.1960784314" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="bubleTypeAdapter">
+                            <integer key="value" value="0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Rqc-Gb-vfo" firstAttribute="leading" secondItem="ed7-sP-qYZ" secondAttribute="leading" id="7YB-3z-ZfC"/>
+                <constraint firstItem="ed7-sP-qYZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="ChD-DF-Wak"/>
+                <constraint firstAttribute="bottom" secondItem="Rqc-Gb-vfo" secondAttribute="bottom" id="dXI-8G-09L"/>
+                <constraint firstItem="Rqc-Gb-vfo" firstAttribute="top" secondItem="ed7-sP-qYZ" secondAttribute="bottom" id="dsK-dK-t3Y"/>
+                <constraint firstItem="ed7-sP-qYZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="nP5-Vs-roq"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Rqc-Gb-vfo" secondAttribute="trailing" constant="16" id="rsz-iN-ODc"/>
+                <constraint firstAttribute="trailing" secondItem="ed7-sP-qYZ" secondAttribute="trailing" constant="16" id="zND-bx-2ZN"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bubleView" destination="Rqc-Gb-vfo" id="ZJO-Eu-yXi"/>
+                <outlet property="containerView" destination="Atx-fN-zPY" id="13O-Dv-R8X"/>
+                <outlet property="contentBottom" destination="5a6-Lb-ogG" id="LOq-hR-wpU"/>
+                <outlet property="contentTrailing" destination="74J-bS-rb5" id="40L-pk-m1b"/>
+                <outlet property="infoBottom" destination="dJw-7a-8Oh" id="uZm-hW-LSs"/>
+                <outlet property="infoTrailing" destination="2wM-XX-EhT" id="dGs-Li-Myk"/>
+                <outlet property="infoView" destination="vyQ-w0-y83" id="nDh-RO-Fdy"/>
+                <outlet property="nameLabel" destination="ed7-sP-qYZ" id="QHe-lf-nJa"/>
+                <outlet property="topMarginConstraint" destination="nP5-Vs-roq" id="D6e-T2-j4C"/>
+            </connections>
+            <point key="canvasLocation" x="68" y="2"/>
+        </view>
+    </objects>
+</document>

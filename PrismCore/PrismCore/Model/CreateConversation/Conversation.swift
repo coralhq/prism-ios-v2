@@ -20,43 +20,46 @@ public class Conversation : Mappable {
     public let hasContent: Bool
     public let channel: String
     public let channelInfo: String?
-    public let visitor: ConversationVisitor
+    public let visitor: ConversationVisitor?
     public let participants: [ConversationParticipant]
     public let assignee: String?
-    public let assigmentHistories: [ConversationHistory]
+    public let assigmentHistories: [ConversationHistory]?
     public let tags: [String]?
     public let latestMessagePayload: String?
     
-    required public init?(json: [String: Any]?) {
+    required public init?(dictionary: [String: Any]?) {
         
-        guard let createdAt = Date.getDateFromISO8601(string: json?["created_at"] as? String),
-            let updatedAt = Date.getDateFromISO8601(string: json?["updated_at"] as? String),
-            let id = json?["id"] as? String,
-            let topic = json?["topic"] as? String,
-            let status = json?["status"] as? String,
-            let merchantID = json?["merchant_id"] as? String,
-            let hasContent = json?["has_content"] as? Bool,
-            let channel = json?["channel"] as? String,
-            let visitor = ConversationVisitor(json: json?["visitor"] as? [String: Any]),
-            let jsonParticipants = json?["participants"] as? [[String: Any]]
+        guard let createdAtString = dictionary?["created_at"] as? String,
+            let createdAt = createdAtString.ISO8601Date,
+            let updatedAtString = dictionary?["updated_at"] as? String,
+            let updatedAt = updatedAtString.ISO8601Date,
+            let id = dictionary?["id"] as? String,
+            let topic = dictionary?["topic"] as? String,
+            let status = dictionary?["status"] as? String,
+            let merchantID = dictionary?["merchant_id"] as? String,
+            let hasContent = dictionary?["has_content"] as? Bool,
+            let channel = dictionary?["channel"] as? String
             else {
                 return nil
         }
         
-        channelInfo = json?["channel_info"] as? String
-        assignee = json?["assignee"] as? String
-        latestMessagePayload = json?["latest_msg_payload"] as? String
+        channelInfo = dictionary?["channel_info"] as? String
+        assignee = dictionary?["assignee"] as? String
+        latestMessagePayload = dictionary?["latest_msg_payload"] as? String
         assigmentHistories = []
-        tags = json?["tags"] as? [String]
+        tags = dictionary?["tags"] as? [String]
+        visitor = ConversationVisitor(dictionary: dictionary?["visitor"] as? [String: Any])
         
         var participants: [ConversationParticipant] = []
         
-        for json in jsonParticipants {
-            guard let participant = ConversationParticipant(json: json) else {
-                return nil
+        if let participantDictionaries = dictionary?["participants"] as? [[String: Any]] {
+            for dictionary in participantDictionaries {
+                guard let participant = ConversationParticipant(dictionary: dictionary) else {
+                    return nil
+                }
+                
+                participants.append(participant)
             }
-            
-            participants.append(participant)
         }
         
         self.createdAt = createdAt
@@ -67,7 +70,37 @@ public class Conversation : Mappable {
         self.merchantID = merchantID
         self.hasContent = hasContent
         self.channel = channel
-        self.visitor = visitor
         self.participants = participants
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        let participants = self.participants.map { (participant) -> [String: Any] in
+            return participant.dictionaryValue()
+        }
+        var result: [String: Any] = ["created_at": createdAt.ISO8601String,
+                                     "updated_at": updatedAt.ISO8601String,
+                                     "id": id,
+                                     "topic": topic,
+                                     "status": status,
+                                     "merchant_id": merchantID,
+                                     "has_content": hasContent,
+                                     "channel": channel,
+                                     "participants": participants]
+        if let info = channelInfo {
+            result["channel_info"] = info
+        }
+        if let assignee = assignee {
+            result["assignee"] = assignee
+        }
+        if let payload = latestMessagePayload {
+            result["latest_msg_payload"] = payload
+        }
+        if let tags = tags {
+            result["tags"] = tags
+        }
+        if let visitor = visitor {
+            result["visitor"] = visitor.dictionaryValue()
+        }        
+        return result
     }
 }

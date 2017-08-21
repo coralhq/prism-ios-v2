@@ -8,22 +8,21 @@
 
 import Foundation
 
-open class StickerResponse: Mappable {
+open class StickerResponse: NSObject, NSCoding, Mappable {
     
-    let status: String
-    let packs: [StickerPack]
+    public let status: String
+    public let packs: [StickerPack]
     
-    required public init?(json: [String : Any]?) {
-        guard let data = json?["data"] as? [String: Any],
-            let status = json?["status"] as? String,
-            let packsJson = data["packs"] as? [[String: Any]]
-            else {
+    required public init?(dictionary: [String : Any]?) {
+        guard let data = dictionary?["data"] as? [String: Any],
+            let status = dictionary?["status"] as? String,
+            let packDictionaries = data["packs"] as? [[String: Any]] else {
                 return nil
         }
         
         var packs: [StickerPack] = []
-        for json in packsJson {
-            guard let pack = StickerPack(json: json) else {
+        for dictionary in packDictionaries {
+            guard let pack = StickerPack(dictionary: dictionary) else {
                 return nil
             }
             
@@ -32,5 +31,23 @@ open class StickerResponse: Mappable {
         
         self.status = status
         self.packs = packs
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        let stickerPakcs = self.packs.map { (pack) -> [String: Any] in
+            return pack.dictionaryValue()
+        }
+        return ["data": ["packs": stickerPakcs],
+                "status": status]
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(status, forKey: "status")
+        aCoder.encode(packs, forKey: "packs")
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        status = aDecoder.decodeObject(forKey: "status") as! String
+        packs = aDecoder.decodeObject(forKey: "packs") as! [StickerPack]
     }
 }

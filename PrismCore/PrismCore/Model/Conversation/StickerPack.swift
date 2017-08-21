@@ -8,32 +8,35 @@
 
 import Foundation
 
-class StickerPack: Mappable {
+open class StickerPack: NSObject, NSCoding, Mappable {
     let createdAt: Date
     let updatedAt: Date
     let id: String
-    let name: String
-    let logoURL: URL
     let createdBy: String
     let isPublic: Bool
-    let stickers: [Sticker]
+    public let name: String
+    public let logoURL: URL
+    public let stickers: [Sticker]
     
-    required init?(json: [String : Any]?) {
-        guard let createdAt = Date.getDateFromISO8601(string: json?["created_at"] as? String),
-            let updatedAt = Date.getDateFromISO8601(string: json?["updated_at"] as? String),
-            let id = json?["id"] as? String,
-            let name = json?["name"] as? String,
-            let logoURL = json?["logo_url"] as? URL,
-            let isPublic = json?["is_public"] as? Bool,
-            let stickersJson = json?["stickers"] as? [[String: Any]],
-            let createdBy = json?["created_by"] as? String
+    public required init?(dictionary: [String : Any]?) {
+        guard let createdAtString = dictionary?["created_at"] as? String,
+            let createdAt = createdAtString.ISO8601Date,
+            let updatedAtString = dictionary?["updated_at"] as? String,
+            let updatedAt = updatedAtString.ISO8601Date,
+            let id = dictionary?["id"] as? String,
+            let name = dictionary?["name"] as? String,
+            let logoURLString = dictionary?["logo_url"] as? String,
+            let logoURL = URL(string: logoURLString),
+            let isPublic = dictionary?["is_public"] as? Bool,
+            let stickerDictionaries = dictionary?["stickers"] as? [[String: Any]],
+            let createdBy = dictionary?["created_by"] as? String
             else {
                 return nil
         }
         
         var stickers: [Sticker] = []
-        for json in stickersJson {
-            guard let sticker = Sticker(json: json) else {
+        for dictionary in stickerDictionaries {
+            guard let sticker = Sticker(dictionary: dictionary) else {
                 return nil
             }
             
@@ -50,4 +53,39 @@ class StickerPack: Mappable {
         self.createdBy = createdBy
     }
     
+    public func dictionaryValue() -> [String : Any] {
+        let rawStickers = self.stickers.map { (sticker) -> [String: Any] in
+            return sticker.dictionaryValue()
+        }        
+        return ["created_at": createdAt.ISO8601String,
+                "updated_at": updatedAt.ISO8601String,
+                "id": id,
+                "name": name,
+                "logo_url": logoURL.absoluteString,
+                "is_public": isPublic,
+                "stickers": rawStickers,
+                "created_by": createdBy]
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(stickers, forKey: "stickers")
+        aCoder.encode(createdAt, forKey: "created_at")
+        aCoder.encode(updatedAt, forKey: "updated_at")
+        aCoder.encode(id, forKey: "id")
+        aCoder.encode(name, forKey: "name")
+        aCoder.encode(logoURL, forKey: "logo_url")
+        aCoder.encode(isPublic, forKey: "is_public")
+        aCoder.encode(createdBy, forKey: "created_by")
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        stickers = aDecoder.decodeObject(forKey: "stickers") as! [Sticker]
+        createdAt = aDecoder.decodeObject(forKey: "created_at") as! Date
+        updatedAt = aDecoder.decodeObject(forKey: "updated_at") as! Date
+        id = aDecoder.decodeObject(forKey: "id") as! String
+        name = aDecoder.decodeObject(forKey: "name") as! String
+        logoURL = aDecoder.decodeObject(forKey: "logo_url") as! URL
+        createdBy = aDecoder.decodeObject(forKey: "created_by") as! String
+        isPublic = aDecoder.decodeBool(forKey: "is_public")
+    }
 }

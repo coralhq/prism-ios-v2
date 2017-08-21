@@ -17,14 +17,13 @@ public class Visitor : Mappable {
     public let channelName: String
     public let channelUserID: String
     
-    required public init?(json: [String: Any]?) {
-        guard let id = json?["id"] as? String,
-            let name = json?["name"] as? String,
-            let merchantID = json?["merchant_id"] as? String,
-            let appName = json?["app_name"] as? String,
-            let channelName = json?["channel_name"] as? String,
-            let channelUserID = json?["channel_user_id"] as? String
-            else {
+    required public init?(dictionary: [String: Any]?) {
+        guard let id = dictionary?["id"] as? String,
+            let name = dictionary?["name"] as? String,
+            let merchantID = dictionary?["merchant_id"] as? String,
+            let appName = dictionary?["app_name"] as? String,
+            let channelName = dictionary?["channel_name"] as? String,
+            let channelUserID = dictionary?["channel_user_id"] as? String else {
                 return nil
         }
         
@@ -36,4 +35,12 @@ public class Visitor : Mappable {
         self.channelUserID = channelUserID
     }
     
+    public func dictionaryValue() -> [String : Any] {
+        return ["id": id,
+                "name": name,
+                "merchant_id": merchantID,
+                "app_name": appName,
+                "channel_name": channelName,
+                "channel_user_id": channelUserID]
+    }
 }

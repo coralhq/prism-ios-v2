@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="RVz-fZ-Qc3" customClass="FieldsNavigatorView" customModule="PrismUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wlb-vW-HIv" customClass="SmallButton" customModule="PrismUI" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="30" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="aGy-TB-mfV"/>
+                    </constraints>
+                    <state key="normal" image="prevIcon"/>
+                    <connections>
+                        <action selector="prevPressedWithSender:" destination="RVz-fZ-Qc3" eventType="touchUpInside" id="cZl-jN-t8n"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0XV-ZC-yPb" customClass="SmallButton" customModule="PrismUI" customModuleProvider="target">
+                    <rect key="frame" x="30" y="0.0" width="30" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="izf-5N-bPh"/>
+                    </constraints>
+                    <state key="normal" image="nextIcon"/>
+                    <connections>
+                        <action selector="nextPressedWithSender:" destination="RVz-fZ-Qc3" eventType="touchUpInside" id="832-wS-r86"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnX-Z0-qcz" customClass="SmallButton" customModule="PrismUI" customModuleProvider="target">
+                    <rect key="frame" x="274" y="0.0" width="38" height="45"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="Done">
+                        <color key="titleColor" red="0.098039215690000001" green="0.63921568630000003" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="donePressedWithSender:" destination="RVz-fZ-Qc3" eventType="touchUpInside" id="aMM-Ou-NO4"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.92941176469999998" green="0.93333333330000001" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="0XV-ZC-yPb" secondAttribute="bottom" id="102-pj-DHU"/>
+                <constraint firstItem="Wlb-vW-HIv" firstAttribute="leading" secondItem="RVz-fZ-Qc3" secondAttribute="leading" id="6tv-dV-MP5"/>
+                <constraint firstAttribute="bottom" secondItem="Wlb-vW-HIv" secondAttribute="bottom" id="Msg-ee-Ksq"/>
+                <constraint firstItem="Wlb-vW-HIv" firstAttribute="top" secondItem="RVz-fZ-Qc3" secondAttribute="top" id="SJC-Ja-Xu6"/>
+                <constraint firstItem="0XV-ZC-yPb" firstAttribute="top" secondItem="RVz-fZ-Qc3" secondAttribute="top" id="T7j-md-kB7"/>
+                <constraint firstItem="DnX-Z0-qcz" firstAttribute="top" secondItem="RVz-fZ-Qc3" secondAttribute="top" id="bXA-MW-xZW"/>
+                <constraint firstAttribute="trailing" secondItem="DnX-Z0-qcz" secondAttribute="trailing" constant="8" id="pld-ws-cPX"/>
+                <constraint firstItem="0XV-ZC-yPb" firstAttribute="leading" secondItem="Wlb-vW-HIv" secondAttribute="trailing" id="qXC-am-U4k"/>
+                <constraint firstAttribute="bottom" secondItem="DnX-Z0-qcz" secondAttribute="bottom" id="saL-AJ-MHH"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="doneButton" destination="DnX-Z0-qcz" id="mpn-jC-9If"/>
+                <outlet property="nextButton" destination="0XV-ZC-yPb" id="LE6-ce-EK3"/>
+                <outlet property="prevButton" destination="Wlb-vW-HIv" id="uPP-7W-hI3"/>
+            </connections>
+            <point key="canvasLocation" x="329" y="21"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="nextIcon" width="8" height="13"/>
+        <image name="prevIcon" width="8" height="13"/>
+    </resources>
+</document>

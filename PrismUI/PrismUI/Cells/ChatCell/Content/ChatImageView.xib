@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="aDy-cw-Ruz" customClass="ChatImageView" customModule="PrismUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FBz-M0-ZJ1">
+                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uKo-LL-Pny">
+                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="900" constant="150" id="WN0-me-O4i"/>
+                                <constraint firstAttribute="width" priority="900" constant="150" id="usd-e5-w0g"/>
+                            </constraints>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FZ1-Y6-n9O">
+                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                            <subviews>
+                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="gPF-Jg-UAJ">
+                                    <rect key="frame" x="57" y="57" width="37" height="37"/>
+                                </activityIndicatorView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="gPF-Jg-UAJ" firstAttribute="centerX" secondItem="FZ1-Y6-n9O" secondAttribute="centerX" id="hn1-Gf-aWG"/>
+                                <constraint firstItem="gPF-Jg-UAJ" firstAttribute="centerY" secondItem="FZ1-Y6-n9O" secondAttribute="centerY" id="rj2-Gj-5vP"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="FZ1-Y6-n9O" firstAttribute="top" secondItem="FBz-M0-ZJ1" secondAttribute="top" id="CZH-op-86d"/>
+                        <constraint firstItem="uKo-LL-Pny" firstAttribute="leading" secondItem="FBz-M0-ZJ1" secondAttribute="leading" id="LfS-of-8rL"/>
+                        <constraint firstAttribute="bottom" secondItem="FZ1-Y6-n9O" secondAttribute="bottom" id="Ln6-5O-RMG"/>
+                        <constraint firstAttribute="bottom" secondItem="uKo-LL-Pny" secondAttribute="bottom" id="MaP-U9-CfK"/>
+                        <constraint firstItem="uKo-LL-Pny" firstAttribute="top" secondItem="FBz-M0-ZJ1" secondAttribute="top" id="WeK-eu-NDK"/>
+                        <constraint firstAttribute="trailing" secondItem="uKo-LL-Pny" secondAttribute="trailing" id="otX-7l-i4k"/>
+                        <constraint firstAttribute="trailing" secondItem="FZ1-Y6-n9O" secondAttribute="trailing" id="qp3-T1-JLW"/>
+                        <constraint firstItem="FZ1-Y6-n9O" firstAttribute="leading" secondItem="FBz-M0-ZJ1" secondAttribute="leading" id="s7D-fq-gxH"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="FBz-M0-ZJ1" firstAttribute="leading" secondItem="aDy-cw-Ruz" secondAttribute="leading" id="5fV-lh-veb"/>
+                <constraint firstAttribute="trailing" secondItem="FBz-M0-ZJ1" secondAttribute="trailing" id="in0-Dy-6wy"/>
+                <constraint firstAttribute="bottom" secondItem="FBz-M0-ZJ1" secondAttribute="bottom" id="jFs-9M-pbV"/>
+                <constraint firstItem="FBz-M0-ZJ1" firstAttribute="top" secondItem="aDy-cw-Ruz" secondAttribute="top" id="w14-9h-d8Y"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="dimmedView" destination="FZ1-Y6-n9O" id="F2o-Cp-S6z"/>
+                <outlet property="imageView" destination="uKo-LL-Pny" id="1X2-El-062"/>
+                <outlet property="indicatorView" destination="gPF-Jg-UAJ" id="zhb-E8-6zh"/>
+            </connections>
+            <point key="canvasLocation" x="-77" y="-249"/>
+        </view>
+    </objects>
+</document>

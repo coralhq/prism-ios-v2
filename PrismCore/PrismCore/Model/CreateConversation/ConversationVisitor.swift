@@ -9,7 +9,7 @@
 import Foundation
 
 //TODO: some properties might unused, re-check later
-public class ConversationVisitor {
+public class ConversationVisitor: Mappable {
     
     public let createdAt: Date //"2017-05-19T03:39:31.808Z"
     public let updatedAt: Date
@@ -18,13 +18,15 @@ public class ConversationVisitor {
     public let avatar: String
     public let merchantID: String
     
-    required public init?(json: [String: Any]?) {
-        guard let createdAt = Date.getDateFromISO8601(string: json?["created_at"] as? String),
-            let updatedAt = Date.getDateFromISO8601(string: json?["updated_at"] as? String),
-            let id = json?["id"] as? String,
-            let merchantID = json?["merchant_id"] as? String,
-            let avatar = json?["avatar"] as? String,
-            let name = json?["name"] as? String
+    required public init?(dictionary: [String: Any]?) {
+        guard let createdAtString = dictionary?["created_at"] as? String,
+            let createdAt = createdAtString.ISO8601Date,
+            let updatedAtString = dictionary?["updated_at"] as? String,
+            let updatedAt = updatedAtString.ISO8601Date,
+            let id = dictionary?["id"] as? String,
+            let merchantID = dictionary?["merchant_id"] as? String,
+            let avatar = dictionary?["avatar"] as? String,
+            let name = dictionary?["name"] as? String
             
             else {
                 return nil
@@ -36,5 +38,14 @@ public class ConversationVisitor {
         self.avatar = avatar
         self.name = name
         self.merchantID = merchantID
+    }
+    
+    public func dictionaryValue() -> [String : Any] {
+        return ["created_at": createdAt.ISO8601String,
+                "updated_at": updatedAt.ISO8601String,
+                "id": id,
+                "merchant_id": merchantID,
+                "avatar": avatar,
+                "name": name]
     }
 }

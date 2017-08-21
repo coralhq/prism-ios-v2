@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DemoViewController" customModule="DemoPrismCore" customModuleProvider="target">
+            <connections>
+                <outlet property="chatButton" destination="NlL-Cu-rWs" id="m9Q-zg-3e3"/>
+                <outlet property="collectionView" destination="u3j-hO-Q41" id="bcn-8d-bdf"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="u3j-hO-Q41">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EUV-cg-7f3">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NlL-Cu-rWs">
+                    <rect key="frame" x="329" y="617" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="4kg-jo-ZTo"/>
+                        <constraint firstAttribute="height" constant="30" id="wCa-s8-qVs"/>
+                    </constraints>
+                    <state key="normal" image="icChatwidget"/>
+                    <connections>
+                        <action selector="chatAction:" destination="-1" eventType="touchUpInside" id="yR9-hV-c4d"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="u3j-hO-Q41" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JMI-dF-O7b"/>
+                <constraint firstAttribute="bottom" secondItem="NlL-Cu-rWs" secondAttribute="bottom" constant="20" id="Oik-gt-Yli"/>
+                <constraint firstAttribute="trailing" secondItem="NlL-Cu-rWs" secondAttribute="trailing" constant="16" id="SCH-ln-7wQ"/>
+                <constraint firstAttribute="trailing" secondItem="u3j-hO-Q41" secondAttribute="trailing" id="asG-0c-9Bj"/>
+                <constraint firstItem="u3j-hO-Q41" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fzV-5l-Hz6"/>
+                <constraint firstAttribute="bottom" secondItem="u3j-hO-Q41" secondAttribute="bottom" id="ppk-5I-DWn"/>
+            </constraints>
+            <point key="canvasLocation" x="93.5" y="98.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icChatwidget" width="33" height="33"/>
+    </resources>
+</document>

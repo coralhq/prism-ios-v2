@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="KWI-id-4vq" customClass="ChatCartView" customModule="PrismUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="190" height="419"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopping Cart" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFt-A6-Tbs">
+                    <rect key="frame" x="0.0" y="0.0" width="190" height="17"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="754" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9b3-Rl-gHs">
+                    <rect key="frame" x="0.0" y="402" width="190" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="754" text="Total Amount Rp 0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byY-HC-Ncz">
+                    <rect key="frame" x="0.0" y="375" width="190" height="17"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                    <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9kP-hv-jpl">
+                    <rect key="frame" x="0.0" y="27" width="190" height="338"/>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="aFt-A6-Tbs" firstAttribute="top" secondItem="KWI-id-4vq" secondAttribute="top" id="1Qs-Og-FCR"/>
+                <constraint firstAttribute="trailing" secondItem="byY-HC-Ncz" secondAttribute="trailing" id="3RM-8W-LfZ"/>
+                <constraint firstItem="aFt-A6-Tbs" firstAttribute="leading" secondItem="KWI-id-4vq" secondAttribute="leading" id="4Fb-nE-JzU"/>
+                <constraint firstItem="9b3-Rl-gHs" firstAttribute="top" secondItem="byY-HC-Ncz" secondAttribute="bottom" constant="10" id="5mW-XK-I5H"/>
+                <constraint firstItem="byY-HC-Ncz" firstAttribute="leading" secondItem="KWI-id-4vq" secondAttribute="leading" id="CPK-Sq-qzQ"/>
+                <constraint firstAttribute="trailing" secondItem="aFt-A6-Tbs" secondAttribute="trailing" id="OeV-5a-wTX"/>
+                <constraint firstAttribute="trailing" secondItem="9b3-Rl-gHs" secondAttribute="trailing" id="WWu-No-bLJ"/>
+                <constraint firstItem="9kP-hv-jpl" firstAttribute="top" secondItem="aFt-A6-Tbs" secondAttribute="bottom" constant="10" id="Wjl-CZ-76T"/>
+                <constraint firstAttribute="trailing" secondItem="9kP-hv-jpl" secondAttribute="trailing" id="Xi4-yV-Up6"/>
+                <constraint firstItem="9b3-Rl-gHs" firstAttribute="leading" secondItem="KWI-id-4vq" secondAttribute="leading" id="bDT-pm-jtu"/>
+                <constraint firstItem="9kP-hv-jpl" firstAttribute="leading" secondItem="KWI-id-4vq" secondAttribute="leading" id="cOF-YU-Tyq"/>
+                <constraint firstAttribute="bottom" secondItem="9b3-Rl-gHs" secondAttribute="bottom" id="es0-r2-RoM"/>
+                <constraint firstItem="byY-HC-Ncz" firstAttribute="top" secondItem="9kP-hv-jpl" secondAttribute="bottom" constant="10" id="hWC-Yk-Y9T"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="9b3-Rl-gHs" id="t17-PU-VuL"/>
+                <outlet property="productContainer" destination="9kP-hv-jpl" id="0s2-Zc-MUk"/>
+                <outlet property="totalPriceLabel" destination="byY-HC-Ncz" id="Q5E-a9-ieC"/>
+            </connections>
+            <point key="canvasLocation" x="-190" y="-80"/>
+        </view>
+    </objects>
+</document>

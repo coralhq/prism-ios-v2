@@ -9,12 +9,27 @@
 import Foundation
 
 extension Date {
-    static func getDateFromISO8601(string: String?) -> Date? {
-        guard let string = string else {
-            return nil
-        }
+    internal static func ISO8601Formatter() -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
         
-        let formatter = ISO8601DateFormatter()
-        return formatter.date(from: string)
+        return formatter
+    }
+    
+    var ISO8601String: String {
+        let formatter = Date.ISO8601Formatter()
+        return formatter.string(from: self)
+    }
+    
+    var UTCTime: Date {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        let str = formatter.string(from: self)
+        
+        return formatter.date(from: str)!
     }
 }

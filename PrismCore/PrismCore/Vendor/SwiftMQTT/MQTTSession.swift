@@ -12,6 +12,8 @@ protocol MQTTSessionDelegate {
     func mqttDidReceive(message data: Data, in topic: String, from session: MQTTSession)
     func mqttDidDisconnect(session: MQTTSession)
     func mqttSocketErrorOccurred(session: MQTTSession)
+    func mqttDidConnect(session: MQTTSession)
+    func mqttDidSubscribe(session: MQTTSession)
 }
 
 typealias MQTTSessionCompletionBlock = (_ succeeded: Bool, _ error: Error) -> Void
@@ -134,9 +136,11 @@ class MQTTSession: MQTTSessionStreamDelegate {
             let success = (connAckPacket.response == .connectionAccepted)
             connectionCompletionBlock?(success, connAckPacket.response)
             connectionCompletionBlock = nil
+            delegate?.mqttDidConnect(session: self)
         case .subAck:
             let subAckPacket = MQTTSubAckPacket(header: header, networkData: networkData)
             callSuccessCompletionBlock(for: subAckPacket.messageID)
+            delegate?.mqttDidSubscribe(session: self)
         case .unSubAck:
             let unSubAckPacket = MQTTUnSubAckPacket(header: header, networkData: networkData)
             callSuccessCompletionBlock(for: unSubAckPacket.messageID)

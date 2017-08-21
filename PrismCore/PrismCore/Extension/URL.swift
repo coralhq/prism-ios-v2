@@ -11,14 +11,42 @@ import Foundation
 internal extension URL {
     
     private static let PrismAPIBaseURLProduction = "https://api.prismapp.io"
-    private static let PrismAPIBaseURLSandbox = "https://kong.staging.coral-inc.com"
+    private static let PrismMQTTURLProduction = "chat.prismapp.io"
+    private static let PrismMQTTPortProduction: UInt16 = 1883
+    
+    private static let PrismAPIBaseURLStaging = "https://kong-feat-stg.prismapp.io"
+    private static let PrismMQTTURLStaging = "mqtt-feat-stg.prismapp.io"
+    private static let PrismMQTTPortStaging: UInt16 = 1883
+    
     private static var PrismAPIBaseURL: String {
         get {
             switch Config.shared.getEnvironment()! {
             case .Production:
                 return PrismAPIBaseURLProduction
-            case .Sandbox:
-                return PrismAPIBaseURLSandbox
+            case .Staging:
+                return PrismAPIBaseURLStaging
+            }
+        }
+    }
+    
+    static var PrismMQTTPort: UInt16 {
+        get {
+            switch Config.shared.getEnvironment()! {
+            case .Production:
+                return PrismMQTTPortProduction
+            case .Staging:
+                return PrismMQTTPortStaging
+            }
+        }
+    }
+    
+    static var PrismMQTTURL: String {
+        get {
+            switch Config.shared.getEnvironment()! {
+            case .Production:
+                return PrismMQTTURLProduction
+            case .Staging:
+                return PrismMQTTURLStaging
             }
         }
     }
@@ -26,6 +54,18 @@ internal extension URL {
     static var prismConnect: URL {
         get {
             return URL(string: "\(PrismAPIBaseURL)/v2/visitors/connect")!
+        }
+    }
+    
+    static var publishMessage: URL {
+        get {
+            return URL(string: "\(PrismAPIBaseURL)/v2/new_messages")!
+        }
+    }
+    
+    static var refreshToken: URL {
+        get {
+            return URL(string: "\(PrismAPIBaseURL)/v2/token/refresh")!
         }
     }
     
@@ -37,7 +77,7 @@ internal extension URL {
     
     static var getSettings: URL {
         get {
-            return URL(string: "\(PrismAPIBaseURL)/v2/settings/merchant_id=\(Config.shared.getMerchantID()!)")!
+            return URL(string: "\(PrismAPIBaseURL)/v2/settings?merchant_id=\(Config.shared.getMerchantID()!)")!
         }
     }
     
@@ -47,11 +87,15 @@ internal extension URL {
         }
     }
     
+    static func sendDeviceToken(visitorID: String) -> URL {
+        return URL(string: "\(PrismAPIBaseURL)/v2/visitors/\(visitorID)/device")!
+    }
+    
     static func getAttachmentURL(conversationID: String) -> URL {
         return URL(string: "\(PrismAPIBaseURL)/v2/conversations/\(conversationID)/upload_url")!
     }
     
-    static func getConversationHistory(conversationID: String) -> URL {
-        return URL(string: "\(PrismAPIBaseURL)/v2/conversations_history/\(conversationID)/messages")!
+    static func getConversationHistory(conversationID: String, startTime: Int64, endTime: Int64) -> URL {
+        return URL(string: "\(PrismAPIBaseURL)/v2/conversations_history/\(conversationID)/messages?start_time=\(startTime)&end_time=\(endTime)")!
     }
 }

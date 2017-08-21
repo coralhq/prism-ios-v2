@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EmojiInputView" customModule="PrismUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="358"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vqa-rK-iJX" customClass="OptionView" customModule="PrismUI" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
+                    <color key="backgroundColor" red="0.9137254901960784" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="1Kb-GD-uyn"/>
+                    </constraints>
+                    <connections>
+                        <action selector="optionValueChangedWithSender:" destination="iN0-l3-epB" eventType="valueChanged" id="5QY-lV-CKk"/>
+                    </connections>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0R-eF-hxL">
+                    <rect key="frame" x="280" y="0.0" width="40" height="45"/>
+                    <color key="backgroundColor" red="0.96470588235294119" green="0.97647058823529409" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="Vyo-MU-zfB"/>
+                    </constraints>
+                    <state key="normal" image="icRemove"/>
+                    <connections>
+                        <action selector="backspacePressedWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="cgm-sw-1yQ"/>
+                    </connections>
+                </button>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="MVC-x7-VAU">
+                    <rect key="frame" x="0.0" y="45" width="320" height="313"/>
+                    <color key="backgroundColor" red="0.93725490196078431" green="0.95294117647058818" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="pcT-WA-vR0">
+                        <size key="itemSize" width="38" height="38"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="MVC-x7-VAU" firstAttribute="top" secondItem="S0R-eF-hxL" secondAttribute="bottom" id="GmB-qn-BgA"/>
+                <constraint firstItem="MVC-x7-VAU" firstAttribute="top" secondItem="Vqa-rK-iJX" secondAttribute="bottom" constant="1" id="Q4E-2l-UjX"/>
+                <constraint firstAttribute="trailing" secondItem="MVC-x7-VAU" secondAttribute="trailing" id="SSq-hb-SBH"/>
+                <constraint firstAttribute="trailing" secondItem="S0R-eF-hxL" secondAttribute="trailing" id="Vwu-wn-i7D"/>
+                <constraint firstItem="S0R-eF-hxL" firstAttribute="leading" secondItem="Vqa-rK-iJX" secondAttribute="trailing" id="XAf-Da-XbP"/>
+                <constraint firstItem="Vqa-rK-iJX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ei7-TD-4aB"/>
+                <constraint firstItem="Vqa-rK-iJX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fcr-cD-CAe"/>
+                <constraint firstAttribute="bottom" secondItem="MVC-x7-VAU" secondAttribute="bottom" id="pFl-jI-WOz"/>
+                <constraint firstItem="S0R-eF-hxL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="r3J-sV-d3K"/>
+                <constraint firstItem="MVC-x7-VAU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="w7E-bQ-Qbd"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="collectionView" destination="MVC-x7-VAU" id="onX-yY-HOJ"/>
+                <outlet property="emojiOptionView" destination="Vqa-rK-iJX" id="PQD-Fv-vwd"/>
+            </connections>
+            <point key="canvasLocation" x="-444" y="-118"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icRemove" width="20" height="14"/>
+    </resources>
+</document>

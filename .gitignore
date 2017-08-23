@@ -5,6 +5,8 @@
 ## Build generated
 build/
 DerivedData/
+PrismUI/build
+PrismCore/build
 
 ## Various settings
 *.pbxuser

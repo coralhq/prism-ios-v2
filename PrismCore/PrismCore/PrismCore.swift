@@ -67,7 +67,7 @@ open class PrismCore {
         
         network.request(endPoint: endpoint, mapToObject: SendTokenResponse.self) { (mappable, error) in
             DispatchQueue.main.async(){
-                completionHandler(error != nil ? true : false, error)
+                completionHandler(error == nil ? true : false, error)
             }
         }
     }

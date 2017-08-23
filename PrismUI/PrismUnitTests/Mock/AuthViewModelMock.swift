@@ -6,7 +6,7 @@
 //  Copyright © 2017 Prism. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import PrismCore
 
 enum ThemeTypeMock: String {
@@ -180,6 +180,7 @@ class AuthViewModelMock {
             return ConnectResponse(dictionary: [:])
         }
         
+        let timestamp: Int64 = 1496118271639
         let result = ConnectResponse(dictionary: [
             "status": "success",
             "message": "OK",
@@ -204,7 +205,7 @@ class AuthViewModelMock {
                     "channel_user_id": "fanni@prismapp.io",
                     "available": true
                 ],
-                "server_timestamp": 1496118271639
+                "server_timestamp": timestamp
             ]
         ])
         

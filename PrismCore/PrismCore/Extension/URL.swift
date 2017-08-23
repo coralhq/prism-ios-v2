@@ -14,17 +14,11 @@ internal extension URL {
     private static let PrismMQTTURLProduction = "chat.prismapp.io"
     private static let PrismMQTTPortProduction: UInt16 = 1883
     
-    private static let PrismAPIBaseURLStaging = "https://kong-feat-stg.prismapp.io"
-    private static let PrismMQTTURLStaging = "mqtt-feat-stg.prismapp.io"
-    private static let PrismMQTTPortStaging: UInt16 = 1883
-    
     private static var PrismAPIBaseURL: String {
         get {
             switch Config.shared.getEnvironment()! {
             case .Production:
                 return PrismAPIBaseURLProduction
-            case .Staging:
-                return PrismAPIBaseURLStaging
             }
         }
     }
@@ -34,8 +28,6 @@ internal extension URL {
             switch Config.shared.getEnvironment()! {
             case .Production:
                 return PrismMQTTPortProduction
-            case .Staging:
-                return PrismMQTTPortStaging
             }
         }
     }
@@ -45,8 +37,6 @@ internal extension URL {
             switch Config.shared.getEnvironment()! {
             case .Production:
                 return PrismMQTTURLProduction
-            case .Staging:
-                return PrismMQTTURLStaging
             }
         }
     }

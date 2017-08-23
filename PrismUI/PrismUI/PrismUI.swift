@@ -22,8 +22,6 @@ open class PrismUI {
         switch environment {
         case .Production:
             analyticsEnv = .Production
-        case .Staging:
-            analyticsEnv = .Staging
         }
         
         PrismAnalytics.shared.configure(environment: analyticsEnv)

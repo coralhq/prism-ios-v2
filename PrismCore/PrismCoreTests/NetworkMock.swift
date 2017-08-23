@@ -66,6 +66,10 @@ class NetworkMock: NetworkProtocol {
             }
         }
         
+        if mapToObject == SendTokenResponse.self {
+            data = JSONResponseMock.sendTokenResponse
+        }
+        
         if mapToObject == MessageResponse.self {
             data = JSONResponseMock.getMessageResponse
         }

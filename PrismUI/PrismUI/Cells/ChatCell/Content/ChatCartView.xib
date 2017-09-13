@@ -20,20 +20,14 @@
                     <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="754" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9b3-Rl-gHs">
-                    <rect key="frame" x="0.0" y="402" width="190" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="754" text="Total Amount Rp 0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byY-HC-Ncz">
-                    <rect key="frame" x="0.0" y="375" width="190" height="17"/>
+                    <rect key="frame" x="0.0" y="402" width="190" height="17"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                     <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9kP-hv-jpl">
-                    <rect key="frame" x="0.0" y="27" width="190" height="338"/>
+                    <rect key="frame" x="0.0" y="27" width="190" height="365"/>
                 </stackView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -41,15 +35,12 @@
                 <constraint firstItem="aFt-A6-Tbs" firstAttribute="top" secondItem="KWI-id-4vq" secondAttribute="top" id="1Qs-Og-FCR"/>
                 <constraint firstAttribute="trailing" secondItem="byY-HC-Ncz" secondAttribute="trailing" id="3RM-8W-LfZ"/>
                 <constraint firstItem="aFt-A6-Tbs" firstAttribute="leading" secondItem="KWI-id-4vq" secondAttribute="leading" id="4Fb-nE-JzU"/>
-                <constraint firstItem="9b3-Rl-gHs" firstAttribute="top" secondItem="byY-HC-Ncz" secondAttribute="bottom" constant="10" id="5mW-XK-I5H"/>
+                <constraint firstAttribute="bottom" secondItem="byY-HC-Ncz" secondAttribute="bottom" id="ApI-bg-jmi"/>
                 <constraint firstItem="byY-HC-Ncz" firstAttribute="leading" secondItem="KWI-id-4vq" secondAttribute="leading" id="CPK-Sq-qzQ"/>
                 <constraint firstAttribute="trailing" secondItem="aFt-A6-Tbs" secondAttribute="trailing" id="OeV-5a-wTX"/>
-                <constraint firstAttribute="trailing" secondItem="9b3-Rl-gHs" secondAttribute="trailing" id="WWu-No-bLJ"/>
                 <constraint firstItem="9kP-hv-jpl" firstAttribute="top" secondItem="aFt-A6-Tbs" secondAttribute="bottom" constant="10" id="Wjl-CZ-76T"/>
                 <constraint firstAttribute="trailing" secondItem="9kP-hv-jpl" secondAttribute="trailing" id="Xi4-yV-Up6"/>
-                <constraint firstItem="9b3-Rl-gHs" firstAttribute="leading" secondItem="KWI-id-4vq" secondAttribute="leading" id="bDT-pm-jtu"/>
                 <constraint firstItem="9kP-hv-jpl" firstAttribute="leading" secondItem="KWI-id-4vq" secondAttribute="leading" id="cOF-YU-Tyq"/>
-                <constraint firstAttribute="bottom" secondItem="9b3-Rl-gHs" secondAttribute="bottom" id="es0-r2-RoM"/>
                 <constraint firstItem="byY-HC-Ncz" firstAttribute="top" secondItem="9kP-hv-jpl" secondAttribute="bottom" constant="10" id="hWC-Yk-Y9T"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -57,7 +48,6 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="descriptionLabel" destination="9b3-Rl-gHs" id="t17-PU-VuL"/>
                 <outlet property="productContainer" destination="9kP-hv-jpl" id="0s2-Zc-MUk"/>
                 <outlet property="totalPriceLabel" destination="byY-HC-Ncz" id="Q5E-a9-ieC"/>
             </connections>

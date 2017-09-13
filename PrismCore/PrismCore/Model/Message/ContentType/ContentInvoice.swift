@@ -15,7 +15,8 @@ public class ContentInvoice: MessageContentMappable {
     public let grandTotal: Currency
     public let buyer: Buyer
     public let payment: Payment
-    public var shipment: Shipment?
+    public let shipment: Shipment?
+    public let notes: String?
     
     required public init?(dictionary: [String : Any]?) {
         
@@ -34,6 +35,12 @@ public class ContentInvoice: MessageContentMappable {
             lineItems.append(lineItem)
         }
         
+        if let notes = invoice["notes"] as? String {
+            self.notes = notes
+        } else {
+            self.notes = nil
+        }
+        
         self.id = id
         self.lineItems = lineItems
         self.grandTotal = grandTotal
@@ -42,6 +49,8 @@ public class ContentInvoice: MessageContentMappable {
         
         if let shipmentDict = invoice["shipment"] as? [String: Any] {
             self.shipment = Shipment(dictionary: shipmentDict)
+        } else {
+            self.shipment = nil
         }
     }
     
@@ -56,8 +65,13 @@ public class ContentInvoice: MessageContentMappable {
                                       "grand_total": grandTotal.dictionaryValue(),
                                       "buyer": buyer.dictionaryValue(),
                                       "payment": payment.dictionaryValue()]
+        
         if let shipment = shipment {
             invoice["shipment"] = shipment.dictionaryValue()
+        }
+        
+        if let notes = notes {
+            invoice["notes"] = notes
         }
         
         return ["invoice": invoice]
@@ -85,15 +99,18 @@ public class PaymentProvider: Mappable {
     public let info: Mappable?
     
     public required init?(dictionary: [String : Any]?) {
-        guard let type = dictionary?["type"] as? String else {
-            return nil
+        guard let type = dictionary?["type"] as? String,
+            let infoDictionary = dictionary?[type] as? [String: Any] else {
+                return nil
         }
         self.type = type
         
-        if let vtweb = dictionary?["vt_web"] as? [String: Any] {
-            self.info = MidtransInfo(dictionary: vtweb)
-        } else if let transfer = dictionary?["transfer"] as? [String: Any] {
-            self.info = BankTransferInfo(dictionary: transfer)
+        if type == "vt_web" {
+            self.info = MidtransInfo(dictionary: infoDictionary)
+        } else if type == "transfer" {
+            self.info = BankTransferInfo(dictionary: infoDictionary)
+        } else if type == "payment_link" {
+            self.info = PaymentLinkInfo(dictionary: infoDictionary)
         } else {
             self.info = nil
         }
@@ -104,12 +121,57 @@ public class PaymentProvider: Mappable {
         guard let info = info else {
             return result
         }
-        if type == "vt_web" {
-            result["info"] = info.dictionaryValue()
-        } else if type == "transfer" {
-            result["transfer"] = info.dictionaryValue()
-        }
+        result[type] = info.dictionaryValue()        
         return result
+    }
+}
+
+class PaymentLink: Mappable {
+    public let id: String
+    public let label: String
+    public let url: String
+    
+    required init?(dictionary: [String : Any]?) {
+        guard let dictionary = dictionary,
+            let id = dictionary["id"] as? String,
+            let label = dictionary["label"] as? String,
+            let url = dictionary["url"] as? String else {
+                return nil
+        }
+        self.id = id
+        self.label = label
+        self.url = url
+    }
+    
+    func dictionaryValue() -> [String : Any] {
+        return [
+            "id": id,
+            "label": label,
+            "url": url
+        ]
+    }
+}
+
+class PaymentLinkInfo: Mappable {
+    public let type: String
+    public let link: PaymentLink
+    
+    required init?(dictionary: [String : Any]?) {
+        guard let dictionary = dictionary,
+            let type = dictionary["type"] as? String,
+            let linkDictionary = dictionary["payment_link"] as? [String: Any],
+            let link = PaymentLink(dictionary: linkDictionary) else {
+                return nil
+        }
+        self.type = type
+        self.link = link
+    }
+    
+    func dictionaryValue() -> [String : Any] {
+        return [
+            "type": type,
+            "payment_link": link.dictionaryValue()
+        ]
     }
 }
 

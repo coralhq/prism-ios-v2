@@ -78,6 +78,9 @@ class CDProduct: NSObject, NSCoding, CDMappable {
     var imageURLs: [URL]
     var discount: CDDiscount?
     var currencyCode: String
+    let options: [String: Any]?
+    let selectedOptions: [String: Any]?
+    let notes: String?
     
     required init?(dictionary: [String : Any]) {
         id = dictionary["id"] as! String
@@ -94,6 +97,24 @@ class CDProduct: NSObject, NSCoding, CDMappable {
         if let desc = dictionary["description"] as? String {
             self.desc = desc
         }
+        
+        if let options = dictionary["options"] as? [String: Any] {
+            self.options = options
+        } else {
+            self.options = nil
+        }
+        
+        if let selectedOptions = dictionary["selected_options"] as? [String: Any] {
+            self.selectedOptions = selectedOptions
+        } else {
+            self.selectedOptions = nil
+        }
+        
+        if let notes = dictionary["notes"] as? String {
+            self.notes = notes
+        } else {
+            self.notes = nil
+        }
     }
     
     func dictionaryValue() -> [String : Any] {
@@ -101,12 +122,27 @@ class CDProduct: NSObject, NSCoding, CDMappable {
                                      "name": name,
                                      "price": price,
                                      "image_urls": imageURLs]
+        
         if let discount = self.discount {
             result["discount"] = discount.dictionaryValue()
         }
+        
         if let desc = self.desc {
             result["desc"] = desc
         }
+        
+        if let notes = notes {
+            result["notes"] = notes
+        }
+        
+        if let options = options {
+            result["options"] = options
+        }
+        
+        if let selectedOptions = selectedOptions {
+            result["selected_options"] = selectedOptions
+        }
+        
         return result
     }
     
@@ -118,6 +154,9 @@ class CDProduct: NSObject, NSCoding, CDMappable {
         aCoder.encode(imageURLs, forKey: "image_urls")
         aCoder.encode(discount, forKey: "discount")
         aCoder.encode(currencyCode, forKey: "currency_code")
+        aCoder.encode(notes, forKey: "notes")
+        aCoder.encode(options, forKey: "options")
+        aCoder.encode(selectedOptions, forKey: "selected_options")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -128,6 +167,9 @@ class CDProduct: NSObject, NSCoding, CDMappable {
         imageURLs = aDecoder.decodeObject(forKey: "image_urls") as! [URL]
         discount = aDecoder.decodeObject(forKey: "discount") as? CDDiscount
         currencyCode = aDecoder.decodeObject(forKey: "currency_code") as! String
+        notes = aDecoder.decodeObject(forKey: "notes") as? String
+        options = aDecoder.decodeObject(forKey: "options") as? [String: Any]
+        selectedOptions = aDecoder.decodeObject(forKey: "selected_options") as? [String: Any]
     }
 }
 

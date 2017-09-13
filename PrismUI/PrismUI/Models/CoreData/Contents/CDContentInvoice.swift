@@ -16,6 +16,7 @@ class CDContentInvoice: ValueTransformer, NSCoding, CDMappable {
     var buyer: CDBuyer
     var shipment: CDShipment?
     var payment: CDPayment
+    let notes: String?
     
     required init?(dictionary: [String : Any]) {
         let invoice = dictionary["invoice"] as! [String : Any]
@@ -31,6 +32,12 @@ class CDContentInvoice: ValueTransformer, NSCoding, CDMappable {
         let items = invoice["line_items"] as! [[String: Any]]
         for item in items {
             lineItems.append(CDLineItem(dictionary: item)!)
+        }
+        
+        if let notes = invoice["notes"] as? String {
+            self.notes = notes
+        } else {
+            self.notes = nil
         }
     }
     
@@ -49,6 +56,10 @@ class CDContentInvoice: ValueTransformer, NSCoding, CDMappable {
             invoice["shipment"] = shipment.dictionaryValue()
         }
         
+        if let notes = notes {
+            invoice["notes"] = notes
+        }
+        
         return ["invoice": invoice]
     }
     
@@ -59,6 +70,7 @@ class CDContentInvoice: ValueTransformer, NSCoding, CDMappable {
         aCoder.encode(buyer, forKey: "buyer")
         aCoder.encode(shipment, forKey: "shipment")
         aCoder.encode(payment, forKey: "payment")
+        aCoder.encode(notes, forKey: "notes")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,6 +80,7 @@ class CDContentInvoice: ValueTransformer, NSCoding, CDMappable {
         buyer = aDecoder.decodeObject(forKey: "buyer") as! CDBuyer
         shipment = aDecoder.decodeObject(forKey: "shipment") as? CDShipment
         payment = aDecoder.decodeObject(forKey: "payment") as! CDPayment
+        notes = aDecoder.decodeObject(forKey: "notes") as? String
     }
 }
 
@@ -209,28 +222,37 @@ class CDPayment: NSObject, NSCoding, CDMappable {
 }
 
 class CDPaymentProvider: NSObject, NSCoding, CDMappable {
-    var type: String
-    var info: CDMappable?
+    let type: String
+    let info: CDMappable?
     
     required init?(dictionary: [String : Any]) {
-        type = dictionary["type"] as! String
+        guard let type = dictionary["type"] as? String else {
+            return nil
+        }
         
-        if let info = dictionary["info"] as? [String: Any] {
-            self.info = CDMidtransInfo(dictionary: info)
-        } else if let transfer = dictionary["transfer"] as? [String: Any] {
-            self.info = CDBankTransferInfo(dictionary: transfer)
+        self.type = type
+        
+        if let infoDictionary = dictionary[type] as? [String: Any] {
+            if type == "vt_web" {
+                info = CDMidtransInfo(dictionary: infoDictionary)
+            } else if type == "transfer" {
+                info = CDBankTransferInfo(dictionary: infoDictionary)
+            } else if type == "payment_link" {
+                info = CDPaymentLinkInfo(dictionary: infoDictionary)
+            } else {
+                info = nil
+            }
+        } else {
+            info = nil
         }
     }
+    
     func dictionaryValue() -> [String : Any] {
         var result: [String: Any] = ["type": type]
         guard let info = info else {
             return result
         }
-        if type == "vt_web" {
-            result["info"] = info.dictionaryValue()
-        } else if type == "transfer" {
-            result["transfer"] = info.dictionaryValue()
-        }
+        result[type] = info.dictionaryValue()
         return result
     }
     
@@ -242,6 +264,76 @@ class CDPaymentProvider: NSObject, NSCoding, CDMappable {
     func encode(with aCoder: NSCoder) {
         aCoder.encode(type, forKey: "type")
         aCoder.encode(info, forKey: "info")
+    }
+}
+
+class CDPaymentLink: NSObject, NSCoding, CDMappable {
+    let id: String
+    let label: String
+    let url: String
+    
+    required init?(dictionary: [String : Any]) {
+        guard let id = dictionary["id"] as? String,
+            let label = dictionary["label"] as? String,
+            let url = dictionary["url"] as? String else {
+                return nil
+        }
+        
+        self.id = id
+        self.label = label
+        self.url = url
+    }
+    
+    func dictionaryValue() -> [String : Any] {
+        return [
+            "id": id,
+            "label": label,
+            "url": url
+        ]
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        id = aDecoder.decodeObject(forKey: "id") as! String
+        label = aDecoder.decodeObject(forKey: "label") as! String
+        url = aDecoder.decodeObject(forKey: "url") as! String
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(id, forKey: "id")
+        aCoder.encode(label, forKey: "label")
+        aCoder.encode(url, forKey: "url")
+    }
+}
+
+class CDPaymentLinkInfo: NSObject, NSCoding, CDMappable {
+    let type: String
+    let link: CDPaymentLink
+    
+    required init?(dictionary: [String : Any]) {
+        guard let type = dictionary["type"] as? String,
+            let linkDictionary = dictionary["payment_link"] as? [String: Any],
+            let link = CDPaymentLink(dictionary: linkDictionary) else {
+                return nil
+        }
+        self.type = type
+        self.link = link
+    }
+    
+    func dictionaryValue() -> [String : Any] {
+        return [
+            "type": type,
+            "payment_link": link.dictionaryValue()
+        ]
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        type = aDecoder.decodeObject(forKey: "type") as! String
+        link = aDecoder.decodeObject(forKey: "payment_link") as! CDPaymentLink
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(type, forKey: "type")
+        aCoder.encode(link, forKey: "payment_link")
     }
 }
 

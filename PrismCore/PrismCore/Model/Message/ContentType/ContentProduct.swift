@@ -54,23 +54,9 @@ public class Product: Mappable {
             imageURLs.append(url)
         }
         
-        if let options = dictionary?["options"] as? [String: Any] {
-            self.options = options
-        } else {
-            self.options = nil
-        }
-        
-        if let selectedOptions = dictionary?["selected_options"] as? [String: Any] {
-            self.selectedOptions = selectedOptions
-        } else {
-            self.selectedOptions = nil
-        }
-        
-        if let notes = dictionary?["notes"] as? String {
-            self.notes = notes
-        } else {
-            self.notes = nil
-        }
+        self.options = dictionary?["options"] as? [String: Any]
+        self.selectedOptions = dictionary?["selected_options"] as? [String: Any]
+        self.notes = dictionary?["notes"] as? String
         
         self.discount = Discount(dictionary: dictionary?["discount"] as? [String: Any])
         

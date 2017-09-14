@@ -33,12 +33,7 @@ class CDContentInvoice: ValueTransformer, NSCoding, CDMappable {
         for item in items {
             lineItems.append(CDLineItem(dictionary: item)!)
         }
-        
-        if let notes = invoice["notes"] as? String {
-            self.notes = notes
-        } else {
-            self.notes = nil
-        }
+        self.notes = invoice["notes"] as? String
     }
     
     public func dictionaryValue() -> [String : Any] {

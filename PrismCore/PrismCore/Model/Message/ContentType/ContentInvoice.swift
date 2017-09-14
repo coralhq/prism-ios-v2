@@ -35,12 +35,7 @@ public class ContentInvoice: MessageContentMappable {
             lineItems.append(lineItem)
         }
         
-        if let notes = invoice["notes"] as? String {
-            self.notes = notes
-        } else {
-            self.notes = nil
-        }
-        
+        self.notes = invoice["notes"] as? String
         self.id = id
         self.lineItems = lineItems
         self.grandTotal = grandTotal
@@ -121,7 +116,7 @@ public class PaymentProvider: Mappable {
         guard let info = info else {
             return result
         }
-        result[type] = info.dictionaryValue()        
+        result[type] = info.dictionaryValue()
         return result
     }
 }

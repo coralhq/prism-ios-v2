@@ -74,9 +74,9 @@ class CDProduct: NSObject, NSCoding, CDMappable {
     var id: String
     var name: String
     var price: String
-    var desc: String?
     var imageURLs: [URL]
-    var discount: CDDiscount?
+    let desc: String?
+    let discount: CDDiscount?
     var currencyCode: String
     let options: [String: Any]?
     let selectedOptions: [String: Any]?
@@ -92,29 +92,15 @@ class CDProduct: NSObject, NSCoding, CDMappable {
         currencyCode = dictionary["currency_code"] as! String
         
         if let discount = dictionary["discount"] as? [String: Any] {
-            self.discount = CDDiscount(dictionary: discount)!
-        }
-        if let desc = dictionary["description"] as? String {
-            self.desc = desc
+            self.discount = CDDiscount(dictionary: discount)
+        } else {
+            self.discount = nil
         }
         
-        if let options = dictionary["options"] as? [String: Any] {
-            self.options = options
-        } else {
-            self.options = nil
-        }
-        
-        if let selectedOptions = dictionary["selected_options"] as? [String: Any] {
-            self.selectedOptions = selectedOptions
-        } else {
-            self.selectedOptions = nil
-        }
-        
-        if let notes = dictionary["notes"] as? String {
-            self.notes = notes
-        } else {
-            self.notes = nil
-        }
+        self.desc = dictionary["description"] as? String
+        self.options = dictionary["options"] as? [String: Any]
+        self.selectedOptions = dictionary["selected_options"] as? [String: Any]
+        self.notes = dictionary["notes"] as? String
     }
     
     func dictionaryValue() -> [String : Any] {

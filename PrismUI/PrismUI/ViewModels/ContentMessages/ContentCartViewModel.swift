@@ -51,6 +51,9 @@ class ContentCartProductViewModel: ContentViewModel {
     var discount: String?
     var imageURL: URL?
     
+    let options: String?
+    let notes: String?
+    
     init?(contentItem: CDLineItem) {
         let priceAmount = Double(contentItem.product.price)!
         self.price = priceAmount.formattedCurrency()!
@@ -67,5 +70,9 @@ class ContentCartProductViewModel: ContentViewModel {
                 self.discount = (priceAmount - discAmount).formattedCurrency()
             }
         }
+        
+        self.notes = contentItem.product.notes
+        self.options = Utils.formatted(selectedOptions: contentItem.product.selectedOptions,
+                                       with: contentItem.product.options)
     }
 }

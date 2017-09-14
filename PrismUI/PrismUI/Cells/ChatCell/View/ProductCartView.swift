@@ -11,6 +11,8 @@ import UIKit
 class ProductCartView: UIView {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var priceLabel: UILabel!
+    @IBOutlet var optionsLabel: UILabel!
+    @IBOutlet var notesLabel: UILabel!
     @IBOutlet var discountLabel: UILabel!
     @IBOutlet var qtyLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
@@ -22,6 +24,8 @@ class ProductCartView: UIView {
                 return
             }
             nameLabel.text = vm.name
+            optionsLabel.text = vm.options
+            notesLabel.text = vm.notes
             
             if let _ = vm.discount {
                 priceLabel.text = vm.discount

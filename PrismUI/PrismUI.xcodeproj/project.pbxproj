@@ -40,8 +40,8 @@
 		80C0848D1F3AAE80009909B9 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E593AE9A1EFCB42F002E2171 /* Chat.xcdatamodeld */; };
 		80C0848E1F3AAE87009909B9 /* ProductCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440AF1EF7CFA6003CA9E7 /* ProductCartView.swift */; };
 		80C0848F1F3AAE87009909B9 /* ProductCartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440B11EF7CFB3003CA9E7 /* ProductCartView.xib */; };
-		80C084901F3AAE87009909B9 /* MidtransView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440B31EF7DD8A003CA9E7 /* MidtransView.swift */; };
-		80C084911F3AAE87009909B9 /* MidtransView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440B51EF7DD97003CA9E7 /* MidtransView.xib */; };
+		80C084901F3AAE87009909B9 /* PaymentLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440B31EF7DD8A003CA9E7 /* PaymentLinkView.swift */; };
+		80C084911F3AAE87009909B9 /* PaymentLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440B51EF7DD97003CA9E7 /* PaymentLinkView.xib */; };
 		80C084921F3AAE8C009909B9 /* ContentProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574409D1EF76FCF003CA9E7 /* ContentProductCell.swift */; };
 		80C084931F3AAE8C009909B9 /* ContentProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E574409E1EF76FCF003CA9E7 /* ContentProductCell.xib */; };
 		80C084941F3AAE91009909B9 /* ChatContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440A11EF79EC8003CA9E7 /* ChatContentView.swift */; };
@@ -239,8 +239,8 @@
 		E57440AD1EF7CE58003CA9E7 /* ChatCartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440AC1EF7CE58003CA9E7 /* ChatCartView.xib */; };
 		E57440B01EF7CFA6003CA9E7 /* ProductCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440AF1EF7CFA6003CA9E7 /* ProductCartView.swift */; };
 		E57440B21EF7CFB3003CA9E7 /* ProductCartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440B11EF7CFB3003CA9E7 /* ProductCartView.xib */; };
-		E57440B41EF7DD8A003CA9E7 /* MidtransView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440B31EF7DD8A003CA9E7 /* MidtransView.swift */; };
-		E57440B61EF7DD97003CA9E7 /* MidtransView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440B51EF7DD97003CA9E7 /* MidtransView.xib */; };
+		E57440B41EF7DD8A003CA9E7 /* PaymentLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440B31EF7DD8A003CA9E7 /* PaymentLinkView.swift */; };
+		E57440B61EF7DD97003CA9E7 /* PaymentLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440B51EF7DD97003CA9E7 /* PaymentLinkView.xib */; };
 		E5814FB21F4C261600218D3A /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5814FB11F4C261600218D3A /* PrismCore.framework */; };
 		E58FAE5D1EF36874002F1A2A /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FAE5C1EF36874002F1A2A /* AuthViewModel.swift */; };
 		E58FAE5F1EF3687D002F1A2A /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FAE5E1EF3687D002F1A2A /* ChatViewModel.swift */; };
@@ -433,8 +433,8 @@
 		E57440AC1EF7CE58003CA9E7 /* ChatCartView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatCartView.xib; path = PrismUI/Cells/ChatCell/Content/ChatCartView.xib; sourceTree = SOURCE_ROOT; };
 		E57440AF1EF7CFA6003CA9E7 /* ProductCartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductCartView.swift; path = PrismUI/Cells/ChatCell/View/ProductCartView.swift; sourceTree = SOURCE_ROOT; };
 		E57440B11EF7CFB3003CA9E7 /* ProductCartView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductCartView.xib; path = PrismUI/Cells/ChatCell/View/ProductCartView.xib; sourceTree = SOURCE_ROOT; };
-		E57440B31EF7DD8A003CA9E7 /* MidtransView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MidtransView.swift; path = PrismUI/Cells/ChatCell/View/MidtransView.swift; sourceTree = SOURCE_ROOT; };
-		E57440B51EF7DD97003CA9E7 /* MidtransView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MidtransView.xib; path = PrismUI/Cells/ChatCell/View/MidtransView.xib; sourceTree = SOURCE_ROOT; };
+		E57440B31EF7DD8A003CA9E7 /* PaymentLinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentLinkView.swift; path = PrismUI/Cells/ChatCell/View/PaymentLinkView.swift; sourceTree = SOURCE_ROOT; };
+		E57440B51EF7DD97003CA9E7 /* PaymentLinkView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PaymentLinkView.xib; path = PrismUI/Cells/ChatCell/View/PaymentLinkView.xib; sourceTree = SOURCE_ROOT; };
 		E5814FB11F4C261600218D3A /* PrismCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrismCore.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/DemoPrismCore-friqtlupaxddjygruiinatqqklhk/Build/Products/Debug-iphoneos/PrismCore.framework"; sourceTree = "<group>"; };
 		E58FAE5C1EF36874002F1A2A /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		E58FAE5E1EF3687D002F1A2A /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
@@ -872,8 +872,8 @@
 			children = (
 				E57440AF1EF7CFA6003CA9E7 /* ProductCartView.swift */,
 				E57440B11EF7CFB3003CA9E7 /* ProductCartView.xib */,
-				E57440B31EF7DD8A003CA9E7 /* MidtransView.swift */,
-				E57440B51EF7DD97003CA9E7 /* MidtransView.xib */,
+				E57440B31EF7DD8A003CA9E7 /* PaymentLinkView.swift */,
+				E57440B51EF7DD97003CA9E7 /* PaymentLinkView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1100,7 +1100,7 @@
 				80C084B61F3AAE9D009909B9 /* EmptyChatView.xib in Resources */,
 				80C0849C1F3AAE91009909B9 /* ChatProductView.xib in Resources */,
 				80C0849E1F3AAE91009909B9 /* ChatCartView.xib in Resources */,
-				80C084911F3AAE87009909B9 /* MidtransView.xib in Resources */,
+				80C084911F3AAE87009909B9 /* PaymentLinkView.xib in Resources */,
 				80C0848C1F3AAE7A009909B9 /* Localizable.strings in Resources */,
 				80C084981F3AAE91009909B9 /* ChatStickerView.xib in Resources */,
 				80C084CD1F3AAED9009909B9 /* OfflineMessageViewController.xib in Resources */,
@@ -1154,7 +1154,7 @@
 				E593AE951EFB675A002E2171 /* StickerInputView.xib in Resources */,
 				E52899DB1F1CBE2D00FED3BA /* OfflineFormViewController.xib in Resources */,
 				E58FAE721EF39407002F1A2A /* ChatTextView.xib in Resources */,
-				E57440B61EF7DD97003CA9E7 /* MidtransView.xib in Resources */,
+				E57440B61EF7DD97003CA9E7 /* PaymentLinkView.xib in Resources */,
 				E552CD441F1DD45500455B36 /* OfflineMessageViewController.xib in Resources */,
 				E599E8791EF6546F00B67920 /* ChatInContainerView.xib in Resources */,
 			);
@@ -1210,7 +1210,7 @@
 				80C085051F3AB9F5009909B9 /* CollieGalleryTheme.swift in Sources */,
 				80C084ED1F3AAF3A009909B9 /* AuthViewModel.swift in Sources */,
 				80C084F81F3AAF3E009909B9 /* UIButton.swift in Sources */,
-				80C084901F3AAE87009909B9 /* MidtransView.swift in Sources */,
+				80C084901F3AAE87009909B9 /* PaymentLinkView.swift in Sources */,
 				80C084C41F3AAED3009909B9 /* CDContentProduct.swift in Sources */,
 				E5EAD18E1F4AEDC7009EA9FB /* Network.swift in Sources */,
 				80C084A11F3AAE97009909B9 /* ChatContainerView.swift in Sources */,
@@ -1395,7 +1395,7 @@
 				E57440A21EF79EC8003CA9E7 /* ChatContentView.swift in Sources */,
 				E5053A911EF13728006677A4 /* PrismCredential.swift in Sources */,
 				800E2EB01EEE35D6003AB37B /* UIColor.swift in Sources */,
-				E57440B41EF7DD8A003CA9E7 /* MidtransView.swift in Sources */,
+				E57440B41EF7DD8A003CA9E7 /* PaymentLinkView.swift in Sources */,
 				E507F7841F3A72CB001F73F8 /* CollieGalleryCustomAction.swift in Sources */,
 				80E58FDC1F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataProperties.swift in Sources */,
 				E562B5D11F0D27A2006489C0 /* ContentCartViewModel.swift in Sources */,
@@ -1573,7 +1573,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.prismapp.PrismUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1599,7 +1599,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.prismapp.PrismUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

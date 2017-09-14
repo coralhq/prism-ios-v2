@@ -8,38 +8,39 @@
 
 import Foundation
 
+private class URLProvider {
+    let baseURL: String
+    let mqttPort: UInt16
+    let mqttURL: String
+    
+    init(env: EnvironmentType) {
+        switch env {
+        case .production:
+            baseURL = "https://api.prismapp.io"
+            mqttURL = "chat.prismapp.io"
+            mqttPort = 1883
+        case .sandbox:
+            baseURL = "https://api.prismapp.io"
+            mqttURL = "chat.prismapp.io"
+            mqttPort = 1883
+        case .staging:
+            baseURL = "https://kong-feat-stg.prismapp.io"
+            mqttURL = "mqtt-feat-stg.prismapp.io"
+            mqttPort = 1883
+        }
+    }
+}
+    
 internal extension URL {
-    
-    private static let PrismAPIBaseURLProduction = "https://api.prismapp.io"
-    private static let PrismMQTTURLProduction = "chat.prismapp.io"
-    private static let PrismMQTTPortProduction: UInt16 = 1883
-    
-    private static var PrismAPIBaseURL: String {
-        get {
-            switch Config.shared.getEnvironment()! {
-            case .Production:
-                return PrismAPIBaseURLProduction
-            }
-        }
+    private static var provider: URLProvider {
+        return URLProvider(env: Config.shared.getEnvironment() ?? .sandbox)
     }
     
-    static var PrismMQTTPort: UInt16 {
-        get {
-            switch Config.shared.getEnvironment()! {
-            case .Production:
-                return PrismMQTTPortProduction
-            }
-        }
-    }
+    static var PrismAPIBaseURL: String { return provider.baseURL }
     
-    static var PrismMQTTURL: String {
-        get {
-            switch Config.shared.getEnvironment()! {
-            case .Production:
-                return PrismMQTTURLProduction
-            }
-        }
-    }
+    static var PrismMQTTPort: UInt16 { return provider.mqttPort }
+    
+    static var PrismMQTTURL: String { return provider.mqttURL }
     
     static var prismConnect: URL {
         get {

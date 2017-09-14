@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MidtransView: UIView {
+class PaymentLinkView: UIView {
     @IBOutlet var payButton: UIButton!
     @IBOutlet var descLabel: UILabel!
     

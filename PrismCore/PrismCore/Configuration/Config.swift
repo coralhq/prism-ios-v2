@@ -9,14 +9,16 @@
 import Foundation
 
 public enum EnvironmentType {
-    case Production
+    case production
+    case sandbox
+    case staging
 }
 
 internal class Config {
     
     static var shared = Config()
     
-    fileprivate var environment: EnvironmentType = .Production
+    fileprivate var environment: EnvironmentType = .sandbox
     fileprivate var merchantID: String?
     
     private init () {}

@@ -31,6 +31,9 @@ public class Product: Mappable {
     public let imageURLs: [URL]
     public let discount: Discount?
     public let currencyCode: String
+    public let options: [String: Any]?
+    public let selectedOptions: [String: Any]?
+    public let notes: String?
     
     required public init?(dictionary: [String : Any]?) {
         guard let id = dictionary?["id"] as? String,
@@ -51,6 +54,10 @@ public class Product: Mappable {
             imageURLs.append(url)
         }
         
+        self.options = dictionary?["options"] as? [String: Any]
+        self.selectedOptions = dictionary?["selected_options"] as? [String: Any]
+        self.notes = dictionary?["notes"] as? String
+        
         self.discount = Discount(dictionary: dictionary?["discount"] as? [String: Any])
         
         self.id = id
@@ -65,6 +72,7 @@ public class Product: Mappable {
         let imageURLs = self.imageURLs.map { (url) -> String in
             return url.absoluteString
         }
+        
         var result: [String: Any] = ["id": id,
                                      "name": name,
                                      "price": price,
@@ -74,6 +82,19 @@ public class Product: Mappable {
         if let discount = discount {
             result["discount"] = discount.dictionaryValue()
         }
+        
+        if let options = options {
+            result["options"] = options
+        }
+        
+        if let selectedOptions = selectedOptions {
+            result["selected_options"] = selectedOptions
+        }
+        
+        if let notes = notes {
+            result["notes"] = notes
+        }
+        
         return result
     }
 }

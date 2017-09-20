@@ -35,8 +35,12 @@ class PaymentProviderViewModel {
             url = URL(string: info.redirectURL)
             bankInfo = nil
         } else if let info = provider.info as? CDPaymentLinkInfo {
-            name = info.link.label
-            url = URL(string: info.link.url)
+            name = info.label
+            if let url = info.url {
+                self.url = URL(string: url)
+            } else {
+                self.url = nil
+            }
             bankInfo = nil
         } else if let info = provider.info as? CDBankTransferInfo {
             name = "Bank Transfer"

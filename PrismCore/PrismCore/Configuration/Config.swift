@@ -11,7 +11,6 @@ import Foundation
 public enum EnvironmentType {
     case production
     case sandbox
-    case staging
 }
 
 internal class Config {

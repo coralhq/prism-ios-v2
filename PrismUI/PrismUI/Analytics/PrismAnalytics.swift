@@ -11,7 +11,6 @@ import Foundation
 public enum AnalyticEnvironment {
     case sandbox
     case production
-    case staging
 }
 
 public enum EventTrackerType: String {

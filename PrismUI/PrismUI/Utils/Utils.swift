@@ -76,7 +76,7 @@ class Utils {
                     return "-"
                 }
             })
-            
+
             return formattedOptions
                 .filter({ $0 != "-" })
                 .map({ $0.replacingOccurrences(of: " ", with: "") })
@@ -146,9 +146,8 @@ class Vendor {
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         
         currencyFormatter = NumberFormatter()
-        currencyFormatter.numberStyle = .decimal
-        currencyFormatter.groupingSeparator = ","
-        currencyFormatter.decimalSeparator = "."
+        currencyFormatter.numberStyle = .currency
+        currencyFormatter.locale = Locale.current
         
         credential = Utils.unarchive(key: "prism_credential")
     }

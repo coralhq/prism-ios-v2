@@ -24,8 +24,6 @@ extension URL {
                 return "https://api.prismapp.io/v2/metrics"
             case .sandbox:
                 return "https://api.prismapp.io/v2/metrics"
-            case .staging:
-                return "https://api.prismapp.io/v2/metrics"
             }
         }
     }

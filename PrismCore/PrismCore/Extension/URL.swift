@@ -23,10 +23,6 @@ private class URLProvider {
             baseURL = "https://api.prismapp.io"
             mqttURL = "chat.prismapp.io"
             mqttPort = 1883
-        case .staging:
-            baseURL = "https://api.prismapp.io"
-            mqttURL = "chat.prismapp.io"
-            mqttPort = 1883
         }
     }
 }

@@ -23,7 +23,7 @@ class ContentCartViewModel: ContentViewModel {
         
         for item in contentCart.lineItems {
             let priceAmount = Double(item.product.price)!
-
+            
             if let discount = item.product.discount {
                 let discAmount = Double(discount.amount)!
                 
@@ -35,12 +35,13 @@ class ContentCartViewModel: ContentViewModel {
             } else {
                 totalPrice += priceAmount
             }
-
+            
             guard let vm = ContentCartProductViewModel(contentItem: item) else { continue }
             itemViewModels.append(vm)
         }
-
-        self.formattedPrice = "Total Amount" + ": " + totalPrice.formattedCurrency()!
+        
+        let currencyCode = contentCart.lineItems.first?.product.currencyCode
+        self.formattedPrice = "Total Amount" + ": " + totalPrice.formattedCurrency(currencyCode: currencyCode)
     }
 }
 
@@ -55,24 +56,26 @@ class ContentCartProductViewModel: ContentViewModel {
     let notes: String?
     
     init?(contentItem: CDLineItem) {
-        let priceAmount = Double(contentItem.product.price)!
-        self.price = priceAmount.formattedCurrency()!
-        self.name = contentItem.product.name
-        self.quantity = "Quantity".localized() + ": " + String(contentItem.quantity)
-        self.imageURL = contentItem.product.imageURLs.count > 0 ? contentItem.product.imageURLs.first : nil
+        let product = contentItem.product
         
-        if let discount = contentItem.product.discount {
+        let priceAmount = Double(product.price)!
+        self.price = priceAmount.formattedCurrency(currencyCode: product.currencyCode)
+        self.name = product.name
+        self.quantity = "Quantity".localized() + ": " + String(contentItem.quantity)
+        self.imageURL = product.imageURLs.count > 0 ? product.imageURLs.first : nil
+        
+        if let discount = product.discount {
             var discAmount = Double(discount.amount)!
             if discount.discountType == DiscountType.percentage {
                 discAmount = (discAmount / 100) * priceAmount
             }
             if discAmount > 0 {
-                self.discount = (priceAmount - discAmount).formattedCurrency()
+                self.discount = (priceAmount - discAmount).formattedCurrency(currencyCode: product.currencyCode)
             }
         }
         
-        self.notes = contentItem.product.notes
-        self.options = Utils.formatted(selectedOptions: contentItem.product.selectedOptions,
-                                       with: contentItem.product.options)
+        self.notes = product.notes
+        self.options = Utils.formatted(selectedOptions: product.selectedOptions,
+                                       with: product.options)
     }
 }

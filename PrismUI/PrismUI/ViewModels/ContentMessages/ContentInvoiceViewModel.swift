@@ -73,8 +73,10 @@ class ContentInvoiceViewModel: ContentViewModel {
         self.phoneNumber = contentInvoice.buyer.phoneNumber
         self.email = contentInvoice.buyer.email
         
+        let currencyCode = contentInvoice.lineItems.first?.product.currencyCode
+        
         let totalAmount = Double(contentInvoice.grandTotal.amount)!
-        self.totalPrice = "Total Price".localized() + " = " + totalAmount.formattedCurrency()!
+        self.totalPrice = "Total Price".localized() + " = " + totalAmount.formattedCurrency(currencyCode: currencyCode)
         self.payment = PaymentProviderViewModel(provider: contentInvoice.payment.provider)
         
         for item in contentInvoice.lineItems {
@@ -85,9 +87,7 @@ class ContentInvoiceViewModel: ContentViewModel {
         if let shipment = contentInvoice.shipment {
             self.address = shipment.info.address
             let cost = Double(shipment.cost.amount)!
-            if let shipmentCost = cost.formattedCurrency() {
-                self.shippingCost = "Shipping Cost".localized() + " = " + shipmentCost
-            }
+            self.shippingCost = "Shipping Cost".localized() + " = " + cost.formattedCurrency(currencyCode: currencyCode)
         }
         
         self.invoiceTime = Vendor.shared.getLocalDateWith(date: messageTime, format: "EEE MMM dd, hh:mm a")
@@ -107,8 +107,9 @@ class ContentInvoiceProductViewModel: ContentViewModel {
         self.options = Utils.formatted(selectedOptions: contentItem.product.selectedOptions,
                                        with: contentItem.product.options)
         
+        let currencyCode = contentItem.product.currencyCode
         let priceAmount = Double(contentItem.product.price)!
-        let priceString = priceAmount.formattedCurrency()!
+        let priceString = priceAmount.formattedCurrency(currencyCode: currencyCode)
         
         let prefix = "Price".localized() + " = "
         let suffix = "(Qty \(contentItem.quantity))"
@@ -121,7 +122,7 @@ class ContentInvoiceProductViewModel: ContentViewModel {
                                             NSBaselineOffsetAttributeName: NSNumber(value: 0),
                                             NSStrikethroughStyleAttributeName: NSNumber(value: 1)]
             let discAmount = Double(discount.amount)!
-            let discString = (priceAmount - discAmount).formattedCurrency()!
+            let discString = (priceAmount - discAmount).formattedCurrency(currencyCode: currencyCode)
             let priceInfo = prefix + priceString + " " + discString + " " + suffix
             let range = (priceInfo as NSString).range(of: priceString)
             

@@ -131,7 +131,12 @@ class ChatInvoiceView: ChatContentView {
         shipCostLabel.text = contentVM.shippingCost
         totalPriceLabel.text = contentVM.totalPrice
         dateLabel.text = contentVM.invoiceTime
-        notesLabel.text = contentVM.notes
+        
+        if let notes = contentVM.notes {
+            notesLabel.text = "Invoice Notes".localized() + " = " + notes
+        } else {
+            notesLabel.text = nil
+        }
         
         payment = contentVM.payment
         

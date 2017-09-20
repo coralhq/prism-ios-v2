@@ -262,73 +262,45 @@ class CDPaymentProvider: NSObject, NSCoding, CDMappable {
     }
 }
 
-class CDPaymentLink: NSObject, NSCoding, CDMappable {
+class CDPaymentLinkInfo: NSObject, NSCoding, CDMappable {
     let id: String
     let label: String
-    let url: String
+    let url: String?
     
     required init?(dictionary: [String : Any]) {
         guard let id = dictionary["id"] as? String,
-            let label = dictionary["label"] as? String,
-            let url = dictionary["url"] as? String else {
+            let label = dictionary["label"] as? String else {
                 return nil
         }
         
         self.id = id
         self.label = label
-        self.url = url
+        self.url = dictionary["url"] as? String
     }
     
     func dictionaryValue() -> [String : Any] {
-        return [
+        var result = [
             "id": id,
-            "label": label,
-            "url": url
+            "label": label
         ]
+        
+        if let url = url {
+            result["url"] = url
+        }
+        
+        return result
     }
     
     required init?(coder aDecoder: NSCoder) {
         id = aDecoder.decodeObject(forKey: "id") as! String
         label = aDecoder.decodeObject(forKey: "label") as! String
-        url = aDecoder.decodeObject(forKey: "url") as! String
+        url = aDecoder.decodeObject(forKey: "url") as? String
     }
     
     func encode(with aCoder: NSCoder) {
         aCoder.encode(id, forKey: "id")
         aCoder.encode(label, forKey: "label")
         aCoder.encode(url, forKey: "url")
-    }
-}
-
-class CDPaymentLinkInfo: NSObject, NSCoding, CDMappable {
-    let type: String
-    let link: CDPaymentLink
-    
-    required init?(dictionary: [String : Any]) {
-        guard let type = dictionary["type"] as? String,
-            let linkDictionary = dictionary["payment_link"] as? [String: Any],
-            let link = CDPaymentLink(dictionary: linkDictionary) else {
-                return nil
-        }
-        self.type = type
-        self.link = link
-    }
-    
-    func dictionaryValue() -> [String : Any] {
-        return [
-            "type": type,
-            "payment_link": link.dictionaryValue()
-        ]
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        type = aDecoder.decodeObject(forKey: "type") as! String
-        link = aDecoder.decodeObject(forKey: "payment_link") as! CDPaymentLink
-    }
-    
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(type, forKey: "type")
-        aCoder.encode(link, forKey: "payment_link")
     }
 }
 

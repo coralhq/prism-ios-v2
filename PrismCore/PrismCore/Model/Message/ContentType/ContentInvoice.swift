@@ -121,52 +121,33 @@ public class PaymentProvider: Mappable {
     }
 }
 
-class PaymentLink: Mappable {
+class PaymentLinkInfo: Mappable {
     public let id: String
     public let label: String
-    public let url: String
+    public let url: String?
     
     required init?(dictionary: [String : Any]?) {
         guard let dictionary = dictionary,
             let id = dictionary["id"] as? String,
-            let label = dictionary["label"] as? String,
-            let url = dictionary["url"] as? String else {
+            let label = dictionary["label"] as? String else {
                 return nil
         }
         self.id = id
         self.label = label
-        self.url = url
+        self.url = dictionary["url"] as? String
     }
     
     func dictionaryValue() -> [String : Any] {
-        return [
+        var result = [
             "id": id,
-            "label": label,
-            "url": url
+            "label": label
         ]
-    }
-}
-
-class PaymentLinkInfo: Mappable {
-    public let type: String
-    public let link: PaymentLink
-    
-    required init?(dictionary: [String : Any]?) {
-        guard let dictionary = dictionary,
-            let type = dictionary["type"] as? String,
-            let linkDictionary = dictionary["payment_link"] as? [String: Any],
-            let link = PaymentLink(dictionary: linkDictionary) else {
-                return nil
+        
+        if let url = url {
+            result["url"] = url
         }
-        self.type = type
-        self.link = link
-    }
-    
-    func dictionaryValue() -> [String : Any] {
-        return [
-            "type": type,
-            "payment_link": link.dictionaryValue()
-        ]
+        
+        return result
     }
 }
 

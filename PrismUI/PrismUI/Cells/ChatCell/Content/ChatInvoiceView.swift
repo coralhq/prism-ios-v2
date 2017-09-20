@@ -93,7 +93,9 @@ class ChatInvoiceView: ChatContentView {
                 paymentMethodLabel.text = "Payment Method".localized() + " = " + payment.name
             }
             
-            if let _ = payment.url {
+            if payment.type == "payment_link" ||
+                payment.type == "vt_web" {
+                paymentLinkView.descLabel.text = "Payment will be processed via".localized() + " " + payment.name + "."
                 containerView.addArrangedSubview(paymentLinkView)
                 calculateContentWidth(label: paymentLinkView.descLabel, supportLeft: false)
             } else {
@@ -111,7 +113,10 @@ class ChatInvoiceView: ChatContentView {
     
     func payPressed(sender: UIButton) {
         guard let payURL = payment?.url,
-            UIApplication.shared.canOpenURL(payURL) else { return }
+            UIApplication.shared.canOpenURL(payURL) else {
+                UIViewController.root?.popErrorAlert(message: "Payment link is invalid.".localized())
+                return
+        }
         UIApplication.shared.openURL(payURL)
     }
     
@@ -124,7 +129,7 @@ class ChatInvoiceView: ChatContentView {
         emailLabel.text = contentVM.email
         addressLabel.text = contentVM.address
         shipCostLabel.text = contentVM.shippingCost
-        totalPriceLabel.text = contentVM.totalPrice        
+        totalPriceLabel.text = contentVM.totalPrice
         dateLabel.text = contentVM.invoiceTime
         notesLabel.text = contentVM.notes
         

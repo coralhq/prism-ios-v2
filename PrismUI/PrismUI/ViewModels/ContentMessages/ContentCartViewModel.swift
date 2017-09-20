@@ -41,7 +41,7 @@ class ContentCartViewModel: ContentViewModel {
         }
         
         let currencyCode = contentCart.lineItems.first?.product.currencyCode
-        self.formattedPrice = "Total Amount" + ": " + totalPrice.formattedCurrency(currencyCode: currencyCode)
+        self.formattedPrice = "Total Amount".localized() + ": " + totalPrice.formattedCurrency(currencyCode: currencyCode)
     }
 }
 

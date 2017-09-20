@@ -62,7 +62,7 @@ class ContentCartProductViewModel: ContentViewModel {
         self.price = priceAmount.formattedCurrency(currencyCode: product.currencyCode)
         self.name = product.name
         self.quantity = "Quantity".localized() + ": " + String(contentItem.quantity)
-        self.imageURL = product.imageURLs.count > 0 ? product.imageURLs.first : nil
+        self.imageURL = product.imageURLs.first
         
         if let discount = product.discount {
             var discAmount = Double(discount.amount)!

@@ -14,6 +14,7 @@ class ChatViewController: BaseViewController {
     
     @IBOutlet var barView: UIView!
     @IBOutlet var tableView: ChatTableView!
+    @IBOutlet var connectLabel: UILabel!
     
     let authViewModel = AuthViewModel()
     let chatManager: ChatManager = ChatManager()
@@ -43,6 +44,8 @@ class ChatViewController: BaseViewController {
         tableView.register(CloseChatTableViewCell.NIB, forCellReuseIdentifier: CloseChatTableViewCell.className())
         
         queryManager?.fetchSections()
+        
+        addWelcomeMessageIfEmpty()
     }
     
     deinit {
@@ -66,6 +69,16 @@ class ChatViewController: BaseViewController {
     func removeComposer() {
         for subView in barView.subviews {
             subView.removeFromSuperview()
+        }
+    }
+    
+    func addWelcomeMessageIfEmpty() {
+        if let count = queryManager?.sections.count,
+            count == 0 {
+            connectLabel.text = Settings.shared.texts.welcomeMessage
+            connectLabel.isHidden = false
+        } else {
+            connectLabel.isHidden = true
         }
     }
 }
@@ -96,7 +109,7 @@ extension ChatViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = queryManager?.sections,
-            let objects = sections[section].objects {
+            let objects = sections[safe: section]?.objects {
             return objects.count + 1 //add 1 for header
         }
         return 0
@@ -182,6 +195,8 @@ extension ChatViewController: ChatComposerDelegate {
 
 extension ChatViewController: ChatQueryManagerDelegate {
     func didChange() {
+        addWelcomeMessageIfEmpty()
+        
         tableView.endUpdates()
     }
     

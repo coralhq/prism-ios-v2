@@ -47,6 +47,7 @@ class OfflineFormSettings {
     }
     
     func configure(settings: [String: Any]) {
+        print("SETTINGS: \(settings)")
         if let widget = settings["widget"] as? [String: Any],
             let offlineMessage = widget["offline_widget"] as? [String: Any],
             let formOptions = offlineMessage["form_options"] as? [String: Any],

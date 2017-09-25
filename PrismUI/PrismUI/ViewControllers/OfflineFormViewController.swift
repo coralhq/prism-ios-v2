@@ -59,7 +59,7 @@ class OfflineFormViewController: BaseViewController {
     }
     
     func update(textField: LinedTextField, form: InputForm) {
-        textField.isRequired = true
+        textField.isRequired = form.required
         if form.show {
             textField.constraint(with: .height)?.constant = formTextFieldHeight
             textField.isHidden = false
@@ -74,9 +74,6 @@ class OfflineFormViewController: BaseViewController {
             nameTF.isValidUsername(),
             emailTF.isValidEmail(),
             phoneTF.isValidPhoneNumber(),
-            let name = nameTF.text,
-            let email = emailTF.text,
-            let phone = phoneTF.text,
             let message = messageTF.text else { return }
         
         view.isUserInteractionEnabled = false
@@ -94,20 +91,20 @@ class OfflineFormViewController: BaseViewController {
                     return
                 }
                 
-                self.sendOfflineMessage(name: name, email: email, phone: phone, message: message, completion: { (success) in
+                self.sendOfflineMessage(name: self.nameTF.text, email: self.emailTF.text, phone: self.phoneTF.text, message: message, completion: { (success) in
                     self.sendButton.stopLoading()
                     self.view.isUserInteractionEnabled = true
                 })
             }
         } else {
-            self.sendOfflineMessage(name: name, email: email, phone: phone, message: message, completion: { [weak self] (success) in
+            self.sendOfflineMessage(name: self.nameTF.text, email: self.emailTF.text, phone: self.phoneTF.text, message: message, completion: { [weak self] (success) in
                 self?.sendButton.stopLoading()
                 self?.view.isUserInteractionEnabled = true
             })
         }
     }
     
-    private func sendOfflineMessage(name: String, email: String, phone: String, message: String, completion: ((Bool) -> ())?) {
+    private func sendOfflineMessage(name: String?, email: String?, phone: String?, message: String, completion: ((Bool) -> ())?) {
         self.chatManager.sendOfflineMessage(with: name, email: email, phone: phone, message: message) { [weak self] (response, error) in
             guard error == nil else {
                 completion?(false)

@@ -172,7 +172,7 @@ class ChatManager {
         sendMessage(message: message, completion: nil)
     }
     
-    func sendOfflineMessage(with name: String, email: String, phone: String, message: String, completion: ((MessageResponse?, NSError?) -> ())?) {
+    func sendOfflineMessage(with name: String?, email: String?, phone: String?, message: String, completion: ((MessageResponse?, NSError?) -> ())?) {
         let content = ContentOfflineMessage(name: name, email: email, phone: phone, text: message)!
         let message = newMessage(with: content, type: .OfflineMessage)
         sendMessage(message: message, completion: completion)

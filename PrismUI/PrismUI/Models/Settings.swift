@@ -75,10 +75,10 @@ class WorkingHour {
 }
 
 class Texts {
-    var subtitle: String? = ""
-    var titleExpanded: String? = ""
-    var titleMinimized: String? = ""
-    var welcomeMessage: String? = ""
+    var subtitle: String?
+    var titleExpanded: String?
+    var titleMinimized: String?
+    var welcomeMessage: String?
     
     init() {}
     
@@ -89,10 +89,10 @@ class Texts {
                 return
         }
         
-        subtitle = texts["subtitle"] as? String
-        titleExpanded = texts["title_expanded"] as? String
-        titleMinimized = texts["title_minimized"] as? String
-        welcomeMessage = texts["welcome_message"] as? String
+        subtitle = texts["subtitle"] as? String ?? "Chat to order".localized()
+        titleExpanded = texts["title_expanded"] as? String ?? "Chat and shop with us!".localized()
+        titleMinimized = texts["title_minimized"] as? String ?? "Chat here to order".localized()
+        welcomeMessage = texts["welcome_message"] as? String ?? "Hello, we’re here to assist you, let’s chat!".localized()
     }
 }
 

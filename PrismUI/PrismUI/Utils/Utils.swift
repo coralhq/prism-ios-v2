@@ -93,12 +93,10 @@ extension Date {
         return Vendor.shared.dateFormatter.string(from: self)
     }
     func day() -> String {
-        Vendor.shared.dateFormatter.dateFormat = DateFormat.dayFormat
-        return Vendor.shared.dateFormatter.string(from: self)
+        return Vendor.shared.getLocalDateWith(date: self, format: DateFormat.dayFormat)
     }
     func dayWithYear() -> String {
-        Vendor.shared.dateFormatter.dateFormat = DateFormat.dayWithYearFormat
-        return Vendor.shared.dateFormatter.string(from: self)
+        return Vendor.shared.getLocalDateWith(date: self, format: DateFormat.dayWithYearFormat)
     }
 }
 

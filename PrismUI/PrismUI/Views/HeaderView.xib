@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,22 +17,23 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sXI-VB-H5r">
                     <rect key="frame" x="0.0" y="6" width="32" height="32"/>
+                    <color key="backgroundColor" red="0.0039215686269999999" green="0.67450980390000004" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="bBm-mN-Jh9"/>
                         <constraint firstAttribute="height" constant="32" id="ebr-I3-mai"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BhT-sd-5LT">
-                    <rect key="frame" x="40" y="8" width="33" height="26.5"/>
+                    <rect key="frame" x="40" y="8" width="335" height="26.5"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLx-do-TRS">
-                            <rect key="frame" x="0.0" y="0.0" width="33" height="14.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLx-do-TRS">
+                            <rect key="frame" x="0.0" y="0.0" width="335" height="14.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0x-V2-Wfi">
-                            <rect key="frame" x="0.0" y="14.5" width="33" height="12"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0x-V2-Wfi">
+                            <rect key="frame" x="0.0" y="14.5" width="335" height="12"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -39,13 +41,13 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="C0x-V2-Wfi" secondAttribute="bottom" id="Bi9-9O-PsG"/>
-                        <constraint firstItem="C0x-V2-Wfi" firstAttribute="top" secondItem="hLx-do-TRS" secondAttribute="bottom" id="FQ7-4C-OQx"/>
-                        <constraint firstAttribute="trailing" secondItem="hLx-do-TRS" secondAttribute="trailing" id="HTT-gi-IzV"/>
-                        <constraint firstItem="hLx-do-TRS" firstAttribute="leading" secondItem="BhT-sd-5LT" secondAttribute="leading" id="PPy-hb-iCj"/>
-                        <constraint firstItem="C0x-V2-Wfi" firstAttribute="leading" secondItem="BhT-sd-5LT" secondAttribute="leading" id="UDa-9H-ylz"/>
-                        <constraint firstAttribute="trailing" secondItem="C0x-V2-Wfi" secondAttribute="trailing" id="eTI-v4-mGh"/>
-                        <constraint firstItem="hLx-do-TRS" firstAttribute="top" secondItem="BhT-sd-5LT" secondAttribute="top" id="fYu-HV-ZGx"/>
+                        <constraint firstItem="C0x-V2-Wfi" firstAttribute="leading" secondItem="BhT-sd-5LT" secondAttribute="leading" id="1og-CO-oxh"/>
+                        <constraint firstItem="C0x-V2-Wfi" firstAttribute="top" secondItem="hLx-do-TRS" secondAttribute="bottom" id="GpY-yz-Zwr"/>
+                        <constraint firstItem="hLx-do-TRS" firstAttribute="top" secondItem="BhT-sd-5LT" secondAttribute="top" id="L1h-iU-98M"/>
+                        <constraint firstAttribute="trailing" secondItem="C0x-V2-Wfi" secondAttribute="trailing" id="eni-U6-bI7"/>
+                        <constraint firstAttribute="bottom" secondItem="C0x-V2-Wfi" secondAttribute="bottom" id="wf3-Cb-jka"/>
+                        <constraint firstItem="hLx-do-TRS" firstAttribute="leading" secondItem="BhT-sd-5LT" secondAttribute="leading" id="wpa-gI-tdx"/>
+                        <constraint firstAttribute="trailing" secondItem="hLx-do-TRS" secondAttribute="trailing" id="zNE-6q-A3J"/>
                     </constraints>
                 </view>
             </subviews>
@@ -54,6 +56,7 @@
                 <constraint firstItem="sXI-VB-H5r" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Lmh-Mn-NCK"/>
                 <constraint firstItem="sXI-VB-H5r" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OCe-Rm-Dbu"/>
                 <constraint firstItem="BhT-sd-5LT" firstAttribute="leading" secondItem="sXI-VB-H5r" secondAttribute="trailing" constant="8" id="Ogr-lX-iRl"/>
+                <constraint firstAttribute="trailing" secondItem="BhT-sd-5LT" secondAttribute="trailing" id="V9Z-3g-edD"/>
                 <constraint firstItem="BhT-sd-5LT" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="jjn-lx-Eck"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

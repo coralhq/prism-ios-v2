@@ -47,10 +47,10 @@ class OfflineFormViewController: BaseViewController {
         messageTF.selectedColor = Settings.shared.theme.buttonColor
         sendButton.backgroundColor = Settings.shared.theme.buttonColor
         
-        let form = Settings.shared.connectForm
-        update(textField: nameTF, form: form.username)
+        let form = Settings.shared.offlineWidget.offlineForm
+        update(textField: nameTF, form: form.name)
         update(textField: emailTF, form: form.email)
-        update(textField: phoneTF, form: form.phoneNumber)
+        update(textField: phoneTF, form: form.phone)
         
         let navView: FieldsNavigatorView = FieldsNavigatorView.viewFromNib()!
         if let fields = nameTF.superview?.subviews.filter({ $0.isHidden == false }) as? [UITextField] {

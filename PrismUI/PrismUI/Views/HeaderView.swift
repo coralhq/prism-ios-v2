@@ -18,7 +18,7 @@ class HeaderView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         imageView.layer.cornerRadius = imageView.frame.width/2
         imageView.layer.masksToBounds = true
     }
@@ -30,15 +30,18 @@ class HeaderView: UIView {
         titleLabel.text = settings.texts.titleExpanded
         subtitleLabel.text = settings.texts.subtitle
         
-        if settings.persona.enabled {
+        if let url = settings.persona.imageURL {
             imageWidth.constant = 32
             imageSpace.constant = 8
             imageView.isHidden = false
-            imageView.downloadedFrom(url: settings.persona.imageURL)
+            imageView.downloadedFrom(url: url)
         } else {
             imageWidth.constant = 0
             imageSpace.constant = 0
             imageView.isHidden = true
         }
+    
+        setNeedsLayout()
+        layoutIfNeeded()
     }
 }

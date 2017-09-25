@@ -27,12 +27,15 @@ public class BaseViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = Settings.shared.theme.headerColor
         navigationController?.navigationBar.tintColor = Settings.shared.theme.strokeColor
         
-        let header: HeaderView? = HeaderView.viewFromNib()
-        header?.configure(settings: Settings.shared)
-        navigationItem.titleView = header
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage.image(with: "icBack"), style: .plain, target: self, action: #selector(closePressed(sender:)))
-        
+        let header: HeaderView = HeaderView.viewFromNib()!
+        header.configure(settings: Settings.shared)
+        let title = UIBarButtonItem(customView: header)
+        let backBtn = UIBarButtonItem(image: UIImage.image(with: "icBack"),
+                                      style: .plain,
+                                      target: self,
+                                      action: #selector(closePressed(sender:)))
+        navigationItem.leftBarButtonItems = [backBtn, title]
+
         automaticallyAdjustsScrollViewInsets = false
         extendedLayoutIncludesOpaqueBars = false
         edgesForExtendedLayout = .init(rawValue: 0)

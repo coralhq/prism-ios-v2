@@ -68,7 +68,7 @@ class OfflineFormSettings {
 }
 
 public class InputFormSettings: NSObject {
-    var message: String
+    var message: String?
     var enabled: Bool
     var username: InputForm
     var email: InputForm
@@ -83,10 +83,10 @@ public class InputFormSettings: NSObject {
     }
 
     func configure(settings: [String: Any]) {
+
         if let widget = settings["widget"] as? [String: Any],
             let visitorConnect = widget["visitor_connect"] as? [String: Any],
             let formEnabled = visitorConnect["option"] as? String,
-            let formMessage = visitorConnect["form_message"] as? String,
             let formField = visitorConnect["form_options"] as? [String: Any],
             let nameDict = formField["name"] as? [String: Any],
             let emailDict = formField["email"] as? [String: Any],
@@ -96,7 +96,7 @@ public class InputFormSettings: NSObject {
             self.username = InputForm(settings: nameDict)
             self.email = InputForm(settings: emailDict)
             self.phoneNumber = InputForm(settings: phoneDict)
-            self.message = formMessage
+            self.message = visitorConnect["form_message"] as? String
         }
     }
 }

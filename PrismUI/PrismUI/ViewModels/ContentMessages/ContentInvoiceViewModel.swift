@@ -9,30 +9,47 @@
 import Foundation
 import UIKit
 
-enum PaymentMethod: String {
-    case midtrans = "vt_web"
-    case bankTransfer = "transfer"
-    case cod = "cod"
-    case unknown = "unknown"
+class BankInfoViewModel {
+    let accountNumber: String
+    let accountHolder: String
+    let bankName: String
     
-    static func value(with identifier: String) -> PaymentMethod {
-        if let pm = PaymentMethod(rawValue: identifier) {
-            return pm
-        } else {
-            return PaymentMethod(rawValue: "unknown")!
-        }
+    init(info: CDBankTransferInfo) {
+        accountNumber = info.accountNumber
+        accountHolder = info.accountHolder
+        bankName = info.bankName
     }
+}
+
+class PaymentProviderViewModel {
+    let name: String
+    let type: String
+    let url: URL?
+    let bankInfo: BankInfoViewModel?
     
-    func name() -> String {
-        switch self {
-        case .bankTransfer:
-            return "Bank Transfer"
-        case .midtrans:
-            return "Midtrans"
-        case .cod:
-            return "Cash On Delivery"
-        case .unknown:
-            return rawValue
+    init(provider: CDPaymentProvider) {
+        type = provider.type
+        
+        if let info = provider.info as? CDMidtransInfo {
+            name = "Midtrans"
+            url = URL(string: info.redirectURL)
+            bankInfo = nil
+        } else if let info = provider.info as? CDPaymentLinkInfo {
+            name = info.label
+            if let url = info.url {
+                self.url = URL(string: url)
+            } else {
+                self.url = nil
+            }
+            bankInfo = nil
+        } else if let info = provider.info as? CDBankTransferInfo {
+            name = "Bank Transfer"
+            url = nil
+            bankInfo = BankInfoViewModel(info: info)
+        } else {
+            name = "Cash On Delivery"
+            url = nil
+            bankInfo = nil
         }
     }
 }
@@ -42,23 +59,25 @@ class ContentInvoiceViewModel: ContentViewModel {
     let name: String
     let phoneNumber: String
     let email: String
-    let paymentMethod: PaymentMethod
+    let payment: PaymentProviderViewModel
     let totalPrice: String
     var address: String?
     var shippingCost: String?
-    var midtransPaymentURL: URL?
     var productModels: [ContentInvoiceProductViewModel] = []
+    let invoiceTime: String?
+    let notes: String?
     
-    init?(contentInvoice: CDContentInvoice) {
-        
+    init?(contentInvoice: CDContentInvoice, messageTime: Date) {
         self.invoiceID = contentInvoice.id
         self.name = contentInvoice.buyer.name
         self.phoneNumber = contentInvoice.buyer.phoneNumber
         self.email = contentInvoice.buyer.email
         
+        let currencyCode = contentInvoice.lineItems.first?.product.currencyCode
+        
         let totalAmount = Double(contentInvoice.grandTotal.amount)!
-        self.totalPrice = "Total Price".localized() + " = " + totalAmount.formattedCurrency()!
-        self.paymentMethod = PaymentMethod.value(with: contentInvoice.payment.provider.type)
+        self.totalPrice = "Total Price".localized() + " = " + totalAmount.formattedCurrency(currencyCode: currencyCode)
+        self.payment = PaymentProviderViewModel(provider: contentInvoice.payment.provider)
         
         for item in contentInvoice.lineItems {
             guard let vm = ContentInvoiceProductViewModel(contentItem: item) else { continue }
@@ -68,26 +87,29 @@ class ContentInvoiceViewModel: ContentViewModel {
         if let shipment = contentInvoice.shipment {
             self.address = shipment.info.address
             let cost = Double(shipment.cost.amount)!
-            if let shipmentCost = cost.formattedCurrency() {
-                self.shippingCost = "Shipping Cost".localized() + " = " + shipmentCost
-            }
+            self.shippingCost = "Shipping Cost".localized() + " = " + cost.formattedCurrency(currencyCode: currencyCode)
         }
         
-        if let info = contentInvoice.payment.provider.info as? CDMidtransInfo {
-            self.midtransPaymentURL = URL(string: info.redirectURL)
-        }
+        self.invoiceTime = Vendor.shared.getLocalDateWith(date: messageTime, format: "EEE MMM dd, hh:mm a")
+        self.notes = contentInvoice.notes
     }
 }
 
 class ContentInvoiceProductViewModel: ContentViewModel {
     var price: NSMutableAttributedString
     var name: String
+    let notes: String?
+    let options: String?
     
     init?(contentItem: CDLineItem) {
         self.name = contentItem.product.name
+        self.notes = contentItem.product.notes
+        self.options = Utils.formatted(selectedOptions: contentItem.product.selectedOptions,
+                                       with: contentItem.product.options)
         
+        let currencyCode = contentItem.product.currencyCode
         let priceAmount = Double(contentItem.product.price)!
-        let priceString = priceAmount.formattedCurrency()!
+        let priceString = priceAmount.formattedCurrency(currencyCode: currencyCode)
         
         let prefix = "Price".localized() + " = "
         let suffix = "(Qty \(contentItem.quantity))"
@@ -100,7 +122,7 @@ class ContentInvoiceProductViewModel: ContentViewModel {
                                             NSBaselineOffsetAttributeName: NSNumber(value: 0),
                                             NSStrikethroughStyleAttributeName: NSNumber(value: 1)]
             let discAmount = Double(discount.amount)!
-            let discString = (priceAmount - discAmount).formattedCurrency()!
+            let discString = (priceAmount - discAmount).formattedCurrency(currencyCode: currencyCode)
             let priceInfo = prefix + priceString + " " + discString + " " + suffix
             let range = (priceInfo as NSString).range(of: priceString)
             

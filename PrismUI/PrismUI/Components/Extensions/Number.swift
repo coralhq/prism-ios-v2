@@ -18,10 +18,19 @@ extension FloatingPoint {
 }
 
 extension Double {
-    func formattedCurrency() -> String? {
-        guard let formatted = Vendor.shared.currencyFormatter.string(from: NSNumber(floatLiteral: self)) else {
-            return nil
+    func formattedCurrency(currencyCode: String?) -> String {
+        let locale = Locale
+            .availableIdentifiers
+            .map({ Locale(identifier: $0) })
+            .first{ $0.currencyCode == currencyCode }
+        
+        if let locale = locale {
+            Vendor.shared.currencyFormatter.locale = locale
         }
-        return "Rp ".appending(formatted)
+        
+        guard let formatted = Vendor.shared.currencyFormatter.string(from: NSNumber(floatLiteral: self)) else {
+            return "Invalid currency number."
+        }
+        return formatted
     }
 }

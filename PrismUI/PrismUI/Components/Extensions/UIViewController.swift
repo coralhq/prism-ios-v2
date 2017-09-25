@@ -11,7 +11,11 @@ import UIKit
 
 extension UIViewController {
     func popErrorAlert(error: NSError) {
-        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        popErrorAlert(message: error.localizedDescription)        
+    }
+    
+    func popErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Close", style: .default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
         }))

@@ -114,7 +114,14 @@ public class AuthViewModel {
 
 extension AuthViewModel {
     func handle(connect: ConnectResponse?, error: NSError?, completion: @escaping (NSError?) -> Void) {
-        guard let connect = connect else { return }
+        if error != nil {
+            completion(error)
+            return
+        }
+        
+        guard let connect = connect else {
+            return
+        }
         
         PrismCore.shared.createConversation(visitorName: connect.visitor.name, token: connect.oAuth.accessToken, completionHandler: { (conversation, error) in
             DispatchQueue.main.async {

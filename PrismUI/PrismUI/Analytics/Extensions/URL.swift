@@ -10,9 +10,6 @@ import Foundation
 import PrismCore
 
 extension URL {
-    private static let PrismAPIBaseURLProduction = "https://api.prismapp.io/v2/metrics"
-    private static let PrismAPIBaseURLSandbox = "https://api.sandbox.prismapp.io/v2/metrics"
-    private static let PrismAPIBaseURLStaging = "https://kong-feat-stg.prismapp.io/v2/metrics"
     
     private static var PrismAPIBaseURL: String {
         get {
@@ -23,12 +20,10 @@ extension URL {
             }
             
             switch environment {
-            case .Production:
-                return PrismAPIBaseURLProduction
-            case .Sandbox:
-                return PrismAPIBaseURLSandbox
-            case .Staging:
-                return PrismAPIBaseURLStaging
+            case .production:
+                return "https://api.prismapp.io/v2/metrics"
+            case .sandbox:
+                return "https://api.prismapp.io/v2/metrics"
             }
         }
     }

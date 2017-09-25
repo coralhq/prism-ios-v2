@@ -12,6 +12,7 @@ class ChatProductView: ChatContentView {
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var pageControl: UIPageControl!
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var optionsLabel: UILabel!
     @IBOutlet var priceLabel: UILabel!
     @IBOutlet var discountLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
@@ -37,6 +38,7 @@ class ChatProductView: ChatContentView {
         }
         nameLabel.text = contentVM.name
         descriptionLabel.text = contentVM.description
+        optionsLabel.text = contentVM.options
         
         if let _ = contentVM.discount {
             priceLabel.text = contentVM.discount

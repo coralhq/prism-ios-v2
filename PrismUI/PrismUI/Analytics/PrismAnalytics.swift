@@ -9,9 +9,8 @@
 import Foundation
 
 public enum AnalyticEnvironment {
-    case Sandbox
-    case Production
-    case Staging
+    case sandbox
+    case production
 }
 
 public enum EventTrackerType: String {

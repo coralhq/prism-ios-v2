@@ -75,7 +75,7 @@ class ChatViewModel {
         } else if let content = message.content as? CDContentProduct {
             contentViewModel = ContentProductViewModel(contentProduct: content)
         } else if let content = message.content as? CDContentInvoice {
-            contentViewModel = ContentInvoiceViewModel(contentInvoice: content)
+            contentViewModel = ContentInvoiceViewModel(contentInvoice: content, messageTime: messageTime)
         } else if let content = message.content as? CDContentAttachment {
             contentViewModel = ContentImageViewModel(contentImage: content)
         } else if let content = message.content as? CDContentOfflineMessage {

@@ -19,7 +19,7 @@ class PrismCoreTests: XCTestCase {
         let path = NSTemporaryDirectory() as NSString
         locToSave = path.appendingPathComponent("teststasks")
         
-        Config.shared.configure(environment: .Sandbox, merchantID: "")
+        Config.shared.configure(environment: .Production, merchantID: "")
         PrismCore.shared.network = NetworkMock.shared
     }
     
@@ -33,7 +33,7 @@ class PrismCoreTests: XCTestCase {
         PrismCore.shared.configure(environment: .Production, merchantID: "")
         XCTAssertTrue(URL.getSettings.absoluteString.contains("api.prismapp.io"))
         
-        PrismCore.shared.configure(environment: .Sandbox, merchantID: "")
+        PrismCore.shared.configure(environment: .Production, merchantID: "")
         XCTAssertTrue(URL.getSettings.absoluteString.contains("prismapp.io"))
         
         XCTAssertNotNil(Config.shared.getEnvironment())
@@ -558,6 +558,12 @@ class PrismCoreTests: XCTestCase {
         XCTAssert(TypingStatus(rawValue: "start_typing") == TypingStatus.StartTyping)
         XCTAssert(TypingStatus(rawValue: "end_typing") == TypingStatus.EndTyping)
         XCTAssert(TypingStatus.EndTyping.rawValue == "end_typing")
+    }
+    
+    func testSendDeviceToken() {
+        PrismCore.shared.sendDeviceToken(visitorID: "visitor_id", token: "access_token", deviceToken: "device_token") { (success, error) in
+            XCTAssert(success!)
+        }
     }
 }
 

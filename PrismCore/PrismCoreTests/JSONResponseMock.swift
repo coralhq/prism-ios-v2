@@ -22,6 +22,18 @@ class JSONResponseMock {
     static var mqttUsername = "mqtt_username"
     static var mqttPassword = "password"
     
+    static var sendTokenResponse: [String: Any] {
+        return [
+            "status": "success",
+            "message": "OK",
+            "data": [
+                "device_type": "IOS",
+                "id": "visitor_id",
+                "token": "device_token"
+            ]
+        ]
+    }
+    
     static var connectResponse: [String: Any] {
         get {
             return [

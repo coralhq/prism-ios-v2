@@ -40,8 +40,8 @@
 		80C0848D1F3AAE80009909B9 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E593AE9A1EFCB42F002E2171 /* Chat.xcdatamodeld */; };
 		80C0848E1F3AAE87009909B9 /* ProductCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440AF1EF7CFA6003CA9E7 /* ProductCartView.swift */; };
 		80C0848F1F3AAE87009909B9 /* ProductCartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440B11EF7CFB3003CA9E7 /* ProductCartView.xib */; };
-		80C084901F3AAE87009909B9 /* MidtransView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440B31EF7DD8A003CA9E7 /* MidtransView.swift */; };
-		80C084911F3AAE87009909B9 /* MidtransView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440B51EF7DD97003CA9E7 /* MidtransView.xib */; };
+		80C084901F3AAE87009909B9 /* PaymentLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440B31EF7DD8A003CA9E7 /* PaymentLinkView.swift */; };
+		80C084911F3AAE87009909B9 /* PaymentLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440B51EF7DD97003CA9E7 /* PaymentLinkView.xib */; };
 		80C084921F3AAE8C009909B9 /* ContentProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E574409D1EF76FCF003CA9E7 /* ContentProductCell.swift */; };
 		80C084931F3AAE8C009909B9 /* ContentProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E574409E1EF76FCF003CA9E7 /* ContentProductCell.xib */; };
 		80C084941F3AAE91009909B9 /* ChatContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440A11EF79EC8003CA9E7 /* ChatContentView.swift */; };
@@ -180,7 +180,6 @@
 		E5053A8F1EF13123006677A4 /* InputFormSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5053A8E1EF13123006677A4 /* InputFormSettings.swift */; };
 		E5053A911EF13728006677A4 /* PrismCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5053A901EF13728006677A4 /* PrismCredential.swift */; };
 		E5053A9B1EF1F6B3006677A4 /* PrismUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5053A9A1EF1F6B3006677A4 /* PrismUnitTests.swift */; };
-		E5053A9D1EF1F6B3006677A4 /* PrismUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E52665731EE91A9600612E19 /* PrismUI.framework */; };
 		E507F7811F3A72CB001F73F8 /* CollieGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F7711F3A72CB001F73F8 /* CollieGallery.swift */; };
 		E507F7821F3A72CB001F73F8 /* CollieGalleryAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F7721F3A72CB001F73F8 /* CollieGalleryAppearance.swift */; };
 		E507F7831F3A72CB001F73F8 /* CollieGalleryCaptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E507F7731F3A72CB001F73F8 /* CollieGalleryCaptionView.swift */; };
@@ -207,7 +206,6 @@
 		E52899DB1F1CBE2D00FED3BA /* OfflineFormViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E52899D91F1CBE2D00FED3BA /* OfflineFormViewController.xib */; };
 		E547D2281EF1FA6200B66136 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E547D2271EF1FA6200B66136 /* Media.xcassets */; };
 		E547E7F41F0C869800AFFB20 /* ContentTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547E7F31F0C869800AFFB20 /* ContentTextViewModel.swift */; };
-		E54969B81EEA82B7008209D9 /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E54969B71EEA82B7008209D9 /* PrismCore.framework */; };
 		E54969BB1EEA8496008209D9 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54969BA1EEA8496008209D9 /* Utils.swift */; };
 		E54DE6481EFA6A740035EA35 /* SmallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54DE6471EFA6A740035EA35 /* SmallButton.swift */; };
 		E54F7FE61F2965450022E15D /* CacheImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54F7FE51F2965450022E15D /* CacheImage.swift */; };
@@ -241,8 +239,9 @@
 		E57440AD1EF7CE58003CA9E7 /* ChatCartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440AC1EF7CE58003CA9E7 /* ChatCartView.xib */; };
 		E57440B01EF7CFA6003CA9E7 /* ProductCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440AF1EF7CFA6003CA9E7 /* ProductCartView.swift */; };
 		E57440B21EF7CFB3003CA9E7 /* ProductCartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440B11EF7CFB3003CA9E7 /* ProductCartView.xib */; };
-		E57440B41EF7DD8A003CA9E7 /* MidtransView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440B31EF7DD8A003CA9E7 /* MidtransView.swift */; };
-		E57440B61EF7DD97003CA9E7 /* MidtransView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440B51EF7DD97003CA9E7 /* MidtransView.xib */; };
+		E57440B41EF7DD8A003CA9E7 /* PaymentLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57440B31EF7DD8A003CA9E7 /* PaymentLinkView.swift */; };
+		E57440B61EF7DD97003CA9E7 /* PaymentLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E57440B51EF7DD97003CA9E7 /* PaymentLinkView.xib */; };
+		E5814FB21F4C261600218D3A /* PrismCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5814FB11F4C261600218D3A /* PrismCore.framework */; };
 		E58FAE5D1EF36874002F1A2A /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FAE5C1EF36874002F1A2A /* AuthViewModel.swift */; };
 		E58FAE5F1EF3687D002F1A2A /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FAE5E1EF3687D002F1A2A /* ChatViewModel.swift */; };
 		E58FAE661EF38435002F1A2A /* ChatComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58FAE601EF38435002F1A2A /* ChatComposer.swift */; };
@@ -303,6 +302,17 @@
 		E5EAD1751F4ADC2E009EA9FB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E5EAD1741F4ADC2E009EA9FB /* libz.tbd */; };
 		E5EAD1771F4ADC37009EA9FB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5EAD1761F4ADC37009EA9FB /* SystemConfiguration.framework */; };
 		E5EAD1791F4ADC42009EA9FB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5EAD1781F4ADC42009EA9FB /* CoreData.framework */; };
+		E5EAD1871F4AED43009EA9FB /* FieldsNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51F138F1F4B4CFD0091C4BC /* FieldsNavigatorView.swift */; };
+		E5EAD1881F4AED4B009EA9FB /* FieldsNavigatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E51F138B1F4B4CFD0091C4BC /* FieldsNavigatorView.xib */; };
+		E5EAD18D1F4AEDC7009EA9FB /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EAD1691F4ADB29009EA9FB /* URL.swift */; };
+		E5EAD18E1F4AEDC7009EA9FB /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EAD16B1F4ADB29009EA9FB /* Network.swift */; };
+		E5EAD18F1F4AEDC7009EA9FB /* PrismAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EAD16D1F4ADB29009EA9FB /* PrismAnalytics.swift */; };
+		E5EAD1901F4AF456009EA9FB /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5EAD1591F4ADAAE009EA9FB /* libAdIdAccess.a */; };
+		E5EAD1911F4AF457009EA9FB /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5EAD15A1F4ADAAE009EA9FB /* libGoogleAnalyticsServices.a */; };
+		E5EAD1921F4AF46D009EA9FB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5EAD1781F4ADC42009EA9FB /* CoreData.framework */; };
+		E5EAD1931F4AF471009EA9FB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5EAD1761F4ADC37009EA9FB /* SystemConfiguration.framework */; };
+		E5EAD1941F4AF47C009EA9FB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E5EAD1741F4ADC2E009EA9FB /* libz.tbd */; };
+		E5EAD1951F4AF480009EA9FB /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E5EAD1721F4ADC25009EA9FB /* libsqlite3.tbd */; };
 		E5EF28011F1700A400C2588F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EF28001F1700A400C2588F /* Extensions.swift */; };
 		E5F2608E1F0B4D1D0058EB65 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F2608D1F0B4D1D0058EB65 /* ChatManager.swift */; };
 		E5F260911F0BA7E40058EB65 /* ChatHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F2608F1F0BA7E40058EB65 /* ChatHeaderCell.swift */; };
@@ -423,8 +433,9 @@
 		E57440AC1EF7CE58003CA9E7 /* ChatCartView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatCartView.xib; path = PrismUI/Cells/ChatCell/Content/ChatCartView.xib; sourceTree = SOURCE_ROOT; };
 		E57440AF1EF7CFA6003CA9E7 /* ProductCartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductCartView.swift; path = PrismUI/Cells/ChatCell/View/ProductCartView.swift; sourceTree = SOURCE_ROOT; };
 		E57440B11EF7CFB3003CA9E7 /* ProductCartView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductCartView.xib; path = PrismUI/Cells/ChatCell/View/ProductCartView.xib; sourceTree = SOURCE_ROOT; };
-		E57440B31EF7DD8A003CA9E7 /* MidtransView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MidtransView.swift; path = PrismUI/Cells/ChatCell/View/MidtransView.swift; sourceTree = SOURCE_ROOT; };
-		E57440B51EF7DD97003CA9E7 /* MidtransView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MidtransView.xib; path = PrismUI/Cells/ChatCell/View/MidtransView.xib; sourceTree = SOURCE_ROOT; };
+		E57440B31EF7DD8A003CA9E7 /* PaymentLinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentLinkView.swift; path = PrismUI/Cells/ChatCell/View/PaymentLinkView.swift; sourceTree = SOURCE_ROOT; };
+		E57440B51EF7DD97003CA9E7 /* PaymentLinkView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PaymentLinkView.xib; path = PrismUI/Cells/ChatCell/View/PaymentLinkView.xib; sourceTree = SOURCE_ROOT; };
+		E5814FB11F4C261600218D3A /* PrismCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrismCore.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/DemoPrismCore-friqtlupaxddjygruiinatqqklhk/Build/Products/Debug-iphoneos/PrismCore.framework"; sourceTree = "<group>"; };
 		E58FAE5C1EF36874002F1A2A /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		E58FAE5E1EF3687D002F1A2A /* ChatViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		E58FAE601EF38435002F1A2A /* ChatComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatComposer.swift; sourceTree = "<group>"; };
@@ -486,6 +497,7 @@
 		E5EAD1741F4ADC2E009EA9FB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E5EAD1761F4ADC37009EA9FB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E5EAD1781F4ADC42009EA9FB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E5EAD1971F4AF91D009EA9FB /* PrismUITests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrismUITests.h; sourceTree = "<group>"; };
 		E5EF28001F1700A400C2588F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E5F2608D1F0B4D1D0058EB65 /* ChatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatManager.swift; path = PrismUI/Utils/ChatManager.swift; sourceTree = SOURCE_ROOT; };
 		E5F2608F1F0BA7E40058EB65 /* ChatHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatHeaderCell.swift; path = Cells/ChatHeaderCell.swift; sourceTree = "<group>"; };
@@ -497,7 +509,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5053A9D1EF1F6B3006677A4 /* PrismUI.framework in Frameworks */,
+				E5EAD1921F4AF46D009EA9FB /* CoreData.framework in Frameworks */,
+				E5EAD1931F4AF471009EA9FB /* SystemConfiguration.framework in Frameworks */,
+				E5EAD1951F4AF480009EA9FB /* libsqlite3.tbd in Frameworks */,
+				E5EAD1941F4AF47C009EA9FB /* libz.tbd in Frameworks */,
+				E5EAD1901F4AF456009EA9FB /* libAdIdAccess.a in Frameworks */,
+				E5EAD1911F4AF457009EA9FB /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,12 +522,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5814FB21F4C261600218D3A /* PrismCore.framework in Frameworks */,
 				E5EAD1791F4ADC42009EA9FB /* CoreData.framework in Frameworks */,
 				E5EAD1771F4ADC37009EA9FB /* SystemConfiguration.framework in Frameworks */,
 				E5EAD1751F4ADC2E009EA9FB /* libz.tbd in Frameworks */,
 				E5EAD1731F4ADC25009EA9FB /* libsqlite3.tbd in Frameworks */,
 				E5EAD1651F4ADAAE009EA9FB /* libAdIdAccess.a in Frameworks */,
-				E54969B81EEA82B7008209D9 /* PrismCore.framework in Frameworks */,
 				E5EAD1661F4ADAAE009EA9FB /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -669,6 +686,7 @@
 			children = (
 				80C084FA1F3AB92C009909B9 /* Mock */,
 				E5053A9A1EF1F6B3006677A4 /* PrismUnitTests.swift */,
+				E5EAD1971F4AF91D009EA9FB /* PrismUITests.h */,
 				E5053A9C1EF1F6B3006677A4 /* Info.plist */,
 			);
 			path = PrismUnitTests;
@@ -755,6 +773,7 @@
 		E54969B61EEA82B7008209D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E5814FB11F4C261600218D3A /* PrismCore.framework */,
 				E5EAD1781F4ADC42009EA9FB /* CoreData.framework */,
 				E5EAD1761F4ADC37009EA9FB /* SystemConfiguration.framework */,
 				E5EAD1741F4ADC2E009EA9FB /* libz.tbd */,
@@ -853,8 +872,8 @@
 			children = (
 				E57440AF1EF7CFA6003CA9E7 /* ProductCartView.swift */,
 				E57440B11EF7CFB3003CA9E7 /* ProductCartView.xib */,
-				E57440B31EF7DD8A003CA9E7 /* MidtransView.swift */,
-				E57440B51EF7DD97003CA9E7 /* MidtransView.xib */,
+				E57440B31EF7DD8A003CA9E7 /* PaymentLinkView.swift */,
+				E57440B51EF7DD97003CA9E7 /* PaymentLinkView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1081,7 +1100,7 @@
 				80C084B61F3AAE9D009909B9 /* EmptyChatView.xib in Resources */,
 				80C0849C1F3AAE91009909B9 /* ChatProductView.xib in Resources */,
 				80C0849E1F3AAE91009909B9 /* ChatCartView.xib in Resources */,
-				80C084911F3AAE87009909B9 /* MidtransView.xib in Resources */,
+				80C084911F3AAE87009909B9 /* PaymentLinkView.xib in Resources */,
 				80C0848C1F3AAE7A009909B9 /* Localizable.strings in Resources */,
 				80C084981F3AAE91009909B9 /* ChatStickerView.xib in Resources */,
 				80C084CD1F3AAED9009909B9 /* OfflineMessageViewController.xib in Resources */,
@@ -1092,6 +1111,7 @@
 				80C0848A1F3AAE74009909B9 /* EmojisList.plist in Resources */,
 				80C084A71F3AAE97009909B9 /* StickerInContainer.xib in Resources */,
 				80C084931F3AAE8C009909B9 /* ContentProductCell.xib in Resources */,
+				E5EAD1881F4AED4B009EA9FB /* FieldsNavigatorView.xib in Resources */,
 				80C084CB1F3AAED9009909B9 /* OfflineFormViewController.xib in Resources */,
 				80C084801F3AAE68009909B9 /* DeviceList.plist in Resources */,
 				80C0848B1F3AAE77009909B9 /* Media.xcassets in Resources */,
@@ -1134,7 +1154,7 @@
 				E593AE951EFB675A002E2171 /* StickerInputView.xib in Resources */,
 				E52899DB1F1CBE2D00FED3BA /* OfflineFormViewController.xib in Resources */,
 				E58FAE721EF39407002F1A2A /* ChatTextView.xib in Resources */,
-				E57440B61EF7DD97003CA9E7 /* MidtransView.xib in Resources */,
+				E57440B61EF7DD97003CA9E7 /* PaymentLinkView.xib in Resources */,
 				E552CD441F1DD45500455B36 /* OfflineMessageViewController.xib in Resources */,
 				E599E8791EF6546F00B67920 /* ChatInContainerView.xib in Resources */,
 			);
@@ -1190,10 +1210,12 @@
 				80C085051F3AB9F5009909B9 /* CollieGalleryTheme.swift in Sources */,
 				80C084ED1F3AAF3A009909B9 /* AuthViewModel.swift in Sources */,
 				80C084F81F3AAF3E009909B9 /* UIButton.swift in Sources */,
-				80C084901F3AAE87009909B9 /* MidtransView.swift in Sources */,
+				80C084901F3AAE87009909B9 /* PaymentLinkView.swift in Sources */,
 				80C084C41F3AAED3009909B9 /* CDContentProduct.swift in Sources */,
+				E5EAD18E1F4AEDC7009EA9FB /* Network.swift in Sources */,
 				80C084A11F3AAE97009909B9 /* ChatContainerView.swift in Sources */,
 				80C085061F3AB9F5009909B9 /* CollieGalleryTransitionManager.swift in Sources */,
+				E5EAD1871F4AED43009EA9FB /* FieldsNavigatorView.swift in Sources */,
 				80C084E71F3AAF3A009909B9 /* ContentStickerViewModel.swift in Sources */,
 				80C084B11F3AAE9D009909B9 /* EmojiInputView.swift in Sources */,
 				80C084C61F3AAED3009909B9 /* InputFormSettings.swift in Sources */,
@@ -1247,6 +1269,7 @@
 				80C085091F3AB9F5009909B9 /* CollieGalleryView.swift in Sources */,
 				80C084FF1F3AB9F5009909B9 /* CollieGalleryCaptionView.swift in Sources */,
 				80C085111F3AC47E009909B9 /* StickerViewModelMock.swift in Sources */,
+				E5EAD18D1F4AEDC7009EA9FB /* URL.swift in Sources */,
 				80C084971F3AAE91009909B9 /* ChatStickerView.swift in Sources */,
 				80C0848E1F3AAE87009909B9 /* ProductCartView.swift in Sources */,
 				80E58FEC1F3B617E00A85B06 /* ChatSectionViewModel.swift in Sources */,
@@ -1258,6 +1281,7 @@
 				80C084C71F3AAED3009909B9 /* PrismCredential.swift in Sources */,
 				80C084811F3AAE68009909B9 /* Hardware.swift in Sources */,
 				80C084C91F3AAED9009909B9 /* BaseViewController.swift in Sources */,
+				E5EAD18F1F4AEDC7009EA9FB /* PrismAnalytics.swift in Sources */,
 				80E58FE31F3B5FC100A85B06 /* CDSender+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1371,7 +1395,7 @@
 				E57440A21EF79EC8003CA9E7 /* ChatContentView.swift in Sources */,
 				E5053A911EF13728006677A4 /* PrismCredential.swift in Sources */,
 				800E2EB01EEE35D6003AB37B /* UIColor.swift in Sources */,
-				E57440B41EF7DD8A003CA9E7 /* MidtransView.swift in Sources */,
+				E57440B41EF7DD8A003CA9E7 /* PaymentLinkView.swift in Sources */,
 				E507F7841F3A72CB001F73F8 /* CollieGalleryCustomAction.swift in Sources */,
 				80E58FDC1F3B5FC100A85B06 /* CDBrokerMetaData+CoreDataProperties.swift in Sources */,
 				E562B5D11F0D27A2006489C0 /* ContentCartViewModel.swift in Sources */,
@@ -1394,11 +1418,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = G92YEQF267;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = PrismUnitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PrismUI/Vendors/GoogleAnalytics",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.prismapp.PrismUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME).h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1407,11 +1437,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = G92YEQF267;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = PrismUnitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PrismUI/Vendors/GoogleAnalytics",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.prismapp.PrismUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME).h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -1527,6 +1563,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = PrismUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1552,6 +1589,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = PrismUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

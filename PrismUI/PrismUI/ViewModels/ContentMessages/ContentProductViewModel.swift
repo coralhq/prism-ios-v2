@@ -14,22 +14,30 @@ class ContentProductViewModel: ContentViewModel {
     var description: String?
     var discount: String?
     var imageURLs: [URL]
+    let options: String?
+    let notes: String?
     
     init?(contentProduct: CDContentProduct) {
-        self.name = contentProduct.product.name
-        let priceAmount = Double(contentProduct.product.price)!
-        self.price = priceAmount.formattedCurrency()!
-        self.description = contentProduct.product.desc
-        self.imageURLs = contentProduct.product.imageURLs
+        let product = contentProduct.product
         
-        if let discount = contentProduct.product.discount {
+        self.name = product.name
+        let priceAmount = Double(product.price)!
+        self.price = priceAmount.formattedCurrency(currencyCode: product.currencyCode)
+        self.description = product.desc
+        self.imageURLs = product.imageURLs
+        
+        if let discount = product.discount {
             var discAmount = Double(discount.amount)!
             if discount.discountType == DiscountType.percentage {
                 discAmount = (discAmount / 100) * priceAmount
             }
             if discAmount > 0 {
-                self.discount = (priceAmount - discAmount).formattedCurrency()
+                self.discount = (priceAmount - discAmount).formattedCurrency(currencyCode: product.currencyCode)
             }
         }
+        
+        self.notes = product.notes
+        self.options = Utils.formatted(selectedOptions: product.selectedOptions,
+                                       with: product.options)
     }
 }

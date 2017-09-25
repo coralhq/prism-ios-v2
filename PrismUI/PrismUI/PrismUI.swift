@@ -19,11 +19,12 @@ open class PrismUI {
         PrismCore.shared.configure(environment: environment, merchantID: merchantID)
         
         var analyticsEnv: AnalyticEnvironment
+        
         switch environment {
-        case .Production:
-            analyticsEnv = .Production
-        case .Staging:
-            analyticsEnv = .Staging
+        case .production:
+            analyticsEnv = .production
+        case .sandbox:
+            analyticsEnv = .sandbox        
         }
         
         PrismAnalytics.shared.configure(environment: analyticsEnv)

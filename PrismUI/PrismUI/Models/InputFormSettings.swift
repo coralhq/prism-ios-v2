@@ -35,40 +35,34 @@ public class InputForm: NSObject {
     }
 }
 
-class OfflineForm {
-    let show: Bool
-    init(option: [String: Any]?) {
-        if let option = option?["show"] as? Bool {
-            show = option
-        } else {
-            show = false
-        }
-    }
-}
-
 class OfflineFormSettings {
-    var email: OfflineForm
-    var name: OfflineForm
+    var email: InputForm
+    var name: InputForm
+    var phone: InputForm
     
     init() {
-        email = OfflineForm(option: nil)
-        name = OfflineForm(option: nil)
+        email = InputForm()
+        name = InputForm()
+        phone = InputForm()
     }
     
     func configure(settings: [String: Any]) {
+        print("SETTINGS: \(settings)")
         if let widget = settings["widget"] as? [String: Any],
             let offlineMessage = widget["offline_widget"] as? [String: Any],
             let formOptions = offlineMessage["form_options"] as? [String: Any],
             let emailOption = formOptions["email"] as? [String: Any],
-            let nameOption = formOptions["name"] as? [String: Any] {
-            email = OfflineForm(option: emailOption)
-            name = OfflineForm(option: nameOption)
+            let nameOption = formOptions["name"] as? [String: Any],
+            let phoneOption = formOptions["phone"] as? [String: Any] {
+            email = InputForm(settings: emailOption)
+            name = InputForm(settings: nameOption)
+            phone = InputForm(settings: phoneOption)
         }
     }
 }
 
 public class InputFormSettings: NSObject {
-    var message: String
+    var message: String?
     var enabled: Bool
     var username: InputForm
     var email: InputForm
@@ -81,12 +75,12 @@ public class InputFormSettings: NSObject {
         email = InputForm()
         phoneNumber = InputForm()
     }
-
+    
     func configure(settings: [String: Any]) {
+        
         if let widget = settings["widget"] as? [String: Any],
             let visitorConnect = widget["visitor_connect"] as? [String: Any],
             let formEnabled = visitorConnect["option"] as? String,
-            let formMessage = visitorConnect["form_message"] as? String,
             let formField = visitorConnect["form_options"] as? [String: Any],
             let nameDict = formField["name"] as? [String: Any],
             let emailDict = formField["email"] as? [String: Any],
@@ -96,7 +90,7 @@ public class InputFormSettings: NSObject {
             self.username = InputForm(settings: nameDict)
             self.email = InputForm(settings: emailDict)
             self.phoneNumber = InputForm(settings: phoneDict)
-            self.message = formMessage
+            self.message = visitorConnect["form_message"] as? String
         }
     }
 }

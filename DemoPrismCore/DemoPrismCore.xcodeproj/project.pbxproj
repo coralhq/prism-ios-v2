@@ -290,7 +290,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		E5BC92871F398F5F00B318EC /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -298,7 +298,7 @@
 			name = Fabric;
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run 86217d547d82adb1c9a91e7b4a9507ddb81b943d a46aeff01ae21a55590751ae60cf8b2ae10c8e09231657116fa9e364a4e9268f";
 		};
@@ -441,7 +441,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DemoPrismCore/DemoPrismCore.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 36T5DNWZL4;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -463,7 +465,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DemoPrismCore/DemoPrismCore.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 36T5DNWZL4;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -473,8 +477,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.prismapp.DemoPrismCore;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b4bc003d-7039-428b-bac1-5ac521dd6b24";
-				PROVISIONING_PROFILE_SPECIFIER = PrismiOSSDKDemo;
+				PROVISIONING_PROFILE = "ee27f368-987b-4c64-9822-9f30f2d53cc4";
+				PROVISIONING_PROFILE_SPECIFIER = "DemoPrismCore-adhoc";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

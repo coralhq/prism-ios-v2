@@ -15,21 +15,21 @@ private class URLProvider {
     
     init(env: EnvironmentType) {
         switch env {
-        case .production:
+        case .Production:
             baseURL = "https://api.prismapp.io"
             mqttURL = "chat.prismapp.io"
             mqttPort = 1883
-        case .sandbox:
-            baseURL = "https://api.prismapp.io"
-            mqttURL = "chat.prismapp.io"
+        case .Sandbox:
+            baseURL = "https://kong-feat-stg.prismapp.io"
+            mqttURL = "mqtt-feat-stg.prismapp.io"
             mqttPort = 1883
         }
     }
 }
-    
+
 internal extension URL {
     private static var provider: URLProvider {
-        return URLProvider(env: Config.shared.getEnvironment() ?? .sandbox)
+        return URLProvider(env: Config.shared.getEnvironment() ?? .Sandbox)
     }
     
     static var PrismAPIBaseURL: String { return provider.baseURL }

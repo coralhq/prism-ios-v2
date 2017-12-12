@@ -8,16 +8,15 @@
 
 import Foundation
 
-public enum EnvironmentType {
-    case production
-    case sandbox
+@objc public enum EnvironmentType: Int {
+    case Production, Sandbox
 }
 
 internal class Config {
     
     static var shared = Config()
     
-    fileprivate var environment: EnvironmentType = .sandbox
+    fileprivate var environment: EnvironmentType = .Sandbox
     fileprivate var merchantID: String?
     
     private init () {}

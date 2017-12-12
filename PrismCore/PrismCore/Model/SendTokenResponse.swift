@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SendTokenResponse: Mappable {
+class SendTokenResponse: NSObject, Mappable {
     let id: String
     let token: String
     

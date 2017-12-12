@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ContentAttachment: MessageContentMappable {
+open class ContentAttachment: MessageContentMappable {
     
     public let name: String
     public let mimeType: String

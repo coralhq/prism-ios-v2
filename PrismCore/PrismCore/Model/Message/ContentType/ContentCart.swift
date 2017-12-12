@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ContentCart: MessageContentMappable {
+open class ContentCart: MessageContentMappable {
     public let lineItems: [LineItem]
     
     required public init?(dictionary: [String : Any]?) {
@@ -39,7 +39,7 @@ public class ContentCart: MessageContentMappable {
     }
 }
 
-public class LineItem : Mappable {
+open class LineItem : NSObject, Mappable {
     public let product: Product
     public let quantity: Int
     
@@ -58,7 +58,7 @@ public class LineItem : Mappable {
     }
 }
 
-public class Discount: Mappable {
+open class Discount: NSObject, Mappable {
     public let discountType: String
     public let amount: String
     

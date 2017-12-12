@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class RefreshTokenResponse: Mappable {
+open class RefreshTokenResponse: NSObject, Mappable {
     
     let status: String?
     let message: String?

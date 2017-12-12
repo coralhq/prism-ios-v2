@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class UploadURL: Mappable {
+open class UploadURL: NSObject, Mappable {
     public let uploadURL: URL
     
     required public init?(dictionary: [String : Any]?) {

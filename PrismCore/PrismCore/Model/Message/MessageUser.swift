@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class MessageUser: Mappable {
+open class MessageUser: NSObject, Mappable {
     public let id: String
     public let name: String
     
@@ -35,7 +35,7 @@ public class MessageUser: Mappable {
     }
 }
 
-public class MessageChannelInfo: Mappable {
+open class MessageChannelInfo: NSObject, Mappable {
     public let id: String
     public let name: String
     public let attribute: [String: Any]?

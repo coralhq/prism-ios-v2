@@ -20,7 +20,7 @@ public let ErrorChatNotification = NSNotification.Name(rawValue: "ErrorChatNotif
 public let UploadProgressNotification = NSNotification.Name(rawValue: "UploadProgressNotification")
 public let RefreshTokenNotification = NSNotification.Name("RefreshTokenNotification")
 
-open class PrismCore {
+open class PrismCore: NSObject {
     
     public weak var delegate: PrismCoreDelegate?
     
@@ -34,7 +34,7 @@ open class PrismCore {
         network.delegate = self
     }
     
-    public init() {}
+    public override init() {}
     
     deinit {
         network.disconnectFromBroker(completionHandler: { (success) in })
@@ -98,7 +98,7 @@ open class PrismCore {
     
     open func getSettings(completionHandler: @escaping ([String: Any]?, Error?) -> ()) {
         let endPoint = GetSettingsEndPoint()
-        
+
         network.requestRawResult(endPoint: endPoint, mapToObject: Settings.self, completionHandler: completionHandler)
     }
     

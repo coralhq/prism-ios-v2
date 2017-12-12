@@ -69,7 +69,7 @@ public enum MessageType: String {
     }
 }
 
-open class Message: Mappable {
+open class Message: NSObject, Mappable {
     public var id: String
     public var conversationID: String
     public var merchantID: String

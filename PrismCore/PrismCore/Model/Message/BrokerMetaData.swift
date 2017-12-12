@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class BrokerMetaData : Mappable {
+open class BrokerMetaData : NSObject, Mappable {
     
     public let timestamp: Date
 
@@ -21,7 +21,7 @@ public class BrokerMetaData : Mappable {
         self.timestamp = timestamp
     }
     
-    public init() {
+    public override init() {
         self.timestamp = Date().UTCTime
     }
     

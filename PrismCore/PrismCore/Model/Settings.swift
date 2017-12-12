@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class Settings: Mappable {
+open class Settings: NSObject, Mappable {
     public let data: [String: Any]
     
     public required init?(dictionary: [String: Any]?) {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ContentPlainText : MessageContentMappable {
+open class ContentPlainText : MessageContentMappable {
     public let text: String
     
     required public init?(dictionary: [String : Any]?) {

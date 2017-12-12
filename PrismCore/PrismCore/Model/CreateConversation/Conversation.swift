@@ -9,7 +9,7 @@
 import Foundation
 
 //TODO: some properties might unused, re-check later
-public class Conversation : Mappable {
+open class Conversation : NSObject, Mappable {
     
     public let createdAt: Date // "2017-05-19T03:39:31.814Z"
     public let updatedAt: Date

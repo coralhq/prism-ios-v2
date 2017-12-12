@@ -9,7 +9,7 @@
 import Foundation
 
 //TODO: some properties might unused, re-check later
-public class MQTT : Mappable {
+open class MQTT : NSObject, Mappable {
     public let username: String
     public let password: String
     

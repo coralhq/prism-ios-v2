@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ContentTyping: MessageContentMappable {
+open class ContentTyping: MessageContentMappable {
     public let status: String
     
     required public init?(dictionary: [String : Any]?) {

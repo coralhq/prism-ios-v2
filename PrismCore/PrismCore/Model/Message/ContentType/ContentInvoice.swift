@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ContentInvoice: MessageContentMappable {
+open class ContentInvoice: MessageContentMappable {
     
     public let id: String
     public let lineItems: [LineItem]
@@ -73,7 +73,7 @@ public class ContentInvoice: MessageContentMappable {
     }
 }
 
-public class Payment: Mappable {
+open class Payment: NSObject, Mappable {
     public let provider: PaymentProvider
     
     required public init?(dictionary: [String : Any]?) {
@@ -89,7 +89,7 @@ public class Payment: Mappable {
     }
 }
 
-public class PaymentProvider: Mappable {
+open class PaymentProvider: NSObject, Mappable {
     public let type: String
     public let info: Mappable?
     
@@ -121,7 +121,7 @@ public class PaymentProvider: Mappable {
     }
 }
 
-class PaymentLinkInfo: Mappable {
+class PaymentLinkInfo: NSObject, Mappable {
     public let id: String
     public let label: String
     public let url: String?
@@ -151,7 +151,7 @@ class PaymentLinkInfo: Mappable {
     }
 }
 
-class MidtransInfo: Mappable {
+class MidtransInfo: NSObject, Mappable {
     public let redirectURL: String
     
     required init?(dictionary: [String : Any]?) {
@@ -166,7 +166,7 @@ class MidtransInfo: Mappable {
     }
 }
 
-class BankTransferInfo: Mappable {
+class BankTransferInfo: NSObject, Mappable {
     public let accountNumber: String
     public let accountHolder: String
     public let bankName: String
@@ -188,7 +188,7 @@ class BankTransferInfo: Mappable {
     }
 }
 
-public class Shipment: Mappable {
+open class Shipment: NSObject, Mappable {
     public let info: ShipmentInfo
     public let cost: Currency
     
@@ -207,7 +207,7 @@ public class Shipment: Mappable {
     }
 }
 
-public class ShipmentInfo: Mappable {
+open class ShipmentInfo: NSObject, Mappable {
     public let name: String
     public let email: String
     public let address: String
@@ -235,7 +235,7 @@ public class ShipmentInfo: Mappable {
     }
 }
 
-public class Buyer: Mappable {
+open class Buyer: NSObject, Mappable {
     public let name: String
     public let email: String
     public let phoneNumber: String
@@ -259,7 +259,7 @@ public class Buyer: Mappable {
     }
 }
 
-public class Currency: Mappable {
+open class Currency: NSObject, Mappable {
     public let currencyCode: String
     public let amount: String
     

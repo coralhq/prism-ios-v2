@@ -9,7 +9,7 @@
 import Foundation
 
 //TODO: some properties might unused, re-check later
-public class OAuth : Mappable {
+open class OAuth : NSObject, Mappable {
     public let refreshToken: String
     public let tokenType: String
     public let accessToken: String

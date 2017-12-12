@@ -9,7 +9,7 @@
 import Foundation
 
 //TODO: some properties might unused, re-check later
-public class ConnectResponse : Mappable {
+open class ConnectResponse : NSObject, Mappable {
     let status: String
     let message: String
     public let mqtt: MQTT

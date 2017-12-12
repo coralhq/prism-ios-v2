@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class ConversationHistory: Mappable {
+open class ConversationHistory: NSObject, Mappable {
     public let messages: [Message]
     
     required public init?(dictionary: [String : Any]?) {

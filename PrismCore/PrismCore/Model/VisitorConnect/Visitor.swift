@@ -9,7 +9,7 @@
 import Foundation
 
 //TODO: some properties might unused, re-check later
-public class Visitor : Mappable {
+open class Visitor : NSObject, Mappable {
     public let id: String
     public let name: String
     public let merchantID: String

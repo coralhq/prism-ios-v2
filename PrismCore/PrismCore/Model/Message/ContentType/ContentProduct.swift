@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ContentProduct: MessageContentMappable {
+open class ContentProduct: MessageContentMappable {
     public let product: Product
     
     required public init?(dictionary: [String : Any]?) {
@@ -23,11 +23,11 @@ public class ContentProduct: MessageContentMappable {
     }
 }
 
-public class Product: Mappable {
+open class Product: NSObject, Mappable {
     public let id: String
     public let name: String
     public let price: String
-    public let description: String
+    public let productDescription: String
     public let imageURLs: [URL]
     public let discount: Discount?
     public let currencyCode: String
@@ -39,7 +39,7 @@ public class Product: Mappable {
         guard let id = dictionary?["id"] as? String,
             let name = dictionary?["name"] as? String,
             let price = dictionary?["price"] as? String,
-            let description = dictionary?["description"] as? String,
+            let productDescription = dictionary?["description"] as? String,
             let imageURLDictionaries = dictionary?["image_urls"] as? [String],
             let currencyCode = dictionary?["currency_code"] as? String else {
                 return nil
@@ -63,7 +63,7 @@ public class Product: Mappable {
         self.id = id
         self.name = name
         self.price = price
-        self.description = description
+        self.productDescription = productDescription
         self.imageURLs = imageURLs
         self.currencyCode = currencyCode
     }
@@ -76,7 +76,7 @@ public class Product: Mappable {
         var result: [String: Any] = ["id": id,
                                      "name": name,
                                      "price": price,
-                                     "description": description,
+                                     "description": productDescription,
                                      "image_urls": imageURLs,
                                      "currency_code": currencyCode]
         if let discount = discount {

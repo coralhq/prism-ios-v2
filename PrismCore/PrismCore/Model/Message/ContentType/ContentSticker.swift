@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ContentSticker: MessageContentMappable {
+open class ContentSticker: MessageContentMappable {
     public let sticker: MessageSticker
     
     required public init?(dictionary: [String : Any]?) {
@@ -30,7 +30,7 @@ public class ContentSticker: MessageContentMappable {
     }
 }
 
-public class MessageSticker: Mappable {
+open class MessageSticker: NSObject, Mappable {
     
     public let name: String
     public let imageURL: URL

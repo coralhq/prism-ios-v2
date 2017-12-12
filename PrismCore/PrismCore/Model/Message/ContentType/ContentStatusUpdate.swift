@@ -23,7 +23,7 @@ class ContentStatusUpdate: MessageContentMappable {
     }
 }
 
-class StatusUpdate: Mappable {
+class StatusUpdate: NSObject, Mappable {
     let id: String
     let status: String
     

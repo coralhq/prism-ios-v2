@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class MessageResponse: Mappable {
+open class MessageResponse: NSObject, Mappable {
     open var failed: [Message]
     open var invalid: [Message]
     

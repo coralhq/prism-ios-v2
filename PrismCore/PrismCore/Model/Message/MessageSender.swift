@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class MessageSender : Mappable {
+open class MessageSender : NSObject, Mappable {
     public var id: String
     public var name: String
     public var role: String

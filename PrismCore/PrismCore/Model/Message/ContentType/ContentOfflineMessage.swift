@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ContentOfflineMessage: MessageContentMappable {
+open class ContentOfflineMessage: MessageContentMappable {
     public let name: String?
     public let email: String?
     public let phone: String?

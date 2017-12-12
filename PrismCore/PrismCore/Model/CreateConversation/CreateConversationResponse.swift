@@ -9,7 +9,7 @@
 import Foundation
 
 //TODO: some properties might unused, re-check later
-open class CreateConversationResponse : Mappable {
+open class CreateConversationResponse : NSObject, Mappable {
     
     let status: String
     public let conversation: Conversation

@@ -8,13 +8,13 @@
 
 import UIKit
 
-@objc public enum KeyboardAvoidingMode: Int {
+@objc enum KeyboardAvoidingMode: Int {
     case maximum
     case minimum
     case minimumDelayed
 }
 
-@objc public class KeyboardAvoiding: NSObject {
+@objc class KeyboardAvoiding: NSObject {
     
     private static var minimumAnimationDuration: CGFloat = 0.0
     private static var lastNotification: Foundation.Notification?
@@ -24,9 +24,9 @@ import UIKit
     private static var avoidingViewUsesAutoLayout = false
     private static var triggerViews = [UIView]()
     
-    public static var buffer: CGFloat = 0.0
-    public static var paddingForCurrentAvoidingView: CGFloat = 0.0
-    public static var padding: CGFloat = 0.0 {
+    static var buffer: CGFloat = 0.0
+    static var paddingForCurrentAvoidingView: CGFloat = 0.0
+    static var padding: CGFloat = 0.0 {
         willSet {
             if self.paddingForCurrentAvoidingView == newValue {
                 // if paddingCurrent has been set explicitly, dont reset it
@@ -34,8 +34,8 @@ import UIKit
             }
         }
     }
-    public static var keyboardAvoidingMode = KeyboardAvoidingMode.minimum
-    public static var avoidingBlock: ((Bool, CGFloat, CGFloat, UIViewAnimationOptions)->Void)? {
+    static var keyboardAvoidingMode = KeyboardAvoidingMode.minimum
+    static var avoidingBlock: ((Bool, CGFloat, CGFloat, UIViewAnimationOptions)->Void)? {
         willSet {
             self.initialise()
         }
@@ -47,7 +47,7 @@ import UIKit
         }
     }
     private static var _avoidingView: UIView?
-    public static var avoidingView: UIView? {
+    static var avoidingView: UIView? {
         get {
             return _avoidingView
         }
@@ -233,7 +233,7 @@ import UIKit
     }
     
     // publicly, the triggerView is reqiured if the avoidingView isn't nil
-    public class func setAvoidingView(_ avoidingView: UIView?, withTriggerView triggerView: UIView) {
+    class func setAvoidingView(_ avoidingView: UIView?, withTriggerView triggerView: UIView) {
         self.setAvoidingView(avoidingView, withOptionalTriggerView: triggerView)
     }
     
@@ -257,17 +257,17 @@ import UIKit
         self.deinitialise()
     }
     
-    public class func addTriggerView(_ triggerView: UIView) {
+    class func addTriggerView(_ triggerView: UIView) {
         self.triggerViews.append(triggerView)
     }
     
-    public class func removeTriggerView(_ triggerView: UIView) {
+    class func removeTriggerView(_ triggerView: UIView) {
         if let index = triggerViews.index(of: triggerView) as Int! {
             self.triggerViews.remove(at: index)
         }
     }
     
-    public class func removeAll() {
+    class func removeAll() {
         self.triggerViews.removeAll()
         self.avoidingView = nil
         self.avoidingBlock = nil

@@ -9,7 +9,7 @@
 import UIKit
 
 /// Class used to create a custom action in the activity controller
-open class CollieGalleryCustomAction: UIActivity {
+class CollieGalleryCustomAction: UIActivity {
     fileprivate var customActivityType = ""
     fileprivate var activityName = ""
     fileprivate var activityImageName = ""

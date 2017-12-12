@@ -12,14 +12,14 @@ import CoreData
 
 extension CDSender {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<CDSender> {
+    @nonobjc class func fetchRequest() -> NSFetchRequest<CDSender> {
         return NSFetchRequest<CDSender>(entityName: "CDSender")
     }
 
-    @NSManaged public var appName: String?
-    @NSManaged public var id: String?
-    @NSManaged public var name: String?
-    @NSManaged public var role: String?
-    @NSManaged public var message: CDMessage?
+    @NSManaged var appName: String?
+    @NSManaged var id: String?
+    @NSManaged var name: String?
+    @NSManaged var role: String?
+    @NSManaged var message: CDMessage?
 
 }

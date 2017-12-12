@@ -24,7 +24,7 @@
 import UIKit
 
 /// Class used to represent a picture in the gallery
-open class CollieGalleryPicture: NSObject {
+class CollieGalleryPicture: NSObject {
     
     // MARK: - Internal properties
     internal var image: UIImage!

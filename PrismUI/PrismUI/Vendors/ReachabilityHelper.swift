@@ -48,7 +48,7 @@ func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFl
     }
 }
 
-public class ReachabilityHelper {
+class ReachabilityHelper {
 
     public typealias NetworkReachable = (ReachabilityHelper) -> ()
     public typealias NetworkUnreachable = (ReachabilityHelper) -> ()
@@ -139,7 +139,7 @@ public class ReachabilityHelper {
     }
 }
 
-public extension ReachabilityHelper {
+extension ReachabilityHelper {
     
     // MARK: - *** Notifier methods ***
     func startNotifier() throws {

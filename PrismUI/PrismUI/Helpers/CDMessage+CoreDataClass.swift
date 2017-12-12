@@ -10,7 +10,7 @@ import Foundation
 import PrismCore
 import CoreData
 
-public class CDMessage: NSManagedObject, CDManagedMappable {
+class CDMessage: NSManagedObject, CDManagedMappable {
     var messageStatus: MessageStatus = .pending {
         didSet {
             status = messageStatus.rawValue

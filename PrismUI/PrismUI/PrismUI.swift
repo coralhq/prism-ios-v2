@@ -10,10 +10,10 @@ import Foundation
 import PrismCore
 import CoreTelephony
 
-open class PrismUI {
+open class PrismUI: NSObject {
     
     open static var shared = PrismUI()
-    private init() {}
+    private override init() {}
     
     open func configure(environment: EnvironmentType, merchantID: String) {
         PrismCore.shared.configure(environment: environment, merchantID: merchantID)
@@ -21,9 +21,9 @@ open class PrismUI {
         var analyticsEnv: AnalyticEnvironment
         
         switch environment {
-        case .production:
+        case .Production:
             analyticsEnv = .production
-        case .sandbox:
+        case .Sandbox:
             analyticsEnv = .sandbox        
         }
         

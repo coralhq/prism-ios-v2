@@ -33,7 +33,7 @@ public protocol CollieGalleryZoomTransitionDelegate {
     func zoomTransitionViewToDismissForIndex(_ index: Int) -> UIView?
 }
 
-open class CollieGalleryZoomTransition: CollieGalleryTransitionProtocol {
+class CollieGalleryZoomTransition: CollieGalleryTransitionProtocol {
     
     // MARK: - Private properties
     fileprivate var fromView: UIView

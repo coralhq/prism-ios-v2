@@ -32,7 +32,7 @@ import UIKit
     - Light: Light background with dark controls.
  
 */
-public enum CollieGalleryTheme {
+enum CollieGalleryTheme {
     case custom(appearance: CollieGalleryAppearance)
     case dark
     case light

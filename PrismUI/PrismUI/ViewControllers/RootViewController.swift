@@ -50,7 +50,6 @@ class RootViewController: BaseViewController {
                 self.enterChatpage(animated: false)
                 self.stopLoading()
                 return
-                
             }
             
             //New user, then clear previous data

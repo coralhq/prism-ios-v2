@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  PrismUI
+
+  Created by Nanang Rafsanjani on 6/20/17.
+  Copyright © 2017 Prism. All rights reserved.
+*/
+
+"email is required" = "email is required";
+"email is invalid" = "email is invalid";
+"name is required" = "name is required";
+"phone number is required" = "phone number is required";
+"phone number is invalid" = "phone number is invalid";

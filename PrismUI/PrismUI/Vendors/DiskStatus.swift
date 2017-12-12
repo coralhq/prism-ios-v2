@@ -7,7 +7,7 @@
 //
 import UIKit
 
-public class DiskStatus {
+class DiskStatus {
     
     //MARK: Formatter MB only
     class func MBFormatter(_ bytes: Int64) -> String {
@@ -40,7 +40,7 @@ public class DiskStatus {
     
     
     //MARK: Get raw value
-    public class var totalDiskSpaceInBytes:Int64 {
+    class var totalDiskSpaceInBytes:Int64 {
         get {
             do {
                 let systemAttributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory() as String)
@@ -52,7 +52,7 @@ public class DiskStatus {
         }
     }
     
-    public class var freeDiskSpaceInBytes:Int64 {
+    class var freeDiskSpaceInBytes:Int64 {
         get {
             do {
                 let systemAttributes = try FileManager.default.attributesOfFileSystem(forPath: NSHomeDirectory() as String)
@@ -64,7 +64,7 @@ public class DiskStatus {
         }
     }
     
-    public class var usedDiskSpaceInBytes:Int64 {
+    class var usedDiskSpaceInBytes:Int64 {
         get {
             let usedSpace = totalDiskSpaceInBytes - freeDiskSpaceInBytes
             return usedSpace

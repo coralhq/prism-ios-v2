@@ -17,7 +17,7 @@ struct SerialisationKeys {
 let ConnectNotification = NSNotification.Name(rawValue: "ConnectNotification")
 let DisconnectNotification = NSNotification.Name(rawValue: "DisconnectNotification")
 
-public class AuthViewModel {
+class AuthViewModel {
     
     func visitorConnectAnonymous(completion: @escaping (NSError?) -> Void) {
         PrismCore.shared.annonymousVisitorConnect { [weak self] (connect, error) in
@@ -30,14 +30,14 @@ public class AuthViewModel {
             get {
                 if let email = email,
                     let phone = phoneNumber,
-                    email.characters.count > 0,
-                    phone.characters.count > 0 {
+                    email.count > 0,
+                    phone.count > 0 {
                     return "\(email);\(phone)"
                 } else if let email = email,
-                    email.characters.count > 0 {
+                    email.count > 0 {
                     return email
                 } else if let phone = phoneNumber,
-                    phone.characters.count > 0 {
+                    phone.count > 0 {
                     return phone
                 } else {
                     return NSUUID().uuidString
@@ -48,7 +48,7 @@ public class AuthViewModel {
         var userName: String {
             get {
                 if let name = name,
-                    name.characters.count > 0 {
+                    name.count > 0 {
                     return name
                 } else {
                     return "visitor_\(String.randomString(length: 7))"

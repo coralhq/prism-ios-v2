@@ -24,7 +24,7 @@
 import UIKit
 
 /// Class used to display the gallery
-open class CollieGallery: UIViewController, UIScrollViewDelegate, CollieGalleryViewDelegate {
+class CollieGallery: UIViewController, UIScrollViewDelegate, CollieGalleryViewDelegate {
     
     // MARK: - Private properties
     fileprivate let transitionManager = CollieGalleryTransitionManager()

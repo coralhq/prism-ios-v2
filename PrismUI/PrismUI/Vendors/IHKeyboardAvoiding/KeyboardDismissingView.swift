@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc public class KeyboardDismissingView: UIView {
+@objc class KeyboardDismissingView: UIView {
     
     public var dismissingBlock: (() -> Void)?
     public var touchEndedBlock: (() -> Void)?
@@ -24,7 +24,7 @@ import UIKit
         self.touchEndedBlock?()
     }
     
-    public class func resignAnyFirstResponder(_ view: UIView) -> Bool {
+    class func resignAnyFirstResponder(_ view: UIView) -> Bool {
         var hasResigned = false
         for subView in view.subviews {
             if subView.isFirstResponder {

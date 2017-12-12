@@ -26,7 +26,7 @@ public enum sendMessageTrackerType: String {
     case messageType = "message_type"
 }
 
-open class PrismAnalytics {
+class PrismAnalytics {
     
     private var gai: GAI?
     private let network = Network()

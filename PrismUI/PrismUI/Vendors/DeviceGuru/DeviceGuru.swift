@@ -10,7 +10,7 @@
 import Foundation
 import UIKit
 
-open class DeviceGuru {
+class DeviceGuru {
     
     /// This method returns the hardware type
     ///

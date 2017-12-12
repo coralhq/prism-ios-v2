@@ -10,7 +10,7 @@ import UIKit
 
 let formTextFieldHeight: CGFloat = 55
 
-public class ConnectViewController: BaseViewController {
+class ConnectViewController: BaseViewController {
     
     @IBOutlet var helloLabel: UILabel!
     @IBOutlet var nameTF: LinedTextField!

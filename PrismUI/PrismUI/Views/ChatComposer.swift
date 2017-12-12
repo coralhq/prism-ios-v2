@@ -80,7 +80,7 @@ class ChatComposer: UIView {
         textView.text = text
         
         if let text = text {
-            sendButton.isEnabled = text.characters.count > 0
+            sendButton.isEnabled = text.count > 0
         } else {
             sendButton.isEnabled = false
         }

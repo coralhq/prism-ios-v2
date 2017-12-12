@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import PrismCore
 
-public class CDUser: NSManagedObject, CDManagedMappable {
+class CDUser: NSManagedObject, CDManagedMappable {
     required public init(with context: NSManagedObjectContext, dictionary: [String : Any]) {
         let entityDesc = NSEntityDescription.entity(forEntityName: CDUser.className(), in: context)!
         super.init(entity: entityDesc, insertInto: context)

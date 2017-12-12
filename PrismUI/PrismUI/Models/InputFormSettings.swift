@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class InputForm: NSObject {
+class InputForm: NSObject {
     struct Keys {
         static var show = "show"
         static var required = "required"
@@ -47,7 +47,6 @@ class OfflineFormSettings {
     }
     
     func configure(settings: [String: Any]) {
-        print("SETTINGS: \(settings)")
         if let widget = settings["widget"] as? [String: Any],
             let offlineMessage = widget["offline_widget"] as? [String: Any],
             let formOptions = offlineMessage["form_options"] as? [String: Any],
@@ -61,7 +60,7 @@ class OfflineFormSettings {
     }
 }
 
-public class InputFormSettings: NSObject {
+class InputFormSettings: NSObject {
     var message: String?
     var enabled: Bool
     var username: InputForm

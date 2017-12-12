@@ -14,7 +14,7 @@ extension UIImage {
     }
 }
 
-public class BaseViewController: UIViewController {
+class BaseViewController: UIViewController {
 
     convenience init() {
         self.init(nibName: nil, bundle: Bundle.prism)

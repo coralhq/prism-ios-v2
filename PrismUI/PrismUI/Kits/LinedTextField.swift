@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class LinedTextField: UITextField {
+class LinedTextField: UITextField {
     var isRequired: Bool = true
     
     let floatingLabelHeight: CGFloat = 15
@@ -99,14 +99,14 @@ public class LinedTextField: UITextField {
         super.layoutSubviews()
         
         if let text = text,
-            text.characters.count > 0 {
+            text.count > 0 {
             floatingLabel.isHidden = false
         } else {
             floatingLabel.isHidden = true
         }
         
         if let warning = warning,
-            warning.characters.count > 0 {
+            warning.count > 0 {
             bottomLineView.backgroundColor = warningLabel.textColor
             floatingLabel.textColor = isFirstResponder ? selectedColor : placeholderColor
         } else {

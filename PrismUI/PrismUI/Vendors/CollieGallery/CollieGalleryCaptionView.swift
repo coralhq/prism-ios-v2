@@ -9,7 +9,7 @@
 import UIKit
 
 /// View used to show a caption for the picture
-open class CollieGalleryCaptionView: UIView {
+class CollieGalleryCaptionView: UIView {
     
     fileprivate var isExpanded = false
     

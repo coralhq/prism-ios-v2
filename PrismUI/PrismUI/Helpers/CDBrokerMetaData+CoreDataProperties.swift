@@ -12,11 +12,11 @@ import CoreData
 
 extension CDBrokerMetaData {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<CDBrokerMetaData> {
+    @nonobjc class func fetchRequest() -> NSFetchRequest<CDBrokerMetaData> {
         return NSFetchRequest<CDBrokerMetaData>(entityName: "CDBrokerMetaData")
     }
 
-    @NSManaged public var timestamp: Date?
-    @NSManaged public var message: CDMessage?
+    @NSManaged var timestamp: Date?
+    @NSManaged var message: CDMessage?
 
 }

@@ -326,7 +326,8 @@ class ChatManager {
         reconnectMQTT()
     }
     
-    @objc func chatReceived(sender: Notification) {
+    @objc
+    func chatReceived(sender: Notification) {
         guard let message = sender.object as? Message,
             message.type != .Assignment else { return }
         

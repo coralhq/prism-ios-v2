@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import PrismCore
 
-public class CDSender: NSManagedObject, CDManagedMappable {
+class CDSender: NSManagedObject, CDManagedMappable {
     
     required public init(with context: NSManagedObjectContext, dictionary: [String : Any]) {
         let entityDesc = NSEntityDescription.entity(forEntityName: CDSender.className(), in: context)!

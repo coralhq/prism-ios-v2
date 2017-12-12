@@ -12,13 +12,13 @@ import CoreData
 
 extension CDUser {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<CDUser> {
+    @nonobjc class func fetchRequest() -> NSFetchRequest<CDUser> {
         return NSFetchRequest<CDUser>(entityName: "CDUser")
     }
 
-    @NSManaged public var id: String?
-    @NSManaged public var name: String?
-    @NSManaged public var channelInfo: CDMessage?
-    @NSManaged public var visitor: CDMessage?
+    @NSManaged var id: String?
+    @NSManaged var name: String?
+    @NSManaged var channelInfo: CDMessage?
+    @NSManaged var visitor: CDMessage?
 
 }

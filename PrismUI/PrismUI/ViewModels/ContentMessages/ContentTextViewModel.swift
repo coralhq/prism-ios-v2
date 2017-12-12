@@ -17,4 +17,8 @@ class ContentTextViewModel: ContentViewModel {
     init(contentText: CDContentPlainText) {
         text = contentText.text
     }
+    
+    init(contentAutoResponder: CDContentAutoResponder) {
+        text = contentAutoResponder.text
+    }
 }

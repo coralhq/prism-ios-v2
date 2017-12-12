@@ -103,6 +103,8 @@ class CDMessage: NSManagedObject, CDManagedMappable {
             return CDContentAttachment(dictionary: dictionary)
         case .CloseChat:
             return CDContentCloseChat(dictionary: dictionary)
+        case .AutoResponder:
+            return CDContentAutoResponder(dictionary: dictionary)
         default:
             return nil
         }

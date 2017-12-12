@@ -207,6 +207,7 @@
 		E547D2281EF1FA6200B66136 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E547D2271EF1FA6200B66136 /* Media.xcassets */; };
 		E547E7F41F0C869800AFFB20 /* ContentTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547E7F31F0C869800AFFB20 /* ContentTextViewModel.swift */; };
 		E54969BB1EEA8496008209D9 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54969BA1EEA8496008209D9 /* Utils.swift */; };
+		E54CE5B81FDF90790054E960 /* CDContentAutoResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CE5B71FDF90790054E960 /* CDContentAutoResponder.swift */; };
 		E54DE6481EFA6A740035EA35 /* SmallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54DE6471EFA6A740035EA35 /* SmallButton.swift */; };
 		E54F7FE61F2965450022E15D /* CacheImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54F7FE51F2965450022E15D /* CacheImage.swift */; };
 		E54F7FE81F2965740022E15D /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54F7FE71F2965740022E15D /* UIImage.swift */; };
@@ -402,6 +403,7 @@
 		E547E7F31F0C869800AFFB20 /* ContentTextViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentTextViewModel.swift; path = ContentMessages/ContentTextViewModel.swift; sourceTree = "<group>"; };
 		E54969B71EEA82B7008209D9 /* PrismCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrismCore.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/DemoPrismCore-friqtlupaxddjygruiinatqqklhk/Build/Products/Debug-iphonesimulator/PrismCore.framework"; sourceTree = "<group>"; };
 		E54969BA1EEA8496008209D9 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Utils/Utils.swift; sourceTree = "<group>"; };
+		E54CE5B71FDF90790054E960 /* CDContentAutoResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CDContentAutoResponder.swift; path = Models/CoreData/Contents/CDContentAutoResponder.swift; sourceTree = "<group>"; };
 		E54DE6471EFA6A740035EA35 /* SmallButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmallButton.swift; path = Kits/SmallButton.swift; sourceTree = "<group>"; };
 		E54F7FE51F2965450022E15D /* CacheImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CacheImage.swift; path = Utils/CacheImage.swift; sourceTree = "<group>"; };
 		E54F7FE71F2965740022E15D /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
@@ -903,6 +905,7 @@
 				E593AEFF1EFCE7FC002E2171 /* CDContentProduct.swift */,
 				E593AF011EFCE85B002E2171 /* CDContentSticker.swift */,
 				80DF9B081F320BC100495FB0 /* CDContentCloseChat.swift */,
+				E54CE5B71FDF90790054E960 /* CDContentAutoResponder.swift */,
 			);
 			name = Contents;
 			sourceTree = "<group>";
@@ -1323,6 +1326,7 @@
 				E507F7821F3A72CB001F73F8 /* CollieGalleryAppearance.swift in Sources */,
 				E51F13901F4B4CFD0091C4BC /* FieldsNavigatorView.swift in Sources */,
 				80E58FE41F3B5FC100A85B06 /* CDSender+CoreDataProperties.swift in Sources */,
+				E54CE5B81FDF90790054E960 /* CDContentAutoResponder.swift in Sources */,
 				E58FAE6B1EF38435002F1A2A /* PlaceholderTextView.swift in Sources */,
 				E508C1B71EF8B469004DCB6A /* ChatImageView.swift in Sources */,
 				E5BC92931F39938B00B318EC /* KeyboardDismissingView.swift in Sources */,

@@ -83,7 +83,7 @@ enum ChatContentType: String {
             return ChatContentType.Image
         case .OfflineMessage:
             return ChatContentType.OfflineMessage
-        case .PlainText: fallthrough
+        case .PlainText, .AutoResponder: fallthrough
         default:
             return ChatContentType.Text
         }

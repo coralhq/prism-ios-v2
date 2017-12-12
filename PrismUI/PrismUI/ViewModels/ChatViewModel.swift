@@ -68,6 +68,8 @@ class ChatViewModel {
         
         if let content = message.content as? CDContentPlainText {
             contentViewModel = ContentTextViewModel(contentText: content)
+        } else if let content = message.content as? CDContentAutoResponder {
+            contentViewModel = ContentTextViewModel(contentAutoResponder: content)
         } else if let content = message.content as? CDContentSticker {
             contentViewModel = ContentStickerViewModel(contentSticker: content)
         } else if let content = message.content as? CDContentCart {

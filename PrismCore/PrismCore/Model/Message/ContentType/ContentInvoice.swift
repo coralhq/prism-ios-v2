@@ -94,18 +94,23 @@ open class PaymentProvider: NSObject, Mappable {
     public let info: Mappable?
     
     public required init?(dictionary: [String : Any]?) {
-        guard let type = dictionary?["type"] as? String,
-            let infoDictionary = dictionary?[type] as? [String: Any] else {
-                return nil
+        guard let type = dictionary?["type"] as? String else {
+            return nil
         }
+        
         self.type = type
+
+        guard let infoDict = dictionary?[type] as? [String: Any] else {
+            self.info = nil
+            return
+        }
         
         if type == "vt_web" {
-            self.info = MidtransInfo(dictionary: infoDictionary)
+            self.info = MidtransInfo(dictionary: infoDict)
         } else if type == "transfer" {
-            self.info = BankTransferInfo(dictionary: infoDictionary)
+            self.info = BankTransferInfo(dictionary: infoDict)
         } else if type == "payment_link" {
-            self.info = PaymentLinkInfo(dictionary: infoDictionary)
+            self.info = PaymentLinkInfo(dictionary: infoDict)
         } else {
             self.info = nil
         }

@@ -41,7 +41,7 @@ class BaseViewController: UIViewController {
         edgesForExtendedLayout = .init(rawValue: 0)
     }
     
-    func closePressed(sender: UIBarButtonItem) {
+    @objc func closePressed(sender: UIBarButtonItem) {
         view.endEditing(true)
         navigationController?.dismiss(animated: true, completion: nil)
     }

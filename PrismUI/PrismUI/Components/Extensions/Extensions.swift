@@ -90,7 +90,7 @@ extension Array where Element : ChatViewModel {
 }
 
 extension Collection where Indices.Iterator.Element == Index {
-    subscript (safe index: Index) -> Generator.Element? {
+    subscript (safe index: Index) -> Iterator.Element? {
         return indices.contains(index) ? self[index] : nil
     }
 }
@@ -98,9 +98,9 @@ extension Collection where Indices.Iterator.Element == Index {
 extension UILabel {
     func strikeTroughLined(with text: String?) {
         if let text = text {
-            let atts: [String: Any] = [NSFontAttributeName: UIFont.systemFont(ofSize: 14),
-                                       NSForegroundColorAttributeName: #colorLiteral(red: 0.1960784314, green: 0.1960784314, blue: 0.1960784314, alpha: 0.5),
-                                       NSStrikethroughStyleAttributeName: NSNumber(value: 1)]
+            let atts: [String: Any] = [NSAttributedStringKey.font.rawValue: UIFont.systemFont(ofSize: 14),
+                                       NSAttributedStringKey.foregroundColor.rawValue: #colorLiteral(red: 0.1960784314, green: 0.1960784314, blue: 0.1960784314, alpha: 0.5),
+                                       NSAttributedStringKey.strikethroughStyle.rawValue: NSNumber(value: 1)]
             self.attributedText = NSAttributedString(string: text, attributes: atts)
         } else {
             self.attributedText = nil
@@ -114,12 +114,12 @@ let maxViewSize: CGFloat = 1000
 extension String {
     func width(font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: maxViewSize, height: maxViewSize)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
         return boundingBox.width
     }
     
     func linesArrayString(constraint: CGSize, font: UIFont) -> [String] {
-        let attStr = NSMutableAttributedString(string: self, attributes: [NSFontAttributeName: font])
+        let attStr = NSMutableAttributedString(string: self, attributes: [NSAttributedStringKey.font: font])
         let frameSetter = CTFramesetterCreateWithAttributedString(attStr as CFAttributedString)
         let path = CGPath(rect: CGRect(x: 0, y: 0, width: constraint.width, height: constraint.height), transform: nil)
         let frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, nil)

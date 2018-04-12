@@ -113,14 +113,14 @@ class ContentInvoiceProductViewModel: ContentViewModel {
         
         let prefix = "Price".localized() + " = "
         let suffix = "(Qty \(contentItem.quantity))"
-        let atts: [String: Any] = [NSFontAttributeName: UIFont.systemFont(ofSize: 14),
-                                   NSForegroundColorAttributeName: UIColor.jetBlack]
+        let atts: [String: Any] = [NSAttributedStringKey.font.rawValue: UIFont.systemFont(ofSize: 14),
+                                   NSAttributedStringKey.foregroundColor.rawValue: UIColor.jetBlack]
         
         if let discount = contentItem.product.discount {
-            let linedAtts: [String: Any] = [NSFontAttributeName: UIFont.systemFont(ofSize: 14),
-                                            NSForegroundColorAttributeName: UIColor.jetBlack.withAlphaComponent(0.5),
-                                            NSBaselineOffsetAttributeName: NSNumber(value: 0),
-                                            NSStrikethroughStyleAttributeName: NSNumber(value: 1)]
+            let linedAtts: [String: Any] = [NSAttributedStringKey.font.rawValue: UIFont.systemFont(ofSize: 14),
+                                            NSAttributedStringKey.foregroundColor.rawValue: UIColor.jetBlack.withAlphaComponent(0.5),
+                                            NSAttributedStringKey.baselineOffset.rawValue: NSNumber(value: 0),
+                                            NSAttributedStringKey.strikethroughStyle.rawValue: NSNumber(value: 1)]
             let discAmount = Double(discount.amount)!
             let discString = (priceAmount - discAmount).formattedCurrency(currencyCode: currencyCode)
             let priceInfo = prefix + priceString + " " + discString + " " + suffix

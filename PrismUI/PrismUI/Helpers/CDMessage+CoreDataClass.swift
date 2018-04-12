@@ -18,7 +18,7 @@ class CDMessage: NSManagedObject, CDManagedMappable {
     }
     
     required public init(with context: NSManagedObjectContext, dictionary: [String : Any]) {
-        let entityDesc = NSEntityDescription.entity(forEntityName: String(describing: type(of: self)), in: context)!
+        let entityDesc = NSEntityDescription.entity(forEntityName: String(describing: Swift.type(of: self)), in: context)!
         super.init(entity: entityDesc, insertInto: context)
         updateMessage(with: dictionary)
     }

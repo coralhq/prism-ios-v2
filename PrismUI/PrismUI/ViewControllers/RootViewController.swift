@@ -108,12 +108,12 @@ class RootViewController: BaseViewController {
         replace(vc1: currentVC, with: vc, animated: true)
     }
     
-    func connectCalled(sender: Notification) {
+    @objc func connectCalled(sender: Notification) {
         UIApplication.shared.registerForRemoteNotifications()        
         enterChatpage(animated: true)
     }
     
-    func disconnectCalled(sender: Notification) {
+    @objc func disconnectCalled(sender: Notification) {
         let connectVC = ConnectViewController(viewModel: viewModel)
         enter(viewController: connectVC, animated: true)
     }

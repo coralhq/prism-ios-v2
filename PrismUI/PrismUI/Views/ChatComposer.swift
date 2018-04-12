@@ -148,7 +148,7 @@ class ChatComposer: UIView {
         setText(text: nil)
     }
     
-    func kbWillShow(sender: Notification) {
+    @objc func kbWillShow(sender: Notification) {
         guard let userInfo = sender.userInfo,
             let kbFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
             let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber,
@@ -163,7 +163,7 @@ class ChatComposer: UIView {
         }, completion: nil)
     }
     
-    func kbWillHide(sender: Notification) {
+    @objc func kbWillHide(sender: Notification) {
         guard let userInfo = sender.userInfo,
             let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber,
             let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber else { return }
@@ -174,7 +174,7 @@ class ChatComposer: UIView {
         }, completion: nil)
     }
     
-    func textViewChanged(sender: Notification) {
+    @objc func textViewChanged(sender: Notification) {
         setText(text: textView.text)
     }
 }

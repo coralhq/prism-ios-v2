@@ -111,7 +111,7 @@ class ChatInvoiceView: ChatContentView {
         paymentLinkView.payButton.addTarget(self, action: #selector(payPressed(sender:)), for: .touchUpInside)
     }
     
-    func payPressed(sender: UIButton) {
+    @objc func payPressed(sender: UIButton) {
         guard let payURL = payment?.url,
             UIApplication.shared.canOpenURL(payURL) else {
                 UIViewController.root?.popErrorAlert(message: "Payment link is invalid.".localized())

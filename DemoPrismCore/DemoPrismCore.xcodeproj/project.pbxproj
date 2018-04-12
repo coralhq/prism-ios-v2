@@ -205,6 +205,7 @@
 					E54D95F41ED55E34009FF016 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 36T5DNWZL4;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -455,7 +456,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b4bc003d-7039-428b-bac1-5ac521dd6b24";
 				PROVISIONING_PROFILE_SPECIFIER = PrismiOSSDKDemo;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -479,7 +481,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ee27f368-987b-4c64-9822-9f30f2d53cc4";
 				PROVISIONING_PROFILE_SPECIFIER = "DemoPrismCore-adhoc";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

@@ -35,7 +35,7 @@ class FieldsNavigatorView: UIView {
         doneButton.setTitleColor(Settings.shared.theme.buttonColor, for: .normal)
     }
     
-    func editingBegin(sender: UITextField) {
+    @objc func editingBegin(sender: UITextField) {
         if let index = textFields.index(of: sender) {
             selectFieldsAt(index: index)
         }

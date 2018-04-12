@@ -11,14 +11,14 @@ import UIKit
 
 extension UIFont {
     class func welcomeMessageFont() -> UIFont {
-        return UIFont.systemFont(ofSize: 14.0, weight: UIFontWeightRegular)
+        return UIFont.systemFont(ofSize: 14.0, weight: UIFont.Weight.regular)
     }
     
     class func navigationTitleFont() -> UIFont {
-        return UIFont.systemFont(ofSize: 12.0, weight: UIFontWeightBold)
+        return UIFont.systemFont(ofSize: 12.0, weight: UIFont.Weight.bold)
     }
     
     class func navigationSubTitleFont() -> UIFont {
-        return UIFont.systemFont(ofSize: 10.0, weight: UIFontWeightRegular)
+        return UIFont.systemFont(ofSize: 10.0, weight: UIFont.Weight.regular)
     }
 }

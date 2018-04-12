@@ -95,7 +95,7 @@ class OptionView: UIControl {
         buttonPressed(sender: button)
     }
     
-    func buttonPressed(sender: OptionButton) {
+    @objc func buttonPressed(sender: OptionButton) {
         guard let buttons = buttons else { return }
         
         for button in buttons {

@@ -49,7 +49,7 @@ class ChatImageView: ChatContentView {
         imageView.downloadedFrom(url: contentVM.imageURL)
     }
     
-    func imageTapped() {
+    @objc func imageTapped() {
         guard let imgURL = imageURL?.absoluteString,
             let rootVC = UIViewController.root else {
                 return
@@ -63,7 +63,7 @@ class ChatImageView: ChatContentView {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func uploadProgress(sender: Notification) {
+    @objc func uploadProgress(sender: Notification) {
         
     }
 }

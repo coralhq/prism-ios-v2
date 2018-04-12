@@ -88,7 +88,7 @@ extension ChatProductView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ContentProductCell = collectionView.dequeueReusableCell(withReuseIdentifier: ContentProductCell.className(), for: indexPath) as! ContentProductCell
-        cell.imageView.downloadedFrom(url: imageURLs[indexPath.row], defaultImage: UIImage.image(with: "icPlaceholderS"))
+        cell.imageView.downloadedFrom(link: imageURLs[indexPath.row], contentMode: UIImage.image(with: "icPlaceholderS"))
         return cell
     }
 }

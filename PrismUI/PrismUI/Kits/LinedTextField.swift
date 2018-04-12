@@ -28,7 +28,7 @@ class LinedTextField: UITextField {
             
             attributedPlaceholder = NSAttributedString(
                 string: placeholder,
-                attributes: [NSForegroundColorAttributeName: placeholderColor]
+                attributes: [NSAttributedStringKey.foregroundColor: placeholderColor]
             )
         }
     }

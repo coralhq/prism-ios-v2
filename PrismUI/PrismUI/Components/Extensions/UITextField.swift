@@ -13,7 +13,7 @@ extension LinedTextField {
         warning = nil
         var result: Bool
         
-        if let char = text?.characters,
+        if let char = text,
             char.count > 0 {
             result = true
         } else {
@@ -31,7 +31,7 @@ extension LinedTextField {
         warning = nil
         var result: Bool
         
-        if let char = text?.characters,
+        if let char = text,
             char.count > 0 {
             result = true
         } else {
@@ -49,7 +49,7 @@ extension LinedTextField {
         warning = nil
         var result: Bool
         
-        if let char = text?.characters,
+        if let char = text,
             char.count > 0 {
             let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
             let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
@@ -74,7 +74,7 @@ extension LinedTextField {
         warning = nil
         var result: Bool
         
-        if let char = text?.characters,
+        if let char = text,
             char.count > 0 {
             let regex = "^\\d+$"
             let tester = NSPredicate.init(format: "SELF MATCHES %@", regex)

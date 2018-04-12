@@ -13,7 +13,13 @@ import CoreTelephony
 open class PrismUI: NSObject {
     
     open static var shared = PrismUI()
+    
     private override init() {}
+    
+    lazy private var devGuru: DeviceGuru = {
+        let obj = DeviceGuru()
+        return obj
+    }()
     
     open func configure(environment: EnvironmentType, merchantID: String) {
         PrismCore.shared.configure(environment: environment, merchantID: merchantID)
@@ -75,15 +81,15 @@ open class PrismUI: NSObject {
         let operatorName = CTCarrier().carrierName ?? "Unknown"
         
         PrismAnalytics.shared.getIPAddress { (ipAddress) in
-            let data: [String: Any] = [
+            let data = [
                 "device_id": UUID,
                 "public_ip_address": ipAddress,
                 "source": "VISITOR",
                 "sender_id": credential.sender.id,
                 "sent_time": Int(floor(Date().timeIntervalSince1970)),
                 "device_info": [
-                    "model": DeviceGuru.hardwareDescription(),
-                    "hostname": DeviceGuru.getNodeName(),
+                    "model": devGuru.hardwareDescription() ?? "",
+                    "hostname": devGuru.getNodeName(),
                     "ios_version": UIDevice.current.systemVersion,
                     "locale": languageCode + "_" + regionCode,
                     "timezone": [
@@ -104,7 +110,7 @@ open class PrismUI: NSObject {
                     "operator_code": operatorCodeInt,
                     "carrier": operatorName
                 ]
-            ]
+                ] as [String : Any]
             
             PrismAnalytics.shared.sendDeviceInfoToRover(data: data, token: credential.accessToken)
         }

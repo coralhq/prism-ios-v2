@@ -530,7 +530,7 @@ class CollieGallery: UIViewController, UIScrollViewDelegate, CollieGalleryViewDe
     @objc internal func actionButtonTouched(_ sender: AnyObject) {
         
         if let customHandleBlock = options.customOptionsBlock {
-            customHandleBlock(())
+            customHandleBlock()
             return
         }
         

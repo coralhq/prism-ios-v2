@@ -80,6 +80,7 @@ class PrismAnalytics {
             
             let keys = data.flatMap({ $0.0 as String})
             for key in keys {
+                let key = String(key)
                 tracker.set(key, value: data[key])
             }
             

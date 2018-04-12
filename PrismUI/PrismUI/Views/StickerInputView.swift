@@ -87,7 +87,7 @@ extension StickerInputView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == sectionStickerView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StickerSectionCell.className(), for: indexPath) as! StickerSectionCell
-            cell.stickerImageView.downloadedFrom(link: packs[indexPath.row].imageURL, contentMode: .scaleAspectFill)
+            cell.stickerImageView.downloadedFrom(url: packs[indexPath.row].imageURL, contentMode: .scaleAspectFill)
             return cell
         }
         

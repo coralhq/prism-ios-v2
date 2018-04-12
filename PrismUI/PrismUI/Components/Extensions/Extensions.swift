@@ -98,9 +98,9 @@ extension Collection where Indices.Iterator.Element == Index {
 extension UILabel {
     func strikeTroughLined(with text: String?) {
         if let text = text {
-            let atts: [String: Any] = [NSAttributedStringKey.font.rawValue: UIFont.systemFont(ofSize: 14),
-                                       NSAttributedStringKey.foregroundColor.rawValue: #colorLiteral(red: 0.1960784314, green: 0.1960784314, blue: 0.1960784314, alpha: 0.5),
-                                       NSAttributedStringKey.strikethroughStyle.rawValue: NSNumber(value: 1)]
+            let atts: [NSAttributedStringKey: Any] = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14),
+                                                      NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.1960784314, green: 0.1960784314, blue: 0.1960784314, alpha: 0.5),
+                                                      NSAttributedStringKey.strikethroughStyle: NSNumber(value: 1)]
             self.attributedText = NSAttributedString(string: text, attributes: atts)
         } else {
             self.attributedText = nil

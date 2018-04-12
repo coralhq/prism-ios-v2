@@ -58,6 +58,6 @@ class CollieGalleryCustomAction: UIActivity {
     }
     
     override open func perform() {
-        customActionWhenTapped(())
+        customActionWhenTapped()
     }
 }

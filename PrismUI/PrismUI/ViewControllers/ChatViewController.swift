@@ -14,7 +14,6 @@ class ChatViewController: BaseViewController {
     
     @IBOutlet var barView: UIView!
     @IBOutlet var tableView: ChatTableView!
-    @IBOutlet var connectLabel: UILabel!
     
     let authViewModel = AuthViewModel()
     let chatManager: ChatManager = ChatManager()
@@ -44,14 +43,8 @@ class ChatViewController: BaseViewController {
         tableView.register(CloseChatTableViewCell.NIB, forCellReuseIdentifier: CloseChatTableViewCell.className())
         
         queryManager?.fetchSections()
-        
-        addWelcomeMessageIfEmpty()
     }
-    
-    deinit {
-        print("\(self) deinitialized")
-    }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -69,16 +62,6 @@ class ChatViewController: BaseViewController {
     func removeComposer() {
         for subView in barView.subviews {
             subView.removeFromSuperview()
-        }
-    }
-    
-    func addWelcomeMessageIfEmpty() {
-        if let count = queryManager?.sections.count,
-            count == 0 {
-            connectLabel.text = Settings.shared.texts.welcomeMessage
-            connectLabel.isHidden = false
-        } else {
-            connectLabel.isHidden = true
         }
     }
 }
@@ -100,8 +83,12 @@ extension ChatViewController: UITableViewDataSource {
             if sections.count > 0 {
                 tableView.backgroundView = nil
             } else {
-                tableView.backgroundView = EmptyChatView.viewFromNib()
-            }            
+                let emptyView: EmptyChatView = EmptyChatView.viewFromNib()!
+                if let msg = Settings.shared.texts.welcomeMessage {
+                    emptyView.titleLabel.text = msg
+                }
+                tableView.backgroundView = emptyView
+            }
             return sections.count
         }
         return 0
@@ -195,8 +182,6 @@ extension ChatViewController: ChatComposerDelegate {
 
 extension ChatViewController: ChatQueryManagerDelegate {
     func didChange() {
-        addWelcomeMessageIfEmpty()
-        
         tableView.endUpdates()
     }
     

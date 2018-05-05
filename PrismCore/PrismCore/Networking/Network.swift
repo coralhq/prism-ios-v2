@@ -22,30 +22,25 @@ class Network: NSObject, NetworkProtocol {
     var uploadTaskIdentifiers: [Int: URL] = [:]
     weak var delegate: NetworkDelegate?
     
-    override init() {
-        super.init()
-        
-        mqttSession.delegate = self
-    }
+    lazy private var urlSession: URLSession = {
+        let session = URLSession(configuration: URLSession.shared.configuration,
+                                 delegate: self,
+                                 delegateQueue: OperationQueue.main)
+        return session
+    }()
     
-    private var mqttSession = MQTTSession(host: URL.PrismMQTTURL,
-                                          port: URL.PrismMQTTPort,
-                                          clientID: UIDevice.current.identifierForVendor?.description ?? String.randomUserID ,
-                                          cleanSession: true,
-                                          keepAlive: 60,
-                                          useSSL: false)
-    
-    private var _urlSession: URLSession?
-    private var urlSession: URLSession? {
-        get {
-            if _urlSession == nil {
-                _urlSession = URLSession(configuration: URLSession.shared.configuration,
-                                         delegate: self,
-                                         delegateQueue: OperationQueue.main)
-            }
-            return _urlSession
-        }
-    }
+    lazy private var mqttSession: MQTTSession = {
+        let session = MQTTSession(
+            host: URL.PrismMQTTURL,
+            port: URL.PrismMQTTPort,
+            clientID: UIDevice.current.identifierForVendor?.description ?? String.randomUserID ,
+            cleanSession: true,
+            keepAlive: 60,
+            useSSL: false
+        )
+        session.delegate = self
+        return session
+    }()
     
     func requestRawResult<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping (([String: Any]?, NSError?) -> ())) {
         
@@ -96,25 +91,22 @@ class Network: NSObject, NetworkProtocol {
         request.addValue("X-Prism-API-Version", forHTTPHeaderField: "20170807")
         request.httpMethod = "PUT"
         request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
-        let task = urlSession?.uploadTask(with: request, from: attachment) { (data, response, error) in
+        let task = urlSession.uploadTask(with: request, from: attachment) { (data, response, error) in
             DispatchQueue.main.async(){
                 guard let httpResponse = response as? HTTPURLResponse else { return }
                 completionHandler(httpResponse.statusCode == 200, error as NSError?)
             }
         }
-        task?.resume()
+        task.resume()
         
-        guard let identifier = task?.taskIdentifier else {
-            return
-        }
         var comp = URLComponents(url: url, resolvingAgainstBaseURL: false)
         comp?.query = nil
         comp?.fragment = nil
-        uploadTaskIdentifiers[identifier] = comp?.url
+        uploadTaskIdentifiers[task.taskIdentifier] = comp?.url
     }
     
     fileprivate func requestDataTask<T: Mappable>(request: URLRequest, mapToObject: T.Type, completionHandler: @escaping HTTPRequestResult) {
-        let task = urlSession?.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+        let task = urlSession.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
             
             guard error == nil else {
                 DispatchQueue.main.async() {
@@ -162,7 +154,7 @@ class Network: NSObject, NetworkProtocol {
                 }
             }
         })
-        task?.resume()
+        task.resume()
     }
     
     func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, NSError?) -> ())) {

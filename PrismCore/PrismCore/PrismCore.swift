@@ -20,22 +20,22 @@ public let ErrorChatNotification = NSNotification.Name(rawValue: "ErrorChatNotif
 public let UploadProgressNotification = NSNotification.Name(rawValue: "UploadProgressNotification")
 public let RefreshTokenNotification = NSNotification.Name("RefreshTokenNotification")
 
-open class PrismCore: NSObject {
+open class PrismCore {
     
     public weak var delegate: PrismCoreDelegate?
     
     static open var shared = PrismCore()
     
-    internal var network: NetworkProtocol = Network()
-
+    lazy private var network: NetworkProtocol = {
+        let network = Network()
+        network.delegate = self
+        return network
+    }()
+    
     open func configure(environment: EnvironmentType, merchantID: String) {
         Config.shared.configure(environment: environment, merchantID: merchantID)
-        
-        network.delegate = self
     }
-    
-    public override init() {}
-    
+
     deinit {
         network.disconnectFromBroker(completionHandler: { (success) in })
         print("Prism Core De-Initialized")

@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         registerForPushNotifications(app: application)
         
-        PrismUI.shared.configure(environment: .Sandbox, merchantID: "735277b9-effc-41b4-936e-2a46721fcc38")
+        PrismUI.shared.configure(environment: .Production, merchantID: "5ae94144-415a-403b-bdf1-3d990fb1ef55")
         
         return true
     }

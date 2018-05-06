@@ -16,8 +16,7 @@ class ChatManager {
     }
     
     let reachability = ReachabilityHelper()!
-//    let prismCore: PrismCore = PrismCore()
-    var prismCore: PrismCore {
+    private var prismCore: PrismCore {
         return PrismCore.shared
     }
     

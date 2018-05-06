@@ -25,25 +25,35 @@ open class PrismCore: NSObject {
     public weak var delegate: PrismCoreDelegate?
     
     static open var shared = PrismCore()
-    
-    internal var network: NetworkProtocol = Network()
 
+    private var network: NetworkProtocol?
+    
     open func configure(environment: EnvironmentType, merchantID: String) {
         Config.shared.configure(environment: environment, merchantID: merchantID)
         
-        network.delegate = self
+        network = Network()
+        network?.delegate = self
     }
     
     public override init() {}
     
     deinit {
-        network.disconnectFromBroker(completionHandler: { (success) in })
+        network?.disconnectFromBroker(completionHandler: { (success) in })
         print("Prism Core De-Initialized")
     }
     
+    private func isReady() -> Bool {
+        return network != nil
+    }
+    
     open func visitorConnect(userName: String, userID: String, completionHandler: @escaping (ConnectResponse?, NSError?) -> ()) {
+        guard isReady() else {
+            print("PrismCore is not ready, you need to configure it before you can use it!")
+            return
+        }
+        
         let endPoint = VisitorConnectEndPoint(visitorName: userName, userID: userID)
-        network.request(endPoint: endPoint, mapToObject: ConnectResponse.self) { (mappable, error) in
+        network?.request(endPoint: endPoint, mapToObject: ConnectResponse.self) { (mappable, error) in
             DispatchQueue.main.async(){
                 completionHandler(mappable as? ConnectResponse, error)
             }
@@ -55,7 +65,7 @@ open class PrismCore: NSObject {
         let userID = String.randomUserID
         
         let endPoint = VisitorConnectEndPoint(visitorName: visitorName, userID: userID)
-        network.request(endPoint: endPoint, mapToObject: ConnectResponse.self) { (mappable, error) in
+        network?.request(endPoint: endPoint, mapToObject: ConnectResponse.self) { (mappable, error) in
             DispatchQueue.main.async(){
                 completionHandler(mappable as? ConnectResponse, error)
             }
@@ -65,7 +75,7 @@ open class PrismCore: NSObject {
     open func sendDeviceToken(visitorID: String, token: String, deviceToken: String, completionHandler: @escaping ((Bool?, NSError?) -> ())) {
         let endpoint = SendDeviceTokenEndpoint(visitorID: visitorID, deviceToken: deviceToken, authToken: token)
         
-        network.request(endPoint: endpoint, mapToObject: SendTokenResponse.self) { (mappable, error) in
+        network?.request(endPoint: endpoint, mapToObject: SendTokenResponse.self) { (mappable, error) in
             DispatchQueue.main.async(){
                 completionHandler(error == nil ? true : false, error)
             }
@@ -75,23 +85,23 @@ open class PrismCore: NSObject {
     open func createConversation(visitorName: String, token: String, completionHandler: @escaping ((CreateConversationResponse? ,NSError?) -> ())) {
         let endPoint = CreateConversationEndPoint(visitorName: visitorName, token: token)
         
-        network.request(endPoint: endPoint, mapToObject: CreateConversationResponse.self) { (mappable, error) in
+        network?.request(endPoint: endPoint, mapToObject: CreateConversationResponse.self) { (mappable, error) in
             completionHandler(mappable as? CreateConversationResponse, error)
         }
     }
     
     open func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
-        network.connectToBroker(username: username, password: password, completionHandler: completionHandler)
+        network?.connectToBroker(username: username, password: password, completionHandler: completionHandler)
     }
     
     open func subscribeToTopic(_ topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
-        network.subscribeToTopic(topic: topic, completionHandler: completionHandler)
+        network?.subscribeToTopic(topic: topic, completionHandler: completionHandler)
     }
     
     open func publishMessage(token: String, topic: String, messages: [Message], completionHandler: @escaping (MessageResponse?, NSError?) -> ()) {
         let endPoint = PublishMessageEndPoint(token: token, messages: messages, topic: topic)
         
-        network.request(endPoint: endPoint, mapToObject: MessageResponse.self) { (mappable, error) in
+        network?.request(endPoint: endPoint, mapToObject: MessageResponse.self) { (mappable, error) in
             completionHandler(mappable as? MessageResponse, error)
         }
     }
@@ -99,13 +109,13 @@ open class PrismCore: NSObject {
     open func getSettings(completionHandler: @escaping ([String: Any]?, Error?) -> ()) {
         let endPoint = GetSettingsEndPoint()
 
-        network.requestRawResult(endPoint: endPoint, mapToObject: Settings.self, completionHandler: completionHandler)
+        network?.requestRawResult(endPoint: endPoint, mapToObject: Settings.self, completionHandler: completionHandler)
     }
     
     open func getStickers(token: String, completionHandler: @escaping ((StickerResponse?, Error?) -> ())) {
         let endPoint = GetStickersEndPoint(token: token)
         
-        network.request(endPoint: endPoint, mapToObject: StickerResponse.self) { (mappable, error) in
+        network?.request(endPoint: endPoint, mapToObject: StickerResponse.self) { (mappable, error) in
             completionHandler(mappable as? StickerResponse, error)
         }
     }
@@ -113,17 +123,17 @@ open class PrismCore: NSObject {
     open func getAttachmentURL(filename: String, conversationID: String, token: String, completionHandler: @escaping ((UploadURL?, Error?) -> ())) {
         let endPoint = GetAttachmentURLEndPoint(filename: filename, conversationID: conversationID, token: token)
         
-        network.request(endPoint: endPoint, mapToObject: UploadURL.self) { (mappable, error) in
+        network?.request(endPoint: endPoint, mapToObject: UploadURL.self) { (mappable, error) in
             completionHandler(mappable as? UploadURL, error)
         }
     }
     
     open func uploadAttachment(with file:Data, url:URL, completionHandler: @escaping ((Bool, Error?) -> ())) {
-        network.upload(attachment: file, url: url, completionHandler: completionHandler)
+        network?.upload(attachment: file, url: url, completionHandler: completionHandler)
     }
     
     open func disconnectFromBroker(completionHandler: ((Bool) -> ())) {
-        network.disconnectFromBroker { response in
+        network?.disconnectFromBroker { response in
             completionHandler(true)
         }
     }
@@ -131,14 +141,14 @@ open class PrismCore: NSObject {
     open func getConversationHistory(conversationID: String, token: String, startTime: Int64, endTime: Int64, completionHandler: @escaping ((ConversationHistory?, Error?) -> ())) {
         let endPoint = GetConversationHistoryEndPoint(conversationID: conversationID, token: token, startTime: startTime, endTime: endTime)
 
-        network.request(endPoint: endPoint, mapToObject: ConversationHistory.self) { (mappable, error) in
+        network?.request(endPoint: endPoint, mapToObject: ConversationHistory.self) { (mappable, error) in
 
             completionHandler(mappable as? ConversationHistory, error)
         }
     }
     
     open func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, Error?) -> ())) {
-        network.unsubscribeFromTopic(topic: topic) { (success, error) in
+        network?.unsubscribeFromTopic(topic: topic) { (success, error) in
             completionHandler(success, error)
         }
     }
@@ -146,7 +156,7 @@ open class PrismCore: NSObject {
     open func refreshToken(clientID: String, refreshToken: String, completionHandler: @escaping ((RefreshTokenResponse?, Error?) -> ())) {
         let endPoint = RefreshTokenEndPoint(clientID: clientID, refreshToken: refreshToken)
         
-        network.request(endPoint: endPoint, mapToObject: RefreshTokenResponse.self) { (response, error) in
+        network?.request(endPoint: endPoint, mapToObject: RefreshTokenResponse.self) { (response, error) in
             completionHandler(response as? RefreshTokenResponse, error)
         }
     }

@@ -21,30 +21,27 @@ class Network: NSObject, NetworkProtocol {
     
     var uploadTaskIdentifiers: [Int: URL] = [:]
     weak var delegate: NetworkDelegate?
+    private var mqttSession: MQTTSession?
+    private var urlSession: URLSession?
     
     override init() {
         super.init()
         
-        mqttSession.delegate = self
-    }
-    
-    private var mqttSession = MQTTSession(host: URL.PrismMQTTURL,
-                                          port: URL.PrismMQTTPort,
-                                          clientID: UIDevice.current.identifierForVendor?.description ?? String.randomUserID ,
-                                          cleanSession: true,
-                                          keepAlive: 60,
-                                          useSSL: false)
-    
-    private var _urlSession: URLSession?
-    private var urlSession: URLSession? {
-        get {
-            if _urlSession == nil {
-                _urlSession = URLSession(configuration: URLSession.shared.configuration,
-                                         delegate: self,
-                                         delegateQueue: OperationQueue.main)
-            }
-            return _urlSession
-        }
+        urlSession = URLSession(
+            configuration: URLSession.shared.configuration,
+            delegate: self,
+            delegateQueue: OperationQueue.main
+        )
+        
+        mqttSession = MQTTSession(
+            host: URL.PrismMQTTURL,
+            port: URL.PrismMQTTPort,
+            clientID: UIDevice.current.identifierForVendor?.description ?? String.randomUserID ,
+            cleanSession: true,
+            keepAlive: 60,
+            useSSL: false
+        )
+        mqttSession?.delegate = self
     }
     
     func requestRawResult<T: Mappable>(endPoint: EndPoint, mapToObject: T.Type, completionHandler: @escaping (([String: Any]?, NSError?) -> ())) {
@@ -166,10 +163,10 @@ class Network: NSObject, NetworkProtocol {
     }
     
     func connectToBroker(username: String, password: String, completionHandler: @escaping ((Bool, NSError?) -> ())) {
-        mqttSession.username = username
-        mqttSession.password = password
+        mqttSession?.username = username
+        mqttSession?.password = password
         
-        mqttSession.connect { (connected, error) in
+        mqttSession?.connect { (connected, error) in
             DispatchQueue.main.async(){
                 completionHandler(connected, error as NSError?)
             }
@@ -177,7 +174,7 @@ class Network: NSObject, NetworkProtocol {
     }
     
     func subscribeToTopic(topic: String, completionHandler: @escaping ((Bool, NSError?) -> ())) {
-        mqttSession.subscribe(to: topic, delivering: MQTTQoS.atLeastOnce) { (success, error) in
+        mqttSession?.subscribe(to: topic, delivering: MQTTQoS.atLeastOnce) { (success, error) in
             DispatchQueue.main.async(){
                 
                 completionHandler(success, error as NSError?)
@@ -186,12 +183,12 @@ class Network: NSObject, NetworkProtocol {
     }
     
     func disconnectFromBroker(completionHandler: ((Bool) -> ())) {
-        mqttSession.disconnect()
+        mqttSession?.disconnect()
         completionHandler(true)
     }
     
     func unsubscribeFromTopic(topic: String, completionHandler: @escaping ((Bool, NSError?) -> ())) {
-        mqttSession.unSubscribe(from: topic) { (success, error) in
+        mqttSession?.unSubscribe(from: topic) { (success, error) in
             DispatchQueue.main.async(){
                 completionHandler(success, error as NSError?)
             }
@@ -202,7 +199,7 @@ class Network: NSObject, NetworkProtocol {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: message.dictionaryValue(), options: .init(rawValue: 0))
             
-            mqttSession.publish(jsonData, in: topic, delivering: .atLeastOnce, retain: false) { (success, error) in
+            mqttSession?.publish(jsonData, in: topic, delivering: .atLeastOnce, retain: false) { (success, error) in
                 DispatchQueue.main.async(){
                     if success {
                         completionHandler(message, nil)

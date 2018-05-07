@@ -8,7 +8,7 @@ s.license          = { :type => 'MIT', :file => 'LICENSE'}
 s.author           = 'Prism'
 
 s.platform         = :ios
-s.source           = { :http => 'https://s3-ap-southeast-1.amazonaws.com/prismapp-files/PrismUI0.1.4.zip' }
+s.source           = { :http => 'https://s3-ap-southeast-1.amazonaws.com/prismapp-files/PrismUI_0.1.5.zip' }
 
 s.ios.deployment_target = '9.0'
 s.ios.vendored_frameworks = 'PrismUI.framework'

@@ -20,8 +20,8 @@ private class URLProvider {
             mqttURL = "chat.prismapp.io"
             mqttPort = 1883
         case .Sandbox:
-            baseURL = "https://kong-feat-stg.prismapp.io"
-            mqttURL = "mqtt-feat-stg.prismapp.io"
+            baseURL = "https://kong-feat-cc.prismapp.io"
+            mqttURL = "mqtt-feat-cc.prismapp.io"
             mqttPort = 1883
         }
     }

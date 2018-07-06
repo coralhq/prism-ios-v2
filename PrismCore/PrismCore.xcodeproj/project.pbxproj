@@ -154,6 +154,10 @@
 		8091EA881EDEACBE007E43B0 /* RefreshTokenEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */; };
 		8091EA8A1EDEAFB0007E43B0 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */; };
 		8091EA8B1EDEAFB0007E43B0 /* RefreshTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */; };
+		E522C89F20EF690500D4C676 /* GetDepartmentEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522C89E20EF690500D4C676 /* GetDepartmentEndPoint.swift */; };
+		E522C8A120EF691800D4C676 /* AssignByDepartmentEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522C8A020EF691800D4C676 /* AssignByDepartmentEndPoint.swift */; };
+		E522C8A420EF6D8E00D4C676 /* DepartmentListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522C8A320EF6D8E00D4C676 /* DepartmentListResponse.swift */; };
+		E522C8A620EF730900D4C676 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = E522C8A520EF730900D4C676 /* Response.swift */; };
 		E53DA6B51EE7B471004306F8 /* autoResponder.json in Resources */ = {isa = PBXBuildFile; fileRef = E53DA6AF1EE7B471004306F8 /* autoResponder.json */; };
 		E53DA6B61EE7B471004306F8 /* cart.json in Resources */ = {isa = PBXBuildFile; fileRef = E53DA6B01EE7B471004306F8 /* cart.json */; };
 		E53DA6B71EE7B471004306F8 /* closeChat.json in Resources */ = {isa = PBXBuildFile; fileRef = E53DA6B11EE7B471004306F8 /* closeChat.json */; };
@@ -260,6 +264,10 @@
 		806C50E11F25CE4900067A21 /* messageResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = messageResponse.json; sourceTree = "<group>"; };
 		8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenEndPoint.swift; sourceTree = "<group>"; };
 		8091EA891EDEAFB0007E43B0 /* RefreshTokenResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshTokenResponse.swift; sourceTree = "<group>"; };
+		E522C89E20EF690500D4C676 /* GetDepartmentEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDepartmentEndPoint.swift; sourceTree = "<group>"; };
+		E522C8A020EF691800D4C676 /* AssignByDepartmentEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignByDepartmentEndPoint.swift; sourceTree = "<group>"; };
+		E522C8A320EF6D8E00D4C676 /* DepartmentListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentListResponse.swift; sourceTree = "<group>"; };
+		E522C8A520EF730900D4C676 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		E53DA6AF1EE7B471004306F8 /* autoResponder.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = autoResponder.json; sourceTree = "<group>"; };
 		E53DA6B01EE7B471004306F8 /* cart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cart.json; sourceTree = "<group>"; };
 		E53DA6B11EE7B471004306F8 /* closeChat.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = closeChat.json; sourceTree = "<group>"; };
@@ -312,6 +320,8 @@
 				8091EA861EDEACBE007E43B0 /* RefreshTokenEndPoint.swift */,
 				8043E1261F0E130B006EF0ED /* PublishMessageEndPoint.swift */,
 				80202CA51F399A9C00C43B07 /* SendDeviceTokenEndpoint.swift */,
+				E522C89E20EF690500D4C676 /* GetDepartmentEndPoint.swift */,
+				E522C8A020EF691800D4C676 /* AssignByDepartmentEndPoint.swift */,
 			);
 			path = EndPoint;
 			sourceTree = "<group>";
@@ -329,6 +339,8 @@
 		8000D8D41EDD368F00D9E8FB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E522C8A520EF730900D4C676 /* Response.swift */,
+				E522C8A220EF6D4900D4C676 /* Department */,
 				E5B676121EE65758005FF847 /* Error */,
 				8000D8D51EDD368F00D9E8FB /* Conversation */,
 				8000D8D91EDD368F00D9E8FB /* CreateConversation */,
@@ -514,6 +526,14 @@
 			path = PrismCoreTests;
 			sourceTree = "<group>";
 		};
+		E522C8A220EF6D4900D4C676 /* Department */ = {
+			isa = PBXGroup;
+			children = (
+				E522C8A320EF6D8E00D4C676 /* DepartmentListResponse.swift */,
+			);
+			path = Department;
+			sourceTree = "<group>";
+		};
 		E53DA6BD1EE7BBAE004306F8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -674,6 +694,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E522C8A120EF691800D4C676 /* AssignByDepartmentEndPoint.swift in Sources */,
 				8000D9451EDD369000D9E8FB /* ContentOfflineMessage.swift in Sources */,
 				8000D9471EDD369000D9E8FB /* ContentPlainText.swift in Sources */,
 				8000D91B1EDD368F00D9E8FB /* GetSettingsEndPoint.swift in Sources */,
@@ -715,8 +736,11 @@
 				8000D9811EDD369000D9E8FB /* MQTTSubAckPacket.swift in Sources */,
 				8000D9751EDD369000D9E8FB /* MQTTPacketFixedHeader.swift in Sources */,
 				8000D9291EDD368F00D9E8FB /* StickerPack.swift in Sources */,
+				E522C8A620EF730900D4C676 /* Response.swift in Sources */,
 				8000D9631EDD369000D9E8FB /* Network.swift in Sources */,
+				E522C89F20EF690500D4C676 /* GetDepartmentEndPoint.swift in Sources */,
 				8000D96B1EDD369000D9E8FB /* PrismCoreDelegate.swift in Sources */,
+				E522C8A420EF6D8E00D4C676 /* DepartmentListResponse.swift in Sources */,
 				8000D9171EDD368F00D9E8FB /* GetAttachmentURLEndPoint.swift in Sources */,
 				8000D9391EDD368F00D9E8FB /* ContentAssignment.swift in Sources */,
 				8000D98B1EDD369000D9E8FB /* MQTTSession.swift in Sources */,

@@ -158,6 +158,22 @@ open class PrismCore {
             completionHandler(response as? RefreshTokenResponse, error)
         }
     }
+    
+    open
+    func getDepartmentList(withToken token: String, completion: ((DepartmentListResponse?, Error?) -> Void)?) {
+        let ep = GetDepartmentEndPoint(withToken: token)
+        network?.request(endPoint: ep, mapToObject: DepartmentListResponse.self, completionHandler: { (response, error) in
+            completion?(response as? DepartmentListResponse, error)
+        })
+    }
+    
+    open
+    func assignByDepartment(withToken token: String, departmentID: String, conversationID: String, completion: ((GeneralResponse?, Error?) -> Void)?) {
+        let ep = AssignByDepartmentEndPoint(withToken: token, departmentID: departmentID, conversationID: conversationID)
+        network?.request(endPoint: ep, mapToObject: GeneralResponse.self, completionHandler: { (response, error) in
+            completion?(response as? GeneralResponse, error)
+        })
+    }
 }
 
 extension PrismCore: NetworkDelegate {

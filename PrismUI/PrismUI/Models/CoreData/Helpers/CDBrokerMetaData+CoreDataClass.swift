@@ -15,7 +15,7 @@ protocol CDManagedMappable {
     func dictionaryValue() -> [String: Any]?
 }
 
-public class CDBrokerMetaData: NSManagedObject, CDManagedMappable {
+class CDBrokerMetaData: NSManagedObject, CDManagedMappable {
     let df = Vendor.shared.dateFormatter
     
     required public init(with context: NSManagedObjectContext, dictionary: [String : Any]) {

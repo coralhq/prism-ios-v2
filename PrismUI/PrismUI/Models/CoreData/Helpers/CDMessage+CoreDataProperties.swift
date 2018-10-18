@@ -12,7 +12,7 @@ import CoreData
 
 extension CDMessage {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<CDMessage> {
+    @nonobjc class func fetchRequest() -> NSFetchRequest<CDMessage> {
         return NSFetchRequest<CDMessage>(entityName: "CDMessage")
     }
 

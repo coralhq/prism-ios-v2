@@ -661,7 +661,8 @@
 				80E58FD81F3B5FC100A85B06 /* CDUser+CoreDataClass.swift */,
 				80E58FD91F3B5FC100A85B06 /* CDUser+CoreDataProperties.swift */,
 			);
-			path = Helpers;
+			name = Helpers;
+			path = Models/CoreData/Helpers;
 			sourceTree = "<group>";
 		};
 		E5053A8D1EF130FD006677A4 /* Models */ = {

@@ -10,7 +10,7 @@ import Foundation
 import PrismCore
 import CoreData
 
-public class CDMessage: NSManagedObject, CDManagedMappable {
+class CDMessage: NSManagedObject, CDManagedMappable {
     var messageStatus: MessageStatus = .pending {
         didSet {
             status = messageStatus.rawValue
@@ -18,7 +18,7 @@ public class CDMessage: NSManagedObject, CDManagedMappable {
     }
     
     required public init(with context: NSManagedObjectContext, dictionary: [String : Any]) {
-        let entityDesc = NSEntityDescription.entity(forEntityName: String(describing: type(of: self)), in: context)!
+        let entityDesc = NSEntityDescription.entity(forEntityName: String(describing: Swift.type(of: self)), in: context)!
         super.init(entity: entityDesc, insertInto: context)
         updateMessage(with: dictionary)
     }
@@ -103,6 +103,8 @@ public class CDMessage: NSManagedObject, CDManagedMappable {
             return CDContentAttachment(dictionary: dictionary)
         case .CloseChat:
             return CDContentCloseChat(dictionary: dictionary)
+        case .AutoResponder:
+            return CDContentAutoResponder(dictionary: dictionary)
         default:
             return nil
         }

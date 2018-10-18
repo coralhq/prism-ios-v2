@@ -8,10 +8,10 @@ s.license          = { :type => 'MIT', :file => 'LICENSE' }
 s.author           = 'Prism'
 
 s.platform         = :ios
-s.source           = { :git => 'https://github.com/coralhq/prism-ios-v2.git', :tag => s.version }
 s.swift_version    = '4.0'
-
 s.ios.deployment_target = '9.0'
+
+s.source           = { :git => 'https://github.com/coralhq/prism-ios-v2.git', :tag => s.version }
 s.source_files = 'PrismCore/PrismCore/**/*.{h,m,swift}'
 s.frameworks    = 'UIKit', 'Foundation'
 
